@@ -902,10 +902,23 @@ app.get('/api/crawl/status', (req, res) => {
 });
 
 // ── 프로덕션: React 빌드 정적 파일 서빙 ──────────────────────────────────
-app.use(express.static(join(__dirname, 'dist')));
-app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, 'dist', 'index.html'));
-});
+const distDir = join(__dirname, 'dist');
+const distIndexFile = join(distDir, 'index.html');
+
+if (existsSync(distIndexFile)) {
+  app.use(express.static(distDir));
+  app.get('*', (req, res) => {
+    res.sendFile(distIndexFile);
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.json({
+      ok: true,
+      service: 'portfolio-coach-api',
+      message: 'Frontend is deployed separately. Use the GitHub Pages URL for the web app.',
+    });
+  });
+}
 
 // ── 서버 시작 ──────────────────────────────────────────────────────────────
 const PORT = process.env.PORT || serverConfig.port;
