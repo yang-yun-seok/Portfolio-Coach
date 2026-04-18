@@ -1,0 +1,62 @@
+{
+  "gemini": {
+    "label": "Gemini",
+    "enabled": true,
+    "color": "bg-blue-600",
+    "supportsFiles": true,
+    "models": [
+      {
+        "id": "gemini-2.5-flash",
+        "label": "Gemini 2.5 Flash",
+        "description": "안정·빠름 — 일반 분석에 적합",
+        "default": true
+      },
+      {
+        "id": "gemini-2.5-pro",
+        "label": "Gemini 2.5 Pro",
+        "description": "안정·고성능 — 정밀 분석에 적합 (유료 플랜 전용)",
+        "default": false
+      },
+      {
+        "id": "gemini-3.1-pro-preview",
+        "label": "Gemini 3.1 Pro (프리뷰)",
+        "description": "최신·고추론 — 복잡한 분석에 적합 (유료 플랜 전용)",
+        "default": false
+      },
+      {
+        "id": "gemini-3.1-flash-lite-preview",
+        "label": "Gemini 3.1 Flash Lite (프리뷰)",
+        "description": "최신·경량 — 2.5 Flash보다 2.5배 빠름 (2026.03 출시)",
+        "default": false
+      }
+    ]
+  },
+  "claude": {
+    "label": "Claude",
+    "enabled": false,
+    "color": "bg-orange-500",
+    "supportsFiles": false,
+    "models": [
+      {
+        "id": "claude-sonnet-4-5-20250929",
+        "label": "Claude Sonnet 4.5",
+        "description": "준비 중",
+        "default": true
+      }
+    ]
+  },
+  "openai": {
+    "label": "GPT",
+    "enabled": false,
+    "color": "bg-emerald-600",
+    "supportsFiles": false,
+    "models": [
+      {
+        "id": "gpt-4o-mini",
+        "label": "GPT-4o Mini",
+        "description": "준비 중",
+        "default": true
+      }
+    ]
+  }
+}

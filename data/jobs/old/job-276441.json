@@ -1,0 +1,33 @@
+{
+  "id": "crawled-276441",
+  "company": "넥슨 (NEXON)",
+  "title": "[KANA] 전 부문 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "3D",
+    "시나리오/퀘스트",
+    "PM",
+    "콘텐츠 기획",
+    "C#"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276441",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로드나인, AVATARA, 로한M",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "VisualC++, C++, 3D, 배경, 캐릭터원화, 배경원화, 모델링, 캐릭터, 애니메이션, 게임기획, 시나리오, PM, 컨텐츠, C#, 서버, 컨셉원화, 엔엑스쓰리게임즈, NX3GAMES, KANA, 카나",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "crawled-274104",
+  "company": "㈜넥스쳐",
+  "title": "기획자(게임디자이너) 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "콘텐츠 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=274104",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "아이러브커피, 마루는 강쥐: 카페 사장됐다 짱이지!, 아이러브파스타 등",
+  "gameCategory": "모바일게임 Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, SNG, 레벨, 게임기획, 퀘스트, 밸런스기획, 컨텐츠",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

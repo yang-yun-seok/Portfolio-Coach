@@ -1,0 +1,17 @@
+{
+  "id": 6,
+  "company": "넥슨 (NEXON)",
+  "title": "AI NPC 행동 패턴 개발자",
+  "role": "AI/데이터",
+  "reqSkills": [
+    "Python",
+    "C++",
+    "Machine Learning"
+  ],
+  "reqExp": 4,
+  "url": "https://www.gamejob.co.kr/Recruit/Job/Detail?GI_No=2026106",
+  "hasAssignment": true,
+  "assignmentType": "AI 알고리즘 구현 테스트",
+  "updatedAt": "2026-03-06",
+  "source": "manual"
+}

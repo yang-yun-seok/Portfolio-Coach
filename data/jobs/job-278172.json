@@ -1,0 +1,33 @@
+{
+  "id": "crawled-278172",
+  "company": "엽스튜디오",
+  "title": "[엽스튜디오] 유니티(Unity) 개발자 채용 (신입/경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "C++",
+    "UI/UX 기획",
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템 기획",
+    "콘텐츠 기획",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278172",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+  "employmentType": "정규직",
+  "deadline": "~ 04/12(일)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, VisualC, C, UX·UI, 레벨, 게임기획, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, UI·UX, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-04-03",
+  "source": "GameJob"
+}

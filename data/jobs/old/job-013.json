@@ -1,0 +1,17 @@
+{
+  "id": 13,
+  "company": "넥슨 (NEXON)",
+  "title": "라이브 게임 데이터 분석가",
+  "role": "AI/데이터",
+  "reqSkills": [
+    "Python",
+    "데이터 분석",
+    "DB"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/Job/Detail?GI_No=2026113",
+  "hasAssignment": true,
+  "assignmentType": "유저 이탈률 예측 모델링 과제",
+  "updatedAt": "2026-03-06",
+  "source": "manual"
+}

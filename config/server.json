@@ -1,0 +1,14 @@
+{
+  "port": 3002,
+  "bodyLimit": "100mb",
+  "cors": true,
+  "generation": {
+    "temperature": 0.7,
+    "maxTokens": 8192,
+    "responseMimeType": "application/json"
+  },
+  "retry": {
+    "maxRetries": 3,
+    "delays": [1000, 2000, 4000]
+  }
+}

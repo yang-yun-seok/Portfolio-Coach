@@ -1,0 +1,35 @@
+{
+  "id": "crawled-276031",
+  "company": "㈜플레이하드",
+  "title": "[수집형RPG 신작] 전투기획자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android",
+    "UI/UX 기획",
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "PM",
+    "밸런싱",
+    "시스템 기획",
+    "콘텐츠 기획",
+    "경제/BM 설계"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276031",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "히어로팩토리, 공장 주식회사, 레드브로즈, 우르르용병단",
+  "gameCategory": "모바일게임 Casual, Simulation",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 4개월)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "iOS, Android, SNG, UX·UI, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, PM, PD, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 유료화, UI·UX, 웹UI, 모바일UI",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

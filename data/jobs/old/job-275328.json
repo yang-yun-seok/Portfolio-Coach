@@ -1,0 +1,36 @@
+{
+  "id": "crawled-275328",
+  "company": "넥슨 (NEXON)",
+  "title": "[OUTANT] 전 부문 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획",
+    "서버"
+  ],
+  "reqSkills": [
+    "3D",
+    "레벨 디자인",
+    "시스템 기획",
+    "콘텐츠 기획",
+    "UI/UX 기획",
+    "TCP/IP",
+    "TA",
+    "Unreal Engine",
+    "Dedicated Server"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275328",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로드나인, AVATARA, 로한M",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, 3D, 애니메이션, 게임기획, 레벨기획, 시스템기획, 컨텐츠, UI·UX, 네트워크, RPG, TA, PC, 콘솔, 언리얼엔진, DedicatedServer, Unreal엔진, 엔엑스쓰리게임즈, NX3GAMES, OUTANT, 아웃턴트",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

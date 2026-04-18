@@ -1,0 +1,30 @@
+{
+  "id": "crawled-274793",
+  "company": "㈜서울게임",
+  "title": "전분야 게임개발 강사 모집(강의 미경력자 가능/원화,3D,플밍.기획 등)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "C++",
+    "3D",
+    "Illustrator",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=274793",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "서울게임아카데미",
+  "gameCategory": "모바일게임, 콘솔게임 RPG, Casual",
+  "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정), 프리랜서",
+  "deadline": "~ 03/13(금)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, VisualC++, DirectX, Direct3D, API, C++, 3D, 원화, 일러스트, 캐릭터원화, 모델링, 게임기획, 엔진, Unreal, Max, 교육, 강사, 게임프로그래밍, 게임프로그래머, 웹툰",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

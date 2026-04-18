@@ -1,0 +1,35 @@
+{
+  "id": "crawled-277061",
+  "company": "넥슨 (NEXON)",
+  "title": "[로드나인] 개발PM",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "C++",
+    "3D",
+    "UI/UX 기획",
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "PM",
+    "밸런싱",
+    "시스템 기획",
+    "콘텐츠 기획"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277061",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로드나인, AVATARA, 로한M",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "C++, 3D, 인터페이스, UX·UI, 레벨, 애니메이션, 이펙트, 게임기획, 시나리오, 퀘스트, PM, 밸런스기획, 시스템기획, 컨텐츠, UI·UX, 지원, 게임프로그래머, 엔엑스쓰리게임즈, NX3GAMES",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

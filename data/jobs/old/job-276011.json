@@ -1,0 +1,29 @@
+{
+  "id": "crawled-276011",
+  "company": "헬로에이치알",
+  "title": "매출 1조 이상 게임사 컨셉 아티스트, 캐릭터기획자, 3D 캐릭터 모델링, 서버프로그래머 각각 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI",
+    "기획",
+    "서버"
+  ],
+  "reqSkills": [
+    "C",
+    "C++",
+    "SQL"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276011",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "C, C++, 원화, 캐릭터원화, 캐릭터, 게임기획, 서버, SQL, 캐릭터기획",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

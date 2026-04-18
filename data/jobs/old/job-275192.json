@@ -1,0 +1,36 @@
+{
+  "id": "crawled-275192",
+  "company": "빅파이어게임즈",
+  "title": "[NC자회사][빅파이어게임즈][단기계약직] 빌드매니저(BM) 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "PM/운영",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "PM",
+    "시스템 기획",
+    "Unity",
+    "QA/테스트",
+    "CI/CD",
+    "경제/BM 설계",
+    "Unreal Engine",
+    "Git/SVN",
+    "Python"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275192",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+  "employmentType": "계약직 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, 게임기획, PM, 시스템기획, Unity, 모니터링, QA, 게임테스터, 시스템버전관리, 업데이트테스트, CI, BM, UnrealEngine, git, CD, Teamcity, CINDERCITY, Perforece",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

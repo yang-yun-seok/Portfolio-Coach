@@ -1,0 +1,28 @@
+{
+  "id": "crawled-276825",
+  "company": "스토리타코",
+  "title": "[스토리타코] 게임 기획자 채용",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템 기획",
+    "콘텐츠 기획",
+    "Machine Learning",
+    "데이터 분석"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276825",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "위험한그놈들",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "~ 04/27(월)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "게임기획, 시스템기획, 컨텐츠, AI, 콘텐츠기획, 데이터, 데이터분석, 테이블설계, 프롬프트, LLM, 업적기획",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

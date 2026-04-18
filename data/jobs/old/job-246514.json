@@ -1,0 +1,35 @@
+{
+  "id": "crawled-246514",
+  "company": "넥슨 (NEXON)",
+  "title": "[넥슨게임즈] 기획, 프로그래밍, 아트 전분야, PM 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "UI/UX 기획",
+    "3ds Max",
+    "시나리오/퀘스트",
+    "PM",
+    "SQL",
+    "TCP/IP",
+    "QA/테스트"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=246514",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "히트2, 블루아카이브, 서든어택, V4",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "C++, 모바일, 인터페이스, UX·UI, 배경, 모델링, 캐릭터, 하이폴리곤, 애니메이션, 3DMax, 이펙트, 게임기획, 시나리오, PM, 서버, MS-SQL, SQL, TCP·IP, QA, TQA",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

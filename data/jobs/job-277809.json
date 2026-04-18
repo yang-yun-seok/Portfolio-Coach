@@ -1,0 +1,33 @@
+{
+  "id": "crawled-277809",
+  "company": "드리모",
+  "title": "[글로벌 캐주얼 프로젝트] 게임 기획자 모집",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "레벨 디자인",
+    "PM",
+    "밸런싱",
+    "시스템 기획",
+    "콘텐츠 기획",
+    "Python",
+    "Unity",
+    "SQL"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277809",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "머지 블라스트: 드림 아일랜드",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, UX·UI, 레벨, 컨셉, 게임기획, PM, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
+  "updatedAt": "2026-04-03",
+  "source": "GameJob"
+}

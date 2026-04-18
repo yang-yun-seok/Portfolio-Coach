@@ -1,0 +1,59 @@
+{
+  "type": "OBJECT",
+  "properties": {
+    "profileAnalysis": {
+      "type": "OBJECT",
+      "properties": {
+        "strengths": { "type": "ARRAY", "items": { "type": "STRING" } },
+        "weaknesses": { "type": "ARRAY", "items": { "type": "STRING" } },
+        "fitScore": { "type": "STRING" }
+      },
+      "required": ["strengths", "weaknesses", "fitScore"]
+    },
+    "resumeImprovements": {
+      "type": "ARRAY",
+      "items": { "type": "STRING" }
+    },
+    "coverLetterImprovements": {
+      "type": "OBJECT",
+      "properties": {
+        "common": { "type": "ARRAY", "items": { "type": "STRING" } },
+        "rank1": { "type": "ARRAY", "items": { "type": "STRING" } },
+        "rank2": { "type": "ARRAY", "items": { "type": "STRING" } },
+        "rank3": { "type": "ARRAY", "items": { "type": "STRING" } }
+      },
+      "required": ["common", "rank1", "rank2", "rank3"]
+    },
+    "portfolioImprovements": {
+      "type": "ARRAY",
+      "items": { "type": "STRING" }
+    },
+    "interviewPreps": {
+      "type": "ARRAY",
+      "items": {
+        "type": "OBJECT",
+        "properties": {
+          "rank": { "type": "INTEGER" },
+          "company": { "type": "STRING" },
+          "idealCandidateReflected": { "type": "STRING" },
+          "assignmentGuide": { "type": "STRING" },
+          "questions": {
+            "type": "ARRAY",
+            "items": {
+              "type": "OBJECT",
+              "properties": {
+                "type": { "type": "STRING" },
+                "question": { "type": "STRING" },
+                "avoid": { "type": "STRING" },
+                "recommend": { "type": "STRING" }
+              },
+              "required": ["type", "question", "avoid", "recommend"]
+            }
+          }
+        },
+        "required": ["rank", "company", "idealCandidateReflected", "assignmentGuide", "questions"]
+      }
+    }
+  },
+  "required": ["profileAnalysis", "resumeImprovements", "coverLetterImprovements", "portfolioImprovements", "interviewPreps"]
+}

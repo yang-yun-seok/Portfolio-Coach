@@ -1,0 +1,28 @@
+{
+  "id": "crawled-277207",
+  "company": "넷마블 (Netmarble)",
+  "title": "[넷마블몬스터] EVILBANE(신작) 게임디자인 / 클라이언트",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "C++",
+    "레벨 디자인",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277207",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "마블퓨처파이트/몬스터길들이기/레이븐/레이븐2 外",
+  "gameCategory": "온라인PC게임, 콘솔게임 Shooting, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, C++, 게임기획, 레벨기획, 언리얼, 게임프로그래밍, 게임프로그래머, 신규프로젝트, RPG, PC, 콘솔, 신작",
+  "updatedAt": "2026-04-03",
+  "source": "GameJob"
+}

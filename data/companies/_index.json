@@ -1,0 +1,26 @@
+[
+  {
+    "id": "nexon",
+    "name": "넥슨 (NEXON)"
+  },
+  {
+    "id": "ncsoft",
+    "name": "엔씨소프트 (NCSOFT)"
+  },
+  {
+    "id": "krafton",
+    "name": "크래프톤 (KRAFTON)"
+  },
+  {
+    "id": "pearl-abyss",
+    "name": "펄어비스 (PEARL ABYSS)"
+  },
+  {
+    "id": "smilegate",
+    "name": "스마일게이트 (Smilegate)"
+  },
+  {
+    "id": "netmarble",
+    "name": "넷마블 (Netmarble)"
+  }
+]

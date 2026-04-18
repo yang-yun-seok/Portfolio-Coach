@@ -1,0 +1,18 @@
+{
+  "id": 2,
+  "company": "엔씨소프트 (NCSOFT)",
+  "title": "대규모 분산 서버 시스템 개발자",
+  "role": "서버",
+  "reqSkills": [
+    "C++",
+    "C#",
+    "Network",
+    "DB"
+  ],
+  "reqExp": 5,
+  "url": "https://www.gamejob.co.kr/Recruit/Job/Detail?GI_No=2026102",
+  "hasAssignment": true,
+  "assignmentType": "서버 아키텍처 설계 과제 및 코딩 테스트",
+  "updatedAt": "2026-03-06",
+  "source": "manual"
+}

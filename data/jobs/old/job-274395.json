@@ -1,0 +1,34 @@
+{
+  "id": "crawled-274395",
+  "company": "(주)웹젠",
+  "title": "2026년 웹젠 게임기획/개발/개발지원/기술 부문 수시채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "서버"
+  ],
+  "reqSkills": [
+    "C",
+    "C++",
+    "SQL",
+    "TCP/IP",
+    "Unreal Engine",
+    "Unity",
+    "QA/테스트",
+    "PM"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=274395",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "R2M, 뮤아크엔젤, 뮤오리진, 뮤, 썬, R2, 샷온라인 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C, C++, 게임기획, 서버, MS-SQL, 네트워크, Unreal, Unity, 보안, 보안설계, 시스템엔지니어링, QA, 서비스기획, 게임프로그래밍, 기술PM, 개발PM, 퍼블리셔",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "crawled-276106",
+  "company": "㈜매드엔진",
+  "title": "[NX 스튜디오] [Project TAL] TA 모집 (경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Python",
+    "UI/UX 기획",
+    "TA",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276106",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "나이트 크로우",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, Python, 인터페이스, AD, TA, 아트, 테크니컬아트",
+  "updatedAt": "2026-04-03",
+  "source": "GameJob"
+}

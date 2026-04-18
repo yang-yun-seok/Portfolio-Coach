@@ -1,0 +1,28 @@
+{
+  "id": "crawled-277225",
+  "company": "테이드소프트",
+  "title": "[대전]테이드소프트 게임 기획, 개발자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "기획"
+  ],
+  "reqSkills": [
+    "C++",
+    "Python"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277225",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 VR·AR, 기타",
+  "employmentType": "계약직 (계약기간 : 4개월)",
+  "deadline": "~ 04/09(목)",
+  "salary": "2,800~3,000만원 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C++, Python, 게임프로그래밍",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

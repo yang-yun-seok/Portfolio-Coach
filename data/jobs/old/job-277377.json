@@ -1,0 +1,34 @@
+{
+  "id": "crawled-277377",
+  "company": "넥슨 (NEXON)",
+  "title": "[로드나인] 전 부문 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "C++",
+    "UI/UX 기획",
+    "3ds Max",
+    "시나리오/퀘스트",
+    "PM",
+    "시스템 기획",
+    "콘텐츠 기획",
+    "SQL"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277377",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로드나인, AVATARA, 로한M",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "클라이언트, VisualC++, UX·UI, 캐릭터원화, 배경원화, 모델링, 3DSmax, 캐릭터, 애니메이션, 게임기획, 퀘스트, PM, 시스템기획, 컨텐츠, MS-SQL, DB, 웹개발, 엔엑스쓰리게임즈, NX3GAMES",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

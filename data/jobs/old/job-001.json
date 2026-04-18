@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "company": "넥슨 (NEXON)",
+  "title": "신규 프로젝트 언리얼 클라이언트 프로그래머",
+  "role": "클라이언트",
+  "reqSkills": [
+    "Unreal Engine",
+    "C++",
+    "3D"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/Job/Detail?GI_No=2026101",
+  "hasAssignment": true,
+  "assignmentType": "온라인 코딩 테스트 (C++ / 알고리즘)",
+  "updatedAt": "2026-03-06",
+  "source": "manual"
+}

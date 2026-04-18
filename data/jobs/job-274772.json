@@ -1,0 +1,35 @@
+{
+  "id": "crawled-274772",
+  "company": "㈜그라비티 네오싸이언",
+  "title": "[그라비티네오싸이언] 신규 MMORPG 전 분야 모집(기획, 클라, 서버)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "iOS",
+    "Android",
+    "시나리오/퀘스트",
+    "시스템 기획",
+    "TCP/IP",
+    "Python",
+    "Unity",
+    "Redis"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=274772",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "라그나로크모바일/위빌드스토리/퍼즐앤드래곤",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, C++, 모바일, iOS, Android, 게임기획, 시나리오, 시스템기획, TCP·IP, 게임프로그래머",
+  "updatedAt": "2026-04-03",
+  "source": "GameJob"
+}

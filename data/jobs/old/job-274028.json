@@ -1,0 +1,34 @@
+{
+  "id": "crawled-274028",
+  "company": "넥슨 (NEXON)",
+  "title": "[스피릿위시 Plus] 전 부문 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "Java",
+    "시나리오/퀘스트",
+    "콘텐츠 기획",
+    "C#",
+    "SQL",
+    "TCP/IP",
+    "Redis"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=274028",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로드나인, AVATARA, 로한M",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "VisualC++, C++, 모바일, Java, 게임기획, 시나리오, 컨텐츠, XML, C#, MS-SQL, TCP·IP, 네트워크, IOCP, DB, Redis, 엔엑스쓰리게임즈, NX3GAMES, 스피릿위시plus",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

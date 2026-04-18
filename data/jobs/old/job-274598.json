@@ -1,0 +1,31 @@
+{
+  "id": "crawled-274598",
+  "company": "㈜기어세컨드",
+  "title": "[신규 프로젝트] 게임 클라이언트 개발자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "C",
+    "C++",
+    "iOS",
+    "Android",
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=274598",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "슬레이어 키우기",
+  "gameCategory": "모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C, C++, iOS, Android, C#, Unity, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-03-11",
+  "source": "GameJob"
+}

@@ -1,0 +1,8 @@
+{
+  "dataSource": "local",
+  "localPath": "./data",
+  "nasPath": null,
+  "refreshInterval": 3600000,
+  "version": "1.0.0",
+  "notes": "nasPath가 설정되면 NAS에서 주기적으로 데이터를 동기화합니다. refreshInterval은 밀리초 단위입니다."
+}
