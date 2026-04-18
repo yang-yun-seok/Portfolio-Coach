@@ -1211,6 +1211,351 @@
     color: rgba(15, 23, 42, 0.34);
   }
 
+  .model-selector-shell {
+    margin: auto 0.9rem 1rem;
+    padding: 1rem;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(12, 17, 27, 0.92) 0%, rgba(8, 11, 18, 0.98) 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 22px 50px rgba(0, 0, 0, 0.24);
+  }
+
+  .model-selector-loading {
+    text-align: center;
+  }
+
+  .model-selector-header {
+    display: grid;
+    gap: 0.35rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .model-selector-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .model-selector-caption {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  .model-selector-providers {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .model-selector-provider {
+    min-height: 2.5rem;
+    padding: 0.65rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-size: 0.78rem;
+    font-weight: 700;
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+  }
+
+  .model-selector-provider-active {
+    background: var(--apple-blue);
+    color: #ffffff;
+    box-shadow: 0 12px 30px rgba(0, 113, 227, 0.28);
+  }
+
+  .model-selector-provider-idle {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.68);
+  }
+
+  .model-selector-provider-idle:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .model-selector-select-wrap {
+    position: relative;
+  }
+
+  .model-selector-select {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.8rem 2.2rem 0.8rem 0.95rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.76rem;
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .model-selector-select:focus {
+    outline: none;
+    border-color: rgba(0, 113, 227, 0.8);
+    box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.16);
+  }
+
+  .model-selector-chevron {
+    position: absolute;
+    right: 0.85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.46);
+    pointer-events: none;
+  }
+
+  .model-selector-note {
+    margin: 0.65rem 0 0;
+    color: #fbbf24;
+    font-size: 0.68rem;
+    line-height: 1.45;
+  }
+
+  .model-selector-current {
+    margin-top: 0.8rem;
+    padding: 0.75rem 0.85rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .model-selector-current-label {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: rgba(125, 193, 255, 0.86);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .model-selector-current p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 0.72rem;
+    line-height: 1.45;
+    word-break: break-word;
+  }
+
+  .personality-intro {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .personality-result-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto -15% -38% auto;
+    width: 22rem;
+    height: 22rem;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(0, 113, 227, 0.14) 0%, rgba(0, 113, 227, 0) 72%);
+    pointer-events: none;
+  }
+
+  .personality-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.92fr);
+    gap: 1.5rem;
+    padding: 2rem 2.15rem;
+    border-radius: 34px;
+    background: linear-gradient(145deg, #07101d 0%, #13233a 72%, #183153 100%);
+    color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 24px 70px rgba(7, 16, 29, 0.28);
+  }
+
+  .personality-hero-copy h2 {
+    margin: 0.35rem 0 0.8rem;
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.05em;
+    color: #ffffff;
+  }
+
+  .personality-hero-copy p {
+    margin: 0;
+    max-width: 36rem;
+    color: rgba(255, 255, 255, 0.74);
+    line-height: 1.7;
+  }
+
+  .personality-primary-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    min-height: 3rem;
+    margin-top: 1.45rem;
+    padding: 0.8rem 1.25rem;
+    border: 0;
+    border-radius: 999px;
+    background: var(--apple-blue);
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 18px 40px rgba(0, 113, 227, 0.24);
+  }
+
+  .personality-hero-summary {
+    display: grid;
+    gap: 0.9rem;
+    align-content: start;
+    padding: 1.35rem;
+    border-radius: 26px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .personality-summary-row {
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .personality-summary-row:last-of-type {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .personality-summary-row span {
+    display: block;
+    margin-bottom: 0.28rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(125, 193, 255, 0.88);
+  }
+
+  .personality-summary-row strong {
+    color: #ffffff;
+    line-height: 1.5;
+  }
+
+  .personality-hero-summary > p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.68);
+    line-height: 1.65;
+    font-size: 0.94rem;
+  }
+
+  .personality-intro-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .personality-info-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.9rem;
+    align-items: start;
+    padding: 1.2rem 1.25rem;
+    border-radius: 24px;
+    background: #ffffff;
+    border: 1px solid rgba(29, 29, 31, 0.08);
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.06);
+  }
+
+  .personality-info-card h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+    color: #0f172a;
+  }
+
+  .personality-info-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(15, 23, 42, 0.72);
+  }
+
+  .personality-info-card p + p {
+    margin-top: 0.2rem;
+  }
+
+  .personality-info-card-blue svg { color: #2563eb; }
+  .personality-info-card-sky svg { color: #0284c7; }
+  .personality-info-card-emerald svg { color: #059669; }
+  .personality-info-card-amber svg { color: #d97706; }
+
+  .personality-practice-shell,
+  .personality-test-shell {
+    border-radius: 34px;
+    overflow: hidden;
+    border: 1px solid rgba(29, 29, 31, 0.08);
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.1);
+  }
+
+  .personality-topbar,
+  .personality-test-topbar {
+    background: rgba(255, 255, 255, 0.94) !important;
+    backdrop-filter: saturate(180%) blur(18px);
+  }
+
+  .personality-phase-chip {
+    background: rgba(0, 113, 227, 0.1);
+    color: var(--apple-blue);
+  }
+
+  .personality-progress-track {
+    background: #dbe5ef !important;
+  }
+
+  .personality-progress-fill {
+    background: var(--apple-blue);
+  }
+
+  .personality-guidance {
+    background: #ecf6ff;
+    border: 1px solid #cfe6fb;
+  }
+
+  .personality-guidance p {
+    color: #0369a1;
+  }
+
+  .personality-question-card {
+    border-radius: 28px;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.06);
+  }
+
+  .personality-question-badge {
+    background: rgba(0, 113, 227, 0.1);
+    color: var(--apple-blue);
+  }
+
+  .personality-tip-badge {
+    background: rgba(0, 113, 227, 0.1);
+    color: var(--apple-blue);
+  }
+
+  .personality-likert-grid button {
+    min-height: 4.25rem;
+  }
+
+  .personality-page-strip {
+    scrollbar-width: none;
+  }
+
+  .personality-page-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .personality-test-shell .personality-test-topbar {
+    gap: 1rem;
+  }
+
+  .personality-test-shell .personality-test-topbar > div {
+    min-width: 0;
+  }
+
   .apple-instructor-form .grid.grid-cols-2,
   .apple-shell .grid.grid-cols-2.gap-4.mb-8 {
     gap: 1rem;
@@ -1241,6 +1586,11 @@
     .studio-readiness-hero,
     .studio-readiness-layout,
     .studio-assessment-hero {
+      grid-template-columns: 1fr;
+    }
+
+    .personality-hero,
+    .personality-intro-grid {
       grid-template-columns: 1fr;
     }
   }
@@ -1312,6 +1662,15 @@
       min-width: 0;
       width: fit-content;
       min-height: 2.8rem;
+    }
+
+    .model-selector-shell {
+      margin: 1rem 1rem 0;
+    }
+
+    .personality-test-topbar {
+      flex-wrap: wrap;
+      justify-content: flex-start;
     }
   }
 

@@ -29,43 +29,44 @@ export default function ModelSelector({
 
   if (modelsLoading) {
     return (
-      <div className="p-4 border-t border-slate-800 text-center">
-        <Loader2 size={16} className="animate-spin text-slate-400 mx-auto" />
-        <p className="text-[10px] text-slate-500 mt-1">모델 로딩 중...</p>
+      <div className="model-selector-shell model-selector-loading">
+        <Loader2 size={16} className="animate-spin text-slate-300 mx-auto" />
+        <p className="text-[10px] text-slate-400 mt-2">모델 로딩 중...</p>
       </div>
     );
   }
 
   return (
-    <div className="p-4 border-t border-slate-800 space-y-3">
-      <div className="flex items-center gap-2 text-slate-300 text-sm font-semibold">
-        <Sparkles size={15} /> AI 모델 선택
+    <div className="model-selector-shell">
+      <div className="model-selector-header">
+        <div className="model-selector-title">
+          <Sparkles size={15} />
+          <span>AI 모델 선택</span>
+        </div>
+        <p className="model-selector-caption">분석에 사용할 엔진과 세부 모델을 정합니다.</p>
       </div>
 
-      {/* 프로바이더 버튼 (활성화된 것) */}
-      <div className="flex gap-1.5">
+      <div className="model-selector-providers">
         {enabledProviders.map((p) => (
           <button
             key={p.id}
             onClick={() => onProviderChange(p.id)}
-            className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-colors border
+            className={`model-selector-provider
               ${selectedProvider === p.id
-                ? `${p.color} text-white border-transparent`
-                : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-slate-500'}`}
+                ? 'model-selector-provider-active'
+                : 'model-selector-provider-idle'}`}
           >
             {p.label}
           </button>
         ))}
-        {/* 비활성 프로바이더는 표시하지 않음 */}
       </div>
 
-      {/* 모델 드롭다운 */}
       {currentModels.length > 1 && (
-        <div className="relative">
+        <div className="model-selector-select-wrap">
           <select
             value={selectedModelId}
             onChange={(e) => onModelChange(e.target.value)}
-            className="w-full bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-lg px-3 py-2 pr-8 focus:outline-none focus:border-indigo-500 transition-colors appearance-none cursor-pointer"
+            className="model-selector-select"
           >
             {currentModels.map((m) => (
               <option key={m.id} value={m.id}>
@@ -73,19 +74,18 @@ export default function ModelSelector({
               </option>
             ))}
           </select>
-          <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none" />
+          <ChevronDown size={14} className="model-selector-chevron" />
         </div>
       )}
 
-      {/* 파일 지원 안내 */}
       {currentProvider && !currentProvider.supportsFiles && (
-        <p className="text-amber-400 text-[10px] leading-tight">※ PDF 업로드는 Gemini만 지원</p>
+        <p className="model-selector-note">※ PDF 업로드는 Gemini만 지원합니다.</p>
       )}
 
-      {/* 현재 선택된 모델 정보 */}
-      <p className="text-[10px] text-slate-500 text-center">
-        {currentProvider?.label} · {currentModel?.id || ''}
-      </p>
+      <div className="model-selector-current">
+        <span className="model-selector-current-label">현재 선택</span>
+        <p>{currentProvider?.label} · {currentModel?.id || ''}</p>
+      </div>
     </div>
   );
 }

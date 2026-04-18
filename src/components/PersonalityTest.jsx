@@ -471,69 +471,74 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
   // ═══════════════════════════════════════════════════════════════════════
   if (step === 'intro') {
     return (
-      <div className="apple-module apple-module-intro p-8 animate-in fade-in">
-        <div className="max-w-2xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-slate-800 mb-2">인성검사 시뮬레이션</h2>
-            <p className="text-slate-500">실제 기업 인적성 검사를 시뮬레이션합니다. 연습 문항 → 본 문항(리커트 척도) → 선택형 문항 순서로 진행됩니다.</p>
+      <div className="apple-module personality-intro animate-in fade-in">
+        <section className="personality-hero">
+          <div className="personality-hero-copy">
+            <p className="studio-eyebrow">Personality Simulation</p>
+            <h2>인성검사 시뮬레이션</h2>
+            <p>
+              실제 기업 인적성 검사 흐름을 바탕으로, 연습 문항부터 리커트 본 검사,
+              선택형 문항까지 순서대로 진행합니다. 빠르게 답하는 것보다 일관되게 답하는
+              편이 더 중요합니다.
+            </p>
+            <button
+              onClick={handleStartPractice}
+              className="personality-primary-action"
+            >
+              <Play size={18} /> 연습 문항 시작
+            </button>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
-            <div className="bg-gradient-to-r from-violet-900 to-indigo-900 p-8 text-center">
-              <p className="text-slate-300 text-sm font-medium">인성 역량 검사</p>
-              <p className="text-slate-500 mt-1 text-xs">Personality Assessment Simulation</p>
+          <div className="personality-hero-summary">
+            <div className="personality-summary-row">
+              <span>Flow</span>
+              <strong>연습 5문항 → 본 문항 94개 → 선택형 31개</strong>
             </div>
-
-            <div className="p-8 space-y-5">
-              <div className="flex items-start gap-4 bg-violet-50 p-4 rounded-xl border border-violet-100">
-                <ClipboardCheck className="w-6 h-6 text-violet-500 shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-bold text-violet-700 text-sm mb-1">검사 구성</h4>
-                  <p className="text-xs text-violet-600/80 leading-relaxed">
-                    <strong>1단계</strong>: 연습 문항 5개 (시간 제한 없음)<br />
-                    <strong>2단계</strong>: 본 문항 94개 — 6점 리커트 척도<br />
-                    <strong>3단계</strong>: 선택형 문항 31개 — A/B 이항 선택
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 bg-sky-50 p-4 rounded-xl border border-sky-100">
-                <Clock className="w-6 h-6 text-sky-500 shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-bold text-sky-700 text-sm mb-1">제한 시간</h4>
-                  <p className="text-xs text-sky-600/80 leading-relaxed">
-                    본 검사(2·3단계)는 총 <strong>40분</strong>의 제한 시간이 있습니다. 너무 깊게 고민하지 말고 직관적으로 응답하는 것이 좋습니다.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 bg-emerald-50 p-4 rounded-xl border border-emerald-100">
-                <Brain className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-bold text-emerald-700 text-sm mb-1">AI 분석 제공</h4>
-                  <p className="text-xs text-emerald-600/80 leading-relaxed">
-                    제출 후 AI가 응답 패턴을 분석하여 <strong>성격 특성, 업무 스타일, 강점/주의점, 게임 업계 적합도</strong> 등을 피드백해 드립니다.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 bg-amber-50 p-4 rounded-xl border border-amber-100">
-                <AlertCircle className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-bold text-amber-700 text-sm mb-1">주의사항</h4>
-                  <p className="text-xs text-amber-600/80 leading-relaxed">
-                    솔직하게 응답할수록 정확한 결과를 얻을 수 있습니다. 사회적 바람직성(Lie Scale) 탐지 문항이 포함되어 있습니다.
-                  </p>
-                </div>
-              </div>
-
-              <button onClick={handleStartPractice}
-                className="w-full py-4 mt-4 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl transition-all text-lg shadow-lg active:scale-[0.98] flex items-center justify-center gap-3">
-                <Play size={20} /> 연습 문항 시작
-              </button>
+            <div className="personality-summary-row">
+              <span>Time Limit</span>
+              <strong>본 검사 총 40분</strong>
             </div>
+            <p>
+              검사 목적은 정답 찾기가 아니라 응답의 일관성과 업무 성향의 흐름을 읽는 데 있습니다.
+            </p>
           </div>
-        </div>
+        </section>
+
+        <section className="personality-intro-grid">
+          <article className="personality-info-card personality-info-card-blue">
+            <ClipboardCheck className="w-5 h-5" />
+            <div>
+              <h3>검사 구성</h3>
+              <p><strong>1단계</strong>: 연습 문항 5개 (시간 제한 없음)</p>
+              <p><strong>2단계</strong>: 본 문항 94개 — 6점 리커트 척도</p>
+              <p><strong>3단계</strong>: 선택형 문항 31개 — A/B 이항 선택</p>
+            </div>
+          </article>
+
+          <article className="personality-info-card personality-info-card-sky">
+            <Clock className="w-5 h-5" />
+            <div>
+              <h3>제한 시간</h3>
+              <p>본 검사(2·3단계)는 총 <strong>40분</strong>입니다. 너무 오래 고민하기보다 직관적이되 일관되게 답하는 편이 좋습니다.</p>
+            </div>
+          </article>
+
+          <article className="personality-info-card personality-info-card-emerald">
+            <Brain className="w-5 h-5" />
+            <div>
+              <h3>AI 분석 제공</h3>
+              <p>제출 후 성격 특성, 업무 스타일, 강점과 주의점, 게임 업계 적합도까지 이어서 분석합니다.</p>
+            </div>
+          </article>
+
+          <article className="personality-info-card personality-info-card-amber">
+            <AlertCircle className="w-5 h-5" />
+            <div>
+              <h3>주의사항</h3>
+              <p>사회적 바람직성(Lie Scale) 탐지 문항이 포함되어 있어 지나치게 완벽한 응답은 오히려 부자연스럽게 보일 수 있습니다.</p>
+            </div>
+          </article>
+        </section>
       </div>
     );
   }
@@ -544,21 +549,21 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
   if (step === 'practice') {
     const practiceAnsweredCount = Object.keys(practiceAnswers).length;
     return (
-      <div className="apple-module apple-module-practice flex flex-col h-full bg-slate-50">
-        <div className="bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shrink-0 shadow-sm">
+      <div className="apple-module apple-module-practice personality-practice-shell flex flex-col h-full bg-slate-50">
+        <div className="personality-topbar bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shrink-0 shadow-sm">
           <div className="flex items-center gap-3">
-            <span className="bg-violet-100 text-violet-700 px-3 py-1 rounded-full text-xs font-bold">연습 문항</span>
+            <span className="personality-phase-chip px-3 py-1 rounded-full text-xs font-bold">연습 문항</span>
             <span className="text-sm text-slate-500">시간 제한 없음</span>
           </div>
           <span className="text-sm text-slate-500">{practiceAnsweredCount}/{PRACTICE_QUESTIONS.length}</span>
         </div>
-        <div className="w-full h-1.5 bg-slate-200">
-          <div className="h-full bg-violet-500 transition-all duration-500" style={{ width: `${(practiceAnsweredCount / PRACTICE_QUESTIONS.length) * 100}%` }} />
+        <div className="personality-progress-track w-full h-1.5 bg-slate-200">
+          <div className="personality-progress-fill h-full transition-all duration-500" style={{ width: `${(practiceAnsweredCount / PRACTICE_QUESTIONS.length) * 100}%` }} />
         </div>
         <div className="flex-1 overflow-y-auto">
-          <div className="max-w-3xl mx-auto py-8 px-6 space-y-6">
-            <div className="bg-violet-50 border border-violet-200 rounded-xl p-4 mb-4">
-              <p className="text-sm text-violet-700 font-medium text-center">다음 문장을 읽고 본인과 가장 가깝다고 생각하는 선택지를 클릭해 주세요.</p>
+          <div className="max-w-4xl mx-auto py-8 px-6 space-y-6">
+            <div className="personality-guidance rounded-xl p-4 mb-4">
+              <p className="text-sm font-medium text-center">다음 문장을 읽고 본인과 가장 가깝다고 생각하는 선택지를 클릭해 주세요.</p>
             </div>
             {PRACTICE_QUESTIONS.map((q, idx) => (
               <QuestionCard key={q.id} number={idx + 1} text={q.text} selected={practiceAnswers[q.id]}
@@ -566,8 +571,8 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             ))}
             <div className="pt-4 pb-8">
               <button onClick={handleStartTest} disabled={practiceAnsweredCount < PRACTICE_QUESTIONS.length}
-                className={`w-full py-4 font-bold rounded-xl transition-all text-lg shadow-lg flex items-center justify-center gap-3
-                  ${practiceAnsweredCount >= PRACTICE_QUESTIONS.length ? 'bg-violet-600 hover:bg-violet-700 text-white active:scale-[0.98]' : 'bg-slate-200 text-slate-400 cursor-not-allowed'}`}>
+                className={`w-full py-4 font-bold rounded-full transition-all text-lg shadow-lg flex items-center justify-center gap-3
+                  ${practiceAnsweredCount >= PRACTICE_QUESTIONS.length ? 'bg-sky-600 hover:bg-sky-700 text-white active:scale-[0.98]' : 'bg-slate-200 text-slate-400 cursor-not-allowed'}`}>
                 <ArrowRight size={20} /> 본 검사 시작하기
               </button>
               {practiceAnsweredCount < PRACTICE_QUESTIONS.length && (
@@ -590,7 +595,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
     const globalOffset = currentPage * QUESTIONS_PER_PAGE;
 
     return (
-      <div className="apple-module apple-module-practice flex flex-col h-full bg-slate-50">
+      <div className="apple-module apple-module-practice personality-test-shell flex flex-col h-full bg-slate-50">
         {showConfirm && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
             <div className="bg-white border border-slate-200 rounded-2xl p-8 max-w-sm w-full shadow-2xl">
@@ -602,7 +607,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
               <p className="text-slate-400 mb-6 text-xs leading-relaxed">제출 후에는 답안을 수정할 수 없습니다.</p>
               <div className="flex gap-3">
                 <button onClick={cancelSubmit} className="flex-1 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-100 text-sm font-bold border border-slate-200">취소</button>
-                <button onClick={confirmSubmit} className="flex-1 px-4 py-3 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-sm shadow-lg">제출하기</button>
+                <button onClick={confirmSubmit} className="flex-1 px-4 py-3 rounded-full bg-sky-600 hover:bg-sky-500 text-white font-bold text-sm shadow-lg">제출하기</button>
               </div>
             </div>
           </div>
@@ -614,15 +619,15 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
           </div>
         )}
 
-        <div className="bg-white border-b border-slate-200 px-6 py-3 flex justify-between items-center shrink-0 shadow-sm z-10">
+        <div className="personality-test-topbar bg-white border-b border-slate-200 px-6 py-3 flex justify-between items-center shrink-0 shadow-sm z-10">
           <div className="flex items-center gap-4">
-            <div className="flex bg-slate-100 rounded-lg p-0.5">
+            <div className="flex bg-slate-100 rounded-full p-1">
               <button onClick={() => { setCurrentPage(0); setStep('test-likert'); }}
-                className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${isLikert ? 'bg-violet-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
+                className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${isLikert ? 'bg-sky-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
                 리커트 척도
               </button>
               <button onClick={() => { setCurrentPage(0); setStep('test-binary'); }}
-                className={`px-3 py-1.5 rounded-md text-xs font-bold transition-all ${!isLikert ? 'bg-violet-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
+                className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${!isLikert ? 'bg-sky-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
                 선택형
               </button>
             </div>
@@ -631,7 +636,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <div className={`flex items-center gap-1 text-sm font-mono font-bold ${questionTimeLeft <= 3 ? 'text-red-500 animate-pulse' : 'text-violet-600'}`}>
+            <div className={`flex items-center gap-1 text-sm font-mono font-bold ${questionTimeLeft <= 3 ? 'text-red-500 animate-pulse' : 'text-sky-600'}`}>
               <span className="text-xs text-slate-400">문항</span> <span className="tabular-nums text-lg">{questionTimeLeft}s</span>
             </div>
             <div className={`flex items-center gap-2 text-lg font-mono font-bold ${timeLeft < 300 ? 'text-red-500 animate-pulse' : 'text-slate-700'}`}>
@@ -641,24 +646,24 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
           <div className="flex items-center gap-3">
             <span className="text-xs text-slate-500 tabular-nums">{answeredCount}/{totalQuestions}</span>
             {step === 'test-likert' ? (
-              <button onClick={handleGoToBinary} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-lg text-xs shadow-md flex items-center gap-1.5">
+              <button onClick={handleGoToBinary} className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-full text-xs shadow-md flex items-center gap-1.5">
                 선택형으로 <ArrowRight size={14} />
               </button>
             ) : (
-              <button onClick={handleSubmit} className="px-4 py-2 bg-violet-600 hover:bg-violet-500 text-white font-bold rounded-lg text-xs shadow-md">최종 제출</button>
+              <button onClick={handleSubmit} className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-full text-xs shadow-md">최종 제출</button>
             )}
           </div>
         </div>
 
-        <div className="w-full h-1.5 bg-slate-200 flex">
-          <div className="h-full bg-violet-500 transition-all duration-500" style={{ width: `${(Object.keys(likertAnswers).length / MAIN_QUESTIONS.length) * 50}%` }} />
-          <div className="h-full bg-indigo-500 transition-all duration-500" style={{ width: `${(Object.keys(binaryAnswers).length / BINARY_QUESTIONS.length) * 50}%` }} />
+        <div className="personality-progress-track w-full h-1.5 bg-slate-200 flex">
+          <div className="personality-progress-fill h-full transition-all duration-500" style={{ width: `${(Object.keys(likertAnswers).length / MAIN_QUESTIONS.length) * 50}%` }} />
+          <div className="h-full bg-slate-900 transition-all duration-500" style={{ width: `${(Object.keys(binaryAnswers).length / BINARY_QUESTIONS.length) * 50}%` }} />
         </div>
 
         <div className="flex-1 overflow-y-auto" ref={scrollRef}>
-          <div className="max-w-3xl mx-auto py-6 px-6 space-y-5">
-            <div className="bg-sky-50 border border-sky-200 rounded-xl p-3">
-              <p className="text-sm text-sky-700 font-medium text-center">다음 문장을 읽고 본인과 가장 가깝다고 생각하는 선택지를 클릭해 주세요.</p>
+          <div className="max-w-5xl mx-auto py-6 px-6 space-y-5">
+            <div className="personality-guidance rounded-xl p-3">
+              <p className="text-sm font-medium text-center">다음 문장을 읽고 본인과 가장 가깝다고 생각하는 선택지를 클릭해 주세요.</p>
             </div>
             {pageQuestions.map((q, idx) => (
               <QuestionCard key={isLikert ? `l-${q.id}` : `b-${q.id}`} number={globalOffset + idx + 1}
@@ -675,15 +680,15 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
           </div>
         </div>
 
-        <div className="bg-white border-t border-slate-200 px-6 py-3 flex justify-between items-center shrink-0 shadow-inner">
+        <div className="bg-white border-t border-slate-200 px-6 py-3 flex justify-between items-center gap-4 shrink-0 shadow-inner">
           <button onClick={() => setCurrentPage(p => Math.max(0, p - 1))} disabled={currentPage === 0}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${currentPage === 0 ? 'text-slate-300 cursor-not-allowed' : 'text-slate-600 hover:bg-slate-100 active:scale-95'}`}>
+            className={`shrink-0 min-w-[72px] whitespace-nowrap flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${currentPage === 0 ? 'text-slate-300 cursor-not-allowed' : 'text-slate-600 hover:bg-slate-100 active:scale-95'}`}>
             <ChevronLeft size={16} /> 이전
           </button>
-          <div className="flex items-center gap-1.5">
+          <div className="personality-page-strip flex-1 min-w-0 flex items-center justify-center gap-1.5 overflow-x-auto px-2">
             {Array.from({ length: totalPages }, (_, i) => (
               <button key={i} onClick={() => setCurrentPage(i)}
-                className={`w-8 h-8 rounded-lg text-xs font-bold transition-all ${currentPage === i ? 'bg-violet-600 text-white shadow-md' : 'text-slate-400 hover:bg-slate-100'}`}>
+                className={`w-8 h-8 rounded-full text-xs font-bold transition-all ${currentPage === i ? 'bg-sky-600 text-white shadow-md' : 'text-slate-400 hover:bg-slate-100'}`}>
                 {i + 1}
               </button>
             ))}
@@ -692,7 +697,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             if (currentPage < totalPages - 1) setCurrentPage(p => p + 1);
             else if (isLikert) handleGoToBinary();
             else handleSubmit();
-          }} className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-violet-600 hover:bg-violet-50 transition-all active:scale-95">
+          }} className="shrink-0 min-w-[92px] whitespace-nowrap flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-sky-600 hover:bg-sky-50 transition-all active:scale-95">
             {currentPage < totalPages - 1 ? '다음' : (isLikert ? '선택형으로' : '제출하기')} <ChevronRight size={16} />
           </button>
         </div>
@@ -713,22 +718,22 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
 
   return (
     <div className="apple-module apple-module-result p-8 animate-in fade-in">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         {/* 완료 헤더 */}
-        <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-10 mb-8 text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-violet-500 to-indigo-500"></div>
+        <div className="personality-result-hero bg-white rounded-[32px] shadow-lg border border-slate-200 p-10 mb-8 text-center relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sky-500 via-blue-500 to-slate-900"></div>
           <CheckCircle className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
           <h2 className="text-3xl font-black text-slate-800 mb-2">검사가 완료되었습니다</h2>
           <p className="text-slate-500 mb-6">소요 시간: {formatTime(TOTAL_TIME - timeLeft)} / 응답률: {completionRate}%</p>
 
           <div className="grid grid-cols-2 gap-4 max-w-md mx-auto mb-6">
-            <div className="bg-violet-50 rounded-xl p-4 border border-violet-100">
-              <p className="text-2xl font-black text-violet-700">{likertDone}<span className="text-sm font-medium text-violet-400">/{likertTotal}</span></p>
-              <p className="text-xs text-violet-500 font-medium mt-1">리커트 척도</p>
+            <div className="bg-sky-50 rounded-2xl p-4 border border-sky-100">
+              <p className="text-2xl font-black text-sky-700">{likertDone}<span className="text-sm font-medium text-sky-400">/{likertTotal}</span></p>
+              <p className="text-xs text-sky-600 font-medium mt-1">리커트 척도</p>
             </div>
-            <div className="bg-indigo-50 rounded-xl p-4 border border-indigo-100">
-              <p className="text-2xl font-black text-indigo-700">{binaryDone}<span className="text-sm font-medium text-indigo-400">/{binaryTotal}</span></p>
-              <p className="text-xs text-indigo-500 font-medium mt-1">선택형</p>
+            <div className="bg-slate-100 rounded-2xl p-4 border border-slate-200">
+              <p className="text-2xl font-black text-slate-800">{binaryDone}<span className="text-sm font-medium text-slate-400">/{binaryTotal}</span></p>
+              <p className="text-xs text-slate-500 font-medium mt-1">선택형</p>
             </div>
           </div>
 
@@ -745,19 +750,19 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             </button>
             {!aiResult && (
               <button onClick={requestAiAnalysis} disabled={aiLoading}
-                className="flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl transition-all text-sm shadow-lg disabled:opacity-70">
+                className="flex items-center gap-2 px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-full transition-all text-sm shadow-lg disabled:opacity-70">
                 {aiLoading ? <><Loader2 size={16} className="animate-spin" /> AI 분석 중...</> : <><Sparkles size={16} /> AI 분석 요청</>}
               </button>
             )}
             {aiResult && analysisSource === 'local' && !aiLoading && (
               <button onClick={requestAiAnalysis}
-                className="flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl transition-all text-sm shadow-lg">
+                className="flex items-center gap-2 px-6 py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-full transition-all text-sm shadow-lg">
                 <Sparkles size={16} /> AI로 재분석하기
               </button>
             )}
             {aiResult && analysisSource === 'local' && aiLoading && (
               <button disabled
-                className="flex items-center gap-2 px-6 py-3 bg-violet-600 text-white font-bold rounded-xl transition-all text-sm shadow-lg opacity-70 cursor-not-allowed">
+                className="flex items-center gap-2 px-6 py-3 bg-sky-600 text-white font-bold rounded-full transition-all text-sm shadow-lg opacity-70 cursor-not-allowed">
                 <Loader2 size={16} className="animate-spin" /> AI 분석 중...
               </button>
             )}
@@ -778,7 +783,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
                 return (
                   <div key={idx} className="text-center">
                     <div className="relative h-28 bg-slate-100 rounded-lg overflow-hidden mb-2">
-                      <div className="absolute bottom-0 w-full bg-gradient-to-t from-violet-500 to-violet-400 transition-all duration-700 rounded-b-lg" style={{ height: `${pct}%` }} />
+                      <div className="absolute bottom-0 w-full bg-gradient-to-t from-sky-600 to-blue-400 transition-all duration-700 rounded-b-lg" style={{ height: `${pct}%` }} />
                       <span className="absolute inset-0 flex items-center justify-center text-sm font-black text-slate-700">{count}</span>
                     </div>
                     <p className="text-[10px] text-slate-500 font-medium leading-tight">{label}</p>
@@ -799,8 +804,8 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
 
         {/* AI 로딩 */}
         {aiLoading && (
-          <div className="bg-white rounded-2xl shadow-lg border border-violet-200 p-12 mb-6 text-center">
-            <Loader2 className="w-12 h-12 text-violet-500 mx-auto mb-4 animate-spin" />
+          <div className="bg-white rounded-[28px] shadow-lg border border-sky-200 p-12 mb-6 text-center">
+            <Loader2 className="w-12 h-12 text-sky-500 mx-auto mb-4 animate-spin" />
             <h3 className="text-lg font-bold text-slate-800 mb-2">AI가 응답 패턴을 분석하고 있습니다...</h3>
             <p className="text-sm text-slate-500">성격 특성, 업무 스타일, 일관성 지표를 종합 분석 중입니다.</p>
           </div>
@@ -811,7 +816,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
           <div className="space-y-6">
             {/* 분석 소스 표시 */}
             {analysisSource === 'ai' ? (
-              <div className="rounded-xl p-3 text-center text-xs font-bold bg-violet-50 border border-violet-200 text-violet-700">
+              <div className="rounded-2xl p-3 text-center text-xs font-bold bg-sky-50 border border-sky-200 text-sky-700">
                 AI 분석 완료 ({selectedProvider})
               </div>
             ) : (
@@ -830,7 +835,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             {/* ── 성격 특성 ── */}
             <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
               <div className="bg-slate-50 px-8 py-5 border-b border-slate-200 flex items-center gap-3">
-                <Brain className="w-5 h-5 text-violet-500" />
+                <Brain className="w-5 h-5 text-sky-500" />
                 <div>
                   <h3 className="text-lg font-black text-slate-800">성격 특성 분석</h3>
                   <p className="text-xs text-slate-400 mt-0.5">Big5 모델 기반 성격 특성 점수</p>
@@ -856,7 +861,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             {/* ── 업무 스타일 축 ── */}
             <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
               <div className="bg-slate-50 px-8 py-5 border-b border-slate-200 flex items-center gap-3">
-                <Target className="w-5 h-5 text-indigo-500" />
+                <Target className="w-5 h-5 text-slate-700" />
                 <div>
                   <h3 className="text-lg font-black text-slate-800">업무 스타일</h3>
                   <p className="text-xs text-slate-400 mt-0.5">이항 선택 응답 기반 업무 성향 분석</p>
@@ -866,12 +871,12 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
                 {aiResult.workStyle?.axes?.map((axis, idx) => (
                   <div key={idx}>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-xs font-bold text-indigo-600">{axis.leftLabel}</span>
-                      <span className="text-xs font-bold text-violet-600">{axis.rightLabel}</span>
+                      <span className="text-xs font-bold text-slate-600">{axis.leftLabel}</span>
+                      <span className="text-xs font-bold text-sky-600">{axis.rightLabel}</span>
                     </div>
                     <div className="relative w-full h-4 bg-slate-100 rounded-full overflow-hidden">
                       <div className="absolute top-0 left-1/2 w-px h-full bg-slate-300 z-10" />
-                      <div className="absolute top-0 h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full transition-all duration-1000"
+                      <div className="absolute top-0 h-full bg-gradient-to-r from-slate-900 to-sky-500 rounded-full transition-all duration-1000"
                         style={{
                           left: axis.value < 0 ? `${50 + axis.value / 2}%` : '50%',
                           width: `${Math.abs(axis.value) / 2}%`,
@@ -942,13 +947,13 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             </div>
 
             {/* ── 게임 업계 적합도 ── */}
-            <div className="bg-gradient-to-br from-violet-50 to-indigo-50 rounded-2xl shadow-lg border border-violet-100 overflow-hidden">
-              <div className="px-8 py-5 border-b border-violet-100 flex items-center gap-3">
-                <Sparkles className="w-5 h-5 text-violet-500" />
-                <h3 className="text-lg font-black text-violet-900">게임 업계 적합도</h3>
+            <div className="bg-gradient-to-br from-sky-50 via-white to-slate-100 rounded-[28px] shadow-lg border border-sky-100 overflow-hidden">
+              <div className="px-8 py-5 border-b border-sky-100 flex items-center gap-3">
+                <Sparkles className="w-5 h-5 text-sky-500" />
+                <h3 className="text-lg font-black text-slate-900">게임 업계 적합도</h3>
               </div>
               <div className="p-6">
-                <p className="text-sm text-violet-800/90 leading-relaxed">{aiResult.gameIndustryFit}</p>
+                <p className="text-sm text-slate-700 leading-relaxed">{aiResult.gameIndustryFit}</p>
               </div>
             </div>
 
@@ -961,7 +966,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
               <div className="p-6 space-y-3">
                 {aiResult.testStrategy?.map((tip, idx) => (
                   <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
-                    <span className="bg-violet-100 text-violet-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-black shrink-0">{idx + 1}</span>
+                    <span className="bg-sky-100 text-sky-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-black shrink-0">{idx + 1}</span>
                     <p className="text-sm text-slate-700 leading-relaxed">{tip}</p>
                   </div>
                 ))}
@@ -996,7 +1001,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
                       source: analysisSource === 'ai' ? `AI (${selectedProvider})` : '로컬 분석',
                     });
                   }}
-                  className="flex-1 flex items-center justify-center gap-2 px-5 py-3 bg-violet-600 hover:bg-violet-700 text-white font-bold rounded-xl transition-all text-sm shadow-lg"
+                  className="flex-1 flex items-center justify-center gap-2 px-5 py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-full transition-all text-sm shadow-lg"
                 >
                   <Download size={18} /> PDF 저장
                 </button>
@@ -1031,19 +1036,19 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
 function QuestionCard({ number, text, questionData, selected, onSelect, type, totalNumber }) {
   if (type === 'likert') {
     return (
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition-all hover:shadow-md">
+      <div className="personality-question-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition-all hover:shadow-md">
         <div className="bg-slate-50 px-6 py-5 border-b border-slate-100">
           <div className="flex items-start gap-3">
-            <span className="bg-violet-100 text-violet-700 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black shrink-0 mt-0.5">{totalNumber || number}</span>
+            <span className="personality-question-badge w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black shrink-0 mt-0.5">{totalNumber || number}</span>
             <p className="text-base font-bold text-slate-800 leading-relaxed">{text}</p>
           </div>
         </div>
         <div className="px-6 py-4">
-          <div className="grid grid-cols-6 gap-2">
+          <div className="personality-likert-grid grid grid-cols-6 gap-2">
             {LIKERT_OPTIONS.map((label, idx) => (
               <button key={idx} onClick={() => onSelect(idx)}
                 className={`py-3 px-1 rounded-xl text-center transition-all duration-200 border-2
-                  ${selected === idx ? 'bg-violet-600 text-white border-violet-600 shadow-lg scale-105 font-bold' : 'bg-white text-slate-600 border-slate-200 hover:border-violet-300 hover:bg-violet-50 hover:text-violet-700'}`}>
+                  ${selected === idx ? 'bg-sky-600 text-white border-sky-600 shadow-lg scale-105 font-bold' : 'bg-white text-slate-600 border-slate-200 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700'}`}>
                 <span className="text-[11px] leading-tight block font-medium">{label}</span>
               </button>
             ))}
@@ -1055,12 +1060,12 @@ function QuestionCard({ number, text, questionData, selected, onSelect, type, to
 
   const q = questionData;
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition-all hover:shadow-md">
+    <div className="personality-question-card bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden transition-all hover:shadow-md">
       <div className="bg-slate-50 px-6 py-5 border-b border-slate-100">
         <div className="flex items-start gap-3">
-          <span className="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black shrink-0 mt-0.5">{q.id}</span>
+          <span className="personality-question-badge w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black shrink-0 mt-0.5">{q.id}</span>
           <div>
-            {q.group && <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider">{q.group}</span>}
+            {q.group && <span className="text-[10px] font-bold text-sky-500 uppercase tracking-wider">{q.group}</span>}
             <p className="text-base font-bold text-slate-800 leading-relaxed">{q.text}</p>
           </div>
         </div>
@@ -1068,13 +1073,13 @@ function QuestionCard({ number, text, questionData, selected, onSelect, type, to
       <div className="px-6 py-4 space-y-2">
         <button onClick={() => onSelect('A')}
           className={`w-full text-left px-5 py-4 rounded-xl transition-all duration-200 border-2 flex items-start gap-3
-            ${selected === 'A' ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg' : 'bg-white text-slate-600 border-slate-200 hover:border-indigo-300 hover:bg-indigo-50'}`}>
+            ${selected === 'A' ? 'bg-sky-600 text-white border-sky-600 shadow-lg' : 'bg-white text-slate-600 border-slate-200 hover:border-sky-300 hover:bg-sky-50'}`}>
           <span className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-black shrink-0 mt-0.5 ${selected === 'A' ? 'border-white text-white' : 'border-slate-300 text-slate-400'}`}>A</span>
           <span className="text-sm font-medium leading-relaxed">{q.optionA}</span>
         </button>
         <button onClick={() => onSelect('B')}
           className={`w-full text-left px-5 py-4 rounded-xl transition-all duration-200 border-2 flex items-start gap-3
-            ${selected === 'B' ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg' : 'bg-white text-slate-600 border-slate-200 hover:border-indigo-300 hover:bg-indigo-50'}`}>
+            ${selected === 'B' ? 'bg-sky-600 text-white border-sky-600 shadow-lg' : 'bg-white text-slate-600 border-slate-200 hover:border-sky-300 hover:bg-sky-50'}`}>
           <span className={`w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-black shrink-0 mt-0.5 ${selected === 'B' ? 'border-white text-white' : 'border-slate-300 text-slate-400'}`}>B</span>
           <span className="text-sm font-medium leading-relaxed">{q.optionB}</span>
         </button>
@@ -1086,7 +1091,7 @@ function QuestionCard({ number, text, questionData, selected, onSelect, type, to
 function TipCard({ emoji, title, desc }) {
   return (
     <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
-      <span className="bg-violet-100 text-violet-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-black shrink-0">{emoji}</span>
+      <span className="personality-tip-badge w-8 h-8 rounded-full flex items-center justify-center text-sm font-black shrink-0">{emoji}</span>
       <div>
         <h4 className="font-bold text-slate-800 text-sm mb-1">{title}</h4>
         <p className="text-xs text-slate-500 leading-relaxed">{desc}</p>
