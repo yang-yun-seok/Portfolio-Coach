@@ -1,72 +1,69 @@
-# Portfolio Bot GitHub Deploy Guide
+# Portfolio Coach
 
-이 사본은 `GitHub Pages + 별도 Node 백엔드` 구조로 올리는 것을 기준으로 정리되어 있습니다.
+게임 업계 취업을 준비하는 지원자를 위한 AI 포트폴리오 코치입니다. 지원자의 기본 정보, 보유 기술, 이력서/자기소개서/포트폴리오 PDF를 바탕으로 서류 피드백, 포트폴리오 개선 가이드, 맞춤 공고 추천, 면접 대비 자료를 한 화면에서 제공합니다.
 
-## 1. 배포 구조
+배포 페이지: https://yang-yun-seok.github.io/Portfolio-Coach/
 
-- 프론트엔드: GitHub Pages
-- 백엔드: Render 무료 Web Service
-- AI 프록시: 현재 Supabase Edge Function 유지
+## 주요 기능
 
-## 2. 로컬 개발
+- 서류 피드백: 이력서와 자기소개서의 보완점, 문장 구성, 직무 적합성 개선 방향을 AI가 정리합니다.
+- 포트폴리오 가이드: 게임 기획자 관점에서 보여줘야 할 문서, 시스템 설계, 지표 기반 사례, BM 이해도를 제안합니다.
+- 추천 공고: 보유 기술과 경력 조건을 기준으로 GameJob 공고를 점수화하고 우선순위로 보여줍니다.
+- 우선 공고 지정: GameJob 공고 번호를 직접 입력하면 해당 공고를 1~3순위 분석 대상으로 고정할 수 있습니다.
+- 면접 대비: 추천 공고와 지원자 정보에 맞춰 예상 질문과 준비 방향을 제공합니다.
+- 기술 과제 평가: 게임 기획 과제형 테스트를 시뮬레이션하고 답변을 점검할 수 있습니다.
+- 인성검사 시뮬레이션: 리커트 척도와 선택형 문항으로 기업 인성검사 흐름을 연습할 수 있습니다.
+- PDF 출력: 분석 결과와 강사 피드백을 정리해 제출/상담용 자료로 활용할 수 있습니다.
+- 공고 데이터 최신화: Render 백엔드를 통해 GameJob 공고 데이터를 갱신할 수 있습니다.
+
+## 사용 방법
+
+1. `정보 입력` 탭에서 이름, 희망 직무, 경력, 보유 기술을 입력합니다.
+2. 필요하면 이력서, 자기소개서, 포트폴리오 PDF를 첨부합니다.
+3. 특정 공고를 우선 분석하고 싶다면 GameJob 공고 번호를 `우선 공고 지정`에 입력합니다.
+4. `AI 분석 시작 및 저장`을 누르고 결과가 생성될 때까지 기다립니다.
+5. `서류 피드백`, `포트폴리오`, `추천 공고`, `면접 대비` 탭을 이동하며 결과를 확인합니다.
+6. 필요한 경우 `PDF 출력`에서 상담용 또는 제출용 자료를 저장합니다.
+
+## 배포 구조
+
+이 프로젝트는 정적 프론트엔드와 Node/Express 백엔드가 분리된 구조입니다.
+
+- Frontend: GitHub Pages
+- Backend: Render Web Service
+- AI Proxy: Supabase Edge Function
+- Static Data: `public/api/*.json`
+
+GitHub Pages만으로는 화면과 정적 데이터, Supabase 기반 AI 분석 일부가 동작합니다. 공고 크롤링, 공고 번호 조회, 인성검사 서버 분석처럼 `/api/*`가 필요한 기능은 Render 백엔드가 필요합니다.
+
+## 로컬 실행
 
 ```bash
 npm install
 npm run dev
 ```
 
-- 프론트: `http://localhost:5173`
-- 백엔드: `http://localhost:3002`
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:3002`
 
-로컬에서는 `VITE_API_BASE_URL` 없이도 `/api`를 그대로 사용합니다.
+## 배포 설정
 
-## 3. GitHub Pages 배포
+GitHub 저장소의 `Settings > Pages`에서 Source를 `GitHub Actions`로 설정합니다.
 
-이 저장소에는 GitHub Pages 배포 워크플로가 포함되어 있습니다.
-
-1. 이 폴더를 새 GitHub 저장소에 푸시합니다.
-2. GitHub 저장소 `Settings > Pages`에서 `GitHub Actions`를 선택합니다.
-3. 기본 브랜치를 `main` 또는 `master`로 사용합니다.
-4. 저장소 `Settings > Secrets and variables > Actions > Variables`에 `VITE_API_BASE_URL` 값을 추가합니다.
-   - 예: `https://your-app.onrender.com`
-5. 푸시하면 `.github/workflows/deploy.yml`이 자동으로 정적 프론트를 빌드해 Pages에 배포합니다.
-
-워크플로는 저장소 이름 기준으로 `VITE_BASE_PATH`를 자동 설정하고, `VITE_API_BASE_URL`은 Actions Variable에서 읽습니다.
-
-## 4. Render 백엔드 배포
-
-1. Render에서 새 `Web Service`를 만듭니다.
-2. 이 저장소를 연결합니다.
-3. 설정:
-   - Build Command: `npm install`
-   - Start Command: `npm start`
-4. 백엔드 URL이 생기면 예: `https://your-app.onrender.com`
-
-## 5. 프론트와 백엔드 연결
-
-GitHub Actions Variable 또는 로컬 `.env`에서 아래 값을 설정합니다.
+GitHub Actions Variables에는 아래 값을 등록합니다.
 
 ```bash
-VITE_API_BASE_URL=https://your-app.onrender.com
+VITE_API_BASE_URL=https://your-render-service.onrender.com
 ```
 
-필요하면 `.env.example`를 복사해서 `.env.local`로 써도 됩니다.
+Render Web Service 설정은 다음과 같이 둡니다.
 
-## 6. 현재 동작 범위
+- Build Command: `npm install`
+- Start Command: `npm start`
 
-- Pages에서 동작:
-  - 기본 UI
-  - 정적 JSON 데이터 로딩
-  - 메인 AI 분석용 Supabase 프록시 호출
-- 별도 백엔드가 있어야 동작:
-  - 공고 resolve
-  - 크롤링 시작/중지/SSE
-  - 인성검사 서버 분석
+## 운영 참고
 
-## 7. 추천 순서
-
-1. 먼저 GitHub에 업로드
-2. Pages 자동 배포 확인
-3. Render 백엔드 생성
-4. `VITE_API_BASE_URL` 연결
-5. 기능 점검
+- 무료 Render 인스턴스는 일정 시간 미사용 시 sleep 상태가 될 수 있어 첫 요청이 느릴 수 있습니다.
+- AI 분석은 네트워크와 모델 상태에 따라 30초 이상 걸릴 수 있습니다.
+- 공고 크롤링은 브라우저의 실시간 스트림 연결이 불안정해도 상태 확인 방식으로 계속 진행되도록 보강되어 있습니다.
+- API 키는 프론트에 직접 넣지 않고 Supabase/백엔드에서 관리하는 구성을 권장합니다.

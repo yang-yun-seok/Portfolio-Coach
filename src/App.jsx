@@ -323,6 +323,7 @@ export default function App() {
   // 설정 / 크롤링
   const [showSettings, setShowSettings] = useState(false);
   const [showModelSettings, setShowModelSettings] = useState(false);
+  const [showUserGuide, setShowUserGuide] = useState(false);
   const [crawlStatus, setCrawlStatus] = useState({ running: false, message: '', percent: 0, log: [], isError: false });
   const crawlEventSourceRef = useRef(null);
   const crawlPollerRef = useRef(null);
@@ -1031,6 +1032,18 @@ AI 분석 요약:
             ))}
           </ul>
         </nav>
+
+        {/* 사용 설명서 버튼 */}
+        <div className="px-4 pb-2">
+          <button
+            onClick={() => setShowUserGuide(true)}
+            className="apple-nav-button apple-settings-button w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-all duration-200"
+          >
+            <BookOpen size={20} />
+            <span className="font-medium text-sm">사용 설명서</span>
+            <ChevronRight size={16} className="ml-auto opacity-70" />
+          </button>
+        </div>
 
         {/* 설정 버튼 */}
         <div className="px-4 pb-2">
@@ -1860,6 +1873,83 @@ AI 분석 요약:
               <div className="mt-8 pt-6 border-t border-slate-100 text-center">
                 <button onClick={() => setSelectedCompanyModal(null)} className="bg-slate-800 text-white font-bold py-3 px-10 rounded-xl shadow-md hover:bg-slate-900 transition-colors">닫기</button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── 사용 설명서 모달 ─────────────────────────────────────────────── */}
+      {showUserGuide && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden">
+            <div className="flex items-center justify-between p-6 border-b border-slate-100">
+              <div className="flex items-center gap-3">
+                <div className="bg-blue-100 p-2 rounded-lg"><BookOpen size={20} className="text-blue-600" /></div>
+                <div>
+                  <h2 className="text-xl font-bold text-slate-800">Portfolio Coach 사용 설명서</h2>
+                  <p className="text-sm text-slate-500">처음 이용할 때 필요한 흐름만 빠르게 확인하세요.</p>
+                </div>
+              </div>
+              <button onClick={() => setShowUserGuide(false)} className="text-slate-400 hover:text-slate-600 transition-colors">
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="p-6 overflow-y-auto space-y-6">
+              <section className="rounded-2xl bg-slate-950 text-white p-6">
+                <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-blue-300 mb-2">Quick Start</p>
+                <h3 className="text-2xl font-bold leading-tight mb-3">정보 입력 후 AI 분석을 실행하면, 서류와 공고 추천 결과가 탭별로 정리됩니다.</h3>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  이름, 희망 직무, 경력, 보유 기술을 입력하고 필요하면 PDF를 첨부하세요. 분석이 끝나면 왼쪽 메뉴에서 결과를 이동하며 확인할 수 있습니다.
+                </p>
+              </section>
+
+              <section>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">기본 사용 순서</h3>
+                <ol className="grid gap-3 md:grid-cols-2">
+                  {[
+                    '정보 입력 탭에서 이름, 직무, 경력, 보유 기술을 입력합니다.',
+                    '이력서, 자기소개서, 포트폴리오 PDF가 있으면 첨부합니다.',
+                    '특정 GameJob 공고를 우선 분석하려면 공고 번호를 입력합니다.',
+                    'AI 분석 시작 및 저장을 누르고 결과 생성을 기다립니다.',
+                    '서류 피드백, 포트폴리오, 추천 공고, 면접 대비 탭을 확인합니다.',
+                    '필요하면 PDF 출력에서 상담용 결과물을 저장합니다.',
+                  ].map((item, idx) => (
+                    <li key={item} className="flex gap-3 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">{idx + 1}</span>
+                      <span className="leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+
+              <section>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">탭별 역할</h3>
+                <div className="grid gap-3 md:grid-cols-2">
+                  {[
+                    ['서류 피드백', '이력서와 자기소개서의 개선 포인트를 두괄식으로 확인합니다.'],
+                    ['포트폴리오', '기획자 포트폴리오에 추가하면 좋은 문서와 사례를 확인합니다.'],
+                    ['추천 공고', '보유 기술과 경력에 맞는 공고를 점수 순으로 확인합니다.'],
+                    ['면접 대비', '추천 공고 기준 예상 질문과 답변 방향을 준비합니다.'],
+                    ['기술 과제 평가', '기획 과제형 테스트를 연습하고 답변을 점검합니다.'],
+                    ['인성검사', '리커트/선택형 문항으로 인성검사 흐름을 연습합니다.'],
+                  ].map(([title, body]) => (
+                    <div key={title} className="rounded-xl border border-slate-200 p-4">
+                      <p className="font-bold text-slate-900 mb-1">{title}</p>
+                      <p className="text-sm text-slate-600 leading-relaxed">{body}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section className="rounded-2xl bg-blue-50 border border-blue-100 p-5">
+                <h3 className="text-base font-bold text-blue-900 mb-2">알아두면 좋아요</h3>
+                <ul className="space-y-2 text-sm text-blue-800">
+                  <li>AI 분석은 모델 상태와 첨부 파일 크기에 따라 30초 이상 걸릴 수 있습니다.</li>
+                  <li>공고 크롤링은 설정 팝업에서 실행하며, 실시간 연결이 불안정해도 상태 확인 방식으로 진행됩니다.</li>
+                  <li>Render 무료 서버는 잠들어 있다가 깨어날 수 있어 첫 요청이 느릴 수 있습니다.</li>
+                </ul>
+              </section>
             </div>
           </div>
         </div>
