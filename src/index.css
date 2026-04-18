@@ -166,7 +166,7 @@
   .apple-shell .text-slate-600,
   .apple-shell .text-slate-500,
   .apple-shell .text-slate-400 {
-    color: var(--apple-muted) !important;
+    color: rgba(29, 29, 31, 0.76) !important;
   }
 
   .apple-shell .border,
@@ -299,8 +299,8 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at top left, rgba(255, 255, 255, 0.88), transparent 36%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, rgba(245, 245, 247, 0) 32%);
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.72), transparent 30%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(245, 245, 247, 0) 24%);
     pointer-events: none;
   }
 
@@ -327,6 +327,7 @@
   .apple-brandcopy p {
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    color: rgba(125, 193, 255, 0.94) !important;
   }
 
   .apple-nav-list {
@@ -340,15 +341,19 @@
     border-radius: 999px !important;
     justify-content: flex-start;
     backdrop-filter: saturate(180%) blur(14px);
+    color: rgba(255, 255, 255, 0.72) !important;
   }
 
   .apple-nav-button:hover {
-    border-color: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: rgba(255, 255, 255, 0.96) !important;
   }
 
   .apple-nav-button.bg-indigo-600 {
     border-color: rgba(255, 255, 255, 0.1) !important;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 18px 40px rgba(0, 113, 227, 0.2) !important;
+    color: #ffffff !important;
   }
 
   .apple-settings-button {
@@ -358,7 +363,7 @@
   .apple-workspace {
     position: relative;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.62) 0%, rgba(245, 245, 247, 0.96) 24%, #f5f5f7 100%) !important;
+      linear-gradient(180deg, #fbfbfd 0%, #f5f5f7 20%, #f1f1f3 100%) !important;
   }
 
   .apple-stage {
@@ -378,9 +383,9 @@
     padding: 2rem 2.25rem 2.1rem;
     border-radius: 34px;
     overflow: hidden;
-    background: #ffffff;
-    border: 1px solid rgba(29, 29, 31, 0.06);
-    box-shadow: 0 28px 80px rgba(15, 23, 42, 0.08);
+    background: linear-gradient(135deg, #000000 0%, #0f1115 68%, #16181d 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.26);
   }
 
   .apple-intro::before {
@@ -388,8 +393,8 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at top right, rgba(0, 113, 227, 0.08), transparent 32%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(245, 245, 247, 0.96) 100%);
+      radial-gradient(circle at top right, rgba(41, 151, 255, 0.24), transparent 36%),
+      radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.08), transparent 28%);
     pointer-events: none;
   }
 
@@ -405,12 +410,13 @@
     font-weight: 600;
     line-height: 1.03;
     letter-spacing: -0.045em;
+    color: #ffffff !important;
   }
 
   .apple-intro p {
     max-width: 44rem;
     margin: 0;
-    color: rgba(29, 29, 31, 0.68) !important;
+    color: rgba(255, 255, 255, 0.72) !important;
     font-size: 1.05rem;
     line-height: 1.55;
   }
@@ -435,9 +441,9 @@
   .apple-empty-state {
     padding: 4.5rem 2rem !important;
     border-radius: 34px;
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(29, 29, 31, 0.06);
-    box-shadow: 0 28px 80px rgba(15, 23, 42, 0.06);
+    background: #ffffff;
+    border: 1px solid rgba(29, 29, 31, 0.08);
+    box-shadow: 0 28px 80px rgba(15, 23, 42, 0.1);
   }
 
   .apple-empty-state > div:first-child {
@@ -452,9 +458,9 @@
   .apple-module .bg-white.rounded-3xl,
   .apple-module .bg-white.rounded-xl,
   .apple-instructor-form {
-    background: rgba(255, 255, 255, 0.94) !important;
-    border: 1px solid rgba(29, 29, 31, 0.06) !important;
-    box-shadow: 0 28px 80px rgba(15, 23, 42, 0.08) !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(29, 29, 31, 0.08) !important;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08) !important;
   }
 
   .apple-shell .bg-white.p-6.rounded-2xl,
@@ -471,14 +477,14 @@
   .apple-shell .bg-slate-100.rounded-lg,
   .apple-module .bg-slate-50.rounded-xl,
   .apple-module .bg-slate-100.rounded-xl {
-    background: #fbfbfd !important;
-    border-color: rgba(29, 29, 31, 0.05) !important;
+    background: #f5f5f7 !important;
+    border-color: rgba(29, 29, 31, 0.08) !important;
   }
 
   .apple-shell .bg-slate-100.p-1.rounded-xl,
   .apple-shell .bg-slate-200.p-1.rounded-xl {
     padding: 0.3rem !important;
-    background: rgba(29, 29, 31, 0.06) !important;
+    background: rgba(29, 29, 31, 0.1) !important;
     border-radius: 999px !important;
   }
 
@@ -529,7 +535,8 @@
   .apple-module button.border.border-slate-200 {
     min-height: 2.75rem;
     border-radius: 999px !important;
-    background: rgba(255, 255, 255, 0.86) !important;
+    background: #ffffff !important;
+    color: var(--apple-ink) !important;
   }
 
   .apple-shell input[type="file"]::file-selector-button,
@@ -569,9 +576,9 @@
     margin-bottom: 1.5rem !important;
     padding: 2rem 2.25rem;
     border-radius: 32px;
-    background: #ffffff;
-    border: 1px solid rgba(29, 29, 31, 0.06);
-    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+    background: linear-gradient(135deg, #000000 0%, #111216 72%, #191b20 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
   }
 
   .apple-module-intro .mb-8:first-child h2,
@@ -580,11 +587,18 @@
     font-size: clamp(2.4rem, 5vw, 3.8rem);
     line-height: 1.04;
     letter-spacing: -0.045em;
+    color: #ffffff !important;
+  }
+
+  .apple-module-intro .mb-8:first-child p,
+  .apple-module-export .mb-8:first-child p,
+  .apple-module-result .mb-8:first-child p {
+    color: rgba(255, 255, 255, 0.72) !important;
   }
 
   .apple-module-practice .bg-white.border-b,
   .apple-module-practice .bg-white.border-t {
-    background: rgba(255, 255, 255, 0.85) !important;
+    background: rgba(255, 255, 255, 0.94) !important;
     backdrop-filter: saturate(180%) blur(18px);
   }
 
@@ -597,6 +611,7 @@
   .apple-module-practice .bg-slate-100.rounded-xl,
   .apple-module-practice .bg-slate-50.rounded-xl {
     border-radius: 22px !important;
+    background: #f5f5f7 !important;
   }
 
   .apple-module-test .bg-slate-900\/90,
@@ -672,7 +687,7 @@
       max-width: none;
     }
 
-    .apple-shell .grid.md\:grid-cols-2,
+  .apple-shell .grid.md\:grid-cols-2,
     .apple-shell .grid.md\:grid-cols-3,
     .apple-shell .grid.lg\:grid-cols-2,
     .apple-shell .grid.lg\:grid-cols-5,
@@ -680,6 +695,32 @@
     .apple-module .grid-cols-2 {
       grid-template-columns: 1fr !important;
     }
+  }
+
+  .apple-shell .apple-sidebar .text-slate-400,
+  .apple-shell .apple-sidebar .text-slate-500,
+  .apple-shell .apple-sidebar .text-slate-600 {
+    color: rgba(255, 255, 255, 0.72) !important;
+  }
+
+  .apple-shell .apple-sidebar .hover\:text-slate-200:hover,
+  .apple-shell .apple-sidebar .hover\:text-slate-700:hover {
+    color: rgba(255, 255, 255, 0.96) !important;
+  }
+
+  .apple-shell .text-amber-600,
+  .apple-shell .text-amber-700,
+  .apple-shell .text-red-600,
+  .apple-shell .text-red-700,
+  .apple-shell .text-emerald-600,
+  .apple-shell .text-emerald-700,
+  .apple-shell .text-sky-600,
+  .apple-shell .text-sky-700,
+  .apple-shell .text-teal-600,
+  .apple-shell .text-teal-700,
+  .apple-shell .text-pink-600,
+  .apple-shell .text-pink-700 {
+    opacity: 1 !important;
   }
 }
 

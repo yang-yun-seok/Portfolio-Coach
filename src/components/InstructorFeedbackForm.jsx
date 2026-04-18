@@ -319,7 +319,7 @@ export default function InstructorFeedbackForm({ value, onChange }) {
             type="text"
             value={value.name}
             onChange={(e) => set('name', e.target.value)}
-            placeholder="예: 김현기"
+            placeholder="예: 양윤석"
             className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-700 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-400"
           />
         </div>
