@@ -21,6 +21,39 @@ import InstructorFeedbackForm, { EMPTY_INSTRUCTOR } from './components/Instructo
 // ── 아이콘 맵 (interview-basic.json에서 문자열로 지정된 아이콘을 컴포넌트로 매핑) ──
 const ICON_MAP = { Shirt, Clock, Brain, Sparkles };
 
+const INTERVIEW_THEME_MAP = {
+  blue: {
+    accent: '#0071e3',
+    soft: 'rgba(0, 113, 227, 0.1)',
+    border: 'rgba(0, 113, 227, 0.16)',
+    kicker: 'Appearance',
+  },
+  amber: {
+    accent: '#d97706',
+    soft: 'rgba(217, 119, 6, 0.11)',
+    border: 'rgba(217, 119, 6, 0.18)',
+    kicker: 'Timing',
+  },
+  purple: {
+    accent: '#7c3aed',
+    soft: 'rgba(124, 58, 237, 0.1)',
+    border: 'rgba(124, 58, 237, 0.16)',
+    kicker: 'Mindset',
+  },
+  emerald: {
+    accent: '#059669',
+    soft: 'rgba(5, 150, 105, 0.1)',
+    border: 'rgba(5, 150, 105, 0.16)',
+    kicker: 'Attitude',
+  },
+};
+
+const INTERVIEW_QUICK_CHECKS = [
+  '도착 15분 전까지 주변 환경과 호흡을 정리합니다.',
+  '복장, 카메라, 마이크, 포트폴리오 링크를 마지막으로 확인합니다.',
+  '첫 인사와 자기소개 첫 문장을 미리 입 밖으로 한번 꺼내 봅니다.',
+];
+
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
 // "- **제목**: 내용" 또는 "**제목**: 내용" → { title, body } 로 분리
 function parseFeedbackItem(text) {
@@ -825,8 +858,8 @@ AI 분석 요약:
         <div className="apple-brandbar p-6 flex items-center gap-3 border-b border-slate-800">
           <div className="apple-brandmark bg-indigo-500 p-2 rounded-lg"><Gamepad2 size={24} className="text-white" /></div>
           <div className="apple-brandcopy">
-            <h1 className="font-bold text-lg leading-tight">Game Dev</h1>
-            <p className="text-xs text-indigo-300">Career Assistant</p>
+            <h1 className="font-bold text-lg leading-tight">Portfolio Coach</h1>
+            <p className="text-xs text-indigo-300">for Game Creators</p>
           </div>
         </div>
 
@@ -1498,32 +1531,101 @@ AI 분석 요약:
 
           {/* ── TAB 6: 면접 기본 준비 (서버 데이터 기반) ─────────────── */}
           {activeTab === 'interview-basic' && (
-            <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
-              <div className="apple-intro">
-                <h2 className="text-3xl font-bold text-slate-800 mb-2">면접 가기 전 준비 사항</h2>
-                <p className="text-slate-500">게임 회사 면접을 위한 기본적인 에티켓과 마인드 컨트롤 가이드입니다.</p>
-              </div>
-              <div className="grid md:grid-cols-2 gap-6">
-                {interviewBasicData.map(({ icon: iconName, color, title, items }) => {
-                  const Icon = ICON_MAP[iconName] || Smile;
-                  return (
-                    <div key={title} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                      <div className={`bg-${color}-100 w-12 h-12 rounded-xl flex items-center justify-center text-${color}-600 mb-4`}>
-                        <Icon size={24} />
-                      </div>
-                      <h3 className="text-lg font-bold text-slate-800 mb-3">{title}</h3>
-                      <ul className="space-y-2 text-sm text-slate-600">
-                        {items.map((item) => (
-                          <li key={item.label} className="flex gap-2 items-start">
-                            <CheckCircle size={16} className={`text-${color}-500 shrink-0 mt-0.5`} />
-                            <span><strong>{item.label}:</strong> {item.desc}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  );
-                })}
-              </div>
+            <div className="apple-view studio-readiness-view animate-in fade-in slide-in-from-bottom-4">
+              <section className="studio-readiness-hero">
+                <div className="studio-readiness-copy">
+                  <p className="studio-eyebrow">Interview Readiness</p>
+                  <h2>면접장에 들어가기 전, 이미 평가가 시작됩니다.</h2>
+                  <p>
+                    게임 회사 면접에서 바로 체감되는 복장, 시간, 태도, 마인드셋을
+                    한 화면에 정리했습니다. 답변 실력만큼 중요한 건 들어오기 전의 인상과
+                    흐름입니다.
+                  </p>
+                </div>
+                <div className="studio-readiness-summary">
+                  <div className="studio-readiness-stat">
+                    <span>4 Areas</span>
+                    <strong>복장 · 시간 · 태도 · 집중</strong>
+                  </div>
+                  <div className="studio-readiness-stat">
+                    <span>15 Min Before</span>
+                    <strong>도착 · 장비 · 첫 문장 점검</strong>
+                  </div>
+                  <p>
+                    작은 신호가 전체 분위기를 결정합니다. 시선 처리, 첫 인사, 준비된
+                    호흡까지 같이 챙겨두면 답변의 설득력도 훨씬 안정적으로 전달됩니다.
+                  </p>
+                </div>
+              </section>
+
+              <section className="studio-readiness-layout">
+                <aside className="studio-readiness-aside">
+                  <div className="studio-readiness-note">
+                    <p className="studio-eyebrow">Quick Reset</p>
+                    <h3>면접 직전 3분 체크</h3>
+                    <ul>
+                      {INTERVIEW_QUICK_CHECKS.map((item) => (
+                        <li key={item}>
+                          <CheckCircle size={16} />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="studio-readiness-note studio-readiness-note-muted">
+                    <p className="studio-eyebrow">Small Signal</p>
+                    <p>
+                      답변을 잘해도 처음 30초가 정리되지 않으면 인상이 흐려집니다.
+                      반대로 준비된 태도는 아직 말하지 않은 역량까지 정돈되어 보이게 만듭니다.
+                    </p>
+                  </div>
+                </aside>
+
+                <div className="studio-readiness-flow">
+                  {interviewBasicData.map(({ icon: iconName, color, title, items }, index) => {
+                    const Icon = ICON_MAP[iconName] || Smile;
+                    const theme = INTERVIEW_THEME_MAP[color] || INTERVIEW_THEME_MAP.blue;
+
+                    return (
+                      <article
+                        key={title}
+                        className="studio-readiness-section"
+                        style={{
+                          '--studio-accent': theme.accent,
+                          '--studio-soft': theme.soft,
+                          '--studio-border': theme.border,
+                        }}
+                      >
+                        <div className="studio-readiness-section-head">
+                          <span className="studio-readiness-index">
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                          <div
+                            className="studio-readiness-icon"
+                            style={{ background: theme.soft, color: theme.accent }}
+                          >
+                            <Icon size={22} />
+                          </div>
+                          <div className="studio-readiness-heading">
+                            <p className="studio-readiness-kicker">{theme.kicker}</p>
+                            <h3>{title}</h3>
+                          </div>
+                        </div>
+
+                        <div className="studio-readiness-points">
+                          {items.map((item) => (
+                            <div key={item.label} className="studio-readiness-point">
+                              <p className="studio-readiness-point-label">{item.label}</p>
+                              <p className="studio-readiness-point-desc">{item.desc}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </section>
             </div>
           )}
 

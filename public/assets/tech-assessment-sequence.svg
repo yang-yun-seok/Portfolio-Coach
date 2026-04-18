@@ -1,0 +1,87 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="700" fill="#EEF3F8"/>
+  <rect x="40" y="40" width="1120" height="620" rx="36" fill="#F8FAFC" stroke="#D8E1EC" stroke-width="4"/>
+
+  <g>
+    <rect x="80" y="90" width="245" height="245" rx="28" fill="#E8F0FF"/>
+    <rect x="355" y="90" width="245" height="245" rx="28" fill="#FFF4E5"/>
+    <rect x="630" y="90" width="245" height="245" rx="28" fill="#EAFBF1"/>
+    <rect x="905" y="90" width="215" height="245" rx="28" fill="#F3ECFF"/>
+
+    <rect x="80" y="370" width="245" height="245" rx="28" fill="#EAFBF1"/>
+    <rect x="355" y="370" width="245" height="245" rx="28" fill="#FFF4E5"/>
+    <rect x="630" y="370" width="245" height="245" rx="28" fill="#E8F0FF"/>
+    <rect x="905" y="370" width="215" height="245" rx="28" fill="#F9FAFB"/>
+  </g>
+
+  <g stroke="#111827" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="202" cy="170" r="34" fill="#F8D9B7"/>
+    <path d="M171 219C171 196.909 188.909 179 211 179H212C234.091 179 252 196.909 252 219V270H171V219Z" fill="#2563EB"/>
+    <rect x="119" y="120" width="44" height="90" rx="10" fill="#FFFFFF"/>
+    <line x1="141" y1="133" x2="141" y2="198"/>
+    <line x1="128" y1="152" x2="154" y2="152"/>
+    <line x1="128" y1="172" x2="154" y2="172"/>
+    <path d="M252 205L286 181" />
+    <path d="M286 181H303V198" />
+
+    <circle cx="478" cy="172" r="34" fill="#F8D9B7"/>
+    <path d="M446 224C446 201.909 463.909 184 486 184H487C509.091 184 527 201.909 527 224V272H446V224Z" fill="#0F172A"/>
+    <rect x="537" y="144" width="38" height="28" rx="14" fill="#FFFFFF"/>
+    <path d="M548 172L541 185L559 173" fill="#FFFFFF"/>
+    <circle cx="457" cy="190" r="10" fill="#111827"/>
+    <circle cx="499" cy="190" r="10" fill="#111827"/>
+
+    <circle cx="735" cy="169" r="34" fill="#F8D9B7"/>
+    <path d="M703 219C703 196.909 720.909 179 743 179H744C766.091 179 784 196.909 784 219V274H703V219Z" fill="#2563EB"/>
+    <path d="M803 246C803 217.833 825.833 195 854 195C882.167 195 905 217.833 905 246V274H803V246Z" fill="#10B981"/>
+    <circle cx="839" cy="179" r="24" fill="#86EFAC"/>
+    <circle cx="873" cy="177" r="18" fill="#86EFAC"/>
+    <path d="M792 177L821 190" />
+    <path d="M784 208L814 222" />
+
+    <circle cx="986" cy="170" r="34" fill="#F8D9B7"/>
+    <path d="M954 219C954 196.909 971.909 179 994 179H995C1017.09 179 1035 196.909 1035 219V274H954V219Z" fill="#111827"/>
+    <rect x="1038" y="155" width="40" height="54" rx="12" fill="#FFFFFF"/>
+    <line x1="1049" y1="174" x2="1068" y2="174"/>
+    <line x1="1049" y1="190" x2="1068" y2="190"/>
+    <line x1="1049" y1="206" x2="1060" y2="206"/>
+
+    <circle cx="205" cy="450" r="34" fill="#F8D9B7"/>
+    <path d="M174 500C174 477.909 191.909 460 214 460H215C237.091 460 255 477.909 255 500V548H174V500Z" fill="#0F172A"/>
+    <path d="M133 495H164" />
+    <path d="M147 481V509" />
+    <path d="M246 486L281 458" />
+
+    <circle cx="477" cy="452" r="34" fill="#F8D9B7"/>
+    <path d="M446 503C446 480.909 463.909 463 486 463H487C509.091 463 527 480.909 527 503V550H446V503Z" fill="#2563EB"/>
+    <rect x="539" y="432" width="38" height="28" rx="14" fill="#FFFFFF"/>
+    <path d="M548 460L541 473L559 461" fill="#FFFFFF"/>
+    <path d="M540 506H579" />
+    <path d="M540 520H567" />
+
+    <circle cx="733" cy="451" r="34" fill="#F8D9B7"/>
+    <path d="M701 501C701 478.909 718.909 461 741 461H742C764.091 461 782 478.909 782 501V552H701V501Z" fill="#111827"/>
+    <rect x="794" y="470" width="62" height="50" rx="14" fill="#2563EB"/>
+    <path d="M806 494H844" />
+    <path d="M822 481V507" />
+
+    <circle cx="988" cy="451" r="34" fill="#F8D9B7"/>
+    <path d="M956 503C956 480.909 973.909 463 996 463H997C1019.09 463 1037 480.909 1037 503V552H956V503Z" fill="#2563EB"/>
+    <circle cx="1073" cy="478" r="20" fill="#FDE68A"/>
+    <path d="M1073 449V460" />
+    <path d="M1073 496V507" />
+    <path d="M1045 478H1056" />
+    <path d="M1090 478H1101" />
+  </g>
+
+  <g fill="#0F172A" font-family="Arial, sans-serif" font-size="24" font-weight="700">
+    <text x="92" y="121">1</text>
+    <text x="367" y="121">2</text>
+    <text x="642" y="121">3</text>
+    <text x="917" y="121">4</text>
+    <text x="92" y="401">5</text>
+    <text x="367" y="401">6</text>
+    <text x="642" y="401">7</text>
+    <text x="917" y="401">8</text>
+  </g>
+</svg>

@@ -3,6 +3,9 @@ import {
   Clock, Video, CheckCircle, RefreshCcw, AlertCircle,
   Image as ImageIcon, Play, ArrowLeft, Code2, FileQuestion,
 } from 'lucide-react';
+import { staticAssetUrl } from '../lib/runtime-config';
+
+const TECH_ASSESSMENT_IMAGE = staticAssetUrl('assets/tech-assessment-sequence.svg');
 
 // ── 문제 및 피드백 데이터 ───────────────────────────────────────────────
 const TEST_DATA = [
@@ -20,7 +23,7 @@ const TEST_DATA = [
     id: 2, type: 'image-desc',
     question: '2. 그림을 보고 무슨 상황인지 서술하라',
     description: '아래 4컷의 상황을 보고 현재 어떤 상황이 벌어지고 있는지 상황, 인물의 감정, 향후 전개될 일을 유추하여 서술하세요.',
-    imageUrl: '4컷.jfif',
+    imageUrl: TECH_ASSESSMENT_IMAGE,
     feedback: {
       intent: '관찰력과 상황 묘사 능력, 정지된 화면에서 앞뒤 맥락을 상상해내는 기획적 상상력을 평가합니다.',
       ideal: '시각적 정보(촛농, 표정 등)를 바탕으로 논리적인 인과관계를 설정하고 캐릭터의 목적을 생동감 있게 묘사한 답변.',
@@ -199,57 +202,63 @@ export default function TechAssessment() {
   // ═══ Intro 화면 ════════════════════════════════════════════════════
   if (step === 'intro') {
     return (
-      <div className="apple-module apple-module-intro p-8 animate-in fade-in">
-        <div className="max-w-2xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-slate-800 mb-2">기술 과제 평가</h2>
-            <p className="text-slate-500">실제 게임회사의 기술 과제 평가를 시뮬레이션합니다. 제한 시간 내에 과제를 수행하고 상세 피드백을 확인하세요.</p>
-          </div>
+      <div className="apple-module studio-assessment-intro animate-in fade-in">
+        <div className="studio-assessment-hero">
+          <div className="studio-assessment-copy">
+            <p className="studio-eyebrow">Technical Narrative Review</p>
+            <h2>기술 과제 평가</h2>
+            <p>
+              실제 게임 기획 과제에서 자주 마주치는 서술형, 이미지 해석, 상태 정의 문제를
+              한 흐름으로 묶었습니다. 답을 맞히는 것보다 조건을 읽고 구조화하는 방식이 먼저
+              보이도록 답변해 보세요.
+            </p>
 
-          <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
-            <div className="bg-gradient-to-r from-sky-900 to-indigo-900 p-8 text-center">
-              <p className="text-slate-300 text-sm font-medium">실무 역량 평가 테스트</p>
-              <p className="text-slate-500 mt-1 text-xs">Game Design Position Assessment</p>
-            </div>
-
-            <div className="p-8 space-y-5">
-              <div className="flex items-start gap-4 bg-red-50 p-4 rounded-xl border border-red-100">
-                <Video className="w-6 h-6 text-red-500 shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-bold text-red-700 text-sm mb-1">보안 정책 안내</h4>
-                  <p className="text-xs text-red-600/80 leading-relaxed">
-                    본 평가는 엄격한 보안 하에 진행됩니다. <strong>화면 캡쳐, 녹화 및 외부 유출</strong> 시 법적 책임을 물을 수 있으며, 모든 과정은 로그로 기록됩니다.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 bg-sky-50 p-4 rounded-xl border border-sky-100">
-                <Clock className="w-6 h-6 text-sky-500 shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-bold text-sky-700 text-sm mb-1">진행 방식</h4>
-                  <p className="text-xs text-sky-600/80 leading-relaxed">
-                    총 <strong>13문항</strong>, 제한 시간 <strong>55분</strong>. 서술형 + 코딩 + 이미지 분석 복합 문제로 구성되어 있습니다. 자동 저장 기능이 없으므로 유의하십시오.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 bg-emerald-50 p-4 rounded-xl border border-emerald-100">
-                <CheckCircle className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
-                <div>
-                  <h4 className="font-bold text-emerald-700 text-sm mb-1">제출 후 피드백</h4>
-                  <p className="text-xs text-emerald-600/80 leading-relaxed">
-                    제출 후 각 문항의 <strong>출제 의도, 이상적인 답변 방향, 피해야 할 답변</strong>을 확인할 수 있습니다.
-                  </p>
-                </div>
-              </div>
-
+            <div className="studio-assessment-actions">
               <button
                 onClick={handleStart}
-                className="w-full py-4 mt-4 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl transition-all text-lg shadow-lg active:scale-[0.98] flex items-center justify-center gap-3"
+                className="bg-sky-600 hover:bg-sky-700 text-white font-bold px-6 py-3 rounded-full transition-all shadow-lg active:scale-[0.98] flex items-center justify-center gap-3"
               >
-                <Play size={20} />
+                <Play size={18} />
                 평가 시작
               </button>
+              <span className="studio-assessment-chip">55분 · 13문항 · 서술/코드 혼합</span>
+            </div>
+          </div>
+
+          <div className="studio-assessment-facts">
+            <article className="studio-assessment-panel studio-assessment-panel-strong">
+              <p className="studio-eyebrow">Evaluation Focus</p>
+              <h3>정답보다 사고 구조가 먼저 읽히게 답하세요.</h3>
+              <p>
+                문장 길이나 코드 양보다, 제약 조건을 해석하고 판단 기준을 세우는 과정이 더
+                강하게 평가됩니다. 특히 애매한 문제일수록 기준을 먼저 드러내는 편이 유리합니다.
+              </p>
+            </article>
+
+            <div className="studio-assessment-rule-grid">
+              <div className="studio-assessment-rule">
+                <Video className="w-5 h-5 text-rose-500" />
+                <div>
+                  <h4>보안 준수</h4>
+                  <p>캡처와 외부 공유를 전제하지 않는 실전형 연습 세션입니다.</p>
+                </div>
+              </div>
+
+              <div className="studio-assessment-rule">
+                <Clock className="w-5 h-5 text-sky-500" />
+                <div>
+                  <h4>시간 운영</h4>
+                  <p>55분 안에 13문항을 다뤄야 하므로 분량 조절이 중요합니다.</p>
+                </div>
+              </div>
+
+              <div className="studio-assessment-rule">
+                <CheckCircle className="w-5 h-5 text-emerald-500" />
+                <div>
+                  <h4>제출 후 리뷰</h4>
+                  <p>각 문항별 출제 의도와 이상적인 방향을 바로 비교해 볼 수 있습니다.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -260,113 +269,122 @@ export default function TechAssessment() {
   // ═══ 시험 화면 ══════════════════════════════════════════════════════
   if (step === 'test') {
     return (
-      <div className="apple-module apple-module-test flex flex-col h-full bg-slate-950 text-slate-100">
-        {/* 제출 확인 모달 */}
+      <div className="apple-module studio-assessment-shell flex flex-col h-full">
         {showConfirm && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm px-4">
-            <div className="bg-slate-900 border border-slate-700 rounded-xl p-8 max-w-sm w-full shadow-2xl">
-              <h3 className="text-xl font-black text-white mb-3">최종 제출 확인</h3>
-              <p className="text-slate-400 mb-2 text-sm">작성 완료: {answeredCount} / {TEST_DATA.length} 문항</p>
-              <p className="text-slate-500 mb-8 text-xs leading-relaxed">제출 후에는 답안을 수정할 수 없습니다. 정말로 전송하시겠습니까?</p>
+            <div className="bg-white border border-slate-200 rounded-[28px] p-8 max-w-sm w-full shadow-2xl">
+              <h3 className="text-xl font-black text-slate-900 mb-3">최종 제출 확인</h3>
+              <p className="text-slate-600 mb-2 text-sm">작성 완료: {answeredCount} / {TEST_DATA.length} 문항</p>
+              <p className="text-slate-500 mb-8 text-xs leading-relaxed">
+                제출 후에는 답안을 수정할 수 없습니다. 지금 상태로 평가를 마무리할까요?
+              </p>
               <div className="flex gap-3">
-                <button onClick={cancelSubmit} className="flex-1 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 transition-colors text-sm font-bold border border-slate-700">취소</button>
-                <button onClick={confirmSubmit} className="flex-1 px-4 py-3 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-black transition-all text-sm shadow-lg">전송</button>
+                <button
+                  onClick={cancelSubmit}
+                  className="flex-1 px-4 py-3 rounded-full text-slate-600 hover:bg-slate-100 transition-colors text-sm font-bold border border-slate-200"
+                >
+                  취소
+                </button>
+                <button
+                  onClick={confirmSubmit}
+                  className="flex-1 px-4 py-3 rounded-full bg-sky-600 hover:bg-sky-500 text-white font-black transition-all text-sm shadow-lg"
+                >
+                  제출
+                </button>
               </div>
             </div>
           </div>
         )}
 
-        {/* 상단 타이머 바 */}
-        <div className="bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-6 py-3 flex justify-between items-center shrink-0 z-10">
-          <div className="flex items-center gap-3 text-red-500 font-black tracking-widest text-[10px] uppercase">
+        <div className="studio-assessment-topbar shrink-0 z-10">
+          <div className="studio-assessment-session">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-600"></span>
             </span>
-            SECURED SESSION
+            실전 모드 진행 중
           </div>
-          <div className={`flex items-center gap-2 text-2xl font-mono font-black ${timeLeft < 300 ? 'text-red-500 animate-pulse' : 'text-sky-400'}`}>
+
+          <div className={`studio-assessment-timer ${timeLeft < 300 ? 'text-rose-500 animate-pulse' : 'text-sky-600'}`}>
             <Clock className="w-5 h-5" />
             <span className="tabular-nums">{formatTime(timeLeft)}</span>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-xs text-slate-500">{answeredCount}/{TEST_DATA.length}</span>
-            <button onClick={handleSubmit} className="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-md text-sm transition-all shadow-md">
+
+          <div className="studio-assessment-progress">
+            <span>{answeredCount}/{TEST_DATA.length} answered</span>
+            <button
+              onClick={handleSubmit}
+              className="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-full text-sm transition-all shadow-md"
+            >
               최종 제출
             </button>
           </div>
         </div>
 
-        {/* 문제 목록 */}
-        <div className="flex-1 overflow-y-auto custom-scrollbar">
-          <div className="max-w-4xl mx-auto py-8 px-6 space-y-10">
+        <div className="studio-assessment-board flex-1 overflow-y-auto custom-scrollbar">
+          <div className="studio-assessment-stack">
             {TEST_DATA.map((item) => (
-              <div key={item.id} className="bg-slate-900/60 rounded-2xl p-8 border border-slate-800 transition-all hover:border-slate-700">
-                <div className="flex justify-between items-start mb-5">
+              <section key={item.id} className="studio-question">
+                <div className="studio-question-head">
+                  <div className="studio-question-label">Q{String(item.id).padStart(2, '0')}</div>
                   <div>
-                    <h2 className="text-xl font-black mb-1 text-white tracking-tight">{item.question}</h2>
-                    <p className="text-slate-400 text-sm">{item.description}</p>
+                    <h2 className="studio-question-title">{item.question}</h2>
+                    <p className="studio-question-desc">{item.description}</p>
                   </div>
-                  <span className="bg-slate-800 text-slate-500 px-3 py-1 rounded-full text-[10px] font-bold uppercase shrink-0 ml-4">
-                    Q{item.id}
-                  </span>
                 </div>
 
-                {/* 이미지 문제 */}
                 {item.type === 'image-desc' && (
-                  <div className="mb-6 rounded-xl overflow-hidden border border-slate-700 bg-black relative group min-h-[300px] flex flex-col items-center justify-center">
+                  <div className="studio-question-image">
                     {!imgError ? (
                       <img
                         key={imgKey}
                         src={`${item.imageUrl}?v=${imgKey}`}
-                        alt="상황 묘사 이미지"
+                        alt="상황 묘사 참고 이미지"
                         className="max-w-full h-auto object-contain"
                         loading="eager"
                         onLoad={() => setImgError(false)}
                         onError={() => setImgError(true)}
                       />
                     ) : (
-                      <div className="flex flex-col items-center justify-center p-12 text-center space-y-4">
-                        <ImageIcon className="w-16 h-16 text-slate-800" />
-                        <p className="text-slate-500 font-bold">이미지를 불러올 수 없습니다</p>
-                        <p className="text-xs text-slate-600">{item.imageUrl}</p>
+                      <div className="studio-image-fallback">
+                        <ImageIcon className="w-14 h-14 text-slate-300" />
+                        <p className="text-slate-700 font-bold">참고 이미지를 불러오지 못했습니다.</p>
+                        <p className="text-xs text-slate-500 break-all">{item.imageUrl}</p>
                         <button
                           onClick={() => { setImgKey(Date.now()); setImgError(false); }}
-                          className="flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs font-bold border border-slate-700"
+                          className="flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-full text-xs font-bold"
                         >
-                          <RefreshCcw className="w-3 h-3" /> 새로고침
+                          <RefreshCcw className="w-3 h-3" /> 다시 시도
                         </button>
                       </div>
                     )}
-                    <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span className="bg-black/60 text-white px-2 py-1 rounded text-[10px] font-bold">REFERENCE IMAGE</span>
-                    </div>
+                    <div className="studio-question-meta">Reference sequence</div>
                   </div>
                 )}
 
-                {/* 코드 예시 */}
                 {item.example && (
-                  <div className="mb-5 p-4 bg-black/40 rounded-xl border border-slate-800/50 font-mono text-xs text-emerald-400/90 leading-relaxed">
-                    <div className="text-[10px] text-slate-600 mb-2 uppercase font-black">Structure Example:</div>
+                  <div className="studio-code-example">
+                    <div className="text-[10px] text-slate-500 mb-2 uppercase font-black">Structure Example</div>
                     {item.example}
                   </div>
                 )}
 
-                {/* 답변 입력 */}
-                <div className="relative">
+                <div className="studio-answer-wrap">
                   <textarea
                     value={answers[item.id] || ''}
                     onChange={(e) => setAnswers({ ...answers, [item.id]: e.target.value })}
-                    placeholder="내용을 입력하세요..."
-                    className={`w-full bg-slate-950/50 border border-slate-800 rounded-xl p-6 text-slate-200 placeholder:text-slate-700 focus:outline-none focus:border-sky-500/50 focus:ring-4 focus:ring-sky-500/5 focus:bg-slate-950 transition-all resize-none min-h-[200px] ${
-                      item.type === 'code' ? 'font-mono text-sm leading-relaxed' : 'text-base leading-relaxed'
+                    placeholder="문제 조건을 먼저 정리한 뒤 답변을 작성하세요."
+                    className={`studio-answer-sheet ${
+                      item.type === 'code'
+                        ? 'studio-answer-sheet-code font-mono text-sm leading-relaxed'
+                        : 'text-base leading-relaxed'
                     }`}
                   />
-                  <div className="absolute bottom-3 right-4 text-[10px] font-bold text-slate-700 uppercase tracking-wider">
+                  <div className="studio-answer-count">
                     {(answers[item.id] || '').length} chars
                   </div>
                 </div>
-              </div>
+              </section>
             ))}
           </div>
         </div>
