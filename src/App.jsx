@@ -630,10 +630,16 @@ export default function App() {
       setResults(safeData);
       setActiveTab('feedback');
       setActiveInterviewTab(0);
-      // AI 강사피드백 생성 + 자동 저장
-      const draft = await generateInstructorDraft(safeData, userInfo);
-      const saveData = { userInfo, results: safeData, instructorFeedback: draft || instructorFeedback, savedAt: new Date().toISOString() };
-      localStorage.setItem('portfolio_bot_save', JSON.stringify(saveData));
+      // AI 강사피드백 초안은 백그라운드로 생성해 결과 탭 전환을 막지 않음
+      void generateInstructorDraft(safeData, userInfo)
+        .then((draft) => {
+          if (!draft) return;
+          const saveData = { userInfo, results: safeData, instructorFeedback: draft, savedAt: new Date().toISOString() };
+          localStorage.setItem('portfolio_bot_save', JSON.stringify(saveData));
+        })
+        .catch(() => {});
+      const baseSaveData = { userInfo, results: safeData, instructorFeedback, savedAt: new Date().toISOString() };
+      localStorage.setItem('portfolio_bot_save', JSON.stringify(baseSaveData));
     } catch (err) {
       console.warn('AI 분석 오류 → 로컬 Fallback:', err.message);
       try {

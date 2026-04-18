@@ -19,13 +19,18 @@ export async function callGeminiProxy({ contents, systemInstruction, generationC
 
   const maxRetries = 3;
   const delays = [1000, 2000, 4000];
+  const timeoutMs = 45000;
 
   for (let i = 0; i < maxRetries; i++) {
+    let timeoutId;
     try {
+      const controller = new AbortController();
+      timeoutId = setTimeout(() => controller.abort(), timeoutMs);
       const res = await fetch(GEMINI_PROXY_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
+        signal: controller.signal,
       });
 
       const data = await res.json();
@@ -35,8 +40,13 @@ export async function callGeminiProxy({ contents, systemInstruction, generationC
       }
       return data;
     } catch (err) {
+      if (err.name === 'AbortError') {
+        throw new Error('AI 응답 시간이 초과되었습니다.');
+      }
       if (i === maxRetries - 1) throw err;
       await new Promise((r) => setTimeout(r, delays[i]));
+    } finally {
+      clearTimeout(timeoutId);
     }
   }
 }

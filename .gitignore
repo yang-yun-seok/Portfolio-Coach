@@ -4,4 +4,6 @@ dist/
 .env.local
 .claude/
 *.log
+*.err
+prod-*.png
 vite.config.js.timestamp-*.mjs
