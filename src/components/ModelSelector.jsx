@@ -22,6 +22,7 @@ export default function ModelSelector({
   onProviderChange,
   onModelChange,
   modelsLoading,
+  variant = 'sidebar',
 }) {
   const currentProvider = enabledProviders.find((p) => p.id === selectedProvider);
   const currentModels = currentProvider?.models || [];
@@ -29,7 +30,7 @@ export default function ModelSelector({
 
   if (modelsLoading) {
     return (
-      <div className="model-selector-shell model-selector-loading">
+      <div className={`model-selector-shell model-selector-loading ${variant === 'modal' ? 'model-selector-shell-modal' : ''}`}>
         <Loader2 size={16} className="animate-spin text-slate-300 mx-auto" />
         <p className="text-[10px] text-slate-400 mt-2">모델 로딩 중...</p>
       </div>
@@ -37,7 +38,7 @@ export default function ModelSelector({
   }
 
   return (
-    <div className="model-selector-shell">
+    <div className={`model-selector-shell ${variant === 'modal' ? 'model-selector-shell-modal' : ''}`}>
       <div className="model-selector-header">
         <div className="model-selector-title">
           <Sparkles size={15} />

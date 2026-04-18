@@ -1345,6 +1345,61 @@
     word-break: break-word;
   }
 
+  .model-selector-shell-modal {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .model-selector-shell-modal .model-selector-title {
+    color: #0f172a;
+  }
+
+  .model-selector-shell-modal .model-selector-caption {
+    color: rgba(15, 23, 42, 0.58);
+  }
+
+  .model-selector-shell-modal .model-selector-provider-idle {
+    background: #f8fafc;
+    border-color: rgba(148, 163, 184, 0.24);
+    color: rgba(15, 23, 42, 0.72);
+  }
+
+  .model-selector-shell-modal .model-selector-provider-idle:hover {
+    border-color: rgba(0, 113, 227, 0.22);
+    color: #0f172a;
+  }
+
+  .model-selector-shell-modal .model-selector-select {
+    border-color: rgba(148, 163, 184, 0.28);
+    background: #f8fafc;
+    color: #0f172a;
+  }
+
+  .model-selector-shell-modal .model-selector-chevron {
+    color: rgba(15, 23, 42, 0.42);
+  }
+
+  .model-selector-shell-modal .model-selector-note {
+    color: #b45309;
+  }
+
+  .model-selector-shell-modal .model-selector-current {
+    background: #f8fafc;
+    border-color: rgba(148, 163, 184, 0.2);
+  }
+
+  .model-selector-shell-modal .model-selector-current-label {
+    color: #0369a1;
+  }
+
+  .model-selector-shell-modal .model-selector-current p {
+    color: rgba(15, 23, 42, 0.72);
+  }
+
   .personality-intro {
     display: grid;
     gap: 1.5rem;

@@ -223,7 +223,7 @@ app.get('/api/prompts/interview-basic', (req, res) => {
 // ── API: API 키 검증 ──────────────────────────────────────────────────────
 app.post('/api/validate-key', async (req, res) => {
   const { provider, apiKey, modelId } = req.body;
-  if (!provider || !apiKey) {
+  if (!provider || (provider !== 'gemini' && !apiKey)) {
     return res.json({ valid: false, error: '제공자와 API 키를 모두 입력해주세요.' });
   }
 
@@ -299,7 +299,7 @@ app.post('/api/analyze', async (req, res) => {
   // top3, profile 구조화 데이터 우선 사용, 없으면 레거시 userPrompt fallback
   const { provider, apiKey, modelId, top3, profile, hasFiles, hasPortfolioFile, fileParts, userPrompt: legacyPrompt } = req.body;
 
-  if (!provider || !apiKey) {
+  if (!provider || (provider !== 'gemini' && !apiKey)) {
     return res.status(400).json({ error: '필수 파라미터가 누락되었습니다.' });
   }
   if (!top3 && !legacyPrompt) {
@@ -340,12 +340,32 @@ app.post('/api/analyze', async (req, res) => {
         },
       };
 
-      const url = `${providerConfig.apiBase}/${model.id}:generateContent?key=${apiKey}`;
-      const data = await fetchWithRetry(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+      let data;
+      if (apiKey) {
+        const url = `${providerConfig.apiBase}/${model.id}:generateContent?key=${apiKey}`;
+        data = await fetchWithRetry(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      } else {
+        const supabaseUrl = (process.env.SUPABASE_URL || 'https://pkwbqbxuujpcvndpacsc.supabase.co').replace(/\/$/, '');
+        const proxyRes = await fetch(`${supabaseUrl}/functions/v1/gemini-proxy`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: model.id,
+            contents: payload.contents,
+            systemInstruction: payload.systemInstruction,
+            generationConfig: payload.generationConfig,
+          }),
+        });
+        if (!proxyRes.ok) {
+          const proxyText = await proxyRes.text().catch(() => '');
+          throw new Error(proxyText || `gemini-proxy request failed (${proxyRes.status})`);
+        }
+        data = await proxyRes.json();
+      }
 
       const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
       if (!text) throw new Error('Gemini 응답을 파싱할 수 없습니다.');
@@ -420,7 +440,7 @@ app.post('/api/analyze', async (req, res) => {
 app.post('/api/analyze-personality', async (req, res) => {
   const { provider, apiKey, modelId, likertAnswers, binaryAnswers, questions, binaryQuestions } = req.body;
 
-  if (!provider || !apiKey) {
+  if (!provider || (provider !== 'gemini' && !apiKey)) {
     return res.status(400).json({ error: '필수 파라미터가 누락되었습니다.' });
   }
 
@@ -600,12 +620,32 @@ ${binaryText}
           temperature: genConfig.temperature,
         },
       };
-      const url = `${providerConfig.apiBase}/${model.id}:generateContent?key=${apiKey}`;
-      const data = await fetchWithRetry(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+      let data;
+      if (apiKey) {
+        const url = `${providerConfig.apiBase}/${model.id}:generateContent?key=${apiKey}`;
+        data = await fetchWithRetry(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      } else {
+        const supabaseUrl = (process.env.SUPABASE_URL || 'https://pkwbqbxuujpcvndpacsc.supabase.co').replace(/\/$/, '');
+        const proxyRes = await fetch(`${supabaseUrl}/functions/v1/gemini-proxy`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: model.id,
+            contents: payload.contents,
+            systemInstruction: payload.systemInstruction,
+            generationConfig: payload.generationConfig,
+          }),
+        });
+        if (!proxyRes.ok) {
+          const proxyText = await proxyRes.text().catch(() => '');
+          throw new Error(proxyText || `gemini-proxy request failed (${proxyRes.status})`);
+        }
+        data = await proxyRes.json();
+      }
       const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
       if (!text) throw new Error('Gemini 응답을 파싱할 수 없습니다.');
       result = JSON.parse(text);

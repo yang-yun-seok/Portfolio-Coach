@@ -19,6 +19,25 @@ function formatTime(seconds) {
   return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
 }
 
+function buildPaginationItems(currentPage, totalPages) {
+  if (totalPages <= 7) {
+    return Array.from({ length: totalPages }, (_, index) => index);
+  }
+
+  const pages = new Set([0, 1, currentPage - 1, currentPage, currentPage + 1, totalPages - 2, totalPages - 1]);
+  const validPages = [...pages].filter((page) => page >= 0 && page < totalPages).sort((a, b) => a - b);
+  const items = [];
+
+  validPages.forEach((page, index) => {
+    if (index > 0 && page - validPages[index - 1] > 1) {
+      items.push(`ellipsis-${page}`);
+    }
+    items.push(page);
+  });
+
+  return items;
+}
+
 // ── 상수 ─────────────────────────────────────────────────────────────────
 const TOTAL_TIME = 40 * 60;
 const QUESTIONS_PER_PAGE = 1;
@@ -593,6 +612,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
     const pageQuestions = getCurrentQuestions();
     const totalPages = getTotalPages();
     const globalOffset = currentPage * QUESTIONS_PER_PAGE;
+    const paginationItems = buildPaginationItems(currentPage, totalPages);
 
     return (
       <div className="apple-module apple-module-practice personality-test-shell flex flex-col h-full bg-slate-50">
@@ -686,11 +706,17 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             <ChevronLeft size={16} /> 이전
           </button>
           <div className="personality-page-strip flex-1 min-w-0 flex items-center justify-center gap-1.5 overflow-x-auto px-2">
-            {Array.from({ length: totalPages }, (_, i) => (
-              <button key={i} onClick={() => setCurrentPage(i)}
-                className={`w-8 h-8 rounded-full text-xs font-bold transition-all ${currentPage === i ? 'bg-sky-600 text-white shadow-md' : 'text-slate-400 hover:bg-slate-100'}`}>
-                {i + 1}
-              </button>
+            {paginationItems.map((item) => (
+              typeof item === 'number' ? (
+                <button key={item} onClick={() => setCurrentPage(item)}
+                  className={`w-8 h-8 rounded-full text-xs font-bold transition-all ${currentPage === item ? 'bg-sky-600 text-white shadow-md' : 'text-slate-400 hover:bg-slate-100'}`}>
+                  {item + 1}
+                </button>
+              ) : (
+                <span key={item} className="px-1 text-sm font-bold text-slate-300 select-none">
+                  ...
+                </span>
+              )
             ))}
           </div>
           <button onClick={() => {
