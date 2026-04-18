@@ -324,6 +324,8 @@ export default function App() {
   const [showSettings, setShowSettings] = useState(false);
   const [showModelSettings, setShowModelSettings] = useState(false);
   const [crawlStatus, setCrawlStatus] = useState({ running: false, message: '', percent: 0, log: [], isError: false });
+  const crawlEventSourceRef = useRef(null);
+  const crawlPollerRef = useRef(null);
 
   // ── 크롤링 태그 선택 ──────────────────────────────────────────────────
   const CRAWL_JOB_TAGS = [
@@ -340,8 +342,124 @@ export default function App() {
     setter(list.includes(tag) ? list.filter(t => t !== tag) : [...list, tag]);
   };
 
+  const stopCrawlMonitoring = () => {
+    if (crawlEventSourceRef.current) {
+      crawlEventSourceRef.current.close();
+      crawlEventSourceRef.current = null;
+    }
+    if (crawlPollerRef.current) {
+      clearInterval(crawlPollerRef.current);
+      crawlPollerRef.current = null;
+    }
+  };
+
+  const reloadJobsAfterCrawl = async () => {
+    const jobRes = await fetch(staticAssetUrl('api/jobs.json')).catch(() => null);
+    if (jobRes?.ok) {
+      setJobs(await jobRes.json());
+    }
+  };
+
+  const applyCrawlEvent = async (data) => {
+    if (!data?.message) return;
+
+    const isErr = data.stage === 'error';
+    const isDone = data.stage === 'complete';
+
+    setCrawlStatus((prev) => {
+      const nextLog =
+        prev.log[prev.log.length - 1] === data.message
+          ? prev.log
+          : [...prev.log.slice(-49), data.message];
+
+      return {
+        running: !isErr && !isDone,
+        message: data.message,
+        percent: data.percent || 0,
+        log: nextLog,
+        isError: isErr,
+      };
+    });
+
+    if (isErr || isDone) {
+      stopCrawlMonitoring();
+      if (isDone) {
+        await reloadJobsAfterCrawl();
+      }
+    }
+  };
+
+  const startCrawlPolling = () => {
+    if (crawlPollerRef.current) clearInterval(crawlPollerRef.current);
+
+    crawlPollerRef.current = setInterval(async () => {
+      try {
+        const res = await fetch(apiUrl('api/crawl/status'));
+        if (!res.ok) return;
+
+        const status = await res.json();
+        if (status.lastEvent) {
+          await applyCrawlEvent(status.lastEvent);
+        }
+
+        if (!status.running && !status.lastEvent) {
+          stopCrawlMonitoring();
+          setCrawlStatus((prev) => ({
+            ...prev,
+            running: false,
+            isError: true,
+            message: prev.message || '크롤링 상태를 확인할 수 없습니다.',
+          }));
+        }
+      } catch {
+        // polling은 다음 주기에 재시도
+      }
+    }, 2000);
+  };
+
+  const connectCrawlStream = () => {
+    if (typeof EventSource === 'undefined') {
+      setCrawlStatus((prev) => ({
+        ...prev,
+        message: '브라우저 실시간 연결을 지원하지 않아 상태 확인 모드로 진행합니다.',
+      }));
+      return;
+    }
+
+    if (crawlEventSourceRef.current) {
+      crawlEventSourceRef.current.close();
+    }
+
+    const evtSource = new EventSource(eventSourceUrl('api/crawl/stream'));
+    crawlEventSourceRef.current = evtSource;
+
+    evtSource.onmessage = async (e) => {
+      try {
+        const data = JSON.parse(e.data);
+        await applyCrawlEvent(data);
+      } catch {
+        // 파싱 오류는 무시하고 polling이 보완
+      }
+    };
+
+    evtSource.onerror = () => {
+      if (crawlEventSourceRef.current === evtSource) {
+        evtSource.close();
+        crawlEventSourceRef.current = null;
+      }
+
+      setCrawlStatus((prev) => ({
+        ...prev,
+        message: prev.running
+          ? '실시간 연결이 불안정해 상태 확인 모드로 전환했습니다.'
+          : prev.message,
+      }));
+    };
+  };
+
   // ── 크롤링 함수 ──────────────────────────────────────────────────────
   const startCrawl = async () => {
+    stopCrawlMonitoring();
     setCrawlStatus({ running: true, message: '크롤링 준비 중...', percent: 0, log: [], isError: false });
     try {
       // 1) 크롤링 시작 요청 (백그라운드 실행, 즉시 응답)
@@ -357,6 +475,10 @@ export default function App() {
         setCrawlStatus((prev) => ({ ...prev, running: false, message: err.error || '크롤링 시작 실패', isError: true }));
         return;
       }
+
+      startCrawlPolling();
+      connectCrawlStream();
+      return;
 
       // 2) SSE 스트림으로 진행 상황 수신 (GET — 연결 끊겨도 크롤링은 계속)
       const evtSource = new EventSource(eventSourceUrl('api/crawl/stream'));
@@ -427,10 +549,29 @@ export default function App() {
   };
 
   const stopCrawl = async () => {
+    stopCrawlMonitoring();
     try {
-      await fetch(apiUrl('api/crawl/stop'), { method: 'POST' });
-    } catch { /* 무시 */ }
+      const res = await fetch(apiUrl('api/crawl/stop'), { method: 'POST' });
+      const data = await res.json().catch(() => ({}));
+      setCrawlStatus((prev) => ({
+        ...prev,
+        running: false,
+        isError: false,
+        message: data.message || '크롤링이 중단되었습니다.',
+      }));
+    } catch {
+      setCrawlStatus((prev) => ({
+        ...prev,
+        running: false,
+        isError: true,
+        message: '크롤링 중단 요청에 실패했습니다.',
+      }));
+    }
   };
+
+  useEffect(() => () => {
+    stopCrawlMonitoring();
+  }, []);
 
   // ── 헬퍼 ──────────────────────────────────────────────────────────────
   const currentProvider = enabledProviders.find((p) => p.id === selectedProvider);

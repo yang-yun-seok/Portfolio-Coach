@@ -887,9 +887,11 @@ app.get('/api/crawl/stream', (req, res) => {
   res.setHeader('Content-Type', 'text/event-stream');
   res.setHeader('Cache-Control', 'no-cache');
   res.setHeader('Connection', 'keep-alive');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('X-Accel-Buffering', 'no');
   res.statusCode = 200;
   res.flushHeaders();
+  res.write(': connected\n\n');
 
   const sendEvent = (data) => {
     if (!res.writableEnded) {
@@ -908,6 +910,10 @@ app.get('/api/crawl/stream', (req, res) => {
         sendEvent(crawlState.log[i]);
       }
       sentIdx = crawlState.log.length;
+    }
+
+    if (!res.writableEnded) {
+      res.write(': heartbeat\n\n');
     }
 
     // 크롤링 종료 시 스트림 닫기
