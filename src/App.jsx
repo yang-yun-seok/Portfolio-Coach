@@ -59,9 +59,10 @@ const INTERVIEW_THEME_MAP = {
 };
 
 const INTERVIEW_QUICK_CHECKS = [
-  '도착 15분 전까지 주변 환경과 호흡을 정리합니다.',
-  '복장, 카메라, 마이크, 포트폴리오 링크를 마지막으로 확인합니다.',
-  '첫 인사와 자기소개 첫 문장을 미리 입 밖으로 한번 꺼내 봅니다.',
+  '공고 JD와 내 포트폴리오의 연결 포인트 3개를 다시 확인합니다.',
+  '대표 프로젝트는 문제, 역할, 행동, 결과 순서로 60초 안에 말할 수 있게 정리합니다.',
+  '화상 면접은 카메라 눈높이, 마이크 입력, 화면 공유 자료, 링크 권한을 미리 점검합니다.',
+  '모르는 질문을 받았을 때 인정, 추론, 확인 계획 순서로 답할 문장을 준비합니다.',
 ];
 
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
@@ -1794,25 +1795,25 @@ AI 분석 요약:
               <section className="studio-readiness-hero">
                 <div className="studio-readiness-copy">
                   <p className="studio-eyebrow">Interview Readiness</p>
-                  <h2>면접장에 들어가기 전, 이미 평가가 시작됩니다.</h2>
+                  <h2>면접은 답변보다 먼저, 준비의 밀도를 봅니다.</h2>
                   <p>
-                    게임 회사 면접에서 바로 체감되는 복장, 시간, 태도, 마인드셋을
-                    한 화면에 정리했습니다. 답변 실력만큼 중요한 건 들어오기 전의 인상과
-                    흐름입니다.
+                    게임 회사 면접에서 자주 갈리는 복장, 시간 운영, 답변 태도, 압박 질문 대응을
+                    실무 면접 기준으로 정리했습니다. 첫인상은 기본이고, 핵심은 내 경험을
+                    직무 언어로 빠르게 증명하는 것입니다.
                   </p>
                 </div>
                 <div className="studio-readiness-summary">
                   <div className="studio-readiness-stat">
-                    <span>4 Areas</span>
-                    <strong>복장 · 시간 · 태도 · 집중</strong>
+                    <span>4 Readiness Areas</span>
+                    <strong>인상 · 시간 · 답변 구조 · 커뮤니케이션</strong>
                   </div>
                   <div className="studio-readiness-stat">
-                    <span>15 Min Before</span>
-                    <strong>도착 · 장비 · 첫 문장 점검</strong>
+                    <span>Before Interview</span>
+                    <strong>JD 연결 · 대표 사례 · 포트폴리오 근거 점검</strong>
                   </div>
                   <p>
-                    작은 신호가 전체 분위기를 결정합니다. 시선 처리, 첫 인사, 준비된
-                    호흡까지 같이 챙겨두면 답변의 설득력도 훨씬 안정적으로 전달됩니다.
+                    면접관은 정답 암기보다 근거 있는 판단, 협업 가능한 말투, 모르는 것을
+                    다루는 태도를 봅니다. 짧은 답변 안에 역할과 결과가 보이도록 준비하세요.
                   </p>
                 </div>
               </section>
@@ -1821,7 +1822,7 @@ AI 분석 요약:
                 <aside className="studio-readiness-aside">
                   <div className="studio-readiness-note">
                     <p className="studio-eyebrow">Quick Reset</p>
-                    <h3>면접 직전 3분 체크</h3>
+                    <h3>면접 직전 5분 체크</h3>
                     <ul>
                       {INTERVIEW_QUICK_CHECKS.map((item) => (
                         <li key={item}>
@@ -1833,10 +1834,11 @@ AI 분석 요약:
                   </div>
 
                   <div className="studio-readiness-note studio-readiness-note-muted">
-                    <p className="studio-eyebrow">Small Signal</p>
+                    <p className="studio-eyebrow">Answer Frame</p>
                     <p>
-                      답변을 잘해도 처음 30초가 정리되지 않으면 인상이 흐려집니다.
-                      반대로 준비된 태도는 아직 말하지 않은 역량까지 정돈되어 보이게 만듭니다.
+                      답변은 결론을 먼저 말하고, 바로 근거 사례로 들어가세요. 좋은 흐름은
+                      결론 1문장, 상황 1문장, 내가 한 행동 2문장, 결과와 배운 점 1문장입니다.
+                      장황한 배경 설명보다 면접관이 검증할 수 있는 사실을 먼저 보여주는 편이 강합니다.
                     </p>
                   </div>
                 </aside>
@@ -1979,7 +1981,7 @@ AI 분석 요약:
                 <div className="bg-blue-100 p-2 rounded-lg"><BookOpen size={20} className="text-blue-600" /></div>
                 <div>
                   <h2 className="text-xl font-bold text-slate-800">Portfolio Coach 사용 설명서</h2>
-                  <p className="text-sm text-slate-500">처음 이용할 때 필요한 흐름만 빠르게 확인하세요.</p>
+                  <p className="text-sm text-slate-500">입력 품질을 높이고 결과를 제대로 읽는 방법을 정리했습니다.</p>
                 </div>
               </div>
               <button onClick={() => setShowUserGuide(false)} className="text-slate-400 hover:text-slate-600 transition-colors">
@@ -1990,9 +1992,9 @@ AI 분석 요약:
             <div className="p-6 overflow-y-auto space-y-6">
               <section className="rounded-2xl bg-slate-950 !text-white p-6 shadow-inner">
                 <p className="text-[11px] font-semibold tracking-[0.18em] uppercase !text-blue-200 mb-2">Quick Start</p>
-                <h3 className="text-2xl font-bold leading-tight mb-3 !text-white">직무 대분류와 세부 직무를 고른 뒤 AI 분석을 실행하면, 서류와 공고 추천 결과가 탭별로 정리됩니다.</h3>
+                <h3 className="text-2xl font-bold leading-tight mb-3 !text-white">먼저 직무를 정확히 고르고, 증명 가능한 경험을 입력한 뒤 AI 분석을 실행하세요.</h3>
                 <p className="text-sm !text-slate-100 leading-relaxed">
-                  이름, 직무, 경력, 직무 역량을 입력하고 필요하면 PDF를 첨부하세요. 분석이 끝나면 왼쪽 메뉴에서 서류 피드백, 포트폴리오, 추천 공고, 면접 대비 결과를 이동하며 확인할 수 있습니다.
+                  결과 품질은 입력 정보의 구체성에 크게 좌우됩니다. 직무 대분류, 세부 직무, 경력, 보유 역량, PDF 자료를 채운 뒤 분석하면 서류 피드백, 포트폴리오 보완점, 추천 공고, 면접 대비 자료가 탭별로 정리됩니다.
                 </p>
               </section>
 
@@ -2000,12 +2002,12 @@ AI 분석 요약:
                 <h3 className="text-lg font-bold text-slate-900 mb-3">기본 사용 순서</h3>
                 <ol className="grid gap-3 md:grid-cols-2">
                   {[
-                    '정보 입력 탭에서 이름, 직무 대분류, 세부 직무, 경력, 직무 역량을 입력합니다.',
-                    '이력서, 자기소개서, 포트폴리오 PDF가 있으면 첨부합니다.',
-                    '특정 GameJob 공고를 우선 분석하려면 공고 번호를 입력합니다.',
-                    'AI 분석 시작 및 저장을 누르고 결과 생성을 기다립니다.',
-                    '서류 피드백, 포트폴리오, 추천 공고, 면접 대비 탭을 확인합니다.',
-                    '필요하면 PDF 출력에서 상담용 결과물을 저장합니다.',
+                    '정보 입력에서 직무 대분류와 세부 직무를 먼저 고릅니다. 이후 추천 역량 후보가 해당 직군 기준으로 바뀝니다.',
+                    '보유 기술은 실제 서류나 포트폴리오에서 증명 가능한 항목 위주로 추가하고 숙련도를 선택합니다.',
+                    '이력서, 자기소개서, 포트폴리오 PDF가 있다면 첨부합니다. 파일이 구체적일수록 피드백도 정밀해집니다.',
+                    '특정 GameJob 공고를 분석 기준으로 삼고 싶다면 공고 번호를 우선 공고 지정에 입력합니다.',
+                    'AI 분석 시작 및 저장을 누른 뒤 로딩이 끝날 때까지 새로고침하지 말고 기다립니다.',
+                    '결과는 서류 피드백 → 포트폴리오 → 추천 공고 → 면접 대비 순서로 확인하면 흐름이 가장 자연스럽습니다.',
                   ].map((item, idx) => (
                     <li key={item} className="flex gap-3 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
                       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">{idx + 1}</span>
@@ -2016,15 +2018,34 @@ AI 분석 요약:
               </section>
 
               <section>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">분석 품질을 높이는 입력 기준</h3>
+                <div className="grid gap-3 md:grid-cols-2">
+                  {[
+                    ['직무 선택', '기획, 플밍, 아트 중 현재 지원하려는 방향을 먼저 정하고 세부 직무는 가장 가까운 역할을 선택하세요.'],
+                    ['역량 입력', '툴 이름만 적기보다 “Unity UI 구현”, “밸런스 테이블 설계”, “캐릭터 원화 시트 제작”처럼 산출물이 보이는 표현이 좋습니다.'],
+                    ['PDF 첨부', '파일명과 첫 페이지에서 본인 이름, 지원 직무, 핵심 프로젝트가 빠르게 보이면 AI와 사람이 모두 읽기 쉽습니다.'],
+                    ['공고 지정', '지원 예정 공고가 있다면 번호를 넣어두세요. 추천 공고와 면접 질문이 해당 공고 기준으로 더 날카로워집니다.'],
+                  ].map(([title, body]) => (
+                    <div key={title} className="rounded-xl bg-white border border-slate-200 p-4 shadow-sm">
+                      <p className="font-bold text-slate-900 mb-1">{title}</p>
+                      <p className="text-sm text-slate-600 leading-relaxed">{body}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section>
                 <h3 className="text-lg font-bold text-slate-900 mb-3">탭별 역할</h3>
                 <div className="grid gap-3 md:grid-cols-2">
                   {[
-                    ['서류 피드백', '이력서와 자기소개서의 개선 포인트를 두괄식으로 확인합니다.'],
-                    ['포트폴리오', '선택한 직무에 맞는 포트폴리오 구성과 보완 포인트를 확인합니다.'],
-                    ['추천 공고', '보유 기술과 경력에 맞는 공고를 점수 순으로 확인합니다.'],
-                    ['면접 대비', '추천 공고 기준 예상 질문과 답변 방향을 준비합니다.'],
-                    ['직무 과제 평가', '기획·프로그래밍·아트 직군별 실무형 과제를 연습하고 답변을 점검합니다.'],
-                    ['인성검사', '리커트/선택형 문항으로 인성검사 흐름을 연습합니다.'],
+                    ['서류 피드백', '이력서와 자기소개서에서 직무 적합성, 성과 표현, 두괄식 구조, 부족한 근거를 확인합니다.'],
+                    ['포트폴리오', '대표작 순서, 본인 역할, 제작 과정, 문제 해결 근거가 채용자가 읽기 좋게 구성됐는지 점검합니다.'],
+                    ['추천 공고', '보유 역량과 경력 조건을 기준으로 공고를 점수화하고, 어떤 역량이 맞고 부족한지 함께 확인합니다.'],
+                    ['면접 대비', '1~3순위 공고의 인재상과 과제 성향을 반영해 예상 질문, 피해야 할 답변, 권장 답변 구조를 봅니다.'],
+                    ['면접 기본 준비', '복장, 시간, 장비, 태도, 답변 프레임처럼 모든 직무에 공통으로 필요한 면접 기본기를 정리합니다.'],
+                    ['직무 과제 평가', '기획·플밍·아트 트랙별 실무형 과제를 풀고 출제 의도, 이상적인 답변, 피해야 할 답변을 비교합니다.'],
+                    ['인성검사', '리커트/선택형 문항으로 인성검사 흐름을 연습하고 일관성 있게 답하는 감각을 익힙니다.'],
+                    ['PDF 출력', '분석 결과와 강사 피드백을 상담, 제출, 개인 복습용 자료로 정리합니다.'],
                   ].map(([title, body]) => (
                     <div key={title} className="rounded-xl border border-slate-200 p-4">
                       <p className="font-bold text-slate-900 mb-1">{title}</p>
@@ -2037,9 +2058,10 @@ AI 분석 요약:
               <section className="rounded-2xl bg-blue-50 border border-blue-100 p-5">
                 <h3 className="text-base font-bold text-blue-900 mb-2">알아두면 좋아요</h3>
                 <ul className="space-y-2 text-sm text-blue-800">
-                  <li>AI 분석은 모델 상태와 첨부 파일 크기에 따라 1분 정도 걸릴 수 있습니다.</li>
+                  <li>AI 분석은 모델 상태, 첨부 파일 크기, 네트워크 상태에 따라 1분 정도 걸릴 수 있습니다.</li>
+                  <li>로딩 중에는 새로고침하거나 탭을 닫지 마세요. 분석 결과 저장과 PDF 반영이 중간에 끊길 수 있습니다.</li>
                   <li>공고 크롤링은 설정 팝업에서 실행하며, Chrome·Edge·Naver Whale 또는 서버의 Chromium 엔진을 사용합니다.</li>
-                  <li>서버와 통신하는 과정에서 첫 요청이나 분석 요청이 다소 지연될 수 있습니다.</li>
+                  <li>서버와 통신하는 과정에서 첫 요청이나 분석 요청이 다소 지연될 수 있습니다. 잠시 기다리면 이어서 처리됩니다.</li>
                 </ul>
               </section>
             </div>
