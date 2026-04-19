@@ -2060,7 +2060,7 @@ AI 분석 요약:
                 <ul className="space-y-2 text-sm text-blue-800">
                   <li>AI 분석은 모델 상태, 첨부 파일 크기, 네트워크 상태에 따라 1분 정도 걸릴 수 있습니다.</li>
                   <li>로딩 중에는 새로고침하거나 탭을 닫지 마세요. 분석 결과 저장과 PDF 반영이 중간에 끊길 수 있습니다.</li>
-                  <li>공고 크롤링은 설정 팝업에서 실행하며, Chrome·Edge·Naver Whale 또는 서버의 Chromium 엔진을 사용합니다.</li>
+                  <li>공고 크롤링은 설정 팝업에서 실행하며, 서버에서 Chrome·Edge·Naver Whale을 찾고 없으면 Puppeteer Chrome을 자동 준비합니다.</li>
                   <li>서버와 통신하는 과정에서 첫 요청이나 분석 요청이 다소 지연될 수 있습니다. 잠시 기다리면 이어서 처리됩니다.</li>
                 </ul>
               </section>
@@ -2104,7 +2104,7 @@ AI 분석 요약:
                   <h3 className="font-semibold text-slate-700">공고 데이터 최신화</h3>
                 </div>
                 <p className="text-xs text-slate-500 mb-3 leading-relaxed">
-                  GameJob에서 최신 공고를 크롤링하여 데이터를 갱신합니다. 서버에서 브라우저 엔진을 실행하므로 1분 이상 걸릴 수 있고, Chrome·Edge·Naver Whale·Chromium 순서로 사용 가능한 실행 환경을 찾습니다.
+                  GameJob에서 최신 공고를 크롤링하여 데이터를 갱신합니다. 서버에서 브라우저 엔진을 실행하므로 1분 이상 걸릴 수 있고, Chrome·Edge·Naver Whale을 먼저 찾은 뒤 없으면 Puppeteer Chrome을 자동으로 준비합니다.
                 </p>
 
                 {/* 직종 태그 선택 */}
