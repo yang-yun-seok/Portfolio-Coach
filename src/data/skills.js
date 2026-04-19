@@ -2,7 +2,7 @@ export const ROLE_GROUPS = [
   {
     id: 'planning',
     label: '기획',
-    description: '시스템, 콘텐츠, 밸런스, 라이브 운영 설계 역량을 중심으로 평가합니다.',
+    description: '시스템/컨텐츠, QA, PM, 라이브 운영 설계 역량을 중심으로 평가합니다.',
   },
   {
     id: 'programming',
@@ -18,14 +18,16 @@ export const ROLE_GROUPS = [
 
 export const ROLE_DETAILS = {
   기획: [
-    { label: '시스템 기획', matchRole: '기획', focus: '규칙, 성장, 전투, 경제 구조를 설계하는 역량' },
-    { label: '콘텐츠/컨텐츠 기획', matchRole: '기획', focus: '던전, 퀘스트, 이벤트, 반복 플레이 구조를 설계하는 역량' },
+    { label: '시스템/컨텐츠 기획', matchRole: '기획', focus: '규칙, 성장, 전투, 컨텐츠 루프를 통합 설계하는 역량' },
     { label: '레벨 디자인', matchRole: '기획', focus: '동선, 난이도 곡선, 전투 배치, 플레이 템포를 설계하는 역량' },
     { label: '전투/액션 기획', matchRole: '기획', focus: '캐릭터 조작감, 스킬 구조, 판정, 밸런스를 설계하는 역량' },
     { label: '시나리오/퀘스트', matchRole: '기획', focus: '세계관, 캐릭터 서사, 퀘스트 플로우를 구조화하는 역량' },
     { label: '경제/BM 설계', matchRole: '기획', focus: '재화 흐름, 상점, 보상, 과금 구조를 지표 기반으로 설계하는 역량' },
     { label: 'UI/UX 기획', matchRole: '기획', focus: '정보 구조, 화면 플로우, 사용성 개선을 설계하는 역량' },
     { label: '라이브/이벤트 기획', matchRole: 'PM/운영', focus: '라이브 지표, 이벤트 캘린더, 운영 개선안을 설계하는 역량' },
+    { label: 'QA', matchRole: 'QA/테스트', focus: '테스트 케이스, 결함 재현, 품질 기준과 리스크를 관리하는 역량' },
+    { label: '개발PM', matchRole: 'PM/운영', focus: '개발 일정, 이슈, 리스크, 협업 프로세스를 조율하는 역량' },
+    { label: '사업PM', matchRole: 'PM/운영', focus: '시장, 매출, 운영 지표를 바탕으로 사업성과 실행 계획을 관리하는 역량' },
   ],
   프로그래밍: [
     { label: '클라이언트 프로그래머', matchRole: '클라이언트', focus: '게임플레이, UI, 렌더링, 엔진 연동 구현 역량' },
@@ -38,6 +40,8 @@ export const ROLE_DETAILS = {
   ],
   아트: [
     { label: '원화/컨셉 아트', matchRole: '아트/UI', focus: '캐릭터, 배경, 키비주얼 콘셉트 설계와 표현 역량' },
+    { label: '도트아티스트', matchRole: '아트/UI', focus: '픽셀 단위 실루엣, 제한 팔레트, 프레임 애니메이션을 제작하는 역량' },
+    { label: '2D 그래픽 디자이너', matchRole: '아트/UI', focus: '2D 리소스, 아이콘, 배너, UI 그래픽을 게임 톤에 맞게 제작하는 역량' },
     { label: 'UI 아트', matchRole: '아트/UI', focus: '게임 UI 비주얼, 아이콘, 레이아웃, 사용성 표현 역량' },
     { label: '3D 캐릭터', matchRole: '아트/UI', focus: '모델링, 스컬프팅, 텍스처링, 최적화 제작 역량' },
     { label: '3D 배경', matchRole: '아트/UI', focus: '환경 모델링, 월드 구성, 머티리얼, 최적화 제작 역량' },
@@ -56,8 +60,12 @@ export const ROLE_GROUP_MATCH_ROLES = {
 export const ROLE_SKILL_CATEGORIES = {
   기획: {
     '기획 전문 역량': [
-      '시스템 기획', '콘텐츠/컨텐츠 기획', '레벨 디자인', '전투/액션 기획',
+      '시스템/컨텐츠 기획', '레벨 디자인', '전투/액션 기획',
       '시나리오/퀘스트', '밸런싱', '경제/BM 설계', 'UI/UX 기획', '라이브/이벤트 기획',
+    ],
+    'QA/PM 역량': [
+      'QA/테스트', '테스트 케이스 작성', '버그 리포트', '리스크 관리',
+      '개발PM', '사업PM', '일정 관리', '요구사항 정리', '이슈 트래킹',
     ],
     '분석 및 문서화': [
       'GDD 작성', '기획서 작성', '밸런스 시트', '지표 설계', '데이터 분석',
@@ -92,6 +100,7 @@ export const ROLE_SKILL_CATEGORIES = {
   아트: {
     '2D 및 컨셉': [
       'Photoshop', 'Illustrator', '원화', '캐릭터 디자인', '배경 디자인',
+      '도트 아트', 'Aseprite', '픽셀 애니메이션', '2D 그래픽 디자인',
       '컬러/라이팅', '아이콘 제작', '드로잉',
     ],
     '3D 및 애니메이션': [

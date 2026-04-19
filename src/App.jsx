@@ -75,9 +75,22 @@ function parseFeedbackItem(text) {
 
 // ── 스킬 매칭 헬퍼 ─────────────────────────────────────────────────────────
 function skillMatches(userSkillName, reqSkill) {
-  const u = userSkillName.toLowerCase();
-  const r = reqSkill.toLowerCase();
-  return r.includes(u) || u.includes(r);
+  const normalize = (value) => String(value || '')
+    .toLowerCase()
+    .replace(/콘텐츠/g, '컨텐츠')
+    .replace(/[\/\s·_\-()]/g, '');
+  const expand = (value) => {
+    const normalized = normalize(value);
+    const variants = [normalized];
+    if (normalized.includes('시스템컨텐츠기획')) variants.push('시스템기획', '컨텐츠기획');
+    if (normalized.includes('qa테스트')) variants.push('qa', '테스트', '게임테스터');
+    if (normalized.includes('2d그래픽디자인')) variants.push('2d그래픽', '그래픽디자인');
+    if (normalized.includes('도트아트')) variants.push('도트', '픽셀아트');
+    return variants;
+  };
+  const userVariants = expand(userSkillName);
+  const reqVariants = expand(reqSkill);
+  return userVariants.some((u) => reqVariants.some((r) => r.includes(u) || u.includes(r)));
 }
 
 // ── 매칭 점수 v3 — 변별력 강화 ───────────────────────────────────────────
@@ -351,8 +364,9 @@ export default function App() {
 
   // ── 크롤링 태그 선택 ──────────────────────────────────────────────────
   const CRAWL_JOB_TAGS = [
-    '게임기획', '게임개발(클라이언트)', '게임개발(모바일)', '게임AI개발',
-    '인터페이스디자인', '원화', '모델링', '애니메이션', '이펙트·FX',
+    '게임기획', 'QA·테스터', '개발PM', '사업PM',
+    '게임개발(클라이언트)', '게임개발(모바일)', '게임AI개발',
+    '인터페이스디자인', '원화', '도트', '2D그래픽', '모델링', '애니메이션', '이펙트·FX',
   ];
   const CRAWL_CAREER_TAGS = [
     '신입', '1~3년', '4~6년', '7~9년', '10~15년', '16년~20년', '21년이상', '경력무관',
@@ -1877,7 +1891,7 @@ AI 분석 요약:
           {/* ── TAB 7: 과제 평가 연습 ─────────────────────────────── */}
           {activeTab === 'assignment-test' && <AssignmentTest />}
 
-          {/* ── TAB 8: 기술 과제 평가 ─────────────────────────────── */}
+          {/* ── TAB 8: 직무 과제 평가 ─────────────────────────────── */}
           {activeTab === 'tech-assessment' && <TechAssessment userInfo={normalizedUserInfo} />}
 
           {/* ── TAB 9: 인성검사 (탭 전환 시 상태 유지를 위해 항상 마운트, display로 토글) ── */}
@@ -1974,11 +1988,11 @@ AI 분석 요약:
             </div>
 
             <div className="p-6 overflow-y-auto space-y-6">
-              <section className="rounded-2xl bg-slate-950 text-white p-6">
-                <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-blue-300 mb-2">Quick Start</p>
-                <h3 className="text-2xl font-bold leading-tight mb-3 text-white">정보 입력 후 AI 분석을 실행하면, 서류와 공고 추천 결과가 탭별로 정리됩니다.</h3>
-                <p className="text-sm text-slate-300 leading-relaxed">
-                  이름, 희망 직무, 경력, 보유 기술을 입력하고 필요하면 PDF를 첨부하세요. 분석이 끝나면 왼쪽 메뉴에서 결과를 이동하며 확인할 수 있습니다.
+              <section className="rounded-2xl bg-slate-950 !text-white p-6 shadow-inner">
+                <p className="text-[11px] font-semibold tracking-[0.18em] uppercase !text-blue-200 mb-2">Quick Start</p>
+                <h3 className="text-2xl font-bold leading-tight mb-3 !text-white">직무 대분류와 세부 직무를 고른 뒤 AI 분석을 실행하면, 서류와 공고 추천 결과가 탭별로 정리됩니다.</h3>
+                <p className="text-sm !text-slate-100 leading-relaxed">
+                  이름, 직무, 경력, 직무 역량을 입력하고 필요하면 PDF를 첨부하세요. 분석이 끝나면 왼쪽 메뉴에서 서류 피드백, 포트폴리오, 추천 공고, 면접 대비 결과를 이동하며 확인할 수 있습니다.
                 </p>
               </section>
 
@@ -1986,7 +2000,7 @@ AI 분석 요약:
                 <h3 className="text-lg font-bold text-slate-900 mb-3">기본 사용 순서</h3>
                 <ol className="grid gap-3 md:grid-cols-2">
                   {[
-                    '정보 입력 탭에서 이름, 직무, 경력, 보유 기술을 입력합니다.',
+                    '정보 입력 탭에서 이름, 직무 대분류, 세부 직무, 경력, 직무 역량을 입력합니다.',
                     '이력서, 자기소개서, 포트폴리오 PDF가 있으면 첨부합니다.',
                     '특정 GameJob 공고를 우선 분석하려면 공고 번호를 입력합니다.',
                     'AI 분석 시작 및 저장을 누르고 결과 생성을 기다립니다.',
@@ -2024,7 +2038,7 @@ AI 분석 요약:
                 <h3 className="text-base font-bold text-blue-900 mb-2">알아두면 좋아요</h3>
                 <ul className="space-y-2 text-sm text-blue-800">
                   <li>AI 분석은 모델 상태와 첨부 파일 크기에 따라 1분 정도 걸릴 수 있습니다.</li>
-                  <li>공고 크롤링은 설정 팝업에서 실행하며, 실시간 연결이 불안정해도 상태 확인 방식으로 진행됩니다.</li>
+                  <li>공고 크롤링은 설정 팝업에서 실행하며, Chrome·Edge·Naver Whale 또는 서버의 Chromium 엔진을 사용합니다.</li>
                   <li>서버와 통신하는 과정에서 첫 요청이나 분석 요청이 다소 지연될 수 있습니다.</li>
                 </ul>
               </section>
@@ -2067,8 +2081,8 @@ AI 분석 요약:
                   <RefreshCw size={18} className="text-indigo-500" />
                   <h3 className="font-semibold text-slate-700">공고 데이터 최신화</h3>
                 </div>
-                <p className="text-xs text-slate-500 mb-3">
-                  GameJob에서 최신 공고를 크롤링하여 데이터를 갱신합니다.
+                <p className="text-xs text-slate-500 mb-3 leading-relaxed">
+                  GameJob에서 최신 공고를 크롤링하여 데이터를 갱신합니다. 서버에서 브라우저 엔진을 실행하므로 1분 이상 걸릴 수 있고, Chrome·Edge·Naver Whale·Chromium 순서로 사용 가능한 실행 환경을 찾습니다.
                 </p>
 
                 {/* 직종 태그 선택 */}
@@ -2156,15 +2170,18 @@ AI 분석 요약:
                       <div>
                         <p className="text-xs text-red-700 font-semibold mb-1">크롤링 오류</p>
                         <p className="text-xs text-red-600 break-all">{crawlStatus.message}</p>
-                        {crawlStatus.message.includes('Chrome') && (
-                          <a
-                            href="https://www.google.com/chrome"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-xs text-indigo-600 underline mt-2 block"
-                          >
-                            Chrome 다운로드 →
-                          </a>
+                        {/(Chrome|Edge|Whale|Chromium|브라우저)/i.test(crawlStatus.message) && (
+                          <div className="mt-2 flex flex-wrap gap-2 text-xs">
+                            <a href="https://www.google.com/chrome" target="_blank" rel="noreferrer" className="text-indigo-600 underline">
+                              Chrome
+                            </a>
+                            <a href="https://www.microsoft.com/edge" target="_blank" rel="noreferrer" className="text-indigo-600 underline">
+                              Edge
+                            </a>
+                            <a href="https://whale.naver.com" target="_blank" rel="noreferrer" className="text-indigo-600 underline">
+                              Naver Whale
+                            </a>
+                          </div>
                         )}
                       </div>
                     </div>
