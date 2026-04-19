@@ -1354,6 +1354,21 @@ AI 분석 요약:
                   ? <><Loader2 size={20} className="animate-spin" /> AI 분석 진행 중 ({currentProvider?.label || 'Gemini'})...</>
                   : <><Target size={20} /> AI 분석 시작 및 저장</>}
               </button>
+
+              {loading && (
+                <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 shadow-sm">
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
+                    <div className="space-y-1">
+                      <p className="text-sm font-bold text-amber-900">분석은 정상적으로 진행 중입니다.</p>
+                      <p className="text-sm leading-relaxed text-amber-800">
+                        서버와 AI 모델 응답을 기다리는 과정에서 1분 정도 걸릴 수 있습니다. 완료될 때까지 새로고침하거나 창을 닫지 말아주세요.
+                      </p>
+                      <p className="text-xs font-semibold text-amber-700">완료되면 자동으로 서류 피드백 탭으로 이동합니다.</p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
 

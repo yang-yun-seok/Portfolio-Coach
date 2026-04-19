@@ -834,6 +834,17 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             <Loader2 className="w-12 h-12 text-sky-500 mx-auto mb-4 animate-spin" />
             <h3 className="text-lg font-bold text-slate-800 mb-2">AI가 응답 패턴을 분석하고 있습니다...</h3>
             <p className="text-sm text-slate-500">성격 특성, 업무 스타일, 일관성 지표를 종합 분석 중입니다.</p>
+            <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-left">
+              <div className="flex items-start gap-3">
+                <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
+                <div>
+                  <p className="text-sm font-bold text-amber-900">분석은 정상적으로 진행 중입니다.</p>
+                  <p className="mt-1 text-sm leading-relaxed text-amber-800">
+                    서버와 AI 모델이 응답을 정리하는 동안 1분 정도 걸릴 수 있습니다. 새로고침하거나 창을 닫으면 결과가 사라질 수 있으니 잠시만 기다려 주세요.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
