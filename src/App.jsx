@@ -1898,7 +1898,7 @@ AI 분석 요약:
             <div className="p-6 overflow-y-auto space-y-6">
               <section className="rounded-2xl bg-slate-950 text-white p-6">
                 <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-blue-300 mb-2">Quick Start</p>
-                <h3 className="text-2xl font-bold leading-tight mb-3">정보 입력 후 AI 분석을 실행하면, 서류와 공고 추천 결과가 탭별로 정리됩니다.</h3>
+                <h3 className="text-2xl font-bold leading-tight mb-3 text-white">정보 입력 후 AI 분석을 실행하면, 서류와 공고 추천 결과가 탭별로 정리됩니다.</h3>
                 <p className="text-sm text-slate-300 leading-relaxed">
                   이름, 희망 직무, 경력, 보유 기술을 입력하고 필요하면 PDF를 첨부하세요. 분석이 끝나면 왼쪽 메뉴에서 결과를 이동하며 확인할 수 있습니다.
                 </p>
@@ -1945,9 +1945,9 @@ AI 분석 요약:
               <section className="rounded-2xl bg-blue-50 border border-blue-100 p-5">
                 <h3 className="text-base font-bold text-blue-900 mb-2">알아두면 좋아요</h3>
                 <ul className="space-y-2 text-sm text-blue-800">
-                  <li>AI 분석은 모델 상태와 첨부 파일 크기에 따라 30초 이상 걸릴 수 있습니다.</li>
+                  <li>AI 분석은 모델 상태와 첨부 파일 크기에 따라 1분 정도 걸릴 수 있습니다.</li>
                   <li>공고 크롤링은 설정 팝업에서 실행하며, 실시간 연결이 불안정해도 상태 확인 방식으로 진행됩니다.</li>
-                  <li>Render 무료 서버는 잠들어 있다가 깨어날 수 있어 첫 요청이 느릴 수 있습니다.</li>
+                  <li>서버와 통신하는 과정에서 첫 요청이나 분석 요청이 다소 지연될 수 있습니다.</li>
                 </ul>
               </section>
             </div>
