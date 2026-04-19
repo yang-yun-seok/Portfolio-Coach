@@ -7,7 +7,17 @@ import {
   Settings, RefreshCw, Database, ClipboardList, Code2, Download, BookOpen,
   Pin, Search, Hash,
 } from 'lucide-react';
-import { SKILL_CATEGORIES, ROLES } from './data/skills';
+import {
+  ROLE_GROUPS,
+  getDefaultRoleDetail,
+  getDefaultSkillInput,
+  getProfileDisplayRole,
+  getProfileMatchRoles,
+  getRoleDetail,
+  getRoleDetails,
+  getSkillCategoriesForRoleGroup,
+  normalizeUserProfile,
+} from './data/skills';
 import { analyzeViaProxy } from './lib/gemini-client';
 import { apiUrl, eventSourceUrl, staticAssetUrl } from './lib/runtime-config';
 import { useModels } from './hooks/useModels';
@@ -81,13 +91,16 @@ function skillMatches(userSkillName, reqSkill) {
 // ────────────────────────────────────────────────────────────────────────────
 function calculateMatchScore(user, job, detailed = false) {
   const d = { roleScore: 0, expScore: 0, skillScore: 0, fitScore: 0, multiScore: 0, penalty: 0, matchedSkills: [], unmatchedSkills: [] };
+  const normalizedUser = normalizeUserProfile(user);
+  const userMatchRoles = getProfileMatchRoles(normalizedUser);
 
-  // ── 직군 매칭 (+15) ──────────────────────────────────────
+  // ── 직군 매칭 (+15 / 대분류 일치 +10) ─────────────────────
   const jobRoles = job.roles && job.roles.length > 0 ? job.roles : [job.role];
-  if (jobRoles.includes(user.role)) d.roleScore = 15;
+  if (jobRoles.includes(normalizedUser.role)) d.roleScore = 15;
+  else if (jobRoles.some((role) => userMatchRoles.includes(role))) d.roleScore = 10;
 
   // ── 경력 매칭 (+15 / +10 / +5) ───────────────────────────
-  const userExp = Number(user.experience) || 0;
+  const userExp = Number(normalizedUser.experience) || 0;
   const jobExp = job.reqExp || 0;
   const expDiff = Math.abs(userExp - jobExp);
   if (expDiff === 0) d.expScore = 15;
@@ -102,7 +115,7 @@ function calculateMatchScore(user, job, detailed = false) {
     let matchedCount = 0;
 
     job.reqSkills.forEach((req) => {
-      const matched = user.skills.find((s) => skillMatches(s.name, req));
+      const matched = normalizedUser.skills.find((s) => skillMatches(s.name, req));
       if (matched) {
         matchedCount++;
         const lw = matched.level === '상' ? 1.5 : matched.level === '중' ? 1.0 : 0.4;
@@ -130,20 +143,24 @@ function calculateMatchScore(user, job, detailed = false) {
 }
 
 function generateInterviewQuestionsLocal(topJobs, user) {
+  const normalizedUser = normalizeUserProfile(user);
   return topJobs.map((job, idx) => {
     const reqSkills = Array.isArray(job.reqSkills) ? job.reqSkills : [];
-    const matched = user.skills.filter((s) =>
+    const matched = normalizedUser.skills.filter((s) =>
       reqSkills.some(
         (req) => req.toLowerCase().includes(s.name.toLowerCase()) || s.name.toLowerCase().includes(req.toLowerCase())
       )
     );
     const topSkill = matched.length > 0 ? matched[0] : { name: reqSkills[0] || '해당 기술', level: '중' };
-    const q1 = job.role.includes('기획')
-      ? `[핵심 지표 검증]\n"${topSkill.name}" 역량을 바탕으로 신규 시스템 기획 시, 가장 먼저 확인할 3가지 지표와 그 이유는 무엇인가요?`
-      : `[직무 기여도]\n당사 프로젝트에서 "${topSkill.name}" 기술을 구체적으로 어떻게 활용하여 기여할 수 있는지 2가지 사례를 들어 설명해주세요.`;
+    const q1ByGroup = {
+      기획: `[핵심 지표 검증]\n"${topSkill.name}" 역량을 바탕으로 ${normalizedUser.subRole} 업무를 맡는다면 가장 먼저 확인할 지표 3가지와 그 이유는 무엇인가요?`,
+      프로그래밍: `[구현 역량 검증]\n"${topSkill.name}" 역량을 실제 게임 프로젝트에 적용할 때 구조 설계, 성능, 유지보수 측면에서 어떤 판단을 하겠습니까?`,
+      아트: `[제작 역량 검증]\n"${topSkill.name}" 역량을 활용한 대표 작업물의 의도, 제작 과정, 퀄리티 기준, 엔진 적용 경험을 설명해주세요.`,
+    };
+    const q1 = q1ByGroup[normalizedUser.roleGroup] || `[직무 기여도]\n당사 프로젝트에서 "${topSkill.name}" 역량을 구체적으로 어떻게 활용하여 기여할 수 있는지 2가지 사례를 들어 설명해주세요.`;
     const shortNews = job.companyInfo?.news?.[0]?.split(' 및 ')[0].split(' 등 ')[0] || '최근 시장 트렌드';
-    const expText = user.experience > 0 ? `${user.experience}년차 ` : '신입 ';
-    const q2 = `[산업 인사이트]\n최근 '${shortNews}' 이슈와 관련하여, ${expText}${job.role} 실무자로서 예상되는 리스크 1가지와 해결 방안을 제시해주세요.`;
+    const expText = normalizedUser.experience > 0 ? `${normalizedUser.experience}년차 ` : '신입 ';
+    const q2 = `[산업 인사이트]\n최근 '${shortNews}' 이슈와 관련하여, ${expText}${normalizedUser.subRole} 실무자로서 예상되는 리스크 1가지와 해결 방안을 제시해주세요.`;
     return {
       rank: idx + 1,
       company: job.companyInfo?.name || job.company,
@@ -230,12 +247,16 @@ export default function App() {
   const [infoMessage, setInfoMessage] = useState('');
 
   // 프로필
-  const [userInfo, setUserInfo] = useState({ name: '', role: '기획', experience: 0, skills: [] });
-  const [skillInput, setSkillInput] = useState({
-    category: '기획 관련 항목',
-    name: SKILL_CATEGORIES['기획 관련 항목'][0],
-    level: '중',
+  const defaultRoleDetail = getDefaultRoleDetail('기획');
+  const [userInfo, setUserInfo] = useState({
+    name: '',
+    roleGroup: '기획',
+    subRole: defaultRoleDetail.label,
+    role: defaultRoleDetail.matchRole,
+    experience: 0,
+    skills: [],
   });
+  const [skillInput, setSkillInput] = useState(getDefaultSkillInput('기획'));
 
   // 파일
   const [resumeFile, setResumeFile] = useState(null);
@@ -576,6 +597,9 @@ export default function App() {
 
   // ── 헬퍼 ──────────────────────────────────────────────────────────────
   const currentProvider = enabledProviders.find((p) => p.id === selectedProvider);
+  const normalizedUserInfo = normalizeUserProfile(userInfo);
+  const selectedRoleDetail = getRoleDetail(normalizedUserInfo.roleGroup, normalizedUserInfo.subRole);
+  const skillCategories = getSkillCategoriesForRoleGroup(normalizedUserInfo.roleGroup);
 
   const handleProviderChange = (providerId) => {
     setSelectedProvider(providerId);
@@ -588,9 +612,31 @@ export default function App() {
     setUserInfo((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleRoleGroupChange = (e) => {
+    const roleGroup = e.target.value;
+    const detail = getDefaultRoleDetail(roleGroup);
+    setUserInfo((prev) => ({
+      ...prev,
+      roleGroup,
+      subRole: detail.label,
+      role: detail.matchRole,
+    }));
+    setSkillInput(getDefaultSkillInput(roleGroup));
+  };
+
+  const handleSubRoleChange = (e) => {
+    const subRole = e.target.value;
+    const detail = getRoleDetail(userInfo.roleGroup, subRole);
+    setUserInfo((prev) => ({
+      ...prev,
+      subRole,
+      role: detail.matchRole,
+    }));
+  };
+
   const handleAddSkill = () => {
     if (!userInfo.skills.find((s) => s.name === skillInput.name)) {
-      setUserInfo((prev) => ({ ...prev, skills: [...prev.skills, { ...skillInput }] }));
+      setUserInfo((prev) => ({ ...prev, skills: [...prev.skills, { ...skillInput, roleGroup: prev.roleGroup }] }));
     }
   };
 
@@ -672,13 +718,14 @@ export default function App() {
 
   // ── Fallback 적용 ─────────────────────────────────────────────────────
   const applyLocalFallback = (jobsWithScores, message) => {
+    const profileRoleLabel = getProfileDisplayRole(userInfo);
     setRecommendedJobs(jobsWithScores);
     setVisibleJobs(10);
     const top3 = jobsWithScores.slice(0, 3);
     const localQs = generateInterviewQuestionsLocal(top3, userInfo);
     setResults({
       resumeImprovements: [
-        `**성과 중심 재배치**: ${userInfo.experience}년차 ${userInfo.role} 경험을 상단에 두괄식으로 배치하세요.`,
+        `**성과 중심 재배치**: ${userInfo.experience}년차 ${profileRoleLabel} 경험을 상단에 두괄식으로 배치하세요.`,
         `**핵심 기술 증명**: [${userInfo.skills[0]?.name || '주요 기술'}] 활용 프로젝트 사례를 수치화하여 보강하세요.`,
       ],
       coverLetterImprovements: {
@@ -725,6 +772,7 @@ export default function App() {
     setInfoMessage('');
 
     try {
+      const analysisProfile = normalizeUserProfile(userInfo);
       const jobsWithScores = computeJobsWithScores();
       setRecommendedJobs(jobsWithScores);
       setVisibleJobs(10);
@@ -751,7 +799,7 @@ export default function App() {
       const data = await analyzeViaProxy({
         modelId: selectedModelId,
         top3,
-        profile: userInfo,
+        profile: analysisProfile,
         hasFiles: fileParts.length > 0,
         hasPortfolioFile: portfolioFiles.length > 0,
         fileParts: fileParts.length > 0 ? fileParts : undefined,
@@ -773,14 +821,14 @@ export default function App() {
       setActiveTab('feedback');
       setActiveInterviewTab(0);
       // AI 강사피드백 초안은 백그라운드로 생성해 결과 탭 전환을 막지 않음
-      void generateInstructorDraft(safeData, userInfo)
+      void generateInstructorDraft(safeData, analysisProfile)
         .then((draft) => {
           if (!draft) return;
-          const saveData = { userInfo, results: safeData, instructorFeedback: draft, savedAt: new Date().toISOString() };
+          const saveData = { userInfo: analysisProfile, results: safeData, instructorFeedback: draft, savedAt: new Date().toISOString() };
           localStorage.setItem('portfolio_bot_save', JSON.stringify(saveData));
         })
         .catch(() => {});
-      const baseSaveData = { userInfo, results: safeData, instructorFeedback, savedAt: new Date().toISOString() };
+      const baseSaveData = { userInfo: analysisProfile, results: safeData, instructorFeedback, savedAt: new Date().toISOString() };
       localStorage.setItem('portfolio_bot_save', JSON.stringify(baseSaveData));
     } catch (err) {
       console.warn('AI 분석 오류 → 로컬 Fallback:', err.message);
@@ -804,10 +852,11 @@ export default function App() {
     try {
       const { callGeminiProxy } = await import('./lib/gemini-client');
       const today = new Date().toISOString().slice(0, 10);
+      const normalizedProfile = normalizeUserProfile(profile);
       const prompt = `당신은 게임 업계 취업 컨설팅 강사입니다. 아래 AI 분석 결과를 바탕으로 강사 피드백 초고를 작성하세요.
 
-지원자: ${profile.name} | 직군: ${profile.role} | 경력: ${profile.experience}년
-스킬: ${(profile.skills || []).map(s => `${s.name}(${s.level})`).join(', ')}
+지원자: ${normalizedProfile.name} | 직군: ${getProfileDisplayRole(normalizedProfile)} | 경력: ${normalizedProfile.experience}년
+스킬: ${(normalizedProfile.skills || []).map(s => `${s.name}(${s.level})`).join(', ')}
 
 AI 분석 요약:
 - 프로필: ${JSON.stringify(aiResults.profileAnalysis || {}).slice(0, 500)}
@@ -963,7 +1012,7 @@ AI 분석 요약:
       const saved = localStorage.getItem('portfolio_bot_save');
       if (saved) {
         const { userInfo: si, results: sr, instructorFeedback: sf } = JSON.parse(saved);
-        if (si) setUserInfo({ ...si, skills: Array.isArray(si.skills) ? si.skills : [] });
+        if (si) setUserInfo(normalizeUserProfile({ ...si, skills: Array.isArray(si.skills) ? si.skills : [] }));
         if (sr) setResults(sr);
         if (sf) setInstructorFeedback(sf);
       }
@@ -978,7 +1027,7 @@ AI 분석 요약:
     { id: 'jobs',            label: '추천 공고',        icon: Target },
     { id: 'interview',       label: '면접 대비',        icon: MessageSquare },
     { id: 'interview-basic', label: '면접 기본 준비',   icon: Smile },
-    { id: 'tech-assessment', label: '기술 과제 평가',   icon: Code2 },
+    { id: 'tech-assessment', label: '직무 과제 평가',   icon: Code2 },
     { id: 'personality-test', label: '인성검사',         icon: ClipboardList },
     { id: 'pdf-export',     label: 'PDF 출력',          icon: Download },
   ];
@@ -1106,15 +1155,21 @@ AI 분석 요약:
               {/* 프로필 */}
               <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                 <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2"><User size={20} className="text-indigo-500" /> 내 프로필 정보</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-1">지원자 이름</label>
                     <input type="text" name="name" value={userInfo.name} onChange={handleInputChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="양윤석" />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1">희망 직무</label>
-                    <select name="role" value={userInfo.role} onChange={handleInputChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
-                      {ROLES.map((r) => <option key={r} value={r}>{r}</option>)}
+                    <label className="block text-sm font-semibold text-slate-700 mb-1">직무 대분류</label>
+                    <select value={normalizedUserInfo.roleGroup} onChange={handleRoleGroupChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+                      {ROLE_GROUPS.map((group) => <option key={group.id} value={group.label}>{group.label}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-slate-700 mb-1">세부 직무</label>
+                    <select value={normalizedUserInfo.subRole} onChange={handleSubRoleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
+                      {getRoleDetails(normalizedUserInfo.roleGroup).map((detail) => <option key={detail.label} value={detail.label}>{detail.label}</option>)}
                     </select>
                   </div>
                   <div>
@@ -1122,24 +1177,32 @@ AI 분석 요약:
                     <input type="number" name="experience" min="0" max="30" value={userInfo.experience} onChange={handleInputChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
                   </div>
                 </div>
+                <p className="mb-5 rounded-xl bg-slate-50 px-4 py-3 text-sm leading-relaxed text-slate-600 border border-slate-100">
+                  <span className="font-bold text-slate-800">{getProfileDisplayRole(normalizedUserInfo)}</span>
+                  <span className="mx-2 text-slate-300">|</span>
+                  {selectedRoleDetail.focus}
+                </p>
 
                 {/* 스킬 입력 */}
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">보유 기술 및 숙련도</label>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2">직무 역량 및 숙련도</label>
+                  <p className="mb-3 text-xs text-slate-500">
+                    선택한 대분류에 맞춰 추천 역량 후보가 바뀝니다. 실제 서류에 증명 가능한 항목만 추가하는 것이 좋습니다.
+                  </p>
                   <div className="flex flex-col sm:flex-row gap-2 mb-3">
                     <select
                       value={skillInput.category}
-                      onChange={(e) => setSkillInput({ category: e.target.value, name: SKILL_CATEGORIES[e.target.value][0], level: '중' })}
+                      onChange={(e) => setSkillInput({ category: e.target.value, name: skillCategories[e.target.value][0], level: '중' })}
                       className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none text-sm"
                     >
-                      {Object.keys(SKILL_CATEGORIES).map((cat) => <option key={cat} value={cat}>{cat}</option>)}
+                      {Object.keys(skillCategories).map((cat) => <option key={cat} value={cat}>{cat}</option>)}
                     </select>
                     <select
                       value={skillInput.name}
                       onChange={(e) => setSkillInput((prev) => ({ ...prev, name: e.target.value }))}
                       className="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none text-sm"
                     >
-                      {SKILL_CATEGORIES[skillInput.category].map((skill) => <option key={skill} value={skill}>{skill}</option>)}
+                      {(skillCategories[skillInput.category] || Object.values(skillCategories)[0]).map((skill) => <option key={skill} value={skill}>{skill}</option>)}
                     </select>
                     <div className="flex gap-2">
                       <select
@@ -1578,7 +1641,7 @@ AI 분석 요약:
                           <div className="mt-3 bg-slate-50 rounded-lg border border-slate-100 p-3">
                             <div className="grid grid-cols-5 gap-1 text-center mb-2">
                               {[
-                                { label: '직군', score: job.matchDetail.roleScore, max: 15, color: 'bg-blue-500', tip: '희망 직무와 공고 직군이 일치하면 15점' },
+                                { label: '직군', score: job.matchDetail.roleScore, max: 15, color: 'bg-blue-500', tip: '세부 직무가 직접 일치하면 15점, 대분류가 맞으면 10점' },
                                 { label: '경력', score: job.matchDetail.expScore, max: 15, color: 'bg-green-500', tip: '요구 경력과 보유 경력 차이: 동일=15, 1년차이=10, 2년차이=5' },
                                 { label: '스킬', score: job.matchDetail.skillScore, max: 30, color: 'bg-purple-500', tip: '매칭된 스킬의 숙련도 가중합 (上×1.5, 中×1.0, 下×0.4)' },
                                 { label: '정합도', score: job.matchDetail.fitScore, max: 25, color: 'bg-orange-500', tip: '스킬 커버리지 × 평균 숙련도 — 많이 & 높게 매칭될수록 높음' },
@@ -1815,7 +1878,7 @@ AI 분석 요약:
           {activeTab === 'assignment-test' && <AssignmentTest />}
 
           {/* ── TAB 8: 기술 과제 평가 ─────────────────────────────── */}
-          {activeTab === 'tech-assessment' && <TechAssessment />}
+          {activeTab === 'tech-assessment' && <TechAssessment userInfo={normalizedUserInfo} />}
 
           {/* ── TAB 9: 인성검사 (탭 전환 시 상태 유지를 위해 항상 마운트, display로 토글) ── */}
           <div style={{ display: activeTab === 'personality-test' ? 'block' : 'none' }}>
@@ -1943,10 +2006,10 @@ AI 분석 요약:
                 <div className="grid gap-3 md:grid-cols-2">
                   {[
                     ['서류 피드백', '이력서와 자기소개서의 개선 포인트를 두괄식으로 확인합니다.'],
-                    ['포트폴리오', '기획자 포트폴리오에 추가하면 좋은 문서와 사례를 확인합니다.'],
+                    ['포트폴리오', '선택한 직무에 맞는 포트폴리오 구성과 보완 포인트를 확인합니다.'],
                     ['추천 공고', '보유 기술과 경력에 맞는 공고를 점수 순으로 확인합니다.'],
                     ['면접 대비', '추천 공고 기준 예상 질문과 답변 방향을 준비합니다.'],
-                    ['기술 과제 평가', '기획 과제형 테스트를 연습하고 답변을 점검합니다.'],
+                    ['직무 과제 평가', '기획·프로그래밍·아트 직군별 실무형 과제를 연습하고 답변을 점검합니다.'],
                     ['인성검사', '리커트/선택형 문항으로 인성검사 흐름을 연습합니다.'],
                   ].map(([title, body]) => (
                     <div key={title} className="rounded-xl border border-slate-200 p-4">

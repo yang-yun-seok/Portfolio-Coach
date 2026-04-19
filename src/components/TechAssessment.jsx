@@ -4,6 +4,7 @@ import {
   Image as ImageIcon, Play, ArrowLeft, Code2, FileQuestion,
 } from 'lucide-react';
 import { staticAssetUrl } from '../lib/runtime-config';
+import { normalizeUserProfile } from '../data/skills';
 
 const TECH_ASSESSMENT_IMAGE = staticAssetUrl('assets/tech-assessment-sequence.svg');
 
@@ -143,7 +144,142 @@ const TEST_DATA = [
   },
 ];
 
+const ASSESSMENT_DATA_BY_ROLE = {
+  기획: TEST_DATA,
+  프로그래밍: [
+    {
+      id: 1, type: 'code',
+      question: '1. 캐릭터 상태 전환 구조를 설계하라',
+      description: 'Idle, Move, Attack, Hit, Dead 상태를 가진 캐릭터 FSM을 설계하고, 전환 조건과 예외 처리를 작성하세요.',
+      example: '<Idle>\n  <BranchEvent="Input_Move" Execute="Move"/>\n</Idle>',
+      feedback: {
+        intent: '게임플레이 로직의 상태 관리, 예외 처리, 유지보수성을 평가합니다.',
+        ideal: '상태 책임이 분리되어 있고, 입력/피격/사망 같은 우선순위가 명확한 구조.',
+        avoid: '모든 조건을 한 함수에 몰아넣거나 전환 우선순위가 불명확한 구조.',
+      },
+    },
+    {
+      id: 2, type: 'text',
+      question: '2. 프레임 드랍 원인을 찾는 절차를 설명하라',
+      description: '전투 중 특정 스킬 사용 시 FPS가 급락한다는 리포트가 들어왔을 때 원인 분석 순서와 확인 지표를 작성하세요.',
+      feedback: {
+        intent: '프로파일링 접근법과 CPU/GPU/메모리 병목 구분 능력을 평가합니다.',
+        ideal: '재현 조건 고정 → 프로파일러 측정 → 병목 구간 분리 → 수정 전후 수치 비교.',
+        avoid: '감으로 최적화하거나 그래픽/코드 중 하나만 단정하는 답변.',
+      },
+    },
+    {
+      id: 3, type: 'text',
+      question: '3. 서버 장애 상황에서 우선순위를 정하라',
+      description: '로그인 성공률이 급락하고 매칭 대기열이 증가하는 상황에서 어떤 지표를 먼저 보고 어떤 순서로 대응할지 작성하세요.',
+      feedback: {
+        intent: '서비스 안정성, 장애 대응, 관측 지표 이해도를 평가합니다.',
+        ideal: '영향 범위 파악, 롤백/트래픽 제어, DB/캐시/네트워크 지표 확인 순서가 명확한 답변.',
+        avoid: '코드 수정부터 시작하거나 사용자 영향도 판단 없이 원인만 파고드는 답변.',
+      },
+    },
+    {
+      id: 4, type: 'code',
+      question: '4. 아이템 쿨타임 시스템을 설계하라',
+      description: '클라이언트와 서버가 함께 검증하는 아이템 쿨타임 시스템의 데이터 구조와 처리 흐름을 작성하세요.',
+      feedback: {
+        intent: '클라이언트 예측, 서버 권위, 악용 방지 관점을 평가합니다.',
+        ideal: '서버 기준 시간, 클라이언트 표시 보정, 재접속/패킷 지연 예외 처리가 포함된 구조.',
+        avoid: '클라이언트 시간만 신뢰하거나 동기화 실패 상황을 고려하지 않는 답변.',
+      },
+    },
+    {
+      id: 5, type: 'text',
+      question: '5. 본인이 가장 자신 있는 기술 문제 해결 사례를 설명하라',
+      description: '문제 상황, 원인 분석, 해결 방식, 결과 수치를 중심으로 작성하세요.',
+      feedback: {
+        intent: '실제 구현 경험과 트러블슈팅 깊이를 확인합니다.',
+        ideal: '문제 규모, 사용 도구, 개선 수치, 재발 방지까지 연결된 답변.',
+        avoid: '사용 기술만 나열하고 본인의 판단과 결과가 빠진 답변.',
+      },
+    },
+    {
+      id: 6, type: 'text',
+      question: '6. 코드 리뷰에서 중요하게 보는 기준은 무엇인가?',
+      description: '가독성, 성능, 테스트, 아키텍처 중 본인의 우선순위와 이유를 작성하세요.',
+      feedback: {
+        intent: '협업 개발 태도와 코드 품질 기준을 평가합니다.',
+        ideal: '팀 생산성과 장애 예방 관점에서 기준을 제시하고 예시를 드는 답변.',
+        avoid: '취향 중심의 스타일 논쟁으로만 접근하는 답변.',
+      },
+    },
+  ],
+  아트: [
+    {
+      id: 1, type: 'text',
+      question: '1. 대표 작업물 1개의 제작 의도를 설명하라',
+      description: '레퍼런스, 콘셉트 키워드, 시각적 목표, 완성 기준을 중심으로 작성하세요.',
+      feedback: {
+        intent: '작업 의도와 결과물의 설득력을 평가합니다.',
+        ideal: '목표 분위기와 디자인 선택 이유가 작업 결과와 연결되는 답변.',
+        avoid: '예쁘게 만들었다는 감상만 있고 기준과 의도가 없는 답변.',
+      },
+    },
+    {
+      id: 2, type: 'image-desc',
+      question: '2. 이미지를 보고 개선 방향을 제안하라',
+      description: '아래 참고 이미지를 보고 가독성, 실루엣, 시선 흐름, 연출 관점에서 개선 포인트를 작성하세요.',
+      imageUrl: TECH_ASSESSMENT_IMAGE,
+      feedback: {
+        intent: '시각적 분석력과 피드백 언어의 구체성을 평가합니다.',
+        ideal: '형태, 명도, 색, 동선, 정보 우선순위를 기준으로 구체적인 개선안을 제시한 답변.',
+        avoid: '좋다/나쁘다 수준의 취향 평가에 그치는 답변.',
+      },
+    },
+    {
+      id: 3, type: 'text',
+      question: '3. 엔진 적용 과정에서 발생할 수 있는 문제를 설명하라',
+      description: '작업물을 Unity/Unreal에 적용할 때 텍스처, 머티리얼, LOD, 최적화 관점에서 주의할 점을 작성하세요.',
+      feedback: {
+        intent: '아트 결과물을 실제 게임에 올리는 파이프라인 이해도를 평가합니다.',
+        ideal: '용량, 드로우콜, 셰이더 비용, 플랫폼 제약을 고려한 답변.',
+        avoid: '원본 퀄리티만 중시하고 런타임 제약을 무시하는 답변.',
+      },
+    },
+    {
+      id: 4, type: 'text',
+      question: '4. 스타일 가이드를 맞추는 방법을 설명하라',
+      description: '기존 프로젝트의 화풍이나 UI 톤앤매너에 맞춰 작업할 때 어떤 기준으로 맞출지 작성하세요.',
+      feedback: {
+        intent: '스타일 적응력과 팀 프로젝트 협업 능력을 평가합니다.',
+        ideal: '비율, 색상, 브러시, 밀도, 명암, 레퍼런스 보드 기준을 구체화한 답변.',
+        avoid: '본인 스타일만 강조하고 프로젝트 일관성을 고려하지 않는 답변.',
+      },
+    },
+    {
+      id: 5, type: 'text',
+      question: '5. 피드백을 받아 작업물을 수정한 경험을 설명하라',
+      description: '초안의 문제점, 받은 피드백, 수정 방향, 최종 변화가 드러나게 작성하세요.',
+      feedback: {
+        intent: '피드백 수용 태도와 반복 개선 능력을 평가합니다.',
+        ideal: '수정 전후 차이와 판단 근거가 명확한 답변.',
+        avoid: '피드백을 감정적으로 받아들이거나 수정 이유가 불명확한 답변.',
+      },
+    },
+    {
+      id: 6, type: 'text',
+      question: '6. 포트폴리오 첫 화면에 무엇을 배치할 것인가?',
+      description: '채용 담당자가 30초 안에 강점을 파악할 수 있도록 구성 순서와 이유를 작성하세요.',
+      feedback: {
+        intent: '포트폴리오 큐레이션과 자기 강점 전달 능력을 평가합니다.',
+        ideal: '대표작, 역할, 제작 기간, 사용 툴, 핵심 강점을 첫 화면에 압축하는 답변.',
+        avoid: '작업물을 시간순으로만 나열하고 강점이 보이지 않는 구성.',
+      },
+    },
+  ],
+};
+
 const TOTAL_TIME = 55 * 60;
+const ASSESSMENT_TIME_BY_ROLE = {
+  기획: 55 * 60,
+  프로그래밍: 45 * 60,
+  아트: 40 * 60,
+};
 
 function formatTime(seconds) {
   const m = Math.floor(seconds / 60);
@@ -154,7 +290,10 @@ function formatTime(seconds) {
 // ══════════════════════════════════════════════════════════════════════
 // 기술 과제 평가 컴포넌트
 // ══════════════════════════════════════════════════════════════════════
-export default function TechAssessment() {
+export default function TechAssessment({ userInfo }) {
+  const normalizedUser = normalizeUserProfile(userInfo || {});
+  const assessmentData = ASSESSMENT_DATA_BY_ROLE[normalizedUser.roleGroup] || TEST_DATA;
+  const totalTime = ASSESSMENT_TIME_BY_ROLE[normalizedUser.roleGroup] || TOTAL_TIME;
   const [step, setStep] = useState('intro');
   const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
   const [answers, setAnswers] = useState({});
@@ -182,7 +321,7 @@ export default function TechAssessment() {
 
   const handleStart = () => {
     setAnswers({});
-    setTimeLeft(TOTAL_TIME);
+    setTimeLeft(totalTime);
     setStep('test');
   };
 
@@ -193,7 +332,7 @@ export default function TechAssessment() {
   const handleReset = () => {
     setStep('intro');
     setAnswers({});
-    setTimeLeft(TOTAL_TIME);
+    setTimeLeft(totalTime);
     setImgError(false);
   };
 
@@ -205,11 +344,11 @@ export default function TechAssessment() {
       <div className="apple-module studio-assessment-intro animate-in fade-in">
         <div className="studio-assessment-hero">
           <div className="studio-assessment-copy">
-            <p className="studio-eyebrow">Technical Narrative Review</p>
-            <h2>기술 과제 평가</h2>
+            <p className="studio-eyebrow">{normalizedUser.roleGroup} · {normalizedUser.subRole}</p>
+            <h2>직무 과제 평가</h2>
             <p>
-              실제 게임 기획 과제에서 자주 마주치는 서술형, 이미지 해석, 상태 정의 문제를
-              한 흐름으로 묶었습니다. 답을 맞히는 것보다 조건을 읽고 구조화하는 방식이 먼저
+              선택한 세부 직무 기준으로 자주 검증되는 실무형 문항을 묶었습니다.
+              답을 맞히는 것보다 조건을 읽고 판단 기준과 작업 과정을 구조화하는 방식이 먼저
               보이도록 답변해 보세요.
             </p>
 
@@ -221,7 +360,7 @@ export default function TechAssessment() {
                 <Play size={18} />
                 평가 시작
               </button>
-              <span className="studio-assessment-chip">55분 · 13문항 · 서술/코드 혼합</span>
+              <span className="studio-assessment-chip">{Math.round(totalTime / 60)}분 · {assessmentData.length}문항 · 직무 맞춤형</span>
             </div>
           </div>
 
@@ -231,7 +370,7 @@ export default function TechAssessment() {
               <h3>정답보다 사고 구조가 먼저 읽히게 답하세요.</h3>
               <p>
                 문장 길이나 코드 양보다, 제약 조건을 해석하고 판단 기준을 세우는 과정이 더
-                강하게 평가됩니다. 특히 애매한 문제일수록 기준을 먼저 드러내는 편이 유리합니다.
+                강하게 평가됩니다. 특히 {normalizedUser.subRole} 직무에서는 결과물보다 근거가 먼저 읽혀야 합니다.
               </p>
             </article>
 
@@ -248,7 +387,7 @@ export default function TechAssessment() {
                 <Clock className="w-5 h-5 text-sky-500" />
                 <div>
                   <h4>시간 운영</h4>
-                  <p>55분 안에 13문항을 다뤄야 하므로 분량 조절이 중요합니다.</p>
+                  <p>{Math.round(totalTime / 60)}분 안에 {assessmentData.length}문항을 다뤄야 하므로 분량 조절이 중요합니다.</p>
                 </div>
               </div>
 
@@ -274,7 +413,7 @@ export default function TechAssessment() {
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm px-4">
             <div className="bg-white border border-slate-200 rounded-[28px] p-8 max-w-sm w-full shadow-2xl">
               <h3 className="text-xl font-black text-slate-900 mb-3">최종 제출 확인</h3>
-              <p className="text-slate-600 mb-2 text-sm">작성 완료: {answeredCount} / {TEST_DATA.length} 문항</p>
+              <p className="text-slate-600 mb-2 text-sm">작성 완료: {answeredCount} / {assessmentData.length} 문항</p>
               <p className="text-slate-500 mb-8 text-xs leading-relaxed">
                 제출 후에는 답안을 수정할 수 없습니다. 지금 상태로 평가를 마무리할까요?
               </p>
@@ -311,7 +450,7 @@ export default function TechAssessment() {
           </div>
 
           <div className="studio-assessment-progress">
-            <span>{answeredCount}/{TEST_DATA.length} answered</span>
+            <span>{answeredCount}/{assessmentData.length} answered</span>
             <button
               onClick={handleSubmit}
               className="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-full text-sm transition-all shadow-md"
@@ -323,7 +462,7 @@ export default function TechAssessment() {
 
         <div className="studio-assessment-board flex-1 overflow-y-auto custom-scrollbar">
           <div className="studio-assessment-stack">
-            {TEST_DATA.map((item) => (
+            {assessmentData.map((item) => (
               <section key={item.id} className="studio-question">
                 <div className="studio-question-head">
                   <div className="studio-question-label">Q{String(item.id).padStart(2, '0')}</div>
@@ -414,7 +553,7 @@ export default function TechAssessment() {
 
         {/* 문항별 피드백 */}
         <div className="space-y-8">
-          {TEST_DATA.map((item) => (
+          {assessmentData.map((item) => (
             <div key={item.id} className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden transition-all hover:shadow-xl">
               <div className="bg-slate-50 px-8 py-5 border-b border-slate-200 flex justify-between items-center">
                 <h3 className="text-lg font-black text-slate-800 tracking-tight">{item.question}</h3>

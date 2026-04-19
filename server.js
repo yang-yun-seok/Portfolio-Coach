@@ -6,6 +6,7 @@ import { dirname, join } from 'path';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { DataLoader } from './lib/data-loader.js';
 import { normalizeAll } from './lib/job-normalizer.js';
+import { getProfileDisplayRole, normalizeUserProfile } from './src/data/skills.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -53,30 +54,20 @@ function loadPrompts() {
 
 // ── 직군별 추가 평가 지시문 ────────────────────────────────────────────────
 const ROLE_FOCUS_MAP = {
-  '클라이언트': `
-### 직군 특화 평가 지시 (클라이언트 프로그래머)
-- 렌더링 파이프라인(포워드/디퍼드), 셰이더 작성, GPU 최적화 경험을 중점 평가하세요.
-- Unreal Engine 또는 Unity 실 프로젝트 경험과 엔진 내부 구조 이해도를 확인하세요.
-- CPU/메모리 프로파일링 및 병목 해결 사례가 있다면 적극 부각하도록 안내하세요.`,
-  '서버': `
-### 직군 특화 평가 지시 (서버 프로그래머)
-- 대규모 동시 접속 처리 경험 (TPS, CCU 수치)을 수치화하여 드러내도록 안내하세요.
-- DB 설계·인덱싱 전략, 캐시 레이어(Redis 등) 활용 경험을 평가하세요.
-- MSA, 분산 락, 이벤트 기반 아키텍처 이해도가 있다면 강조하세요.`,
+  '프로그래밍': `
+### 직군 특화 평가 지시 (프로그래밍 직군)
+- 코드 기여도, 구조 설계, 성능/메모리/네트워크 최적화 경험을 구체적으로 평가하세요.
+- 사용 엔진·언어·프레임워크를 나열하는 데서 끝내지 말고, 본인이 직접 해결한 병목과 의사결정을 확인하세요.
+- GitHub, 코드 샘플, 트러블슈팅 문서, 테스트/빌드 자동화 경험이 있으면 포트폴리오 핵심 근거로 보강하세요.`,
   '기획': `
 ### 직군 특화 평가 지시 (게임 기획자)
-- 지표 기반 의사결정 경험(DAU, 잔존율, ARPU 등)을 반드시 수치로 표현하도록 안내하세요.
-- BM 설계 이해(인앱 결제, 시즌패스, 뽑기 확률 등) 경험을 부각하세요.
+- 시스템/콘텐츠/밸런스/라이브 지표 등 세부 직무에 맞는 산출물과 사고 과정을 평가하세요.
+- 지표 기반 의사결정 경험(DAU, 잔존율, ARPU 등)을 가능한 수치로 표현하도록 안내하세요.
 - 유저 피드백·데이터 분석을 통해 기능을 개선한 사례를 STAR 기법으로 정리하도록 하세요.`,
-  'QA': `
-### 직군 특화 평가 지시 (QA 엔지니어)
-- 자동화 테스트 구축 경험(Selenium, Appium, 자체 프레임워크 등)과 커버리지를 확인하세요.
-- 버그 재현율 향상, 회귀 테스트 사이클 단축 사례를 수치로 표현하도록 안내하세요.
-- 출시 타이틀 경험이 있다면 QA 단계별 게이팅 기준과 역할을 강조하세요.`,
   '아트': `
 ### 직군 특화 평가 지시 (아트 / TA)
 - 포트폴리오 퀄리티와 스타일 다양성을 최우선으로 평가하세요.
-- 엔진 내 에셋 파이프라인 작업 경험(LOD, 아틀라스, 최적화)이 있다면 반드시 부각하세요.
+- 결과 이미지만 보지 말고 제작 의도, 레퍼런스, 러프→완성 과정, 엔진 적용, 최적화 기준을 확인하세요.
 - TA라면 셰이더/툴 개발 경험, 아티스트-프로그래머 간 브리지 역할 경험을 강조하세요.`,
 };
 
@@ -87,6 +78,7 @@ const DEFAULT_ROLE_FOCUS = `
 
 // ── userPrompt 빌더 ───────────────────────────────────────────────────────
 function buildUserPrompt({ top3, profile, hasFiles, hasPortfolioFile }) {
+  const normalizedProfile = normalizeUserProfile(profile);
   const prompts = loadPrompts();
   let template = prompts.userPromptTemplate;
 
@@ -101,10 +93,13 @@ function buildUserPrompt({ top3, profile, hasFiles, hasPortfolioFile }) {
 
   // {{PROFILE}} 치환
   const profileText = `
-- 지원자 이름: ${profile.name}
-- 희망 직무: ${profile.role}
-- 총 경력: ${profile.experience}년 ${Number(profile.experience) === 0 ? '(신입)' : '(경력)'}
-- 보유 기술 및 숙련도: ${profile.skills.map((s) => `${s.name}(${s.level})`).join(', ')}`;
+- 지원자 이름: ${normalizedProfile.name}
+- 직무 대분류: ${normalizedProfile.roleGroup}
+- 세부 직무: ${normalizedProfile.subRole}
+- 매칭 기준 직군: ${normalizedProfile.role}
+- 세부 평가 초점: ${normalizedProfile.roleFocus}
+- 총 경력: ${normalizedProfile.experience}년 ${Number(normalizedProfile.experience) === 0 ? '(신입)' : '(경력)'}
+- 보유 역량 및 숙련도: ${(normalizedProfile.skills || []).map((s) => `${s.name}(${s.level})`).join(', ')}`;
 
   // {{FILE_CONTEXT}} 치환
   const fileContext = hasFiles
@@ -117,7 +112,11 @@ function buildUserPrompt({ top3, profile, hasFiles, hasPortfolioFile }) {
     : '포트폴리오 파일이 없으므로 프로필과 직군 기준으로 포트폴리오 구성 방향을 제안하세요.';
 
   // {{ROLE_FOCUS}} 치환
-  const roleFocus = ROLE_FOCUS_MAP[profile.role] || DEFAULT_ROLE_FOCUS;
+  const roleFocus = `${ROLE_FOCUS_MAP[normalizedProfile.roleGroup] || DEFAULT_ROLE_FOCUS}
+
+### 세부 직무 맞춤 지시 (${getProfileDisplayRole(normalizedProfile)})
+- 모든 피드백은 "${normalizedProfile.subRole}" 지원자 관점에서 작성하세요.
+- 이력서, 자기소개서, 포트폴리오 피드백은 해당 세부 직무에서 실제로 검증하는 산출물과 역량 기준을 반영하세요.`;
 
   // 템플릿 내 주석 블록(<!-- ... -->) 제거 후 치환
   template = template.replace(/<!--[\s\S]*?-->/g, '');

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Download, FileText, Briefcase, Target, BookOpen, User, AlertCircle } from 'lucide-react';
+import { getProfileDisplayRole } from '../data/skills';
 
 // ── 피드백 아이템 파서 (App.jsx 와 동일) ────────────────────────────────────
 function parseFeedbackItem(text) {
@@ -59,6 +60,7 @@ function generatePdfHtml({ results, userInfo, recommendedJobs, instructorFeedbac
   const now = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
   const top3 = recommendedJobs.slice(0, 3);
   const fileName = buildFileName(userInfo, instructorFeedback);
+  const roleLabel = userInfo ? getProfileDisplayRole(userInfo) : '-';
 
   const renderList = (items = [], color = '#4f46e5') => {
     if (!items.length) return '<p style="color:#94a3b8;font-size:13px;">내용이 없습니다.</p>';
@@ -85,7 +87,7 @@ function generatePdfHtml({ results, userInfo, recommendedJobs, instructorFeedbac
   const profileSection = userInfo ? `
     <div style="display:flex;gap:24px;flex-wrap:wrap;margin-bottom:4px;">
       <div><span style="color:#64748b;font-size:12px;">지원자</span><br><strong>${userInfo.name || '-'}</strong></div>
-      <div><span style="color:#64748b;font-size:12px;">희망직무</span><br><strong>${userInfo.role || '-'}</strong></div>
+      <div><span style="color:#64748b;font-size:12px;">희망직무</span><br><strong>${roleLabel}</strong></div>
       <div><span style="color:#64748b;font-size:12px;">경력</span><br><strong>${userInfo.experience}년 ${Number(userInfo.experience) === 0 ? '(신입)' : ''}</strong></div>
     </div>
     ${userInfo.skills?.length ? `<div style="margin-top:8px;font-size:12px;color:#64748b;">보유 스킬: ${userInfo.skills.map(s => `<span style="background:#e0e7ff;color:#4f46e5;padding:2px 8px;border-radius:99px;margin-right:4px;">${s.name}(${s.level})</span>`).join('')}</div>` : ''}
@@ -205,7 +207,7 @@ function generatePdfHtml({ results, userInfo, recommendedJobs, instructorFeedbac
     <p>Game Dev Career Assistant · AI 종합 분석 결과</p>
     <div class="meta">
       <div class="meta-item"><div class="meta-label">지원자</div><strong>${userInfo?.name || '-'}</strong></div>
-      <div class="meta-item"><div class="meta-label">희망 직무</div><strong>${userInfo?.role || '-'}</strong></div>
+      <div class="meta-item"><div class="meta-label">희망 직무</div><strong>${roleLabel}</strong></div>
       <div class="meta-item"><div class="meta-label">경력</div><strong>${userInfo?.experience ?? 0}년 ${Number(userInfo?.experience) === 0 ? '(신입)' : ''}</strong></div>
       ${instructorFeedback?.name ? `<div class="meta-item"><div class="meta-label">담당 강사</div><strong>${instructorFeedback.name}</strong></div>` : ''}
       <div class="meta-item"><div class="meta-label">출력일</div><strong>${now}</strong></div>
