@@ -2035,6 +2035,202 @@
     background: rgba(244, 234, 220, 0.72);
   }
 
+  .coach-case-board {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: minmax(19rem, 0.82fr) minmax(0, 1.18fr);
+    gap: 1rem;
+    align-items: stretch;
+    padding: 1rem 1.35rem 1.25rem;
+    background:
+      linear-gradient(120deg, rgba(24, 32, 51, 0.96) 0%, rgba(28, 44, 63, 0.94) 44%, rgba(8, 93, 104, 0.9) 100%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: auto, 34px 34px, 34px 34px;
+    border-bottom: 1px solid rgba(255, 250, 242, 0.13);
+    box-shadow: 0 26px 70px rgba(24, 32, 51, 0.2);
+  }
+
+  .coach-case-board::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 22%, rgba(217, 111, 67, 0.34), transparent 18rem),
+      radial-gradient(circle at 80% 35%, rgba(42, 169, 184, 0.24), transparent 20rem);
+    pointer-events: none;
+  }
+
+  .coach-case-copy,
+  .coach-mission-grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .coach-case-copy {
+    display: grid;
+    align-content: center;
+    min-height: 14rem;
+    padding: 1.45rem 1.55rem;
+    border-radius: 30px 10px 30px 30px;
+    background: rgba(255, 250, 242, 0.08);
+    border: 1px solid rgba(255, 250, 242, 0.12);
+    color: rgba(255, 250, 242, 0.78);
+  }
+
+  .coach-case-kicker {
+    margin: 0 0 0.7rem;
+    color: rgba(255, 205, 171, 0.88) !important;
+    font-size: 0.72rem !important;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .coach-case-copy h1 {
+    margin: 0;
+    color: #fffaf2 !important;
+    font-size: clamp(2.8rem, 6vw, 5.9rem);
+    font-weight: 950;
+    letter-spacing: -0.09em;
+    line-height: 0.88;
+  }
+
+  .coach-case-copy > p:not(.coach-case-kicker) {
+    max-width: 40rem;
+    margin: 1rem 0 0;
+    color: rgba(255, 250, 242, 0.72) !important;
+    font-size: 0.98rem;
+    line-height: 1.75;
+  }
+
+  .coach-case-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    align-items: center;
+    margin-top: 1.25rem;
+  }
+
+  .coach-case-actions button {
+    min-height: 2.7rem;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 250, 242, 0.18);
+    background: #fffaf2 !important;
+    color: #182033 !important;
+    font-size: 0.84rem;
+    font-weight: 900;
+    box-shadow: none !important;
+  }
+
+  .coach-case-actions span {
+    color: rgba(255, 250, 242, 0.58) !important;
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  .coach-mission-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: minmax(4.8rem, auto);
+    gap: 0.65rem;
+  }
+
+  .coach-mission-node {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "number symbol"
+      "label label";
+    gap: 0.45rem 0.6rem;
+    align-content: space-between;
+    padding: 0.82rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 250, 242, 0.13);
+    border-radius: 22px;
+    background: rgba(255, 250, 242, 0.085) !important;
+    color: rgba(255, 250, 242, 0.72) !important;
+    box-shadow: none !important;
+    text-align: left;
+  }
+
+  .coach-mission-node:nth-child(1),
+  .coach-mission-node:nth-child(4),
+  .coach-mission-node:nth-child(7) {
+    grid-column: span 2;
+  }
+
+  .coach-mission-node:nth-child(2),
+  .coach-mission-node:nth-child(3),
+  .coach-mission-node:nth-child(5),
+  .coach-mission-node:nth-child(6),
+  .coach-mission-node:nth-child(8),
+  .coach-mission-node:nth-child(9) {
+    grid-column: span 2;
+  }
+
+  .coach-mission-node:hover {
+    transform: translateY(-3px) rotate(-0.4deg);
+    border-color: rgba(255, 250, 242, 0.26);
+    background: rgba(255, 250, 242, 0.13) !important;
+  }
+
+  .coach-mission-node.is-active {
+    background: #fffaf2 !important;
+    color: #182033 !important;
+    border-color: rgba(255, 250, 242, 0.7);
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.22) !important;
+    transform: translateY(-4px) rotate(0.6deg);
+  }
+
+  .coach-mission-node.is-active::before {
+    content: "";
+    position: absolute;
+    right: -1.8rem;
+    top: -1.8rem;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 999px;
+    background: rgba(217, 111, 67, 0.2);
+  }
+
+  .coach-mission-node.is-complete:not(.is-active) {
+    border-color: rgba(76, 211, 194, 0.34);
+    background: rgba(76, 211, 194, 0.12) !important;
+  }
+
+  .coach-mission-number {
+    grid-area: number;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 1.75rem;
+    border-radius: 999px;
+    background: rgba(255, 250, 242, 0.12);
+    color: inherit !important;
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .coach-mission-symbol {
+    grid-area: symbol;
+    justify-self: end;
+    color: inherit !important;
+  }
+
+  .coach-mission-label {
+    grid-area: label;
+    color: inherit !important;
+    font-size: 0.92rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+  }
+
   .coach-shell .coach-rail {
     width: 17.5rem;
     background:
@@ -2300,6 +2496,85 @@
     font-weight: 800;
   }
 
+  .coach-shell .coach-stage {
+    position: relative;
+    margin-top: 1.1rem;
+    padding: 1.15rem 1.15rem 5rem !important;
+    border-radius: 36px 36px 12px 12px;
+    background:
+      linear-gradient(90deg, rgba(24, 32, 51, 0.045) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(24, 32, 51, 0.035) 1px, transparent 1px),
+      rgba(255, 253, 248, 0.72);
+    background-size: 30px 30px;
+    border: 1px solid rgba(24, 32, 51, 0.1);
+    box-shadow: 0 30px 90px rgba(49, 40, 28, 0.13);
+  }
+
+  .coach-shell .coach-stage::before {
+    content: "";
+    position: absolute;
+    left: 2.2rem;
+    right: 2.2rem;
+    top: -0.42rem;
+    height: 0.7rem;
+    border-radius: 999px 999px 0 0;
+    background: #d96f43;
+    box-shadow: 0 10px 28px rgba(217, 111, 67, 0.25);
+  }
+
+  .coach-dossier-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1.1rem 1.15rem;
+    border-radius: 28px 28px 8px 28px;
+    background: rgba(255, 250, 242, 0.88);
+    border: 1px solid rgba(24, 32, 51, 0.11);
+  }
+
+  .coach-dossier-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-width: 0;
+  }
+
+  .coach-dossier-tab h2 {
+    margin: 0.15rem 0 0;
+    color: var(--coach-ink) !important;
+    font-size: clamp(1.8rem, 3.2vw, 3.5rem);
+    font-weight: 950;
+    letter-spacing: -0.075em;
+    line-height: 0.96;
+  }
+
+  .coach-dossier-stamp {
+    display: grid;
+    justify-items: end;
+    min-width: 8rem;
+    padding: 0.85rem 1rem;
+    border-radius: 18px;
+    background: #182033;
+    color: #fffaf2;
+  }
+
+  .coach-dossier-stamp span {
+    color: rgba(255, 250, 242, 0.58) !important;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .coach-dossier-stamp strong {
+    color: #fffaf2;
+    font-size: 1.15rem;
+    font-weight: 950;
+    letter-spacing: -0.04em;
+  }
+
   .coach-content-brief {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
@@ -2472,7 +2747,20 @@
       justify-self: start;
     }
 
+    .coach-case-board {
+      grid-template-columns: 1fr;
+    }
+
+    .coach-mission-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .coach-mission-node:nth-child(n) {
+      grid-column: span 1;
+    }
+
     .coach-workbench-header,
+    .coach-dossier-header,
     .coach-workbench-meta {
       grid-template-columns: 1fr;
     }
@@ -2497,9 +2785,27 @@
       border-radius: 18px;
     }
 
-    .coach-route-map {
-      grid-auto-columns: minmax(8.6rem, 68vw);
-      padding: 0.75rem 1rem 0.85rem;
+    .coach-case-board {
+      padding: 0.85rem 1rem 1rem;
+    }
+
+    .coach-case-copy {
+      min-height: 0;
+      padding: 1.1rem;
+    }
+
+    .coach-case-copy h1 {
+      font-size: clamp(2.4rem, 16vw, 4rem);
+    }
+
+    .coach-mission-grid {
+      display: flex;
+      overflow-x: auto;
+      padding-bottom: 0.2rem;
+    }
+
+    .coach-mission-node {
+      min-width: 9.4rem;
     }
 
     .coach-mobile-tools {
@@ -2521,6 +2827,14 @@
 
     .coach-workbench-heading h2 {
       font-size: clamp(2rem, 11vw, 3rem);
+    }
+
+    .coach-dossier-header {
+      align-items: stretch;
+    }
+
+    .coach-dossier-stamp {
+      justify-items: start;
     }
 
     .coach-content-brief {

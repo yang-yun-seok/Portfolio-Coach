@@ -1151,25 +1151,40 @@ AI 분석 요약:
         </div>
       </header>
 
-      <nav className="coach-route-map" aria-label="Portfolio Coach 작업 단계">
-        {navItems.map((item, index) => {
-          const isActive = activeTab === item.id;
-          const isComplete = results && index <= 3;
+      <section className="coach-case-board">
+        <div className="coach-case-copy">
+          <p className="coach-case-kicker">Live Case File {activeStepLabel}/{totalStepLabel}</p>
+          <h1>{activeNavItem.label}</h1>
+          <p>
+            지원자 정보, 서류, 공고, 면접 준비를 하나의 케이스 파일로 묶어 검수합니다.
+            아래 미션 보드에서 필요한 작업면을 바로 열 수 있습니다.
+          </p>
+          <div className="coach-case-actions">
+            <button type="button" onClick={() => setShowUserGuide(true)}>사용 흐름 보기</button>
+            <span>{workspaceState}</span>
+          </div>
+        </div>
 
-          return (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => setActiveTab(item.id)}
-              className={`coach-route-node ${isActive ? 'is-active' : ''} ${isComplete ? 'is-complete' : ''}`}
-            >
-              <span className="coach-route-number">{String(index + 1).padStart(2, '0')}</span>
-              <span className="coach-route-symbol"><item.icon size={17} /></span>
-              <span className="coach-route-label">{item.label}</span>
-            </button>
-          );
-        })}
-      </nav>
+        <nav className="coach-mission-grid" aria-label="Portfolio Coach 작업 단계">
+          {navItems.map((item, index) => {
+            const isActive = activeTab === item.id;
+            const isComplete = results && index <= 3;
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setActiveTab(item.id)}
+                className={`coach-mission-node ${isActive ? 'is-active' : ''} ${isComplete ? 'is-complete' : ''}`}
+              >
+                <span className="coach-mission-number">{String(index + 1).padStart(2, '0')}</span>
+                <span className="coach-mission-symbol"><item.icon size={18} /></span>
+                <span className="coach-mission-label">{item.label}</span>
+              </button>
+            );
+          })}
+        </nav>
+      </section>
 
       <div className="coach-mobile-tools">
         <button type="button" onClick={() => setShowUserGuide(true)}>
@@ -1187,27 +1202,17 @@ AI 분석 요약:
       <div className="apple-main coach-workspace apple-workspace flex-1 overflow-auto bg-slate-50 p-8 custom-scrollbar">
         <div className="apple-stage coach-stage max-w-5xl mx-auto pb-20">
 
-          <section className="coach-workbench-header">
-            <div className="coach-workbench-title">
-              <p className="coach-overline">Portfolio Coach Studio</p>
-              <div className="coach-workbench-heading">
-                <span className="coach-workbench-icon"><ActiveNavIcon size={20} /></span>
+          <section className="coach-dossier-header">
+            <div className="coach-dossier-tab">
+              <span className="coach-workbench-icon"><ActiveNavIcon size={20} /></span>
+              <div>
+                <p className="coach-overline">Current Dossier</p>
                 <h2>{activeNavItem.label}</h2>
               </div>
-              <p>입력, 분석, 공고 매칭, 면접 준비까지 한 화면 흐름으로 점검하는 게임 직무 취업 작업대입니다.</p>
             </div>
-            <div className="coach-workbench-meta" aria-label="작업 상태">
-              <div>
-                <span>Step</span>
-                <strong>{activeStepLabel}/{totalStepLabel}</strong>
-              </div>
-              <div>
-                <span>Status</span>
-                <strong>{workspaceState}</strong>
-              </div>
-              <button type="button" onClick={() => setShowUserGuide(true)}>
-                사용 흐름 보기
-              </button>
+            <div className="coach-dossier-stamp" aria-label="작업 상태">
+              <span>{workspaceState}</span>
+              <strong>{activeStepLabel}/{totalStepLabel}</strong>
             </div>
           </section>
 
