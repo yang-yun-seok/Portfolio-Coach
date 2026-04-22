@@ -1767,28 +1767,55 @@
   }
 
   .coach-shell {
+    --coach-ink: #000000;
+    --coach-ink-soft: rgba(0, 0, 0, 0.62);
+    --coach-paper: #ffffff;
+    --coach-paper-deep: #f7f7f7;
+    --coach-surface: #ffffff;
+    --coach-panel: #ffffff;
+    --coach-line: rgba(0, 0, 0, 0.12);
+    --coach-accent: #000000;
+    --coach-accent-dark: #000000;
+    --coach-warm: #000000;
+    --coach-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+    --figma-gradient: linear-gradient(135deg, #00d084 0%, #fff06a 30%, #8b5cf6 63%, #ff4f9a 100%);
     --apple-black: var(--coach-ink);
     --apple-gray: var(--coach-paper);
     --apple-ink: var(--coach-ink);
     --apple-blue: var(--coach-accent);
     --apple-link: var(--coach-accent-dark);
-    --apple-bright: #2aa9b8;
+    --apple-bright: var(--coach-ink);
     --apple-border: var(--coach-line);
-    --apple-border-strong: rgba(42, 50, 66, 0.2);
+    --apple-border-strong: rgba(0, 0, 0, 0.2);
     --apple-muted: var(--coach-ink-soft);
     --apple-shadow: var(--coach-shadow);
     background:
-      radial-gradient(circle at 10% 6%, rgba(49, 130, 246, 0.11), transparent 24rem),
-      linear-gradient(180deg, #ffffff 0%, #f7f9fc 46%, #f3f6fb 100%) !important;
+      radial-gradient(circle at 92% 8%, rgba(139, 92, 246, 0.16), transparent 23rem),
+      radial-gradient(circle at 52% -12%, rgba(0, 208, 132, 0.13), transparent 22rem),
+      #ffffff !important;
+    color: #000000 !important;
+    font-family: figmaSans, "figmaSans Fallback", "SF Pro Display", "Pretendard", "Apple SD Gothic Neo", system-ui, helvetica, sans-serif;
+    font-feature-settings: "kern";
+    letter-spacing: -0.01em;
   }
 
   .coach-shell.apple-app-shell::before {
     background:
-      linear-gradient(90deg, rgba(24, 32, 51, 0.045) 1px, transparent 1px),
-      linear-gradient(180deg, rgba(24, 32, 51, 0.035) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
-    opacity: 0.65;
+      linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.028) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 26%, #000 100%);
+    opacity: 0.7;
+  }
+
+  .coach-shell button:focus-visible,
+  .coach-shell a:focus-visible,
+  .coach-shell input:focus-visible,
+  .coach-shell textarea:focus-visible,
+  .coach-shell select:focus-visible {
+    outline: 2px dashed #000000 !important;
+    outline-offset: 3px;
+    box-shadow: none !important;
   }
 
   .coach-studio-shell {
@@ -1802,10 +1829,10 @@
     grid-template-columns: minmax(15rem, auto) minmax(12rem, 1fr) auto;
     align-items: center;
     gap: 1rem;
-    padding: 1rem 1.35rem 0.85rem;
-    background: rgba(255, 255, 255, 0.86);
-    border-bottom: 1px solid rgba(25, 31, 40, 0.08);
-    backdrop-filter: blur(18px) saturate(150%);
+    padding: 0.85rem 1.15rem;
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(18px) saturate(140%);
   }
 
   .coach-brandlockup {
@@ -1822,18 +1849,18 @@
   }
 
   .coach-brandlockup:hover {
-    background: rgba(24, 32, 51, 0.06);
+    background: rgba(0, 0, 0, 0.06);
   }
 
   .coach-brandmark {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 3.2rem;
-    height: 3.2rem;
-    border-radius: 18px !important;
-    background: linear-gradient(135deg, var(--coach-accent) 0%, #0b5d68 100%) !important;
-    box-shadow: 0 16px 34px rgba(8, 127, 140, 0.24) !important;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50% !important;
+    background: #000000 !important;
+    box-shadow: none !important;
   }
 
   .coach-brandcopy {
@@ -1842,18 +1869,19 @@
   }
 
   .coach-brand-title {
-    color: var(--coach-ink) !important;
-    font-size: 1.18rem;
-    font-weight: 900;
-    letter-spacing: -0.055em;
+    color: #000000 !important;
+    font-size: 1.15rem;
+    font-weight: 540;
+    letter-spacing: -0.035em;
     line-height: 1;
   }
 
   .coach-brandcopy strong {
-    color: var(--coach-accent-dark);
+    color: rgba(0, 0, 0, 0.58);
     font-size: 0.65rem;
-    font-weight: 900;
-    letter-spacing: 0.16em;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
+    letter-spacing: 0.14em;
     line-height: 1.2;
     text-transform: uppercase;
   }
@@ -1863,26 +1891,27 @@
     display: inline-flex;
     align-items: center;
     gap: 0.65rem;
-    min-height: 3rem;
-    padding: 0.55rem 1rem;
-    border-radius: 999px;
-    background: rgba(24, 32, 51, 0.06);
-    border: 1px solid rgba(24, 32, 51, 0.09);
-    color: rgba(24, 32, 51, 0.66);
+    min-height: 2.75rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.62);
   }
 
   .coach-command-status span {
-    color: var(--coach-accent-dark) !important;
+    color: rgba(0, 0, 0, 0.58) !important;
     font-size: 0.72rem;
-    font-weight: 900;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 
   .coach-command-status strong {
-    color: var(--coach-ink);
+    color: #000000;
     font-size: 0.92rem;
-    font-weight: 850;
+    font-weight: 540;
   }
 
   .coach-command-tools {
@@ -1900,20 +1929,27 @@
     gap: 0.45rem;
     min-height: 2.75rem;
     padding: 0.65rem 0.9rem;
-    border-radius: 999px;
-    border: 1px solid rgba(24, 32, 51, 0.1);
-    background: rgba(255, 253, 248, 0.86) !important;
-    color: rgba(24, 32, 51, 0.78) !important;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #ffffff !important;
+    color: #000000 !important;
     font-size: 0.84rem;
-    font-weight: 800;
+    font-weight: 450;
     box-shadow: none !important;
   }
 
   .coach-command-tools button:hover,
   .coach-mobile-tools button:hover {
-    border-color: rgba(8, 127, 140, 0.24);
-    background: rgba(8, 127, 140, 0.08) !important;
-    color: var(--coach-ink) !important;
+    border-color: #000000;
+    background: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  .coach-command-tools button:hover svg,
+  .coach-command-tools button:hover span,
+  .coach-mobile-tools button:hover svg,
+  .coach-mobile-tools button:hover span {
+    color: inherit !important;
   }
 
   .coach-command-tools .coach-model-command {
@@ -1924,9 +1960,10 @@
     display: inline-block;
     max-width: 7.8rem;
     overflow: hidden;
-    color: rgba(24, 32, 51, 0.45) !important;
+    color: rgba(0, 0, 0, 0.48) !important;
     font-size: 0.66rem;
-    font-weight: 800;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -2031,7 +2068,7 @@
     gap: 0.5rem;
     padding: 0 1rem 0.85rem;
     overflow-x: auto;
-    background: #f7f9fc;
+    background: #ffffff;
   }
 
   .coach-body-shell {
@@ -2040,11 +2077,11 @@
     flex: 1;
     min-height: 0;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(18rem, 21rem);
-    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr) minmax(18.5rem, 22rem);
+    gap: 1.15rem;
     overflow: hidden;
-    padding: 1rem 1.25rem 1.25rem;
-    background: #f7f9fc;
+    padding: 1.15rem;
+    background: #ffffff;
   }
 
   .coach-body-shell .coach-workspace {
@@ -2058,43 +2095,67 @@
     overflow-y: auto;
     display: grid;
     align-content: start;
-    gap: 0.85rem;
+    gap: 0.75rem;
     padding-right: 0.15rem;
   }
 
   .coach-side-card {
-    border-radius: 24px;
-    border: 1px solid rgba(25, 31, 40, 0.08);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
     background: #ffffff;
-    box-shadow: 0 14px 34px rgba(25, 31, 40, 0.06);
+    box-shadow: none;
   }
 
   .coach-side-current {
-    padding: 1.15rem;
+    position: relative;
+    overflow: hidden;
+    padding: 1.2rem;
+    background: #000000;
+    color: #ffffff !important;
+  }
+
+  .coach-side-current::after {
+    content: "";
+    position: absolute;
+    inset: auto -18% -32% 16%;
+    height: 6rem;
+    border-radius: 999px;
+    background: var(--figma-gradient);
+    filter: blur(14px);
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  .coach-side-current > * {
+    position: relative;
+    z-index: 1;
   }
 
   .coach-side-eyebrow {
     margin: 0 0 0.55rem;
-    color: #1b64da !important;
+    color: rgba(255, 255, 255, 0.74) !important;
     font-size: 0.74rem !important;
-    font-weight: 900;
-    letter-spacing: 0.08em;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
   .coach-side-current h2 {
     margin: 0;
-    color: #191f28 !important;
-    font-size: 1.35rem;
-    font-weight: 900;
-    letter-spacing: -0.045em;
-    line-height: 1.18;
+    color: #ffffff !important;
+    font-size: 1.55rem;
+    font-weight: 450;
+    letter-spacing: -0.055em;
+    line-height: 1.05;
   }
 
   .coach-side-current > p:not(.coach-side-eyebrow) {
     margin: 0.7rem 0 0;
-    color: #4e5968 !important;
+    color: rgba(255, 255, 255, 0.78) !important;
     font-size: 0.92rem;
-    line-height: 1.65;
+    font-weight: 330;
+    line-height: 1.55;
   }
 
   .coach-side-actions {
@@ -2106,34 +2167,38 @@
   .coach-side-actions button {
     min-height: 2.8rem;
     padding: 0.7rem 0.9rem;
-    border: 0;
-    border-radius: 14px;
-    background: #3182f6 !important;
-    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50px;
+    background: #ffffff !important;
+    color: #000000 !important;
     font-size: 0.88rem;
-    font-weight: 800;
+    font-weight: 540;
     box-shadow: none !important;
   }
 
   .coach-side-actions .coach-secondary-action {
-    background: #eef4ff !important;
-    color: #1b64da !important;
+    background: rgba(255, 255, 255, 0.16) !important;
+    color: #ffffff !important;
   }
 
   .coach-side-progress-card {
     padding: 1.05rem;
   }
 
+  .coach-side-card:not(.coach-side-current) .coach-side-eyebrow {
+    color: rgba(0, 0, 0, 0.58) !important;
+  }
+
   .coach-side-progress-card p {
     margin: 0.85rem 0 0;
-    color: #4e5968 !important;
+    color: rgba(0, 0, 0, 0.62) !important;
     font-size: 0.88rem;
-    font-weight: 700;
+    font-weight: 330;
   }
 
   .coach-side-steps {
     display: grid;
-    gap: 0.42rem;
+    gap: 0.35rem;
     padding: 1rem;
   }
 
@@ -2142,29 +2207,29 @@
     grid-template-columns: auto auto minmax(0, 1fr);
     align-items: center;
     gap: 0.5rem;
-    min-height: 2.85rem;
+    min-height: 2.75rem;
     padding: 0.55rem 0.65rem;
     border: 1px solid transparent;
-    border-radius: 14px;
+    border-radius: 50px;
     background: transparent !important;
-    color: #4e5968 !important;
+    color: rgba(0, 0, 0, 0.62) !important;
     box-shadow: none !important;
     text-align: left;
   }
 
   .coach-side-step:hover {
-    background: #f4f8ff !important;
-    color: #191f28 !important;
+    background: rgba(0, 0, 0, 0.06) !important;
+    color: #000000 !important;
   }
 
   .coach-side-step.is-active {
-    background: #191f28 !important;
+    background: #000000 !important;
     color: #ffffff !important;
   }
 
   .coach-side-step.is-complete:not(.is-active) {
-    background: #eef4ff !important;
-    color: #1b64da !important;
+    background: rgba(0, 0, 0, 0.06) !important;
+    color: #000000 !important;
   }
 
   .coach-side-step-number {
@@ -2174,10 +2239,11 @@
     width: 1.55rem;
     height: 1.55rem;
     border-radius: 999px;
-    background: #f2f4f6;
+    background: rgba(0, 0, 0, 0.07);
     color: inherit !important;
     font-size: 0.72rem;
-    font-weight: 900;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
   }
 
   .coach-side-step.is-active .coach-side-step-number {
@@ -2192,7 +2258,7 @@
   .coach-side-step-label {
     overflow: hidden;
     font-size: 0.88rem;
-    font-weight: 800;
+    font-weight: 450;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
@@ -2288,29 +2354,30 @@
   }
 
   .coach-progress-head span {
-    color: #6b7684 !important;
+    color: rgba(0, 0, 0, 0.5) !important;
     font-size: 0.78rem;
-    font-weight: 800;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
   }
 
   .coach-progress-head strong {
-    color: #191f28;
+    color: #000000;
     font-size: 1.05rem;
-    font-weight: 900;
+    font-weight: 540;
   }
 
   .coach-progress-track {
     height: 0.65rem;
     overflow: hidden;
     border-radius: 999px;
-    background: #e5e8eb;
+    background: rgba(0, 0, 0, 0.08);
   }
 
   .coach-progress-track span {
     display: block;
     height: 100%;
     border-radius: inherit;
-    background: #3182f6;
+    background: #000000;
     transition: width 240ms ease;
   }
 
@@ -2514,7 +2581,7 @@
     padding: 0.82rem;
     overflow: hidden;
     border: 1px solid rgba(255, 250, 242, 0.13);
-    border-radius: 22px;
+    border-radius: 50px;
     background: rgba(255, 250, 242, 0.085) !important;
     color: rgba(255, 250, 242, 0.72) !important;
     box-shadow: none !important;
@@ -2613,11 +2680,10 @@
   }
 
   .coach-shell .apple-brandmark {
-    border-radius: 18px !important;
-    background:
-      linear-gradient(135deg, var(--coach-accent) 0%, #0b5d68 100%) !important;
+    border-radius: 50% !important;
+    background: #000000 !important;
     color: #ffffff !important;
-    box-shadow: 0 16px 34px rgba(8, 127, 140, 0.24) !important;
+    box-shadow: none !important;
   }
 
   .coach-shell .apple-brandcopy h1 {
@@ -2736,7 +2802,7 @@
 
   .coach-rail-note strong {
     display: block;
-    color: var(--coach-ink);
+    color: #000000;
     font-size: 1.05rem;
     letter-spacing: -0.03em;
   }
@@ -2749,14 +2815,13 @@
   }
 
   .coach-shell .coach-workspace {
-    background:
-      linear-gradient(180deg, #f7f9fc 0%, #f4f7fb 100%) !important;
+    background: #ffffff !important;
   }
 
   .coach-shell .coach-stage {
     width: min(100%, 1280px);
     max-width: 1280px !important;
-    padding-top: 1.4rem;
+    padding-top: 0;
   }
 
   .coach-workbench-header {
@@ -2771,9 +2836,10 @@
 
   .coach-overline {
     margin: 0 0 0.5rem;
-    color: var(--coach-accent-dark) !important;
+    color: rgba(0, 0, 0, 0.56) !important;
     font-size: 0.72rem !important;
-    font-weight: 900;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
     letter-spacing: 0.2em;
     text-transform: uppercase;
   }
@@ -2788,9 +2854,9 @@
     margin: 0;
     color: var(--coach-ink) !important;
     font-size: clamp(2.25rem, 4vw, 4.2rem);
-    font-weight: 900;
-    letter-spacing: -0.07em;
-    line-height: 0.98;
+    font-weight: 400;
+    letter-spacing: -0.065em;
+    line-height: 1;
   }
 
   .coach-workbench-icon {
@@ -2799,17 +2865,18 @@
     justify-content: center;
     width: 3rem;
     height: 3rem;
-    border-radius: 18px;
-    background: var(--coach-ink);
+    border-radius: 50%;
+    background: #000000;
     color: #fff !important;
-    box-shadow: 0 16px 30px rgba(24, 32, 51, 0.16);
+    box-shadow: none;
   }
 
   .coach-workbench-title > p:last-child {
     max-width: 44rem;
     margin: 0.7rem 0 0;
-    color: rgba(24, 32, 51, 0.66) !important;
+    color: rgba(0, 0, 0, 0.62) !important;
     font-size: 0.98rem;
+    font-weight: 330;
     line-height: 1.65;
   }
 
@@ -2824,25 +2891,26 @@
   .coach-workbench-meta button {
     min-width: 8.25rem;
     padding: 0.85rem 1rem;
-    border-radius: 18px;
-    border: 1px solid rgba(24, 32, 51, 0.1);
-    background: rgba(255, 250, 242, 0.72) !important;
-    box-shadow: 0 14px 36px rgba(49, 40, 28, 0.07) !important;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #ffffff !important;
+    box-shadow: none !important;
   }
 
   .coach-workbench-meta span {
     display: block;
     margin-bottom: 0.3rem;
-    color: rgba(24, 32, 51, 0.48) !important;
+    color: rgba(0, 0, 0, 0.5) !important;
     font-size: 0.65rem;
-    font-weight: 900;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
     letter-spacing: 0.16em;
     text-transform: uppercase;
   }
 
   .coach-workbench-meta strong {
     display: block;
-    color: var(--coach-ink);
+    color: #000000;
     font-size: 0.92rem;
     line-height: 1.3;
   }
@@ -2850,19 +2918,20 @@
   .coach-workbench-meta button {
     min-width: 9.5rem;
     color: #ffffff !important;
-    background: linear-gradient(135deg, var(--coach-accent) 0%, var(--coach-accent-dark) 100%) !important;
-    border-color: rgba(8, 127, 140, 0.2);
-    font-weight: 800;
+    background: #000000 !important;
+    border-color: #000000;
+    border-radius: 50px;
+    font-weight: 540;
   }
 
   .coach-shell .coach-stage {
     position: relative;
-    margin-top: 0.9rem;
-    padding: 1rem 1rem 5rem !important;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(25, 31, 40, 0.08);
-    box-shadow: 0 18px 48px rgba(25, 31, 40, 0.07);
+    margin-top: 0;
+    padding: 0 0 5rem !important;
+    border-radius: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
   }
 
   .coach-shell .coach-stage::before {
@@ -2876,10 +2945,12 @@
     align-items: center;
     margin-bottom: 1rem;
     padding: 1.1rem 1.15rem;
-    border-radius: 26px;
-    background: #ffffff;
-    border: 1px solid rgba(25, 31, 40, 0.08);
-    box-shadow: 0 12px 30px rgba(25, 31, 40, 0.05);
+    border-radius: 8px;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0 38%, rgba(255, 255, 255, 0.18) 38%),
+      var(--figma-gradient);
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    box-shadow: none;
   }
 
   .coach-dossier-tab {
@@ -2891,11 +2962,11 @@
 
   .coach-dossier-tab h2 {
     margin: 0.15rem 0 0;
-    color: var(--coach-ink) !important;
-    font-size: clamp(1.8rem, 3.2vw, 3.5rem);
-    font-weight: 950;
-    letter-spacing: -0.075em;
-    line-height: 0.96;
+    color: #000000 !important;
+    font-size: clamp(1.8rem, 3.1vw, 3.25rem);
+    font-weight: 400;
+    letter-spacing: -0.07em;
+    line-height: 1;
   }
 
   .coach-dossier-stamp {
@@ -2903,23 +2974,24 @@
     justify-items: end;
     min-width: 8rem;
     padding: 0.85rem 1rem;
-    border-radius: 18px;
-    background: #f2f7ff;
-    color: #1b64da;
+    border-radius: 8px;
+    background: #000000;
+    color: #ffffff;
   }
 
   .coach-dossier-stamp span {
-    color: #6b7684 !important;
+    color: rgba(255, 255, 255, 0.68) !important;
     font-size: 0.68rem;
-    font-weight: 900;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
     letter-spacing: 0.16em;
     text-transform: uppercase;
   }
 
   .coach-dossier-stamp strong {
-    color: #1b64da;
+    color: #ffffff;
     font-size: 1.15rem;
-    font-weight: 950;
+    font-weight: 540;
     letter-spacing: -0.04em;
   }
 
@@ -2930,36 +3002,38 @@
     align-items: center;
     margin: -0.4rem 0 1.3rem;
     padding: 0.85rem 1rem;
-    border-radius: 22px;
-    background: rgba(255, 253, 248, 0.7);
-    border: 1px solid rgba(24, 32, 51, 0.1);
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px dashed rgba(0, 0, 0, 0.22);
   }
 
   .coach-content-brief div {
     display: grid;
     min-width: 10rem;
     padding-right: 1rem;
-    border-right: 1px solid rgba(24, 32, 51, 0.11);
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
   }
 
   .coach-content-brief span {
-    color: rgba(24, 32, 51, 0.44) !important;
+    color: rgba(0, 0, 0, 0.48) !important;
     font-size: 0.65rem;
-    font-weight: 900;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
     letter-spacing: 0.16em;
     text-transform: uppercase;
   }
 
   .coach-content-brief strong {
     margin-top: 0.15rem;
-    color: var(--coach-ink);
+    color: #000000;
     font-size: 1rem;
   }
 
   .coach-content-brief p {
     margin: 0;
-    color: rgba(24, 32, 51, 0.64) !important;
+    color: rgba(0, 0, 0, 0.62) !important;
     font-size: 0.9rem;
+    font-weight: 330;
     line-height: 1.55;
   }
 
@@ -2967,24 +3041,23 @@
   .coach-shell .apple-module-intro .mb-8:first-child,
   .coach-shell .apple-module-export .mb-8:first-child,
   .coach-shell .apple-module-result .mb-8:first-child {
-    border-radius: 28px;
-    background:
-      linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%) !important;
-    border: 1px solid rgba(25, 31, 40, 0.08) !important;
-    box-shadow: 0 16px 38px rgba(25, 31, 40, 0.06) !important;
+    border-radius: 8px;
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: none !important;
   }
 
   .coach-shell .apple-intro::before,
   .coach-shell .apple-module-intro .mb-8:first-child::before,
   .coach-shell .apple-module-export .mb-8:first-child::before,
   .coach-shell .apple-module-result .mb-8:first-child::before {
-    background: radial-gradient(circle at 96% 0%, rgba(49, 130, 246, 0.08), transparent 34%) !important;
+    background: none !important;
   }
 
   .coach-shell .apple-intro::after {
     left: 0;
     width: 0.28rem;
-    background: var(--coach-accent);
+    background: #000000;
     clip-path: none;
     opacity: 1;
   }
@@ -2994,16 +3067,16 @@
   .coach-shell .apple-module-export .mb-8:first-child h2,
   .coach-shell .apple-module-result .mb-8:first-child h2 {
     max-width: 20ch;
-    color: #191f28 !important;
-    font-weight: 900;
-    letter-spacing: -0.05em;
+    color: #000000 !important;
+    font-weight: 400;
+    letter-spacing: -0.055em;
   }
 
   .coach-shell .apple-intro p,
   .coach-shell .apple-module-intro .mb-8:first-child p,
   .coach-shell .apple-module-export .mb-8:first-child p,
   .coach-shell .apple-module-result .mb-8:first-child p {
-    color: #4e5968 !important;
+    color: rgba(0, 0, 0, 0.62) !important;
   }
 
   .coach-shell .bg-white.p-6.rounded-2xl,
@@ -3012,31 +3085,31 @@
   .coach-shell .bg-white.rounded-3xl,
   .coach-shell .bg-white.rounded-xl {
     background: #ffffff !important;
-    border-color: rgba(25, 31, 40, 0.08) !important;
-    border-radius: 24px !important;
-    box-shadow: 0 12px 32px rgba(25, 31, 40, 0.055) !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
   }
 
   .coach-shell .apple-empty-state {
     background: #ffffff !important;
-    border-color: rgba(25, 31, 40, 0.08) !important;
-    border-radius: 28px !important;
-    box-shadow: 0 12px 32px rgba(25, 31, 40, 0.055) !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
   }
 
   .coach-shell input,
   .coach-shell textarea,
   .coach-shell select {
-    background: #fffdf8 !important;
-    border-color: rgba(42, 50, 66, 0.16) !important;
-    color: var(--coach-ink) !important;
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.18) !important;
+    color: #000000 !important;
   }
 
   .coach-shell input:focus,
   .coach-shell textarea:focus,
   .coach-shell select:focus {
-    border-color: rgba(8, 127, 140, 0.72) !important;
-    box-shadow: 0 0 0 4px rgba(8, 127, 140, 0.14) !important;
+    border-color: #000000 !important;
+    box-shadow: none !important;
   }
 
   .coach-shell a.bg-indigo-600,
@@ -3044,8 +3117,8 @@
   .coach-shell button.bg-sky-600,
   .coach-shell button.bg-violet-600,
   .coach-shell button.bg-purple-600 {
-    background: linear-gradient(135deg, var(--coach-accent) 0%, var(--coach-accent-dark) 100%) !important;
-    box-shadow: 0 18px 40px rgba(8, 127, 140, 0.2) !important;
+    background: #000000 !important;
+    box-shadow: none !important;
   }
 
   .coach-shell .text-indigo-700,
@@ -3056,7 +3129,7 @@
   .coach-shell .text-blue-500,
   .coach-shell .text-sky-600,
   .coach-shell .text-sky-700 {
-    color: var(--coach-accent-dark) !important;
+    color: #000000 !important;
   }
 
   .coach-shell .bg-indigo-100,
@@ -3064,7 +3137,7 @@
   .coach-shell .bg-blue-50\/50,
   .coach-shell .bg-indigo-50,
   .coach-shell .bg-sky-50\/70 {
-    background: rgba(8, 127, 140, 0.09) !important;
+    background: rgba(0, 0, 0, 0.05) !important;
   }
 
   .coach-shell .border-indigo-100,
@@ -3072,13 +3145,16 @@
   .coach-shell .border-blue-100,
   .coach-shell .border-blue-200,
   .coach-shell .border-sky-100 {
-    border-color: rgba(8, 127, 140, 0.18) !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
   }
 
   .coach-shell .personality-hero,
   .coach-shell .studio-assessment-copy,
   .coach-shell .studio-readiness-note-muted {
-    background: linear-gradient(135deg, #182033 0%, #253450 72%, #0b5d68 100%) !important;
+    background:
+      linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.62) 45%, rgba(0, 0, 0, 0.22) 100%),
+      var(--figma-gradient) !important;
+    color: #ffffff !important;
   }
 
   @media (max-width: 1024px) {
