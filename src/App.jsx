@@ -1104,14 +1104,11 @@ AI 분석 요약:
   const activeNavIndex = navItems.findIndex((item) => item.id === activeTab);
   const activeNavItem = navItems[activeNavIndex >= 0 ? activeNavIndex : 0];
   const ActiveNavIcon = activeNavItem.icon;
-  const activeStepLabel = String((activeNavIndex >= 0 ? activeNavIndex : 0) + 1).padStart(2, '0');
-  const totalStepLabel = String(navItems.length).padStart(2, '0');
   const workspaceState = loading
     ? 'AI 분석 중'
     : results
       ? '리포트 준비됨'
       : '입력 대기';
-  const progressPercent = Math.round((((activeNavIndex >= 0 ? activeNavIndex : 0) + 1) / navItems.length) * 100);
   const stepGuides = {
     input: {
       title: '정보를 입력하면 분석을 시작할 수 있어요',
@@ -1229,9 +1226,9 @@ AI 분석 요약:
                 <h2>{activeNavItem.label}</h2>
               </div>
             </div>
-            <div className="coach-dossier-stamp" aria-label="작업 상태">
-              <span>{workspaceState}</span>
-              <strong>{activeStepLabel}/{totalStepLabel}</strong>
+            <div className="coach-dossier-stamp" aria-label="현재 선택한 기능">
+              <span>선택한 기능</span>
+              <strong>{activeNavItem.label}</strong>
             </div>
           </section>
 
@@ -2101,31 +2098,25 @@ AI 분석 요약:
           </div>
         </section>
 
-        <section className="coach-side-card coach-side-progress-card">
-          <div className="coach-progress-head">
-            <span>전체 진행</span>
-            <strong>{activeStepLabel}/{totalStepLabel}</strong>
-          </div>
-          <div className="coach-progress-track" aria-hidden="true">
-            <span style={{ width: `${progressPercent}%` }} />
-          </div>
-          <p>{workspaceState}</p>
+        <section className="coach-side-card coach-side-context-card">
+          <p className="coach-side-eyebrow">선택 방식</p>
+          <strong>필요한 기능만 골라 쓰세요</strong>
+          <p>모든 메뉴를 순서대로 완료할 필요는 없습니다. 지금 필요한 분석만 선택해도 됩니다.</p>
         </section>
 
-        <nav className="coach-side-card coach-side-steps" aria-label="Portfolio Coach 작업 단계">
-          <p className="coach-side-eyebrow">단계 이동</p>
-          {navItems.map((item, index) => {
+        <nav className="coach-side-card coach-side-steps" aria-label="Portfolio Coach 기능 바로가기">
+          <p className="coach-side-eyebrow">기능 바로가기</p>
+          <p className="coach-side-helper">현재 필요한 메뉴로 바로 이동하세요. 순서대로 진행하지 않아도 됩니다.</p>
+          {navItems.map((item) => {
             const isActive = activeTab === item.id;
-            const isComplete = results && index <= 3;
 
             return (
               <button
                 key={item.id}
                 type="button"
                 onClick={() => setActiveTab(item.id)}
-                className={`coach-side-step ${isActive ? 'is-active' : ''} ${isComplete ? 'is-complete' : ''}`}
+                className={`coach-side-step ${isActive ? 'is-active' : ''}`}
               >
-                <span className="coach-side-step-number">{index + 1}</span>
                 <span className="coach-side-step-icon"><item.icon size={16} /></span>
                 <span className="coach-side-step-label">{item.label}</span>
               </button>
