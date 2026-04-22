@@ -1114,89 +1114,73 @@ AI 분석 요약:
 
   // ── 렌더링 ────────────────────────────────────────────────────────────
   return (
-    <div className="apple-shell coach-shell apple-app-shell flex h-screen bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
+    <div className="apple-shell coach-shell coach-studio-shell apple-app-shell flex h-screen flex-col bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
 
-      {/* ── Sidebar ─────────────────────────────────────────────────── */}
-      <div className="apple-sidebar coach-rail apple-rail w-64 bg-slate-900 text-white flex flex-col shadow-xl z-10 shrink-0">
-        {/* 로고 */}
-        <div className="apple-brandbar coach-brandbar p-6 flex items-center gap-3 border-b border-slate-800">
-          <div className="apple-brandmark bg-indigo-500 p-2 rounded-lg"><Gamepad2 size={24} className="text-white" /></div>
-          <div className="apple-brandcopy">
-            <h1 className="font-bold text-lg leading-tight">Portfolio Coach</h1>
-            <p className="text-xs text-indigo-300">Game Career Workbench</p>
-          </div>
-        </div>
+      <header className="coach-commandbar">
+        <button type="button" onClick={() => setActiveTab('input')} className="coach-brandlockup">
+          <span className="apple-brandmark coach-brandmark bg-indigo-500 p-2 rounded-lg">
+            <Gamepad2 size={24} className="text-white" />
+          </span>
+          <span className="coach-brandcopy">
+            <span className="coach-brand-title">Portfolio Coach</span>
+            <strong>Game Career Workbench</strong>
+          </span>
+        </button>
 
-        {/* 네비 */}
-        <nav className="apple-nav flex-1 py-6 overflow-y-auto">
-          <ul className="apple-nav-list space-y-2 px-4">
-            {navItems.map((item, index) => (
-              <li key={item.id}>
-                <button
-                  onClick={() => setActiveTab(item.id)}
-                  className={`apple-nav-button coach-nav-button w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200
-                    ${activeTab === item.id
-                      ? 'bg-indigo-600 text-white shadow-md'
-                      : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'}`}
-                >
-                  <span className="coach-nav-index">{String(index + 1).padStart(2, '0')}</span>
-                  <item.icon size={18} className="coach-nav-icon" />
-                  <span className="font-medium text-sm">{item.label}</span>
-                  {activeTab === item.id && <ChevronRight size={16} className="ml-auto opacity-70" />}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="coach-rail-note">
-          <span>Current Desk</span>
+        <div className="coach-command-status" aria-live="polite">
+          <span>{workspaceState}</span>
           <strong>{activeNavItem.label}</strong>
-          <p>{workspaceState}</p>
+          {loading && <Loader2 size={16} className="animate-spin" />}
         </div>
 
-        {/* 사용 설명서 버튼 */}
-        <div className="px-4 pb-2">
-          <button
-            onClick={() => setShowUserGuide(true)}
-            className="apple-nav-button coach-nav-button apple-settings-button w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-all duration-200"
-          >
-            <BookOpen size={20} />
-            <span className="font-medium text-sm">사용 설명서</span>
-            <ChevronRight size={16} className="ml-auto opacity-70" />
+        <div className="coach-command-tools">
+          <button type="button" onClick={() => setShowUserGuide(true)}>
+            <BookOpen size={17} />
+            <span>사용 설명서</span>
+          </button>
+          <button type="button" onClick={() => setShowSettings(true)}>
+            <Settings size={17} />
+            <span>설정</span>
+            {crawlStatus.running && <Loader2 size={14} className="animate-spin" />}
+          </button>
+          <button type="button" onClick={() => setShowModelSettings(true)} className="coach-model-command">
+            <Sparkles size={17} />
+            <span>AI 모델</span>
+            <small>{currentProvider?.label || '모델 선택'} {selectedModelId ? `· ${selectedModelId}` : ''}</small>
           </button>
         </div>
+      </header>
 
-        {/* 설정 버튼 */}
-        <div className="px-4 pb-2">
-          <button
-            onClick={() => setShowSettings(true)}
-            className="apple-nav-button coach-nav-button apple-settings-button w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-all duration-200"
-          >
-            <Settings size={20} />
-            <span className="font-medium text-sm">설정</span>
-            {crawlStatus.running && (
-              <Loader2 size={16} className="ml-auto animate-spin text-indigo-400" />
-            )}
-          </button>
-        </div>
+      <nav className="coach-route-map" aria-label="Portfolio Coach 작업 단계">
+        {navItems.map((item, index) => {
+          const isActive = activeTab === item.id;
+          const isComplete = results && index <= 3;
 
-        {/* AI 모델 선택 위젯 */}
-        <div className="px-4 pb-4">
-          <button
-            onClick={() => setShowModelSettings(true)}
-            className="apple-nav-button coach-nav-button apple-settings-button w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-all duration-200"
-          >
-            <Sparkles size={20} />
-            <div className="min-w-0 text-left">
-              <div className="font-medium text-sm">AI 모델 설정</div>
-              <div className="text-[11px] text-slate-500 truncate">
-                {currentProvider?.label || '모델 선택'} {selectedModelId ? `· ${selectedModelId}` : ''}
-              </div>
-            </div>
-            <ChevronRight size={16} className="ml-auto opacity-70" />
-          </button>
-        </div>
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setActiveTab(item.id)}
+              className={`coach-route-node ${isActive ? 'is-active' : ''} ${isComplete ? 'is-complete' : ''}`}
+            >
+              <span className="coach-route-number">{String(index + 1).padStart(2, '0')}</span>
+              <span className="coach-route-symbol"><item.icon size={17} /></span>
+              <span className="coach-route-label">{item.label}</span>
+            </button>
+          );
+        })}
+      </nav>
+
+      <div className="coach-mobile-tools">
+        <button type="button" onClick={() => setShowUserGuide(true)}>
+          <BookOpen size={16} /> 사용 설명서
+        </button>
+        <button type="button" onClick={() => setShowSettings(true)}>
+          <Settings size={16} /> 설정
+        </button>
+        <button type="button" onClick={() => setShowModelSettings(true)}>
+          <Sparkles size={16} /> AI 모델
+        </button>
       </div>
 
       {/* ── Main Content ────────────────────────────────────────────── */}
@@ -1225,6 +1209,14 @@ AI 분석 요약:
                 사용 흐름 보기
               </button>
             </div>
+          </section>
+
+          <section className="coach-content-brief">
+            <div>
+              <span>Active Desk</span>
+              <strong>{activeNavItem.label}</strong>
+            </div>
+            <p>각 탭은 한 장의 보고서처럼 아래 캔버스에 열립니다. 메뉴를 바꿔도 입력값과 분석 결과는 유지됩니다.</p>
           </section>
 
           {/* 에러 / 정보 메시지 */}
