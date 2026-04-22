@@ -157,6 +157,30 @@ function generatePdfHtml({ results, userInfo, recommendedJobs, instructorFeedbac
     </div>
   ` : '';
 
+  const github = results?.githubPortfolioAnalysis;
+  const githubSection = github?.repoUrl ? `
+  <div class="section">
+    <div class="section-title">💻 GitHub 프로젝트 기술문서</div>
+    <div class="card" style="background:#0f172a;color:#e2e8f0;border-color:#1e293b;">
+      <div style="font-size:12px;color:#7dd3fc;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Repository</div>
+      <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:6px;">${github.fullName || github.repoUrl}</div>
+      <div style="font-size:12px;color:#94a3b8;margin-bottom:14px;">${github.repoUrl}</div>
+      ${github.summary ? `<p style="font-size:13px;line-height:1.75;color:#cbd5e1;margin-bottom:14px;">${github.summary}</p>` : ''}
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px;">
+        ${[
+          ['기술 스택', github.techStack],
+          ['구조 해석', github.architecture],
+          ['면접 포인트', github.interviewTalkingPoints],
+        ].map(([label, items]) => `<div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;">
+          <div style="font-size:11px;font-weight:800;color:#bae6fd;margin-bottom:8px;">${label}</div>
+          ${(Array.isArray(items) && items.length ? items : ['내용 없음']).map((item) => `<div style="font-size:12px;line-height:1.6;color:#cbd5e1;margin-bottom:5px;">- ${item}</div>`).join('')}
+        </div>`).join('')}
+      </div>
+      ${github.documentation ? `<div style="background:rgba(0,0,0,.28);border-radius:10px;padding:14px;color:#dbeafe;">${mdToHtml(github.documentation)}</div>` : ''}
+    </div>
+  </div>
+  ` : '';
+
   return `<!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -261,6 +285,8 @@ function generatePdfHtml({ results, userInfo, recommendedJobs, instructorFeedbac
     <div class="section-title">🖼 포트폴리오 가이드</div>
     <div class="card">${renderList(results.portfolioImprovements, '#ec4899')}</div>
   </div>` : ''}` : ''}
+
+  ${githubSection}
 
   <!-- 6. 강사 피드백 -->
   ${instructorSection}

@@ -25,7 +25,7 @@ const DEFAULT_ROLE_FOCUS = `### 직군 특화 평가 지시 (공통)
 - 지원 직군에서 요구하는 핵심 기술 스택과 보유 스킬의 매칭도를 중점 평가하세요.
 - 실제 프로젝트에서의 기여도와 성과를 수치·사례 중심으로 표현하도록 안내하세요.`;
 
-export function buildUserPromptClient({ top3, profile, hasFiles, hasPortfolioFile, portfolioFileNames }) {
+export function buildUserPromptClient({ top3, profile, hasFiles, hasPortfolioFile, portfolioFileNames, githubPortfolio }) {
   const normalizedProfile = normalizeUserProfile(profile);
   const top3JD = top3.map((job, idx) => `
 [${idx + 1}순위 추천 공고]
@@ -52,6 +52,20 @@ export function buildUserPromptClient({ top3, profile, hasFiles, hasPortfolioFil
   const portfolioInstruction = hasPortfolioFile
     ? `첨부된 포트폴리오를 직접 분석하여 각 문서별 구체적인 개선점을 제시하세요.\n첨부된 포트폴리오 목록:\n${pfNames.map((n, i) => `  ${i+1}. ${n}`).join('\n') || '  (파일명 정보 없음)'}\n\n**중요: portfolioImprovements 배열의 각 항목 앞에 반드시 해당 포트폴리오 파일명을 "포트폴리오 N (파일명):" 형식으로 명시하세요.**`
     : '포트폴리오 파일이 없으므로 프로필과 직군 기준으로 포트폴리오 구성 방향을 제안하세요.';
+
+  const githubContext = githubPortfolio?.repoUrl
+    ? `### GitHub 포트폴리오 분석 자료
+- 저장소: ${githubPortfolio.fullName} (${githubPortfolio.repoUrl})
+- 설명: ${githubPortfolio.description || '설명 없음'}
+- 주 언어/스택 후보: ${[githubPortfolio.language, ...(githubPortfolio.stack || [])].filter(Boolean).join(', ') || '확인 필요'}
+- 루트 구조: ${(githubPortfolio.rootFiles || []).slice(0, 18).map((f) => `${f.type === 'dir' ? '[dir]' : '[file]'} ${f.path}`).join(', ') || '확인 불가'}
+- 주요 파일: ${(githubPortfolio.keyFiles || []).map((f) => f.path).join(', ') || '확인 불가'}
+- README 일부:
+${githubPortfolio.readme || '(README 없음)'}
+
+아래 기술문서 초안을 참고하되, 그대로 복붙하지 말고 채용 관점의 개선 피드백과 면접 설명 포인트로 재구성하세요.
+${githubPortfolio.techDocument || ''}`
+    : '';
 
   const roleFocus = `${ROLE_FOCUS_MAP[normalizedProfile.roleGroup] || DEFAULT_ROLE_FOCUS}
 
@@ -88,9 +102,14 @@ ${fileContext}
 3. **자기소개서 개선** (\`coverLetterImprovements\`)
 4. **포트폴리오 개선** (\`portfolioImprovements\`, 3~5개 항목)
    - ${portfolioInstruction}
-5. **면접 준비** (\`interviewPreps\`)
+5. **GitHub 기술문서화** (\`githubPortfolioAnalysis\`)
+   - GitHub 분석 자료가 있으면 README/구조/설정 파일을 바탕으로 프로젝트 개요, 기술 스택, 구조 해석, 코드 품질 리스크, README 개선안, 면접 설명 포인트를 작성하세요.
+   - GitHub 분석 자료가 없으면 빈 값 또는 간단한 안내만 작성하세요.
+6. **면접 준비** (\`interviewPreps\`)
 
 ${roleFocus}
+
+${githubContext ? `\n---\n\n${githubContext}` : ''}
 
 ---
 

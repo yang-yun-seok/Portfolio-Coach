@@ -19,6 +19,7 @@ import {
   normalizeUserProfile,
 } from './data/skills';
 import { analyzeViaProxy } from './lib/gemini-client';
+import { analyzeGitHubPortfolio } from './lib/github-analyzer';
 import { apiUrl, eventSourceUrl, staticAssetUrl } from './lib/runtime-config';
 import { useModels } from './hooks/useModels';
 import ModelSelector from './components/ModelSelector';
@@ -268,6 +269,7 @@ export default function App() {
     subRole: defaultRoleDetail.label,
     role: defaultRoleDetail.matchRole,
     experience: 0,
+    githubUrl: '',
     skills: [],
   });
   const [skillInput, setSkillInput] = useState(getDefaultSkillInput('기획'));
@@ -659,6 +661,30 @@ export default function App() {
     setUserInfo((prev) => ({ ...prev, skills: prev.skills.filter((s) => s.name !== skillName) }));
   };
 
+  const buildLocalGitHubPortfolioAnalysis = (githubPortfolio) => {
+    if (!githubPortfolio?.repoUrl) return null;
+    const stack = githubPortfolio.stack?.length ? githubPortfolio.stack : githubPortfolio.languages || [];
+    return {
+      repoUrl: githubPortfolio.repoUrl,
+      fullName: githubPortfolio.fullName,
+      summary: `${githubPortfolio.fullName} 저장소는 ${githubPortfolio.language || '확인 필요'} 기반 프로젝트입니다. README, 루트 구조, 주요 설정 파일을 기준으로 기술 설명 자료를 구성했습니다.`,
+      techStack: stack,
+      architecture: (githubPortfolio.rootFiles || [])
+        .slice(0, 8)
+        .map((file) => `${file.type === 'dir' ? '폴더' : '파일'}: ${file.path}`),
+      documentation: githubPortfolio.techDocument,
+      risks: [
+        githubPortfolio.readme ? 'README에 실행 방법, 담당 역할, 핵심 구현 근거가 충분한지 확인이 필요합니다.' : 'README가 없거나 읽히지 않아 프로젝트 설명력이 약해질 수 있습니다.',
+        '무료 분석 모드는 public repo의 루트 구조와 주요 설정 파일만 확인하므로, 핵심 구현 파일은 면접용 설명으로 별도 보강하는 것이 좋습니다.',
+      ],
+      interviewTalkingPoints: [
+        '이 프로젝트를 만든 문제 상황과 목표를 30초 안에 설명하세요.',
+        '핵심 기능 1~2개를 골라 본인의 설계 판단, 예외 처리, 검증 방법을 말하세요.',
+        '지금 다시 만든다면 바꿀 구조나 테스트/배포 개선점을 준비하세요.',
+      ],
+    };
+  };
+
   const fileToBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -792,6 +818,15 @@ export default function App() {
       setRecommendedJobs(jobsWithScores);
       setVisibleJobs(10);
       const top3 = jobsWithScores.slice(0, 3);
+      let githubPortfolio = null;
+      if (analysisProfile.roleGroup === '프로그래밍' && analysisProfile.githubUrl?.trim()) {
+        setInfoMessage('GitHub 저장소 구조를 가볍게 분석하는 중입니다. public repo의 핵심 파일만 확인합니다.');
+        try {
+          githubPortfolio = await analyzeGitHubPortfolio(analysisProfile.githubUrl.trim());
+        } catch (githubErr) {
+          setInfoMessage(`GitHub 분석은 건너뛰고 AI 분석을 계속합니다. (${githubErr.message})`);
+        }
+      }
 
       // 파일 변환 (이력서 + 자소서 + 포트폴리오 최대 8개, 각 10MB)
       let fileParts = [];
@@ -819,8 +854,10 @@ export default function App() {
         hasPortfolioFile: portfolioFiles.length > 0,
         fileParts: fileParts.length > 0 ? fileParts : undefined,
         portfolioFileNames: portfolioFiles.map(f => f.name),
+        githubPortfolio,
       });
       // 결과 데이터 안전 정규화
+      const localGitHubAnalysis = buildLocalGitHubPortfolioAnalysis(githubPortfolio);
       const safeData = {
         ...data,
         resumeImprovements: Array.isArray(data.resumeImprovements) ? data.resumeImprovements : [],
@@ -831,6 +868,9 @@ export default function App() {
         })) : [],
         coverLetterImprovements: data.coverLetterImprovements || {},
         profileAnalysis: data.profileAnalysis || {},
+        githubPortfolioAnalysis: localGitHubAnalysis
+          ? { ...localGitHubAnalysis, ...(data.githubPortfolioAnalysis || {}) }
+          : data.githubPortfolioAnalysis,
       };
       setResults(safeData);
       setActiveTab('feedback');
@@ -1197,6 +1237,27 @@ AI 분석 요약:
                   <span className="mx-2 text-slate-300">|</span>
                   {selectedRoleDetail.focus}
                 </p>
+
+                {normalizedUserInfo.roleGroup === '프로그래밍' && (
+                  <div className="mb-5 rounded-2xl border border-sky-100 bg-sky-50/70 p-4">
+                    <label className="mb-1 flex items-center gap-2 text-sm font-bold text-slate-800">
+                      <Code2 size={16} className="text-sky-600" />
+                      GitHub 포트폴리오 저장소 URL
+                      <span className="text-xs font-normal text-slate-400">(선택, public repo)</span>
+                    </label>
+                    <input
+                      type="url"
+                      name="githubUrl"
+                      value={userInfo.githubUrl || ''}
+                      onChange={handleInputChange}
+                      className="mt-2 w-full rounded-xl border border-sky-100 bg-white px-4 py-2.5 text-sm text-slate-800 outline-none transition focus:border-sky-300 focus:ring-4 focus:ring-sky-100"
+                      placeholder="https://github.com/username/project"
+                    />
+                    <p className="mt-2 text-xs leading-relaxed text-slate-500">
+                      무료 서버 부담을 줄이기 위해 저장소를 clone하지 않고 README, 루트 구조, package 파일 같은 핵심 정보만 읽어 기술문서 초안을 만듭니다.
+                    </p>
+                  </div>
+                )}
 
                 {/* 스킬 입력 */}
                 <div>
@@ -1600,6 +1661,57 @@ AI 분석 요약:
                       : <li className="text-slate-400">포트폴리오 내용이 없습니다.</li>}
                   </ul>
                 </div>
+
+                {results.githubPortfolioAnalysis?.repoUrl && (
+                  <div className="bg-slate-950 rounded-2xl p-8 shadow-sm border border-slate-800 text-white">
+                    <div className="mb-5 flex items-start justify-between gap-4">
+                      <div>
+                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-sky-300">GitHub Technical Doc</p>
+                        <h3 className="mt-1 text-2xl font-black tracking-tight">플밍 포트폴리오 기술문서 초안</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                          public GitHub 저장소의 README, 루트 구조, 주요 설정 파일만 가볍게 읽어 정리했습니다.
+                        </p>
+                      </div>
+                      <a
+                        href={results.githubPortfolioAnalysis.repoUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="shrink-0 rounded-full bg-white px-4 py-2 text-xs font-bold text-slate-900 transition hover:bg-sky-100"
+                      >
+                        저장소 열기
+                      </a>
+                    </div>
+
+                    {results.githubPortfolioAnalysis.summary && (
+                      <div className="mb-5 rounded-2xl bg-white/8 p-4 text-sm leading-relaxed text-slate-200">
+                        {results.githubPortfolioAnalysis.summary}
+                      </div>
+                    )}
+
+                    <div className="grid gap-4 lg:grid-cols-3">
+                      {[
+                        ['기술 스택', results.githubPortfolioAnalysis.techStack],
+                        ['구조 해석', results.githubPortfolioAnalysis.architecture],
+                        ['면접 포인트', results.githubPortfolioAnalysis.interviewTalkingPoints],
+                      ].map(([title, items]) => (
+                        <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                          <h4 className="mb-3 text-sm font-bold text-sky-200">{title}</h4>
+                          <ul className="space-y-2 text-sm text-slate-300">
+                            {(Array.isArray(items) && items.length > 0 ? items : ['분석된 항목이 없습니다.']).map((item) => (
+                              <li key={item} className="leading-relaxed">- {item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+
+                    {results.githubPortfolioAnalysis.documentation && (
+                      <pre className="mt-5 max-h-[28rem] overflow-auto whitespace-pre-wrap rounded-2xl bg-black/40 p-5 text-xs leading-6 text-slate-200 custom-scrollbar">
+                        {results.githubPortfolioAnalysis.documentation}
+                      </pre>
+                    )}
+                  </div>
+                )}
               </div>
             ) : renderEmptyState(<ImageIcon size={48} />, '포트폴리오 가이드가 없습니다', '정보를 입력하고 AI 분석을 진행해주세요.')
           )}
