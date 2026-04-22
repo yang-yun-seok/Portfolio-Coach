@@ -14,17 +14,17 @@
   --apple-border-strong: rgba(29, 29, 31, 0.14);
   --apple-muted: rgba(29, 29, 31, 0.68);
   --apple-shadow: 3px 5px 30px 0 rgba(0, 0, 0, 0.22);
-  --coach-ink: #182033;
-  --coach-ink-soft: #4b5567;
-  --coach-paper: #f4eadc;
-  --coach-paper-deep: #e8dcc8;
-  --coach-surface: #fffaf2;
+  --coach-ink: #191f28;
+  --coach-ink-soft: #4e5968;
+  --coach-paper: #f7f9fc;
+  --coach-paper-deep: #eef2f7;
+  --coach-surface: #ffffff;
   --coach-panel: #ffffff;
-  --coach-line: rgba(42, 50, 66, 0.13);
-  --coach-accent: #087f8c;
-  --coach-accent-dark: #075c69;
-  --coach-warm: #d96f43;
-  --coach-shadow: 0 24px 70px rgba(49, 40, 28, 0.12);
+  --coach-line: rgba(25, 31, 40, 0.1);
+  --coach-accent: #3182f6;
+  --coach-accent-dark: #1b64da;
+  --coach-warm: #00c2a8;
+  --coach-shadow: 0 18px 42px rgba(25, 31, 40, 0.08);
 }
 
 @layer base {
@@ -1778,9 +1778,8 @@
     --apple-muted: var(--coach-ink-soft);
     --apple-shadow: var(--coach-shadow);
     background:
-      radial-gradient(circle at 10% 8%, rgba(8, 127, 140, 0.14), transparent 24rem),
-      radial-gradient(circle at 92% 12%, rgba(217, 111, 67, 0.12), transparent 22rem),
-      linear-gradient(112deg, #f7efe2 0%, #f2e7d5 46%, #edf5f2 100%) !important;
+      radial-gradient(circle at 10% 6%, rgba(49, 130, 246, 0.11), transparent 24rem),
+      linear-gradient(180deg, #ffffff 0%, #f7f9fc 46%, #f3f6fb 100%) !important;
   }
 
   .coach-shell.apple-app-shell::before {
@@ -1804,8 +1803,8 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem 1.35rem 0.85rem;
-    background: rgba(255, 250, 242, 0.78);
-    border-bottom: 1px solid rgba(24, 32, 51, 0.12);
+    background: rgba(255, 255, 255, 0.86);
+    border-bottom: 1px solid rgba(25, 31, 40, 0.08);
     backdrop-filter: blur(18px) saturate(150%);
   }
 
@@ -2032,7 +2031,210 @@
     gap: 0.5rem;
     padding: 0 1rem 0.85rem;
     overflow-x: auto;
-    background: rgba(244, 234, 220, 0.72);
+    background: #f7f9fc;
+  }
+
+  .coach-start-panel {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.32fr);
+    gap: 1rem;
+    align-items: stretch;
+    padding: 1.05rem 1.35rem 0.85rem;
+    background: #f7f9fc;
+    border-bottom: 1px solid rgba(25, 31, 40, 0.08);
+  }
+
+  .coach-start-copy,
+  .coach-progress-panel {
+    background: #ffffff;
+    border: 1px solid rgba(25, 31, 40, 0.08);
+    box-shadow: 0 14px 34px rgba(25, 31, 40, 0.06);
+  }
+
+  .coach-start-copy {
+    min-height: 10.8rem;
+    padding: 1.4rem 1.55rem;
+    border-radius: 28px;
+  }
+
+  .coach-case-kicker {
+    margin: 0 0 0.6rem;
+    color: var(--coach-accent-dark) !important;
+    font-size: 0.74rem !important;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .coach-start-copy h1 {
+    max-width: 46rem;
+    margin: 0;
+    color: #191f28 !important;
+    font-size: clamp(1.85rem, 4vw, 3.35rem);
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 1.08;
+  }
+
+  .coach-start-copy > p:not(.coach-case-kicker) {
+    max-width: 42rem;
+    margin: 0.75rem 0 0;
+    color: #4e5968 !important;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .coach-start-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 1.15rem;
+  }
+
+  .coach-start-actions button {
+    min-height: 2.8rem;
+    padding: 0.7rem 1.05rem;
+    border: 0;
+    border-radius: 14px;
+    background: #3182f6 !important;
+    color: #ffffff !important;
+    font-size: 0.9rem;
+    font-weight: 800;
+    box-shadow: none !important;
+  }
+
+  .coach-start-actions .coach-secondary-action {
+    background: #eef4ff !important;
+    color: #1b64da !important;
+  }
+
+  .coach-progress-panel {
+    display: grid;
+    align-content: center;
+    padding: 1.25rem;
+    border-radius: 26px;
+  }
+
+  .coach-progress-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.85rem;
+  }
+
+  .coach-progress-head span {
+    color: #6b7684 !important;
+    font-size: 0.78rem;
+    font-weight: 800;
+  }
+
+  .coach-progress-head strong {
+    color: #191f28;
+    font-size: 1.05rem;
+    font-weight: 900;
+  }
+
+  .coach-progress-track {
+    height: 0.65rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #e5e8eb;
+  }
+
+  .coach-progress-track span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: #3182f6;
+    transition: width 240ms ease;
+  }
+
+  .coach-progress-panel p {
+    margin: 0.85rem 0 0;
+    color: #4e5968 !important;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .coach-step-tabs {
+    position: relative;
+    z-index: 4;
+    padding: 0.75rem 1.35rem 1rem;
+    background: #f7f9fc;
+    border-bottom: 1px solid rgba(25, 31, 40, 0.08);
+  }
+
+  .coach-step-strip {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.1rem;
+    scrollbar-width: none;
+  }
+
+  .coach-step-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .coach-step-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.85rem;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid rgba(25, 31, 40, 0.08);
+    border-radius: 999px;
+    background: #ffffff !important;
+    color: #4e5968 !important;
+    box-shadow: none !important;
+    white-space: nowrap;
+  }
+
+  .coach-step-pill:hover {
+    border-color: rgba(49, 130, 246, 0.25);
+    background: #f4f8ff !important;
+    color: #191f28 !important;
+  }
+
+  .coach-step-pill.is-active {
+    background: #191f28 !important;
+    color: #ffffff !important;
+    border-color: #191f28;
+  }
+
+  .coach-step-pill.is-complete:not(.is-active) {
+    background: #eef4ff !important;
+    color: #1b64da !important;
+    border-color: rgba(49, 130, 246, 0.14);
+  }
+
+  .coach-step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.55rem;
+    height: 1.55rem;
+    border-radius: 999px;
+    background: #f2f4f6;
+    color: inherit !important;
+    font-size: 0.72rem;
+    font-weight: 900;
+  }
+
+  .coach-step-pill.is-active .coach-step-number {
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .coach-step-icon,
+  .coach-step-label {
+    color: inherit !important;
+  }
+
+  .coach-step-label {
+    font-size: 0.88rem;
+    font-weight: 800;
   }
 
   .coach-case-board {
@@ -2080,12 +2282,11 @@
   }
 
   .coach-case-kicker {
-    margin: 0 0 0.7rem;
-    color: rgba(255, 205, 171, 0.88) !important;
-    font-size: 0.72rem !important;
+    margin: 0 0 0.6rem;
+    color: var(--coach-accent-dark) !important;
+    font-size: 0.74rem !important;
     font-weight: 900;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
   .coach-case-copy h1 {
@@ -2386,12 +2587,7 @@
 
   .coach-shell .coach-workspace {
     background:
-      radial-gradient(circle at 0% 0%, rgba(8, 127, 140, 0.14), transparent 26rem),
-      radial-gradient(circle at 100% 10%, rgba(217, 111, 67, 0.1), transparent 28rem),
-      linear-gradient(90deg, rgba(24, 32, 51, 0.04) 1px, transparent 1px),
-      linear-gradient(180deg, rgba(24, 32, 51, 0.035) 1px, transparent 1px),
-      linear-gradient(180deg, #f7efe2 0%, #f2e9dc 48%, #eef5f2 100%) !important;
-    background-size: auto, auto, 44px 44px, 44px 44px, auto;
+      linear-gradient(180deg, #f7f9fc 0%, #f4f7fb 100%) !important;
   }
 
   .coach-shell .coach-stage {
@@ -2498,28 +2694,16 @@
 
   .coach-shell .coach-stage {
     position: relative;
-    margin-top: 1.1rem;
-    padding: 1.15rem 1.15rem 5rem !important;
-    border-radius: 36px 36px 12px 12px;
-    background:
-      linear-gradient(90deg, rgba(24, 32, 51, 0.045) 1px, transparent 1px),
-      linear-gradient(180deg, rgba(24, 32, 51, 0.035) 1px, transparent 1px),
-      rgba(255, 253, 248, 0.72);
-    background-size: 30px 30px;
-    border: 1px solid rgba(24, 32, 51, 0.1);
-    box-shadow: 0 30px 90px rgba(49, 40, 28, 0.13);
+    margin-top: 0.9rem;
+    padding: 1rem 1rem 5rem !important;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(25, 31, 40, 0.08);
+    box-shadow: 0 18px 48px rgba(25, 31, 40, 0.07);
   }
 
   .coach-shell .coach-stage::before {
-    content: "";
-    position: absolute;
-    left: 2.2rem;
-    right: 2.2rem;
-    top: -0.42rem;
-    height: 0.7rem;
-    border-radius: 999px 999px 0 0;
-    background: #d96f43;
-    box-shadow: 0 10px 28px rgba(217, 111, 67, 0.25);
+    content: none;
   }
 
   .coach-dossier-header {
@@ -2529,9 +2713,10 @@
     align-items: center;
     margin-bottom: 1rem;
     padding: 1.1rem 1.15rem;
-    border-radius: 28px 28px 8px 28px;
-    background: rgba(255, 250, 242, 0.88);
-    border: 1px solid rgba(24, 32, 51, 0.11);
+    border-radius: 26px;
+    background: #ffffff;
+    border: 1px solid rgba(25, 31, 40, 0.08);
+    box-shadow: 0 12px 30px rgba(25, 31, 40, 0.05);
   }
 
   .coach-dossier-tab {
@@ -2556,12 +2741,12 @@
     min-width: 8rem;
     padding: 0.85rem 1rem;
     border-radius: 18px;
-    background: #182033;
-    color: #fffaf2;
+    background: #f2f7ff;
+    color: #1b64da;
   }
 
   .coach-dossier-stamp span {
-    color: rgba(255, 250, 242, 0.58) !important;
+    color: #6b7684 !important;
     font-size: 0.68rem;
     font-weight: 900;
     letter-spacing: 0.16em;
@@ -2569,7 +2754,7 @@
   }
 
   .coach-dossier-stamp strong {
-    color: #fffaf2;
+    color: #1b64da;
     font-size: 1.15rem;
     font-weight: 950;
     letter-spacing: -0.04em;
@@ -2619,27 +2804,24 @@
   .coach-shell .apple-module-intro .mb-8:first-child,
   .coach-shell .apple-module-export .mb-8:first-child,
   .coach-shell .apple-module-result .mb-8:first-child {
-    border-radius: 8px 34px 34px 8px;
+    border-radius: 28px;
     background:
-      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-      linear-gradient(135deg, #182033 0%, #253450 72%, #0b5d68 100%) !important;
-    background-size: 32px 32px, 32px 32px, auto;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 0 28px 70px rgba(24, 32, 51, 0.18) !important;
+      linear-gradient(180deg, #ffffff 0%, #fbfcfe 100%) !important;
+    border: 1px solid rgba(25, 31, 40, 0.08) !important;
+    box-shadow: 0 16px 38px rgba(25, 31, 40, 0.06) !important;
   }
 
   .coach-shell .apple-intro::before,
   .coach-shell .apple-module-intro .mb-8:first-child::before,
   .coach-shell .apple-module-export .mb-8:first-child::before,
   .coach-shell .apple-module-result .mb-8:first-child::before {
-    background: radial-gradient(circle at 94% 8%, rgba(217, 111, 67, 0.28), transparent 32%) !important;
+    background: radial-gradient(circle at 96% 0%, rgba(49, 130, 246, 0.08), transparent 34%) !important;
   }
 
   .coach-shell .apple-intro::after {
     left: 0;
-    width: 0.6rem;
-    background: var(--coach-warm);
+    width: 0.28rem;
+    background: var(--coach-accent);
     clip-path: none;
     opacity: 1;
   }
@@ -2648,17 +2830,17 @@
   .coach-shell .apple-module-intro .mb-8:first-child h2,
   .coach-shell .apple-module-export .mb-8:first-child h2,
   .coach-shell .apple-module-result .mb-8:first-child h2 {
-    max-width: 15ch;
-    color: #fffaf2 !important;
+    max-width: 20ch;
+    color: #191f28 !important;
     font-weight: 900;
-    letter-spacing: -0.055em;
+    letter-spacing: -0.05em;
   }
 
   .coach-shell .apple-intro p,
   .coach-shell .apple-module-intro .mb-8:first-child p,
   .coach-shell .apple-module-export .mb-8:first-child p,
   .coach-shell .apple-module-result .mb-8:first-child p {
-    color: rgba(255, 250, 242, 0.76) !important;
+    color: #4e5968 !important;
   }
 
   .coach-shell .bg-white.p-6.rounded-2xl,
@@ -2666,17 +2848,17 @@
   .coach-shell .bg-white.rounded-2xl,
   .coach-shell .bg-white.rounded-3xl,
   .coach-shell .bg-white.rounded-xl {
-    background: rgba(255, 250, 242, 0.9) !important;
-    border-color: rgba(42, 50, 66, 0.12) !important;
-    border-radius: 30px 30px 30px 14px !important;
-    box-shadow: var(--coach-shadow) !important;
+    background: #ffffff !important;
+    border-color: rgba(25, 31, 40, 0.08) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 12px 32px rgba(25, 31, 40, 0.055) !important;
   }
 
   .coach-shell .apple-empty-state {
-    background: rgba(255, 250, 242, 0.92) !important;
-    border-color: rgba(42, 50, 66, 0.12) !important;
-    border-radius: 34px 34px 34px 14px !important;
-    box-shadow: var(--coach-shadow) !important;
+    background: #ffffff !important;
+    border-color: rgba(25, 31, 40, 0.08) !important;
+    border-radius: 28px !important;
+    box-shadow: 0 12px 32px rgba(25, 31, 40, 0.055) !important;
   }
 
   .coach-shell input,

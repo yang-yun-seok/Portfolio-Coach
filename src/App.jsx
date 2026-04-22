@@ -1111,6 +1111,59 @@ AI 분석 요약:
     : results
       ? '리포트 준비됨'
       : '입력 대기';
+  const progressPercent = Math.round((((activeNavIndex >= 0 ? activeNavIndex : 0) + 1) / navItems.length) * 100);
+  const stepGuides = {
+    input: {
+      title: '정보를 입력하면 분석을 시작할 수 있어요',
+      description: '직무, 경력, 보유 역량과 PDF를 넣어주세요. 처음에는 이 화면만 천천히 채우면 됩니다.',
+      hint: '필수 정보부터 입력하고, PDF는 준비된 것만 첨부해도 괜찮습니다.',
+    },
+    feedback: {
+      title: '서류에서 먼저 고칠 부분을 확인해요',
+      description: '이력서와 자기소개서 피드백을 결론부터 확인하고, 근거가 약한 문장을 먼저 보완하세요.',
+      hint: '우선순위가 높은 항목부터 고치면 수정 부담이 줄어듭니다.',
+    },
+    portfolio: {
+      title: '포트폴리오의 설득력을 점검해요',
+      description: '프로젝트 역할, 문제 해결 과정, 결과가 채용자가 읽기 쉽게 연결되는지 확인합니다.',
+      hint: '플밍 직무는 GitHub 저장소 분석 결과도 함께 볼 수 있습니다.',
+    },
+    jobs: {
+      title: '나에게 맞는 공고를 비교해요',
+      description: '입력한 직무와 역량을 기준으로 추천 공고와 부족한 역량을 한눈에 확인합니다.',
+      hint: '지원하고 싶은 공고가 있으면 정보 입력 탭에서 우선 공고로 지정하세요.',
+    },
+    interview: {
+      title: '공고별 면접 질문을 준비해요',
+      description: '추천 공고와 내 자료를 바탕으로 예상 질문, 피해야 할 답변, 권장 답변을 정리합니다.',
+      hint: '답변은 결론부터 말하고, 바로 근거 사례로 이어가면 좋습니다.',
+    },
+    'interview-basic': {
+      title: '면접 기본기를 빠르게 점검해요',
+      description: '복장, 시간, 태도, 답변 구조처럼 모든 직무에 필요한 기본 준비를 확인합니다.',
+      hint: '면접 직전에는 체크리스트만 다시 훑어도 충분합니다.',
+    },
+    'tech-assessment': {
+      title: '직무 과제를 실전처럼 연습해요',
+      description: '기획, 플밍, 아트 직군별로 다른 과제 유형을 풀어보고 답변 방향을 점검합니다.',
+      hint: '정답보다 판단 과정과 근거가 보이도록 작성하는 것이 중요합니다.',
+    },
+    'personality-test': {
+      title: '인성검사 응답 흐름을 익혀요',
+      description: '연습 문항과 본 문항을 통해 일관성 있는 선택 흐름을 미리 경험합니다.',
+      hint: '너무 고민하기보다 본인과 가장 가까운 선택지를 빠르게 고르세요.',
+    },
+    'pdf-export': {
+      title: '결과를 PDF로 정리해요',
+      description: '분석 결과와 강사 피드백을 저장하거나 공유할 수 있는 문서로 출력합니다.',
+      hint: '최종 수정 후 출력하면 제출용 검토 자료로 활용하기 좋습니다.',
+    },
+  };
+  const activeStepGuide = stepGuides[activeTab] || {
+    title: activeNavItem.label,
+    description: '현재 화면에서 필요한 작업을 이어가세요.',
+    hint: '입력값과 분석 결과는 탭을 이동해도 유지됩니다.',
+  };
 
   // ── 렌더링 ────────────────────────────────────────────────────────────
   return (
@@ -1151,40 +1204,54 @@ AI 분석 요약:
         </div>
       </header>
 
-      <section className="coach-case-board">
-        <div className="coach-case-copy">
-          <p className="coach-case-kicker">Live Case File {activeStepLabel}/{totalStepLabel}</p>
-          <h1>{activeNavItem.label}</h1>
-          <p>
-            지원자 정보, 서류, 공고, 면접 준비를 하나의 케이스 파일로 묶어 검수합니다.
-            아래 미션 보드에서 필요한 작업면을 바로 열 수 있습니다.
-          </p>
-          <div className="coach-case-actions">
-            <button type="button" onClick={() => setShowUserGuide(true)}>사용 흐름 보기</button>
-            <span>{workspaceState}</span>
+      <section className="coach-start-panel">
+        <div className="coach-start-copy">
+          <p className="coach-case-kicker">현재 할 일</p>
+          <h1>{activeStepGuide.title}</h1>
+          <p>{activeStepGuide.description}</p>
+          <div className="coach-start-actions">
+            <button type="button" onClick={() => setShowUserGuide(true)}>사용 방법 보기</button>
+            {!results && activeTab !== 'input' && (
+              <button type="button" onClick={() => setActiveTab('input')} className="coach-secondary-action">
+                정보 입력으로 이동
+              </button>
+            )}
           </div>
         </div>
 
-        <nav className="coach-mission-grid" aria-label="Portfolio Coach 작업 단계">
+        <div className="coach-progress-panel">
+          <div className="coach-progress-head">
+            <span>전체 진행</span>
+            <strong>{activeStepLabel}/{totalStepLabel}</strong>
+          </div>
+          <div className="coach-progress-track" aria-hidden="true">
+            <span style={{ width: `${progressPercent}%` }} />
+          </div>
+          <p>{workspaceState}</p>
+        </div>
+      </section>
+
+      <nav className="coach-step-tabs" aria-label="Portfolio Coach 작업 단계">
+        <div className="coach-step-strip">
           {navItems.map((item, index) => {
             const isActive = activeTab === item.id;
             const isComplete = results && index <= 3;
 
             return (
               <button
-                key={item.id}
-                type="button"
-                onClick={() => setActiveTab(item.id)}
-                className={`coach-mission-node ${isActive ? 'is-active' : ''} ${isComplete ? 'is-complete' : ''}`}
-              >
-                <span className="coach-mission-number">{String(index + 1).padStart(2, '0')}</span>
-                <span className="coach-mission-symbol"><item.icon size={18} /></span>
-                <span className="coach-mission-label">{item.label}</span>
-              </button>
+              key={item.id}
+              type="button"
+              onClick={() => setActiveTab(item.id)}
+                className={`coach-step-pill ${isActive ? 'is-active' : ''} ${isComplete ? 'is-complete' : ''}`}
+            >
+                <span className="coach-step-number">{index + 1}</span>
+                <span className="coach-step-icon"><item.icon size={16} /></span>
+                <span className="coach-step-label">{item.label}</span>
+            </button>
             );
           })}
-        </nav>
-      </section>
+        </div>
+      </nav>
 
       <div className="coach-mobile-tools">
         <button type="button" onClick={() => setShowUserGuide(true)}>
@@ -1206,7 +1273,7 @@ AI 분석 요약:
             <div className="coach-dossier-tab">
               <span className="coach-workbench-icon"><ActiveNavIcon size={20} /></span>
               <div>
-                <p className="coach-overline">Current Dossier</p>
+                <p className="coach-overline">현재 화면</p>
                 <h2>{activeNavItem.label}</h2>
               </div>
             </div>
@@ -1218,10 +1285,10 @@ AI 분석 요약:
 
           <section className="coach-content-brief">
             <div>
-              <span>Active Desk</span>
+              <span>이 화면에서 할 일</span>
               <strong>{activeNavItem.label}</strong>
             </div>
-            <p>각 탭은 한 장의 보고서처럼 아래 캔버스에 열립니다. 메뉴를 바꿔도 입력값과 분석 결과는 유지됩니다.</p>
+            <p>{activeStepGuide.hint}</p>
           </section>
 
           {/* 에러 / 정보 메시지 */}
