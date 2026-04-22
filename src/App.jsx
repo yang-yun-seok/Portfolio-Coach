@@ -1204,55 +1204,6 @@ AI 분석 요약:
         </div>
       </header>
 
-      <section className="coach-start-panel">
-        <div className="coach-start-copy">
-          <p className="coach-case-kicker">현재 할 일</p>
-          <h1>{activeStepGuide.title}</h1>
-          <p>{activeStepGuide.description}</p>
-          <div className="coach-start-actions">
-            <button type="button" onClick={() => setShowUserGuide(true)}>사용 방법 보기</button>
-            {!results && activeTab !== 'input' && (
-              <button type="button" onClick={() => setActiveTab('input')} className="coach-secondary-action">
-                정보 입력으로 이동
-              </button>
-            )}
-          </div>
-        </div>
-
-        <div className="coach-progress-panel">
-          <div className="coach-progress-head">
-            <span>전체 진행</span>
-            <strong>{activeStepLabel}/{totalStepLabel}</strong>
-          </div>
-          <div className="coach-progress-track" aria-hidden="true">
-            <span style={{ width: `${progressPercent}%` }} />
-          </div>
-          <p>{workspaceState}</p>
-        </div>
-      </section>
-
-      <nav className="coach-step-tabs" aria-label="Portfolio Coach 작업 단계">
-        <div className="coach-step-strip">
-          {navItems.map((item, index) => {
-            const isActive = activeTab === item.id;
-            const isComplete = results && index <= 3;
-
-            return (
-              <button
-              key={item.id}
-              type="button"
-              onClick={() => setActiveTab(item.id)}
-                className={`coach-step-pill ${isActive ? 'is-active' : ''} ${isComplete ? 'is-complete' : ''}`}
-            >
-                <span className="coach-step-number">{index + 1}</span>
-                <span className="coach-step-icon"><item.icon size={16} /></span>
-                <span className="coach-step-label">{item.label}</span>
-            </button>
-            );
-          })}
-        </div>
-      </nav>
-
       <div className="coach-mobile-tools">
         <button type="button" onClick={() => setShowUserGuide(true)}>
           <BookOpen size={16} /> 사용 설명서
@@ -1265,6 +1216,7 @@ AI 분석 요약:
         </button>
       </div>
 
+      <div className="coach-body-shell">
       {/* ── Main Content ────────────────────────────────────────────── */}
       <div className="apple-main coach-workspace apple-workspace flex-1 overflow-auto bg-slate-50 p-8 custom-scrollbar">
         <div className="apple-stage coach-stage max-w-5xl mx-auto pb-20">
@@ -2132,6 +2084,55 @@ AI 분석 요약:
             />
           )}
         </div>
+      </div>
+
+      <aside className="coach-side-panel custom-scrollbar" aria-label="작업 안내">
+        <section className="coach-side-card coach-side-current">
+          <p className="coach-side-eyebrow">현재 할 일</p>
+          <h2>{activeStepGuide.title}</h2>
+          <p>{activeStepGuide.description}</p>
+          <div className="coach-side-actions">
+            <button type="button" onClick={() => setShowUserGuide(true)}>사용 방법 보기</button>
+            {!results && activeTab !== 'input' && (
+              <button type="button" onClick={() => setActiveTab('input')} className="coach-secondary-action">
+                정보 입력으로 이동
+              </button>
+            )}
+          </div>
+        </section>
+
+        <section className="coach-side-card coach-side-progress-card">
+          <div className="coach-progress-head">
+            <span>전체 진행</span>
+            <strong>{activeStepLabel}/{totalStepLabel}</strong>
+          </div>
+          <div className="coach-progress-track" aria-hidden="true">
+            <span style={{ width: `${progressPercent}%` }} />
+          </div>
+          <p>{workspaceState}</p>
+        </section>
+
+        <nav className="coach-side-card coach-side-steps" aria-label="Portfolio Coach 작업 단계">
+          <p className="coach-side-eyebrow">단계 이동</p>
+          {navItems.map((item, index) => {
+            const isActive = activeTab === item.id;
+            const isComplete = results && index <= 3;
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setActiveTab(item.id)}
+                className={`coach-side-step ${isActive ? 'is-active' : ''} ${isComplete ? 'is-complete' : ''}`}
+              >
+                <span className="coach-side-step-number">{index + 1}</span>
+                <span className="coach-side-step-icon"><item.icon size={16} /></span>
+                <span className="coach-side-step-label">{item.label}</span>
+              </button>
+            );
+          })}
+        </nav>
+      </aside>
       </div>
 
       {/* ── 회사 정보 모달 ──────────────────────────────────────────── */}
