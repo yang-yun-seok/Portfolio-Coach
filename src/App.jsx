@@ -1101,34 +1101,46 @@ AI 분석 요약:
     </div>
   );
 
+  const activeNavIndex = navItems.findIndex((item) => item.id === activeTab);
+  const activeNavItem = navItems[activeNavIndex >= 0 ? activeNavIndex : 0];
+  const ActiveNavIcon = activeNavItem.icon;
+  const activeStepLabel = String((activeNavIndex >= 0 ? activeNavIndex : 0) + 1).padStart(2, '0');
+  const totalStepLabel = String(navItems.length).padStart(2, '0');
+  const workspaceState = loading
+    ? 'AI 분석 중'
+    : results
+      ? '리포트 준비됨'
+      : '입력 대기';
+
   // ── 렌더링 ────────────────────────────────────────────────────────────
   return (
-    <div className="apple-shell apple-app-shell flex h-screen bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
+    <div className="apple-shell coach-shell apple-app-shell flex h-screen bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
 
       {/* ── Sidebar ─────────────────────────────────────────────────── */}
-      <div className="apple-sidebar apple-rail w-64 bg-slate-900 text-white flex flex-col shadow-xl z-10 shrink-0">
+      <div className="apple-sidebar coach-rail apple-rail w-64 bg-slate-900 text-white flex flex-col shadow-xl z-10 shrink-0">
         {/* 로고 */}
-        <div className="apple-brandbar p-6 flex items-center gap-3 border-b border-slate-800">
+        <div className="apple-brandbar coach-brandbar p-6 flex items-center gap-3 border-b border-slate-800">
           <div className="apple-brandmark bg-indigo-500 p-2 rounded-lg"><Gamepad2 size={24} className="text-white" /></div>
           <div className="apple-brandcopy">
             <h1 className="font-bold text-lg leading-tight">Portfolio Coach</h1>
-            <p className="text-xs text-indigo-300">for Game Creators</p>
+            <p className="text-xs text-indigo-300">Game Career Workbench</p>
           </div>
         </div>
 
         {/* 네비 */}
         <nav className="apple-nav flex-1 py-6 overflow-y-auto">
           <ul className="apple-nav-list space-y-2 px-4">
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <li key={item.id}>
                 <button
                   onClick={() => setActiveTab(item.id)}
-                  className={`apple-nav-button w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200
+                  className={`apple-nav-button coach-nav-button w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200
                     ${activeTab === item.id
                       ? 'bg-indigo-600 text-white shadow-md'
                       : 'text-slate-400 hover:bg-slate-800 hover:text-slate-200'}`}
                 >
-                  <item.icon size={20} />
+                  <span className="coach-nav-index">{String(index + 1).padStart(2, '0')}</span>
+                  <item.icon size={18} className="coach-nav-icon" />
                   <span className="font-medium text-sm">{item.label}</span>
                   {activeTab === item.id && <ChevronRight size={16} className="ml-auto opacity-70" />}
                 </button>
@@ -1137,11 +1149,17 @@ AI 분석 요약:
           </ul>
         </nav>
 
+        <div className="coach-rail-note">
+          <span>Current Desk</span>
+          <strong>{activeNavItem.label}</strong>
+          <p>{workspaceState}</p>
+        </div>
+
         {/* 사용 설명서 버튼 */}
         <div className="px-4 pb-2">
           <button
             onClick={() => setShowUserGuide(true)}
-            className="apple-nav-button apple-settings-button w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-all duration-200"
+            className="apple-nav-button coach-nav-button apple-settings-button w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-all duration-200"
           >
             <BookOpen size={20} />
             <span className="font-medium text-sm">사용 설명서</span>
@@ -1153,7 +1171,7 @@ AI 분석 요약:
         <div className="px-4 pb-2">
           <button
             onClick={() => setShowSettings(true)}
-            className="apple-nav-button apple-settings-button w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-all duration-200"
+            className="apple-nav-button coach-nav-button apple-settings-button w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-all duration-200"
           >
             <Settings size={20} />
             <span className="font-medium text-sm">설정</span>
@@ -1167,7 +1185,7 @@ AI 분석 요약:
         <div className="px-4 pb-4">
           <button
             onClick={() => setShowModelSettings(true)}
-            className="apple-nav-button apple-settings-button w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-all duration-200"
+            className="apple-nav-button coach-nav-button apple-settings-button w-full flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition-all duration-200"
           >
             <Sparkles size={20} />
             <div className="min-w-0 text-left">
@@ -1182,8 +1200,32 @@ AI 분석 요약:
       </div>
 
       {/* ── Main Content ────────────────────────────────────────────── */}
-      <div className="apple-main apple-workspace flex-1 overflow-auto bg-slate-50 p-8 custom-scrollbar">
-        <div className="apple-stage max-w-5xl mx-auto pb-20">
+      <div className="apple-main coach-workspace apple-workspace flex-1 overflow-auto bg-slate-50 p-8 custom-scrollbar">
+        <div className="apple-stage coach-stage max-w-5xl mx-auto pb-20">
+
+          <section className="coach-workbench-header">
+            <div className="coach-workbench-title">
+              <p className="coach-overline">Portfolio Coach Studio</p>
+              <div className="coach-workbench-heading">
+                <span className="coach-workbench-icon"><ActiveNavIcon size={20} /></span>
+                <h2>{activeNavItem.label}</h2>
+              </div>
+              <p>입력, 분석, 공고 매칭, 면접 준비까지 한 화면 흐름으로 점검하는 게임 직무 취업 작업대입니다.</p>
+            </div>
+            <div className="coach-workbench-meta" aria-label="작업 상태">
+              <div>
+                <span>Step</span>
+                <strong>{activeStepLabel}/{totalStepLabel}</strong>
+              </div>
+              <div>
+                <span>Status</span>
+                <strong>{workspaceState}</strong>
+              </div>
+              <button type="button" onClick={() => setShowUserGuide(true)}>
+                사용 흐름 보기
+              </button>
+            </div>
+          </section>
 
           {/* 에러 / 정보 메시지 */}
           {error && (
