@@ -1051,7 +1051,7 @@
     letter-spacing: -0.03em;
   }
 
-  .studio-assessment-progress {
+  .studio-assessment-actions {
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;
@@ -1570,14 +1570,6 @@
     color: var(--apple-blue);
   }
 
-  .personality-progress-track {
-    background: #dbe5ef !important;
-  }
-
-  .personality-progress-fill {
-    background: var(--apple-blue);
-  }
-
   .personality-guidance {
     background: #ecf6ff;
     border: 1px solid #cfe6fb;
@@ -1779,6 +1771,9 @@
     --coach-warm: #000000;
     --coach-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
     --figma-gradient: linear-gradient(135deg, #00d084 0%, #fff06a 30%, #8b5cf6 63%, #ff4f9a 100%);
+    --feature-gradient: var(--figma-gradient);
+    --feature-soft: rgba(0, 0, 0, 0.05);
+    --feature-ink: #000000;
     --apple-black: var(--coach-ink);
     --apple-gray: var(--coach-paper);
     --apple-ink: var(--coach-ink);
@@ -1797,6 +1792,51 @@
     font-family: figmaSans, "figmaSans Fallback", "SF Pro Display", "Pretendard", "Apple SD Gothic Neo", system-ui, helvetica, sans-serif;
     font-feature-settings: "kern";
     letter-spacing: -0.01em;
+  }
+
+  .coach-shell[data-feature="input"] {
+    --feature-gradient: linear-gradient(135deg, #fff7ad 0%, #b9fbc0 38%, #8ec5ff 100%);
+    --feature-soft: rgba(0, 0, 0, 0.045);
+  }
+
+  .coach-shell[data-feature="feedback"] {
+    --feature-gradient: linear-gradient(135deg, #ffffff 0%, #c7d2fe 42%, #111111 100%);
+    --feature-soft: rgba(99, 102, 241, 0.08);
+  }
+
+  .coach-shell[data-feature="portfolio"] {
+    --feature-gradient: linear-gradient(135deg, #0f172a 0%, #2563eb 45%, #a7f3d0 100%);
+    --feature-soft: rgba(15, 23, 42, 0.07);
+  }
+
+  .coach-shell[data-feature="jobs"] {
+    --feature-gradient: linear-gradient(135deg, #ecfccb 0%, #67e8f9 46%, #111111 100%);
+    --feature-soft: rgba(20, 184, 166, 0.08);
+  }
+
+  .coach-shell[data-feature="interview"] {
+    --feature-gradient: linear-gradient(135deg, #fff1f2 0%, #fda4af 38%, #111111 100%);
+    --feature-soft: rgba(244, 63, 94, 0.08);
+  }
+
+  .coach-shell[data-feature="interview-basic"] {
+    --feature-gradient: linear-gradient(135deg, #fef3c7 0%, #fdba74 42%, #0f172a 100%);
+    --feature-soft: rgba(245, 158, 11, 0.09);
+  }
+
+  .coach-shell[data-feature="tech-assessment"] {
+    --feature-gradient: linear-gradient(135deg, #e0e7ff 0%, #8b5cf6 45%, #111111 100%);
+    --feature-soft: rgba(139, 92, 246, 0.08);
+  }
+
+  .coach-shell[data-feature="personality-test"] {
+    --feature-gradient: linear-gradient(135deg, #fdf2f8 0%, #f0abfc 42%, #111111 100%);
+    --feature-soft: rgba(217, 70, 239, 0.08);
+  }
+
+  .coach-shell[data-feature="pdf-export"] {
+    --feature-gradient: linear-gradient(135deg, #f8fafc 0%, #94a3b8 45%, #111111 100%);
+    --feature-soft: rgba(71, 85, 105, 0.08);
   }
 
   .coach-shell.apple-app-shell::before {
@@ -2024,11 +2064,6 @@
     background: var(--coach-warm);
   }
 
-  .coach-route-node.is-complete:not(.is-active) {
-    background: rgba(8, 127, 140, 0.08) !important;
-    border-color: rgba(8, 127, 140, 0.18);
-  }
-
   .coach-route-number {
     display: inline-flex;
     align-items: center;
@@ -2120,7 +2155,7 @@
     inset: auto -18% -32% 16%;
     height: 6rem;
     border-radius: 999px;
-    background: var(--figma-gradient);
+    background: var(--feature-gradient);
     filter: blur(14px);
     opacity: 0.85;
     pointer-events: none;
@@ -2181,10 +2216,6 @@
     color: #ffffff !important;
   }
 
-  .coach-side-progress-card {
-    padding: 1.05rem;
-  }
-
   .coach-side-context-card {
     display: grid;
     gap: 0.55rem;
@@ -2211,14 +2242,7 @@
     color: rgba(0, 0, 0, 0.58) !important;
   }
 
-  .coach-side-progress-card p {
-    margin: 0.85rem 0 0;
-    color: rgba(0, 0, 0, 0.62) !important;
-    font-size: 0.88rem;
-    font-weight: 330;
-  }
-
-  .coach-side-steps {
+  .coach-side-tools {
     display: grid;
     gap: 0.35rem;
     padding: 1rem;
@@ -2232,7 +2256,7 @@
     line-height: 1.45;
   }
 
-  .coach-side-step {
+  .coach-side-tool {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
@@ -2247,41 +2271,36 @@
     text-align: left;
   }
 
-  .coach-side-step:hover {
+  .coach-side-tool:hover {
     background: rgba(0, 0, 0, 0.06) !important;
     color: #000000 !important;
   }
 
-  .coach-side-step.is-active {
+  .coach-side-tool.is-active {
     background: #000000 !important;
     color: #ffffff !important;
   }
 
-  .coach-side-step.is-complete:not(.is-active) {
-    background: rgba(0, 0, 0, 0.06) !important;
-    color: #000000 !important;
-  }
-
-  .coach-side-step-icon,
-  .coach-side-step-label {
+  .coach-side-tool-icon,
+  .coach-side-tool-label {
     color: inherit !important;
   }
 
-  .coach-side-step-icon {
+  .coach-side-tool-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.06);
+    background: var(--feature-soft);
   }
 
-  .coach-side-step.is-active .coach-side-step-icon {
+  .coach-side-tool.is-active .coach-side-tool-icon {
     background: rgba(255, 255, 255, 0.16);
   }
 
-  .coach-side-step-label {
+  .coach-side-tool-label {
     overflow: hidden;
     font-size: 0.88rem;
     font-weight: 450;
@@ -2301,8 +2320,7 @@
     border-bottom: 1px solid rgba(25, 31, 40, 0.08);
   }
 
-  .coach-start-copy,
-  .coach-progress-panel {
+  .coach-start-copy {
     background: #ffffff;
     border: 1px solid rgba(25, 31, 40, 0.08);
     box-shadow: 0 14px 34px rgba(25, 31, 40, 0.06);
@@ -2364,56 +2382,6 @@
     color: #1b64da !important;
   }
 
-  .coach-progress-panel {
-    display: grid;
-    align-content: center;
-    padding: 1.25rem;
-    border-radius: 26px;
-  }
-
-  .coach-progress-head {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: center;
-    margin-bottom: 0.85rem;
-  }
-
-  .coach-progress-head span {
-    color: rgba(0, 0, 0, 0.5) !important;
-    font-size: 0.78rem;
-    font-family: figmaMono, "SF Mono", Menlo, monospace;
-    font-weight: 400;
-  }
-
-  .coach-progress-head strong {
-    color: #000000;
-    font-size: 1.05rem;
-    font-weight: 540;
-  }
-
-  .coach-progress-track {
-    height: 0.65rem;
-    overflow: hidden;
-    border-radius: 999px;
-    background: rgba(0, 0, 0, 0.08);
-  }
-
-  .coach-progress-track span {
-    display: block;
-    height: 100%;
-    border-radius: inherit;
-    background: #000000;
-    transition: width 240ms ease;
-  }
-
-  .coach-progress-panel p {
-    margin: 0.85rem 0 0;
-    color: #4e5968 !important;
-    font-size: 0.9rem;
-    font-weight: 700;
-  }
-
   .coach-step-tabs {
     position: relative;
     z-index: 4;
@@ -2458,12 +2426,6 @@
     background: #191f28 !important;
     color: #ffffff !important;
     border-color: #191f28;
-  }
-
-  .coach-step-pill.is-complete:not(.is-active) {
-    background: #eef4ff !important;
-    color: #1b64da !important;
-    border-color: rgba(49, 130, 246, 0.14);
   }
 
   .coach-step-number {
@@ -2652,11 +2614,6 @@
     height: 5rem;
     border-radius: 999px;
     background: rgba(217, 111, 67, 0.2);
-  }
-
-  .coach-mission-node.is-complete:not(.is-active) {
-    border-color: rgba(76, 211, 194, 0.34);
-    background: rgba(76, 211, 194, 0.12) !important;
   }
 
   .coach-mission-number {
@@ -2966,15 +2923,16 @@
 
   .coach-dossier-header {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
     align-items: center;
     margin-bottom: 1rem;
-    padding: 1.1rem 1.15rem;
-    border-radius: 8px;
+    min-height: 8.5rem;
+    padding: 1.35rem;
+    border-radius: 18px;
     background:
-      linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0 38%, rgba(255, 255, 255, 0.18) 38%),
-      var(--figma-gradient);
+      linear-gradient(90deg, rgba(255, 255, 255, 0.94) 0 38%, rgba(255, 255, 255, 0.16) 38%),
+      var(--feature-gradient);
     border: 1px solid rgba(0, 0, 0, 0.14);
     box-shadow: none;
   }
@@ -2993,37 +2951,6 @@
     font-weight: 400;
     letter-spacing: -0.07em;
     line-height: 1;
-  }
-
-  .coach-dossier-stamp {
-    display: grid;
-    justify-items: start;
-    min-width: 9.5rem;
-    padding: 0.85rem 1rem;
-    border-radius: 50px;
-    background: #000000;
-    color: #ffffff;
-  }
-
-  .coach-dossier-stamp span {
-    color: rgba(255, 255, 255, 0.68) !important;
-    font-size: 0.68rem;
-    font-family: figmaMono, "SF Mono", Menlo, monospace;
-    font-weight: 400;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .coach-dossier-stamp strong {
-    color: #ffffff;
-    max-width: 10rem;
-    overflow: hidden;
-    font-size: 0.98rem;
-    font-weight: 540;
-    letter-spacing: -0.025em;
-    line-height: 1.25;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   .coach-content-brief {
@@ -3297,10 +3224,6 @@
 
     .coach-dossier-header {
       align-items: stretch;
-    }
-
-    .coach-dossier-stamp {
-      justify-items: start;
     }
 
     .coach-content-brief {

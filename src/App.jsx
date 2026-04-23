@@ -23,7 +23,6 @@ import { analyzeGitHubPortfolio } from './lib/github-analyzer';
 import { apiUrl, eventSourceUrl, staticAssetUrl } from './lib/runtime-config';
 import { useModels } from './hooks/useModels';
 import ModelSelector from './components/ModelSelector';
-import AssignmentTest from './components/AssignmentTest';
 import TechAssessment from './components/TechAssessment';
 import PersonalityTest from './components/PersonalityTest';
 import PdfExport from './components/PdfExport';
@@ -207,7 +206,7 @@ export default function App() {
   const [selectedModelId, setSelectedModelId] = useState('');
   // API 키는 Supabase Edge Function(gemini-proxy)이 서버측에서 관리
 
-  // 모델 로드 완료 시 기본 모델 선택
+  // 모델 로드 후 기본 모델 선택
   useEffect(() => {
     if (enabledProviders.length > 0 && !selectedModelId) {
       const defaultModel = getDefaultModel(selectedProvider);
@@ -536,7 +535,7 @@ export default function App() {
             isError: isErr,
           }));
 
-          // 크롤링 완료 시 공고 데이터 리로드
+          // 크롤링 종료 시 공고 데이터 리로드
           if (isDone) {
             evtSource.close();
           let jobRes = await fetch(staticAssetUrl('api/jobs.json')).catch(() => null);
@@ -552,20 +551,20 @@ export default function App() {
       evtSource.onerror = () => {
         // SSE 연결 끊김 — 크롤링 상태 폴링으로 전환
         evtSource.close();
-        // 크롤링이 아직 진행 중인지 확인 후 재연결
+        // 크롤링이 아직 처리 중인지 확인 후 재연결
           fetch(apiUrl('api/crawl/status')).then(r => r.json()).then(status => {
           if (status.running) {
-            // 아직 진행 중이면 잠시 후 재연결
+            // 아직 처리 중이면 잠시 후 재연결
             setTimeout(() => {
               const retry = new EventSource(eventSourceUrl('api/crawl/stream'));
               retry.onmessage = evtSource.onmessage;
               retry.onerror = () => {
                 retry.close();
-                setCrawlStatus((prev) => ({ ...prev, running: false, message: '연결이 끊겼습니다. 크롤링은 백그라운드에서 계속 진행 중입니다.', isError: false }));
+                setCrawlStatus((prev) => ({ ...prev, running: false, message: '연결이 끊겼습니다. 크롤링은 백그라운드에서 계속 처리되고 있습니다.', isError: false }));
               };
             }, 1000);
           } else if (status.lastEvent) {
-            // 이미 완료됨
+            // 이미 종료됨
             const isErr = status.lastEvent.stage === 'error';
             setCrawlStatus((prev) => ({
               running: false,
@@ -1104,67 +1103,63 @@ AI 분석 요약:
   const activeNavIndex = navItems.findIndex((item) => item.id === activeTab);
   const activeNavItem = navItems[activeNavIndex >= 0 ? activeNavIndex : 0];
   const ActiveNavIcon = activeNavItem.icon;
-  const workspaceState = loading
-    ? 'AI 분석 중'
-    : results
-      ? '리포트 준비됨'
-      : '입력 대기';
-  const stepGuides = {
+  const featureKey = activeTab.replace(/[^a-z0-9-]/gi, '-');
+  const featureGuides = {
     input: {
-      title: '정보를 입력하면 분석을 시작할 수 있어요',
+      title: '분석 재료를 한곳에 모아요',
       description: '직무, 경력, 보유 역량과 PDF를 넣어주세요. 처음에는 이 화면만 천천히 채우면 됩니다.',
-      hint: '필수 정보부터 입력하고, PDF는 준비된 것만 첨부해도 괜찮습니다.',
+      hint: '이름, 직무, 경력, 역량을 기준으로 이후 기능의 분석 품질이 달라집니다.',
     },
     feedback: {
-      title: '서류에서 먼저 고칠 부분을 확인해요',
+      title: '서류 문장을 채용자 관점으로 봅니다',
       description: '이력서와 자기소개서 피드백을 결론부터 확인하고, 근거가 약한 문장을 먼저 보완하세요.',
-      hint: '우선순위가 높은 항목부터 고치면 수정 부담이 줄어듭니다.',
+      hint: '이력서와 자기소개서를 분리해서 읽고, 문장별 보완 근거를 확인합니다.',
     },
     portfolio: {
-      title: '포트폴리오의 설득력을 점검해요',
+      title: '포트폴리오를 실무 언어로 번역합니다',
       description: '프로젝트 역할, 문제 해결 과정, 결과가 채용자가 읽기 쉽게 연결되는지 확인합니다.',
       hint: '플밍 직무는 GitHub 저장소 분석 결과도 함께 볼 수 있습니다.',
     },
     jobs: {
-      title: '나에게 맞는 공고를 비교해요',
+      title: '지원 후보 공고를 비교합니다',
       description: '입력한 직무와 역량을 기준으로 추천 공고와 부족한 역량을 한눈에 확인합니다.',
       hint: '지원하고 싶은 공고가 있으면 정보 입력 탭에서 우선 공고로 지정하세요.',
     },
     interview: {
-      title: '공고별 면접 질문을 준비해요',
+      title: '공고별 면접 대응을 만듭니다',
       description: '추천 공고와 내 자료를 바탕으로 예상 질문, 피해야 할 답변, 권장 답변을 정리합니다.',
       hint: '답변은 결론부터 말하고, 바로 근거 사례로 이어가면 좋습니다.',
     },
     'interview-basic': {
-      title: '면접 기본기를 빠르게 점검해요',
+      title: '면접 기본 태도를 정리합니다',
       description: '복장, 시간, 태도, 답변 구조처럼 모든 직무에 필요한 기본 준비를 확인합니다.',
-      hint: '면접 직전에는 체크리스트만 다시 훑어도 충분합니다.',
+      hint: '직무와 무관하게 공통으로 보는 태도, 시간, 답변 구조를 정리합니다.',
     },
     'tech-assessment': {
-      title: '직무 과제를 실전처럼 연습해요',
+      title: '직군별 과제 사고방식을 연습합니다',
       description: '기획, 플밍, 아트 직군별로 다른 과제 유형을 풀어보고 답변 방향을 점검합니다.',
       hint: '정답보다 판단 과정과 근거가 보이도록 작성하는 것이 중요합니다.',
     },
     'personality-test': {
-      title: '인성검사 응답 흐름을 익혀요',
+      title: '인성검사 응답 경향을 확인합니다',
       description: '연습 문항과 본 문항을 통해 일관성 있는 선택 흐름을 미리 경험합니다.',
       hint: '너무 고민하기보다 본인과 가장 가까운 선택지를 빠르게 고르세요.',
     },
     'pdf-export': {
-      title: '결과를 PDF로 정리해요',
+      title: '필요한 결과만 문서로 묶습니다',
       description: '분석 결과와 강사 피드백을 저장하거나 공유할 수 있는 문서로 출력합니다.',
-      hint: '최종 수정 후 출력하면 제출용 검토 자료로 활용하기 좋습니다.',
+      hint: '공유가 필요한 항목만 골라 제출용 검토 자료로 정리합니다.',
     },
   };
-  const activeStepGuide = stepGuides[activeTab] || {
+  const activeFeatureGuide = featureGuides[activeTab] || {
     title: activeNavItem.label,
-    description: '현재 화면에서 필요한 작업을 이어가세요.',
+    description: '이 기능에서 필요한 내용을 확인하세요.',
     hint: '입력값과 분석 결과는 탭을 이동해도 유지됩니다.',
   };
 
   // ── 렌더링 ────────────────────────────────────────────────────────────
   return (
-    <div className="apple-shell coach-shell coach-studio-shell apple-app-shell flex h-screen flex-col bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
+    <div data-feature={featureKey} className="apple-shell coach-shell coach-studio-shell apple-app-shell flex h-screen flex-col bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
 
       <header className="coach-commandbar">
         <button type="button" onClick={() => setActiveTab('input')} className="coach-brandlockup">
@@ -1178,7 +1173,7 @@ AI 분석 요약:
         </button>
 
         <div className="coach-command-status" aria-live="polite">
-          <span>{workspaceState}</span>
+          <span>{loading ? 'AI 분석' : '기능 선택'}</span>
           <strong>{activeNavItem.label}</strong>
           {loading && <Loader2 size={16} className="animate-spin" />}
         </div>
@@ -1222,22 +1217,18 @@ AI 분석 요약:
             <div className="coach-dossier-tab">
               <span className="coach-workbench-icon"><ActiveNavIcon size={20} /></span>
               <div>
-                <p className="coach-overline">현재 화면</p>
+                <p className="coach-overline">기능 화면</p>
                 <h2>{activeNavItem.label}</h2>
               </div>
-            </div>
-            <div className="coach-dossier-stamp" aria-label="현재 선택한 기능">
-              <span>선택한 기능</span>
-              <strong>{activeNavItem.label}</strong>
             </div>
           </section>
 
           <section className="coach-content-brief">
             <div>
-              <span>이 화면에서 할 일</span>
+              <span>기능 설명</span>
               <strong>{activeNavItem.label}</strong>
             </div>
-            <p>{activeStepGuide.hint}</p>
+            <p>{activeFeatureGuide.hint}</p>
           </section>
 
           {/* 에러 / 정보 메시지 */}
@@ -1405,7 +1396,7 @@ AI 분석 요약:
                     <label className="block text-sm font-semibold text-slate-700 mb-2 flex items-center justify-between">
                       <span>포트폴리오 (PDF 다중)</span>
                       <span className={`text-xs font-normal ${portfolioFiles.length >= 8 ? 'text-red-500 font-bold' : 'text-slate-400'}`}>
-                        {portfolioFiles.length} / 8
+                        {portfolioFiles.length > 0 ? `첨부 ${portfolioFiles.length}개` : '최대 8개'}
                       </span>
                     </label>
                     <input
@@ -1545,7 +1536,7 @@ AI 분석 요약:
                 className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex justify-center items-center gap-2 disabled:opacity-70"
               >
                 {loading
-                  ? <><Loader2 size={20} className="animate-spin" /> AI 분석 진행 중 ({currentProvider?.label || 'Gemini'})...</>
+                  ? <><Loader2 size={20} className="animate-spin" /> AI 분석 요청 처리 중 ({currentProvider?.label || 'Gemini'})...</>
                   : <><Target size={20} /> AI 분석 시작 및 저장</>}
               </button>
 
@@ -1554,11 +1545,11 @@ AI 분석 요약:
                   <div className="flex items-start gap-3">
                     <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
                     <div className="space-y-1">
-                      <p className="text-sm font-bold text-amber-900">분석은 정상적으로 진행 중입니다.</p>
+                      <p className="text-sm font-bold text-amber-900">분석 요청은 정상적으로 처리되고 있습니다.</p>
                       <p className="text-sm leading-relaxed text-amber-800">
-                        서버와 AI 모델 응답을 기다리는 과정에서 1분 정도 걸릴 수 있습니다. 완료될 때까지 새로고침하거나 창을 닫지 말아주세요.
+                        서버와 AI 모델 응답을 기다리는 과정에서 1분 정도 걸릴 수 있습니다. 응답이 도착할 때까지 새로고침하거나 창을 닫지 말아주세요.
                       </p>
-                      <p className="text-xs font-semibold text-amber-700">완료되면 자동으로 서류 피드백 탭으로 이동합니다.</p>
+                      <p className="text-xs font-semibold text-amber-700">응답이 도착하면 서류 피드백 화면으로 자동 이동합니다.</p>
                     </div>
                   </div>
                 </div>
@@ -2057,13 +2048,10 @@ AI 분석 요약:
             </div>
           )}
 
-          {/* ── TAB 7: 과제 평가 연습 ─────────────────────────────── */}
-          {activeTab === 'assignment-test' && <AssignmentTest />}
-
-          {/* ── TAB 8: 직무 과제 평가 ─────────────────────────────── */}
+          {/* ── TAB 7: 직무 과제 평가 ─────────────────────────────── */}
           {activeTab === 'tech-assessment' && <TechAssessment userInfo={normalizedUserInfo} />}
 
-          {/* ── TAB 9: 인성검사 (탭 전환 시 상태 유지를 위해 항상 마운트, display로 토글) ── */}
+          {/* ── TAB 8: 인성검사 (탭 전환 시 상태 유지를 위해 항상 마운트, display로 토글) ── */}
           <div style={{ display: activeTab === 'personality-test' ? 'block' : 'none' }}>
             <PersonalityTest
               selectedProvider={selectedProvider}
@@ -2085,9 +2073,9 @@ AI 분석 요약:
 
       <aside className="coach-side-panel custom-scrollbar" aria-label="작업 안내">
         <section className="coach-side-card coach-side-current">
-          <p className="coach-side-eyebrow">현재 할 일</p>
-          <h2>{activeStepGuide.title}</h2>
-          <p>{activeStepGuide.description}</p>
+          <p className="coach-side-eyebrow">기능 설명</p>
+          <h2>{activeFeatureGuide.title}</h2>
+          <p>{activeFeatureGuide.description}</p>
           <div className="coach-side-actions">
             <button type="button" onClick={() => setShowUserGuide(true)}>사용 방법 보기</button>
             {!results && activeTab !== 'input' && (
@@ -2099,14 +2087,14 @@ AI 분석 요약:
         </section>
 
         <section className="coach-side-card coach-side-context-card">
-          <p className="coach-side-eyebrow">선택 방식</p>
-          <strong>필요한 기능만 골라 쓰세요</strong>
-          <p>모든 메뉴를 순서대로 완료할 필요는 없습니다. 지금 필요한 분석만 선택해도 됩니다.</p>
+          <p className="coach-side-eyebrow">사용 방식</p>
+          <strong>각 기능은 독립 메뉴입니다</strong>
+          <p>입력, 피드백, 포트폴리오, 공고, 면접, 검사는 서로 따로 열어볼 수 있습니다.</p>
         </section>
 
-        <nav className="coach-side-card coach-side-steps" aria-label="Portfolio Coach 기능 바로가기">
+        <nav className="coach-side-card coach-side-tools" aria-label="Portfolio Coach 기능 바로가기">
           <p className="coach-side-eyebrow">기능 바로가기</p>
-          <p className="coach-side-helper">현재 필요한 메뉴로 바로 이동하세요. 순서대로 진행하지 않아도 됩니다.</p>
+          <p className="coach-side-helper">필요한 메뉴로 바로 이동하세요. 이 목록은 순서표가 아니라 도구 모음입니다.</p>
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
 
@@ -2115,10 +2103,10 @@ AI 분석 요약:
                 key={item.id}
                 type="button"
                 onClick={() => setActiveTab(item.id)}
-                className={`coach-side-step ${isActive ? 'is-active' : ''}`}
+                className={`coach-side-tool ${isActive ? 'is-active' : ''}`}
               >
-                <span className="coach-side-step-icon"><item.icon size={16} /></span>
-                <span className="coach-side-step-label">{item.label}</span>
+                <span className="coach-side-tool-icon"><item.icon size={16} /></span>
+                <span className="coach-side-tool-label">{item.label}</span>
               </button>
             );
           })}
@@ -2209,22 +2197,22 @@ AI 분석 요약:
               </section>
 
               <section>
-                <h3 className="text-lg font-bold text-slate-900 mb-3">기본 사용 순서</h3>
-                <ol className="grid gap-3 md:grid-cols-2">
+                <h3 className="text-lg font-bold text-slate-900 mb-3">기능별 이용 가이드</h3>
+                <div className="grid gap-3 md:grid-cols-2">
                   {[
-                    '정보 입력에서 직무 대분류와 세부 직무를 먼저 고릅니다. 이후 추천 역량 후보가 해당 직군 기준으로 바뀝니다.',
-                    '보유 기술은 실제 서류나 포트폴리오에서 증명 가능한 항목 위주로 추가하고 숙련도를 선택합니다.',
-                    '이력서, 자기소개서, 포트폴리오 PDF가 있다면 첨부합니다. 파일이 구체적일수록 피드백도 정밀해집니다.',
-                    '특정 GameJob 공고를 분석 기준으로 삼고 싶다면 공고 번호를 우선 공고 지정에 입력합니다.',
-                    'AI 분석 시작 및 저장을 누른 뒤 로딩이 끝날 때까지 새로고침하지 말고 기다립니다.',
-                    '결과는 서류 피드백 → 포트폴리오 → 추천 공고 → 면접 대비 순서로 확인하면 흐름이 가장 자연스럽습니다.',
-                  ].map((item, idx) => (
-                    <li key={item} className="flex gap-3 rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">{idx + 1}</span>
-                      <span className="leading-relaxed">{item}</span>
-                    </li>
+                    ['직무와 역량', '정보 입력에서 직무 대분류, 세부 직무, 경력, 증명 가능한 보유 기술을 정리합니다.'],
+                    ['서류 자료', '이력서, 자기소개서, 포트폴리오 PDF가 있으면 첨부합니다. 파일이 구체적일수록 피드백도 정밀해집니다.'],
+                    ['공고 기준', '특정 GameJob 공고를 분석 기준으로 삼고 싶다면 공고 번호를 우선 공고 지정에 입력합니다.'],
+                    ['AI 분석', 'AI 분석 시작 및 저장을 누른 뒤 응답이 도착할 때까지 새로고침하지 말고 기다립니다.'],
+                    ['결과 확인', '서류 피드백, 포트폴리오, 추천 공고, 면접 대비는 필요한 화면만 바로 열어 확인할 수 있습니다.'],
+                    ['문서 정리', '필요한 결과와 강사 피드백은 PDF 출력에서 제출용 또는 복습용으로 묶을 수 있습니다.'],
+                  ].map(([title, body]) => (
+                    <article key={title} className="rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
+                      <p className="mb-1 font-bold text-slate-900">{title}</p>
+                      <p className="leading-relaxed">{body}</p>
+                    </article>
                   ))}
-                </ol>
+                </div>
               </section>
 
               <section>
@@ -2386,7 +2374,7 @@ AI 분석 요약:
                   </div>
                 )}
 
-                {/* 완료 메시지 */}
+                {/* 저장 메시지 */}
                 {!crawlStatus.running && crawlStatus.message && crawlStatus.percent === 100 && (
                   <div className="mb-4 bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-2">
                     <CheckCircle size={16} className="text-green-500 shrink-0" />

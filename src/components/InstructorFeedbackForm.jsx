@@ -296,7 +296,7 @@ export default function InstructorFeedbackForm({ value, onChange }) {
       {uploadedFileName && (
         <div className="flex items-center gap-2 text-xs text-teal-700 bg-teal-50 border border-teal-200 rounded-lg px-3 py-2">
           <CheckCircle size={13} className="text-teal-500 shrink-0" />
-          <span className="flex-1 truncate"><strong>{uploadedFileName}</strong> 업로드 완료 — 아래 항목에 자동으로 채워졌습니다.</span>
+          <span className="flex-1 truncate"><strong>{uploadedFileName}</strong> 업로드됨 — 아래 항목에 자동으로 채워졌습니다.</span>
           <button onClick={handleReset}><X size={13} className="text-red-400 hover:text-red-600" /></button>
         </div>
       )}

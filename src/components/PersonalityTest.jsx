@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
-  Clock, CheckCircle, Play, ArrowLeft, ArrowRight,
+  Clock, Play, ArrowLeft, ArrowRight,
   ClipboardCheck, AlertCircle, RotateCcw, ChevronLeft, ChevronRight,
   Loader2, Brain, Sparkles, Shield, Target, TrendingUp, Download, FileText,
 } from 'lucide-react';
@@ -17,25 +17,6 @@ function formatTime(seconds) {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-}
-
-function buildPaginationItems(currentPage, totalPages) {
-  if (totalPages <= 7) {
-    return Array.from({ length: totalPages }, (_, index) => index);
-  }
-
-  const pages = new Set([0, 1, currentPage - 1, currentPage, currentPage + 1, totalPages - 2, totalPages - 1]);
-  const validPages = [...pages].filter((page) => page >= 0 && page < totalPages).sort((a, b) => a - b);
-  const items = [];
-
-  validPages.forEach((page, index) => {
-    if (index > 0 && page - validPages[index - 1] > 1) {
-      items.push(`ellipsis-${page}`);
-    }
-    items.push(page);
-  });
-
-  return items;
 }
 
 // ── 상수 ─────────────────────────────────────────────────────────────────
@@ -135,7 +116,7 @@ function buildMarkdown(result, meta) {
   const lines = [];
   const dt = new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
   lines.push(`# 인성검사 분석 결과`);
-  lines.push(`> 분석일: ${dt} | 소요 시간: ${meta.elapsedTime} | 응답률: ${meta.completionRate}% | 분석 소스: ${meta.source}`);
+  lines.push(`> 분석일: ${dt} | 소요 시간: ${meta.elapsedTime} | 분석 소스: ${meta.source}`);
   lines.push('');
 
   // 성격 특성
@@ -274,7 +255,7 @@ function openPdfPrint(result, meta) {
 </style>
 </head><body>
 <h1>인성검사 분석 결과</h1>
-<p class="meta">분석일: ${dt} | 소요 시간: ${meta.elapsedTime} | 응답률: ${meta.completionRate}% | 분석: ${meta.source}</p>
+<p class="meta">분석일: ${dt} | 소요 시간: ${meta.elapsedTime} | 분석: ${meta.source}</p>
 
 <h2>성격 특성 분석</h2>
 <div class="section">${traitsHtml}</div>
@@ -481,10 +462,6 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
     return Math.ceil(questions.length / QUESTIONS_PER_PAGE);
   }, [step]);
 
-  const answers = step === 'test-binary' ? binaryAnswers : likertAnswers;
-  const totalQuestions = step === 'test-binary' ? BINARY_QUESTIONS.length : MAIN_QUESTIONS.length;
-  const answeredCount = Object.keys(answers).length;
-
   // ═══════════════════════════════════════════════════════════════════════
   // Intro 화면
   // ═══════════════════════════════════════════════════════════════════════
@@ -528,9 +505,9 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             <ClipboardCheck className="w-5 h-5" />
             <div>
               <h3>검사 구성</h3>
-              <p><strong>1단계</strong>: 연습 문항 5개 (시간 제한 없음)</p>
-              <p><strong>2단계</strong>: 본 문항 94개 — 6점 리커트 척도</p>
-              <p><strong>3단계</strong>: 선택형 문항 31개 — A/B 이항 선택</p>
+              <p><strong>연습 문항</strong>: 응답 방식에 먼저 익숙해지는 짧은 예시</p>
+              <p><strong>성향 문항</strong>: 업무 성향을 읽는 6점 리커트 척도</p>
+              <p><strong>선택형 문항</strong>: 두 선택지 중 더 가까운 반응 선택</p>
             </div>
           </article>
 
@@ -538,7 +515,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             <Clock className="w-5 h-5" />
             <div>
               <h3>제한 시간</h3>
-              <p>본 검사(2·3단계)는 총 <strong>40분</strong>입니다. 너무 오래 고민하기보다 직관적이되 일관되게 답하는 편이 좋습니다.</p>
+              <p>본 검사 문항은 총 <strong>40분</strong> 안에 응답합니다. 너무 오래 고민하기보다 직관적이되 일관되게 답하는 편이 좋습니다.</p>
             </div>
           </article>
 
@@ -566,7 +543,6 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
   // 연습 문항 화면
   // ═══════════════════════════════════════════════════════════════════════
   if (step === 'practice') {
-    const practiceAnsweredCount = Object.keys(practiceAnswers).length;
     return (
       <div className="apple-module apple-module-practice personality-practice-shell flex flex-col h-full bg-slate-50">
         <div className="personality-topbar bg-white border-b border-slate-200 px-6 py-4 flex justify-between items-center shrink-0 shadow-sm">
@@ -574,10 +550,6 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             <span className="personality-phase-chip px-3 py-1 rounded-full text-xs font-bold">연습 문항</span>
             <span className="text-sm text-slate-500">시간 제한 없음</span>
           </div>
-          <span className="text-sm text-slate-500">{practiceAnsweredCount}/{PRACTICE_QUESTIONS.length}</span>
-        </div>
-        <div className="personality-progress-track w-full h-1.5 bg-slate-200">
-          <div className="personality-progress-fill h-full transition-all duration-500" style={{ width: `${(practiceAnsweredCount / PRACTICE_QUESTIONS.length) * 100}%` }} />
         </div>
         <div className="flex-1 overflow-y-auto">
           <div className="max-w-4xl mx-auto py-8 px-6 space-y-6">
@@ -589,14 +561,10 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
                 onSelect={(val) => setPracticeAnswers({ ...practiceAnswers, [q.id]: val })} type="likert" />
             ))}
             <div className="pt-4 pb-8">
-              <button onClick={handleStartTest} disabled={practiceAnsweredCount < PRACTICE_QUESTIONS.length}
-                className={`w-full py-4 font-bold rounded-full transition-all text-lg shadow-lg flex items-center justify-center gap-3
-                  ${practiceAnsweredCount >= PRACTICE_QUESTIONS.length ? 'bg-sky-600 hover:bg-sky-700 text-white active:scale-[0.98]' : 'bg-slate-200 text-slate-400 cursor-not-allowed'}`}>
+              <button onClick={handleStartTest}
+                className="w-full py-4 font-bold rounded-full transition-all text-lg shadow-lg flex items-center justify-center gap-3 bg-sky-600 hover:bg-sky-700 text-white active:scale-[0.98]">
                 <ArrowRight size={20} /> 본 검사 시작하기
               </button>
-              {practiceAnsweredCount < PRACTICE_QUESTIONS.length && (
-                <p className="text-center text-xs text-slate-400 mt-2">모든 연습 문항에 답변해야 본 검사를 시작할 수 있습니다.</p>
-              )}
             </div>
           </div>
         </div>
@@ -612,7 +580,6 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
     const pageQuestions = getCurrentQuestions();
     const totalPages = getTotalPages();
     const globalOffset = currentPage * QUESTIONS_PER_PAGE;
-    const paginationItems = buildPaginationItems(currentPage, totalPages);
 
     return (
       <div className="apple-module apple-module-practice personality-test-shell flex flex-col h-full bg-slate-50">
@@ -620,10 +587,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
             <div className="bg-white border border-slate-200 rounded-2xl p-8 max-w-sm w-full shadow-2xl">
               <h3 className="text-xl font-black text-slate-800 mb-3">최종 제출 확인</h3>
-              <p className="text-slate-600 mb-2 text-sm">
-                리커트: {Object.keys(likertAnswers).length}/{MAIN_QUESTIONS.length} 문항 응답<br />
-                선택형: {Object.keys(binaryAnswers).length}/{BINARY_QUESTIONS.length} 문항 응답
-              </p>
+              <p className="text-slate-600 mb-2 text-sm">현재 입력한 응답을 바탕으로 분석 화면을 열까요?</p>
               <p className="text-slate-400 mb-6 text-xs leading-relaxed">제출 후에는 답안을 수정할 수 없습니다.</p>
               <div className="flex gap-3">
                 <button onClick={cancelSubmit} className="flex-1 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-100 text-sm font-bold border border-slate-200">취소</button>
@@ -651,9 +615,6 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
                 선택형
               </button>
             </div>
-            <span className="text-xs text-slate-400">
-              남은 문항 {isLikert ? MAIN_QUESTIONS.length - Object.keys(likertAnswers).length : BINARY_QUESTIONS.length - Object.keys(binaryAnswers).length}
-            </span>
           </div>
           <div className="flex items-center gap-4">
             <div className={`flex items-center gap-1 text-sm font-mono font-bold ${questionTimeLeft <= 3 ? 'text-red-500 animate-pulse' : 'text-sky-600'}`}>
@@ -664,7 +625,6 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-xs text-slate-500 tabular-nums">{answeredCount}/{totalQuestions}</span>
             {step === 'test-likert' ? (
               <button onClick={handleGoToBinary} className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-full text-xs shadow-md flex items-center gap-1.5">
                 선택형으로 <ArrowRight size={14} />
@@ -673,11 +633,6 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
               <button onClick={handleSubmit} className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-full text-xs shadow-md">최종 제출</button>
             )}
           </div>
-        </div>
-
-        <div className="personality-progress-track w-full h-1.5 bg-slate-200 flex">
-          <div className="personality-progress-fill h-full transition-all duration-500" style={{ width: `${(Object.keys(likertAnswers).length / MAIN_QUESTIONS.length) * 50}%` }} />
-          <div className="h-full bg-slate-900 transition-all duration-500" style={{ width: `${(Object.keys(binaryAnswers).length / BINARY_QUESTIONS.length) * 50}%` }} />
         </div>
 
         <div className="flex-1 overflow-y-auto" ref={scrollRef}>
@@ -705,19 +660,10 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             className={`shrink-0 min-w-[72px] whitespace-nowrap flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${currentPage === 0 ? 'text-slate-300 cursor-not-allowed' : 'text-slate-600 hover:bg-slate-100 active:scale-95'}`}>
             <ChevronLeft size={16} /> 이전
           </button>
-          <div className="personality-page-strip flex-1 min-w-0 flex items-center justify-center gap-1.5 overflow-x-auto px-2">
-            {paginationItems.map((item) => (
-              typeof item === 'number' ? (
-                <button key={item} onClick={() => setCurrentPage(item)}
-                  className={`w-8 h-8 rounded-full text-xs font-bold transition-all ${currentPage === item ? 'bg-sky-600 text-white shadow-md' : 'text-slate-400 hover:bg-slate-100'}`}>
-                  {item + 1}
-                </button>
-              ) : (
-                <span key={item} className="px-1 text-sm font-bold text-slate-300 select-none">
-                  ...
-                </span>
-              )
-            ))}
+          <div className="personality-page-strip flex-1 min-w-0 flex items-center justify-center px-2">
+            <span className="rounded-full bg-slate-100 px-4 py-2 text-xs font-bold text-slate-500">
+              {isLikert ? '리커트 문항' : '선택형 문항'}
+            </span>
           </div>
           <button onClick={() => {
             if (currentPage < totalPages - 1) setCurrentPage(p => p + 1);
@@ -734,41 +680,17 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
   // ═══════════════════════════════════════════════════════════════════════
   // 결과 화면
   // ═══════════════════════════════════════════════════════════════════════
-  const likertTotal = MAIN_QUESTIONS.length;
-  const binaryTotal = BINARY_QUESTIONS.length;
   const likertDone = Object.keys(likertAnswers).length;
-  const binaryDone = Object.keys(binaryAnswers).length;
-  const totalDone = likertDone + binaryDone;
-  const totalAll = likertTotal + binaryTotal;
-  const completionRate = Math.round((totalDone / totalAll) * 100);
 
   return (
     <div className="apple-module apple-module-result p-8 animate-in fade-in">
       <div className="max-w-4xl mx-auto">
-        {/* 완료 헤더 */}
+        {/* 결과 헤더 */}
         <div className="personality-result-hero bg-white rounded-[32px] shadow-lg border border-slate-200 p-10 mb-8 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sky-500 via-blue-500 to-slate-900"></div>
-          <CheckCircle className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
-          <h2 className="text-3xl font-black text-slate-800 mb-2">검사가 완료되었습니다</h2>
-          <p className="text-slate-500 mb-6">소요 시간: {formatTime(TOTAL_TIME - timeLeft)} / 응답률: {completionRate}%</p>
-
-          <div className="grid grid-cols-2 gap-4 max-w-md mx-auto mb-6">
-            <div className="bg-sky-50 rounded-2xl p-4 border border-sky-100">
-              <p className="text-2xl font-black text-sky-700">{likertDone}<span className="text-sm font-medium text-sky-400">/{likertTotal}</span></p>
-              <p className="text-xs text-sky-600 font-medium mt-1">리커트 척도</p>
-            </div>
-            <div className="bg-slate-100 rounded-2xl p-4 border border-slate-200">
-              <p className="text-2xl font-black text-slate-800">{binaryDone}<span className="text-sm font-medium text-slate-400">/{binaryTotal}</span></p>
-              <p className="text-xs text-slate-500 font-medium mt-1">선택형</p>
-            </div>
-          </div>
-
-          {totalDone < totalAll && (
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 max-w-md mx-auto">
-              <p className="text-sm text-amber-700 font-medium">{totalAll - totalDone}개 문항이 미응답 상태입니다.</p>
-              <p className="text-xs text-amber-500 mt-1">실제 인적성 검사에서는 미응답 시 감점될 수 있습니다.</p>
-            </div>
-          )}
+          <Brain className="w-16 h-16 text-sky-500 mx-auto mb-4" />
+          <h2 className="text-3xl font-black text-slate-800 mb-2">인성검사 분석 화면</h2>
+          <p className="text-slate-500 mb-6">소요 시간: {formatTime(TOTAL_TIME - timeLeft)} · 응답 패턴을 바탕으로 성향 리포트를 구성합니다.</p>
 
           <div className="flex justify-center gap-3 flex-wrap">
             <button onClick={handleReset} className="flex items-center gap-2 px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition-all text-sm">
@@ -838,7 +760,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
               <div className="flex items-start gap-3">
                 <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
                 <div>
-                  <p className="text-sm font-bold text-amber-900">분석은 정상적으로 진행 중입니다.</p>
+                  <p className="text-sm font-bold text-amber-900">분석 요청은 정상적으로 처리되고 있습니다.</p>
                   <p className="mt-1 text-sm leading-relaxed text-amber-800">
                     서버와 AI 모델이 응답을 정리하는 동안 1분 정도 걸릴 수 있습니다. 새로고침하거나 창을 닫으면 결과가 사라질 수 있으니 잠시만 기다려 주세요.
                   </p>
@@ -854,7 +776,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             {/* 분석 소스 표시 */}
             {analysisSource === 'ai' ? (
               <div className="rounded-2xl p-3 text-center text-xs font-bold bg-sky-50 border border-sky-200 text-sky-700">
-                AI 분석 완료 ({selectedProvider})
+                AI 분석 결과 ({selectedProvider})
               </div>
             ) : (
               <div className="rounded-xl p-4 bg-sky-50 border border-sky-200 flex items-center justify-between gap-4">
@@ -1021,7 +943,6 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
                   onClick={() => {
                     const md = buildMarkdown(aiResult, {
                       elapsedTime: formatTime(TOTAL_TIME - timeLeft),
-                      completionRate,
                       source: analysisSource === 'ai' ? `AI (${selectedProvider})` : '로컬 분석',
                     });
                     downloadMarkdown(md);
@@ -1034,7 +955,6 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
                   onClick={() => {
                     openPdfPrint(aiResult, {
                       elapsedTime: formatTime(TOTAL_TIME - timeLeft),
-                      completionRate,
                       source: analysisSource === 'ai' ? `AI (${selectedProvider})` : '로컬 분석',
                     });
                   }}

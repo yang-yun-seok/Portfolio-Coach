@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  Clock, Video, CheckCircle, RefreshCcw, AlertCircle,
+  Clock, Video, FileQuestion, RefreshCcw, AlertCircle,
   Image as ImageIcon, Play, ArrowLeft,
 } from 'lucide-react';
 
@@ -195,8 +195,6 @@ export default function AssignmentTest() {
     setImgError(false);
   };
 
-  const answeredCount = Object.values(answers).filter((v) => v && v.trim().length > 0).length;
-
   // ═══ Intro 화면 ════════════════════════════════════════════════════
   if (step === 'intro') {
     return (
@@ -235,7 +233,7 @@ export default function AssignmentTest() {
               </div>
 
               <div className="flex items-start gap-4 bg-emerald-50 p-4 rounded-xl border border-emerald-100">
-                <CheckCircle className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
+                <FileQuestion className="w-6 h-6 text-emerald-500 shrink-0 mt-0.5" />
                 <div>
                   <h4 className="font-bold text-emerald-700 text-sm mb-1">제출 후 피드백</h4>
                   <p className="text-xs text-emerald-600/80 leading-relaxed">
@@ -266,9 +264,9 @@ export default function AssignmentTest() {
         {showConfirm && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm px-4">
             <div className="bg-slate-900 border border-slate-700 rounded-xl p-8 max-w-sm w-full shadow-2xl">
-              <h3 className="text-xl font-black text-white mb-3">최종 제출 확인</h3>
-              <p className="text-slate-400 mb-2 text-sm">작성 완료: {answeredCount} / {TEST_DATA.length} 문항</p>
-              <p className="text-slate-500 mb-8 text-xs leading-relaxed">제출 후에는 답안을 수정할 수 없습니다. 정말로 전송하시겠습니까?</p>
+              <h3 className="text-xl font-black text-white mb-3">답안 리뷰 열기</h3>
+              <p className="text-slate-400 mb-2 text-sm">현재 작성한 답안을 기준으로 리뷰 화면을 열까요?</p>
+              <p className="text-slate-500 mb-8 text-xs leading-relaxed">리뷰 화면에서 문항별 출제 의도와 답변 방향을 바로 비교할 수 있습니다.</p>
               <div className="flex gap-3">
                 <button onClick={cancelSubmit} className="flex-1 px-4 py-3 rounded-lg text-slate-400 hover:bg-slate-800 transition-colors text-sm font-bold border border-slate-700">취소</button>
                 <button onClick={confirmSubmit} className="flex-1 px-4 py-3 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-black transition-all text-sm shadow-lg">전송</button>
@@ -291,9 +289,9 @@ export default function AssignmentTest() {
             <span className="tabular-nums">{formatTime(timeLeft)}</span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="text-xs text-slate-500">{answeredCount}/{TEST_DATA.length}</span>
+            <span className="text-xs text-slate-500">문항별 답안 작성</span>
             <button onClick={handleSubmit} className="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-md text-sm transition-all shadow-md">
-              최종 제출
+              답안 리뷰 보기
             </button>
           </div>
         </div>
@@ -374,12 +372,12 @@ export default function AssignmentTest() {
     <div className="apple-module apple-module-result flex flex-col h-full overflow-y-auto">
       <div className="p-8">
         <div className="max-w-4xl mx-auto">
-          {/* 완료 헤더 */}
+          {/* 리뷰 헤더 */}
           <div className="bg-white rounded-2xl shadow-lg p-10 mb-10 text-center border border-slate-200 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sky-500 to-indigo-500"></div>
-            <CheckCircle className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
-            <h2 className="text-3xl font-black mb-2 text-slate-900">평가가 완료되었습니다</h2>
-            <p className="text-slate-500">작성 완료: {answeredCount} / {TEST_DATA.length} 문항 | 소요 시간: {formatTime(TOTAL_TIME - timeLeft)}</p>
+            <FileQuestion className="w-16 h-16 text-sky-500 mx-auto mb-4" />
+            <h2 className="text-3xl font-black mb-2 text-slate-900">과제 답안 리뷰 화면</h2>
+            <p className="text-slate-500">소요 시간: {formatTime(TOTAL_TIME - timeLeft)} · 문항별 답변 방향을 확인하세요.</p>
             <button
               onClick={handleReset}
               className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-md"

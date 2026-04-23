@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  Clock, Video, CheckCircle, RefreshCcw, AlertCircle,
+  Clock, Video, RefreshCcw, AlertCircle,
   Image as ImageIcon, Play, ArrowLeft, Code2, FileQuestion,
 } from 'lucide-react';
 import { staticAssetUrl } from '../lib/runtime-config';
@@ -122,16 +122,16 @@ const PROGRAMMING_TEST_DATA = [
     description: '하나의 함수가 입력 처리, 판정, 보상 지급, UI 갱신을 모두 담당합니다. 무엇을 기준으로 분리하고 어떤 테스트를 추가할지 작성하세요.',
     feedback: {
       intent: '유지보수성, 테스트 가능성, 변경 위험 관리에 대한 실무 감각을 평가합니다.',
-      ideal: '책임 단위 분리, 순수 로직 추출, 외부 의존성 경계, 회귀 테스트, 리팩토링 단계와 롤백 가능성을 제시한 답변.',
+      ideal: '책임 단위 분리, 순수 로직 추출, 외부 의존성 경계, 회귀 테스트, 리팩토링 순서와 롤백 가능성을 제시한 답변.',
       avoid: '코드 스타일 취향만 말하거나 리팩토링 범위와 테스트 없이 구조 변경만 주장하는 답변.',
     },
   },
   {
     id: 6, type: 'text',
-    question: '6. 배포 전 안정성 체크리스트를 작성하라',
+    question: '6. 배포 전 안정성 점검 항목을 작성하라',
     description: '신규 매칭 기능을 배포하기 전 반드시 확인해야 할 테스트, 모니터링 지표, 롤백 조건을 작성하세요.',
     feedback: {
-      intent: '개발 완료를 넘어 서비스 출시 안정성까지 보는지 평가합니다.',
+      intent: '기능 구현을 넘어 서비스 출시 안정성까지 보는지 평가합니다.',
       ideal: '단위/통합/부하 테스트, 매칭 성공률, 대기 시간, 에러율, 알림 기준, 점진 배포, 롤백 트리거가 포함된 답변.',
       avoid: '기능이 로컬에서 동작한다는 수준에서 멈추고 운영 지표와 장애 대응을 고려하지 않는 답변.',
     },
@@ -176,7 +176,7 @@ const ART_TEST_DATA = [
     description: '이미 출시된 프로젝트에 신규 아이콘 20개를 추가해야 합니다. 기존 톤을 맞추기 위해 어떤 기준표를 만들지 작성하세요.',
     feedback: {
       intent: '개인 화풍보다 프로젝트 일관성을 우선하는 협업형 아트 감각을 평가합니다.',
-      ideal: '라인 두께, 코너 반경, 명암 단계, 색상 수, 광원 방향, 디테일 밀도, 사용 금지 표현을 기준화한 답변.',
+      ideal: '라인 두께, 코너 반경, 명암 레벨, 색상 수, 광원 방향, 디테일 밀도, 사용 금지 표현을 기준화한 답변.',
       avoid: '기존 스타일을 참고하겠다는 말만 있고 실제 검수 기준이나 반복 생산 규칙이 없는 답변.',
     },
   },
@@ -295,8 +295,6 @@ export default function TechAssessment({ userInfo }) {
     setImgError(false);
   };
 
-  const answeredCount = Object.values(answers).filter((v) => v && v.trim().length > 0).length;
-
   // ═══ Intro 화면 ════════════════════════════════════════════════════
   if (step === 'intro') {
     return (
@@ -319,7 +317,7 @@ export default function TechAssessment({ userInfo }) {
                 <Play size={18} />
                 평가 시작
               </button>
-              <span className="studio-assessment-chip">{Math.round(totalTime / 60)}분 · {assessmentData.length}문항 · {trackMeta.label} 실무형</span>
+              <span className="studio-assessment-chip">{trackMeta.label} 실무형 과제</span>
             </div>
           </div>
 
@@ -348,10 +346,10 @@ export default function TechAssessment({ userInfo }) {
               </div>
 
               <div className="studio-assessment-rule">
-                <CheckCircle className="w-5 h-5 text-emerald-500" />
+                <FileQuestion className="w-5 h-5 text-emerald-500" />
                 <div>
-                  <h4>제출 후 리뷰</h4>
-                  <p>각 문항별 출제 의도와 이상적인 방향을 바로 비교해 볼 수 있습니다.</p>
+                  <h4>답변 리뷰</h4>
+                  <p>각 문항별 출제 의도와 이상적인 방향을 비교해 볼 수 있습니다.</p>
                 </div>
               </div>
             </div>
@@ -369,7 +367,7 @@ export default function TechAssessment({ userInfo }) {
           <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm px-4">
             <div className="bg-white border border-slate-200 rounded-[28px] p-8 max-w-sm w-full shadow-2xl">
               <h3 className="text-xl font-black text-slate-900 mb-3">최종 제출 확인</h3>
-              <p className="text-slate-600 mb-2 text-sm">작성 완료: {answeredCount} / {assessmentData.length} 문항</p>
+              <p className="text-slate-600 mb-2 text-sm">현재 작성한 답안을 리뷰 화면으로 보낼까요?</p>
               <p className="text-slate-500 mb-8 text-xs leading-relaxed">
                 제출 후에는 답안을 수정할 수 없습니다. 지금 상태로 평가를 마무리할까요?
               </p>
@@ -397,7 +395,7 @@ export default function TechAssessment({ userInfo }) {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-600"></span>
             </span>
-            {trackMeta.label} 트랙 진행 중
+            {trackMeta.label} 트랙 세션
           </div>
 
           <div className={`studio-assessment-timer ${timeLeft < 300 ? 'text-rose-500 animate-pulse' : 'text-sky-600'}`}>
@@ -405,8 +403,8 @@ export default function TechAssessment({ userInfo }) {
             <span className="tabular-nums">{formatTime(timeLeft)}</span>
           </div>
 
-          <div className="studio-assessment-progress">
-            <span>{answeredCount}/{assessmentData.length} 작성</span>
+          <div className="studio-assessment-actions">
+            <span>문항별 답안을 자유롭게 작성하세요</span>
             <button
               onClick={handleSubmit}
               className="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-full text-sm transition-all shadow-md"
@@ -491,11 +489,11 @@ export default function TechAssessment({ userInfo }) {
   return (
     <div className="apple-module apple-module-result p-8 animate-in fade-in">
       <div className="max-w-5xl mx-auto">
-        {/* 완료 헤더 */}
+        {/* 리뷰 헤더 */}
         <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-10 mb-10 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sky-500 to-indigo-500"></div>
-          <CheckCircle className="w-16 h-16 text-emerald-500 mx-auto mb-4" />
-          <h2 className="text-3xl font-black text-slate-800 mb-2">평가가 완료되었습니다</h2>
+          <FileQuestion className="w-16 h-16 text-sky-500 mx-auto mb-4" />
+          <h2 className="text-3xl font-black text-slate-800 mb-2">직무 과제 리뷰 화면</h2>
           <p className="text-slate-500">제출된 답안에 대한 상세 피드백을 확인하세요.</p>
           <div className="mt-6 flex justify-center gap-4">
             <button
