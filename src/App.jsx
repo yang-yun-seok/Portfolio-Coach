@@ -17,8 +17,10 @@ import {
   getRoleDetails,
   getSkillCategoriesForRoleGroup,
   normalizeUserProfile,
+  ROLE_GUIDE_PLAYBOOK,
   ROLE_INPUT_PLAYBOOK,
   ROLE_INTERVIEW_PLAYBOOK,
+  ROLE_READINESS_PLAYBOOK,
   ROLE_RESULT_PLAYBOOK,
 } from './data/skills';
 import { analyzeViaProxy } from './lib/gemini-client';
@@ -60,13 +62,6 @@ const INTERVIEW_THEME_MAP = {
     kicker: 'Attitude',
   },
 };
-
-const INTERVIEW_QUICK_CHECKS = [
-  '공고 JD와 내 포트폴리오의 연결 포인트 3개를 다시 확인합니다.',
-  '대표 프로젝트는 문제, 역할, 행동, 결과 순서로 60초 안에 말할 수 있게 정리합니다.',
-  '화상 면접은 카메라 눈높이, 마이크 입력, 화면 공유 자료, 링크 권한을 미리 점검합니다.',
-  '모르는 질문을 받았을 때 인정, 추론, 확인 계획 순서로 답할 문장을 준비합니다.',
-];
 
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
 // "- **제목**: 내용" 또는 "**제목**: 내용" → { title, body } 로 분리
@@ -628,8 +623,10 @@ export default function App() {
   const normalizedUserInfo = normalizeUserProfile(userInfo);
   const selectedRoleGroupInfo = ROLE_GROUPS.find((group) => group.label === normalizedUserInfo.roleGroup) || ROLE_GROUPS[0];
   const selectedRoleDetail = getRoleDetail(normalizedUserInfo.roleGroup, normalizedUserInfo.subRole);
+  const guidePlaybook = ROLE_GUIDE_PLAYBOOK[normalizedUserInfo.roleGroup] || ROLE_GUIDE_PLAYBOOK.기획;
   const rolePlaybook = ROLE_INPUT_PLAYBOOK[normalizedUserInfo.roleGroup] || ROLE_INPUT_PLAYBOOK.기획;
   const interviewPlaybook = ROLE_INTERVIEW_PLAYBOOK[normalizedUserInfo.roleGroup] || ROLE_INTERVIEW_PLAYBOOK.기획;
+  const readinessPlaybook = ROLE_READINESS_PLAYBOOK[normalizedUserInfo.roleGroup] || ROLE_READINESS_PLAYBOOK.기획;
   const resultPlaybook = ROLE_RESULT_PLAYBOOK[normalizedUserInfo.roleGroup] || ROLE_RESULT_PLAYBOOK.기획;
   const skillCategories = getSkillCategoriesForRoleGroup(normalizedUserInfo.roleGroup);
   const selectedSkillSuggestions = (skillCategories[skillInput.category] || Object.values(skillCategories)[0] || []).slice(0, 6);
@@ -1240,8 +1237,8 @@ AI 분석 요약:
     },
     'interview-basic': {
       title: '면접 기본 태도를 정리합니다',
-      description: '복장, 시간, 태도, 답변 구조처럼 모든 직무에 필요한 기본 준비를 확인합니다.',
-      hint: '직무와 무관하게 공통으로 보는 태도, 시간, 답변 구조를 정리합니다.',
+      description: `${normalizedUserInfo.roleGroup} 직군 면접에서 먼저 검증되는 준비 요소와 말하기 기준을 정리합니다.`,
+      hint: readinessPlaybook.reviewerNoteBody,
     },
     'tech-assessment': {
       title: '직군별 과제 사고방식을 연습합니다',
@@ -2399,27 +2396,31 @@ AI 분석 요약:
               <section className="studio-readiness-hero">
                 <div className="studio-readiness-copy">
                   <p className="studio-eyebrow">Interview Readiness</p>
-                  <h2>면접은 답변보다 먼저, 준비의 밀도를 봅니다.</h2>
-                  <p>
-                    게임 회사 면접에서 자주 갈리는 복장, 시간 운영, 답변 태도, 압박 질문 대응을
-                    실무 면접 기준으로 정리했습니다. 첫인상은 기본이고, 핵심은 내 경험을
-                    직무 언어로 빠르게 증명하는 것입니다.
-                  </p>
+                  <h2>{readinessPlaybook.heroTitle}</h2>
+                  <p>{readinessPlaybook.heroDescription}</p>
                 </div>
                 <div className="studio-readiness-summary">
-                  <div className="studio-readiness-stat">
-                    <span>4 Readiness Areas</span>
-                    <strong>인상 · 시간 · 답변 구조 · 커뮤니케이션</strong>
-                  </div>
-                  <div className="studio-readiness-stat">
-                    <span>Before Interview</span>
-                    <strong>JD 연결 · 대표 사례 · 포트폴리오 근거 점검</strong>
-                  </div>
+                  {readinessPlaybook.summaryStats.map((stat) => (
+                    <div key={stat.label} className="studio-readiness-stat">
+                      <span>{stat.label}</span>
+                      <strong>{stat.value}</strong>
+                    </div>
+                  ))}
                   <p>
                     면접관은 정답 암기보다 근거 있는 판단, 협업 가능한 말투, 모르는 것을
                     다루는 태도를 봅니다. 짧은 답변 안에 역할과 결과가 보이도록 준비하세요.
                   </p>
                 </div>
+              </section>
+
+              <section className="grid gap-4 md:grid-cols-3">
+                {readinessPlaybook.prepCards.map((card) => (
+                  <article key={card.label} className="rounded-[28px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
+                    <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-600">{card.label}</p>
+                    <h3 className="mb-2 text-base font-black text-slate-900">{card.title}</h3>
+                    <p className="text-sm leading-relaxed text-slate-600">{card.body}</p>
+                  </article>
+                ))}
               </section>
 
               <section className="studio-readiness-layout">
@@ -2428,7 +2429,7 @@ AI 분석 요약:
                     <p className="studio-eyebrow">Quick Reset</p>
                     <h3>면접 직전 5분 체크</h3>
                     <ul>
-                      {INTERVIEW_QUICK_CHECKS.map((item) => (
+                      {readinessPlaybook.quickChecks.map((item) => (
                         <li key={item}>
                           <CheckCircle size={16} />
                           <span>{item}</span>
@@ -2438,12 +2439,13 @@ AI 분석 요약:
                   </div>
 
                   <div className="studio-readiness-note studio-readiness-note-muted">
-                    <p className="studio-eyebrow">Answer Frame</p>
-                    <p>
-                      답변은 결론을 먼저 말하고, 바로 근거 사례로 들어가세요. 좋은 흐름은
-                      결론 1문장, 상황 1문장, 내가 한 행동 2문장, 결과와 배운 점 1문장입니다.
-                      장황한 배경 설명보다 면접관이 검증할 수 있는 사실을 먼저 보여주는 편이 강합니다.
-                    </p>
+                    <p className="studio-eyebrow">{readinessPlaybook.answerFrameTitle}</p>
+                    <p>{readinessPlaybook.answerFrameBody}</p>
+                  </div>
+
+                  <div className="studio-readiness-note studio-readiness-note-muted">
+                    <p className="studio-eyebrow">{readinessPlaybook.reviewerNoteTitle}</p>
+                    <p>{readinessPlaybook.reviewerNoteBody}</p>
                   </div>
                 </aside>
 
@@ -2626,7 +2628,7 @@ AI 분석 요약:
                 <div className="bg-blue-100 p-2 rounded-lg"><BookOpen size={20} className="text-blue-600" /></div>
                 <div>
                   <h2 className="text-xl font-bold text-slate-800">Portfolio Coach 사용 설명서</h2>
-                  <p className="text-sm text-slate-500">입력 품질을 높이고 결과를 제대로 읽는 방법을 정리했습니다.</p>
+                  <p className="text-sm text-slate-500">{normalizedUserInfo.roleGroup} 직군 기준으로 입력, 분석, 결과 확인 순서를 정리했습니다.</p>
                 </div>
               </div>
               <button onClick={() => setShowUserGuide(false)} className="text-slate-400 hover:text-slate-600 transition-colors">
@@ -2637,10 +2639,48 @@ AI 분석 요약:
             <div className="p-6 overflow-y-auto space-y-6">
               <section className="rounded-2xl bg-slate-950 !text-white p-6 shadow-inner">
                 <p className="text-[11px] font-semibold tracking-[0.18em] uppercase !text-blue-200 mb-2">Quick Start</p>
-                <h3 className="text-2xl font-bold leading-tight mb-3 !text-white">먼저 직무를 정확히 고르고, 증명 가능한 경험을 입력한 뒤 AI 분석을 실행하세요.</h3>
-                <p className="text-sm !text-slate-100 leading-relaxed">
-                  결과 품질은 입력 정보의 구체성에 크게 좌우됩니다. 직무 대분류, 세부 직무, 경력, 보유 역량, PDF 자료를 채운 뒤 분석하면 서류 피드백, 포트폴리오 보완점, 추천 공고, 면접 대비 자료가 탭별로 정리됩니다.
-                </p>
+                <h3 className="text-2xl font-bold leading-tight mb-3 !text-white">{guidePlaybook.quickStartTitle}</h3>
+                <p className="text-sm !text-slate-100 leading-relaxed">{guidePlaybook.quickStartBody}</p>
+              </section>
+
+              <section>
+                <h3 className="text-lg font-bold text-slate-900 mb-3">이 직군 기준 먼저 할 일</h3>
+                <div className="grid gap-3 md:grid-cols-3">
+                  {guidePlaybook.focusCards.map((card) => (
+                    <article key={card.label} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                      <p className="mb-2 text-[11px] font-black uppercase tracking-[0.22em] text-sky-600">{card.label}</p>
+                      <p className="mb-2 font-bold text-slate-900">{card.title}</p>
+                      <p className="text-sm leading-relaxed text-slate-600">{card.body}</p>
+                    </article>
+                  ))}
+                </div>
+              </section>
+
+              <section className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <h3 className="text-lg font-bold text-slate-900 mb-4">추천 사용 순서</h3>
+                  <div className="space-y-3">
+                    {guidePlaybook.workflow.map((step, index) => (
+                      <div key={step} className="flex gap-3 rounded-xl bg-slate-50 p-4">
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sm font-black text-sky-700">
+                          {index + 1}
+                        </span>
+                        <p className="text-sm leading-relaxed text-slate-700">{step}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <aside className="rounded-2xl bg-slate-950 p-5 text-white shadow-xl">
+                  <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-300">Priority Tabs</p>
+                  <div className="space-y-4">
+                    {guidePlaybook.priorityTabs.map((item) => (
+                      <div key={item.title} className="border-b border-white/10 pb-4 last:border-b-0 last:pb-0">
+                        <p className="mb-1 font-bold text-white">{item.title}</p>
+                        <p className="text-sm leading-relaxed text-slate-300">{item.body}</p>
+                      </div>
+                    ))}
+                  </div>
+                </aside>
               </section>
 
               <section>
