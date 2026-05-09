@@ -18,6 +18,7 @@ import {
   getSkillCategoriesForRoleGroup,
   normalizeUserProfile,
   ROLE_INPUT_PLAYBOOK,
+  ROLE_INTERVIEW_PLAYBOOK,
   ROLE_RESULT_PLAYBOOK,
 } from './data/skills';
 import { analyzeViaProxy } from './lib/gemini-client';
@@ -628,6 +629,7 @@ export default function App() {
   const selectedRoleGroupInfo = ROLE_GROUPS.find((group) => group.label === normalizedUserInfo.roleGroup) || ROLE_GROUPS[0];
   const selectedRoleDetail = getRoleDetail(normalizedUserInfo.roleGroup, normalizedUserInfo.subRole);
   const rolePlaybook = ROLE_INPUT_PLAYBOOK[normalizedUserInfo.roleGroup] || ROLE_INPUT_PLAYBOOK.기획;
+  const interviewPlaybook = ROLE_INTERVIEW_PLAYBOOK[normalizedUserInfo.roleGroup] || ROLE_INTERVIEW_PLAYBOOK.기획;
   const resultPlaybook = ROLE_RESULT_PLAYBOOK[normalizedUserInfo.roleGroup] || ROLE_RESULT_PLAYBOOK.기획;
   const skillCategories = getSkillCategoriesForRoleGroup(normalizedUserInfo.roleGroup);
   const selectedSkillSuggestions = (skillCategories[skillInput.category] || Object.values(skillCategories)[0] || []).slice(0, 6);
@@ -2313,8 +2315,28 @@ AI 분석 요약:
             results?.interviewPreps?.length > 0 ? (
               <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
                 <div className="apple-intro">
-                  <h2 className="text-3xl font-bold text-slate-800 mb-2">예상 면접 질문 & 가이드</h2>
-                  <p className="text-slate-500">1~3순위 추천 공고별 인재상과 과제 유형을 반영한 두괄식 면접 대비 가이드입니다.</p>
+                  <h2 className="text-3xl font-bold text-slate-800 mb-2">{interviewPlaybook.title}</h2>
+                  <p className="text-slate-500">{interviewPlaybook.description}</p>
+                </div>
+                <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+                  <div className="grid gap-4 md:grid-cols-3">
+                    {interviewPlaybook.cards.map((card) => (
+                      <article key={card.label} className="rounded-[28px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
+                        <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-600">{card.label}</p>
+                        <h3 className="mb-2 text-base font-black text-slate-900">{card.title}</h3>
+                        <p className="text-sm leading-relaxed text-slate-600">{card.body}</p>
+                      </article>
+                    ))}
+                  </div>
+                  <aside className="rounded-[28px] bg-slate-950 px-6 py-6 text-white shadow-xl">
+                    <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-300">Answer Lens</p>
+                    <h3 className="mb-2 text-lg font-black">{interviewPlaybook.strategyTitle}</h3>
+                    <p className="text-sm leading-relaxed text-slate-300">{interviewPlaybook.strategyBody}</p>
+                    <div className="mt-5 border-t border-white/10 pt-5">
+                      <p className="mb-2 text-sm font-bold text-white">{interviewPlaybook.assignmentTitle}</p>
+                      <p className="text-sm leading-relaxed text-slate-300">{interviewPlaybook.assignmentBody}</p>
+                    </div>
+                  </aside>
                 </div>
                 <div className="flex bg-slate-200 p-1 rounded-xl w-full">
                   {(Array.isArray(results.interviewPreps) ? results.interviewPreps : []).map((prep, idx) => (
@@ -2358,8 +2380,9 @@ AI 분석 요약:
                           </div>
                         ))}
                       </div>
-                      <div className="bg-slate-100 border-l-4 border-slate-400 p-4 rounded-r-lg text-sm text-slate-600 mt-6 leading-relaxed">
+                      <div className="rounded-[28px] border border-slate-200 bg-slate-100 px-5 py-5 text-sm leading-relaxed text-slate-600">
                         <strong>※ 면접 답변 기법 안내</strong><br />
+                        <span className="text-slate-700">{interviewPlaybook.answerTip}</span><br /><br />
                         <strong className="text-indigo-600">STAR 기법</strong>: 상황(<strong>S</strong>ituation), 과제(<strong>T</strong>ask), 행동(<strong>A</strong>ction), 결과(<strong>R</strong>esult)의 구조로 경험을 구체적으로 증명하는 면접 표준 답변 방식입니다.<br />
                         <strong className="text-indigo-600">두괄식 답변(BLUF)</strong>: 결론(Bottom Line Up Front)을 가장 첫 문장에 배치하여 면접관의 집중도를 높이는 방식입니다.
                       </div>
@@ -2479,6 +2502,7 @@ AI 분석 요약:
             <PersonalityTest
               selectedProvider={selectedProvider}
               selectedModelId={selectedModelId}
+              userInfo={normalizedUserInfo}
             />
           </div>
 

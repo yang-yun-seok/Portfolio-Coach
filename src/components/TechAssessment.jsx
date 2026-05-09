@@ -4,7 +4,7 @@ import {
   Image as ImageIcon, Play, ArrowLeft, Code2, FileQuestion,
 } from 'lucide-react';
 import { staticAssetUrl } from '../lib/runtime-config';
-import { normalizeUserProfile } from '../data/skills';
+import { normalizeUserProfile, ROLE_ASSESSMENT_PLAYBOOK } from '../data/skills';
 
 const TECH_ASSESSMENT_IMAGE = staticAssetUrl('assets/tech-assessment-sequence.svg');
 
@@ -251,6 +251,7 @@ function formatTime(seconds) {
 export default function TechAssessment({ userInfo }) {
   const normalizedUser = normalizeUserProfile(userInfo || {});
   const trackMeta = ASSESSMENT_TRACK_META[normalizedUser.roleGroup] || ASSESSMENT_TRACK_META.기획;
+  const assessmentPlaybook = ROLE_ASSESSMENT_PLAYBOOK[normalizedUser.roleGroup] || ROLE_ASSESSMENT_PLAYBOOK.기획;
   const assessmentData = ASSESSMENT_DATA_BY_ROLE[normalizedUser.roleGroup] || PLANNING_TEST_DATA;
   const totalTime = ASSESSMENT_TIME_BY_ROLE[normalizedUser.roleGroup] || TOTAL_TIME;
   const [step, setStep] = useState('intro');
@@ -326,6 +327,12 @@ export default function TechAssessment({ userInfo }) {
               <p className="studio-eyebrow">Evaluation Focus</p>
               <h3>{trackMeta.title}</h3>
               <p>{trackMeta.focus}</p>
+            </article>
+
+            <article className="studio-assessment-panel">
+              <p className="studio-eyebrow">Review Lens</p>
+              <h3>{assessmentPlaybook.reviewTitle}</h3>
+              <p>{assessmentPlaybook.reviewBody}</p>
             </article>
 
             <div className="studio-assessment-rule-grid">
@@ -493,8 +500,8 @@ export default function TechAssessment({ userInfo }) {
         <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-10 mb-10 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sky-500 to-indigo-500"></div>
           <FileQuestion className="w-16 h-16 text-sky-500 mx-auto mb-4" />
-          <h2 className="text-3xl font-black text-slate-800 mb-2">직무 과제 리뷰 화면</h2>
-          <p className="text-slate-500">제출된 답안에 대한 상세 피드백을 확인하세요.</p>
+          <h2 className="text-3xl font-black text-slate-800 mb-2">{normalizedUser.roleGroup} 직무 과제 리뷰</h2>
+          <p className="text-slate-500">{assessmentPlaybook.reviewBody}</p>
           <div className="mt-6 flex justify-center gap-4">
             <button
               onClick={handleReset}
@@ -503,6 +510,16 @@ export default function TechAssessment({ userInfo }) {
               <ArrowLeft size={16} /> 다시 도전하기
             </button>
           </div>
+        </div>
+
+        <div className="mb-8 grid gap-4 md:grid-cols-3">
+          {assessmentPlaybook.reviewCards.map((card) => (
+            <article key={card.label} className="rounded-[28px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
+              <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-600">{card.label}</p>
+              <h3 className="mb-2 text-base font-black text-slate-900">{card.title}</h3>
+              <p className="text-sm leading-relaxed text-slate-600">{card.body}</p>
+            </article>
+          ))}
         </div>
 
         {/* 문항별 피드백 */}

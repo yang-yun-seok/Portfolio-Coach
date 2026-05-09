@@ -10,6 +10,7 @@ import {
   MAIN_QUESTIONS,
   BINARY_QUESTIONS,
 } from '../data/personalityTestData';
+import { normalizeUserProfile, ROLE_PERSONALITY_PLAYBOOK } from '../data/skills';
 import { apiUrl } from '../lib/runtime-config';
 
 // ── 타이머 포맷 ─────────────────────────────────────────────────────────
@@ -24,11 +25,52 @@ const TOTAL_TIME = 40 * 60;
 const QUESTIONS_PER_PAGE = 1;
 const QUESTION_TIME_LIMIT = 10; // 문항당 10초
 
-// ── 로컬 Fallback 분석 로직 ─────────────────────────────────────────────
-function analyzeLocally(likertAnswers, binaryAnswers) {
-  const vals = Object.values(likertAnswers);
-  const avg = vals.length > 0 ? vals.reduce((a, b) => a + b, 0) / vals.length : 3;
+function buildRoleFitMessage(roleGroup, traits) {
+  const openness = traits.find((trait) => trait.name === '개방성')?.score || 50;
+  const diligence = traits.find((trait) => trait.name === '성실성')?.score || 50;
+  const stability = traits.find((trait) => trait.name === '정서 안정성')?.score || 50;
+  const empathy = traits.find((trait) => trait.name === '친화성')?.score || 50;
 
+  if (roleGroup === '프로그래밍') {
+    return `프로그래밍 직군에서는 성실성(${diligence}점)과 정서 안정성(${stability}점), 자기 주도적으로 문제를 파고드는 태도가 특히 중요하게 읽힙니다. 구현 품질은 협업 말투와 장애 대응 태도까지 포함해 해석되므로, 트러블슈팅 경험과 검증 습관을 같이 어필하는 편이 좋습니다.`;
+  }
+
+  if (roleGroup === '아트') {
+    return `아트 직군에서는 개방성(${openness}점)과 친화성(${empathy}점), 피드백을 소화하는 정서 안정성이 중요하게 읽힙니다. 스타일 탐색과 수정 과정에서 어떤 기준으로 판단하고 협업했는지를 함께 설명하면 결과 해석이 훨씬 강해집니다.`;
+  }
+
+  return `기획 직군에서는 성실성(${diligence}점), 정서 안정성(${stability}점), 친화성(${empathy}점)이 특히 중요하게 읽힙니다. 기획은 밀도 높은 협업과 반복적인 조율이 필수적이므로, 스트레스 관리와 커뮤니케이션 방식을 사례와 함께 어필하는 편이 좋겠습니다.`;
+}
+
+function buildRoleStrategies(roleGroup, lieAvg) {
+  const shared = [
+    '비슷한 성격을 묻는 문항 간에 일관성을 유지하세요. 특히 성실성·정서 안정성 관련 문항의 방향을 맞추는 것이 핵심입니다.',
+    `Lie Scale 문항(완벽하게 긍정적인 진술)에서 "매우 그렇다"를 남발하지 마세요. 현재 사회적 바람직성 응답 평균이 ${lieAvg.toFixed(1)}점입니다.`,
+    '극단적 응답(1점/6점)의 비율을 전체의 15~25% 이내로 유지하면 자연스러운 응답 패턴으로 인식됩니다.',
+  ];
+
+  if (roleGroup === '프로그래밍') {
+    return [
+      ...shared,
+      '프로그래밍 직군은 완벽한 사람처럼 보이기보다, 장애와 예외를 차분하게 다루는 사람으로 읽히는 편이 더 좋습니다.',
+    ];
+  }
+
+  if (roleGroup === '아트') {
+    return [
+      ...shared,
+      '아트 직군은 감수성을 숨기기보다, 피드백을 받아 수정하는 방식이 안정적이라는 인상을 주는 편이 좋습니다.',
+    ];
+  }
+
+  return [
+    ...shared,
+    '기획 직군은 무조건 긍정적인 성향보다, 협업 갈등과 압박 상황을 구조적으로 다루는 사람으로 읽히는 편이 더 유리합니다.',
+  ];
+}
+
+// ── 로컬 Fallback 분석 로직 ─────────────────────────────────────────────
+function analyzeLocally(likertAnswers, binaryAnswers, roleGroup = '기획') {
   // 문항 그룹별 평균으로 Big5 유사 특성 추론
   const honesty = [1, 10, 16, 39, 77, 91].map(id => likertAnswers[id]).filter(v => v !== undefined);
   const diligence = [18, 28, 31, 34, 64, 84, 89].map(id => likertAnswers[id]).filter(v => v !== undefined);
@@ -80,18 +122,20 @@ function analyzeLocally(likertAnswers, binaryAnswers) {
   const lieItems = [10, 16, 39, 77, 91].map(id => likertAnswers[id]).filter(v => v !== undefined);
   const lieAvg = lieItems.length > 0 ? lieItems.reduce((a, b) => a + b, 0) / lieItems.length : 2.5;
   const consistencyScore = lieAvg > 4 ? Math.round(40 + Math.random() * 20) : Math.round(70 + Math.random() * 20);
+  const strongestTraits = [...traits].sort((a, b) => b.score - a.score).slice(0, 2);
+  const weakestTraits = [...traits].sort((a, b) => a.score - b.score).slice(0, 1);
 
   return {
     traits,
     workStyle,
     strengths: [
-      traits.sort((a, b) => b.score - a.score).slice(0, 2).map(t => ({
+      strongestTraits.map(t => ({
         title: `높은 ${t.name}`,
         description: `${t.name} 점수가 ${t.score}점으로 강점으로 나타났습니다. ${t.description}`,
       })),
     ].flat(),
     cautions: [
-      traits.sort((a, b) => a.score - b.score).slice(0, 1).map(t => ({
+      weakestTraits.map(t => ({
         title: `${t.name} 보완 필요`,
         description: `${t.name} 점수가 ${t.score}점으로 상대적으로 낮게 나왔습니다. 이 영역을 보완하면 더 균형 잡힌 인상을 줄 수 있습니다.`,
       })),
@@ -102,12 +146,8 @@ function analyzeLocally(likertAnswers, binaryAnswers) {
         ? '사회적 바람직성 문항에서 높은 응답 경향이 관찰됩니다. 실제 검사에서는 이런 패턴이 신뢰도 저하로 이어질 수 있으니 조금 더 솔직한 응답을 권장합니다.'
         : '전반적으로 솔직한 응답 패턴이 관찰됩니다. 사회적 바람직성 문항에서 자연스러운 응답을 유지하고 있어 검사 신뢰도가 양호합니다.',
     },
-    gameIndustryFit: `게임 업계에서 중시하는 팀워크, 창의성, 스트레스 내성 관점에서 분석했을 때, 외향성(${traits.find(t => t.name === '외향성')?.score || 50}점)과 개방성(${traits.find(t => t.name === '개방성')?.score || 50}점)이 특히 중요한 지표입니다. 게임 개발은 밀도 높은 협업이 필수적이므로 타인과의 소통 역량을 어필하는 것이 좋겠습니다.`,
-    testStrategy: [
-      '비슷한 성격을 묻는 문항 간에 일관성을 유지하세요. 특히 성실성·정서 안정성 관련 문항의 방향을 맞추는 것이 핵심입니다.',
-      `Lie Scale 문항(완벽하게 긍정적인 진술)에서 "매우 그렇다"를 남발하지 마세요. 현재 사회적 바람직성 응답 평균이 ${lieAvg.toFixed(1)}점입니다.`,
-      '극단적 응답(1점/6점)의 비율을 전체의 15~25% 이내로 유지하면 자연스러운 응답 패턴으로 인식됩니다.',
-    ],
+    gameIndustryFit: buildRoleFitMessage(roleGroup, traits),
+    testStrategy: buildRoleStrategies(roleGroup, lieAvg),
   };
 }
 
@@ -305,7 +345,9 @@ function openPdfPrint(result, meta) {
 // ══════════════════════════════════════════════════════════════════════════
 // 인성검사 메인 컴포넌트
 // ══════════════════════════════════════════════════════════════════════════
-export default function PersonalityTest({ selectedProvider, selectedModelId }) {
+export default function PersonalityTest({ selectedProvider, selectedModelId, userInfo }) {
+  const normalizedUser = normalizeUserProfile(userInfo || {});
+  const personalityPlaybook = ROLE_PERSONALITY_PLAYBOOK[normalizedUser.roleGroup] || ROLE_PERSONALITY_PLAYBOOK.기획;
   const [step, setStep] = useState('intro');
   const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
   const [practiceAnswers, setPracticeAnswers] = useState({});
@@ -425,7 +467,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
     setAiError('');
     const fallbackWithNotice = (message) => {
       setAiError(message);
-      const local = analyzeLocally(likertAnswers, binaryAnswers);
+      const local = analyzeLocally(likertAnswers, binaryAnswers, normalizedUser.roleGroup);
       setAiResult(local);
       setAnalysisSource('local');
     };
@@ -487,9 +529,9 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             <p className="studio-eyebrow">Personality Simulation</p>
             <h2>인성검사 시뮬레이션</h2>
             <p>
-              실제 기업 인적성 검사 흐름을 바탕으로, 연습 문항부터 리커트 본 검사,
-              선택형 문항까지 순서대로 진행합니다. 빠르게 답하는 것보다 일관되게 답하는
-              편이 더 중요합니다.
+              {personalityPlaybook.introTitle} 실제 기업 인적성 검사 흐름을 바탕으로,
+              연습 문항부터 리커트 본 검사, 선택형 문항까지 순서대로 진행합니다.
+              빠르게 답하는 것보다 일관되게 답하는 편이 더 중요합니다.
             </p>
             <button
               onClick={handleStartPractice}
@@ -509,7 +551,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
               <strong>본 검사 총 40분</strong>
             </div>
             <p>
-              검사 목적은 정답 찾기가 아니라 응답의 일관성과 업무 성향의 흐름을 읽는 데 있습니다.
+              {personalityPlaybook.summaryTitle}: {personalityPlaybook.summaryBody}
             </p>
           </div>
         </section>
@@ -548,6 +590,12 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
               <p>사회적 바람직성(Lie Scale) 탐지 문항이 포함되어 있어 지나치게 완벽한 응답은 오히려 부자연스럽게 보일 수 있습니다.</p>
             </div>
           </article>
+        </section>
+
+        <section className="rounded-[32px] border border-slate-200 bg-slate-950 px-8 py-8 text-white shadow-xl">
+          <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-300">Role Lens</p>
+          <h3 className="mb-2 text-2xl font-black">{personalityPlaybook.summaryTitle}</h3>
+          <p className="max-w-3xl text-sm leading-relaxed text-slate-300">{personalityPlaybook.introDescription}</p>
         </section>
       </div>
     );
@@ -703,7 +751,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
         <div className="personality-result-hero bg-white rounded-[32px] shadow-lg border border-slate-200 p-10 mb-8 text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-sky-500 via-blue-500 to-slate-900"></div>
           <Brain className="w-16 h-16 text-sky-500 mx-auto mb-4" />
-          <h2 className="text-3xl font-black text-slate-800 mb-2">인성검사 분석 화면</h2>
+          <h2 className="text-3xl font-black text-slate-800 mb-2">{normalizedUser.roleGroup} 직군 인성검사 분석</h2>
           <p className="text-slate-500 mb-6">소요 시간: {formatTime(TOTAL_TIME - timeLeft)} · 응답 패턴을 바탕으로 성향 리포트를 구성합니다.</p>
 
           <div className="flex justify-center gap-3 flex-wrap">
@@ -769,7 +817,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
           <div className="bg-white rounded-[28px] shadow-lg border border-sky-200 p-12 mb-6 text-center">
             <Loader2 className="w-12 h-12 text-sky-500 mx-auto mb-4 animate-spin" />
             <h3 className="text-lg font-bold text-slate-800 mb-2">AI가 응답 패턴을 분석하고 있습니다...</h3>
-            <p className="text-sm text-slate-500">성격 특성, 업무 스타일, 일관성 지표를 종합 분석 중입니다.</p>
+            <p className="text-sm text-slate-500">성격 특성, 업무 스타일, 일관성 지표를 종합해 {normalizedUser.roleGroup} 직군 기준으로 정리하고 있습니다.</p>
             <div className="mt-6 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-left">
               <div className="flex items-start gap-3">
                 <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
@@ -804,6 +852,23 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
                 </button>
               </div>
             )}
+
+            <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
+              <div className="grid gap-4 md:grid-cols-3">
+                {personalityPlaybook.resultCards.map((card) => (
+                  <article key={card.label} className="rounded-[28px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
+                    <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-600">{card.label}</p>
+                    <h3 className="mb-2 text-base font-black text-slate-900">{card.title}</h3>
+                    <p className="text-sm leading-relaxed text-slate-600">{card.body}</p>
+                  </article>
+                ))}
+              </div>
+              <aside className="rounded-[28px] bg-slate-950 px-6 py-6 text-white shadow-xl">
+                <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-300">Interpretation</p>
+                <h3 className="mb-2 text-lg font-black">{personalityPlaybook.fitTitle}</h3>
+                <p className="text-sm leading-relaxed text-slate-300">{personalityPlaybook.fitBody}</p>
+              </aside>
+            </div>
 
             {/* ── 성격 특성 ── */}
             <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
@@ -923,7 +988,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             <div className="bg-gradient-to-br from-sky-50 via-white to-slate-100 rounded-[28px] shadow-lg border border-sky-100 overflow-hidden">
               <div className="px-8 py-5 border-b border-sky-100 flex items-center gap-3">
                 <Sparkles className="w-5 h-5 text-sky-500" />
-                <h3 className="text-lg font-black text-slate-900">게임 업계 적합도</h3>
+                <h3 className="text-lg font-black text-slate-900">{personalityPlaybook.fitTitle}</h3>
               </div>
               <div className="p-6">
                 <p className="text-sm text-slate-700 leading-relaxed">{aiResult.gameIndustryFit}</p>
