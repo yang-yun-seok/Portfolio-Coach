@@ -18,6 +18,7 @@ import {
   getSkillCategoriesForRoleGroup,
   normalizeUserProfile,
   ROLE_INPUT_PLAYBOOK,
+  ROLE_RESULT_PLAYBOOK,
 } from './data/skills';
 import { analyzeViaProxy } from './lib/gemini-client';
 import { analyzeGitHubPortfolio } from './lib/github-analyzer';
@@ -627,8 +628,16 @@ export default function App() {
   const selectedRoleGroupInfo = ROLE_GROUPS.find((group) => group.label === normalizedUserInfo.roleGroup) || ROLE_GROUPS[0];
   const selectedRoleDetail = getRoleDetail(normalizedUserInfo.roleGroup, normalizedUserInfo.subRole);
   const rolePlaybook = ROLE_INPUT_PLAYBOOK[normalizedUserInfo.roleGroup] || ROLE_INPUT_PLAYBOOK.기획;
+  const resultPlaybook = ROLE_RESULT_PLAYBOOK[normalizedUserInfo.roleGroup] || ROLE_RESULT_PLAYBOOK.기획;
   const skillCategories = getSkillCategoriesForRoleGroup(normalizedUserInfo.roleGroup);
   const selectedSkillSuggestions = (skillCategories[skillInput.category] || Object.values(skillCategories)[0] || []).slice(0, 6);
+  const topRecommendedJobs = recommendedJobs.slice(0, 3);
+  const highlightedMatchedSkills = [...new Set(
+    topRecommendedJobs.flatMap((job) => (job.matchDetail?.matchedSkills || []).map((skill) => skill.name))
+  )].slice(0, 6);
+  const highlightedGapSkills = [...new Set(
+    topRecommendedJobs.flatMap((job) => job.matchDetail?.unmatchedSkills || [])
+  )].slice(0, 6);
 
   const handleProviderChange = (providerId) => {
     setSelectedProvider(providerId);
@@ -1872,8 +1881,56 @@ AI 분석 요약:
             results ? (
               <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
                 <div className="apple-intro">
-                  <h2 className="text-3xl font-bold text-slate-800 mb-2">서류 분석 피드백</h2>
-                  <p className="text-slate-500">결론 중심의 두괄식/개조식 피드백입니다.</p>
+                  <h2 className="text-3xl font-bold text-slate-800 mb-2">{resultPlaybook.feedbackTitle}</h2>
+                  <p className="text-slate-500">{resultPlaybook.feedbackDescription}</p>
+                </div>
+
+                <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+                  <div className="grid gap-4 md:grid-cols-3">
+                    {resultPlaybook.feedbackCards.map((card) => (
+                      <article key={card.label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{card.label}</p>
+                        <h3 className="mt-2 text-base font-bold leading-snug text-slate-900">{card.title}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-slate-600">{card.body}</p>
+                      </article>
+                    ))}
+                  </div>
+
+                  <aside className="rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-sm">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300">Current Review</p>
+                    <h3 className="mt-2 text-2xl font-black tracking-tight">{getProfileDisplayRole(normalizedUserInfo)}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                      {selectedRoleDetail.focus}
+                    </p>
+                    <div className="mt-5 space-y-4">
+                      <div>
+                        <p className="text-xs font-bold text-slate-200">우선 확인할 공고</p>
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {(topRecommendedJobs.length > 0 ? topRecommendedJobs : []).map((job, idx) => (
+                            <span key={`${job.id}-${idx}`} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-200">
+                              {idx + 1}. {job.company}
+                            </span>
+                          ))}
+                          {topRecommendedJobs.length === 0 && (
+                            <span className="text-xs text-slate-400">추천 공고가 아직 없습니다.</span>
+                          )}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-slate-200">현재 강조할 역량</p>
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {(highlightedMatchedSkills.length > 0 ? highlightedMatchedSkills : userInfo.skills.map((skill) => skill.name).slice(0, 5)).map((skill) => (
+                            <span key={skill} className="rounded-full bg-sky-400/15 px-3 py-1.5 text-xs text-sky-100">
+                              {skill}
+                            </span>
+                          ))}
+                          {highlightedMatchedSkills.length === 0 && userInfo.skills.length === 0 && (
+                            <span className="text-xs text-slate-400">직무 역량을 추가하면 여기서 우선 강조 포인트를 보여줍니다.</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </aside>
                 </div>
 
                 {/* ① 공통 피드백 — 이력서(좌) / 자소서(우) 2열 */}
@@ -1881,7 +1938,7 @@ AI 분석 요약:
                   {/* 이력서 */}
                   <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
                     <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                      <FileText size={20} className="text-blue-500" /> 이력서 피드백
+                      <FileText size={20} className="text-blue-500" /> {resultPlaybook.feedbackSectionTitles.resume}
                     </h3>
                     <ul className="space-y-4">
                       {Array.isArray(results.resumeImprovements) && results.resumeImprovements.length > 0
@@ -1904,7 +1961,7 @@ AI 분석 요약:
                   {/* 자소서 공통 */}
                   <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
                     <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                      <Briefcase size={20} className="text-purple-500" /> 자기소개서 피드백
+                      <Briefcase size={20} className="text-purple-500" /> {resultPlaybook.feedbackSectionTitles.cover}
                     </h3>
                     <ul className="space-y-4">
                       {(() => {
@@ -1933,7 +1990,7 @@ AI 분석 요약:
                 {results.coverLetterImprovements && !Array.isArray(results.coverLetterImprovements) && (
                   <div className="space-y-4">
                     <h3 className="text-lg font-bold text-slate-700 flex items-center gap-2">
-                      <Target size={18} className="text-indigo-500" /> 공고별 맞춤 분석
+                      <Target size={18} className="text-indigo-500" /> {resultPlaybook.feedbackSectionTitles.custom}
                     </h3>
                     {!pinnedSlots.some(s => s.status === 'resolved' && s.job) ? (
                       <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 text-center">
@@ -1992,9 +2049,20 @@ AI 분석 요약:
             results ? (
               <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
                 <div className="apple-intro">
-                  <h2 className="text-3xl font-bold text-slate-800 mb-2">포트폴리오 가이드</h2>
-                  <p className="text-slate-500">포트폴리오 합격률을 높이는 핵심 가이드입니다.</p>
+                  <h2 className="text-3xl font-bold text-slate-800 mb-2">{resultPlaybook.portfolioTitle}</h2>
+                  <p className="text-slate-500">{resultPlaybook.portfolioDescription}</p>
                 </div>
+
+                <div className="grid gap-4 md:grid-cols-3">
+                  {resultPlaybook.portfolioCards.map((card) => (
+                    <article key={card.label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{card.label}</p>
+                      <h3 className="mt-2 text-base font-bold leading-snug text-slate-900">{card.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">{card.body}</p>
+                    </article>
+                  ))}
+                </div>
+
                 <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100">
                   <ul className="space-y-5">
                     {Array.isArray(results.portfolioImprovements) && results.portfolioImprovements.length > 0
@@ -2025,7 +2093,7 @@ AI 분석 요약:
                         <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-sky-300">GitHub Technical Doc</p>
                         <h3 className="mt-1 text-2xl font-black tracking-tight">플밍 포트폴리오 기술문서 초안</h3>
                         <p className="mt-2 text-sm leading-relaxed text-slate-300">
-                          public GitHub 저장소의 README, 루트 구조, 주요 설정 파일만 가볍게 읽어 정리했습니다.
+                          public GitHub 저장소의 README, 루트 구조, 주요 설정 파일을 기준으로 기술 설명용 초안을 정리했습니다.
                         </p>
                       </div>
                       <a
@@ -2077,8 +2145,8 @@ AI 분석 요약:
             recommendedJobs.length > 0 ? (
               <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
                 <div className="apple-intro">
-                  <h2 className="text-3xl font-bold text-slate-800 mb-2">추천 공고 리스트</h2>
-                  <p className="text-slate-500 mb-4">입력하신 보유 역량에 적합한 공고 순위입니다.</p>
+                  <h2 className="text-3xl font-bold text-slate-800 mb-2">{resultPlaybook.jobsTitle}</h2>
+                  <p className="text-slate-500 mb-4">{resultPlaybook.jobsDescription}</p>
                   {/* 점수 구간 필터 */}
                   <div className="flex flex-wrap gap-2">
                     {[
@@ -2101,6 +2169,51 @@ AI 분석 요약:
                     ))}
                   </div>
                 </div>
+
+                <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+                  <div className="grid gap-4 md:grid-cols-3">
+                    {resultPlaybook.jobsCards.map((card) => (
+                      <article key={card.label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{card.label}</p>
+                        <h3 className="mt-2 text-base font-bold leading-snug text-slate-900">{card.title}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-slate-600">{card.body}</p>
+                      </article>
+                    ))}
+                  </div>
+
+                  <aside className="rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-sm">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300">Match Snapshot</p>
+                    <h3 className="mt-2 text-2xl font-black tracking-tight">상위 공고 기준 현재 포지션</h3>
+                    <div className="mt-5 space-y-4">
+                      <div>
+                        <p className="text-xs font-bold text-slate-200">매칭이 강한 역량</p>
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {(highlightedMatchedSkills.length > 0 ? highlightedMatchedSkills : userInfo.skills.map((skill) => skill.name).slice(0, 6)).map((skill) => (
+                            <span key={skill} className="rounded-full bg-emerald-400/15 px-3 py-1.5 text-xs text-emerald-100">
+                              {skill}
+                            </span>
+                          ))}
+                          {highlightedMatchedSkills.length === 0 && userInfo.skills.length === 0 && (
+                            <span className="text-xs text-slate-400">직무 역량을 입력하면 강점 축을 여기서 요약합니다.</span>
+                          )}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-slate-200">상위 공고 기준 보완 후보</p>
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {highlightedGapSkills.length > 0 ? highlightedGapSkills.map((skill) => (
+                            <span key={skill} className="rounded-full bg-amber-400/15 px-3 py-1.5 text-xs text-amber-100">
+                              {skill}
+                            </span>
+                          )) : (
+                            <span className="text-xs text-slate-400">현재 상위 공고 기준으로 큰 공백은 보이지 않습니다.</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </aside>
+                </div>
+
                 <div className="grid gap-4">
                   {recommendedJobs
                     .filter(j => scoreFilter === 'all' ? true : scoreFilter === '60-' ? j.score < 60 : j.score >= parseInt(scoreFilter))
