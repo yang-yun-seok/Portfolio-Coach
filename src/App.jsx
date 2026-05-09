@@ -27,20 +27,13 @@ import { analyzeViaProxy } from './lib/gemini-client';
 import { analyzeGitHubPortfolio } from './lib/github-analyzer';
 import { apiUrl, eventSourceUrl, staticAssetUrl } from './lib/runtime-config';
 import { useModels } from './hooks/useModels';
+import { useWorkspacePersistence } from './hooks/useWorkspacePersistence';
 import ModelSelector from './components/ModelSelector';
 import TechAssessment from './components/TechAssessment';
 import PersonalityTest from './components/PersonalityTest';
 import PdfExport from './components/PdfExport';
 import AnalysisHistoryPanel from './components/AnalysisHistoryPanel';
 import InstructorFeedbackForm, { EMPTY_INSTRUCTOR } from './components/InstructorFeedbackForm';
-import {
-  ANALYSIS_HISTORY_KEY,
-  MAX_ANALYSIS_HISTORY,
-  WORKSPACE_SAVE_KEY,
-  buildHistoryEntry,
-  buildSnapshotComparison,
-  getSnapshotMeta,
-} from './lib/analysis-history';
 
 // ── 아이콘 맵 (interview-basic.json에서 문자열로 지정된 아이콘을 컴포넌트로 매핑) ──
 const ICON_MAP = { Shirt, Clock, Brain, Sparkles };
@@ -291,10 +284,6 @@ export default function App() {
   // 결과
   const [results, setResults] = useState(null);
   const [recommendedJobs, setRecommendedJobs] = useState([]);
-  const [restoreNotice, setRestoreNotice] = useState(null);
-  const [lastSavedAt, setLastSavedAt] = useState('');
-  const [analysisHistory, setAnalysisHistory] = useState([]);
-  const [selectedHistoryId, setSelectedHistoryId] = useState('');
 
   // 우선 공고 지정 (1~3순위)
   const [pinnedSlots, setPinnedSlots] = useState([
@@ -374,7 +363,6 @@ export default function App() {
   const [crawlStatus, setCrawlStatus] = useState({ running: false, message: '', percent: 0, log: [], isError: false });
   const crawlEventSourceRef = useRef(null);
   const crawlPollerRef = useRef(null);
-  const saveStatusTimerRef = useRef(null);
 
   // ── 크롤링 태그 선택 ──────────────────────────────────────────────────
   const CRAWL_JOB_TAGS = [
@@ -648,44 +636,36 @@ export default function App() {
   const highlightedGapSkills = [...new Set(
     topRecommendedJobs.flatMap((job) => job.matchDetail?.unmatchedSkills || [])
   )].slice(0, 6);
-  const selectedHistoryEntry = analysisHistory.find((entry) => entry.id === selectedHistoryId)
-    || analysisHistory[1]
-    || null;
-  const currentWorkspaceSnapshot = {
+  const {
+    saveStatus,
+    setSaveStatus,
+    restoreNotice,
+    setRestoreNotice,
+    lastSavedAt,
+    analysisHistory,
+    selectedHistoryId,
+    setSelectedHistoryId,
+    selectedHistoryEntry,
+    historyComparison,
+    formatSavedAt,
+    persistWorkspaceSnapshot,
+    loadHistorySnapshot,
+  } = useWorkspacePersistence({
     userInfo,
     results,
     recommendedJobs,
     instructorFeedback,
-    savedAt: lastSavedAt || new Date().toISOString(),
-  };
-  const historyComparison = results && selectedHistoryEntry
-    ? buildSnapshotComparison(currentWorkspaceSnapshot, selectedHistoryEntry)
-    : null;
-
-  const loadHistorySnapshot = (entry) => {
-    if (!entry) return;
-    if (entry.userInfo) setUserInfo(normalizeUserProfile({
-      ...entry.userInfo,
-      skills: Array.isArray(entry.userInfo.skills) ? entry.userInfo.skills : [],
-    }));
-    setResults(entry.results || null);
-    setRecommendedJobs(Array.isArray(entry.recommendedJobs) ? entry.recommendedJobs : []);
-    setInstructorFeedback(entry.instructorFeedback || EMPTY_INSTRUCTOR);
-    setLastSavedAt(entry.savedAt || '');
-    setRestoreNotice({
-      savedAt: entry.savedAt || '',
-      hasResults: Boolean(entry.results),
-    });
-    persistWorkspaceSnapshot({
-      userInfo: entry.userInfo || userInfo,
-      results: entry.results || null,
-      recommendedJobs: Array.isArray(entry.recommendedJobs) ? entry.recommendedJobs : [],
-      instructorFeedback: entry.instructorFeedback || EMPTY_INSTRUCTOR,
-      savedAt: entry.savedAt || new Date().toISOString(),
-    });
-    setInfoMessage(`${formatSavedAt(entry.savedAt) || '선택한 시점'} 분석 기록을 현재 화면에 불러왔습니다.`);
-    setActiveTab(entry.results ? 'feedback' : 'input');
-  };
+    loading,
+    crawlRunning: crawlStatus.running,
+    setUserInfo,
+    setResults,
+    setRecommendedJobs,
+    setInstructorFeedback,
+    normalizeProfile: normalizeUserProfile,
+    emptyInstructorFeedback: EMPTY_INSTRUCTOR,
+    setActiveTab,
+    setInfoMessage,
+  });
 
   const handleProviderChange = (providerId) => {
     setSelectedProvider(providerId);
@@ -1211,63 +1191,7 @@ AI 분석 요약:
     }
   };
 
-  // ── 저장 기능 ───────────────────────────────────────────────────────
-  const [saveStatus, setSaveStatus] = useState('');
-  const formatSavedAt = (value) => {
-    if (!value) return '';
-    try {
-      return new Intl.DateTimeFormat('ko-KR', {
-        dateStyle: 'medium',
-        timeStyle: 'short',
-      }).format(new Date(value));
-    } catch {
-      return value;
-    }
-  };
-  const flashSaveStatus = (status) => {
-    setSaveStatus(status);
-    if (saveStatusTimerRef.current) {
-      clearTimeout(saveStatusTimerRef.current);
-    }
-    saveStatusTimerRef.current = setTimeout(() => setSaveStatus(''), 3200);
-  };
-  const writeAnalysisHistory = (entries) => {
-    let nextEntries = Array.isArray(entries) ? entries.slice(0, MAX_ANALYSIS_HISTORY) : [];
-    while (nextEntries.length > 0) {
-      try {
-        localStorage.setItem(ANALYSIS_HISTORY_KEY, JSON.stringify(nextEntries));
-        return nextEntries;
-      } catch {
-        nextEntries = nextEntries.slice(0, -1);
-      }
-    }
-    try {
-      localStorage.removeItem(ANALYSIS_HISTORY_KEY);
-    } catch {}
-    return [];
-  };
-  const persistWorkspaceSnapshot = (saveData, { showConfirmation = false, trackHistory = false } = {}) => {
-    const snapshot = {
-      ...saveData,
-      recommendedJobs: Array.isArray(saveData.recommendedJobs) ? saveData.recommendedJobs : [],
-      savedAt: saveData.savedAt || new Date().toISOString(),
-    };
-    localStorage.setItem(WORKSPACE_SAVE_KEY, JSON.stringify(snapshot));
-    if (trackHistory && snapshot.results) {
-      const historyEntry = buildHistoryEntry(snapshot);
-      const nextHistory = writeAnalysisHistory([
-        historyEntry,
-        ...analysisHistory.filter((entry) => entry.savedAt !== historyEntry.savedAt),
-      ]);
-      setAnalysisHistory(nextHistory);
-      setSelectedHistoryId(nextHistory[1]?.id || '');
-    }
-    setLastSavedAt(snapshot.savedAt);
-    if (showConfirmation) {
-      flashSaveStatus('saved');
-    }
-    return snapshot;
-  };
+  // ── 저장 액션 ───────────────────────────────────────────────────────
   const saveProfile = async () => {
     try {
       let feedback = instructorFeedback;
@@ -1282,64 +1206,6 @@ AI 분석 요약:
       persistWorkspaceSnapshot({ userInfo, results, recommendedJobs, instructorFeedback }, { showConfirmation: true });
     }
   };
-  // 저장 데이터 복원
-  useEffect(() => {
-    try {
-      let restoredHistory = [];
-      const historyRaw = localStorage.getItem(ANALYSIS_HISTORY_KEY);
-      if (historyRaw) {
-        restoredHistory = JSON.parse(historyRaw)
-          .map((entry) => ({
-            ...entry,
-            meta: entry?.meta || getSnapshotMeta(entry),
-          }))
-          .filter((entry) => entry?.savedAt);
-      }
-
-      const saved = localStorage.getItem(WORKSPACE_SAVE_KEY);
-      if (saved) {
-        const { userInfo: si, results: sr, recommendedJobs: sj, instructorFeedback: sf, savedAt } = JSON.parse(saved);
-        if (si) setUserInfo(normalizeUserProfile({ ...si, skills: Array.isArray(si.skills) ? si.skills : [] }));
-        if (sr) setResults(sr);
-        if (Array.isArray(sj)) setRecommendedJobs(sj);
-        if (sf) setInstructorFeedback(sf);
-        if (savedAt) {
-          setLastSavedAt(savedAt);
-        }
-        if (si || sr || sf) {
-          setRestoreNotice({
-            savedAt: savedAt || '',
-            hasResults: Boolean(sr),
-          });
-        }
-        if (sr && savedAt && !restoredHistory.some((entry) => entry.savedAt === savedAt)) {
-          restoredHistory = writeAnalysisHistory([
-            buildHistoryEntry({ userInfo: si, results: sr, recommendedJobs: sj, instructorFeedback: sf, savedAt }),
-            ...restoredHistory,
-          ]);
-        }
-      }
-      setAnalysisHistory(restoredHistory);
-      setSelectedHistoryId(restoredHistory[1]?.id || '');
-    } catch {}
-  }, []);
-  useEffect(() => () => {
-    if (saveStatusTimerRef.current) {
-      clearTimeout(saveStatusTimerRef.current);
-    }
-  }, []);
-  useEffect(() => {
-    const shouldWarn = loading || crawlStatus.running || saveStatus === 'generating';
-    if (!shouldWarn) return undefined;
-
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = '';
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [loading, crawlStatus.running, saveStatus]);
 
   // ── 네비게이션 ────────────────────────────────────────────────────────
   const navItems = [
