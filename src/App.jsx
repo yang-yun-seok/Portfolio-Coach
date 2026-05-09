@@ -17,6 +17,7 @@ import {
   getRoleDetails,
   getSkillCategoriesForRoleGroup,
   normalizeUserProfile,
+  ROLE_INPUT_PLAYBOOK,
 } from './data/skills';
 import { analyzeViaProxy } from './lib/gemini-client';
 import { analyzeGitHubPortfolio } from './lib/github-analyzer';
@@ -623,8 +624,11 @@ export default function App() {
   // ── 헬퍼 ──────────────────────────────────────────────────────────────
   const currentProvider = enabledProviders.find((p) => p.id === selectedProvider);
   const normalizedUserInfo = normalizeUserProfile(userInfo);
+  const selectedRoleGroupInfo = ROLE_GROUPS.find((group) => group.label === normalizedUserInfo.roleGroup) || ROLE_GROUPS[0];
   const selectedRoleDetail = getRoleDetail(normalizedUserInfo.roleGroup, normalizedUserInfo.subRole);
+  const rolePlaybook = ROLE_INPUT_PLAYBOOK[normalizedUserInfo.roleGroup] || ROLE_INPUT_PLAYBOOK.기획;
   const skillCategories = getSkillCategoriesForRoleGroup(normalizedUserInfo.roleGroup);
+  const selectedSkillSuggestions = (skillCategories[skillInput.category] || Object.values(skillCategories)[0] || []).slice(0, 6);
 
   const handleProviderChange = (providerId) => {
     setSelectedProvider(providerId);
@@ -637,8 +641,7 @@ export default function App() {
     setUserInfo((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleRoleGroupChange = (e) => {
-    const roleGroup = e.target.value;
+  const handleRoleGroupSelect = (roleGroup) => {
     const detail = getDefaultRoleDetail(roleGroup);
     setUserInfo((prev) => ({
       ...prev,
@@ -647,6 +650,9 @@ export default function App() {
       role: detail.matchRole,
     }));
     setSkillInput(getDefaultSkillInput(roleGroup));
+  };
+  const handleRoleGroupChange = (e) => {
+    handleRoleGroupSelect(e.target.value);
   };
 
   const handleSubRoleChange = (e) => {
@@ -662,6 +668,15 @@ export default function App() {
   const handleAddSkill = () => {
     if (!userInfo.skills.find((s) => s.name === skillInput.name)) {
       setUserInfo((prev) => ({ ...prev, skills: [...prev.skills, { ...skillInput, roleGroup: prev.roleGroup }] }));
+    }
+  };
+  const handleQuickAddSkill = (skillName) => {
+    setSkillInput((prev) => ({ ...prev, name: skillName }));
+    if (!userInfo.skills.find((s) => s.name === skillName)) {
+      setUserInfo((prev) => ({
+        ...prev,
+        skills: [...prev.skills, { category: skillInput.category, name: skillName, level: skillInput.level, roleGroup: prev.roleGroup }],
+      }));
     }
   };
 
@@ -1436,16 +1451,38 @@ AI 분석 요약:
               {/* 프로필 */}
               <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
                 <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2"><User size={20} className="text-indigo-500" /> 내 프로필 정보</h3>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                <div className="mb-5">
+                  <div className="mb-2 flex items-center justify-between gap-3">
+                    <label className="block text-sm font-semibold text-slate-700">직무 대분류</label>
+                    <span className="text-xs text-slate-400">세부 직무와 역량 추천이 함께 바뀝니다.</span>
+                  </div>
+                  <div className="grid gap-2 md:grid-cols-3">
+                    {ROLE_GROUPS.map((group) => {
+                      const isActive = group.label === normalizedUserInfo.roleGroup;
+                      return (
+                        <button
+                          key={group.id}
+                          type="button"
+                          onClick={() => handleRoleGroupSelect(group.label)}
+                          className={`rounded-2xl border px-4 py-4 text-left transition ${
+                            isActive
+                              ? 'border-slate-900 bg-slate-900 text-white shadow-lg'
+                              : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-400 hover:bg-white'
+                          }`}
+                        >
+                          <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${isActive ? 'text-slate-300' : 'text-slate-400'}`}>Track</p>
+                          <p className="mt-1 text-base font-bold">{group.label}</p>
+                          <p className={`mt-2 text-xs leading-relaxed ${isActive ? 'text-slate-200' : 'text-slate-500'}`}>{group.description}</p>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-1">지원자 이름</label>
                     <input type="text" name="name" value={userInfo.name} onChange={handleInputChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="양윤석" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1">직무 대분류</label>
-                    <select value={normalizedUserInfo.roleGroup} onChange={handleRoleGroupChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
-                      {ROLE_GROUPS.map((group) => <option key={group.id} value={group.label}>{group.label}</option>)}
-                    </select>
                   </div>
                   <div>
                     <label className="block text-sm font-semibold text-slate-700 mb-1">세부 직무</label>
@@ -1463,6 +1500,26 @@ AI 분석 요약:
                   <span className="mx-2 text-slate-300">|</span>
                   {selectedRoleDetail.focus}
                 </p>
+
+                <div className="mb-5 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+                  <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Recruiter Lens</p>
+                    <p className="mt-2 text-xs font-semibold text-slate-500">{selectedRoleGroupInfo.description}</p>
+                    <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-900">{rolePlaybook.recruiterLens}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-600">{rolePlaybook.skillGuide}</p>
+                  </div>
+                  <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Evidence Checklist</p>
+                    <ul className="mt-3 space-y-2">
+                      {rolePlaybook.evidenceChecklist.map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-slate-600">
+                          <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
 
                 {normalizedUserInfo.roleGroup === '프로그래밍' && (
                   <div className="mb-5 rounded-2xl border border-sky-100 bg-sky-50/70 p-4">
@@ -1482,15 +1539,30 @@ AI 분석 요약:
                     <p className="mt-2 text-xs leading-relaxed text-slate-500">
                       무료 서버 부담을 줄이기 위해 저장소를 clone하지 않고 README, 루트 구조, package 파일 같은 핵심 정보만 읽어 기술문서 초안을 만듭니다.
                     </p>
+                    <ul className="mt-3 space-y-1.5">
+                      {rolePlaybook.githubGuide?.map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-xs leading-relaxed text-sky-900">
+                          <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-600" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
 
                 {/* 스킬 입력 */}
                 <div>
-                  <label className="block text-sm font-semibold text-slate-700 mb-2">직무 역량 및 숙련도</label>
-                  <p className="mb-3 text-xs text-slate-500">
-                    선택한 대분류에 맞춰 추천 역량 후보가 바뀝니다. 실제 서류에 증명 가능한 항목만 추가하는 것이 좋습니다.
-                  </p>
+                  <div className="mb-3 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+                    <div>
+                      <label className="block text-sm font-semibold text-slate-700 mb-1">직무 역량 및 숙련도</label>
+                      <p className="text-xs text-slate-500">
+                        {rolePlaybook.skillGuide}
+                      </p>
+                    </div>
+                    <div className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                      Current Category · {skillInput.category}
+                    </div>
+                  </div>
                   <div className="flex flex-col sm:flex-row gap-2 mb-3">
                     <select
                       value={skillInput.category}
@@ -1526,6 +1598,36 @@ AI 분석 요약:
                     </div>
                   </div>
 
+                  <div className="mb-3">
+                    <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Quick Add</p>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedSkillSuggestions.map((skill) => {
+                        const isSelected = userInfo.skills.some((entry) => entry.name === skill);
+                        return (
+                          <button
+                            key={skill}
+                            type="button"
+                            onClick={() => handleQuickAddSkill(skill)}
+                            className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+                              isSelected
+                                ? 'border-slate-900 bg-slate-900 text-white'
+                                : 'border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-900'
+                            }`}
+                          >
+                            {skill}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="mb-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+                    <p className="text-xs font-semibold text-slate-800">서류에 적기 좋은 기준</p>
+                    <p className="mt-1 text-xs leading-relaxed text-slate-600">
+                      사용해본 항목보다 증명 가능한 항목만 남기세요. 프로젝트명, 산출물, 성과 수치, 협업 역할 중 최소 하나와 연결되는 역량이 좋습니다.
+                    </p>
+                  </div>
+
                   <div className="flex flex-wrap gap-2 min-h-[44px] p-3 bg-slate-50 rounded-xl border border-slate-100">
                     {userInfo.skills.length === 0
                       ? <span className="text-sm text-slate-400 my-auto">추가된 기술이 없습니다.</span>
@@ -1551,9 +1653,27 @@ AI 분석 요약:
                     ※ PDF 파일 분석은 <strong>Gemini</strong> 제공자에서만 지원됩니다. 다른 제공자는 프로필 정보만으로 분석합니다.
                   </p>
                 )}
+                <div className="mb-4 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
+                  <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+                    <div className="lg:max-w-[18rem]">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Document Strategy</p>
+                      <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-900">{rolePlaybook.portfolioGuide}</p>
+                    </div>
+                    <ul className="grid flex-1 gap-2 md:grid-cols-3">
+                      {rolePlaybook.fileChecklist.map((item) => (
+                        <li key={item} className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs leading-relaxed text-slate-600">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className={`border border-slate-200 rounded-xl p-4 ${currentProvider && !currentProvider.supportsFiles ? 'opacity-50 pointer-events-none' : ''}`}>
                     <label className="block text-sm font-semibold text-slate-700 mb-2">이력서 (PDF)</label>
+                    <p className="mb-3 text-xs leading-relaxed text-slate-500">
+                      직무 키워드, 담당 범위, 결과 수치가 첫 페이지 안에서 읽히게 정리하는 편이 좋습니다.
+                    </p>
                     <input type="file" accept=".pdf" onChange={(e) => { if (e.target.files[0]) setResumeFile(e.target.files[0]); }} className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
                     {resumeFile && (
                       <div className="mt-2 text-xs text-slate-600 bg-slate-100 p-2 rounded flex justify-between">
@@ -1564,6 +1684,9 @@ AI 분석 요약:
                   </div>
                   <div className={`border border-slate-200 rounded-xl p-4 ${currentProvider && !currentProvider.supportsFiles ? 'opacity-50 pointer-events-none' : ''}`}>
                     <label className="block text-sm font-semibold text-slate-700 mb-2">자기소개서 (PDF)</label>
+                    <p className="mb-3 text-xs leading-relaxed text-slate-500">
+                      지원 동기보다 문제 해결 방식, 협업 태도, 판단 근거가 드러나는 사례 위주가 좋습니다.
+                    </p>
                     <input type="file" accept=".pdf" onChange={(e) => { if (e.target.files[0]) setCoverLetterFile(e.target.files[0]); }} className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100" />
                     {coverLetterFile && (
                       <div className="mt-2 text-xs text-slate-600 bg-slate-100 p-2 rounded flex justify-between">
@@ -1579,6 +1702,13 @@ AI 분석 요약:
                         {portfolioFiles.length > 0 ? `첨부 ${portfolioFiles.length}개` : '최대 8개'}
                       </span>
                     </label>
+                    <p className="mb-3 text-xs leading-relaxed text-slate-500">
+                      {normalizedUserInfo.roleGroup === '프로그래밍'
+                        ? '대표 프로젝트 문서, 기술 설명, 실행 화면, 구조도처럼 코드 이해를 돕는 자료부터 넣는 편이 좋습니다.'
+                        : normalizedUserInfo.roleGroup === '아트'
+                          ? '결과물 단독보다 작업 과정, 역할 분리, 엔진 적용 컷이 포함된 시트를 우선 넣는 편이 좋습니다.'
+                          : '기획 의도, 설계 근거, 검증 결과가 연결된 문서부터 넣는 편이 좋습니다.'}
+                    </p>
                     <input
                       type="file"
                       accept=".pdf"
