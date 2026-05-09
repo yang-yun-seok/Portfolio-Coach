@@ -63,6 +63,104 @@ const INTERVIEW_THEME_MAP = {
   },
 };
 
+const WORKSPACE_SAVE_KEY = 'portfolio_bot_save';
+const ANALYSIS_HISTORY_KEY = 'portfolio_bot_history';
+const MAX_ANALYSIS_HISTORY = 6;
+
+function getCoverLetterCommonItems(results) {
+  const items = results?.coverLetterImprovements?.common
+    ?? (Array.isArray(results?.coverLetterImprovements) ? results.coverLetterImprovements : []);
+  return Array.isArray(items) ? items : [];
+}
+
+function getSnapshotMeta(snapshot) {
+  const normalized = normalizeUserProfile(snapshot?.userInfo || {});
+  const jobs = Array.isArray(snapshot?.recommendedJobs) ? snapshot.recommendedJobs : [];
+  const topJobs = jobs.slice(0, 3);
+  return {
+    roleLabel: snapshot?.userInfo ? getProfileDisplayRole(normalized) : '미정',
+    roleGroup: normalized.roleGroup || '',
+    subRole: normalized.subRole || '',
+    skillNames: Array.isArray(normalized.skills) ? normalized.skills.map((skill) => skill.name).filter(Boolean) : [],
+    topCompanies: topJobs.map((job) => job.company).filter(Boolean),
+    topScore: typeof topJobs[0]?.score === 'number' ? Math.round(topJobs[0].score) : null,
+    hasGithub: Boolean(snapshot?.results?.githubPortfolioAnalysis?.repoUrl),
+    resumeCount: Array.isArray(snapshot?.results?.resumeImprovements) ? snapshot.results.resumeImprovements.length : 0,
+    coverCount: getCoverLetterCommonItems(snapshot?.results).length,
+    portfolioCount: Array.isArray(snapshot?.results?.portfolioImprovements) ? snapshot.results.portfolioImprovements.length : 0,
+    hasResults: Boolean(snapshot?.results),
+  };
+}
+
+function buildHistoryEntry(snapshot) {
+  const savedAt = snapshot?.savedAt || new Date().toISOString();
+  return {
+    id: snapshot?.id || `${savedAt}-${Math.random().toString(36).slice(2, 8)}`,
+    savedAt,
+    userInfo: snapshot?.userInfo || null,
+    results: snapshot?.results || null,
+    recommendedJobs: Array.isArray(snapshot?.recommendedJobs) ? snapshot.recommendedJobs : [],
+    instructorFeedback: snapshot?.instructorFeedback || EMPTY_INSTRUCTOR,
+    meta: getSnapshotMeta(snapshot),
+  };
+}
+
+function diffSkillNames(current = [], previous = []) {
+  const prevSet = new Set(previous);
+  const currentSet = new Set(current);
+  return {
+    added: current.filter((name) => !prevSet.has(name)),
+    removed: previous.filter((name) => !currentSet.has(name)),
+  };
+}
+
+function buildSnapshotComparison(currentSnapshot, compareSnapshot) {
+  if (!currentSnapshot || !compareSnapshot) return null;
+  const currentMeta = getSnapshotMeta(currentSnapshot);
+  const compareMeta = compareSnapshot.meta || getSnapshotMeta(compareSnapshot);
+  const skillDiff = diffSkillNames(currentMeta.skillNames, compareMeta.skillNames);
+  const currentTopCompany = currentMeta.topCompanies[0] || '';
+  const compareTopCompany = compareMeta.topCompanies[0] || '';
+  const topScoreDelta =
+    typeof currentMeta.topScore === 'number' && typeof compareMeta.topScore === 'number'
+      ? currentMeta.topScore - compareMeta.topScore
+      : null;
+  const githubStatus =
+    currentMeta.hasGithub && compareMeta.hasGithub
+      ? '유지'
+      : currentMeta.hasGithub && !compareMeta.hasGithub
+        ? '추가됨'
+        : !currentMeta.hasGithub && compareMeta.hasGithub
+          ? '제거됨'
+          : '없음';
+  const highlights = [
+    currentTopCompany || compareTopCompany
+      ? `1순위 공고 ${compareTopCompany && currentTopCompany && compareTopCompany !== currentTopCompany ? `${compareTopCompany} → ${currentTopCompany}로 변경` : `${currentTopCompany || compareTopCompany} 유지`}`
+      : '1순위 공고 비교 정보가 없습니다.',
+    topScoreDelta === null
+      ? '매칭 점수 비교 정보가 부족합니다.'
+      : `1순위 매칭 점수 ${compareMeta.topScore} → ${currentMeta.topScore} (${topScoreDelta > 0 ? `+${topScoreDelta}` : topScoreDelta})`,
+    skillDiff.added.length > 0
+      ? `추가된 역량: ${skillDiff.added.slice(0, 4).join(', ')}`
+      : '추가된 역량은 없습니다.',
+    skillDiff.removed.length > 0
+      ? `제외된 역량: ${skillDiff.removed.slice(0, 4).join(', ')}`
+      : '제외된 역량은 없습니다.',
+    `GitHub 기술문서화 상태: ${githubStatus}`,
+    `피드백 볼륨: 이력서 ${compareMeta.resumeCount} → ${currentMeta.resumeCount}, 포트폴리오 ${compareMeta.portfolioCount} → ${currentMeta.portfolioCount}`,
+  ];
+
+  return {
+    currentMeta,
+    compareMeta,
+    compareSavedAt: compareSnapshot.savedAt,
+    topScoreDelta,
+    skillDiff,
+    githubStatus,
+    highlights,
+  };
+}
+
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
 // "- **제목**: 내용" 또는 "**제목**: 내용" → { title, body } 로 분리
 function parseFeedbackItem(text) {
@@ -284,6 +382,8 @@ export default function App() {
   const [recommendedJobs, setRecommendedJobs] = useState([]);
   const [restoreNotice, setRestoreNotice] = useState(null);
   const [lastSavedAt, setLastSavedAt] = useState('');
+  const [analysisHistory, setAnalysisHistory] = useState([]);
+  const [selectedHistoryId, setSelectedHistoryId] = useState('');
 
   // 우선 공고 지정 (1~3순위)
   const [pinnedSlots, setPinnedSlots] = useState([
@@ -637,6 +737,44 @@ export default function App() {
   const highlightedGapSkills = [...new Set(
     topRecommendedJobs.flatMap((job) => job.matchDetail?.unmatchedSkills || [])
   )].slice(0, 6);
+  const selectedHistoryEntry = analysisHistory.find((entry) => entry.id === selectedHistoryId)
+    || analysisHistory[1]
+    || null;
+  const currentWorkspaceSnapshot = {
+    userInfo,
+    results,
+    recommendedJobs,
+    instructorFeedback,
+    savedAt: lastSavedAt || new Date().toISOString(),
+  };
+  const historyComparison = results && selectedHistoryEntry
+    ? buildSnapshotComparison(currentWorkspaceSnapshot, selectedHistoryEntry)
+    : null;
+
+  const loadHistorySnapshot = (entry) => {
+    if (!entry) return;
+    if (entry.userInfo) setUserInfo(normalizeUserProfile({
+      ...entry.userInfo,
+      skills: Array.isArray(entry.userInfo.skills) ? entry.userInfo.skills : [],
+    }));
+    setResults(entry.results || null);
+    setRecommendedJobs(Array.isArray(entry.recommendedJobs) ? entry.recommendedJobs : []);
+    setInstructorFeedback(entry.instructorFeedback || EMPTY_INSTRUCTOR);
+    setLastSavedAt(entry.savedAt || '');
+    setRestoreNotice({
+      savedAt: entry.savedAt || '',
+      hasResults: Boolean(entry.results),
+    });
+    persistWorkspaceSnapshot({
+      userInfo: entry.userInfo || userInfo,
+      results: entry.results || null,
+      recommendedJobs: Array.isArray(entry.recommendedJobs) ? entry.recommendedJobs : [],
+      instructorFeedback: entry.instructorFeedback || EMPTY_INSTRUCTOR,
+      savedAt: entry.savedAt || new Date().toISOString(),
+    });
+    setInfoMessage(`${formatSavedAt(entry.savedAt) || '선택한 시점'} 분석 기록을 현재 화면에 불러왔습니다.`);
+    setActiveTab(entry.results ? 'feedback' : 'input');
+  };
 
   const handleProviderChange = (providerId) => {
     setSelectedProvider(providerId);
@@ -872,7 +1010,7 @@ export default function App() {
     setVisibleJobs(10);
     const top3 = jobsWithScores.slice(0, 3);
     const localQs = generateInterviewQuestionsLocal(top3, userInfo);
-    setResults({
+    const localResults = {
       resumeImprovements: [
         `**성과 중심 재배치**: ${userInfo.experience}년차 ${profileRoleLabel} 경험을 상단에 두괄식으로 배치하세요.`,
         `**핵심 기술 증명**: [${userInfo.skills[0]?.name || '주요 기술'}] 활용 프로젝트 사례를 수치화하여 보강하세요.`,
@@ -902,7 +1040,8 @@ export default function App() {
           `**기여도 명시**: 팀 프로젝트 내 본인의 명확한 역할과 기여도(%)를 앞장에 요약하세요.`,
         ],
       interviewPreps: localQs,
-    });
+    };
+    setResults(localResults);
     setInfoMessage(message);
     setActiveTab('feedback');
     setActiveInterviewTab(0);
@@ -910,15 +1049,10 @@ export default function App() {
     try {
       persistWorkspaceSnapshot({
         userInfo,
-        results: {
-          resumeImprovements: ['로컬 분석'],
-          coverLetterImprovements: {},
-          portfolioImprovements: ['로컬 분석'],
-          interviewPreps: localQs,
-        },
+        results: localResults,
         recommendedJobs: jobsWithScores,
         instructorFeedback,
-      }, { showConfirmation: true });
+      }, { showConfirmation: true, trackHistory: true });
     } catch {}
   };
 
@@ -1011,7 +1145,7 @@ export default function App() {
         results: safeData,
         recommendedJobs: jobsWithScores,
         instructorFeedback,
-      }, { showConfirmation: true });
+      }, { showConfirmation: true, trackHistory: true });
     } catch (err) {
       console.warn('AI 분석 오류 → 로컬 Fallback:', err.message);
       try {
@@ -1186,13 +1320,37 @@ AI 분석 요약:
     }
     saveStatusTimerRef.current = setTimeout(() => setSaveStatus(''), 3200);
   };
-  const persistWorkspaceSnapshot = (saveData, { showConfirmation = false } = {}) => {
+  const writeAnalysisHistory = (entries) => {
+    let nextEntries = Array.isArray(entries) ? entries.slice(0, MAX_ANALYSIS_HISTORY) : [];
+    while (nextEntries.length > 0) {
+      try {
+        localStorage.setItem(ANALYSIS_HISTORY_KEY, JSON.stringify(nextEntries));
+        return nextEntries;
+      } catch {
+        nextEntries = nextEntries.slice(0, -1);
+      }
+    }
+    try {
+      localStorage.removeItem(ANALYSIS_HISTORY_KEY);
+    } catch {}
+    return [];
+  };
+  const persistWorkspaceSnapshot = (saveData, { showConfirmation = false, trackHistory = false } = {}) => {
     const snapshot = {
       ...saveData,
       recommendedJobs: Array.isArray(saveData.recommendedJobs) ? saveData.recommendedJobs : [],
       savedAt: saveData.savedAt || new Date().toISOString(),
     };
-    localStorage.setItem('portfolio_bot_save', JSON.stringify(snapshot));
+    localStorage.setItem(WORKSPACE_SAVE_KEY, JSON.stringify(snapshot));
+    if (trackHistory && snapshot.results) {
+      const historyEntry = buildHistoryEntry(snapshot);
+      const nextHistory = writeAnalysisHistory([
+        historyEntry,
+        ...analysisHistory.filter((entry) => entry.savedAt !== historyEntry.savedAt),
+      ]);
+      setAnalysisHistory(nextHistory);
+      setSelectedHistoryId(nextHistory[1]?.id || '');
+    }
     setLastSavedAt(snapshot.savedAt);
     if (showConfirmation) {
       flashSaveStatus('saved');
@@ -1216,7 +1374,18 @@ AI 분석 요약:
   // 저장 데이터 복원
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('portfolio_bot_save');
+      let restoredHistory = [];
+      const historyRaw = localStorage.getItem(ANALYSIS_HISTORY_KEY);
+      if (historyRaw) {
+        restoredHistory = JSON.parse(historyRaw)
+          .map((entry) => ({
+            ...entry,
+            meta: entry?.meta || getSnapshotMeta(entry),
+          }))
+          .filter((entry) => entry?.savedAt);
+      }
+
+      const saved = localStorage.getItem(WORKSPACE_SAVE_KEY);
       if (saved) {
         const { userInfo: si, results: sr, recommendedJobs: sj, instructorFeedback: sf, savedAt } = JSON.parse(saved);
         if (si) setUserInfo(normalizeUserProfile({ ...si, skills: Array.isArray(si.skills) ? si.skills : [] }));
@@ -1232,7 +1401,15 @@ AI 분석 요약:
             hasResults: Boolean(sr),
           });
         }
+        if (sr && savedAt && !restoredHistory.some((entry) => entry.savedAt === savedAt)) {
+          restoredHistory = writeAnalysisHistory([
+            buildHistoryEntry({ userInfo: si, results: sr, recommendedJobs: sj, instructorFeedback: sf, savedAt }),
+            ...restoredHistory,
+          ]);
+        }
       }
+      setAnalysisHistory(restoredHistory);
+      setSelectedHistoryId(restoredHistory[1]?.id || '');
     } catch {}
   }, []);
   useEffect(() => () => {
@@ -1958,6 +2135,122 @@ AI 분석 요약:
                   <h2 className="text-3xl font-bold text-slate-800 mb-2">{resultPlaybook.feedbackTitle}</h2>
                   <p className="text-slate-500">{resultPlaybook.feedbackDescription}</p>
                 </div>
+
+                {analysisHistory.length > 0 && (
+                  <div className="grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
+                    <aside className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Analysis History</p>
+                      <h3 className="mt-2 text-xl font-black tracking-tight text-slate-900">최근 분석 기록</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-500">
+                        현재 결과와 이전 결과를 비교하거나, 원하는 시점의 분석 기록을 다시 불러올 수 있습니다.
+                      </p>
+                      <div className="mt-4 space-y-3">
+                        {analysisHistory.map((entry, idx) => {
+                          const meta = entry.meta || getSnapshotMeta(entry);
+                          const isSelected = selectedHistoryId === entry.id || (!selectedHistoryId && idx === 1);
+                          const isCurrent = lastSavedAt && entry.savedAt === lastSavedAt;
+                          return (
+                            <button
+                              key={entry.id}
+                              type="button"
+                              onClick={() => setSelectedHistoryId(entry.id)}
+                              className={`w-full rounded-2xl border px-4 py-4 text-left transition ${isSelected ? 'border-slate-900 bg-slate-950 text-white shadow-sm' : 'border-slate-200 bg-slate-50 text-slate-900 hover:border-slate-400 hover:bg-white'}`}
+                            >
+                              <div className="flex items-start justify-between gap-3">
+                                <div>
+                                  <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${isSelected ? 'text-sky-300' : 'text-slate-400'}`}>
+                                    {idx === 0 ? 'Latest' : `History ${analysisHistory.length - idx}`}
+                                  </p>
+                                  <p className="mt-1 text-sm font-bold">{formatSavedAt(entry.savedAt) || '시점 정보 없음'}</p>
+                                  <p className={`mt-1 text-xs ${isSelected ? 'text-slate-300' : 'text-slate-500'}`}>
+                                    {meta.roleLabel} · {meta.subRole || '세부 직무 미정'}
+                                  </p>
+                                </div>
+                                <div className="flex flex-wrap justify-end gap-2">
+                                  {isCurrent && (
+                                    <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${isSelected ? 'bg-white/10 text-white' : 'bg-slate-900 text-white'}`}>
+                                      현재
+                                    </span>
+                                  )}
+                                  {meta.hasGithub && (
+                                    <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${isSelected ? 'bg-sky-400/15 text-sky-100' : 'bg-sky-100 text-sky-700'}`}>
+                                      GitHub
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              <div className="mt-3 flex flex-wrap gap-2">
+                                {(meta.topCompanies.length > 0 ? meta.topCompanies.slice(0, 3) : ['추천 공고 정보 없음']).map((company) => (
+                                  <span
+                                    key={`${entry.id}-${company}`}
+                                    className={`rounded-full px-2.5 py-1 text-[11px] ${isSelected ? 'bg-white/10 text-slate-100' : 'bg-white text-slate-600'}`}
+                                  >
+                                    {company}
+                                  </span>
+                                ))}
+                              </div>
+                              <div className={`mt-3 text-xs ${isSelected ? 'text-slate-300' : 'text-slate-500'}`}>
+                                {typeof meta.topScore === 'number' ? `1순위 매칭 ${meta.topScore}점` : '매칭 점수 정보 없음'}
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </aside>
+
+                    <section className="rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-sm">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300">Before / After</p>
+                      <h3 className="mt-2 text-2xl font-black tracking-tight">현재 결과 비교</h3>
+                      {historyComparison ? (
+                        <>
+                          <p className="mt-2 text-sm leading-relaxed text-slate-300">
+                            비교 기준: {formatSavedAt(historyComparison.compareSavedAt) || '이전 분석 기록'} · {historyComparison.compareMeta.roleLabel}
+                          </p>
+                          <div className="mt-4 grid gap-3 md:grid-cols-3">
+                            {[
+                              { label: '현재 직무', value: historyComparison.currentMeta.roleLabel },
+                              { label: '이전 1순위', value: historyComparison.compareMeta.topCompanies[0] || '없음' },
+                              { label: 'GitHub 상태', value: historyComparison.githubStatus },
+                            ].map((item) => (
+                              <div key={item.label} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">{item.label}</p>
+                                <p className="mt-2 text-sm font-semibold text-slate-100">{item.value}</p>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                            <p className="text-sm font-bold text-sky-200">핵심 변화</p>
+                            <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-200">
+                              {historyComparison.highlights.map((item) => (
+                                <li key={item}>- {item}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="mt-4 flex flex-wrap gap-2">
+                            <button
+                              type="button"
+                              onClick={() => loadHistorySnapshot(selectedHistoryEntry)}
+                              className="rounded-full bg-white px-4 py-2 text-xs font-bold text-slate-900 transition hover:bg-sky-100"
+                            >
+                              이 버전 불러오기
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setSelectedHistoryId('')}
+                              className="rounded-full border border-white/15 px-4 py-2 text-xs font-semibold text-slate-200 transition hover:border-white hover:bg-white/10"
+                            >
+                              바로 이전 버전 기준으로 보기
+                            </button>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm leading-relaxed text-slate-300">
+                          비교 가능한 이전 분석 기록이 아직 없습니다. 이번 분석 이후 한 번 더 실행하면 여기서 전/후 차이를 바로 확인할 수 있습니다.
+                        </div>
+                      )}
+                    </section>
+                  </div>
+                )}
 
                 <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
                   <div className="grid gap-4 md:grid-cols-3">

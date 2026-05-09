@@ -10,6 +10,76 @@ const pathPrefix = normalizePathPrefix(process.env.SMOKE_PATH_PREFIX || '/');
 const distDir = join(process.cwd(), 'dist');
 const baseUrl = `http://${host}:${port}${pathPrefix}`;
 
+function createSmokeSeed() {
+  const baseUserInfo = {
+    name: '양윤석',
+    roleGroup: '프로그래밍',
+    subRole: '클라이언트',
+    role: '게임개발(클라이언트)',
+    experience: 2,
+    githubUrl: 'https://github.com/example/repo',
+    skills: [
+      { category: '개발 언어', name: 'TypeScript', level: '상', roleGroup: '프로그래밍' },
+      { category: '엔진', name: 'Unity', level: '중', roleGroup: '프로그래밍' },
+    ],
+  };
+  const baseResults = {
+    resumeImprovements: ['**핵심 기술 배치**: TypeScript와 Unity 경험을 첫 문단에 배치하세요.'],
+    coverLetterImprovements: {
+      common: ['**문제 해결 서술 강화**: 장애 대응 사례를 결과 중심으로 다시 정리하세요.'],
+      rank1: [],
+      rank2: [],
+      rank3: [],
+    },
+    portfolioImprovements: ['**포트폴리오 구조 정리**: 프로젝트별 역할과 결과를 먼저 보여주세요.'],
+    interviewPreps: [],
+    profileAnalysis: {
+      strengths: ['게임 클라이언트 개발 경험을 요약할 수 있습니다.'],
+      weaknesses: ['테스트 자동화 설명이 부족합니다.'],
+      fitScore: '로컬 시드 결과입니다.',
+    },
+    githubPortfolioAnalysis: {
+      repoUrl: 'https://github.com/example/repo',
+      summary: 'README와 핵심 디렉터리를 기반으로 구조를 요약한 시드 데이터입니다.',
+      techStack: ['TypeScript', 'Unity'],
+      architecture: ['src 중심 구조'],
+      projectHighlights: ['GitHub 구조 분석 예시'],
+      qualitySignals: ['README 존재'],
+      shippingSignals: ['워크플로 신호 확인'],
+      refactorSuggestions: ['테스트 스크립트 보강'],
+      documentation: '# Seed Document',
+      risks: ['시드 데이터'],
+      interviewTalkingPoints: ['문제 상황과 해결을 30초로 설명하세요.'],
+    },
+  };
+  const previousSnapshot = {
+    savedAt: '2026-05-08T12:00:00.000Z',
+    userInfo: {
+      ...baseUserInfo,
+      skills: [{ category: '개발 언어', name: 'C#', level: '중', roleGroup: '프로그래밍' }],
+    },
+    results: {
+      ...baseResults,
+      resumeImprovements: ['**핵심 기술 배치**: C# 경험을 먼저 배치하세요.'],
+      githubPortfolioAnalysis: {
+        ...baseResults.githubPortfolioAnalysis,
+        techStack: ['C#'],
+        projectHighlights: ['이전 분석 시드'],
+      },
+    },
+    recommendedJobs: [{ id: 'prev-1', company: 'Prev Studio', title: '클라이언트 개발자', role: '게임개발(클라이언트)', score: 74 }],
+    instructorFeedback: { name: '', date: '', general: '', resume: '', coverLetter: '', portfolio: '', interview: '' },
+  };
+  const currentSnapshot = {
+    savedAt: '2026-05-09T12:00:00.000Z',
+    userInfo: baseUserInfo,
+    results: baseResults,
+    recommendedJobs: [{ id: 'curr-1', company: 'Current Studio', title: '클라이언트 개발자', role: '게임개발(클라이언트)', score: 82 }],
+    instructorFeedback: { name: '', date: '', general: '', resume: '', coverLetter: '', portfolio: '', interview: '' },
+  };
+  return { currentSnapshot, previousSnapshot };
+}
+
 function normalizePathPrefix(value) {
   const trimmed = String(value || '/').trim();
   if (!trimmed || trimmed === '/') return '/';
@@ -128,11 +198,17 @@ async function run() {
     const page = await browser.newPage();
     const consoleErrors = [];
     const pageErrors = [];
+    const { currentSnapshot, previousSnapshot } = createSmokeSeed();
 
     page.on('console', (message) => {
       if (message.type() === 'error') consoleErrors.push(message.text());
     });
     page.on('pageerror', (error) => pageErrors.push(error.message));
+
+    await page.evaluateOnNewDocument((seed) => {
+      localStorage.setItem('portfolio_bot_save', JSON.stringify(seed.currentSnapshot));
+      localStorage.setItem('portfolio_bot_history', JSON.stringify([seed.currentSnapshot, seed.previousSnapshot]));
+    }, { currentSnapshot, previousSnapshot });
 
     await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
     await page.goto(`${baseUrl}?smoke=1`, { waitUntil: 'networkidle0', timeout: 45000 });
@@ -175,6 +251,12 @@ async function run() {
       if (state.hasLegacyStepUi) throw new Error(`Legacy step/progress UI detected after opening "${label}".`);
       if (state.overflowX) throw new Error(`Horizontal overflow detected after opening "${label}".`);
     }
+
+    await clickTool(page, '서류 피드백');
+    await page.waitForFunction(
+      () => document.body.innerText.includes('최근 분석 기록') && document.body.innerText.includes('현재 결과 비교'),
+      { timeout: 5000 },
+    );
 
     await page.evaluate(() => {
       const button = [...document.querySelectorAll('button')].find((node) => node.innerText.includes('사용 설명서'));
