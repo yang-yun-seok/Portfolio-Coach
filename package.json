@@ -8,6 +8,8 @@
     "dev:back": "node server.js",
     "prebuild": "node scripts/generate-static-api.js",
     "build": "vite build",
+    "test:smoke": "node scripts/smoke-test.mjs",
+    "verify": "npm run build && npm run test:smoke",
     "start": "node server.js",
     "preview": "vite preview"
   },

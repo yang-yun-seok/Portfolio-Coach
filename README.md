@@ -62,6 +62,20 @@ npm run dev
 - Frontend: `http://localhost:5173`
 - Backend: `http://localhost:3002`
 
+## 품질 확인
+
+```bash
+npm run build
+npm run test:smoke
+```
+
+- `test:smoke`는 빌드된 결과물을 정적 서버로 띄운 뒤 핵심 화면 진입, 우측 기능 도구 모음, 사용 설명서 모달, 가로 깨짐 여부를 자동 확인합니다.
+- 한 번에 검증하려면 아래 명령을 사용합니다.
+
+```bash
+npm run verify
+```
+
 ## 배포 설정
 
 GitHub 저장소의 `Settings > Pages`에서 Source를 `GitHub Actions`로 설정합니다.
@@ -76,6 +90,8 @@ Render Web Service 설정은 다음과 같이 둡니다.
 
 - Build Command: `npm install`
 - Start Command: `npm start`
+
+GitHub Pages 배포 워크플로는 `build` 뒤에 `test:smoke`를 먼저 실행한 후 정적 결과물을 업로드합니다.
 
 ## 운영 참고
 

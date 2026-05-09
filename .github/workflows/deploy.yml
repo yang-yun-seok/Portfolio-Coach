@@ -35,6 +35,14 @@ jobs:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
           VITE_API_BASE_URL: ${{ vars.VITE_API_BASE_URL }}
 
+      - name: Install browser for smoke test
+        run: npx puppeteer browsers install chrome
+
+      - name: Smoke test built app
+        run: npm run test:smoke
+        env:
+          SMOKE_PATH_PREFIX: /${{ github.event.repository.name }}/
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
