@@ -3,16 +3,19 @@ import cors from 'cors';
 import fetch from 'node-fetch';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { DataLoader } from './lib/data-loader.js';
-import { normalizeAll } from './lib/job-normalizer.js';
 import { getProfileDisplayRole, normalizeUserProfile } from './src/data/skills.js';
+import { createDataRouter } from './server/routes/data-routes.js';
+import { createCrawlRouter } from './server/routes/crawl-routes.js';
+import { createCrawlService } from './server/services/crawl-service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // ── DataLoader 초기화 ──────────────────────────────────────────────────────
-const dataLoader = new DataLoader(join(__dirname, 'data'));
+const dataDir = join(__dirname, 'data');
+const dataLoader = new DataLoader(dataDir);
 
 // ── 설정 로더 ──────────────────────────────────────────────────────────────
 const IS_DEV = process.env.NODE_ENV !== 'production';
@@ -171,6 +174,10 @@ const serverConfig = loadServerConfig();
 const app = express();
 app.use(cors());
 app.use(express.json({ limit: serverConfig.bodyLimit }));
+
+const crawlService = createCrawlService({ dataDir, dataLoader });
+app.use(createDataRouter({ dataLoader, crawlService }));
+app.use(createCrawlRouter({ crawlService }));
 
 // ── 유틸: fetch with retry ────────────────────────────────────────────────
 async function fetchWithRetry(url, options) {
@@ -709,245 +716,6 @@ ${binaryText}
   }
 });
 
-// ── API: 기업 데이터 (RAG) ────────────────────────────────────────────────
-app.get('/api/companies', (req, res) => {
-  const companies = dataLoader.getCompanies();
-  res.json(companies);
-});
-
-app.get('/api/companies/:id', (req, res) => {
-  const company = dataLoader.getCompanyById(req.params.id);
-  if (!company) return res.status(404).json({ error: '기업을 찾을 수 없습니다.' });
-  res.json(company);
-});
-
-// ── API: 공고 데이터 (RAG) ────────────────────────────────────────────────
-app.get('/api/jobs', (req, res) => {
-  const { role, company, skills, minExp, maxExp, query } = req.query;
-  const results = dataLoader.searchJobs({ role, company, skills, minExp, maxExp, query });
-  res.json(results);
-});
-
-app.get('/api/jobs/:id', (req, res) => {
-  const job = dataLoader.getJobById(req.params.id);
-  if (!job) return res.status(404).json({ error: '공고를 찾을 수 없습니다.' });
-  res.json(job);
-});
-
-// ── API: 데이터 소스 상태 ─────────────────────────────────────────────────
-app.get('/api/data/status', (req, res) => {
-  res.json(dataLoader.getStatus());
-});
-
-// ── API: 데이터 리프레시 (관리용) ─────────────────────────────────────────
-app.post('/api/data/refresh', (req, res) => {
-  dataLoader.refresh();
-  res.json({ success: true, status: dataLoader.getStatus() });
-});
-
-// ── API: 우선 공고 조회 (GI_No → 기존 데이터 확인 또는 단건 크롤링) ──────
-app.post('/api/jobs/resolve', async (req, res) => {
-  const { giNo } = req.body;
-  if (!giNo) {
-    return res.status(400).json({ error: 'giNo (공고 번호)가 필요합니다.' });
-  }
-
-  // 숫자만 추출 (URL 붙여넣기 대비)
-  const cleanGiNo = String(giNo).replace(/\D/g, '');
-  if (!cleanGiNo) {
-    return res.status(400).json({ error: '유효한 공고 번호가 아닙니다.' });
-  }
-
-  // 1) 기존 데이터에서 먼저 검색
-  const existing = dataLoader.getJobByGiNo(cleanGiNo);
-  if (existing) {
-    return res.json({ found: true, source: 'cache', job: existing });
-  }
-
-  // 2) 기존에 없으면 단건 크롤링 시도
-  try {
-    const { crawlSingleJob } = await import('./lib/crawler.js');
-    const dataPath = join(__dirname, 'data');
-
-    const crawlResult = await crawlSingleJob({ giNo: cleanGiNo, dataDir: dataPath });
-
-    if (!crawlResult.success) {
-      return res.status(404).json({
-        found: false,
-        error: crawlResult.error || `공고 ${cleanGiNo}을(를) 크롤링할 수 없습니다.`,
-      });
-    }
-
-    // 3) 크롤링된 refined 데이터를 정규화
-    const { normalizeJob } = await import('./lib/job-normalizer.js');
-    const normalizedJob = normalizeJob(crawlResult.refinedData);
-
-    // 4) 정규화된 파일 저장 (data/jobs/)
-    const jobFilePath = join(dataPath, 'jobs', `job-${cleanGiNo}.json`);
-    writeFileSync(jobFilePath, JSON.stringify(normalizedJob, null, 2), 'utf-8');
-
-    // 5) 캐시 리프레시
-    dataLoader.refresh();
-
-    return res.json({ found: true, source: 'crawled', job: normalizedJob });
-  } catch (err) {
-    console.error(`[/api/jobs/resolve] GI_No ${cleanGiNo} 크롤링 오류:`, err.message);
-    return res.status(500).json({
-      found: false,
-      error: `크롤링 중 오류가 발생했습니다: ${err.message}`,
-    });
-  }
-});
-
-// ── API: 크롤러 (백그라운드 실행 + SSE 진행 스트림) ─────────────────────────
-// ★ 크롤링은 백그라운드 작업으로 실행하고, SSE는 진행 상황만 스트리밍.
-//   Vite 프록시가 SSE 연결을 조기 종료해도 크롤링 자체는 계속 진행됨.
-let crawlState = {
-  running: false,
-  abortController: null,
-  log: [],           // 진행 로그 누적 (SSE 재연결 시 이력 전송용)
-  lastEvent: null,   // 마지막 이벤트
-};
-
-// ── 크롤링 시작 (백그라운드 실행, 즉시 응답) ──
-app.post('/api/crawl/start', async (req, res) => {
-  if (crawlState.running) {
-    return res.status(409).json({ error: '이미 크롤링이 진행 중입니다.' });
-  }
-
-  const { targets } = req.body;
-  const crawlTargets = targets && targets.length > 0 ? targets : ['게임기획', '신입'];
-
-  crawlState.running = true;
-  crawlState.abortController = new AbortController();
-  crawlState.log = [];
-  crawlState.lastEvent = null;
-
-  // 즉시 응답 — 크롤링은 백그라운드에서 진행
-  res.json({ success: true, message: `크롤링 시작: [${crawlTargets.join(', ')}]` });
-
-  // ── 백그라운드 크롤링 실행 (요청 수명과 무관) ──
-  (async () => {
-    try {
-      const { runCrawler } = await import('./lib/crawler.js');
-      const dataPath = join(__dirname, 'data');
-
-      const pushEvent = (data) => {
-        crawlState.lastEvent = data;
-        crawlState.log.push(data);
-        // 로그가 너무 커지지 않도록 최근 100건만 유지
-        if (crawlState.log.length > 100) crawlState.log.shift();
-      };
-
-      pushEvent({ stage: 'init', message: `크롤링 시작: [${crawlTargets.join(', ')}]`, percent: 0 });
-
-      const result = await runCrawler({
-        targets: crawlTargets,
-        dataDir: dataPath,
-        signal: crawlState.abortController.signal,
-        onProgress: (progress) => {
-          pushEvent(progress);
-        },
-      });
-
-      if (result.success && result.count > 0) {
-        pushEvent({ stage: 'normalize', message: '정규화 처리 중...', percent: 96 });
-        try {
-          const refinedDir = join(dataPath, 'refined');
-          const jobsDir = join(dataPath, 'jobs');
-          const { report } = normalizeAll(refinedDir, jobsDir, false);
-          pushEvent({ stage: 'normalize', message: `정규화 완료: ${report.success}건`, percent: 98 });
-        } catch (normErr) {
-          pushEvent({ stage: 'normalize', message: `정규화 오류: ${normErr.message}`, percent: 98 });
-        }
-
-        dataLoader.refresh();
-        pushEvent({ stage: 'refresh', message: '데이터 캐시 갱신 완료', percent: 99 });
-      }
-
-      pushEvent({
-        stage: 'complete',
-        message: `완료! ${result.count}건 수집 (오류: ${result.errors.length}건)`,
-        percent: 100,
-        result,
-      });
-    } catch (err) {
-      const errEvent = { stage: 'error', message: err.message, percent: 0 };
-      crawlState.lastEvent = errEvent;
-      crawlState.log.push(errEvent);
-    } finally {
-      crawlState.running = false;
-      crawlState.abortController = null;
-    }
-  })();
-});
-
-// ── 크롤링 진행 상황 SSE 스트림 (GET — 언제든 재연결 가능) ──
-app.get('/api/crawl/stream', (req, res) => {
-  res.setHeader('Content-Type', 'text/event-stream');
-  res.setHeader('Cache-Control', 'no-cache');
-  res.setHeader('Connection', 'keep-alive');
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('X-Accel-Buffering', 'no');
-  res.statusCode = 200;
-  res.flushHeaders();
-  res.write(': connected\n\n');
-
-  const sendEvent = (data) => {
-    if (!res.writableEnded) {
-      res.write(`data: ${JSON.stringify(data)}\n\n`);
-    }
-  };
-
-  // 기존 로그 이력 전송 (재연결 시 누락분 보충)
-  let sentIdx = crawlState.log.length;
-  crawlState.log.forEach(evt => sendEvent(evt));
-
-  // 새 이벤트 폴링 (200ms 간격)
-  const interval = setInterval(() => {
-    if (sentIdx < crawlState.log.length) {
-      for (let i = sentIdx; i < crawlState.log.length; i++) {
-        sendEvent(crawlState.log[i]);
-      }
-      sentIdx = crawlState.log.length;
-    }
-
-    if (!res.writableEnded) {
-      res.write(': heartbeat\n\n');
-    }
-
-    // 크롤링 종료 시 스트림 닫기
-    if (!crawlState.running && sentIdx >= crawlState.log.length) {
-      clearInterval(interval);
-      if (!res.writableEnded) res.end();
-    }
-  }, 200);
-
-  req.on('close', () => {
-    clearInterval(interval);
-    // ★ SSE 연결 끊김 ≠ 크롤링 중단 (핵심 변경)
-    //   사용자가 명시적으로 /api/crawl/stop을 호출해야만 중단됨
-  });
-});
-
-app.post('/api/crawl/stop', (req, res) => {
-  if (crawlState.running && crawlState.abortController) {
-    crawlState.abortController.abort();
-    res.json({ success: true, message: '크롤링 중단 요청됨' });
-  } else {
-    res.json({ success: false, message: '진행 중인 크롤링이 없습니다.' });
-  }
-});
-
-app.get('/api/crawl/status', (req, res) => {
-  res.json({
-    running: crawlState.running,
-    lastEvent: crawlState.lastEvent,
-    logCount: crawlState.log.length,
-  });
-});
-
-// ── 프로덕션: React 빌드 정적 파일 서빙 ──────────────────────────────────
 const distDir = join(__dirname, 'dist');
 const distIndexFile = join(distDir, 'index.html');
 
