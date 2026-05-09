@@ -284,6 +284,8 @@ export default function App() {
   // 결과
   const [results, setResults] = useState(null);
   const [recommendedJobs, setRecommendedJobs] = useState([]);
+  const [restoreNotice, setRestoreNotice] = useState(null);
+  const [lastSavedAt, setLastSavedAt] = useState('');
 
   // 우선 공고 지정 (1~3순위)
   const [pinnedSlots, setPinnedSlots] = useState([
@@ -363,6 +365,7 @@ export default function App() {
   const [crawlStatus, setCrawlStatus] = useState({ running: false, message: '', percent: 0, log: [], isError: false });
   const crawlEventSourceRef = useRef(null);
   const crawlPollerRef = useRef(null);
+  const saveStatusTimerRef = useRef(null);
 
   // ── 크롤링 태그 선택 ──────────────────────────────────────────────────
   const CRAWL_JOB_TAGS = [
@@ -459,7 +462,7 @@ export default function App() {
     if (typeof EventSource === 'undefined') {
       setCrawlStatus((prev) => ({
         ...prev,
-        message: '브라우저 실시간 연결을 지원하지 않아 상태 확인 모드로 진행합니다.',
+        message: '브라우저 실시간 연결을 지원하지 않아 상태 확인 모드로 진행합니다. 설정 창을 닫아도 서버에서 크롤링은 계속됩니다.',
       }));
       return;
     }
@@ -489,7 +492,7 @@ export default function App() {
       setCrawlStatus((prev) => ({
         ...prev,
         message: prev.running
-          ? '실시간 연결이 불안정해 상태 확인 모드로 전환했습니다.'
+          ? '실시간 연결이 일시적으로 끊겨 상태 확인 모드로 전환했습니다. 크롤링 자체는 계속 진행됩니다.'
           : prev.message,
       }));
     };
@@ -498,7 +501,13 @@ export default function App() {
   // ── 크롤링 함수 ──────────────────────────────────────────────────────
   const startCrawl = async () => {
     stopCrawlMonitoring();
-    setCrawlStatus({ running: true, message: '크롤링 준비 중...', percent: 0, log: [], isError: false });
+    setCrawlStatus({
+      running: true,
+      message: '브라우저 엔진을 준비하고 있습니다. 설정 창을 닫아도 서버에서 계속 처리됩니다.',
+      percent: 0,
+      log: [],
+      isError: false,
+    });
     try {
       // 1) 크롤링 시작 요청 (백그라운드 실행, 즉시 응답)
       const targets = [...crawlJobTags, ...crawlCareerTags];
@@ -798,7 +807,19 @@ export default function App() {
     setActiveTab('feedback');
     setActiveInterviewTab(0);
     // 자동 저장
-    try { localStorage.setItem('portfolio_bot_save', JSON.stringify({ userInfo, results: { resumeImprovements: ['로컬 분석'], coverLetterImprovements: {}, portfolioImprovements: ['로컬 분석'], interviewPreps: localQs }, instructorFeedback, savedAt: new Date().toISOString() })); } catch {}
+    try {
+      persistWorkspaceSnapshot({
+        userInfo,
+        results: {
+          resumeImprovements: ['로컬 분석'],
+          coverLetterImprovements: {},
+          portfolioImprovements: ['로컬 분석'],
+          interviewPreps: localQs,
+        },
+        recommendedJobs: jobsWithScores,
+        instructorFeedback,
+      }, { showConfirmation: true });
+    } catch {}
   };
 
   // ── 메인 분석 함수 ────────────────────────────────────────────────────
@@ -810,6 +831,7 @@ export default function App() {
     setLoading(true);
     setError('');
     setInfoMessage('');
+    setRestoreNotice(null);
 
     try {
       const analysisProfile = normalizeUserProfile(userInfo);
@@ -878,12 +900,20 @@ export default function App() {
       void generateInstructorDraft(safeData, analysisProfile)
         .then((draft) => {
           if (!draft) return;
-          const saveData = { userInfo: analysisProfile, results: safeData, instructorFeedback: draft, savedAt: new Date().toISOString() };
-          localStorage.setItem('portfolio_bot_save', JSON.stringify(saveData));
+          persistWorkspaceSnapshot({
+            userInfo: analysisProfile,
+            results: safeData,
+            recommendedJobs: jobsWithScores,
+            instructorFeedback: draft,
+          });
         })
         .catch(() => {});
-      const baseSaveData = { userInfo: analysisProfile, results: safeData, instructorFeedback, savedAt: new Date().toISOString() };
-      localStorage.setItem('portfolio_bot_save', JSON.stringify(baseSaveData));
+      persistWorkspaceSnapshot({
+        userInfo: analysisProfile,
+        results: safeData,
+        recommendedJobs: jobsWithScores,
+        instructorFeedback,
+      }, { showConfirmation: true });
     } catch (err) {
       console.warn('AI 분석 오류 → 로컬 Fallback:', err.message);
       try {
@@ -1040,6 +1070,37 @@ AI 분석 요약:
 
   // ── 저장 기능 ───────────────────────────────────────────────────────
   const [saveStatus, setSaveStatus] = useState('');
+  const formatSavedAt = (value) => {
+    if (!value) return '';
+    try {
+      return new Intl.DateTimeFormat('ko-KR', {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      }).format(new Date(value));
+    } catch {
+      return value;
+    }
+  };
+  const flashSaveStatus = (status) => {
+    setSaveStatus(status);
+    if (saveStatusTimerRef.current) {
+      clearTimeout(saveStatusTimerRef.current);
+    }
+    saveStatusTimerRef.current = setTimeout(() => setSaveStatus(''), 3200);
+  };
+  const persistWorkspaceSnapshot = (saveData, { showConfirmation = false } = {}) => {
+    const snapshot = {
+      ...saveData,
+      recommendedJobs: Array.isArray(saveData.recommendedJobs) ? saveData.recommendedJobs : [],
+      savedAt: saveData.savedAt || new Date().toISOString(),
+    };
+    localStorage.setItem('portfolio_bot_save', JSON.stringify(snapshot));
+    setLastSavedAt(snapshot.savedAt);
+    if (showConfirmation) {
+      flashSaveStatus('saved');
+    }
+    return snapshot;
+  };
   const saveProfile = async () => {
     try {
       let feedback = instructorFeedback;
@@ -1049,15 +1110,9 @@ AI 분석 요약:
         const draft = await generateInstructorDraft(results, userInfo);
         if (draft) feedback = draft;
       }
-      const saveData = { userInfo, results, instructorFeedback: feedback, savedAt: new Date().toISOString() };
-      localStorage.setItem('portfolio_bot_save', JSON.stringify(saveData));
-      setSaveStatus('saved');
-      setTimeout(() => setSaveStatus(''), 3000);
+      persistWorkspaceSnapshot({ userInfo, results, recommendedJobs, instructorFeedback: feedback }, { showConfirmation: true });
     } catch {
-      const saveData = { userInfo, results, instructorFeedback, savedAt: new Date().toISOString() };
-      localStorage.setItem('portfolio_bot_save', JSON.stringify(saveData));
-      setSaveStatus('saved');
-      setTimeout(() => setSaveStatus(''), 3000);
+      persistWorkspaceSnapshot({ userInfo, results, recommendedJobs, instructorFeedback }, { showConfirmation: true });
     }
   };
   // 저장 데이터 복원
@@ -1065,13 +1120,40 @@ AI 분석 요약:
     try {
       const saved = localStorage.getItem('portfolio_bot_save');
       if (saved) {
-        const { userInfo: si, results: sr, instructorFeedback: sf } = JSON.parse(saved);
+        const { userInfo: si, results: sr, recommendedJobs: sj, instructorFeedback: sf, savedAt } = JSON.parse(saved);
         if (si) setUserInfo(normalizeUserProfile({ ...si, skills: Array.isArray(si.skills) ? si.skills : [] }));
         if (sr) setResults(sr);
+        if (Array.isArray(sj)) setRecommendedJobs(sj);
         if (sf) setInstructorFeedback(sf);
+        if (savedAt) {
+          setLastSavedAt(savedAt);
+        }
+        if (si || sr || sf) {
+          setRestoreNotice({
+            savedAt: savedAt || '',
+            hasResults: Boolean(sr),
+          });
+        }
       }
     } catch {}
   }, []);
+  useEffect(() => () => {
+    if (saveStatusTimerRef.current) {
+      clearTimeout(saveStatusTimerRef.current);
+    }
+  }, []);
+  useEffect(() => {
+    const shouldWarn = loading || crawlStatus.running || saveStatus === 'generating';
+    if (!shouldWarn) return undefined;
+
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [loading, crawlStatus.running, saveStatus]);
 
   // ── 네비게이션 ────────────────────────────────────────────────────────
   const navItems = [
@@ -1156,6 +1238,50 @@ AI 분석 요약:
     description: '이 기능에서 필요한 내용을 확인하세요.',
     hint: '입력값과 분석 결과는 탭을 이동해도 유지됩니다.',
   };
+  const statusCards = [
+    restoreNotice && {
+      id: 'restore',
+      tone: 'info',
+      icon: Database,
+      label: 'Recovered',
+      title: '마지막 작업을 복구했습니다.',
+      body: `${formatSavedAt(restoreNotice.savedAt) || '최근 저장 시점'} 기준으로 ${restoreNotice.hasResults ? '분석 결과와 프로필' : '프로필'}을 불러왔습니다.`,
+      actionLabel: restoreNotice.hasResults ? '결과 열기' : '입력 확인',
+      onAction: () => {
+        setActiveTab(restoreNotice.hasResults ? 'feedback' : 'input');
+        setRestoreNotice(null);
+      },
+      dismissible: true,
+    },
+    saveStatus === 'generating' && {
+      id: 'saving',
+      tone: 'warning',
+      icon: Loader2,
+      label: 'Saving',
+      title: '강사 피드백 초안을 정리하고 있습니다.',
+      body: '분석 결과는 이미 보존되어 있습니다. 저장 문구가 사라질 때까지 새로고침하지 않는 편이 안전합니다.',
+      spin: true,
+    },
+    saveStatus === 'saved' && lastSavedAt && {
+      id: 'saved',
+      tone: 'success',
+      icon: CheckCircle,
+      label: 'Saved',
+      title: '현재 결과를 로컬에 저장했습니다.',
+      body: `${formatSavedAt(lastSavedAt)} 기준 스냅샷입니다. 다시 열어도 복구할 수 있습니다.`,
+    },
+    crawlStatus.running && {
+      id: 'crawl',
+      tone: 'warning',
+      icon: Loader2,
+      label: 'Crawling',
+      title: '공고 데이터를 갱신하고 있습니다.',
+      body: `${crawlStatus.message} 설정 창을 닫아도 서버에서 계속 처리되며, 다시 열면 상태를 이어서 확인할 수 있습니다.`,
+      actionLabel: '설정 열기',
+      onAction: () => setShowSettings(true),
+      spin: true,
+    },
+  ].filter(Boolean);
 
   // ── 렌더링 ────────────────────────────────────────────────────────────
   return (
@@ -1242,6 +1368,60 @@ AI 분석 요약:
             <div className="apple-alert apple-alert-info mb-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-md flex items-start gap-3 animate-in fade-in slide-in-from-top-2">
               <CheckCircle className="text-blue-500 mt-0.5 shrink-0" size={20} />
               <p className="text-blue-700 text-sm whitespace-pre-line">{infoMessage}</p>
+            </div>
+          )}
+          {statusCards.length > 0 && (
+            <div className="mb-6 space-y-3">
+              {statusCards.map((card) => {
+                const Icon = card.icon;
+                const toneClasses = card.tone === 'success'
+                  ? 'border-emerald-200 bg-emerald-50'
+                  : card.tone === 'warning'
+                    ? 'border-amber-200 bg-amber-50'
+                    : 'border-slate-200 bg-white';
+                const iconClasses = card.tone === 'success'
+                  ? 'text-emerald-600'
+                  : card.tone === 'warning'
+                    ? 'text-amber-600'
+                    : 'text-slate-700';
+
+                return (
+                  <section
+                    key={card.id}
+                    className={`rounded-[28px] border px-5 py-4 shadow-sm animate-in fade-in slide-in-from-top-2 ${toneClasses}`}
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white ${iconClasses}`}>
+                        <Icon size={18} className={card.spin ? 'animate-spin' : ''} />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">{card.label}</p>
+                        <p className="mt-1 text-sm font-semibold text-slate-900">{card.title}</p>
+                        <p className="mt-1 text-sm leading-relaxed text-slate-600">{card.body}</p>
+                        {card.actionLabel && (
+                          <button
+                            type="button"
+                            onClick={card.onAction}
+                            className="mt-3 inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-900 hover:bg-slate-900 hover:text-white"
+                          >
+                            {card.actionLabel}
+                          </button>
+                        )}
+                      </div>
+                      {card.dismissible && (
+                        <button
+                          type="button"
+                          onClick={() => setRestoreNotice(null)}
+                          className="rounded-full border border-slate-200 p-2 text-slate-400 transition hover:border-slate-900 hover:bg-slate-900 hover:text-white"
+                          aria-label="상태 메시지 닫기"
+                        >
+                          <X size={16} />
+                        </button>
+                      )}
+                    </div>
+                  </section>
+                );
+              })}
             </div>
           )}
 
@@ -1547,9 +1727,9 @@ AI 분석 요약:
                     <div className="space-y-1">
                       <p className="text-sm font-bold text-amber-900">분석 요청은 정상적으로 처리되고 있습니다.</p>
                       <p className="text-sm leading-relaxed text-amber-800">
-                        서버와 AI 모델 응답을 기다리는 과정에서 1분 정도 걸릴 수 있습니다. 응답이 도착할 때까지 새로고침하거나 창을 닫지 말아주세요.
+                        서버와 AI 모델이 응답을 정리하는 과정이라 최대 1분 정도 걸릴 수 있습니다. 진행 중에는 새로고침, 뒤로 가기, 탭 닫기를 하지 말고 잠시만 기다려 주세요.
                       </p>
-                      <p className="text-xs font-semibold text-amber-700">응답이 도착하면 서류 피드백 화면으로 자동 이동합니다.</p>
+                      <p className="text-xs font-semibold text-amber-700">응답이 도착하면 결과를 로컬에 저장한 뒤 서류 피드백 화면으로 자동 이동합니다.</p>
                     </div>
                   </div>
                 </div>
@@ -2371,6 +2551,11 @@ AI 분석 요약:
                       <Loader2 size={12} className="animate-spin" />
                       {crawlStatus.message}
                     </p>
+                    <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2">
+                      <p className="text-[11px] leading-relaxed text-amber-800">
+                        실시간 상태 확인이 잠시 끊겨도 서버에서는 작업을 계속합니다. 설정 창을 닫아도 되며, 다시 열면 이어서 상태를 확인할 수 있습니다.
+                      </p>
+                    </div>
                   </div>
                 )}
 

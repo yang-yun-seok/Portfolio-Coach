@@ -388,6 +388,18 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
   }, [currentPage, step]);
+  useEffect(() => {
+    const shouldWarn = aiLoading || step === 'practice' || step === 'test-likert' || step === 'test-binary';
+    if (!shouldWarn) return undefined;
+
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [aiLoading, step]);
 
   // ── 핸들러 ─────────────────────────────────────────────────────────────
   const handleStartPractice = () => { setPracticeAnswers({}); setStep('practice'); };
@@ -411,6 +423,12 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
   const requestAiAnalysis = async () => {
     setAiLoading(true);
     setAiError('');
+    const fallbackWithNotice = (message) => {
+      setAiError(message);
+      const local = analyzeLocally(likertAnswers, binaryAnswers);
+      setAiResult(local);
+      setAnalysisSource('local');
+    };
 
     try {
       // 서버 → Supabase 프록시 폴백
@@ -428,11 +446,10 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
       }).catch(() => null);
 
       if (!res || !res.ok) {
-        // 서버 없음 → 로컬 분석으로 폴백
-        const local = analyzeLocally(likertAnswers, binaryAnswers);
-        setAiResult(local);
-        setAnalysisSource('local');
-        setAiLoading(false);
+        const failureReason = !res
+          ? 'AI 서버에 연결하지 못했습니다.'
+          : `AI 서버가 ${res.status} 상태를 반환했습니다.`;
+        fallbackWithNotice(`${failureReason} 로컬 분석 결과를 먼저 표시했습니다. 잠시 후 AI 재분석을 눌러 다시 시도할 수 있습니다.`);
         return;
       }
 
@@ -441,10 +458,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
       setAnalysisSource('ai');
     } catch (err) {
       console.warn('AI 분석 실패 → 로컬 Fallback:', err.message);
-      setAiError(`AI 분석 실패: ${err.message}. 로컬 분석으로 대체합니다.`);
-      const local = analyzeLocally(likertAnswers, binaryAnswers);
-      setAiResult(local);
-      setAnalysisSource('local');
+      fallbackWithNotice(`AI 분석 중 오류가 발생했습니다. (${err.message}) 로컬 분석 결과를 먼저 표시했습니다. 잠시 후 다시 시도할 수 있습니다.`);
     } finally {
       setAiLoading(false);
     }
@@ -762,7 +776,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
                 <div>
                   <p className="text-sm font-bold text-amber-900">분석 요청은 정상적으로 처리되고 있습니다.</p>
                   <p className="mt-1 text-sm leading-relaxed text-amber-800">
-                    서버와 AI 모델이 응답을 정리하는 동안 1분 정도 걸릴 수 있습니다. 새로고침하거나 창을 닫으면 결과가 사라질 수 있으니 잠시만 기다려 주세요.
+                    서버와 AI 모델이 응답을 정리하는 동안 1분 정도 걸릴 수 있습니다. 진행 중에는 새로고침, 뒤로 가기, 탭 닫기를 하지 말고 잠시만 기다려 주세요.
                   </p>
                 </div>
               </div>
@@ -781,8 +795,8 @@ export default function PersonalityTest({ selectedProvider, selectedModelId }) {
             ) : (
               <div className="rounded-xl p-4 bg-sky-50 border border-sky-200 flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-xs font-bold text-sky-700">로컬 분석 엔진 결과입니다.</p>
-                  <p className="text-xs text-sky-600 mt-0.5">위 버튼 또는 아래 버튼으로 AI 재분석을 요청할 수 있습니다.</p>
+                  <p className="text-xs font-bold text-sky-700">로컬 분석 엔진 결과를 먼저 표시했습니다.</p>
+                  <p className="text-xs text-sky-600 mt-0.5">AI 응답이 필요하면 위 버튼 또는 아래 버튼으로 다시 분석을 요청할 수 있습니다.</p>
                 </div>
                 <button onClick={requestAiAnalysis} disabled={aiLoading}
                   className="shrink-0 flex items-center gap-1.5 px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-lg transition-all text-xs shadow disabled:opacity-70">
