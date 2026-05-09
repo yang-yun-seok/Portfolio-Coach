@@ -34,6 +34,10 @@
         "summary": { "type": "STRING" },
         "techStack": { "type": "ARRAY", "items": { "type": "STRING" } },
         "architecture": { "type": "ARRAY", "items": { "type": "STRING" } },
+        "projectHighlights": { "type": "ARRAY", "items": { "type": "STRING" } },
+        "qualitySignals": { "type": "ARRAY", "items": { "type": "STRING" } },
+        "shippingSignals": { "type": "ARRAY", "items": { "type": "STRING" } },
+        "refactorSuggestions": { "type": "ARRAY", "items": { "type": "STRING" } },
         "documentation": { "type": "STRING" },
         "risks": { "type": "ARRAY", "items": { "type": "STRING" } },
         "interviewTalkingPoints": { "type": "ARRAY", "items": { "type": "STRING" } }

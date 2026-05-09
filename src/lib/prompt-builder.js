@@ -58,8 +58,15 @@ export function buildUserPromptClient({ top3, profile, hasFiles, hasPortfolioFil
 - 저장소: ${githubPortfolio.fullName} (${githubPortfolio.repoUrl})
 - 설명: ${githubPortfolio.description || '설명 없음'}
 - 주 언어/스택 후보: ${[githubPortfolio.language, ...(githubPortfolio.stack || [])].filter(Boolean).join(', ') || '확인 필요'}
+- 최근 업데이트: ${githubPortfolio.updatedAt || '확인 필요'}
+- 기본 브랜치: ${githubPortfolio.defaultBranch || '확인 필요'}
+- 규모 신호: stars ${githubPortfolio.stars ?? 0}, forks ${githubPortfolio.forks ?? 0}
+- 언어 분포: ${(githubPortfolio.topLanguages || githubPortfolio.languages || []).join(', ') || '확인 필요'}
 - 루트 구조: ${(githubPortfolio.rootFiles || []).slice(0, 18).map((f) => `${f.type === 'dir' ? '[dir]' : '[file]'} ${f.path}`).join(', ') || '확인 불가'}
+- 핵심 디렉터리: ${(githubPortfolio.inspectedDirs || []).map((dir) => dir.path).join(', ') || '확인 불가'}
 - 주요 파일: ${(githubPortfolio.keyFiles || []).map((f) => f.path).join(', ') || '확인 불가'}
+- 실행/검증 스크립트: ${(githubPortfolio.packageScripts || []).join(' / ') || '확인 불가'}
+- 자동화 워크플로: ${(githubPortfolio.workflowFiles || []).map((f) => f.path).join(', ') || '확인 불가'}
 - README 일부:
 ${githubPortfolio.readme || '(README 없음)'}
 
@@ -103,7 +110,7 @@ ${fileContext}
 4. **포트폴리오 개선** (\`portfolioImprovements\`, 3~5개 항목)
    - ${portfolioInstruction}
 5. **GitHub 기술문서화** (\`githubPortfolioAnalysis\`)
-   - GitHub 분석 자료가 있으면 README/구조/설정 파일을 바탕으로 프로젝트 개요, 기술 스택, 구조 해석, 코드 품질 리스크, README 개선안, 면접 설명 포인트를 작성하세요.
+   - GitHub 분석 자료가 있으면 README/구조/설정 파일/자동화 신호를 바탕으로 프로젝트 개요, 기술 스택, 구조 해석, 프로젝트 하이라이트, 품질 신호, 출시·협업 신호, 보완 제안, 리스크, 면접 설명 포인트를 작성하세요.
    - GitHub 분석 자료가 없으면 빈 값 또는 간단한 안내만 작성하세요.
 6. **면접 준비** (\`interviewPreps\`)
 

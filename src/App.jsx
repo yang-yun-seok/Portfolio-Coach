@@ -695,25 +695,102 @@ export default function App() {
   const buildLocalGitHubPortfolioAnalysis = (githubPortfolio) => {
     if (!githubPortfolio?.repoUrl) return null;
     const stack = githubPortfolio.stack?.length ? githubPortfolio.stack : githubPortfolio.languages || [];
-    return {
-      repoUrl: githubPortfolio.repoUrl,
-      fullName: githubPortfolio.fullName,
-      summary: `${githubPortfolio.fullName} 저장소는 ${githubPortfolio.language || '확인 필요'} 기반 프로젝트입니다. README, 루트 구조, 주요 설정 파일을 기준으로 기술 설명 자료를 구성했습니다.`,
-      techStack: stack,
-      architecture: (githubPortfolio.rootFiles || [])
+    const projectHighlights = Array.isArray(githubPortfolio.projectHighlights) && githubPortfolio.projectHighlights.length > 0
+      ? githubPortfolio.projectHighlights
+      : [
+        `${githubPortfolio.fullName} 저장소는 ${stack.slice(0, 4).join(', ') || githubPortfolio.language || '확인 필요'} 중심 프로젝트로 보입니다.`,
+      ];
+    const architecture = Array.isArray(githubPortfolio.architecture) && githubPortfolio.architecture.length > 0
+      ? githubPortfolio.architecture
+      : (githubPortfolio.rootFiles || [])
         .slice(0, 8)
-        .map((file) => `${file.type === 'dir' ? '폴더' : '파일'}: ${file.path}`),
-      documentation: githubPortfolio.techDocument,
-      risks: [
-        githubPortfolio.readme ? 'README에 실행 방법, 담당 역할, 핵심 구현 근거가 충분한지 확인이 필요합니다.' : 'README가 없거나 읽히지 않아 프로젝트 설명력이 약해질 수 있습니다.',
-        '무료 분석 모드는 public repo의 루트 구조와 주요 설정 파일만 확인하므로, 핵심 구현 파일은 면접용 설명으로 별도 보강하는 것이 좋습니다.',
-      ],
-      interviewTalkingPoints: [
+        .map((file) => `${file.type === 'dir' ? '폴더' : '파일'}: ${file.path}`);
+    const qualitySignals = Array.isArray(githubPortfolio.qualitySignals) && githubPortfolio.qualitySignals.length > 0
+      ? githubPortfolio.qualitySignals
+      : [
+        githubPortfolio.readme
+          ? 'README 기반 실행/설명 문서가 있어 프로젝트 소개 근거를 확보할 수 있습니다.'
+          : 'README가 약하면 저장소 첫인상과 실행 안내 품질이 떨어질 수 있습니다.',
+      ];
+    const shippingSignals = Array.isArray(githubPortfolio.shippingSignals) && githubPortfolio.shippingSignals.length > 0
+      ? githubPortfolio.shippingSignals
+      : [
+        githubPortfolio.workflowFiles?.length
+          ? '자동화 워크플로 흔적이 있어 검증 또는 배포 경험을 설명할 수 있습니다.'
+          : '자동화 워크플로가 보이지 않으면 수동 검증/배포 과정을 직접 설명해야 합니다.',
+      ];
+    const refactorSuggestions = Array.isArray(githubPortfolio.refactorSuggestions) && githubPortfolio.refactorSuggestions.length > 0
+      ? githubPortfolio.refactorSuggestions
+      : [
+        '핵심 모듈 2~3개를 별도 설명 문서로 정리하면 면접 대응력이 더 좋아집니다.',
+      ];
+    const risks = Array.isArray(githubPortfolio.risks) && githubPortfolio.risks.length > 0
+      ? githubPortfolio.risks
+      : [
+        githubPortfolio.readme
+          ? 'README에 실행 방법, 담당 역할, 핵심 구현 근거가 충분한지 확인이 필요합니다.'
+          : 'README가 없거나 읽히지 않아 프로젝트 설명력이 약해질 수 있습니다.',
+        '무료 분석 모드는 public repo의 핵심 구조와 대표 설정 파일 위주로 확인하므로, 핵심 구현 파일은 면접용 설명으로 별도 보강하는 편이 좋습니다.',
+      ];
+    const interviewTalkingPoints = Array.isArray(githubPortfolio.interviewTalkingPoints) && githubPortfolio.interviewTalkingPoints.length > 0
+      ? githubPortfolio.interviewTalkingPoints
+      : [
         '이 프로젝트를 만든 문제 상황과 목표를 30초 안에 설명하세요.',
         '핵심 기능 1~2개를 골라 본인의 설계 판단, 예외 처리, 검증 방법을 말하세요.',
         '지금 다시 만든다면 바꿀 구조나 테스트/배포 개선점을 준비하세요.',
-      ],
+      ];
+    return {
+      repoUrl: githubPortfolio.repoUrl,
+      fullName: githubPortfolio.fullName,
+      defaultBranch: githubPortfolio.defaultBranch,
+      topLanguages: githubPortfolio.topLanguages || githubPortfolio.languages || [],
+      stars: githubPortfolio.stars,
+      forks: githubPortfolio.forks,
+      updatedAt: githubPortfolio.updatedAt,
+      summary: githubPortfolio.summary || `${githubPortfolio.fullName} 저장소는 ${githubPortfolio.language || '확인 필요'} 기반 프로젝트입니다. README, 핵심 디렉터리, 설정 파일, 자동화 신호를 기준으로 기술 설명 자료를 구성했습니다.`,
+      techStack: stack,
+      projectHighlights,
+      architecture,
+      qualitySignals,
+      shippingSignals,
+      refactorSuggestions,
+      documentation: githubPortfolio.documentation || githubPortfolio.techDocument,
+      risks,
+      interviewTalkingPoints,
     };
+  };
+
+  const mergeGitHubPortfolioAnalysis = (localAnalysis, remoteAnalysis) => {
+    if (!localAnalysis) return remoteAnalysis;
+    if (!remoteAnalysis) return localAnalysis;
+
+    const merged = { ...localAnalysis, ...remoteAnalysis };
+    const listFields = [
+      'techStack',
+      'architecture',
+      'projectHighlights',
+      'qualitySignals',
+      'shippingSignals',
+      'refactorSuggestions',
+      'risks',
+      'interviewTalkingPoints',
+    ];
+
+    listFields.forEach((field) => {
+      if (!Array.isArray(remoteAnalysis[field]) || remoteAnalysis[field].length === 0) {
+        merged[field] = Array.isArray(localAnalysis[field]) ? localAnalysis[field] : [];
+      }
+    });
+
+    if (!String(remoteAnalysis.summary || '').trim()) {
+      merged.summary = localAnalysis.summary;
+    }
+
+    if (!String(remoteAnalysis.documentation || '').trim()) {
+      merged.documentation = localAnalysis.documentation;
+    }
+
+    return merged;
   };
 
   const fileToBase64 = (file) =>
@@ -864,7 +941,7 @@ export default function App() {
       const top3 = jobsWithScores.slice(0, 3);
       let githubPortfolio = null;
       if (analysisProfile.roleGroup === '프로그래밍' && analysisProfile.githubUrl?.trim()) {
-        setInfoMessage('GitHub 저장소 구조를 가볍게 분석하는 중입니다. public repo의 핵심 파일만 확인합니다.');
+        setInfoMessage('GitHub 저장소를 분석하는 중입니다. README, 핵심 디렉터리, 설정 파일, 자동화 신호를 확인합니다. public repo 기준으로만 동작합니다.');
         try {
           githubPortfolio = await analyzeGitHubPortfolio(analysisProfile.githubUrl.trim());
         } catch (githubErr) {
@@ -912,9 +989,7 @@ export default function App() {
         })) : [],
         coverLetterImprovements: data.coverLetterImprovements || {},
         profileAnalysis: data.profileAnalysis || {},
-        githubPortfolioAnalysis: localGitHubAnalysis
-          ? { ...localGitHubAnalysis, ...(data.githubPortfolioAnalysis || {}) }
-          : data.githubPortfolioAnalysis,
+        githubPortfolioAnalysis: mergeGitHubPortfolioAnalysis(localGitHubAnalysis, data.githubPortfolioAnalysis),
       };
       setResults(safeData);
       setActiveTab('feedback');
@@ -2092,7 +2167,7 @@ AI 분석 요약:
                         <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-sky-300">GitHub Technical Doc</p>
                         <h3 className="mt-1 text-2xl font-black tracking-tight">플밍 포트폴리오 기술문서 초안</h3>
                         <p className="mt-2 text-sm leading-relaxed text-slate-300">
-                          public GitHub 저장소의 README, 루트 구조, 주요 설정 파일을 기준으로 기술 설명용 초안을 정리했습니다.
+                          public GitHub 저장소의 README, 핵심 디렉터리, 설정 파일, 자동화 신호를 기준으로 기술 설명용 초안을 정리했습니다.
                         </p>
                       </div>
                       <a
@@ -2111,14 +2186,57 @@ AI 분석 요약:
                       </div>
                     )}
 
-                    <div className="grid gap-4 lg:grid-cols-3">
+                    <div className="mb-5 flex flex-wrap gap-2">
                       {[
-                        ['기술 스택', results.githubPortfolioAnalysis.techStack],
-                        ['구조 해석', results.githubPortfolioAnalysis.architecture],
-                        ['면접 포인트', results.githubPortfolioAnalysis.interviewTalkingPoints],
-                      ].map(([title, items]) => (
+                        results.githubPortfolioAnalysis.topLanguages?.length
+                          ? `언어 ${results.githubPortfolioAnalysis.topLanguages.join(', ')}`
+                          : null,
+                        results.githubPortfolioAnalysis.defaultBranch
+                          ? `기본 브랜치 ${results.githubPortfolioAnalysis.defaultBranch}`
+                          : null,
+                        results.githubPortfolioAnalysis.updatedAt
+                          ? `최근 업데이트 ${results.githubPortfolioAnalysis.updatedAt}`
+                          : null,
+                        Number.isFinite(results.githubPortfolioAnalysis.stars)
+                          ? `Stars ${results.githubPortfolioAnalysis.stars}`
+                          : null,
+                        Number.isFinite(results.githubPortfolioAnalysis.forks)
+                          ? `Forks ${results.githubPortfolioAnalysis.forks}`
+                          : null,
+                      ].filter(Boolean).map((item) => (
+                        <span key={item} className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5 text-xs text-slate-200">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                      {[
+                        { title: '기술 스택', items: results.githubPortfolioAnalysis.techStack, tone: 'text-sky-200' },
+                        { title: '구조 해석', items: results.githubPortfolioAnalysis.architecture, tone: 'text-cyan-200' },
+                        { title: '프로젝트 하이라이트', items: results.githubPortfolioAnalysis.projectHighlights, tone: 'text-emerald-200' },
+                        { title: '면접 포인트', items: results.githubPortfolioAnalysis.interviewTalkingPoints, tone: 'text-indigo-200' },
+                      ].map(({ title, items, tone }) => (
                         <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                          <h4 className="mb-3 text-sm font-bold text-sky-200">{title}</h4>
+                          <h4 className={`mb-3 text-sm font-bold ${tone}`}>{title}</h4>
+                          <ul className="space-y-2 text-sm text-slate-300">
+                            {(Array.isArray(items) && items.length > 0 ? items : ['분석된 항목이 없습니다.']).map((item) => (
+                              <li key={item} className="leading-relaxed">- {item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                      {[
+                        { title: '품질 신호', items: results.githubPortfolioAnalysis.qualitySignals, tone: 'text-lime-200' },
+                        { title: '출시/협업 신호', items: results.githubPortfolioAnalysis.shippingSignals, tone: 'text-violet-200' },
+                        { title: '보완 제안', items: results.githubPortfolioAnalysis.refactorSuggestions, tone: 'text-amber-200' },
+                        { title: '리스크', items: results.githubPortfolioAnalysis.risks, tone: 'text-rose-200' },
+                      ].map(({ title, items, tone }) => (
+                        <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                          <h4 className={`mb-3 text-sm font-bold ${tone}`}>{title}</h4>
                           <ul className="space-y-2 text-sm text-slate-300">
                             {(Array.isArray(items) && items.length > 0 ? items : ['분석된 항목이 없습니다.']).map((item) => (
                               <li key={item} className="leading-relaxed">- {item}</li>
