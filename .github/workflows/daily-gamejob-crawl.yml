@@ -47,6 +47,16 @@ jobs:
           git commit -m "Daily GameJob crawl"
           git push origin HEAD:main
 
+      - name: Notify Discord on crawl failure
+        if: steps.daily_crawl.outcome == 'failure' && env.DISCORD_WEBHOOK_URL != ''
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d "{\"content\":\"[Portfolio-Coach] Daily GameJob crawl failed\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref_name }}\nRun: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            "$DISCORD_WEBHOOK_URL"
+
       - name: Fail workflow when crawl failed
         if: steps.daily_crawl.outcome == 'failure'
         run: exit 1
