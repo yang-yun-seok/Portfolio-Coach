@@ -4,7 +4,7 @@ import {
   ChevronRight, AlertCircle, CheckCircle, XCircle, Loader2, Gamepad2,
   User, X, ExternalLink,
   Sparkles, Clock, Shirt, Smile, Brain,
-  Settings, Database, ClipboardList, Code2, Download, BookOpen,
+  Settings, Database, ClipboardList, Download, BookOpen,
 } from 'lucide-react';
 import {
   ROLE_GROUPS,
@@ -26,7 +26,6 @@ import { analyzeGitHubPortfolio } from './lib/github-analyzer';
 import { apiUrl, staticAssetUrl } from './lib/runtime-config';
 import { useModels } from './hooks/useModels';
 import { useWorkspacePersistence } from './hooks/useWorkspacePersistence';
-import TechAssessment from './components/TechAssessment';
 import PersonalityTest from './components/PersonalityTest';
 import PdfExport from './components/PdfExport';
 import { EMPTY_INSTRUCTOR } from './components/InstructorFeedbackForm';
@@ -1102,10 +1101,15 @@ AI 분석 요약:
     { id: 'jobs',            label: '추천 공고',        icon: Target },
     { id: 'interview',       label: '면접 대비',        icon: MessageSquare },
     { id: 'interview-basic', label: '면접 기본 준비',   icon: Smile },
-    { id: 'tech-assessment', label: '직무 과제 평가',   icon: Code2 },
     { id: 'personality-test', label: '인성검사',         icon: ClipboardList },
     { id: 'pdf-export',     label: 'PDF 출력',          icon: Download },
   ];
+
+  useEffect(() => {
+    if (!navItems.some((item) => item.id === activeTab)) {
+      setActiveTab('input');
+    }
+  }, [activeTab]);
 
   const renderEmptyState = (icon, title, desc) => (
     <div className="apple-empty-state flex flex-col items-center justify-center py-24 text-center animate-in fade-in">
@@ -1155,11 +1159,6 @@ AI 분석 요약:
       title: '면접 기본 태도를 정리합니다',
       description: `${normalizedUserInfo.roleGroup} 직군 면접에서 먼저 검증되는 준비 요소와 말하기 기준을 정리합니다.`,
       hint: readinessPlaybook.reviewerNoteBody,
-    },
-    'tech-assessment': {
-      title: '직군별 과제 사고방식을 연습합니다',
-      description: '기획, 플밍, 아트 직군별로 다른 과제 유형을 풀어보고 답변 방향을 점검합니다.',
-      hint: '정답보다 판단 과정과 근거가 보이도록 작성하는 것이 중요합니다.',
     },
     'personality-test': {
       title: '인성검사 응답 경향을 확인합니다',
@@ -1642,9 +1641,6 @@ AI 분석 요약:
               </section>
             </div>
           )}
-
-          {/* ── TAB 7: 직무 과제 평가 ─────────────────────────────── */}
-          {activeTab === 'tech-assessment' && <TechAssessment userInfo={normalizedUserInfo} />}
 
           {/* ── TAB 8: 인성검사 (탭 전환 시 상태 유지를 위해 항상 마운트, display로 토글) ── */}
           <div style={{ display: activeTab === 'personality-test' ? 'block' : 'none' }}>

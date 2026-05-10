@@ -23,7 +23,6 @@ const TAB_ROLE_ITEMS = [
   ['추천 공고', '보유 역량과 경력 조건을 기준으로 공고를 점수화하고, 어떤 역량이 맞고 부족한지 함께 확인합니다.'],
   ['면접 대비', '1~3순위 공고의 인재상과 과제 성향을 반영해 예상 질문, 피해야 할 답변, 권장 답변 구조를 봅니다.'],
   ['면접 기본 준비', '복장, 시간, 장비, 태도, 답변 프레임처럼 모든 직무에 공통으로 필요한 면접 기본기를 정리합니다.'],
-  ['직무 과제 평가', '기획·플밍·아트 트랙별 실무형 과제를 풀고 출제 의도, 이상적인 답변, 피해야 할 답변을 비교합니다.'],
   ['인성검사', '리커트/선택형 문항으로 인성검사 흐름을 연습하고 일관성 있게 답하는 감각을 익힙니다.'],
   ['PDF 출력', '분석 결과와 강사 피드백을 상담, 제출, 개인 복습용 자료로 정리합니다.'],
 ];
@@ -121,7 +120,7 @@ export default function UserGuideModal({ open, onClose, roleGroup, guidePlaybook
           <section>
             <h3 className="text-lg font-bold text-slate-900 mb-3">탭별 역할</h3>
             <div className="grid gap-3 md:grid-cols-2">
-              {TAB_ROLE_ITEMS.map(([title, body]) => (
+              {TAB_ROLE_ITEMS.filter((_, index) => index !== 5).map(([title, body]) => (
                 <div key={title} className="rounded-xl border border-slate-200 p-4">
                   <p className="font-bold text-slate-900 mb-1">{title}</p>
                   <p className="text-sm text-slate-600 leading-relaxed">{body}</p>

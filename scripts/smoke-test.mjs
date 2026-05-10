@@ -213,7 +213,7 @@ async function run() {
     await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
     await page.goto(`${baseUrl}?smoke=1`, { waitUntil: 'networkidle0', timeout: 45000 });
 
-    const expectedTools = ['정보 입력', '서류 피드백', '포트폴리오', '추천 공고', '면접 대비', '면접 기본 준비', '직무 과제 평가', '인성검사', 'PDF 출력'];
+    const expectedTools = ['정보 입력', '서류 피드백', '포트폴리오', '추천 공고', '면접 대비', '면접 기본 준비', '인성검사', 'PDF 출력'];
 
     const initialState = await page.evaluate(() => {
       const toolLabels = [...document.querySelectorAll('.coach-side-tool-label')].map((node) => node.textContent.trim());
