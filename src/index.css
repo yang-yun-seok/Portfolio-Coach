@@ -2954,15 +2954,7 @@
   }
 
   .coach-content-brief {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 1rem;
-    align-items: center;
-    margin: -0.4rem 0 1.3rem;
-    padding: 0.85rem 1rem;
-    border-radius: 8px;
-    background: #ffffff;
-    border: 1px dashed rgba(0, 0, 0, 0.22);
+    display: none;
   }
 
   .coach-content-brief div {

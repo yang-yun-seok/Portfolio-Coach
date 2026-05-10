@@ -1797,11 +1797,8 @@ AI 분석 요약:
       </div>
 
       <WorkspaceSidebar
-        activeFeatureGuide={activeFeatureGuide}
         activeTab={activeTab}
         navItems={navItems}
-        results={results}
-        onOpenGuide={() => setShowUserGuide(true)}
         onSelectTab={setActiveTab}
       />
       </div>
