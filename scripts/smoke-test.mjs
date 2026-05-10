@@ -252,6 +252,21 @@ async function run() {
       if (state.overflowX) throw new Error(`Horizontal overflow detected after opening "${label}".`);
     }
 
+    await clickTool(page, '추천 공고');
+    await page.waitForFunction(
+      () => document.body.innerText.includes('매칭하기') && document.body.innerText.includes('매일 00시 자동 수집'),
+      { timeout: 5000 },
+    );
+    const jobsTabState = await page.evaluate(() => ({
+      hasManualCrawlButton: [...document.querySelectorAll('button')].some((button) => {
+        const text = button.innerText.trim();
+        return text.includes('최신 공고 수집') || text.includes('크롤링 시작') || text.includes('수동 크롤링');
+      }),
+      hasCrawlerConsole: document.body.innerText.includes('Crawler Console'),
+    }));
+    if (jobsTabState.hasManualCrawlButton) throw new Error('Manual crawl button is still exposed on the jobs tab.');
+    if (jobsTabState.hasCrawlerConsole) throw new Error('Legacy crawler console copy is still visible on the jobs tab.');
+
     await clickTool(page, '서류 피드백');
     await page.waitForFunction(
       () => document.body.innerText.includes('최근 분석 기록') && document.body.innerText.includes('현재 결과 비교'),

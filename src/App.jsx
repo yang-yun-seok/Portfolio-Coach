@@ -21,9 +21,9 @@ import {
   ROLE_READINESS_PLAYBOOK,
   ROLE_RESULT_PLAYBOOK,
 } from './data/skills';
-import { analyzeViaProxy } from './lib/gemini-client';
+import { analyzeViaProxy, matchJobsViaProxy } from './lib/gemini-client';
 import { analyzeGitHubPortfolio } from './lib/github-analyzer';
-import { apiUrl, eventSourceUrl, staticAssetUrl } from './lib/runtime-config';
+import { apiUrl, staticAssetUrl } from './lib/runtime-config';
 import { useModels } from './hooks/useModels';
 import { useWorkspacePersistence } from './hooks/useWorkspacePersistence';
 import ModelSelector from './components/ModelSelector';
@@ -66,6 +66,13 @@ const INTERVIEW_THEME_MAP = {
     border: 'rgba(5, 150, 105, 0.16)',
     kicker: 'Attitude',
   },
+};
+
+const CRAWL_STATUS_LABELS = {
+  success: '성공',
+  'partial-success': '부분 성공',
+  failed: '실패',
+  idle: '대기',
 };
 
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
@@ -220,22 +227,48 @@ export default function App() {
   // ── 기업/공고 데이터 (서버 API에서 로드) ──────────────────────────────
   const [companies, setCompanies] = useState([]);
   const [jobs, setJobs] = useState([]);
-  const [dataLoading, setDataLoading] = useState(true);
+  const [jobsMetadata, setJobsMetadata] = useState({
+    latestAppliedDate: null,
+    referenceJobCount: 0,
+    lastSuccessfulCrawlAt: null,
+    lastCrawlStatus: 'idle',
+    newJobsCount: 0,
+    activeJobsCount: 0,
+  });
 
   useEffect(() => {
     (async () => {
       try {
         // 정적 JSON에서 직접 로드 (GitHub Pages + 로컬 모두 대응)
-        const [compRes, jobRes] = await Promise.all([
+        const [compRes, jobRes, metaRes] = await Promise.all([
           fetch(staticAssetUrl('api/companies.json')),
           fetch(staticAssetUrl('api/jobs.json')),
+          fetch(staticAssetUrl('api/jobs-metadata.json')).catch(() => null),
         ]);
         if (compRes.ok) setCompanies(await compRes.json());
-        if (jobRes.ok) setJobs(await jobRes.json());
+        let loadedJobs = [];
+        if (jobRes.ok) {
+          loadedJobs = await jobRes.json();
+          setJobs(loadedJobs);
+        }
+        if (metaRes?.ok) {
+          setJobsMetadata(await metaRes.json());
+        } else {
+          const latestUpdatedAt = loadedJobs
+            .map((job) => job.updatedAt)
+            .filter(Boolean)
+            .sort()
+            .reverse()[0] || null;
+
+          setJobsMetadata((prev) => ({
+            ...prev,
+            latestAppliedDate: latestUpdatedAt,
+            referenceJobCount: loadedJobs.length,
+            activeJobsCount: loadedJobs.length,
+          }));
+        }
       } catch (err) {
         console.warn('데이터 로드 실패:', err.message);
-      } finally {
-        setDataLoading(false);
       }
     })();
   }, []);
@@ -359,266 +392,18 @@ export default function App() {
     );
   };
 
-  // 설정 / 크롤링
+  // 설정 / 추천 공고
   const [showSettings, setShowSettings] = useState(false);
   const [showModelSettings, setShowModelSettings] = useState(false);
   const [showUserGuide, setShowUserGuide] = useState(false);
-  const [crawlStatus, setCrawlStatus] = useState({ running: false, message: '', percent: 0, log: [], isError: false });
-  const crawlEventSourceRef = useRef(null);
-  const crawlPollerRef = useRef(null);
-
-  // ── 크롤링 태그 선택 ──────────────────────────────────────────────────
-  const CRAWL_JOB_TAGS = [
-    '게임기획', 'QA·테스터', '개발PM', '사업PM',
-    '게임개발(클라이언트)', '게임개발(모바일)', '게임AI개발',
-    '인터페이스디자인', '원화', '도트', '2D그래픽', '모델링', '애니메이션', '이펙트·FX',
-  ];
-  const CRAWL_CAREER_TAGS = [
-    '신입', '1~3년', '4~6년', '7~9년', '10~15년', '16년~20년', '21년이상', '경력무관',
-  ];
-  const [crawlJobTags, setCrawlJobTags] = useState(['게임기획']);
-  const [crawlCareerTags, setCrawlCareerTags] = useState(['신입']);
-
-  const toggleCrawlTag = (tag, list, setter) => {
-    setter(list.includes(tag) ? list.filter(t => t !== tag) : [...list, tag]);
-  };
-
-  const stopCrawlMonitoring = () => {
-    if (crawlEventSourceRef.current) {
-      crawlEventSourceRef.current.close();
-      crawlEventSourceRef.current = null;
-    }
-    if (crawlPollerRef.current) {
-      clearInterval(crawlPollerRef.current);
-      crawlPollerRef.current = null;
-    }
-  };
-
-  const reloadJobsAfterCrawl = async () => {
-    const jobRes = await fetch(staticAssetUrl('api/jobs.json')).catch(() => null);
-    if (jobRes?.ok) {
-      setJobs(await jobRes.json());
-    }
-  };
-
-  const applyCrawlEvent = async (data) => {
-    if (!data?.message) return;
-
-    const isErr = data.stage === 'error';
-    const isDone = data.stage === 'complete' || data.stage === 'cancelled';
-
-    setCrawlStatus((prev) => {
-      const nextLog =
-        prev.log[prev.log.length - 1] === data.message
-          ? prev.log
-          : [...prev.log.slice(-49), data.message];
-
-      return {
-        running: !isErr && !isDone,
-        message: data.message,
-        percent: data.percent || 0,
-        log: nextLog,
-        isError: isErr,
-      };
-    });
-
-    if (isErr || isDone) {
-      stopCrawlMonitoring();
-      if (isDone) {
-        await reloadJobsAfterCrawl();
-      }
-    }
-  };
-
-  const startCrawlPolling = () => {
-    if (crawlPollerRef.current) clearInterval(crawlPollerRef.current);
-
-    crawlPollerRef.current = setInterval(async () => {
-      try {
-        const res = await fetch(apiUrl('api/crawl/status'));
-        if (!res.ok) return;
-
-        const status = await res.json();
-        if (status.lastEvent) {
-          await applyCrawlEvent(status.lastEvent);
-        }
-
-        if (!status.running && !status.lastEvent) {
-          stopCrawlMonitoring();
-          setCrawlStatus((prev) => ({
-            ...prev,
-            running: false,
-            isError: true,
-            message: prev.message || '크롤링 상태를 확인할 수 없습니다.',
-          }));
-        }
-      } catch {
-        // polling은 다음 주기에 재시도
-      }
-    }, 2000);
-  };
-
-  const connectCrawlStream = () => {
-    if (typeof EventSource === 'undefined') {
-      setCrawlStatus((prev) => ({
-        ...prev,
-        message: '브라우저 실시간 연결을 지원하지 않아 상태 확인 모드로 진행합니다. 설정 창을 닫아도 서버에서 크롤링은 계속됩니다.',
-      }));
-      return;
-    }
-
-    if (crawlEventSourceRef.current) {
-      crawlEventSourceRef.current.close();
-    }
-
-    const evtSource = new EventSource(eventSourceUrl('api/crawl/stream'));
-    crawlEventSourceRef.current = evtSource;
-
-    evtSource.onmessage = async (e) => {
-      try {
-        const data = JSON.parse(e.data);
-        await applyCrawlEvent(data);
-      } catch {
-        // 파싱 오류는 무시하고 polling이 보완
-      }
-    };
-
-    evtSource.onerror = () => {
-      if (crawlEventSourceRef.current === evtSource) {
-        evtSource.close();
-        crawlEventSourceRef.current = null;
-      }
-
-      setCrawlStatus((prev) => ({
-        ...prev,
-        message: prev.running
-          ? '실시간 연결이 일시적으로 끊겨 상태 확인 모드로 전환했습니다. 크롤링 자체는 계속 진행됩니다.'
-          : prev.message,
-      }));
-    };
-  };
-
-  // ── 크롤링 함수 ──────────────────────────────────────────────────────
-  const startCrawl = async () => {
-    stopCrawlMonitoring();
-    setCrawlStatus({
-      running: true,
-      message: '브라우저 엔진을 준비하고 있습니다. 설정 창을 닫아도 서버에서 계속 처리됩니다.',
-      percent: 0,
-      log: [],
-      isError: false,
-    });
-    try {
-      // 1) 크롤링 시작 요청 (백그라운드 실행, 즉시 응답)
-      const targets = [...crawlJobTags, ...crawlCareerTags];
-      const startRes = await fetch(apiUrl('api/crawl/start'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ targets }),
-      });
-
-      if (!startRes.ok) {
-        const err = await startRes.json().catch(() => ({}));
-        setCrawlStatus((prev) => ({ ...prev, running: false, message: err.error || '크롤링 시작 실패', isError: true }));
-        return;
-      }
-
-      startCrawlPolling();
-      connectCrawlStream();
-      return;
-
-      // 2) SSE 스트림으로 진행 상황 수신 (GET — 연결 끊겨도 크롤링은 계속)
-      const evtSource = new EventSource(eventSourceUrl('api/crawl/stream'));
-
-      evtSource.onmessage = async (e) => {
-        try {
-          const data = JSON.parse(e.data);
-          const isErr = data.stage === 'error';
-          const isDone = data.stage === 'complete' || data.stage === 'cancelled';
-
-          setCrawlStatus((prev) => ({
-            running: !isErr && !isDone,
-            message: data.message,
-            percent: data.percent || 0,
-            log: [...prev.log.slice(-49), data.message],
-            isError: isErr,
-          }));
-
-          // 크롤링 종료 시 공고 데이터 리로드
-          if (isDone) {
-            evtSource.close();
-          let jobRes = await fetch(staticAssetUrl('api/jobs.json')).catch(() => null);
-            if (jobRes.ok) setJobs(await jobRes.json());
-          }
-
-          if (isErr) {
-            evtSource.close();
-          }
-        } catch { /* 파싱 실패 무시 */ }
-      };
-
-      evtSource.onerror = () => {
-        // SSE 연결 끊김 — 크롤링 상태 폴링으로 전환
-        evtSource.close();
-        // 크롤링이 아직 처리 중인지 확인 후 재연결
-          fetch(apiUrl('api/crawl/status')).then(r => r.json()).then(status => {
-          if (status.running) {
-            // 아직 처리 중이면 잠시 후 재연결
-            setTimeout(() => {
-              const retry = new EventSource(eventSourceUrl('api/crawl/stream'));
-              retry.onmessage = evtSource.onmessage;
-              retry.onerror = () => {
-                retry.close();
-                setCrawlStatus((prev) => ({ ...prev, running: false, message: '연결이 끊겼습니다. 크롤링은 백그라운드에서 계속 처리되고 있습니다.', isError: false }));
-              };
-            }, 1000);
-          } else if (status.lastEvent) {
-            // 이미 종료됨
-            const isErr = status.lastEvent.stage === 'error';
-            setCrawlStatus((prev) => ({
-              running: false,
-              message: status.lastEvent.message,
-              percent: status.lastEvent.percent || 0,
-              log: [...prev.log, status.lastEvent.message],
-              isError: isErr,
-            }));
-            if (!isErr) {
-                  fetch(staticAssetUrl('api/jobs.json')).then(r => r.ok ? r.json() : null).then(jobs => { if (jobs) setJobs(jobs); });
-            }
-          }
-        }).catch(() => {
-          setCrawlStatus((prev) => ({ ...prev, running: false, message: '서버 연결 실패', isError: true }));
-        });
-      };
-    } catch (err) {
-      setCrawlStatus((prev) => ({ ...prev, running: false, message: `오류: ${err.message}`, isError: true }));
-    }
-  };
-
-  const stopCrawl = async () => {
-    stopCrawlMonitoring();
-    try {
-      const res = await fetch(apiUrl('api/crawl/stop'), { method: 'POST' });
-      const data = await res.json().catch(() => ({}));
-      setCrawlStatus((prev) => ({
-        ...prev,
-        running: false,
-        isError: false,
-        message: data.message || '크롤링이 중단되었습니다.',
-      }));
-    } catch {
-      setCrawlStatus((prev) => ({
-        ...prev,
-        running: false,
-        isError: true,
-        message: '크롤링 중단 요청에 실패했습니다.',
-      }));
-    }
-  };
-
-  useEffect(() => () => {
-    stopCrawlMonitoring();
-  }, []);
+  const [matchedJobs, setMatchedJobs] = useState([]);
+  const [jobMatchState, setJobMatchState] = useState({
+    running: false,
+    attempted: false,
+    summary: '',
+    error: '',
+    matchedAt: '',
+  });
 
   // ── 헬퍼 ──────────────────────────────────────────────────────────────
   const currentProvider = enabledProviders.find((p) => p.id === selectedProvider);
@@ -659,7 +444,7 @@ export default function App() {
     recommendedJobs,
     instructorFeedback,
     loading,
-    crawlRunning: crawlStatus.running,
+    crawlRunning: false,
     setUserInfo,
     setResults,
     setRecommendedJobs,
@@ -897,6 +682,101 @@ export default function App() {
     return [...top3, ...rest];
   };
 
+  const runRecommendedJobMatch = async () => {
+    const analysisProfile = normalizeUserProfile(userInfo);
+    if (!analysisProfile.skills?.length) {
+      setJobMatchState({
+        running: false,
+        attempted: false,
+        summary: '',
+        error: '추천 공고 매칭 전에 최소 1개 이상의 보유 기술을 입력해 주세요.',
+        matchedAt: '',
+      });
+      return;
+    }
+
+    const candidateJobs = recommendedJobs.length > 0 ? recommendedJobs : computeJobsWithScores();
+    if (!candidateJobs.length) {
+      setJobMatchState({
+        running: false,
+        attempted: false,
+        summary: '',
+        error: '현재 기준으로 비교할 공고가 없습니다.',
+        matchedAt: '',
+      });
+      return;
+    }
+
+    setJobMatchState({
+      running: true,
+      attempted: true,
+      summary: '',
+      error: '',
+      matchedAt: '',
+    });
+    if (recommendedJobs.length === 0) {
+      setRecommendedJobs(candidateJobs);
+    }
+
+    try {
+      const response = await matchJobsViaProxy({
+        modelId: selectedModelId,
+        profile: analysisProfile,
+        candidates: candidateJobs,
+      });
+
+      const rankedMap = new Map(
+        (response.matches || []).map((match, index) => [
+          String(match.id),
+          {
+            ...match,
+            score: Math.max(0, Math.min(100, Math.round(Number(match.score) || 0))),
+            rank: index + 1,
+          },
+        ]),
+      );
+
+      const merged = candidateJobs
+        .filter((job) => rankedMap.has(String(job.id)))
+        .map((job) => {
+          const match = rankedMap.get(String(job.id));
+          return {
+            ...job,
+            score: match.score,
+            aiMatchReason: match.reason,
+            aiStrengths: Array.isArray(match.strengths) ? match.strengths : [],
+            aiCautions: Array.isArray(match.cautions) ? match.cautions : [],
+            aiRank: match.rank,
+          };
+        })
+        .sort((left, right) => {
+          if ((left.aiRank || 999) !== (right.aiRank || 999)) {
+            return (left.aiRank || 999) - (right.aiRank || 999);
+          }
+          return (right.score || 0) - (left.score || 0);
+        });
+
+      setMatchedJobs(merged);
+      setVisibleJobs(10);
+      setJobMatchState({
+        running: false,
+        attempted: true,
+        summary: response.summary || '지원 우선순위 기준으로 공고를 정렬했습니다.',
+        error: '',
+        matchedAt: new Date().toISOString(),
+      });
+    } catch (error) {
+      setMatchedJobs([]);
+      setJobMatchState({
+        running: false,
+        attempted: true,
+        summary: '',
+        error: error.message || '추천 공고 AI 매칭에 실패했습니다.',
+        matchedAt: '',
+      });
+    }
+  };
+
   // ── Fallback 적용 ─────────────────────────────────────────────────────
   const applyLocalFallback = (jobsWithScores, message) => {
     const profileRoleLabel = getProfileDisplayRole(userInfo);
@@ -960,6 +840,14 @@ export default function App() {
     setError('');
     setInfoMessage('');
     setRestoreNotice(null);
+    setMatchedJobs([]);
+    setJobMatchState({
+      running: false,
+      attempted: false,
+      summary: '',
+      error: '',
+      matchedAt: '',
+    });
 
     try {
       const analysisProfile = normalizeUserProfile(userInfo);
@@ -1325,17 +1213,6 @@ AI 분석 요약:
       title: '현재 결과를 로컬에 저장했습니다.',
       body: `${formatSavedAt(lastSavedAt)} 기준 스냅샷입니다. 다시 열어도 복구할 수 있습니다.`,
     },
-    crawlStatus.running && {
-      id: 'crawl',
-      tone: 'warning',
-      icon: Loader2,
-      label: 'Crawling',
-      title: '공고 데이터를 갱신하고 있습니다.',
-      body: `${crawlStatus.message} 설정 창을 닫아도 서버에서 계속 처리되며, 다시 열면 상태를 이어서 확인할 수 있습니다.`,
-      actionLabel: '설정 열기',
-      onAction: () => setShowSettings(true),
-      spin: true,
-    },
   ].filter(Boolean);
   const inputWorkspaceProps = {
     analyzeApplication,
@@ -1391,25 +1268,20 @@ AI 분석 요약:
     userInfo,
   };
   const jobsWorkspaceProps = {
-    CRAWL_CAREER_TAGS,
-    CRAWL_JOB_TAGS,
-    crawlCareerTags,
-    crawlJobTags,
-    crawlStatus,
+    candidateJobs: recommendedJobs,
     fetchCompanyInfoAI,
     highlightedGapSkills,
     highlightedMatchedSkills,
     jobs,
-    onToggleCareerTag: (tag) => toggleCrawlTag(tag, crawlCareerTags, setCrawlCareerTags),
-    onToggleJobTag: (tag) => toggleCrawlTag(tag, crawlJobTags, setCrawlJobTags),
-    recommendedJobs,
+    jobsMetadata,
+    matchedJobs,
+    jobMatchState,
+    onRunJobMatch: runRecommendedJobMatch,
     resultPlaybook,
     scoreFilter,
     setScoreFilter,
     setSelectedCompanyModal,
     setVisibleJobs,
-    startCrawl,
-    stopCrawl,
     userInfo,
     visibleJobs,
   };
@@ -1443,7 +1315,6 @@ AI 분석 요약:
           <button type="button" onClick={() => setShowSettings(true)}>
             <Settings size={17} />
             <span>설정</span>
-            {crawlStatus.running && <Loader2 size={14} className="animate-spin" />}
           </button>
           <button type="button" onClick={() => setShowModelSettings(true)} className="coach-model-command">
             <Sparkles size={17} />
@@ -1977,15 +1848,17 @@ AI 분석 요약:
 
               <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <RefreshCw size={18} className={`text-indigo-500 ${crawlStatus.running ? 'animate-spin' : ''}`} />
-                  <h3 className="font-semibold text-slate-700">공고 데이터 최신화</h3>
+                  <RefreshCw size={18} className="text-indigo-500" />
+                  <h3 className="font-semibold text-slate-700">자동 크롤링 상태</h3>
                 </div>
                 <p className="text-xs text-slate-500 leading-relaxed">
-                  추천 공고 탭에 외부 크롤러 페이지 흐름을 이식했습니다. 태그 선택, 진행 상태, 로그 확인, 수동 크롤링 실행은 이제 추천 공고 화면에서 처리합니다.
+                  매일 00:00 기준으로 게임잡 공고를 자동 수집합니다. 사용자 페이지에서는 수동 크롤링을 제공하지 않으며, 아래 메타 정보만 공개됩니다.
                 </p>
                 <div className="mt-4 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs text-slate-600">
-                  <p>현재 공고 캐시: <strong className="text-slate-900">{jobs.length}건</strong></p>
-                  <p className="mt-1">상태: <strong className={crawlStatus.isError ? 'text-rose-600' : crawlStatus.running ? 'text-indigo-600' : 'text-emerald-600'}>{crawlStatus.running ? '크롤링 진행 중' : crawlStatus.message || '대기 중'}</strong></p>
+                  <p>최근 반영일: <strong className="text-slate-900">{jobsMetadata.latestAppliedDate || '정보 없음'}</strong></p>
+                  <p className="mt-1">참고 공고 수: <strong className="text-slate-900">{jobsMetadata.referenceJobCount || jobs.length}건</strong></p>
+                  <p className="mt-1">마지막 성공 시각: <strong className="text-slate-900">{jobsMetadata.lastSuccessfulCrawlAt ? new Date(jobsMetadata.lastSuccessfulCrawlAt).toLocaleString('ko-KR') : '정보 없음'}</strong></p>
+                  <p className="mt-1">상태: <strong className={jobsMetadata.lastCrawlStatus === 'failed' ? 'text-rose-600' : jobsMetadata.lastCrawlStatus === 'partial-success' ? 'text-amber-600' : 'text-emerald-600'}>{CRAWL_STATUS_LABELS[jobsMetadata.lastCrawlStatus] || CRAWL_STATUS_LABELS.idle}</strong></p>
                 </div>
                 <button
                   onClick={() => {

@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { enforceAdminCrawlAccess } from './admin-guard.js';
 
 export function createDataRouter({ dataLoader, crawlService }) {
   const router = Router();
@@ -22,6 +23,10 @@ export function createDataRouter({ dataLoader, crawlService }) {
     res.json(results);
   });
 
+  router.get('/api/jobs/metadata', (req, res) => {
+    res.json(dataLoader.getJobMetadata());
+  });
+
   router.get('/api/jobs/:id', (req, res) => {
     const job = dataLoader.getJobById(req.params.id);
     if (!job) {
@@ -36,6 +41,7 @@ export function createDataRouter({ dataLoader, crawlService }) {
   });
 
   router.post('/api/data/refresh', (req, res) => {
+    if (!enforceAdminCrawlAccess(req, res)) return;
     dataLoader.refresh();
     res.json({ success: true, status: dataLoader.getStatus() });
   });

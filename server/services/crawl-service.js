@@ -1,6 +1,9 @@
-import { writeFileSync } from 'fs';
-import { join } from 'path';
-import { normalizeAll, normalizeJob } from '../../lib/job-normalizer.js';
+import { normalizeJob } from '../../lib/job-normalizer.js';
+import {
+  persistResolvedJobPosting,
+  updateCrawlingMetadata,
+  upsertJobPostings,
+} from './gamejob-daily-crawling.js';
 
 export function createCrawlService({ dataDir, dataLoader }) {
   const state = {
@@ -46,11 +49,9 @@ export function createCrawlService({ dataDir, dataLoader }) {
       }
 
       const normalizedJob = crawlResult.normalizedJob || normalizeJob(crawlResult.refinedData);
-      const jobFilePath = join(dataDir, 'jobs', `job-${cleanGiNo}.json`);
-      writeFileSync(jobFilePath, JSON.stringify(normalizedJob, null, 2), 'utf-8');
-
+      const persistedJob = persistResolvedJobPosting({ dataDir, job: normalizedJob });
       dataLoader.refresh();
-      return { status: 200, body: { found: true, source: 'crawled', job: normalizedJob } };
+      return { status: 200, body: { found: true, source: 'crawled', job: persistedJob } };
     } catch (err) {
       console.error(`[/api/jobs/resolve] GI_No ${cleanGiNo} 크롤링 오류:`, err.message);
       return {
@@ -91,14 +92,26 @@ export function createCrawlService({ dataDir, dataLoader }) {
         const wasCancelled = result.errors.includes('사용자에 의해 중단됨');
 
         if (result.count > 0) {
-          pushEvent({ stage: 'normalize', message: '정규화 처리 중...', percent: 96 });
+          pushEvent({ stage: 'normalize', message: '공개 공고 데이터 갱신 중...', percent: 96 });
           try {
-            const refinedDir = join(dataDir, 'refined');
-            const jobsDir = join(dataDir, 'jobs');
-            const { report } = normalizeAll(refinedDir, jobsDir, false);
-            pushEvent({ stage: 'normalize', message: `정규화 완료: ${report.success}건`, percent: 98 });
+            const finishedAt = new Date().toISOString();
+            const upsertResult = upsertJobPostings({
+              dataDir,
+              crawledJobs: result.jobs || [],
+              crawlFinishedAt: finishedAt,
+            });
+            updateCrawlingMetadata({
+              dataDir,
+              crawlResult: {
+                finishedAt,
+                errors: result.errors || [],
+                filters: { jobTags: crawlTargets, careerTags: [] },
+              },
+              upsertResult,
+            });
+            pushEvent({ stage: 'normalize', message: `데이터 갱신 완료: 신규 ${upsertResult.newJobsCount}건`, percent: 98 });
           } catch (normErr) {
-            pushEvent({ stage: 'normalize', message: `정규화 오류: ${normErr.message}`, percent: 98 });
+            pushEvent({ stage: 'normalize', message: `데이터 갱신 오류: ${normErr.message}`, percent: 98 });
           }
 
           dataLoader.refresh();

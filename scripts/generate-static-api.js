@@ -1,10 +1,11 @@
-/**
- * GitHub Pages용 정적 API JSON 생성 스크립트
- * 빌드 전에 실행하여 /api/* 엔드포인트를 정적 JSON 파일로 대체한다.
- */
-import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import {
+  buildPublicJobs,
+  loadJobMetadata,
+  loadJobRecords,
+} from '../lib/job-catalog.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -12,7 +13,9 @@ const PUBLIC_API = join(ROOT, 'public', 'api');
 const PUBLIC_PROMPTS = join(PUBLIC_API, 'prompts');
 
 function ensureDir(dir) {
-  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+  if (!existsSync(dir)) {
+    mkdirSync(dir, { recursive: true });
+  }
 }
 
 function loadJson(path) {
@@ -20,73 +23,88 @@ function loadJson(path) {
   return JSON.parse(readFileSync(path, 'utf-8'));
 }
 
-// ── 1. /api/models ──
+function writeJson(path, payload) {
+  writeFileSync(path, JSON.stringify(payload, null, 2), 'utf-8');
+}
+
 function generateModels() {
   const config = loadJson(join(ROOT, 'config', 'models.json'));
-  if (!config) { console.warn('[SKIP] config/models.json not found'); return; }
+  if (!config) return;
 
-  const result = {};
-  for (const [id, provider] of Object.entries(config.providers)) {
-    result[id] = {
+  const payload = {};
+  for (const [providerId, provider] of Object.entries(config.providers || {})) {
+    payload[providerId] = {
       label: provider.label,
       enabled: provider.enabled,
       color: provider.color,
       supportsFiles: provider.supportsFiles,
-      models: provider.models.map((m) => ({
-        id: m.id,
-        label: m.label,
-        description: m.description,
-        default: m.default || false,
+      models: (provider.models || []).map((model) => ({
+        id: model.id,
+        label: model.label,
+        description: model.description,
+        default: Boolean(model.default),
       })),
     };
   }
-  writeFileSync(join(PUBLIC_API, 'models.json'), JSON.stringify(result, null, 2));
-  console.log('[OK] public/api/models.json');
+
+  writeJson(join(PUBLIC_API, 'models.json'), payload);
 }
 
-// ── 2. /api/companies ──
 function generateCompanies() {
-  const dataDir = join(ROOT, 'data', 'companies');
-  if (!existsSync(dataDir)) { console.warn('[SKIP] data/companies not found'); return; }
+  const companiesDir = join(ROOT, 'data', 'companies');
+  if (!existsSync(companiesDir)) return;
 
-  // 항상 개별 파일을 읽어 상세 데이터 포함 (_index.json은 요약만 있음)
-  const companies = readdirSync(dataDir)
-    .filter(f => f.endsWith('.json') && f !== '_index.json')
-    .map(f => loadJson(join(dataDir, f)))
+  const companies = readdirSync(companiesDir)
+    .filter((fileName) => fileName.endsWith('.json') && fileName !== '_index.json')
+    .map((fileName) => loadJson(join(companiesDir, fileName)))
     .filter(Boolean);
-  writeFileSync(join(PUBLIC_API, 'companies.json'), JSON.stringify(companies, null, 2));
-  console.log(`[OK] public/api/companies.json (${Array.isArray(companies) ? companies.length : 'index'} entries)`);
+
+  writeJson(join(PUBLIC_API, 'companies.json'), companies);
 }
 
-// ── 3. /api/jobs ──
 function generateJobs() {
-  const dataDir = join(ROOT, 'data', 'jobs');
-  if (!existsSync(dataDir)) { console.warn('[SKIP] data/jobs not found'); return; }
+  const jobsDir = join(ROOT, 'data', 'jobs');
+  if (!existsSync(jobsDir)) return;
 
-  // _index.json은 메타데이터이므로, 항상 개별 job-*.json 파일을 읽음
-  const jobs = readdirSync(dataDir)
-    .filter(f => f.endsWith('.json') && f !== '_index.json')
-    .map(f => loadJson(join(dataDir, f)))
-    .filter(Boolean);
-  writeFileSync(join(PUBLIC_API, 'jobs.json'), JSON.stringify(jobs, null, 2));
-  console.log(`[OK] public/api/jobs.json (${Array.isArray(jobs) ? jobs.length : 'index'} entries)`);
+  const allJobs = loadJobRecords(jobsDir);
+  const publicJobs = buildPublicJobs(allJobs);
+  const fallbackLatestDate = publicJobs
+    .map((job) => job.updatedAt)
+    .filter(Boolean)
+    .sort()
+    .reverse()[0] || null;
+  const loadedMetadata = loadJobMetadata(jobsDir);
+  const metadata = {
+    ...loadedMetadata,
+    latestAppliedDate: loadedMetadata.latestAppliedDate || fallbackLatestDate,
+    referenceJobCount: publicJobs.length,
+    activeJobsCount: loadedMetadata.activeJobsCount || publicJobs.length,
+    lastCrawlStatus: loadedMetadata.lastCrawlStatus === 'idle' && publicJobs.length > 0 ? 'success' : loadedMetadata.lastCrawlStatus,
+  };
+
+  writeJson(join(PUBLIC_API, 'jobs.json'), publicJobs);
+  writeJson(join(PUBLIC_API, 'jobs-metadata.json'), metadata);
 }
 
-// ── 4. /api/prompts/interview-basic ──
 function generateInterviewBasic() {
   const data = loadJson(join(ROOT, 'prompts', 'interview-basic.json'));
-  if (!data) { console.warn('[SKIP] prompts/interview-basic.json not found'); return; }
+  if (!data) return;
 
   ensureDir(PUBLIC_PROMPTS);
-  writeFileSync(join(PUBLIC_PROMPTS, 'interview-basic.json'), JSON.stringify(data, null, 2));
-  console.log('[OK] public/api/prompts/interview-basic.json');
+  writeJson(join(PUBLIC_PROMPTS, 'interview-basic.json'), data);
 }
 
-// ── 실행 ──
-console.log('=== Generating static API files for GitHub Pages ===');
-ensureDir(PUBLIC_API);
-generateModels();
-generateCompanies();
-generateJobs();
-generateInterviewBasic();
-console.log('=== Done ===');
+export function generateStaticApi() {
+  ensureDir(PUBLIC_API);
+  generateModels();
+  generateCompanies();
+  generateJobs();
+  generateInterviewBasic();
+}
+
+const isDirectRun = process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1];
+if (isDirectRun) {
+  console.log('=== Generating static API files for GitHub Pages ===');
+  generateStaticApi();
+  console.log('=== Done ===');
+}

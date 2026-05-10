@@ -3,66 +3,74 @@ import {
   AlertCircle,
   Building2,
   CheckCircle,
-  Database,
+  Clock3,
   ExternalLink,
   Loader2,
   Pin,
-  RefreshCw,
   Search,
+  ShieldCheck,
+  Sparkles,
   Star,
   Target,
 } from 'lucide-react';
 
-function formatUpdatedAt(jobs) {
-  const values = jobs
-    .map((job) => job.updatedAt)
-    .filter(Boolean)
-    .sort()
-    .reverse();
-  return values[0] || '정보 없음';
+function formatDateTime(value) {
+  if (!value) return '정보 없음';
+  try {
+    return new Date(value).toLocaleString('ko-KR');
+  } catch {
+    return value;
+  }
+}
+
+function formatCrawlStatus(status) {
+  switch (status) {
+    case 'success':
+      return { label: '성공', tone: 'text-emerald-600 bg-emerald-50 border-emerald-200' };
+    case 'partial-success':
+      return { label: '부분 성공', tone: 'text-amber-600 bg-amber-50 border-amber-200' };
+    case 'failed':
+      return { label: '실패', tone: 'text-rose-600 bg-rose-50 border-rose-200' };
+    default:
+      return { label: '대기', tone: 'text-slate-500 bg-slate-50 border-slate-200' };
+  }
 }
 
 export default function JobsWorkspace({
-  CRAWL_CAREER_TAGS,
-  CRAWL_JOB_TAGS,
-  crawlCareerTags,
-  crawlJobTags,
-  crawlStatus,
+  candidateJobs,
   fetchCompanyInfoAI,
   highlightedGapSkills,
   highlightedMatchedSkills,
   jobs,
-  onToggleCareerTag,
-  onToggleJobTag,
-  recommendedJobs,
+  jobsMetadata,
+  jobMatchState,
+  matchedJobs,
+  onRunJobMatch,
   resultPlaybook,
   scoreFilter,
   setScoreFilter,
   setSelectedCompanyModal,
   setVisibleJobs,
-  startCrawl,
-  stopCrawl,
   userInfo,
   visibleJobs,
 }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const latestUpdatedAt = formatUpdatedAt(jobs);
-  const selectedTags = [...crawlJobTags, ...crawlCareerTags];
-  const topRecommendedJobs = recommendedJobs.slice(0, 3);
+  const topCandidateJobs = candidateJobs.slice(0, 3);
   const strongSkillCandidates = highlightedMatchedSkills.length > 0
     ? highlightedMatchedSkills
     : userInfo.skills.map((skill) => skill.name).slice(0, 6);
+  const crawlStatus = formatCrawlStatus(jobsMetadata.lastCrawlStatus);
 
   const scoreCounts = {
-    all: recommendedJobs.length,
-    '90+': recommendedJobs.filter((job) => job.score >= 90).length,
-    '80+': recommendedJobs.filter((job) => job.score >= 80).length,
-    '70+': recommendedJobs.filter((job) => job.score >= 70).length,
-    '60+': recommendedJobs.filter((job) => job.score >= 60).length,
-    '60-': recommendedJobs.filter((job) => job.score < 60).length,
+    all: matchedJobs.length,
+    '90+': matchedJobs.filter((job) => job.score >= 90).length,
+    '80+': matchedJobs.filter((job) => job.score >= 80).length,
+    '70+': matchedJobs.filter((job) => job.score >= 70).length,
+    '60+': matchedJobs.filter((job) => job.score >= 60).length,
+    '60-': matchedJobs.filter((job) => job.score < 60).length,
   };
 
-  const filteredRecommendedJobs = recommendedJobs.filter((job) => {
+  const filteredMatchedJobs = matchedJobs.filter((job) => {
     const scoreMatched = scoreFilter === 'all'
       ? true
       : scoreFilter === '60-'
@@ -83,7 +91,9 @@ export default function JobsWorkspace({
     return haystack.includes(query);
   });
 
-  const visibleRecommendedJobs = filteredRecommendedJobs.slice(0, visibleJobs);
+  const visibleMatchedJobs = filteredMatchedJobs.slice(0, visibleJobs);
+  const hasMatchResults = jobMatchState.attempted && matchedJobs.length > 0;
+  const showEmptyResult = jobMatchState.attempted && !jobMatchState.running && !jobMatchState.error && matchedJobs.length === 0;
 
   return (
     <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
@@ -94,24 +104,24 @@ export default function JobsWorkspace({
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <article className="rounded-[28px] border border-slate-200 bg-white px-6 py-5 shadow-sm">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">추천 공고</p>
-          <strong className="mt-3 block text-3xl font-black tracking-tight text-slate-900">{recommendedJobs.length}</strong>
-          <p className="mt-2 text-sm text-slate-500">현재 분석 결과에서 추린 지원 후보 수입니다.</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">최근 반영일</p>
+          <strong className="mt-3 block text-xl font-black tracking-tight text-slate-900">{jobsMetadata.latestAppliedDate || '정보 없음'}</strong>
+          <p className="mt-2 text-sm text-slate-500">매일 00시 자동 크롤링 완료 기준입니다.</p>
         </article>
         <article className="rounded-[28px] border border-slate-200 bg-white px-6 py-5 shadow-sm">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">80점 이상</p>
-          <strong className="mt-3 block text-3xl font-black tracking-tight text-slate-900">{scoreCounts['80+']}</strong>
-          <p className="mt-2 text-sm text-slate-500">바로 지원 검토 가능한 우선 후보입니다.</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">참고 공고 수</p>
+          <strong className="mt-3 block text-3xl font-black tracking-tight text-slate-900">{jobsMetadata.referenceJobCount || jobs.length}</strong>
+          <p className="mt-2 text-sm text-slate-500">현재 공개 추천에 반영되는 유효 공고 수입니다.</p>
         </article>
         <article className="rounded-[28px] border border-slate-200 bg-white px-6 py-5 shadow-sm">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">캐시 공고</p>
-          <strong className="mt-3 block text-3xl font-black tracking-tight text-slate-900">{jobs.length}</strong>
-          <p className="mt-2 text-sm text-slate-500">현재 서비스가 참고하는 GameJob 데이터 수입니다.</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">신규 반영</p>
+          <strong className="mt-3 block text-3xl font-black tracking-tight text-slate-900">{jobsMetadata.newJobsCount || 0}</strong>
+          <p className="mt-2 text-sm text-slate-500">가장 최근 자동 수집 배치에서 추가된 공고입니다.</p>
         </article>
         <article className="rounded-[28px] border border-slate-200 bg-white px-6 py-5 shadow-sm">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">최근 반영</p>
-          <strong className="mt-3 block text-xl font-black tracking-tight text-slate-900">{latestUpdatedAt}</strong>
-          <p className="mt-2 text-sm text-slate-500">정적 데이터 기준 마지막 업데이트 일자입니다.</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">AI 매칭 결과</p>
+          <strong className="mt-3 block text-3xl font-black tracking-tight text-slate-900">{matchedJobs.length}</strong>
+          <p className="mt-2 text-sm text-slate-500">`매칭하기` 실행 후 생성된 개인화 추천 수입니다.</p>
         </article>
       </div>
 
@@ -119,176 +129,137 @@ export default function JobsWorkspace({
         <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Crawler Console</p>
-              <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">GameJob 데이터 운영</h3>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Daily Crawl Policy</p>
+              <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">게임잡 자동 수집 기준</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                외부 크롤러 페이지의 핵심 흐름을 현재 서비스 안으로 옮겼습니다. 태그를 고르고 최신 공고를 수집한 뒤 바로 추천 결과에 반영할 수 있습니다.
+                배포 페이지에서는 수동 크롤링을 제공하지 않습니다. 매일 00시 자동 수집된 공고만 공개 추천에 반영되며,
+                AI 매칭은 아래 `매칭하기` 버튼을 눌렀을 때만 실행됩니다.
               </p>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
-              <p className="font-semibold text-slate-900">선택 조건</p>
-              <p className="mt-1">{selectedTags.length > 0 ? selectedTags.join(', ') : '태그를 선택하세요.'}</p>
-            </div>
+            <span className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold ${crawlStatus.tone}`}>
+              <ShieldCheck size={13} />
+              {crawlStatus.label}
+            </span>
           </div>
 
-          <div className="mt-5 space-y-4">
-            <div>
-              <p className="mb-2 text-xs font-semibold text-slate-600">직종 태그</p>
-              <div className="flex flex-wrap gap-2">
-                {CRAWL_JOB_TAGS.map((tag) => (
-                  <button
-                    key={tag}
-                    type="button"
-                    onClick={() => onToggleJobTag(tag)}
-                    disabled={crawlStatus.running}
-                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
-                      crawlJobTags.includes(tag)
-                        ? 'border-slate-900 bg-slate-900 text-white'
-                        : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-slate-400 hover:bg-white'
-                    } ${crawlStatus.running ? 'opacity-50 cursor-not-allowed' : ''}`}
-                  >
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <article className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5">
+              <p className="text-xs font-semibold text-slate-500">직종 조건</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {[
+                  '게임개발(클라이언트)',
+                  '게임개발(모바일)',
+                  '게임기획',
+                  '게임운영',
+                  'QA·테스트',
+                ].map((tag) => (
+                  <span key={tag} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700">
                     {tag}
-                  </button>
+                  </span>
                 ))}
               </div>
-            </div>
+            </article>
 
-            <div>
-              <p className="mb-2 text-xs font-semibold text-slate-600">경력 태그</p>
-              <div className="flex flex-wrap gap-2">
-                {CRAWL_CAREER_TAGS.map((tag) => (
-                  <button
-                    key={tag}
-                    type="button"
-                    onClick={() => onToggleCareerTag(tag)}
-                    disabled={crawlStatus.running}
-                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
-                      crawlCareerTags.includes(tag)
-                        ? 'border-indigo-600 bg-indigo-600 text-white'
-                        : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-indigo-300 hover:bg-white'
-                    } ${crawlStatus.running ? 'opacity-50 cursor-not-allowed' : ''}`}
-                  >
+            <article className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5">
+              <p className="text-xs font-semibold text-slate-500">경력 조건</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {['신입', '1~3년', '경력무관'].map((tag) => (
+                  <span key={tag} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700">
                     {tag}
-                  </button>
+                  </span>
                 ))}
               </div>
+            </article>
+          </div>
+
+          <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5">
+            <div className="flex items-center gap-2">
+              <Clock3 size={16} className="text-slate-500" />
+              <p className="text-sm font-semibold text-slate-900">최신 배치 메타데이터</p>
             </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
-              <div className="flex items-center gap-2">
-                <Database size={16} className="text-slate-500" />
-                <p className="text-sm font-semibold text-slate-900">서버 실행형 크롤링</p>
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Last Success</p>
+                <strong className="mt-1 block text-slate-900">{formatDateTime(jobsMetadata.lastSuccessfulCrawlAt)}</strong>
               </div>
-              <p className="mt-2 text-xs leading-relaxed text-slate-600">
-                브라우저에서 직접 크롤링하지 않고 서버에서 실행합니다. 페이지를 닫지 말아야 하는 것은 아니지만, 진행 상태를 보려면 이 화면을 유지하는 편이 좋습니다.
-              </p>
-
-              {crawlStatus.running && (
-                <div className="mt-4 space-y-3">
-                  <div className="h-2.5 overflow-hidden rounded-full bg-slate-200">
-                    <div className="h-full rounded-full bg-indigo-600 transition-all duration-500" style={{ width: `${crawlStatus.percent}%` }} />
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-slate-700">
-                    <Loader2 size={14} className="animate-spin" />
-                    <span>{crawlStatus.message}</span>
-                  </div>
-                </div>
-              )}
-
-              {!crawlStatus.running && crawlStatus.message && crawlStatus.percent === 100 && (
-                <div className="mt-4 flex items-start gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-                  <CheckCircle size={16} className="mt-0.5 shrink-0" />
-                  <span>{crawlStatus.message}</span>
-                </div>
-              )}
-
-              {!crawlStatus.running && crawlStatus.isError && crawlStatus.message && (
-                <div className="mt-4 flex items-start gap-2 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
-                  <AlertCircle size={16} className="mt-0.5 shrink-0" />
-                  <span>{crawlStatus.message}</span>
-                </div>
-              )}
-
-              {crawlStatus.log.length > 0 && (
-                <div className="mt-4 rounded-2xl bg-slate-950 px-4 py-4 text-xs text-slate-300">
-                  <p className="mb-2 font-semibold uppercase tracking-[0.18em] text-slate-500">Live Log</p>
-                  <div className="max-h-36 space-y-1 overflow-y-auto custom-scrollbar">
-                    {crawlStatus.log.map((line, index) => (
-                      <div key={`${index}-${line}`}>{line}</div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <div className="mt-4 flex flex-wrap gap-3">
-                {!crawlStatus.running ? (
-                  <button
-                    type="button"
-                    onClick={startCrawl}
-                    disabled={selectedTags.length === 0}
-                    className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition ${
-                      selectedTags.length === 0
-                        ? 'cursor-not-allowed bg-slate-200 text-slate-400'
-                        : 'bg-slate-900 text-white hover:bg-slate-700'
-                    }`}
-                  >
-                    <RefreshCw size={16} />
-                    최신 공고 수집
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={stopCrawl}
-                    className="inline-flex items-center gap-2 rounded-full bg-rose-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-rose-700"
-                  >
-                    중단
-                  </button>
-                )}
-                <div className="rounded-full border border-slate-200 bg-white px-4 py-3 text-xs text-slate-500">
-                  크롤링 후 `api/jobs.json`을 다시 읽어 목록을 갱신합니다.
-                </div>
+              <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Active Jobs</p>
+                <strong className="mt-1 block text-slate-900">{jobsMetadata.activeJobsCount || jobsMetadata.referenceJobCount || jobs.length}건</strong>
               </div>
             </div>
+
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={onRunJobMatch}
+                disabled={jobMatchState.running}
+                className={`inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition ${
+                  jobMatchState.running
+                    ? 'cursor-not-allowed bg-slate-200 text-slate-500'
+                    : 'bg-slate-900 text-white hover:bg-slate-700'
+                }`}
+              >
+                {jobMatchState.running ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={16} />}
+                {jobMatchState.attempted ? '다시 매칭하기' : '매칭하기'}
+              </button>
+              <span className="rounded-full border border-slate-200 bg-white px-4 py-3 text-xs text-slate-500">
+                클릭 시점의 프로필과 최신 공개 공고 기준으로 1회 AI 매칭을 수행합니다.
+              </span>
+            </div>
+
+            {jobMatchState.summary && (
+              <div className="mt-4 flex items-start gap-2 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+                <CheckCircle size={16} className="mt-0.5 shrink-0" />
+                <span>{jobMatchState.summary}</span>
+              </div>
+            )}
+
+            {jobMatchState.error && (
+              <div className="mt-4 flex items-start gap-2 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
+                <AlertCircle size={16} className="mt-0.5 shrink-0" />
+                <span>{jobMatchState.error}</span>
+              </div>
+            )}
           </div>
         </section>
 
         <aside className="rounded-[32px] border border-slate-200 bg-slate-950 p-6 text-white shadow-sm">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300">Match Snapshot</p>
-          <h3 className="mt-2 text-2xl font-black tracking-tight">상위 공고 기준 현재 포지션</h3>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300">Profile Snapshot</p>
+          <h3 className="mt-2 text-2xl font-black tracking-tight">현재 프로필 기준 참고 포인트</h3>
           <div className="mt-5 space-y-5">
             <div>
-              <p className="text-xs font-bold text-slate-200">추천 상위 기업</p>
+              <p className="text-xs font-bold text-slate-200">분석 기준 상위 후보</p>
               <div className="mt-2 flex flex-wrap gap-2">
-                {topRecommendedJobs.length > 0 ? topRecommendedJobs.map((job, index) => (
+                {topCandidateJobs.length > 0 ? topCandidateJobs.map((job, index) => (
                   <span key={`${job.id}-${index}`} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-200">
                     {index + 1}. {job.company}
                   </span>
                 )) : (
-                  <span className="text-xs text-slate-400">분석 결과가 아직 없습니다.</span>
+                  <span className="text-xs text-slate-400">먼저 분석을 실행하면 기준 후보가 정리됩니다.</span>
                 )}
               </div>
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-200">매칭이 강한 역량</p>
+              <p className="text-xs font-bold text-slate-200">강하게 연결되는 역량</p>
               <div className="mt-2 flex flex-wrap gap-2">
                 {strongSkillCandidates.length > 0 ? strongSkillCandidates.map((skill) => (
                   <span key={skill} className="rounded-full bg-emerald-400/15 px-3 py-1.5 text-xs text-emerald-100">
                     {skill}
                   </span>
                 )) : (
-                  <span className="text-xs text-slate-400">직무 역량을 입력하면 강점 축을 여기서 요약합니다.</span>
+                  <span className="text-xs text-slate-400">보유 기술 입력 후 분석하면 여기에 요약됩니다.</span>
                 )}
               </div>
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-200">상위 공고 기준 보완 후보</p>
+              <p className="text-xs font-bold text-slate-200">보완 후보</p>
               <div className="mt-2 flex flex-wrap gap-2">
                 {highlightedGapSkills.length > 0 ? highlightedGapSkills.map((skill) => (
                   <span key={skill} className="rounded-full bg-amber-400/15 px-3 py-1.5 text-xs text-amber-100">
                     {skill}
                   </span>
                 )) : (
-                  <span className="text-xs text-slate-400">현재 상위 공고 기준으로 큰 공백은 보이지 않습니다.</span>
+                  <span className="text-xs text-slate-400">현재 기준에서 큰 공백은 아직 집계되지 않았습니다.</span>
                 )}
               </div>
             </div>
@@ -309,9 +280,9 @@ export default function JobsWorkspace({
       <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Recommended Jobs</p>
-            <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">지원 후보 공고 목록</h3>
-            <p className="mt-2 text-sm text-slate-600">검색어와 점수 구간으로 후보를 줄여서 볼 수 있습니다.</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Matched Jobs</p>
+            <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">AI 추천 공고 목록</h3>
+            <p className="mt-2 text-sm text-slate-600">매칭 실행 후에만 결과가 생성됩니다. 검색어와 점수 구간으로 후보를 좁혀 보세요.</p>
           </div>
           <div className="w-full max-w-md">
             <label className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
@@ -329,41 +300,68 @@ export default function JobsWorkspace({
                 }}
                 placeholder="회사명, 공고명, 스킬 검색"
                 className="w-full bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
+                disabled={!hasMatchResults}
               />
             </div>
           </div>
         </div>
 
-        <div className="mt-5 flex flex-wrap gap-2">
-          {[
-            { key: 'all', label: '전체', color: 'bg-slate-100 text-slate-700' },
-            { key: '90+', label: '90점↑', color: 'bg-emerald-100 text-emerald-700' },
-            { key: '80+', label: '80점↑', color: 'bg-green-100 text-green-700' },
-            { key: '70+', label: '70점↑', color: 'bg-blue-100 text-blue-700' },
-            { key: '60+', label: '60점↑', color: 'bg-amber-100 text-amber-700' },
-            { key: '60-', label: '60점↓', color: 'bg-red-100 text-red-700' },
-          ].map((filter) => (
-            <button
-              key={filter.key}
-              type="button"
-              onClick={() => {
-                setScoreFilter(filter.key);
-                setVisibleJobs(10);
-              }}
-              className={`rounded-lg border px-3 py-1.5 text-xs font-bold transition-all ${
-                scoreFilter === filter.key
-                  ? `${filter.color} border-current shadow-sm`
-                  : 'border-slate-200 bg-white text-slate-400 hover:border-slate-400'
-              }`}
-            >
-              {filter.label}
-              <span className="ml-1 opacity-60">({scoreCounts[filter.key]})</span>
-            </button>
-          ))}
-        </div>
+        {hasMatchResults && (
+          <div className="mt-5 flex flex-wrap gap-2">
+            {[
+              { key: 'all', label: '전체', color: 'bg-slate-100 text-slate-700' },
+              { key: '90+', label: '90점↑', color: 'bg-emerald-100 text-emerald-700' },
+              { key: '80+', label: '80점↑', color: 'bg-green-100 text-green-700' },
+              { key: '70+', label: '70점↑', color: 'bg-blue-100 text-blue-700' },
+              { key: '60+', label: '60점↑', color: 'bg-amber-100 text-amber-700' },
+              { key: '60-', label: '60점↓', color: 'bg-red-100 text-red-700' },
+            ].map((filter) => (
+              <button
+                key={filter.key}
+                type="button"
+                onClick={() => {
+                  setScoreFilter(filter.key);
+                  setVisibleJobs(10);
+                }}
+                className={`rounded-lg border px-3 py-1.5 text-xs font-bold transition-all ${
+                  scoreFilter === filter.key
+                    ? `${filter.color} border-current shadow-sm`
+                    : 'border-slate-200 bg-white text-slate-400 hover:border-slate-400'
+                }`}
+              >
+                {filter.label}
+                <span className="ml-1 opacity-60">({scoreCounts[filter.key]})</span>
+              </button>
+            ))}
+          </div>
+        )}
 
         <div className="mt-6 grid gap-4">
-          {visibleRecommendedJobs.length > 0 ? visibleRecommendedJobs.map((job, index) => (
+          {jobMatchState.running && (
+            <div className="rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-16 text-center">
+              <Loader2 size={28} className="mx-auto mb-4 animate-spin text-slate-500" />
+              <p className="text-lg font-bold text-slate-700">AI가 공개 공고와 프로필을 대조하고 있습니다.</p>
+              <p className="mt-2 text-sm text-slate-500">탭을 벗어나지 않아도 되지만, 결과가 나올 때까지 이 화면을 유지하는 편이 좋습니다.</p>
+            </div>
+          )}
+
+          {!jobMatchState.running && !jobMatchState.attempted && (
+            <div className="rounded-[28px] border border-dashed border-slate-300 bg-slate-50 px-6 py-16 text-center">
+              <Target size={28} className="mx-auto mb-4 text-slate-400" />
+              <p className="text-lg font-bold text-slate-700">아직 AI 추천 공고 매칭을 실행하지 않았습니다.</p>
+              <p className="mt-2 text-sm text-slate-500">자동 수집된 공개 공고를 기준으로 한 번만 실행되며, 클릭하기 전에는 결과를 생성하지 않습니다.</p>
+            </div>
+          )}
+
+          {showEmptyResult && (
+            <div className="rounded-[28px] border border-dashed border-slate-300 bg-slate-50 px-6 py-16 text-center">
+              <AlertCircle size={28} className="mx-auto mb-4 text-slate-400" />
+              <p className="text-lg font-bold text-slate-700">현재 프로필 기준으로 추천 우선순위를 만들지 못했습니다.</p>
+              <p className="mt-2 text-sm text-slate-500">직군, 세부 직무, 보유 기술을 조금 더 구체적으로 입력한 뒤 다시 매칭해 보세요.</p>
+            </div>
+          )}
+
+          {visibleMatchedJobs.map((job, index) => (
             <article key={job.id} className="rounded-[28px] border border-slate-200 bg-slate-50/70 p-5 transition hover:border-indigo-200 hover:bg-white hover:shadow-sm">
               <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
                 <div className="min-w-0 flex-1">
@@ -381,13 +379,40 @@ export default function JobsWorkspace({
                     )}
                   </div>
                   <h4 className="text-xl font-bold text-slate-900">{job.title}</h4>
-                  <p className="mt-1 text-sm text-slate-500">{job.role} · 경력 {job.reqExp === 0 ? '신입' : `${job.reqExp}년 이상`}</p>
+                  <p className="mt-1 text-sm text-slate-500">{job.role} · 경력 {job.reqExp === 0 ? '신입/무관' : `${job.reqExp}년 이상`}</p>
 
                   <div className="mt-3 flex flex-wrap gap-2">
                     {(Array.isArray(job.reqSkills) ? job.reqSkills : []).map((skill) => (
                       <span key={skill} className="rounded-md border border-slate-200 bg-white px-2 py-1 text-xs font-medium text-slate-600"># {skill}</span>
                     ))}
                   </div>
+
+                  {job.aiMatchReason && (
+                    <div className="mt-4 rounded-2xl border border-indigo-100 bg-indigo-50 px-4 py-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-indigo-500">AI Match Reason</p>
+                      <p className="mt-2 text-sm leading-relaxed text-indigo-900">{job.aiMatchReason}</p>
+                      {(job.aiStrengths?.length > 0 || job.aiCautions?.length > 0) && (
+                        <div className="mt-3 grid gap-3 md:grid-cols-2">
+                          <div>
+                            <p className="text-xs font-bold text-slate-700">강점 포인트</p>
+                            <div className="mt-2 flex flex-wrap gap-2">
+                              {(job.aiStrengths || []).map((item) => (
+                                <span key={item} className="rounded-full bg-white px-3 py-1 text-xs text-slate-700">{item}</span>
+                              ))}
+                            </div>
+                          </div>
+                          <div>
+                            <p className="text-xs font-bold text-slate-700">주의 포인트</p>
+                            <div className="mt-2 flex flex-wrap gap-2">
+                              {(job.aiCautions || []).map((item) => (
+                                <span key={item} className="rounded-full bg-white px-3 py-1 text-xs text-slate-700">{item}</span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                   {job.matchDetail && (
                     <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
@@ -408,21 +433,6 @@ export default function JobsWorkspace({
                           </div>
                         ))}
                       </div>
-
-                      {job.matchDetail.matchedSkills.length > 0 && (
-                        <div className="mt-3 flex flex-wrap gap-1.5">
-                          {job.matchDetail.matchedSkills.map((skill, skillIndex) => (
-                            <span key={`${skill.name}-${skillIndex}`} className="rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-bold text-emerald-700">
-                              {skill.name} ({skill.level})
-                            </span>
-                          ))}
-                          {job.matchDetail.unmatchedSkills.map((skill, skillIndex) => (
-                            <span key={`${skill}-gap-${skillIndex}`} className="rounded bg-red-50 px-1.5 py-0.5 text-[10px] text-red-400 line-through">
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      )}
                     </div>
                   )}
 
@@ -468,22 +478,17 @@ export default function JobsWorkspace({
                 </div>
               </div>
             </article>
-          )) : (
-            <div className="rounded-[28px] border border-dashed border-slate-300 bg-slate-50 px-6 py-16 text-center">
-              <p className="text-lg font-bold text-slate-700">조건에 맞는 추천 공고가 없습니다.</p>
-              <p className="mt-2 text-sm text-slate-500">검색어 또는 점수 필터를 조정해 다시 확인하세요.</p>
-            </div>
-          )}
+          ))}
         </div>
 
-        {visibleJobs < filteredRecommendedJobs.length && (
+        {hasMatchResults && visibleJobs < filteredMatchedJobs.length && (
           <div className="mt-6 flex justify-center">
             <button
               type="button"
               onClick={() => setVisibleJobs((prev) => prev + 10)}
               className="rounded-full border border-slate-200 bg-slate-50 px-8 py-3 text-sm font-bold text-slate-600 transition hover:bg-white"
             >
-              더보기 ({Math.min(visibleJobs, filteredRecommendedJobs.length)} / {filteredRecommendedJobs.length})
+              더보기 ({Math.min(visibleJobs, filteredMatchedJobs.length)} / {filteredMatchedJobs.length})
             </button>
           </div>
         )}

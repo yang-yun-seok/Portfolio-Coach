@@ -6,6 +6,7 @@
     "dev": "concurrently \"node server.js\" \"vite\"",
     "dev:front": "vite",
     "dev:back": "node server.js",
+    "crawl:daily": "node scripts/run-daily-gamejob-crawl.mjs",
     "prebuild": "node scripts/generate-static-api.js",
     "build": "vite build",
     "test:smoke": "node scripts/smoke-test.mjs",
