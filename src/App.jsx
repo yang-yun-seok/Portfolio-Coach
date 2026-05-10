@@ -3,7 +3,7 @@ import {
   FileText, Briefcase, Image as ImageIcon, Target, MessageSquare,
   ChevronRight, AlertCircle, CheckCircle, XCircle, Loader2, Gamepad2,
   UploadCloud, Trash2, User, Star, Plus, X, ExternalLink,
-  Building2, Users, Coins, Sparkles, Clock, Shirt, Smile, Brain, Gift,
+  Building2, Users, Sparkles, Clock, Shirt, Smile, Brain,
   Settings, RefreshCw, Database, ClipboardList, Code2, Download, BookOpen,
   Pin, Search, Hash,
 } from 'lucide-react';
@@ -34,6 +34,9 @@ import PersonalityTest from './components/PersonalityTest';
 import PdfExport from './components/PdfExport';
 import AnalysisHistoryPanel from './components/AnalysisHistoryPanel';
 import InstructorFeedbackForm, { EMPTY_INSTRUCTOR } from './components/InstructorFeedbackForm';
+import WorkspaceSidebar from './components/WorkspaceSidebar';
+import CompanyInfoModal from './components/CompanyInfoModal';
+import UserGuideModal from './components/UserGuideModal';
 
 // ── 아이콘 맵 (interview-basic.json에서 문자열로 지정된 아이콘을 컴포넌트로 매핑) ──
 const ICON_MAP = { Shirt, Clock, Brain, Sparkles };
@@ -2604,239 +2607,27 @@ AI 분석 요약:
         </div>
       </div>
 
-      <aside className="coach-side-panel custom-scrollbar" aria-label="작업 안내">
-        <section className="coach-side-card coach-side-current">
-          <p className="coach-side-eyebrow">기능 설명</p>
-          <h2>{activeFeatureGuide.title}</h2>
-          <p>{activeFeatureGuide.description}</p>
-          <div className="coach-side-actions">
-            <button type="button" onClick={() => setShowUserGuide(true)}>사용 방법 보기</button>
-            {!results && activeTab !== 'input' && (
-              <button type="button" onClick={() => setActiveTab('input')} className="coach-secondary-action">
-                정보 입력으로 이동
-              </button>
-            )}
-          </div>
-        </section>
-
-        <section className="coach-side-card coach-side-context-card">
-          <p className="coach-side-eyebrow">사용 방식</p>
-          <strong>각 기능은 독립 메뉴입니다</strong>
-          <p>입력, 피드백, 포트폴리오, 공고, 면접, 검사는 서로 따로 열어볼 수 있습니다.</p>
-        </section>
-
-        <nav className="coach-side-card coach-side-tools" aria-label="Portfolio Coach 기능 바로가기">
-          <p className="coach-side-eyebrow">기능 바로가기</p>
-          <p className="coach-side-helper">필요한 메뉴로 바로 이동하세요. 이 목록은 순서표가 아니라 도구 모음입니다.</p>
-          {navItems.map((item) => {
-            const isActive = activeTab === item.id;
-
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setActiveTab(item.id)}
-                className={`coach-side-tool ${isActive ? 'is-active' : ''}`}
-              >
-                <span className="coach-side-tool-icon"><item.icon size={16} /></span>
-                <span className="coach-side-tool-label">{item.label}</span>
-              </button>
-            );
-          })}
-        </nav>
-      </aside>
+      <WorkspaceSidebar
+        activeFeatureGuide={activeFeatureGuide}
+        activeTab={activeTab}
+        navItems={navItems}
+        results={results}
+        onOpenGuide={() => setShowUserGuide(true)}
+        onSelectTab={setActiveTab}
+      />
       </div>
 
-      {/* ── 회사 정보 모달 ──────────────────────────────────────────── */}
-      {selectedCompanyModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in" onClick={() => setSelectedCompanyModal(null)}>
-          <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative animate-in slide-in-from-bottom-8 custom-scrollbar" onClick={(e) => e.stopPropagation()}>
-            <button onClick={() => setSelectedCompanyModal(null)} className="absolute top-5 right-5 p-2 bg-slate-100 rounded-full text-slate-500 hover:text-slate-800 hover:bg-slate-200 transition-colors">
-              <X size={20} />
-            </button>
-            <div className="p-8">
-              <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-6">
-                <div className="bg-indigo-600 p-3 rounded-2xl text-white"><Building2 size={28} /></div>
-                <div>
-                  <h2 className="text-2xl font-black text-slate-800">{selectedCompanyModal.name}</h2>
-                  <p className="text-indigo-600 font-bold text-sm">기업 상세 정보 및 AI 분석</p>
-                </div>
-              </div>
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                {[
-                  { icon: Gamepad2, label: '대표작', value: selectedCompanyModal.games },
-                  { icon: Users,    label: '인력 규모', value: selectedCompanyModal.employees },
-                  { icon: Coins,    label: '매출/자본 규모', value: selectedCompanyModal.revenue },
-                  { icon: Gift,     label: '주요 사내 복지', value: selectedCompanyModal.benefits },
-                ].map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                    <div className="flex items-center gap-2 text-slate-500 font-bold mb-1 text-sm"><Icon size={16} /> {label}</div>
-                    <p className="text-slate-800 font-medium text-sm">{value}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-bold text-slate-800 mb-2 border-l-4 border-indigo-500 pl-3">최근 뉴스 및 동향</h3>
-                  <ul className="bg-blue-50/50 p-4 rounded-xl text-slate-700 text-sm leading-relaxed border border-blue-100 space-y-2">
-                    {selectedCompanyModal.news?.map((n, i) => (
-                      <li key={i} className="flex gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
-                        <span>{n}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-slate-800 mb-2 border-l-4 border-purple-500 pl-3">AI 기업 요약 분석</h3>
-                  <div className="bg-purple-50/50 p-4 rounded-xl text-slate-700 text-sm leading-relaxed border border-purple-100">
-                    <p className="font-bold text-purple-900 mb-1">핵심 분석</p>
-                    {selectedCompanyModal.aiAnalysis}
-                  </div>
-                </div>
-              </div>
-              <div className="mt-8 pt-6 border-t border-slate-100 text-center">
-                <button onClick={() => setSelectedCompanyModal(null)} className="bg-slate-800 text-white font-bold py-3 px-10 rounded-xl shadow-md hover:bg-slate-900 transition-colors">닫기</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <CompanyInfoModal
+        company={selectedCompanyModal}
+        onClose={() => setSelectedCompanyModal(null)}
+      />
 
-      {/* ── 사용 설명서 모달 ─────────────────────────────────────────────── */}
-      {showUserGuide && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col overflow-hidden">
-            <div className="flex items-center justify-between p-6 border-b border-slate-100">
-              <div className="flex items-center gap-3">
-                <div className="bg-blue-100 p-2 rounded-lg"><BookOpen size={20} className="text-blue-600" /></div>
-                <div>
-                  <h2 className="text-xl font-bold text-slate-800">Portfolio Coach 사용 설명서</h2>
-                  <p className="text-sm text-slate-500">{normalizedUserInfo.roleGroup} 직군 기준으로 입력, 분석, 결과 확인 순서를 정리했습니다.</p>
-                </div>
-              </div>
-              <button onClick={() => setShowUserGuide(false)} className="text-slate-400 hover:text-slate-600 transition-colors">
-                <X size={24} />
-              </button>
-            </div>
-
-            <div className="p-6 overflow-y-auto space-y-6">
-              <section className="rounded-2xl bg-slate-950 !text-white p-6 shadow-inner">
-                <p className="text-[11px] font-semibold tracking-[0.18em] uppercase !text-blue-200 mb-2">Quick Start</p>
-                <h3 className="text-2xl font-bold leading-tight mb-3 !text-white">{guidePlaybook.quickStartTitle}</h3>
-                <p className="text-sm !text-slate-100 leading-relaxed">{guidePlaybook.quickStartBody}</p>
-              </section>
-
-              <section>
-                <h3 className="text-lg font-bold text-slate-900 mb-3">이 직군 기준 먼저 할 일</h3>
-                <div className="grid gap-3 md:grid-cols-3">
-                  {guidePlaybook.focusCards.map((card) => (
-                    <article key={card.label} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-                      <p className="mb-2 text-[11px] font-black uppercase tracking-[0.22em] text-sky-600">{card.label}</p>
-                      <p className="mb-2 font-bold text-slate-900">{card.title}</p>
-                      <p className="text-sm leading-relaxed text-slate-600">{card.body}</p>
-                    </article>
-                  ))}
-                </div>
-              </section>
-
-              <section className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
-                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                  <h3 className="text-lg font-bold text-slate-900 mb-4">추천 사용 순서</h3>
-                  <div className="space-y-3">
-                    {guidePlaybook.workflow.map((step, index) => (
-                      <div key={step} className="flex gap-3 rounded-xl bg-slate-50 p-4">
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-sky-100 text-sm font-black text-sky-700">
-                          {index + 1}
-                        </span>
-                        <p className="text-sm leading-relaxed text-slate-700">{step}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <aside className="rounded-2xl bg-slate-950 p-5 text-white shadow-xl">
-                  <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-300">Priority Tabs</p>
-                  <div className="space-y-4">
-                    {guidePlaybook.priorityTabs.map((item) => (
-                      <div key={item.title} className="border-b border-white/10 pb-4 last:border-b-0 last:pb-0">
-                        <p className="mb-1 font-bold text-white">{item.title}</p>
-                        <p className="text-sm leading-relaxed text-slate-300">{item.body}</p>
-                      </div>
-                    ))}
-                  </div>
-                </aside>
-              </section>
-
-              <section>
-                <h3 className="text-lg font-bold text-slate-900 mb-3">기능별 이용 가이드</h3>
-                <div className="grid gap-3 md:grid-cols-2">
-                  {[
-                    ['직무와 역량', '정보 입력에서 직무 대분류, 세부 직무, 경력, 증명 가능한 보유 기술을 정리합니다.'],
-                    ['서류 자료', '이력서, 자기소개서, 포트폴리오 PDF가 있으면 첨부합니다. 파일이 구체적일수록 피드백도 정밀해집니다.'],
-                    ['공고 기준', '특정 GameJob 공고를 분석 기준으로 삼고 싶다면 공고 번호를 우선 공고 지정에 입력합니다.'],
-                    ['AI 분석', 'AI 분석 시작 및 저장을 누른 뒤 응답이 도착할 때까지 새로고침하지 말고 기다립니다.'],
-                    ['결과 확인', '서류 피드백, 포트폴리오, 추천 공고, 면접 대비는 필요한 화면만 바로 열어 확인할 수 있습니다.'],
-                    ['문서 정리', '필요한 결과와 강사 피드백은 PDF 출력에서 제출용 또는 복습용으로 묶을 수 있습니다.'],
-                  ].map(([title, body]) => (
-                    <article key={title} className="rounded-xl bg-slate-50 p-4 text-sm text-slate-700">
-                      <p className="mb-1 font-bold text-slate-900">{title}</p>
-                      <p className="leading-relaxed">{body}</p>
-                    </article>
-                  ))}
-                </div>
-              </section>
-
-              <section>
-                <h3 className="text-lg font-bold text-slate-900 mb-3">분석 품질을 높이는 입력 기준</h3>
-                <div className="grid gap-3 md:grid-cols-2">
-                  {[
-                    ['직무 선택', '기획, 플밍, 아트 중 현재 지원하려는 방향을 먼저 정하고 세부 직무는 가장 가까운 역할을 선택하세요.'],
-                    ['역량 입력', '툴 이름만 적기보다 “Unity UI 구현”, “밸런스 테이블 설계”, “캐릭터 원화 시트 제작”처럼 산출물이 보이는 표현이 좋습니다.'],
-                    ['PDF 첨부', '파일명과 첫 페이지에서 본인 이름, 지원 직무, 핵심 프로젝트가 빠르게 보이면 AI와 사람이 모두 읽기 쉽습니다.'],
-                    ['공고 지정', '지원 예정 공고가 있다면 번호를 넣어두세요. 추천 공고와 면접 질문이 해당 공고 기준으로 더 날카로워집니다.'],
-                  ].map(([title, body]) => (
-                    <div key={title} className="rounded-xl bg-white border border-slate-200 p-4 shadow-sm">
-                      <p className="font-bold text-slate-900 mb-1">{title}</p>
-                      <p className="text-sm text-slate-600 leading-relaxed">{body}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              <section>
-                <h3 className="text-lg font-bold text-slate-900 mb-3">탭별 역할</h3>
-                <div className="grid gap-3 md:grid-cols-2">
-                  {[
-                    ['서류 피드백', '이력서와 자기소개서에서 직무 적합성, 성과 표현, 두괄식 구조, 부족한 근거를 확인합니다.'],
-                    ['포트폴리오', '대표작 순서, 본인 역할, 제작 과정, 문제 해결 근거가 채용자가 읽기 좋게 구성됐는지 점검합니다.'],
-                    ['추천 공고', '보유 역량과 경력 조건을 기준으로 공고를 점수화하고, 어떤 역량이 맞고 부족한지 함께 확인합니다.'],
-                    ['면접 대비', '1~3순위 공고의 인재상과 과제 성향을 반영해 예상 질문, 피해야 할 답변, 권장 답변 구조를 봅니다.'],
-                    ['면접 기본 준비', '복장, 시간, 장비, 태도, 답변 프레임처럼 모든 직무에 공통으로 필요한 면접 기본기를 정리합니다.'],
-                    ['직무 과제 평가', '기획·플밍·아트 트랙별 실무형 과제를 풀고 출제 의도, 이상적인 답변, 피해야 할 답변을 비교합니다.'],
-                    ['인성검사', '리커트/선택형 문항으로 인성검사 흐름을 연습하고 일관성 있게 답하는 감각을 익힙니다.'],
-                    ['PDF 출력', '분석 결과와 강사 피드백을 상담, 제출, 개인 복습용 자료로 정리합니다.'],
-                  ].map(([title, body]) => (
-                    <div key={title} className="rounded-xl border border-slate-200 p-4">
-                      <p className="font-bold text-slate-900 mb-1">{title}</p>
-                      <p className="text-sm text-slate-600 leading-relaxed">{body}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              <section className="rounded-2xl bg-blue-50 border border-blue-100 p-5">
-                <h3 className="text-base font-bold text-blue-900 mb-2">알아두면 좋아요</h3>
-                <ul className="space-y-2 text-sm text-blue-800">
-                  <li>AI 분석은 모델 상태, 첨부 파일 크기, 네트워크 상태에 따라 1분 정도 걸릴 수 있습니다.</li>
-                  <li>로딩 중에는 새로고침하거나 탭을 닫지 마세요. 분석 결과 저장과 PDF 반영이 중간에 끊길 수 있습니다.</li>
-                  <li>공고 크롤링은 설정 팝업에서 실행하며, 서버에서 Chrome·Edge·Naver Whale을 찾고 없으면 Puppeteer Chrome을 자동 준비합니다.</li>
-                  <li>서버와 통신하는 과정에서 첫 요청이나 분석 요청이 다소 지연될 수 있습니다. 잠시 기다리면 이어서 처리됩니다.</li>
-                </ul>
-              </section>
-            </div>
-          </div>
-        </div>
-      )}
+      <UserGuideModal
+        open={showUserGuide}
+        onClose={() => setShowUserGuide(false)}
+        roleGroup={normalizedUserInfo.roleGroup}
+        guidePlaybook={guidePlaybook}
+      />
 
       {/* ── 설정 모달 ─────────────────────────────────────────────── */}
       {showSettings && (
