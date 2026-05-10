@@ -405,7 +405,7 @@ export default function App() {
     if (!data?.message) return;
 
     const isErr = data.stage === 'error';
-    const isDone = data.stage === 'complete';
+    const isDone = data.stage === 'complete' || data.stage === 'cancelled';
 
     setCrawlStatus((prev) => {
       const nextLog =
@@ -534,7 +534,7 @@ export default function App() {
         try {
           const data = JSON.parse(e.data);
           const isErr = data.stage === 'error';
-          const isDone = data.stage === 'complete';
+          const isDone = data.stage === 'complete' || data.stage === 'cancelled';
 
           setCrawlStatus((prev) => ({
             running: !isErr && !isDone,

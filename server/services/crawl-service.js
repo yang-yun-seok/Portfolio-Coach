@@ -45,7 +45,7 @@ export function createCrawlService({ dataDir, dataLoader }) {
         };
       }
 
-      const normalizedJob = normalizeJob(crawlResult.refinedData);
+      const normalizedJob = crawlResult.normalizedJob || normalizeJob(crawlResult.refinedData);
       const jobFilePath = join(dataDir, 'jobs', `job-${cleanGiNo}.json`);
       writeFileSync(jobFilePath, JSON.stringify(normalizedJob, null, 2), 'utf-8');
 
@@ -88,7 +88,9 @@ export function createCrawlService({ dataDir, dataLoader }) {
           onProgress: pushEvent,
         });
 
-        if (result.success && result.count > 0) {
+        const wasCancelled = result.errors.includes('사용자에 의해 중단됨');
+
+        if (result.count > 0) {
           pushEvent({ stage: 'normalize', message: '정규화 처리 중...', percent: 96 });
           try {
             const refinedDir = join(dataDir, 'refined');
@@ -104,8 +106,10 @@ export function createCrawlService({ dataDir, dataLoader }) {
         }
 
         pushEvent({
-          stage: 'complete',
-          message: `완료! ${result.count}건 수집 (오류: ${result.errors.length}건)`,
+          stage: wasCancelled ? 'cancelled' : 'complete',
+          message: wasCancelled
+            ? `중단됨. ${result.count}건까지 저장했습니다. (오류: ${result.errors.length}건)`
+            : `완료! ${result.count}건 수집 (오류: ${result.errors.length}건)`,
           percent: 100,
           result,
         });
