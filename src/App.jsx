@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  FileText, Briefcase, Image as ImageIcon, Target, MessageSquare,
+  FileText, Image as ImageIcon, Target, MessageSquare,
   ChevronRight, AlertCircle, CheckCircle, XCircle, Loader2, Gamepad2,
-  User, Star, X, ExternalLink,
-  Building2, Users, Sparkles, Clock, Shirt, Smile, Brain,
+  User, X, ExternalLink,
+  Sparkles, Clock, Shirt, Smile, Brain,
   Settings, RefreshCw, Database, ClipboardList, Code2, Download, BookOpen,
-  Pin,
 } from 'lucide-react';
 import {
   ROLE_GROUPS,
@@ -36,6 +35,7 @@ import WorkspaceSidebar from './components/WorkspaceSidebar';
 import CompanyInfoModal from './components/CompanyInfoModal';
 import FeedbackWorkspace from './components/FeedbackWorkspace';
 import InputWorkspace from './components/InputWorkspace';
+import JobsWorkspace from './components/JobsWorkspace';
 import UserGuideModal from './components/UserGuideModal';
 
 // ── 아이콘 맵 (interview-basic.json에서 문자열로 지정된 아이콘을 컴포넌트로 매핑) ──
@@ -1258,9 +1258,9 @@ AI 분석 요약:
       hint: '플밍 직무는 GitHub 저장소 분석 결과도 함께 볼 수 있습니다.',
     },
     jobs: {
-      title: '지원 후보 공고를 비교합니다',
-      description: '입력한 직무와 역량을 기준으로 추천 공고와 부족한 역량을 한눈에 확인합니다.',
-      hint: '지원하고 싶은 공고가 있으면 정보 입력 탭에서 우선 공고로 지정하세요.',
+      title: '추천 공고와 데이터 운영을 함께 봅니다',
+      description: '입력한 직무와 역량 기준 추천 결과를 확인하고, 같은 화면에서 GameJob 데이터 최신화도 실행할 수 있습니다.',
+      hint: '추천 결과가 없어도 이 탭에서 공고 데이터 현황과 크롤링 상태를 먼저 확인할 수 있습니다.',
     },
     interview: {
       title: '공고별 면접 대응을 만듭니다',
@@ -1389,6 +1389,29 @@ AI 분석 요약:
     setSelectedHistoryId,
     topRecommendedJobs,
     userInfo,
+  };
+  const jobsWorkspaceProps = {
+    CRAWL_CAREER_TAGS,
+    CRAWL_JOB_TAGS,
+    crawlCareerTags,
+    crawlJobTags,
+    crawlStatus,
+    fetchCompanyInfoAI,
+    highlightedGapSkills,
+    highlightedMatchedSkills,
+    jobs,
+    onToggleCareerTag: (tag) => toggleCrawlTag(tag, crawlCareerTags, setCrawlCareerTags),
+    onToggleJobTag: (tag) => toggleCrawlTag(tag, crawlJobTags, setCrawlJobTags),
+    recommendedJobs,
+    resultPlaybook,
+    scoreFilter,
+    setScoreFilter,
+    setSelectedCompanyModal,
+    setVisibleJobs,
+    startCrawl,
+    stopCrawl,
+    userInfo,
+    visibleJobs,
   };
 
   // ── 렌더링 ────────────────────────────────────────────────────────────
@@ -1686,170 +1709,7 @@ AI 분석 요약:
 
           {/* ── TAB 4: 추천 공고 ───────────────────────────────────── */}
           {activeTab === 'jobs' && (
-            recommendedJobs.length > 0 ? (
-              <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
-                <div className="apple-intro">
-                  <h2 className="text-3xl font-bold text-slate-800 mb-2">{resultPlaybook.jobsTitle}</h2>
-                  <p className="text-slate-500 mb-4">{resultPlaybook.jobsDescription}</p>
-                  {/* 점수 구간 필터 */}
-                  <div className="flex flex-wrap gap-2">
-                    {[
-                      { key: 'all', label: '전체', color: 'bg-slate-100 text-slate-700' },
-                      { key: '90+', label: '90점↑', color: 'bg-emerald-100 text-emerald-700' },
-                      { key: '80+', label: '80점↑', color: 'bg-green-100 text-green-700' },
-                      { key: '70+', label: '70점↑', color: 'bg-blue-100 text-blue-700' },
-                      { key: '60+', label: '60점↑', color: 'bg-amber-100 text-amber-700' },
-                      { key: '60-', label: '60점↓', color: 'bg-red-100 text-red-700' },
-                    ].map(f => (
-                      <button key={f.key} onClick={() => { setScoreFilter(f.key); setVisibleJobs(10); }}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${scoreFilter === f.key ? f.color + ' border-current shadow-sm' : 'bg-white text-slate-400 border-slate-200 hover:border-slate-400'}`}>
-                        {f.label}
-                        <span className="ml-1 opacity-60">
-                          ({f.key === 'all' ? recommendedJobs.length
-                            : f.key === '60-' ? recommendedJobs.filter(j => j.score < 60).length
-                            : recommendedJobs.filter(j => j.score >= parseInt(f.key)).length})
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-                  <div className="grid gap-4 md:grid-cols-3">
-                    {resultPlaybook.jobsCards.map((card) => (
-                      <article key={card.label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{card.label}</p>
-                        <h3 className="mt-2 text-base font-bold leading-snug text-slate-900">{card.title}</h3>
-                        <p className="mt-2 text-sm leading-relaxed text-slate-600">{card.body}</p>
-                      </article>
-                    ))}
-                  </div>
-
-                  <aside className="rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-sm">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300">Match Snapshot</p>
-                    <h3 className="mt-2 text-2xl font-black tracking-tight">상위 공고 기준 현재 포지션</h3>
-                    <div className="mt-5 space-y-4">
-                      <div>
-                        <p className="text-xs font-bold text-slate-200">매칭이 강한 역량</p>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {(highlightedMatchedSkills.length > 0 ? highlightedMatchedSkills : userInfo.skills.map((skill) => skill.name).slice(0, 6)).map((skill) => (
-                            <span key={skill} className="rounded-full bg-emerald-400/15 px-3 py-1.5 text-xs text-emerald-100">
-                              {skill}
-                            </span>
-                          ))}
-                          {highlightedMatchedSkills.length === 0 && userInfo.skills.length === 0 && (
-                            <span className="text-xs text-slate-400">직무 역량을 입력하면 강점 축을 여기서 요약합니다.</span>
-                          )}
-                        </div>
-                      </div>
-                      <div>
-                        <p className="text-xs font-bold text-slate-200">상위 공고 기준 보완 후보</p>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {highlightedGapSkills.length > 0 ? highlightedGapSkills.map((skill) => (
-                            <span key={skill} className="rounded-full bg-amber-400/15 px-3 py-1.5 text-xs text-amber-100">
-                              {skill}
-                            </span>
-                          )) : (
-                            <span className="text-xs text-slate-400">현재 상위 공고 기준으로 큰 공백은 보이지 않습니다.</span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </aside>
-                </div>
-
-                <div className="grid gap-4">
-                  {recommendedJobs
-                    .filter(j => scoreFilter === 'all' ? true : scoreFilter === '60-' ? j.score < 60 : j.score >= parseInt(scoreFilter))
-                    .slice(0, visibleJobs).map((job, idx) => (
-                    <div key={job.id} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 transition-all hover:shadow-md hover:border-indigo-200">
-                      <div className="flex-1 w-full">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-xs font-bold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md border border-slate-200">{job.company}</span>
-                          {idx === 0 && !job.pinned && <span className="text-xs font-bold px-2.5 py-1 bg-indigo-100 text-indigo-700 rounded-md border border-indigo-200 flex items-center gap-1"><Star size={12} className="fill-current" /> Best Match</span>}
-                          {job.pinned && <span className="text-xs font-bold px-2.5 py-1 bg-rose-100 text-rose-700 rounded-md border border-rose-200 flex items-center gap-1"><Pin size={12} /> {job.pinnedRank}순위 지정</span>}
-                        </div>
-                        <h4 className="font-bold text-slate-800 text-xl mb-1">{job.title}</h4>
-                        <p className="text-sm text-slate-500 mb-3">{job.role} · 경력 {job.reqExp === 0 ? '신입' : `${job.reqExp}년 이상`}</p>
-                        <div className="flex flex-wrap gap-2">
-                          {(Array.isArray(job.reqSkills) ? job.reqSkills : []).map((skill) => (
-                            <span key={skill} className="text-xs font-medium bg-slate-50 border border-slate-200 px-2 py-1 rounded-md text-slate-600"># {skill}</span>
-                          ))}
-                        </div>
-                        {/* 매칭 상세 분석 */}
-                        {job.matchDetail && (
-                          <div className="mt-3 bg-slate-50 rounded-lg border border-slate-100 p-3">
-                            <div className="grid grid-cols-5 gap-1 text-center mb-2">
-                              {[
-                                { label: '직군', score: job.matchDetail.roleScore, max: 15, color: 'bg-blue-500', tip: '세부 직무가 직접 일치하면 15점, 대분류가 맞으면 10점' },
-                                { label: '경력', score: job.matchDetail.expScore, max: 15, color: 'bg-green-500', tip: '요구 경력과 보유 경력 차이: 동일=15, 1년차이=10, 2년차이=5' },
-                                { label: '스킬', score: job.matchDetail.skillScore, max: 30, color: 'bg-purple-500', tip: '매칭된 스킬의 숙련도 가중합 (上×1.5, 中×1.0, 下×0.4)' },
-                                { label: '정합도', score: job.matchDetail.fitScore, max: 25, color: 'bg-orange-500', tip: '스킬 커버리지 × 평균 숙련도 — 많이 & 높게 매칭될수록 높음' },
-                                { label: '복수매칭', score: job.matchDetail.multiScore, max: 15, color: 'bg-pink-500', tip: '2개 매칭=+5, 3개=+10, 4개 이상=+15' },
-                              ].map(item => (
-                                <div key={item.label} title={item.tip} className="cursor-help">
-                                  <div className="text-[10px] text-slate-500 mb-1">{item.label}</div>
-                                  <div className="w-full bg-slate-200 rounded-full h-1.5">
-                                    <div className={`h-full rounded-full ${item.color}`} style={{ width: `${item.max > 0 ? (item.score / item.max) * 100 : 0}%` }} />
-                                  </div>
-                                  <div className="text-[10px] font-bold text-slate-600 mt-0.5">{item.score}/{item.max}</div>
-                                </div>
-                              ))}
-                            </div>
-                            {job.matchDetail.matchedSkills.length > 0 && (
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                {job.matchDetail.matchedSkills.map((s, i) => (
-                                  <span key={i} className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700 font-bold">{s.name} ({s.level})</span>
-                                ))}
-                                {job.matchDetail.unmatchedSkills.map((s, i) => (
-                                  <span key={'u'+i} className="text-[10px] px-1.5 py-0.5 rounded bg-red-50 text-red-400 line-through">{s}</span>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        )}
-                        <div className="mt-2 bg-slate-50 px-3 py-2 rounded-lg border border-slate-100 flex items-center gap-2 overflow-hidden">
-                          <span className="text-[11px] font-bold text-slate-500 whitespace-nowrap shrink-0">직접 링크:</span>
-                          <a href={job.url} target="_blank" rel="noopener noreferrer" className="text-[11px] text-indigo-500 hover:text-indigo-700 truncate underline underline-offset-2" title={job.url}>{job.url}</a>
-                        </div>
-                      </div>
-                      <div className="flex flex-col items-center shrink-0 min-w-[130px] gap-2">
-                        <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 w-full flex flex-col items-center">
-                          <div className="text-3xl font-black text-slate-800 mb-1 tracking-tight">{job.score}<span className="text-sm font-medium text-slate-400"> / 100</span></div>
-                          <div className="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
-                            <div className={`h-full rounded-full ${job.score >= 80 ? 'bg-emerald-500' : job.score >= 60 ? 'bg-blue-500' : 'bg-orange-500'}`} style={{ width: `${job.score}%` }} />
-                          </div>
-                        </div>
-                        <div className="w-full flex flex-col gap-1.5">
-                          <a href={job.url} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2.5 rounded-lg transition-colors shadow-sm">
-                            공고 바로가기 <ExternalLink size={12} />
-                          </a>
-                          {job.companyInfo ? (
-                            <button onClick={() => setSelectedCompanyModal(job.companyInfo)} className="w-full flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold py-2.5 rounded-lg transition-colors border border-slate-200">
-                              회사 정보 보기 <Building2 size={12} />
-                            </button>
-                          ) : (
-                            <button onClick={() => fetchCompanyInfoAI(job)} className="w-full flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold py-2.5 rounded-lg transition-colors border border-slate-200">
-                              회사 정보 보기 <Building2 size={12} />
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                {(() => {
-                  const filtered = recommendedJobs.filter(j => scoreFilter === 'all' ? true : scoreFilter === '60-' ? j.score < 60 : j.score >= parseInt(scoreFilter));
-                  return visibleJobs < filtered.length ? (
-                    <div className="flex justify-center pt-4">
-                      <button onClick={() => setVisibleJobs(prev => prev + 10)} className="bg-white border border-slate-200 text-slate-600 font-bold py-3 px-8 rounded-full shadow-sm hover:bg-slate-50 transition-colors">
-                        더보기 ({Math.min(visibleJobs, filtered.length)} / {filtered.length})
-                      </button>
-                    </div>
-                  ) : null;
-                })()}
-              </div>
-            ) : renderEmptyState(<Target size={48} />, '추천 공고 결과가 없습니다', '정보를 입력하고 AI 분석을 진행해주세요.')
+            <JobsWorkspace {...jobsWorkspaceProps} />
           )}
 
           {/* ── TAB 5: 면접 대비 ───────────────────────────────────── */}
@@ -2115,164 +1975,27 @@ AI 분석 요약:
                 </div>
               </div>
 
-              {/* 크롤링 실행 */}
               <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <RefreshCw size={18} className="text-indigo-500" />
+                  <RefreshCw size={18} className={`text-indigo-500 ${crawlStatus.running ? 'animate-spin' : ''}`} />
                   <h3 className="font-semibold text-slate-700">공고 데이터 최신화</h3>
                 </div>
-                <p className="text-xs text-slate-500 mb-3 leading-relaxed">
-                  GameJob에서 최신 공고를 크롤링하여 데이터를 갱신합니다. 서버에서 브라우저 엔진을 실행하므로 1분 이상 걸릴 수 있고, Chrome·Edge·Naver Whale을 먼저 찾은 뒤 없으면 Puppeteer Chrome을 자동으로 준비합니다.
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  추천 공고 탭에 외부 크롤러 페이지 흐름을 이식했습니다. 태그 선택, 진행 상태, 로그 확인, 수동 크롤링 실행은 이제 추천 공고 화면에서 처리합니다.
                 </p>
-
-                {/* 직종 태그 선택 */}
-                <div className="mb-3">
-                  <p className="text-xs font-semibold text-slate-600 mb-1.5 flex items-center gap-1">
-                    <Briefcase size={12} /> 직종
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {CRAWL_JOB_TAGS.map(tag => (
-                      <button
-                        key={tag}
-                        onClick={() => toggleCrawlTag(tag, crawlJobTags, setCrawlJobTags)}
-                        disabled={crawlStatus.running}
-                        className={`text-xs px-2.5 py-1 rounded-full border transition-all ${
-                          crawlJobTags.includes(tag)
-                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                            : 'bg-white text-slate-600 border-slate-200 hover:border-indigo-300 hover:text-indigo-600'
-                        } ${crawlStatus.running ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
-                      >
-                        {tag}
-                      </button>
-                    ))}
-                  </div>
+                <div className="mt-4 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs text-slate-600">
+                  <p>현재 공고 캐시: <strong className="text-slate-900">{jobs.length}건</strong></p>
+                  <p className="mt-1">상태: <strong className={crawlStatus.isError ? 'text-rose-600' : crawlStatus.running ? 'text-indigo-600' : 'text-emerald-600'}>{crawlStatus.running ? '크롤링 진행 중' : crawlStatus.message || '대기 중'}</strong></p>
                 </div>
-
-                {/* 경력 태그 선택 */}
-                <div className="mb-4">
-                  <p className="text-xs font-semibold text-slate-600 mb-1.5 flex items-center gap-1">
-                    <Users size={12} /> 경력
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {CRAWL_CAREER_TAGS.map(tag => (
-                      <button
-                        key={tag}
-                        onClick={() => toggleCrawlTag(tag, crawlCareerTags, setCrawlCareerTags)}
-                        disabled={crawlStatus.running}
-                        className={`text-xs px-2.5 py-1 rounded-full border transition-all ${
-                          crawlCareerTags.includes(tag)
-                            ? 'bg-purple-600 text-white border-purple-600 shadow-sm'
-                            : 'bg-white text-slate-600 border-slate-200 hover:border-purple-300 hover:text-purple-600'
-                        } ${crawlStatus.running ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
-                      >
-                        {tag}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* 선택된 조건 요약 */}
-                {(crawlJobTags.length > 0 || crawlCareerTags.length > 0) && (
-                  <p className="text-[11px] text-slate-500 mb-3">
-                    검색 조건: <span className="font-medium text-indigo-600">[{[...crawlJobTags, ...crawlCareerTags].join(', ')}]</span>
-                  </p>
-                )}
-
-                {/* 진행 바 */}
-                {crawlStatus.running && (
-                  <div className="mb-4 space-y-2">
-                    <div className="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
-                      <div
-                        className="bg-indigo-500 h-2.5 rounded-full transition-all duration-500 ease-out"
-                        style={{ width: `${crawlStatus.percent}%` }}
-                      />
-                    </div>
-                    <p className="text-xs text-slate-600 flex items-center gap-2">
-                      <Loader2 size={12} className="animate-spin" />
-                      {crawlStatus.message}
-                    </p>
-                    <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2">
-                      <p className="text-[11px] leading-relaxed text-amber-800">
-                        실시간 상태 확인이 잠시 끊겨도 서버에서는 작업을 계속합니다. 설정 창을 닫아도 되며, 다시 열면 이어서 상태를 확인할 수 있습니다.
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                {/* 저장 메시지 */}
-                {!crawlStatus.running && crawlStatus.message && crawlStatus.percent === 100 && (
-                  <div className="mb-4 bg-green-50 border border-green-200 rounded-lg p-3 flex items-center gap-2">
-                    <CheckCircle size={16} className="text-green-500 shrink-0" />
-                    <p className="text-xs text-green-700">{crawlStatus.message}</p>
-                  </div>
-                )}
-
-                {/* 오류 메시지 */}
-                {!crawlStatus.running && crawlStatus.isError && crawlStatus.message && (
-                  <div className="mb-4 bg-red-50 border border-red-200 rounded-lg p-3">
-                    <div className="flex items-start gap-2">
-                      <AlertCircle size={16} className="text-red-500 shrink-0 mt-0.5" />
-                      <div>
-                        <p className="text-xs text-red-700 font-semibold mb-1">크롤링 오류</p>
-                        <p className="text-xs text-red-600 break-all">{crawlStatus.message}</p>
-                        {/(Chrome|Edge|Whale|Chromium|브라우저)/i.test(crawlStatus.message) && (
-                          <div className="mt-2 flex flex-wrap gap-2 text-xs">
-                            <a href="https://www.google.com/chrome" target="_blank" rel="noreferrer" className="text-indigo-600 underline">
-                              Chrome
-                            </a>
-                            <a href="https://www.microsoft.com/edge" target="_blank" rel="noreferrer" className="text-indigo-600 underline">
-                              Edge
-                            </a>
-                            <a href="https://whale.naver.com" target="_blank" rel="noreferrer" className="text-indigo-600 underline">
-                              Naver Whale
-                            </a>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* 로그 (크롤링 중일 때) */}
-                {crawlStatus.running && crawlStatus.log.length > 0 && (
-                  <div className="mb-4 bg-slate-900 rounded-lg p-3 max-h-32 overflow-y-auto text-xs font-mono">
-                    {crawlStatus.log.map((line, i) => (
-                      <div key={i} className="text-slate-300 leading-relaxed">{line}</div>
-                    ))}
-                  </div>
-                )}
-
-                <div className="flex gap-2">
-                  {!crawlStatus.running ? (
-                    <button
-                      onClick={startCrawl}
-                      disabled={crawlJobTags.length === 0 && crawlCareerTags.length === 0}
-                      className={`flex-1 flex items-center justify-center gap-2 font-semibold py-3 px-4 rounded-xl transition-colors shadow-md ${
-                        crawlJobTags.length === 0 && crawlCareerTags.length === 0
-                          ? 'bg-slate-300 text-slate-500 cursor-not-allowed'
-                          : 'bg-indigo-600 text-white hover:bg-indigo-700'
-                      }`}
-                    >
-                      <RefreshCw size={18} />
-                      크롤링 시작
-                    </button>
-                  ) : (
-                    <button
-                      onClick={stopCrawl}
-                      className="flex-1 flex items-center justify-center gap-2 bg-red-500 text-white font-semibold py-3 px-4 rounded-xl hover:bg-red-600 transition-colors shadow-md"
-                    >
-                      <XCircle size={18} />
-                      중단
-                    </button>
-                  )}
-                </div>
-
-                {/* 태그 미선택 경고 */}
-                {crawlJobTags.length === 0 && crawlCareerTags.length === 0 && (
-                  <p className="text-[10px] text-amber-500 mt-3 text-center">
-                    ⚠ 직종 또는 경력 태그를 하나 이상 선택하세요.
-                  </p>
-                )}
+                <button
+                  onClick={() => {
+                    setShowSettings(false);
+                    setActiveTab('jobs');
+                  }}
+                  className="mt-4 w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+                >
+                  추천 공고 탭 열기
+                </button>
               </div>
             </div>
           </div>
