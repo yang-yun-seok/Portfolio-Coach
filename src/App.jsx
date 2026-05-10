@@ -1,10 +1,10 @@
 ﻿import React, { useState, useEffect, useRef } from 'react';
 import {
   FileText, Image as ImageIcon, Target, MessageSquare,
-  ChevronRight, AlertCircle, CheckCircle, Loader2, Gamepad2,
-  User, X, ExternalLink,
-  Sparkles, Smile,
-  Settings, Database, ClipboardList, Download, BookOpen,
+  CheckCircle, Loader2,
+  User,
+  Smile,
+  Database, ClipboardList, Download,
 } from 'lucide-react';
 import {
   ROLE_GROUPS,
@@ -30,6 +30,9 @@ import PersonalityTest from './components/PersonalityTest';
 import PdfExport from './components/PdfExport';
 import { EMPTY_INSTRUCTOR } from './components/InstructorFeedbackForm';
 import WorkspaceSidebar from './components/WorkspaceSidebar';
+import WorkspaceCommandBar from './components/WorkspaceCommandBar';
+import WorkspaceFeatureHeader from './components/WorkspaceFeatureHeader';
+import WorkspaceMessages from './components/WorkspaceMessages';
 import CompanyInfoModal from './components/CompanyInfoModal';
 import FeedbackWorkspace from './components/FeedbackWorkspace';
 import InterviewReadinessWorkspace from './components/InterviewReadinessWorkspace';
@@ -1157,6 +1160,7 @@ AI 분석 요약:
         setActiveTab(restoreNotice.hasResults ? 'feedback' : 'input');
         setRestoreNotice(null);
       },
+      onDismiss: () => setRestoreNotice(null),
       dismissible: true,
     },
     saveStatus === 'generating' && {
@@ -1269,143 +1273,31 @@ AI 분석 요약:
   // ── 렌더링 ────────────────────────────────────────────────────────────
   return (
     <div data-feature={featureKey} className="apple-shell coach-shell coach-studio-shell apple-app-shell flex h-screen flex-col bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
-
-      <header className="coach-commandbar">
-        <button type="button" onClick={() => setActiveTab('input')} className="coach-brandlockup">
-          <span className="apple-brandmark coach-brandmark bg-indigo-500 p-2 rounded-lg">
-            <Gamepad2 size={24} className="text-white" />
-          </span>
-          <span className="coach-brandcopy">
-            <span className="coach-brand-title">Portfolio Coach</span>
-            <strong>Game Career Workbench</strong>
-          </span>
-        </button>
-
-        <div className="coach-command-status" aria-live="polite">
-          <span>{loading ? 'AI 분석' : '기능 선택'}</span>
-          <strong>{activeNavItem.label}</strong>
-          {loading && <Loader2 size={16} className="animate-spin" />}
-        </div>
-
-        <div className="coach-command-tools">
-          <button type="button" onClick={() => setShowUserGuide(true)}>
-            <BookOpen size={17} />
-            <span>사용 설명서</span>
-          </button>
-          <button type="button" onClick={() => setShowSettings(true)}>
-            <Settings size={17} />
-            <span>설정</span>
-          </button>
-          <button type="button" onClick={() => setShowModelSettings(true)} className="coach-model-command">
-            <Sparkles size={17} />
-            <span>AI 모델</span>
-            <small>{currentProvider?.label || '모델 선택'} {selectedModelId ? `· ${selectedModelId}` : ''}</small>
-          </button>
-        </div>
-      </header>
-
-      <div className="coach-mobile-tools">
-        <button type="button" onClick={() => setShowUserGuide(true)}>
-          <BookOpen size={16} /> 사용 설명서
-        </button>
-        <button type="button" onClick={() => setShowSettings(true)}>
-          <Settings size={16} /> 설정
-        </button>
-        <button type="button" onClick={() => setShowModelSettings(true)}>
-          <Sparkles size={16} /> AI 모델
-        </button>
-      </div>
+      <WorkspaceCommandBar
+        activeLabel={activeNavItem.label}
+        loading={loading}
+        modelSummary={`${currentProvider?.label || '모델 선택'}${selectedModelId ? ` · ${selectedModelId}` : ''}`}
+        onOpenGuide={() => setShowUserGuide(true)}
+        onOpenModelSettings={() => setShowModelSettings(true)}
+        onOpenSettings={() => setShowSettings(true)}
+        onSelectInput={() => setActiveTab('input')}
+      />
 
       <div className="coach-body-shell">
       {/* ── Main Content ────────────────────────────────────────────── */}
       <div className="apple-main coach-workspace apple-workspace flex-1 overflow-auto bg-slate-50 p-8 custom-scrollbar">
         <div className="apple-stage coach-stage max-w-5xl mx-auto pb-20">
+          <WorkspaceFeatureHeader
+            activeFeatureGuide={activeFeatureGuide}
+            activeLabel={activeNavItem.label}
+            ActiveNavIcon={ActiveNavIcon}
+          />
 
-          <section className="coach-dossier-header">
-            <div className="coach-dossier-tab">
-              <span className="coach-workbench-icon"><ActiveNavIcon size={20} /></span>
-              <div>
-                <p className="coach-overline">기능 화면</p>
-                <h2>{activeNavItem.label}</h2>
-              </div>
-            </div>
-          </section>
-
-          <section className="coach-content-brief">
-            <div>
-              <span>기능 설명</span>
-              <strong>{activeNavItem.label}</strong>
-            </div>
-            <p>{activeFeatureGuide.hint}</p>
-          </section>
-
-          {/* 에러 / 정보 메시지 */}
-          {error && (
-            <div className="apple-alert apple-alert-error mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded-md flex items-start gap-3 animate-in fade-in slide-in-from-top-2">
-              <AlertCircle className="text-red-500 mt-0.5 shrink-0" size={20} />
-              <p className="text-red-700 text-sm whitespace-pre-line">{error}</p>
-            </div>
-          )}
-          {infoMessage && (
-            <div className="apple-alert apple-alert-info mb-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-md flex items-start gap-3 animate-in fade-in slide-in-from-top-2">
-              <CheckCircle className="text-blue-500 mt-0.5 shrink-0" size={20} />
-              <p className="text-blue-700 text-sm whitespace-pre-line">{infoMessage}</p>
-            </div>
-          )}
-          {statusCards.length > 0 && (
-            <div className="mb-6 space-y-3">
-              {statusCards.map((card) => {
-                const Icon = card.icon;
-                const toneClasses = card.tone === 'success'
-                  ? 'border-emerald-200 bg-emerald-50'
-                  : card.tone === 'warning'
-                    ? 'border-amber-200 bg-amber-50'
-                    : 'border-slate-200 bg-white';
-                const iconClasses = card.tone === 'success'
-                  ? 'text-emerald-600'
-                  : card.tone === 'warning'
-                    ? 'text-amber-600'
-                    : 'text-slate-700';
-
-                return (
-                  <section
-                    key={card.id}
-                    className={`rounded-[28px] border px-5 py-4 shadow-sm animate-in fade-in slide-in-from-top-2 ${toneClasses}`}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white ${iconClasses}`}>
-                        <Icon size={18} className={card.spin ? 'animate-spin' : ''} />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">{card.label}</p>
-                        <p className="mt-1 text-sm font-semibold text-slate-900">{card.title}</p>
-                        <p className="mt-1 text-sm leading-relaxed text-slate-600">{card.body}</p>
-                        {card.actionLabel && (
-                          <button
-                            type="button"
-                            onClick={card.onAction}
-                            className="mt-3 inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:border-slate-900 hover:bg-slate-900 hover:text-white"
-                          >
-                            {card.actionLabel}
-                          </button>
-                        )}
-                      </div>
-                      {card.dismissible && (
-                        <button
-                          type="button"
-                          onClick={() => setRestoreNotice(null)}
-                          className="rounded-full border border-slate-200 p-2 text-slate-400 transition hover:border-slate-900 hover:bg-slate-900 hover:text-white"
-                          aria-label="상태 메시지 닫기"
-                        >
-                          <X size={16} />
-                        </button>
-                      )}
-                    </div>
-                  </section>
-                );
-              })}
-            </div>
-          )}
+          <WorkspaceMessages
+            error={error}
+            infoMessage={infoMessage}
+            statusCards={statusCards}
+          />
 
           {/* ── TAB 1: 정보 입력 ───────────────────────────────────── */}
           {activeTab === 'input' && (
