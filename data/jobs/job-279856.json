@@ -1,0 +1,36 @@
+{
+  "id": "crawled-279856",
+  "company": "에어패스",
+  "title": "[병역특례]Unreal / Unity Engine 개발자 구인(석사이상)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Unreal Engine",
+    "Git/SVN"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279856",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "VR스포츠 콘텐츠",
+  "gameCategory": "온라인PC게임, 모바일게임 Casual, Shooting",
+  "employmentType": "병역특례",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, API, 게임프로그래밍, 게임프로그래머, VR, AR",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

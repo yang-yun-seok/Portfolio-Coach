@@ -1,0 +1,33 @@
+{
+  "id": "crawled-278836",
+  "company": "컴세바코딩입시학원",
+  "title": "컴퓨터코딩입시학원 시간강사및 게임제작 강사",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278836",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 웹게임 관련없음",
+  "employmentType": "계약직 (계약기간 : 협의 후 결정), 아르바이트(상근), 프리랜서",
+  "deadline": "~ 05/13(수)",
+  "salary": "시간당 / 15,000원\n연봉검색",
+  "experience": "무관",
+  "keywords": "C, C++, 유니티, 게임프로그래밍, 게임수업",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

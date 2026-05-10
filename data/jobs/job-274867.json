@@ -23,5 +23,10 @@
   "experience": "무관",
   "keywords": "QA, 프로젝트, 게임분석, 프로젝트개발, 게임테스팅, 이슈리포팅, 게임밸러스",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

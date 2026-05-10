@@ -1,0 +1,34 @@
+{
+  "id": "crawled-276938",
+  "company": "모비릭스",
+  "title": "유니티 게임 클라이언트 개발자를 찾습니다.",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C#",
+    "Unity",
+    "TypeScript"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276938",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "블레이드키우기, 발키리히어로키우기, 던전기사키우기, 관우키우기, 벽돌깨기퀘스트 등",
+  "gameCategory": "웹게임, 모바일게임 Casual",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "C#, Unity, Cocos, typescript, WebGL, Phaser3",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

@@ -19,5 +19,10 @@
   "experience": "경력 2년 이상",
   "keywords": "마케팅, 게임마케팅, 마케팅기획, UA, 글로벌마케팅, 퍼포먼스마케팅, 퍼포먼스, 데이터마케팅, 퍼포먼스마케터, MMP, ,데이터",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

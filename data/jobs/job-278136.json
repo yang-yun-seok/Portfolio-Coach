@@ -1,6 +1,6 @@
 {
   "id": "crawled-278136",
-  "company": "엔씨소프트 (NCSOFT)",
+  "company": "NC",
   "title": "[NC][리니지2M] BM 기획자 모집",
   "role": "기획",
   "roles": [
@@ -21,6 +21,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "BM, 리니지2M",
-  "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
 }

@@ -24,5 +24,10 @@
   "experience": "경력 3년 이상",
   "keywords": "게임기획, 퀘스트, 컨텐츠, 유니티, 이벤트, 스토리, 마비노기모바일",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

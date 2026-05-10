@@ -20,5 +20,10 @@
   "experience": "무관",
   "keywords": "게임운영, 고객서비스, 모니터링, 기획, 커뮤니티, 커뮤니케이션, CM, 지표관리, 문제해결",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

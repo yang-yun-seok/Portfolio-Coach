@@ -1,0 +1,36 @@
+{
+  "id": "crawled-279451",
+  "company": "큐나미스",
+  "title": "[신규][Steam] 턴제 SRPG 프로젝트 기획 및 PM 담당 모집",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "UI/UX 기획",
+    "Unity",
+    "Unreal Engine",
+    "JIRA/Confluence"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279451",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "2,600~2,800만원 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "컨셉, 게임기획, PM, 시스템기획, 컨텐츠, UI·UX",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

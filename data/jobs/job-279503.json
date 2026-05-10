@@ -1,0 +1,32 @@
+{
+  "id": "crawled-279503",
+  "company": "팀42㈜",
+  "title": "[마피아42] 컨텐츠 시스템 기획자 채용",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279503",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "마피아42",
+  "gameCategory": "모바일게임 Casual, 기타",
+  "employmentType": "정규직, 병역특례",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "모바일, 게임기획, 컨텐츠",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

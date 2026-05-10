@@ -2,14 +2,13 @@
   "id": "crawled-278401",
   "company": "선시안 (SUNCYAN In",
   "title": "[더 스파이크 크로스] (PM) 프로덕트 매니저",
-  "role": "AI/데이터",
+  "role": "PM/운영",
   "roles": [
     "기획",
+    "PM/운영",
     "AI/데이터"
   ],
-  "reqSkills": [
-    "PM"
-  ],
+  "reqSkills": [],
   "reqExp": 2,
   "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278401",
   "hasAssignment": false,
@@ -21,6 +20,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "PM, 게임",
-  "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
 }

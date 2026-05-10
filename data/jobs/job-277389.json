@@ -1,0 +1,36 @@
+{
+  "id": "crawled-277389",
+  "company": "드림에이지(구 HYBE IM)",
+  "title": "[DRIMAGE-K스튜디오] 게임 플랫폼(운영툴) 개발자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Python",
+    "Java",
+    "Redis",
+    "JavaScript",
+    "Git/SVN"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277389",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "인더섬 with BTS, 리듬하이브, 별이되어라2 베다의 기사들, 아키텍트:랜드오브 엑자일",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "API, Python, Java, 개발, 플랫폼, 게임, Redis, SDK",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

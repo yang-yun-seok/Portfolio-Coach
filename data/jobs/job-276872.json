@@ -28,5 +28,10 @@
   "experience": "경력 3년 이상",
   "keywords": "인터페이스, UX·UI, 레벨, 게임기획, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, UI·UX, 밸런스, 보상, 성장, 엔엑스쓰리게임즈, NX3GAMES, 이벤트BM, 로드나인",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

@@ -26,5 +26,10 @@
   "experience": "경력 3년 이상",
   "keywords": "3D, 인터페이스, 모델링, 3D일러스트",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

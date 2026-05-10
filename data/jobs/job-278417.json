@@ -22,5 +22,10 @@
   "experience": "무관",
   "keywords": "원화, 일러스트, 캐릭터원화, 포토샵, 캐릭터, 디자인, 연출, 캐쥬얼, 컷신, 데브시스터즈, 쿠키런, 타이틀, 서브컬처, 킹덤, 캐주얼아트",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

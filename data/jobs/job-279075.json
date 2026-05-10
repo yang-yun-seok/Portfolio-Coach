@@ -1,0 +1,33 @@
+{
+  "id": "crawled-279075",
+  "company": "㈜해긴",
+  "title": "[방치형 스포츠] 클라이언트 프로그래머 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279075",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "플레이투게더, 홈런클래시, 오버독스, 익스트림골프, 홈런클래시2, 데미안전기",
+  "gameCategory": "모바일게임 Casual, Arcade",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, C#, Unity, 유니티, 게임프로그래밍",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

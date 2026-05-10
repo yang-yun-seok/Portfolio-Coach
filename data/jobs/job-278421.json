@@ -29,5 +29,10 @@
   "experience": "무관",
   "keywords": "클라이언트, C, C++, 게임기획, 서버, MS-SQL, 네트워크, Unreal, Unity, 보안, 보안설계, 시스템엔지니어링, QA, 서비스기획, 게임프로그래밍, 기술PM, 개발PM, 퍼블리셔",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

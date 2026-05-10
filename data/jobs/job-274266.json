@@ -24,5 +24,10 @@
   "experience": "신입",
   "keywords": "PM, 게임개발, 프로젝트관리, JIRA, Wiki, NC, CINDERCITY, 신더시티",
   "updatedAt": "2026-03-31",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

@@ -1,0 +1,33 @@
+{
+  "id": "crawled-279557",
+  "company": "그라비티",
+  "title": "[그라비티/판교] DevHub - Unity 클라이언트 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279557",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "라그나로크 온라인, 라그나로크M, 라그나로크 오리진",
+  "gameCategory": "온라인PC게임, 모바일게임 Casual, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 05/31(일)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "클라이언트, C#, Unity, 게임프로그래밍, 게임프로그래머, UGUI",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

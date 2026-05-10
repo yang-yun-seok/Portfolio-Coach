@@ -1,0 +1,34 @@
+{
+  "id": "crawled-278445",
+  "company": "㈜에쓰씨에이게임 광주",
+  "title": "SBS아카데미게임학원 광주지점 게임프로그래밍 강사(언리얼/유니티) 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "Unreal Engine",
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278445",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "게임원화,게임아트웍,게임기획,프로그램,3D그래픽",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Simulation",
+  "employmentType": "정규직, 프리랜서",
+  "deadline": "~ 06/03(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "API, C, C++, 언리얼, 유니티, 게임프로그래밍, 게임프로그래머, 클라이언트++",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,39 @@
+{
+  "id": "crawled-279548",
+  "company": "모푸시스템",
+  "title": "(고급원룸숙식가능)(수원)언리얼 5 엔진 개발자 채용 (경력)(고수 선호)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "C++",
+    "3D",
+    "iOS",
+    "Android",
+    "C#",
+    "Unreal Engine",
+    "Unity"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279548",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Simulation",
+  "employmentType": "정규직, 계약직 (계약기간 : 1년), 아르바이트(상근)",
+  "deadline": "채용시 마감",
+  "salary": "9,000~1억원 / 면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "클라이언트, API, C, C++, 모바일, 3D, iOS, Android, C#, 엔진, 게임개발, 언리얼, 게임프로그래밍, 게임프로그래머, 프로그래머, 모바일게임, 앱개발, 언리얼엔진, 언리얼5, 수원",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

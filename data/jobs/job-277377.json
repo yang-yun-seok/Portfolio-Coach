@@ -13,9 +13,7 @@
     "UI/UX 기획",
     "3ds Max",
     "시나리오/퀘스트",
-    "PM",
-    "시스템 기획",
-    "콘텐츠 기획",
+    "시스템/컨텐츠 기획",
     "SQL",
     "Unity"
   ],
@@ -30,6 +28,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 1년 이상",
   "keywords": "클라이언트, VisualC++, UX·UI, 배경원화, 모델링, 3DSmax, 캐릭터, 애니메이션, 게임기획, 퀘스트, PM, 시스템기획, 컨텐츠, MS-SQL, DB, 웹개발, 엔엑스쓰리게임즈, NX3GAMES, 로드나인",
-  "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
 }

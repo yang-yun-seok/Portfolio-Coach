@@ -8,8 +8,7 @@
   ],
   "reqSkills": [
     "시나리오/퀘스트",
-    "콘텐츠 기획",
-    "시스템 기획",
+    "시스템/컨텐츠 기획",
     "밸런싱"
   ],
   "reqExp": 0,
@@ -23,6 +22,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "모바일, 컨셉, 게임기획, 시나리오, 컨텐츠, 시스템, 밸런스, 슈팅, 데브시스터즈, 쿠키런, 오븐스매시",
-  "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
 }

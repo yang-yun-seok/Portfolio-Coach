@@ -26,5 +26,10 @@
   "experience": "무관",
   "keywords": "클라이언트, C++, 3D, 레벨, 컨텐츠, 사운드, 효과음, 서버, 영상제작, 게임프로그래밍, 게임프로그래머, 애니메이터, 게임서버, 서버개발, 라이팅, 최적화, 비동기프로그래밍, 프로파일링",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

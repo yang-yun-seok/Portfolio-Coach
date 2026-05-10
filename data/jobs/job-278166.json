@@ -20,5 +20,10 @@
   "experience": "무관",
   "keywords": "영상제작·편집, 홍보, 콘텐츠제작, 디자인제작",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

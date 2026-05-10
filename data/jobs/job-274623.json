@@ -28,5 +28,10 @@
   "experience": "경력 3년 이상",
   "keywords": "모바일, 레벨, 컨셉, 게임기획, 퀘스트, PM, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 유료화, UI·UX, 캐주얼, 퍼즐, 분류퍼즐",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

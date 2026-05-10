@@ -1,6 +1,6 @@
 {
   "id": "crawled-277744",
-  "company": "엔씨소프트 (NCSOFT)",
+  "company": "NC",
   "title": "[NC][단기계약직][리니지2M] 라이팅 아티스트 모집",
   "role": "기획",
   "roles": [
@@ -21,6 +21,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "신입",
   "keywords": "라이팅, 라이팅_아티스트",
-  "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
 }

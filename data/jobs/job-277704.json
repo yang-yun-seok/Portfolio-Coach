@@ -25,5 +25,10 @@
   "experience": "무관",
   "keywords": "연구개발, 기술개발, DB, 개발, AI, 데이터베이스, 인프라, 프론트엔드, 앱개발, 앱, 엔지니어, git, 백엔드, chatgpt, GitHubCopilot",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

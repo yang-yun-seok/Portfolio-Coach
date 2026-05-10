@@ -27,5 +27,10 @@
   "experience": "경력 2년 이상",
   "keywords": "UX·UI, 레벨, 게임기획, 시나리오, 밸런스기획, 레벨기획, 액션RPG, 전투시스템설계, 전투밸런스, 콘솔RPG",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

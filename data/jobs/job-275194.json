@@ -27,5 +27,10 @@
   "experience": "무관",
   "keywords": "모바일, UX·UI, 게임기획, 밸런스기획, 시스템기획, 유료화, 게임운영, QA",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

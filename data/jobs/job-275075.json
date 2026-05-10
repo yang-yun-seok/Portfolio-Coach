@@ -27,5 +27,10 @@
   "experience": "경력 5년 이상",
   "keywords": "3D, iOS, Android, 배경, 원화, 캐릭터, 애니메이션, 3DMax",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

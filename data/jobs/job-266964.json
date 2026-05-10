@@ -25,5 +25,10 @@
   "experience": "신입·경력",
   "keywords": "게임기획, UI·UX, c언어, 기획자, 메이플스토리, LUA스크립트",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

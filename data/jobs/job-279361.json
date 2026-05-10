@@ -1,0 +1,37 @@
+{
+  "id": "crawled-279361",
+  "company": "플레이위드게임즈",
+  "title": "[블루피쉬스튜디오] 이펙터 경력사원 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "iOS",
+    "Android",
+    "Unity",
+    "Photoshop"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279361",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로한, 씰온라인, 로한M 등",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 05/25(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 3D, iOS, Android, 이펙트, FX, 시네마틱, 스토리보드아트",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

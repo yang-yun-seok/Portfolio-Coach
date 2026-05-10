@@ -1,0 +1,36 @@
+{
+  "id": "crawled-279658",
+  "company": "㈜네오위즈",
+  "title": "[ROUND8 스튜디오] P의 거짓 차기작 부문별 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "C++",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "전투/액션 기획"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279658",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "P의 거짓,고양이와스프,스컬,브라운더스트2,DJMax,A.V.A,피망포커,피망고스톱",
+  "gameCategory": "콘솔게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, C++, 레벨, 시스템기획, 컨텐츠, 게임프로그래밍, 게임프로그래머, 전투기획, 블루프린트, PC전투, 언리얼5, 몬스터전투",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

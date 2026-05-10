@@ -19,5 +19,10 @@
   "experience": "무관",
   "keywords": "모니터링, 마케팅, 사업개발, BD, 데브시스터즈, 네트워킹, 온라인브랜딩, 리타게팅",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

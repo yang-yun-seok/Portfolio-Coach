@@ -1,0 +1,30 @@
+{
+  "id": "crawled-279698",
+  "company": "에이블게임즈",
+  "title": "아트 PM 모집 (경력 1년 이상)",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279698",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이플 키우기, 크레센트, 달토끼 키우기",
+  "gameCategory": "모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "PM, ProjectManager, 아트PM",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

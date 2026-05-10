@@ -22,5 +22,10 @@
   "experience": "경력 3년 이상",
   "keywords": "3D, 이펙트, Unity, ui, 연출, 아트, 3D이펙트, 데브시스터즈, 쿠키런, 킹덤",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

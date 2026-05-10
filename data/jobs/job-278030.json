@@ -1,7 +1,7 @@
 {
   "id": "crawled-278030",
   "company": "㈜루노소프트",
-  "title": "[순천] 웹툰 IP 기반 스토리 어드벤처 게임 개발 인재 모집(기획/아트/프로그래머)",
+  "title": "[순천] 웹툰 IP 기반 스토리 어드벤처 게임 개발 인재 모집(기획/프로그래머)",
   "role": "클라이언트",
   "roles": [
     "클라이언트",
@@ -13,8 +13,7 @@
     "Illustrator",
     "Photoshop",
     "시나리오/퀘스트",
-    "시스템 기획",
-    "콘텐츠 기획",
+    "시스템/컨텐츠 기획",
     "Unity",
     "Figma",
     "JIRA/Confluence",
@@ -31,6 +30,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "UX·UI, 배경, 원화, 일러스트, 캐릭터원화, 컨셉, 배경원화, 포토샵, 이펙트, 게임기획, 시나리오, 시스템기획, 컨텐츠, UI·UX, 웹UI, 모바일UI, 게임프로그래밍, 게임프로그래머",
-  "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
 }

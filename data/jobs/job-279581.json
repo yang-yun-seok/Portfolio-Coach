@@ -1,0 +1,33 @@
+{
+  "id": "crawled-279581",
+  "company": "슈퍼박스",
+  "title": "(주)슈퍼박스 2D 디자이너 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279581",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "캔디프랜즈, 쥬얼헌터, 쥬얼블라스트, 스푸키즈팝, 슈가팝, 쥬얼캐슬, 골프히어로",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "모바일, 2D, Unity, 2D디자이너",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

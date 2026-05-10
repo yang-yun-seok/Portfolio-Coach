@@ -1,0 +1,35 @@
+{
+  "id": "crawled-279774",
+  "company": "팜에이아이",
+  "title": "[팜에이아이]게임기획자/게임개발자를 모십니다.(경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "UI/UX 기획"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279774",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 VR·AR, 메타버스",
+  "employmentType": "계약직 (계약기간 : 6개월)",
+  "deadline": "~ 06/04(목)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "모바일, UX·UI, 게임기획, 게임프로그래밍, VR, AR",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

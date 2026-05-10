@@ -1,0 +1,35 @@
+{
+  "id": "crawled-279869",
+  "company": "㈜이스게임즈",
+  "title": "픽셀 아트 및 스파인 담당자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "도트 아트",
+    "Unity",
+    "Photoshop"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279869",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "이터널소드 리턴즈",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 도트, 픽셀, 캐릭터도트, 캐릭터",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

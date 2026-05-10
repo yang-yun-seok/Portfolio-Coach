@@ -1,0 +1,36 @@
+{
+  "id": "crawled-277018",
+  "company": "㈜이스트게임즈",
+  "title": "[신입] 모바일 RTS 클라이언트 프로그래머",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "Python",
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277018",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "카발RED, 카발온라인, 카발모바일, 고양이다방",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, SNG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, C, C++, Python, C#, 게임프로그래밍, 게임프로그래머, Unity3D, UGUI",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

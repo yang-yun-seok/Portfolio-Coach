@@ -1,0 +1,35 @@
+{
+  "id": "crawled-279454",
+  "company": "㈜뉴코어",
+  "title": "[신규 PC/콘솔] 신규 프로젝트 기획담당 모집",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279454",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "데블위딘삿갓(The Devil Within:Satgat)",
+  "gameCategory": "콘솔게임, 멀티플랫폼게임 RPG, 기타",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 7개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "레벨, 게임기획, 밸런스기획, 시스템기획, 컨텐츠",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

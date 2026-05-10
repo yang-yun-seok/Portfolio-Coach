@@ -1,0 +1,36 @@
+{
+  "id": "crawled-279939",
+  "company": "㈜펀스테이",
+  "title": "[신규 프로젝트] 디펜스 장르 기획자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "Unity"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279939",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "다크스타 : 방치형 RPG",
+  "gameCategory": "모바일게임 Casual, Shooting",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "모바일, 컨셉, 게임기획, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

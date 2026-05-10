@@ -1,0 +1,33 @@
+{
+  "id": "crawled-279012",
+  "company": "카피바라",
+  "title": "2D 모바일 게임 클라이언트 개발자 모집(3년차 이상)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279012",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "아토즈포커(개발중, 2026 상반기 출시 예정)",
+  "gameCategory": "모바일게임 SNG, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "C#, Unity, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

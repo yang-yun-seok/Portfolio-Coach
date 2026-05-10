@@ -10,7 +10,7 @@
     "레벨 디자인",
     "시나리오/퀘스트",
     "밸런싱",
-    "콘텐츠 기획",
+    "시스템/컨텐츠 기획",
     "Unreal Engine",
     "JIRA/Confluence"
   ],
@@ -25,6 +25,13 @@
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "레벨, 컨셉, 게임기획, 시나리오, 밸런스기획, 레벨기획, 컨텐츠, 오픈월드, NC, CINDERCITY, 신더시티",
-  "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
 }

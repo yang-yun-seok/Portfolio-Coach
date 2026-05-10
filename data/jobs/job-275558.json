@@ -23,5 +23,10 @@
   "experience": "무관",
   "keywords": "3D, 애니메이션, 3DMax, 네오플, 3D애니메이션, 던전앤파이터, 제주",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

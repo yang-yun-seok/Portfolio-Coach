@@ -1,0 +1,34 @@
+{
+  "id": "crawled-278332",
+  "company": "스마일게이트 (Smilegate)",
+  "title": "[신규 프로젝트] 클라이언트(게임콘텐츠 및 레벨) 담당",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "레벨 디자인",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278332",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "LOST ARK, LOST ARK Mobile",
+  "gameCategory": "콘솔게임, 멀티플랫폼게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, C++, 레벨, Unreal, 언리얼, 언리얼4, 게임프로그래머, UE4, 언리얼5, UE5, 월드컨텐츠",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

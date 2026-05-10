@@ -23,5 +23,10 @@
   "experience": "경력 3년 이상",
   "keywords": "모바일, 게임기획, 시스템기획, Unreal, 시스템, 언리얼, RPG, 수집형, 턴제",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

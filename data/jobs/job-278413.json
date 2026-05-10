@@ -23,5 +23,10 @@
   "experience": "무관",
   "keywords": "모바일, 게임기획, 웹게임, HTML5, 게임운영, CS, 모니터링",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

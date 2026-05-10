@@ -1,0 +1,38 @@
+{
+  "id": "crawled-278959",
+  "company": "(주)웹젠",
+  "title": "[웹젠노바/테르비스] 서버(경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "C#",
+    "SQL",
+    "TCP/IP",
+    "Redis",
+    "Git/SVN"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278959",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "뮤 온라인, R2, 샷온라인, 썬 클래식, 뮤 아크엔젤, 뮤 모나크, 뮤:포켓 나이츠",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 06/30(화)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "C++, .NET, C#, MS-SQL, SQL, IOCP, Redis, 게임프로그래밍, git",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

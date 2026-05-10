@@ -1,0 +1,35 @@
+{
+  "id": "crawled-276927",
+  "company": "프로젝트문",
+  "title": "[프로젝트문] Limbus Company UI/UX 디자이너",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Unity",
+    "Figma"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276927",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Lobotomy Corporation",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Simulation",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "인터페이스, UX·UI, Unity",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

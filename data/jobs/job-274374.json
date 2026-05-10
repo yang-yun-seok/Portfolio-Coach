@@ -22,5 +22,10 @@
   "experience": "무관",
   "keywords": "레벨기획, 컨텐츠기획, 레벨디자인, 배경디자인, 맵기획, 배경기획",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

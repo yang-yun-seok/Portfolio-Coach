@@ -1,0 +1,34 @@
+{
+  "id": "crawled-279277",
+  "company": "㈜젠틀매니악",
+  "title": "[호라이즌워커] 보조 테크니컬 아티스트(TA) 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "C++",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279277",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "호라이즌 워커, 마대자",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "C, C++, 배경, 모델링, 이펙트, FX",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

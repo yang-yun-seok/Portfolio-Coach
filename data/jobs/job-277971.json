@@ -23,5 +23,10 @@
   "experience": "무관",
   "keywords": "프로모션, 데이터분석, 홍보기획, 예산관리, MMP, 캠페인집행, 캠페인실행",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

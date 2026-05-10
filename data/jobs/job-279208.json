@@ -1,0 +1,33 @@
+{
+  "id": "crawled-279208",
+  "company": "스마일게이트 (Smilegate)",
+  "title": "[카오스 제로 나이트메어 집중 채용] 2D 컷인 콘티 제작자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Illustrator"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279208",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "에픽세븐, 카오스 제로 나이트메어",
+  "gameCategory": "모바일게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 원화, 일러스트, 몬스터, 캐릭터",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

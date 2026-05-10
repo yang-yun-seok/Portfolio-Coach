@@ -22,5 +22,10 @@
   "experience": "경력 3년 이상",
   "keywords": "모바일, 디렉터, 게임기획, 컨텐츠, 라이프시뮬레이션, 동물의숲, 딩컴, 오민랩, 5MINLAB",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

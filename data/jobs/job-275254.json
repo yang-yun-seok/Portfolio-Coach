@@ -24,5 +24,10 @@
   "experience": "경력 3년 이상",
   "keywords": "밸런스기획, 시스템기획, 시스템, 언리얼, 데이터, 수학, 열정, 액션RPG, 테이블, 핵슬, 동양, 다크, 바운더리",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

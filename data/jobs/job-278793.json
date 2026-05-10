@@ -1,0 +1,34 @@
+{
+  "id": "crawled-278793",
+  "company": "컴투스 (Com2uS)",
+  "title": "[컴투스] [컴투스프로야구 시리즈] QA 담당자 (계약직)",
+  "role": "QA/테스트",
+  "roles": [
+    "기획",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "QA/테스트",
+    "개발PM"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278793",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "서머너즈워, 프로야구시리즈, 낚시의신, 서머너즈워:백년전쟁 등",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "계약직 (계약기간 : 6개월)",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "QA, 프로젝트, 게임분석, 프로젝트개발, 게임테스팅, 이슈리포팅, 게임밸러스",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

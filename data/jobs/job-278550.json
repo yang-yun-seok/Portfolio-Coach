@@ -1,0 +1,38 @@
+{
+  "id": "crawled-278550",
+  "company": "에스씨에이게임부산",
+  "title": "[SBS아카데미게임] 부산점 # 게임프로그램(언리얼,유니티) 강사 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "C#",
+    "TCP/IP",
+    "Unreal Engine",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278550",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+  "employmentType": "프리랜서",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "VisualC, VisualC++, DirectX, C, C++, C#, 네트워크, 엔진, Unreal, Unity, 언리얼4, 유니티3D, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

@@ -26,5 +26,10 @@
   "experience": "무관",
   "keywords": "모바일, 게임기획, 시스템기획, AI, 콘텐츠, 콘텐츠기획, 유니티, 데이터분석, 게임디자인, 모바일게임, 캐주얼, 퍼즐, 라이브서비스, 시스템설계, 로직설계, 업데이트기획, 수익모델, 기획서작성, 게임경제",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

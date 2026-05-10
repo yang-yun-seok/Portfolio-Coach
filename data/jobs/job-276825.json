@@ -26,5 +26,10 @@
   "experience": "무관",
   "keywords": "게임기획, 시스템기획, 컨텐츠, AI, 콘텐츠기획, 데이터, 데이터분석, 테이블설계, 프롬프트, LLM, 업적기획",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

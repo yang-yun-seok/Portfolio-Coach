@@ -22,5 +22,10 @@
   "experience": "무관",
   "keywords": "컨셉, 게임기획, PM, 시스템기획, 기획, 사업PM, 게임PM, 모바일게임, 시장분석, 게임출시, 트렌드분석, 라이브지표, 하이브리드캐주얼게임",
   "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "inactive",
+  "isActive": false,
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": "2026-05-10T16:37:57.098Z"
 }

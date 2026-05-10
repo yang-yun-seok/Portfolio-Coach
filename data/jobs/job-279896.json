@@ -1,0 +1,35 @@
+{
+  "id": "crawled-279896",
+  "company": "크래프톤 (KRAFTON)",
+  "title": "[Palworld Mobile] System Content Engineer - Intermediate / Senior (3년 이상)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "TCP/IP",
+    "Unreal Engine",
+    "Git/SVN"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279896",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "PUBG: 배틀그라운드",
+  "gameCategory": "모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, C++, 모바일, 네트워크, 언리얼, 게임프로그래밍, palworld",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
+}

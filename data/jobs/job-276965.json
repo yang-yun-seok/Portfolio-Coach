@@ -12,10 +12,8 @@
     "C++",
     "3D",
     "3ds Max",
-    "PM",
     "밸런싱",
-    "시스템 기획",
-    "콘텐츠 기획"
+    "시스템/컨텐츠 기획"
   ],
   "reqExp": 0,
   "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276965",
@@ -27,7 +25,14 @@
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "무관",
-  "keywords": "클라이언트, C++, 3D, 배경, 맵핑, 원화, 컨셉, 배경원화, 모델링, 로우폴리곤, 캐릭터, 애니메이션, 3DMax, 게임기획, PM, 밸런스기획, 시스템기획, 컨텐츠, 서버, 게임프로그래밍",
-  "updatedAt": "2026-04-03",
-  "source": "GameJob"
+  "keywords": "클라이언트, C++, 3D, 맵핑, 원화, 컨셉, 배경원화, 모델링, 로우폴리곤, 캐릭터, 애니메이션, 3DMax, 게임기획, PM, 밸런스기획, 시스템기획, 컨텐츠, 서버, 게임프로그래밍",
+  "updatedAt": "2026-05-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastSeenAt": "2026-05-10T16:37:57.098Z",
+  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "inactiveAt": null
 }
