@@ -1,9 +1,9 @@
 ﻿import React, { useState, useEffect, useRef } from 'react';
 import {
   FileText, Image as ImageIcon, Target, MessageSquare,
-  ChevronRight, AlertCircle, CheckCircle, XCircle, Loader2, Gamepad2,
+  ChevronRight, AlertCircle, CheckCircle, Loader2, Gamepad2,
   User, X, ExternalLink,
-  Sparkles, Clock, Shirt, Smile, Brain,
+  Sparkles, Smile,
   Settings, Database, ClipboardList, Download, BookOpen,
 } from 'lucide-react';
 import {
@@ -32,43 +32,14 @@ import { EMPTY_INSTRUCTOR } from './components/InstructorFeedbackForm';
 import WorkspaceSidebar from './components/WorkspaceSidebar';
 import CompanyInfoModal from './components/CompanyInfoModal';
 import FeedbackWorkspace from './components/FeedbackWorkspace';
+import InterviewReadinessWorkspace from './components/InterviewReadinessWorkspace';
+import InterviewWorkspace from './components/InterviewWorkspace';
 import InputWorkspace from './components/InputWorkspace';
 import JobsWorkspace from './components/JobsWorkspace';
 import ModelSettingsModal from './components/ModelSettingsModal';
 import PortfolioWorkspace from './components/PortfolioWorkspace';
 import SettingsModal from './components/SettingsModal';
 import UserGuideModal from './components/UserGuideModal';
-
-// ── 아이콘 맵 (interview-basic.json에서 문자열로 지정된 아이콘을 컴포넌트로 매핑) ──
-const ICON_MAP = { Shirt, Clock, Brain, Sparkles };
-
-const INTERVIEW_THEME_MAP = {
-  blue: {
-    accent: '#0071e3',
-    soft: 'rgba(0, 113, 227, 0.1)',
-    border: 'rgba(0, 113, 227, 0.16)',
-    kicker: 'Appearance',
-  },
-  amber: {
-    accent: '#d97706',
-    soft: 'rgba(217, 119, 6, 0.11)',
-    border: 'rgba(217, 119, 6, 0.18)',
-    kicker: 'Timing',
-  },
-  purple: {
-    accent: '#7c3aed',
-    soft: 'rgba(124, 58, 237, 0.1)',
-    border: 'rgba(124, 58, 237, 0.16)',
-    kicker: 'Mindset',
-  },
-  emerald: {
-    accent: '#059669',
-    soft: 'rgba(5, 150, 105, 0.1)',
-    border: 'rgba(5, 150, 105, 0.16)',
-    kicker: 'Attitude',
-  },
-};
-
 
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
 // "- **제목**: 내용" 또는 "**제목**: 내용" → { title, body } 로 분리
@@ -281,7 +252,6 @@ export default function App() {
 
   // 탭 / UI 상태
   const [activeTab, setActiveTab] = useState('input');
-  const [activeInterviewTab, setActiveInterviewTab] = useState(0);
   const [visibleJobs, setVisibleJobs] = useState(10);
   const [scoreFilter, setScoreFilter] = useState('all'); // 'all' | '90+' | '80+' | '70+' | '60+' | '60-'
   const [selectedCompanyModal, setSelectedCompanyModal] = useState(null);
@@ -813,7 +783,6 @@ export default function App() {
     setResults(localResults);
     setInfoMessage(message);
     setActiveTab('feedback');
-    setActiveInterviewTab(0);
     // 자동 저장
     try {
       persistWorkspaceSnapshot({
@@ -904,7 +873,6 @@ export default function App() {
       };
       setResults(safeData);
       setActiveTab('feedback');
-      setActiveInterviewTab(0);
       // AI 강사피드백 초안은 백그라운드로 생성해 결과 탭 전환을 막지 않음
       void generateInstructorDraft(safeData, analysisProfile)
         .then((draft) => {
@@ -1269,6 +1237,16 @@ AI 분석 요약:
     results,
   };
 
+  const interviewWorkspaceProps = {
+    interviewPlaybook,
+    results,
+  };
+
+  const interviewReadinessWorkspaceProps = {
+    interviewBasicData,
+    readinessPlaybook,
+  };
+
   const jobsWorkspaceProps = {
     candidateJobs: recommendedJobs,
     fetchCompanyInfoAI,
@@ -1456,190 +1434,13 @@ AI 분석 요약:
           {/* ── TAB 5: 면접 대비 ───────────────────────────────────── */}
           {activeTab === 'interview' && (
             results?.interviewPreps?.length > 0 ? (
-              <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
-                <div className="apple-intro">
-                  <h2 className="text-3xl font-bold text-slate-800 mb-2">{interviewPlaybook.title}</h2>
-                  <p className="text-slate-500">{interviewPlaybook.description}</p>
-                </div>
-                <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
-                  <div className="grid gap-4 md:grid-cols-3">
-                    {interviewPlaybook.cards.map((card) => (
-                      <article key={card.label} className="rounded-[28px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
-                        <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-600">{card.label}</p>
-                        <h3 className="mb-2 text-base font-black text-slate-900">{card.title}</h3>
-                        <p className="text-sm leading-relaxed text-slate-600">{card.body}</p>
-                      </article>
-                    ))}
-                  </div>
-                  <aside className="rounded-[28px] bg-slate-950 px-6 py-6 text-white shadow-xl">
-                    <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-300">Answer Lens</p>
-                    <h3 className="mb-2 text-lg font-black">{interviewPlaybook.strategyTitle}</h3>
-                    <p className="text-sm leading-relaxed text-slate-300">{interviewPlaybook.strategyBody}</p>
-                    <div className="mt-5 border-t border-white/10 pt-5">
-                      <p className="mb-2 text-sm font-bold text-white">{interviewPlaybook.assignmentTitle}</p>
-                      <p className="text-sm leading-relaxed text-slate-300">{interviewPlaybook.assignmentBody}</p>
-                    </div>
-                  </aside>
-                </div>
-                <div className="flex bg-slate-200 p-1 rounded-xl w-full">
-                  {(Array.isArray(results.interviewPreps) ? results.interviewPreps : []).map((prep, idx) => (
-                    <button key={idx} onClick={() => setActiveInterviewTab(idx)} className={`flex-1 py-2 px-4 text-sm font-bold rounded-lg transition-colors ${activeInterviewTab === idx ? 'bg-white text-indigo-700 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
-                      {prep.rank}순위: {prep.company.split(' ')[0]}
-                    </button>
-                  ))}
-                </div>
-                <div className="space-y-4">
-                  {Array.isArray(results.interviewPreps) && results.interviewPreps[activeInterviewTab] && (
-                    <>
-                      <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 shadow-sm mb-6">
-                        <h3 className="text-lg font-bold text-indigo-900 mb-3 flex items-center gap-2"><Target size={20} className="text-indigo-500" /> 인재상 및 어필 전략</h3>
-                        <p className="text-indigo-800 text-sm whitespace-pre-line leading-relaxed mb-4">{results.interviewPreps[activeInterviewTab].idealCandidateReflected}</p>
-                        {results.interviewPreps[activeInterviewTab].assignmentGuide && (
-                          <div className="mt-4 pt-4 border-t border-indigo-200/60">
-                            <h4 className="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2"><FileText size={16} className="text-slate-500" /> 과제 대비 가이드</h4>
-                            <p className="text-slate-700 text-sm whitespace-pre-line leading-relaxed">{results.interviewPreps[activeInterviewTab].assignmentGuide}</p>
-                          </div>
-                        )}
-                      </div>
-                      <div className="space-y-4">
-                        {(Array.isArray(results.interviewPreps?.[activeInterviewTab]?.questions) ? results.interviewPreps[activeInterviewTab].questions : []).map((item, qIdx) => (
-                          <div key={qIdx} className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-                            <div className="flex gap-4">
-                              <div className="bg-indigo-100 w-10 h-10 rounded-full flex items-center justify-center text-indigo-700 font-bold shrink-0 mt-1">Q{qIdx + 1}</div>
-                              <div className="space-y-4 flex-1">
-                                <h3 className="text-xl font-bold text-slate-800 leading-tight whitespace-pre-line">{item.question}</h3>
-                                <div className="grid md:grid-cols-2 gap-4 mt-4">
-                                  <div className="bg-red-50/50 rounded-xl p-4 border border-red-100">
-                                    <div className="flex items-center gap-2 text-red-700 font-bold mb-2"><XCircle size={18} /> 피해야 할 답변</div>
-                                    <p className="text-sm text-red-900/80 whitespace-pre-line leading-relaxed">{item.avoid}</p>
-                                  </div>
-                                  <div className="bg-emerald-50/50 rounded-xl p-4 border border-emerald-100">
-                                    <div className="flex items-center gap-2 text-emerald-700 font-bold mb-2"><CheckCircle size={18} /> 권장하는 두괄식 답변</div>
-                                    <p className="text-sm text-emerald-900/80 whitespace-pre-line leading-relaxed">{item.recommend}</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="rounded-[28px] border border-slate-200 bg-slate-100 px-5 py-5 text-sm leading-relaxed text-slate-600">
-                        <strong>※ 면접 답변 기법 안내</strong><br />
-                        <span className="text-slate-700">{interviewPlaybook.answerTip}</span><br /><br />
-                        <strong className="text-indigo-600">STAR 기법</strong>: 상황(<strong>S</strong>ituation), 과제(<strong>T</strong>ask), 행동(<strong>A</strong>ction), 결과(<strong>R</strong>esult)의 구조로 경험을 구체적으로 증명하는 면접 표준 답변 방식입니다.<br />
-                        <strong className="text-indigo-600">두괄식 답변(BLUF)</strong>: 결론(Bottom Line Up Front)을 가장 첫 문장에 배치하여 면접관의 집중도를 높이는 방식입니다.
-                      </div>
-                    </>
-                  )}
-                </div>
-              </div>
+              <InterviewWorkspace {...interviewWorkspaceProps} />
             ) : renderEmptyState(<MessageSquare size={48} />, '면접 예상 질문이 없습니다', '정보를 입력하고 AI 분석을 진행해주세요.')
           )}
 
           {/* ── TAB 6: 면접 기본 준비 (서버 데이터 기반) ─────────────── */}
           {activeTab === 'interview-basic' && (
-            <div className="apple-view studio-readiness-view animate-in fade-in slide-in-from-bottom-4">
-              <section className="studio-readiness-hero">
-                <div className="studio-readiness-copy">
-                  <p className="studio-eyebrow">Interview Readiness</p>
-                  <h2>{readinessPlaybook.heroTitle}</h2>
-                  <p>{readinessPlaybook.heroDescription}</p>
-                </div>
-                <div className="studio-readiness-summary">
-                  {readinessPlaybook.summaryStats.map((stat) => (
-                    <div key={stat.label} className="studio-readiness-stat">
-                      <span>{stat.label}</span>
-                      <strong>{stat.value}</strong>
-                    </div>
-                  ))}
-                  <p>
-                    면접관은 정답 암기보다 근거 있는 판단, 협업 가능한 말투, 모르는 것을
-                    다루는 태도를 봅니다. 짧은 답변 안에 역할과 결과가 보이도록 준비하세요.
-                  </p>
-                </div>
-              </section>
-
-              <section className="grid gap-4 md:grid-cols-3">
-                {readinessPlaybook.prepCards.map((card) => (
-                  <article key={card.label} className="rounded-[28px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
-                    <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-600">{card.label}</p>
-                    <h3 className="mb-2 text-base font-black text-slate-900">{card.title}</h3>
-                    <p className="text-sm leading-relaxed text-slate-600">{card.body}</p>
-                  </article>
-                ))}
-              </section>
-
-              <section className="studio-readiness-layout">
-                <aside className="studio-readiness-aside">
-                  <div className="studio-readiness-note">
-                    <p className="studio-eyebrow">Quick Reset</p>
-                    <h3>면접 직전 5분 체크</h3>
-                    <ul>
-                      {readinessPlaybook.quickChecks.map((item) => (
-                        <li key={item}>
-                          <CheckCircle size={16} />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="studio-readiness-note studio-readiness-note-muted">
-                    <p className="studio-eyebrow">{readinessPlaybook.answerFrameTitle}</p>
-                    <p>{readinessPlaybook.answerFrameBody}</p>
-                  </div>
-
-                  <div className="studio-readiness-note studio-readiness-note-muted">
-                    <p className="studio-eyebrow">{readinessPlaybook.reviewerNoteTitle}</p>
-                    <p>{readinessPlaybook.reviewerNoteBody}</p>
-                  </div>
-                </aside>
-
-                <div className="studio-readiness-flow">
-                  {interviewBasicData.map(({ icon: iconName, color, title, items }, index) => {
-                    const Icon = ICON_MAP[iconName] || Smile;
-                    const theme = INTERVIEW_THEME_MAP[color] || INTERVIEW_THEME_MAP.blue;
-
-                    return (
-                      <article
-                        key={title}
-                        className="studio-readiness-section"
-                        style={{
-                          '--studio-accent': theme.accent,
-                          '--studio-soft': theme.soft,
-                          '--studio-border': theme.border,
-                        }}
-                      >
-                        <div className="studio-readiness-section-head">
-                          <span className="studio-readiness-index">
-                            {String(index + 1).padStart(2, '0')}
-                          </span>
-                          <div
-                            className="studio-readiness-icon"
-                            style={{ background: theme.soft, color: theme.accent }}
-                          >
-                            <Icon size={22} />
-                          </div>
-                          <div className="studio-readiness-heading">
-                            <p className="studio-readiness-kicker">{theme.kicker}</p>
-                            <h3>{title}</h3>
-                          </div>
-                        </div>
-
-                        <div className="studio-readiness-points">
-                          {items.map((item) => (
-                            <div key={item.label} className="studio-readiness-point">
-                              <p className="studio-readiness-point-label">{item.label}</p>
-                              <p className="studio-readiness-point-desc">{item.desc}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </article>
-                    );
-                  })}
-                </div>
-              </section>
-            </div>
+            <InterviewReadinessWorkspace {...interviewReadinessWorkspaceProps} />
           )}
 
           {/* ── TAB 8: 인성검사 (탭 전환 시 상태 유지를 위해 항상 마운트, display로 토글) ── */}
