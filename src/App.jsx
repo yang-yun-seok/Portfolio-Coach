@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import {
   FileText, Image as ImageIcon, Target, MessageSquare,
   ChevronRight, AlertCircle, CheckCircle, XCircle, Loader2, Gamepad2,
   User, X, ExternalLink,
   Sparkles, Clock, Shirt, Smile, Brain,
-  Settings, RefreshCw, Database, ClipboardList, Code2, Download, BookOpen,
+  Settings, Database, ClipboardList, Code2, Download, BookOpen,
 } from 'lucide-react';
 import {
   ROLE_GROUPS,
@@ -26,7 +26,6 @@ import { analyzeGitHubPortfolio } from './lib/github-analyzer';
 import { apiUrl, staticAssetUrl } from './lib/runtime-config';
 import { useModels } from './hooks/useModels';
 import { useWorkspacePersistence } from './hooks/useWorkspacePersistence';
-import ModelSelector from './components/ModelSelector';
 import TechAssessment from './components/TechAssessment';
 import PersonalityTest from './components/PersonalityTest';
 import PdfExport from './components/PdfExport';
@@ -36,6 +35,9 @@ import CompanyInfoModal from './components/CompanyInfoModal';
 import FeedbackWorkspace from './components/FeedbackWorkspace';
 import InputWorkspace from './components/InputWorkspace';
 import JobsWorkspace from './components/JobsWorkspace';
+import ModelSettingsModal from './components/ModelSettingsModal';
+import PortfolioWorkspace from './components/PortfolioWorkspace';
+import SettingsModal from './components/SettingsModal';
 import UserGuideModal from './components/UserGuideModal';
 
 // ── 아이콘 맵 (interview-basic.json에서 문자열로 지정된 아이콘을 컴포넌트로 매핑) ──
@@ -68,12 +70,6 @@ const INTERVIEW_THEME_MAP = {
   },
 };
 
-const CRAWL_STATUS_LABELS = {
-  success: '성공',
-  'partial-success': '부분 성공',
-  failed: '실패',
-  idle: '대기',
-};
 
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
 // "- **제목**: 내용" 또는 "**제목**: 내용" → { title, body } 로 분리
@@ -1267,6 +1263,13 @@ AI 분석 요약:
     topRecommendedJobs,
     userInfo,
   };
+  const portfolioWorkspaceProps = {
+    parseFeedbackItem,
+    portfolioFiles,
+    resultPlaybook,
+    results,
+  };
+
   const jobsWorkspaceProps = {
     candidateJobs: recommendedJobs,
     fetchCompanyInfoAI,
@@ -1442,140 +1445,8 @@ AI 분석 요약:
           {/* ── TAB 3: 포트폴리오 ─────────────────────────────────── */}
           {activeTab === 'portfolio' && (
             results ? (
-              <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
-                <div className="apple-intro">
-                  <h2 className="text-3xl font-bold text-slate-800 mb-2">{resultPlaybook.portfolioTitle}</h2>
-                  <p className="text-slate-500">{resultPlaybook.portfolioDescription}</p>
-                </div>
-
-                <div className="grid gap-4 md:grid-cols-3">
-                  {resultPlaybook.portfolioCards.map((card) => (
-                    <article key={card.label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{card.label}</p>
-                      <h3 className="mt-2 text-base font-bold leading-snug text-slate-900">{card.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-slate-600">{card.body}</p>
-                    </article>
-                  ))}
-                </div>
-
-                <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100">
-                  <ul className="space-y-5">
-                    {Array.isArray(results.portfolioImprovements) && results.portfolioImprovements.length > 0
-                      ? results.portfolioImprovements.map((item, idx) => {
-                          const { title, body } = parseFeedbackItem(item);
-                          const pfName = portfolioFiles[idx]?.name;
-                          return (
-                            <li key={idx} className="flex items-start gap-3 bg-slate-50 p-5 rounded-xl text-sm leading-relaxed">
-                              <div className="bg-indigo-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">{idx + 1}</div>
-                              <div className="flex-1">
-                                {pfName && !title?.includes(pfName) && (
-                                  <p className="text-xs text-indigo-500 font-bold mb-1 flex items-center gap-1"><FileText size={12} /> {pfName}</p>
-                                )}
-                                {title && <p className="font-semibold text-slate-800 mb-0.5">{title}</p>}
-                                {body && <p className="text-slate-600">{body}</p>}
-                              </div>
-                            </li>
-                          );
-                        })
-                      : <li className="text-slate-400">포트폴리오 내용이 없습니다.</li>}
-                  </ul>
-                </div>
-
-                {results.githubPortfolioAnalysis?.repoUrl && (
-                  <div className="bg-slate-950 rounded-2xl p-8 shadow-sm border border-slate-800 text-white">
-                    <div className="mb-5 flex items-start justify-between gap-4">
-                      <div>
-                        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-sky-300">GitHub Technical Doc</p>
-                        <h3 className="mt-1 text-2xl font-black tracking-tight">플밍 포트폴리오 기술문서 초안</h3>
-                        <p className="mt-2 text-sm leading-relaxed text-slate-300">
-                          public GitHub 저장소의 README, 핵심 디렉터리, 설정 파일, 자동화 신호를 기준으로 기술 설명용 초안을 정리했습니다.
-                        </p>
-                      </div>
-                      <a
-                        href={results.githubPortfolioAnalysis.repoUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="shrink-0 rounded-full bg-white px-4 py-2 text-xs font-bold text-slate-900 transition hover:bg-sky-100"
-                      >
-                        저장소 열기
-                      </a>
-                    </div>
-
-                    {results.githubPortfolioAnalysis.summary && (
-                      <div className="mb-5 rounded-2xl bg-white/8 p-4 text-sm leading-relaxed text-slate-200">
-                        {results.githubPortfolioAnalysis.summary}
-                      </div>
-                    )}
-
-                    <div className="mb-5 flex flex-wrap gap-2">
-                      {[
-                        results.githubPortfolioAnalysis.topLanguages?.length
-                          ? `언어 ${results.githubPortfolioAnalysis.topLanguages.join(', ')}`
-                          : null,
-                        results.githubPortfolioAnalysis.defaultBranch
-                          ? `기본 브랜치 ${results.githubPortfolioAnalysis.defaultBranch}`
-                          : null,
-                        results.githubPortfolioAnalysis.updatedAt
-                          ? `최근 업데이트 ${results.githubPortfolioAnalysis.updatedAt}`
-                          : null,
-                        Number.isFinite(results.githubPortfolioAnalysis.stars)
-                          ? `Stars ${results.githubPortfolioAnalysis.stars}`
-                          : null,
-                        Number.isFinite(results.githubPortfolioAnalysis.forks)
-                          ? `Forks ${results.githubPortfolioAnalysis.forks}`
-                          : null,
-                      ].filter(Boolean).map((item) => (
-                        <span key={item} className="rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5 text-xs text-slate-200">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-
-                    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                      {[
-                        { title: '기술 스택', items: results.githubPortfolioAnalysis.techStack, tone: 'text-sky-200' },
-                        { title: '구조 해석', items: results.githubPortfolioAnalysis.architecture, tone: 'text-cyan-200' },
-                        { title: '프로젝트 하이라이트', items: results.githubPortfolioAnalysis.projectHighlights, tone: 'text-emerald-200' },
-                        { title: '면접 포인트', items: results.githubPortfolioAnalysis.interviewTalkingPoints, tone: 'text-indigo-200' },
-                      ].map(({ title, items, tone }) => (
-                        <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                          <h4 className={`mb-3 text-sm font-bold ${tone}`}>{title}</h4>
-                          <ul className="space-y-2 text-sm text-slate-300">
-                            {(Array.isArray(items) && items.length > 0 ? items : ['분석된 항목이 없습니다.']).map((item) => (
-                              <li key={item} className="leading-relaxed">- {item}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                      {[
-                        { title: '품질 신호', items: results.githubPortfolioAnalysis.qualitySignals, tone: 'text-lime-200' },
-                        { title: '출시/협업 신호', items: results.githubPortfolioAnalysis.shippingSignals, tone: 'text-violet-200' },
-                        { title: '보완 제안', items: results.githubPortfolioAnalysis.refactorSuggestions, tone: 'text-amber-200' },
-                        { title: '리스크', items: results.githubPortfolioAnalysis.risks, tone: 'text-rose-200' },
-                      ].map(({ title, items, tone }) => (
-                        <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                          <h4 className={`mb-3 text-sm font-bold ${tone}`}>{title}</h4>
-                          <ul className="space-y-2 text-sm text-slate-300">
-                            {(Array.isArray(items) && items.length > 0 ? items : ['분석된 항목이 없습니다.']).map((item) => (
-                              <li key={item} className="leading-relaxed">- {item}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-
-                    {results.githubPortfolioAnalysis.documentation && (
-                      <pre className="mt-5 max-h-[28rem] overflow-auto whitespace-pre-wrap rounded-2xl bg-black/40 p-5 text-xs leading-6 text-slate-200 custom-scrollbar">
-                        {results.githubPortfolioAnalysis.documentation}
-                      </pre>
-                    )}
-                  </div>
-                )}
-              </div>
-            ) : renderEmptyState(<ImageIcon size={48} />, '포트폴리오 가이드가 없습니다', '정보를 입력하고 AI 분석을 진행해주세요.')
+              <PortfolioWorkspace {...portfolioWorkspaceProps} />
+            ) : renderEmptyState(<ImageIcon size={48} />, '\uD3EC\uD2B8\uD3F4\uB9AC\uC624 \uAC00\uC774\uB4DC\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4', '\uC815\uBCF4\uB97C \uC785\uB825\uD558\uACE0 AI \uBD84\uC11D\uC744 \uC9C4\uD589\uD574\uC8FC\uC138\uC694.')
           )}
 
           {/* ── TAB 4: 추천 공고 ───────────────────────────────────── */}
@@ -1815,101 +1686,30 @@ AI 분석 요약:
         guidePlaybook={guidePlaybook}
       />
 
-      {/* ── 설정 모달 ─────────────────────────────────────────────── */}
-      {showSettings && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden">
-            {/* 헤더 */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-100">
-              <div className="flex items-center gap-3">
-                <div className="bg-indigo-100 p-2 rounded-lg"><Settings size={20} className="text-indigo-600" /></div>
-                <h2 className="text-xl font-bold text-slate-800">설정</h2>
-              </div>
-              <button onClick={() => setShowSettings(false)} className="text-slate-400 hover:text-slate-600 transition-colors">
-                <X size={24} />
-              </button>
-            </div>
+      {/* ?? ?? ?? ??????????????????????????????????????????????? */}
+      <SettingsModal
+        jobs={jobs}
+        jobsMetadata={jobsMetadata}
+        onClose={() => setShowSettings(false)}
+        onGoToJobs={() => {
+          setShowSettings(false);
+          setActiveTab('jobs');
+        }}
+        open={showSettings}
+      />
 
-            {/* 데이터 상태 */}
-            <div className="p-6 space-y-6 overflow-y-auto">
-              <div className="bg-slate-50 rounded-xl p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <Database size={18} className="text-slate-500" />
-                  <h3 className="font-semibold text-slate-700">공고 데이터</h3>
-                </div>
-                <div className="text-sm text-slate-600 space-y-1">
-                  <p>현재 로드된 공고: <span className="font-bold text-indigo-600">{jobs.length}건</span></p>
-                  <p>데이터 소스: <span className="font-medium">GameJob</span></p>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <RefreshCw size={18} className="text-indigo-500" />
-                  <h3 className="font-semibold text-slate-700">자동 크롤링 상태</h3>
-                </div>
-                <p className="text-xs text-slate-500 leading-relaxed">
-                  매일 00:00 기준으로 게임잡 공고를 자동 수집합니다. 사용자 페이지에서는 수동 크롤링을 제공하지 않으며, 아래 메타 정보만 공개됩니다.
-                </p>
-                <div className="mt-4 rounded-xl border border-slate-200 bg-white px-4 py-3 text-xs text-slate-600">
-                  <p>최근 반영일: <strong className="text-slate-900">{jobsMetadata.latestAppliedDate || '정보 없음'}</strong></p>
-                  <p className="mt-1">참고 공고 수: <strong className="text-slate-900">{jobsMetadata.referenceJobCount || jobs.length}건</strong></p>
-                  <p className="mt-1">마지막 성공 시각: <strong className="text-slate-900">{jobsMetadata.lastSuccessfulCrawlAt ? new Date(jobsMetadata.lastSuccessfulCrawlAt).toLocaleString('ko-KR') : '정보 없음'}</strong></p>
-                  <p className="mt-1">상태: <strong className={jobsMetadata.lastCrawlStatus === 'failed' ? 'text-rose-600' : jobsMetadata.lastCrawlStatus === 'partial-success' ? 'text-amber-600' : 'text-emerald-600'}>{CRAWL_STATUS_LABELS[jobsMetadata.lastCrawlStatus] || CRAWL_STATUS_LABELS.idle}</strong></p>
-                </div>
-                <button
-                  onClick={() => {
-                    setShowSettings(false);
-                    setActiveTab('jobs');
-                  }}
-                  className="mt-4 w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
-                >
-                  추천 공고 탭 열기
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {showModelSettings && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden">
-            <div className="flex items-center justify-between p-6 border-b border-slate-100">
-              <div className="flex items-center gap-3">
-                <div className="bg-blue-100 p-2 rounded-lg"><Sparkles size={20} className="text-blue-600" /></div>
-                <div>
-                  <h2 className="text-xl font-bold text-slate-800">AI 모델 설정</h2>
-                  <p className="text-sm text-slate-500">분석에 사용할 엔진과 세부 모델을 조정합니다.</p>
-                </div>
-              </div>
-              <button onClick={() => setShowModelSettings(false)} className="text-slate-400 hover:text-slate-600 transition-colors">
-                <X size={24} />
-              </button>
-            </div>
-
-            <div className="p-6 space-y-4 overflow-y-auto">
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-sky-600">Current</p>
-                <p className="mt-1 text-sm font-semibold text-slate-800">
-                  {currentProvider?.label || '모델 선택'} {selectedModelId ? `· ${selectedModelId}` : ''}
-                </p>
-              </div>
-
-              <ModelSelector
-                enabledProviders={enabledProviders}
-                disabledProviders={disabledProviders}
-                selectedProvider={selectedProvider}
-                selectedModelId={selectedModelId}
-                onProviderChange={handleProviderChange}
-                onModelChange={setSelectedModelId}
-                modelsLoading={modelsLoading}
-                variant="modal"
-              />
-            </div>
-          </div>
-        </div>
-      )}
+      <ModelSettingsModal
+        currentProvider={currentProvider}
+        disabledProviders={disabledProviders}
+        enabledProviders={enabledProviders}
+        modelsLoading={modelsLoading}
+        onClose={() => setShowModelSettings(false)}
+        onModelChange={setSelectedModelId}
+        onProviderChange={handleProviderChange}
+        open={showModelSettings}
+        selectedModelId={selectedModelId}
+        selectedProvider={selectedProvider}
+      />
     </div>
   );
 }
