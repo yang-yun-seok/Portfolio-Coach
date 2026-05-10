@@ -47,6 +47,19 @@ jobs:
           git commit -m "Daily GameJob crawl"
           git push origin HEAD:main
 
+      - name: Notify Discord on crawl success
+        if: steps.daily_crawl.outcome == 'success' && env.DISCORD_WEBHOOK_URL != ''
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          LATEST_APPLIED_DATE=$(node -p "JSON.parse(require('fs').readFileSync('public/api/jobs-metadata.json','utf8')).latestAppliedDate || ''")
+          REFERENCE_JOB_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('public/api/jobs-metadata.json','utf8')).referenceJobCount || 0")
+          NEW_JOBS_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('public/api/jobs-metadata.json','utf8')).newJobsCount || 0")
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d "{\"content\":\"[Portfolio-Coach] Daily GameJob crawl succeeded\nDate: ${LATEST_APPLIED_DATE}\nReference jobs: ${REFERENCE_JOB_COUNT}\nNew jobs: ${NEW_JOBS_COUNT}\nRun: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            "$DISCORD_WEBHOOK_URL"
+
       - name: Notify Discord on crawl failure
         if: steps.daily_crawl.outcome == 'failure' && env.DISCORD_WEBHOOK_URL != ''
         env:

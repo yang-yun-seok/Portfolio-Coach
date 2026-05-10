@@ -63,3 +63,24 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  notify:
+    needs: [build, deploy]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Discord on deploy result
+        if: env.DISCORD_WEBHOOK_URL != ''
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          if [[ "${{ needs.build.result }}" == "success" && "${{ needs.deploy.result }}" == "success" ]]; then
+            MESSAGE="[Portfolio-Coach] GitHub Pages deploy succeeded\nBranch: ${{ github.ref_name }}\nRun: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          else
+            MESSAGE="[Portfolio-Coach] GitHub Pages deploy failed\nBuild: ${{ needs.build.result }}\nDeploy: ${{ needs.deploy.result }}\nBranch: ${{ github.ref_name }}\nRun: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          fi
+
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d "{\"content\":\"${MESSAGE}\"}" \
+            "$DISCORD_WEBHOOK_URL"
