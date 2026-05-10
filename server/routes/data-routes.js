@@ -27,6 +27,18 @@ export function createDataRouter({ dataLoader, crawlService }) {
     res.json(dataLoader.getJobMetadata());
   });
 
+  router.get('/api/jobs/history', (req, res) => {
+    res.json(dataLoader.getJobHistoryIndex());
+  });
+
+  router.get('/api/jobs/history/:date', (req, res) => {
+    const snapshot = dataLoader.getJobHistory(req.params.date);
+    if (!snapshot) {
+      return res.status(404).json({ error: '해당 날짜의 공고 이력을 찾을 수 없습니다.' });
+    }
+    return res.json(snapshot);
+  });
+
   router.get('/api/jobs/:id', (req, res) => {
     const job = dataLoader.getJobById(req.params.id);
     if (!job) {

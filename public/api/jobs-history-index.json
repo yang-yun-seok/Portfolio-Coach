@@ -1,0 +1,11 @@
+[
+  {
+    "date": "2026-04-03",
+    "generatedAt": "2026-04-03T11:00:57.173Z",
+    "referenceJobCount": 458,
+    "newJobsCount": 0,
+    "activeJobsCount": 458,
+    "lastCrawlStatus": "success",
+    "path": "./history/2026-04-03.json"
+  }
+]

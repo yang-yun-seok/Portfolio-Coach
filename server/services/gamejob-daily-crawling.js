@@ -2,14 +2,17 @@ import { join } from 'path';
 import { runCrawler } from '../../lib/crawler.js';
 import {
   JOB_AGGREGATE_FILE,
+  JOB_HISTORY_DIR,
   buildPublicJobs,
   formatKstDate,
   isActiveJob,
   isManagedCatalogJob,
+  loadJobHistorySnapshot,
   loadJobMetadata,
   loadJobRecords,
   readJsonFile,
   writeJobAggregate,
+  writeJobHistorySnapshot,
   writeJobIndex,
   writeJobMetadata,
   writeJobRecord,
@@ -36,6 +39,10 @@ export const DAILY_GAMEJOB_TARGETS = [
 
 function getJobsDir(dataDir) {
   return join(dataDir, 'jobs');
+}
+
+function getHistoryDir(dataDir) {
+  return join(dataDir, JOB_HISTORY_DIR);
 }
 
 function getJobMap(jobs) {
@@ -196,6 +203,33 @@ export function updateCrawlingMetadata({
   return nextMeta;
 }
 
+export function appendDailyHistorySnapshot({
+  dataDir,
+  crawlFinishedAt = new Date().toISOString(),
+  publicJobs = [],
+  metadata = {},
+} = {}) {
+  const historyDir = getHistoryDir(dataDir);
+  const snapshotDate = formatKstDate(crawlFinishedAt);
+  const previousSnapshot = loadJobHistorySnapshot(historyDir, snapshotDate);
+  const snapshot = {
+    date: snapshotDate,
+    generatedAt: crawlFinishedAt,
+    referenceJobCount: publicJobs.length,
+    newJobsCount: metadata.newJobsCount || 0,
+    activeJobsCount: metadata.activeJobsCount || publicJobs.length,
+    lastCrawlStatus: metadata.lastCrawlStatus || 'success',
+    jobs: publicJobs,
+  };
+
+  writeJobHistorySnapshot(historyDir, snapshotDate, {
+    ...previousSnapshot,
+    ...snapshot,
+  });
+
+  return snapshot;
+}
+
 export function persistResolvedJobPosting({ dataDir, job }) {
   const jobsDir = getJobsDir(dataDir);
   const previousJobs = loadJobRecords(jobsDir);
@@ -245,6 +279,12 @@ export async function runDailyGameJobCrawling({
       crawlResult,
       upsertResult,
     });
+    const history = appendDailyHistorySnapshot({
+      dataDir,
+      crawlFinishedAt: crawlResult.finishedAt,
+      publicJobs: upsertResult.publicJobs,
+      metadata,
+    });
 
     dataLoader?.refresh?.();
 
@@ -253,6 +293,7 @@ export async function runDailyGameJobCrawling({
       crawlResult,
       upsertResult,
       metadata,
+      history,
     };
   } catch (error) {
     logger.error('[daily-crawl] failed:', error.message);

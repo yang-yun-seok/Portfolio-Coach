@@ -1,7 +1,8 @@
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import {
+  JOB_HISTORY_DIR,
   buildPublicJobs,
   loadJobMetadata,
   loadJobRecords,
@@ -10,6 +11,7 @@ import {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const PUBLIC_API = join(ROOT, 'public', 'api');
+const PUBLIC_HISTORY = join(PUBLIC_API, 'history');
 const PUBLIC_PROMPTS = join(PUBLIC_API, 'prompts');
 
 function ensureDir(dir) {
@@ -25,6 +27,13 @@ function loadJson(path) {
 
 function writeJson(path, payload) {
   writeFileSync(path, JSON.stringify(payload, null, 2), 'utf-8');
+}
+
+function clearJsonFiles(dir) {
+  if (!existsSync(dir)) return;
+  readdirSync(dir)
+    .filter((fileName) => fileName.endsWith('.json'))
+    .forEach((fileName) => unlinkSync(join(dir, fileName)));
 }
 
 function generateModels() {
@@ -86,6 +95,42 @@ function generateJobs() {
   writeJson(join(PUBLIC_API, 'jobs-metadata.json'), metadata);
 }
 
+function generateJobHistory() {
+  const historyDir = join(ROOT, 'data', JOB_HISTORY_DIR);
+  ensureDir(PUBLIC_HISTORY);
+  clearJsonFiles(PUBLIC_HISTORY);
+
+  if (!existsSync(historyDir)) {
+    writeJson(join(PUBLIC_API, 'jobs-history-index.json'), []);
+    return;
+  }
+
+  const historyIndex = readdirSync(historyDir)
+    .filter((fileName) => /^\d{4}-\d{2}-\d{2}\.json$/.test(fileName))
+    .sort()
+    .reverse()
+    .map((fileName) => {
+    const date = fileName.replace(/\.json$/, '');
+    const snapshot = loadJson(join(historyDir, fileName));
+    if (!snapshot) return null;
+
+    writeJson(join(PUBLIC_HISTORY, fileName), snapshot);
+
+    return {
+      date,
+      generatedAt: snapshot.generatedAt || null,
+      referenceJobCount: snapshot.referenceJobCount || 0,
+      newJobsCount: snapshot.newJobsCount || 0,
+      activeJobsCount: snapshot.activeJobsCount || 0,
+      lastCrawlStatus: snapshot.lastCrawlStatus || 'unknown',
+      path: `./history/${fileName}`,
+    };
+  })
+    .filter(Boolean);
+
+  writeJson(join(PUBLIC_API, 'jobs-history-index.json'), historyIndex);
+}
+
 function generateInterviewBasic() {
   const data = loadJson(join(ROOT, 'prompts', 'interview-basic.json'));
   if (!data) return;
@@ -99,6 +144,7 @@ export function generateStaticApi() {
   generateModels();
   generateCompanies();
   generateJobs();
+  generateJobHistory();
   generateInterviewBasic();
 }
 
