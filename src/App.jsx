@@ -26,21 +26,14 @@ import { analyzeGitHubPortfolio } from './lib/github-analyzer';
 import { apiUrl, staticAssetUrl } from './lib/runtime-config';
 import { useModels } from './hooks/useModels';
 import { useWorkspacePersistence } from './hooks/useWorkspacePersistence';
-import PersonalityTest from './components/PersonalityTest';
-import PdfExport from './components/PdfExport';
 import { EMPTY_INSTRUCTOR } from './components/InstructorFeedbackForm';
 import WorkspaceSidebar from './components/WorkspaceSidebar';
 import WorkspaceCommandBar from './components/WorkspaceCommandBar';
+import WorkspaceContent from './components/WorkspaceContent';
 import WorkspaceFeatureHeader from './components/WorkspaceFeatureHeader';
 import WorkspaceMessages from './components/WorkspaceMessages';
 import CompanyInfoModal from './components/CompanyInfoModal';
-import FeedbackWorkspace from './components/FeedbackWorkspace';
-import InterviewReadinessWorkspace from './components/InterviewReadinessWorkspace';
-import InterviewWorkspace from './components/InterviewWorkspace';
-import InputWorkspace from './components/InputWorkspace';
-import JobsWorkspace from './components/JobsWorkspace';
 import ModelSettingsModal from './components/ModelSettingsModal';
-import PortfolioWorkspace from './components/PortfolioWorkspace';
 import SettingsModal from './components/SettingsModal';
 import UserGuideModal from './components/UserGuideModal';
 
@@ -1082,20 +1075,6 @@ AI 분석 요약:
     }
   }, [activeTab]);
 
-  const renderEmptyState = (icon, title, desc) => (
-    <div className="apple-empty-state flex flex-col items-center justify-center py-24 text-center animate-in fade-in">
-      <div className="bg-slate-200/50 p-6 rounded-full text-slate-400 mb-6">{icon}</div>
-      <h3 className="text-2xl font-bold text-slate-700 mb-2">{title}</h3>
-      <p className="text-slate-500 mb-8">{desc}</p>
-      <button
-        onClick={() => setActiveTab('input')}
-        className="bg-indigo-600 text-white px-8 py-3 rounded-xl font-semibold shadow-md hover:bg-indigo-700 transition-all"
-      >
-        정보 입력하러 가기
-      </button>
-    </div>
-  );
-
   const activeNavIndex = navItems.findIndex((item) => item.id === activeTab);
   const activeNavItem = navItems[activeNavIndex >= 0 ? activeNavIndex : 0];
   const ActiveNavIcon = activeNavItem.icon;
@@ -1269,6 +1248,17 @@ AI 분석 요약:
     userInfo,
     visibleJobs,
   };
+  const personalityTestProps = {
+    selectedProvider,
+    selectedModelId,
+    userInfo: normalizedUserInfo,
+  };
+  const pdfExportProps = {
+    results,
+    userInfo,
+    recommendedJobs,
+    instructorFeedback,
+  };
 
   // ── 렌더링 ────────────────────────────────────────────────────────────
   return (
@@ -1298,61 +1288,19 @@ AI 분석 요약:
             infoMessage={infoMessage}
             statusCards={statusCards}
           />
-
-          {/* ── TAB 1: 정보 입력 ───────────────────────────────────── */}
-          {activeTab === 'input' && (
-            <InputWorkspace {...inputWorkspaceProps} />
-          )}
-
-          {/* ── TAB 2: 서류 피드백 ─────────────────────────────────── */}
-          {activeTab === 'feedback' && (
-            results ? (
-              <FeedbackWorkspace {...feedbackWorkspaceProps} />
-            ) : renderEmptyState(<FileText size={48} />, '서류 피드백 결과가 없습니다', '정보를 입력하고 AI 분석을 진행해주세요.')
-          )}
-
-          {/* ── TAB 3: 포트폴리오 ─────────────────────────────────── */}
-          {activeTab === 'portfolio' && (
-            results ? (
-              <PortfolioWorkspace {...portfolioWorkspaceProps} />
-            ) : renderEmptyState(<ImageIcon size={48} />, '\uD3EC\uD2B8\uD3F4\uB9AC\uC624 \uAC00\uC774\uB4DC\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4', '\uC815\uBCF4\uB97C \uC785\uB825\uD558\uACE0 AI \uBD84\uC11D\uC744 \uC9C4\uD589\uD574\uC8FC\uC138\uC694.')
-          )}
-
-          {/* ── TAB 4: 추천 공고 ───────────────────────────────────── */}
-          {activeTab === 'jobs' && (
-            <JobsWorkspace {...jobsWorkspaceProps} />
-          )}
-
-          {/* ── TAB 5: 면접 대비 ───────────────────────────────────── */}
-          {activeTab === 'interview' && (
-            results?.interviewPreps?.length > 0 ? (
-              <InterviewWorkspace {...interviewWorkspaceProps} />
-            ) : renderEmptyState(<MessageSquare size={48} />, '면접 예상 질문이 없습니다', '정보를 입력하고 AI 분석을 진행해주세요.')
-          )}
-
-          {/* ── TAB 6: 면접 기본 준비 (서버 데이터 기반) ─────────────── */}
-          {activeTab === 'interview-basic' && (
-            <InterviewReadinessWorkspace {...interviewReadinessWorkspaceProps} />
-          )}
-
-          {/* ── TAB 8: 인성검사 (탭 전환 시 상태 유지를 위해 항상 마운트, display로 토글) ── */}
-          <div style={{ display: activeTab === 'personality-test' ? 'block' : 'none' }}>
-            <PersonalityTest
-              selectedProvider={selectedProvider}
-              selectedModelId={selectedModelId}
-              userInfo={normalizedUserInfo}
-            />
-          </div>
-
-          {/* ── TAB: PDF 출력 ─────────────────────────────────────── */}
-          {activeTab === 'pdf-export' && (
-            <PdfExport
-              results={results}
-              userInfo={userInfo}
-              recommendedJobs={recommendedJobs}
-              instructorFeedback={instructorFeedback}
-            />
-          )}
+          <WorkspaceContent
+            activeTab={activeTab}
+            feedbackWorkspaceProps={feedbackWorkspaceProps}
+            inputWorkspaceProps={inputWorkspaceProps}
+            interviewReadinessWorkspaceProps={interviewReadinessWorkspaceProps}
+            interviewWorkspaceProps={interviewWorkspaceProps}
+            jobsWorkspaceProps={jobsWorkspaceProps}
+            onGoToInput={() => setActiveTab('input')}
+            pdfExportProps={pdfExportProps}
+            personalityTestProps={personalityTestProps}
+            portfolioWorkspaceProps={portfolioWorkspaceProps}
+            results={results}
+          />
         </div>
       </div>
 
