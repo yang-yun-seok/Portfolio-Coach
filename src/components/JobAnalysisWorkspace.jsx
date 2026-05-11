@@ -76,6 +76,24 @@ function classifyRole(job) {
     ...(Array.isArray(job?.reqSkills) ? job.reqSkills : []),
   ].filter(Boolean).join(' ')).toLowerCase();
 
+  if (/게임ai|ai개발|인공지능|머신러닝|딥러닝|llm|강화학습|데이터사이언스/.test(haystack)) {
+    return '게임AI 개발';
+  }
+  if (/인터페이스디자인|ui|ux|uiux|hud|gui|사용자경험|사용자인터페이스/.test(haystack)) {
+    return '인터페이스 디자인';
+  }
+  if (/원화|컨셉아트|컨셉아티스트|일러스트|캐릭터원화|배경원화/.test(haystack)) {
+    return '원화';
+  }
+  if (/모델링|3d모델|3d아티스트|캐릭터모델러|배경모델러|rigging/.test(haystack)) {
+    return '모델링';
+  }
+  if (/애니메이션|모션|애니메이터|리깅|컷신/.test(haystack)) {
+    return '애니메이션';
+  }
+  if (/이펙트|fx|vfx|effect|파티클|쉐이더/.test(haystack)) {
+    return '이펙트·FX';
+  }
   if (/기획|밸런스|레벨|시스템|컨텐츠|콘텐츠|시나리오|퀘스트|전투기획|ui\/ux기획/.test(haystack)) {
     return '게임기획';
   }
@@ -84,6 +102,12 @@ function classifyRole(job) {
   }
   if (/클라이언트|unity|unreal|언리얼|c\+\+|c#|엔진/.test(haystack)) {
     return '게임개발(클라이언트)';
+  }
+  if (/게임운영|운영|gm|라이브서비스|커뮤니티|모니터링|cs|고객지원/.test(haystack)) {
+    return '게임운영';
+  }
+  if (/qa|테스터|테스트|품질보증|디버깅|버그리포트/.test(haystack)) {
+    return 'QA·테스터';
   }
   return normalizeToken(job?.role || '기타');
 }
@@ -203,7 +227,7 @@ function TrendChart({ data }) {
     <div className="rounded-[28px] border border-slate-800 bg-slate-950/60 p-5">
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">공고 추이</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">공고 추이</p>
           <h4 className="mt-1 text-lg font-bold text-white">최근 수집 이력</h4>
         </div>
         <span className="text-xs text-slate-400">{data.length}개 포인트</span>
@@ -238,7 +262,7 @@ function TrendChart({ data }) {
 function DistributionBars({ title, subtitle, entries, accentClass = 'bg-sky-400' }) {
   return (
     <div className="rounded-[28px] border border-slate-800 bg-slate-950/60 p-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">{subtitle}</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">{subtitle}</p>
       <h4 className="mt-1 text-lg font-bold text-white">{title}</h4>
       <div className="mt-5 space-y-3">
         {entries.length > 0 ? entries.map(([label, count]) => {
@@ -284,7 +308,7 @@ function CareerDonut({ entries }) {
 
   return (
     <div className="rounded-[28px] border border-slate-800 bg-slate-950/60 p-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Career Split</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">Career Split</p>
       <h4 className="mt-1 text-lg font-bold text-white">경력 분포</h4>
       <div className="mt-5 flex flex-col gap-5 lg:flex-row lg:items-center">
         <div
@@ -293,7 +317,7 @@ function CareerDonut({ entries }) {
         >
           <div className="m-8 flex h-28 w-28 items-center justify-center rounded-full bg-slate-950 text-center">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">합계</p>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-slate-300">합계</p>
               <p className="text-2xl font-black text-white">{total}</p>
             </div>
           </div>
@@ -315,7 +339,7 @@ function CareerDonut({ entries }) {
 function KeywordCloud({ entries }) {
   return (
     <div className="rounded-[28px] border border-slate-800 bg-slate-950/60 p-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Keywords</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">Keywords</p>
       <h4 className="mt-1 text-lg font-bold text-white">키워드 인기 순위</h4>
       <div className="mt-5 flex flex-wrap gap-2">
         {entries.length > 0 ? entries.map(([label, count], index) => (
@@ -340,12 +364,12 @@ function KeywordCloud({ entries }) {
 function SkillMatrix({ roles, rows }) {
   return (
     <div className="rounded-[28px] border border-slate-800 bg-slate-950/60 p-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Skill Matrix</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">Skill Matrix</p>
       <h4 className="mt-1 text-lg font-bold text-white">직군별 요구 기술 Top</h4>
       <div className="mt-5 overflow-x-auto">
         <table className="min-w-full border-collapse text-left text-sm text-slate-300">
           <thead>
-            <tr className="border-b border-slate-800 text-xs uppercase tracking-[0.18em] text-slate-500">
+            <tr className="border-b border-slate-800 text-xs uppercase tracking-[0.18em] text-slate-300">
               <th className="pb-3 pr-6 font-semibold">기술</th>
               {roles.map((role) => (
                 <th key={role} className="pb-3 pr-6 font-semibold">{role}</th>
@@ -537,7 +561,7 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
           <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.24em] text-sky-300">GameJob Insights</p>
-              <h2 className="mt-3 text-4xl font-black tracking-tight">게임잡 공고 현황</h2>
+              <h2 className="mt-3 text-4xl font-black tracking-tight text-white">게임잡 공고 현황</h2>
               <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-300">
                 매일 00시 자동 수집된 게임제작 파트 공고만 집계합니다.
                 수동 크롤링은 제공하지 않으며, 이 화면은 시장 흐름과 채용 언어를 읽는 용도입니다.
@@ -545,11 +569,11 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="rounded-2xl border border-slate-800 bg-slate-900/80 px-5 py-4">
-                <p className="text-xs uppercase tracking-[0.18em] text-slate-500">최근 반영일</p>
+                <p className="text-xs uppercase tracking-[0.18em] text-slate-300">최근 반영일</p>
                 <strong className="mt-2 block text-xl font-black text-white">{latestAppliedDate || '정보 없음'}</strong>
               </div>
               <div className="rounded-2xl border border-slate-800 bg-slate-900/80 px-5 py-4">
-                <p className="text-xs uppercase tracking-[0.18em] text-slate-500">마지막 성공</p>
+                <p className="text-xs uppercase tracking-[0.18em] text-slate-300">마지막 성공</p>
                 <strong className="mt-2 block text-sm font-bold text-white">{formatDateTime(jobsMetadata?.lastSuccessfulCrawlAt)}</strong>
               </div>
             </div>
@@ -564,7 +588,7 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
             ].map((item) => (
               <article key={item.label} className="rounded-[24px] border border-slate-800 bg-slate-900/70 px-5 py-5">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs uppercase tracking-[0.18em] text-slate-500">{item.label}</p>
+                  <p className="text-xs uppercase tracking-[0.18em] text-slate-300">{item.label}</p>
                   <item.icon size={16} className="text-sky-300" />
                 </div>
                 <strong className="mt-4 block text-3xl font-black tracking-tight text-white">{item.value}</strong>
@@ -602,7 +626,7 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
               <div>
                 <p className="text-xs uppercase tracking-[0.18em] text-violet-300">AI 시장 분석</p>
-                <h3 className="mt-2 text-2xl font-black">채용 흐름 요약</h3>
+                <h3 className="mt-2 text-2xl font-black text-white">채용 흐름 요약</h3>
                 <p className="mt-2 text-sm leading-relaxed text-slate-300">
                   현재 누적 공고와 최근 이력 기준으로 시장 해석을 제공합니다. 버튼을 눌렀을 때만 AI 분석을 1회 실행합니다.
                 </p>
@@ -705,8 +729,8 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
         <section className="rounded-[32px] border border-slate-800 bg-slate-900 p-6 text-white shadow-xl shadow-slate-900/20">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div>
-              <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Public Job List</p>
-              <h3 className="mt-2 text-2xl font-black">공고 목록</h3>
+              <p className="text-xs uppercase tracking-[0.18em] text-slate-300">Public Job List</p>
+              <h3 className="mt-2 text-2xl font-black text-white">공고 목록</h3>
               <p className="mt-2 text-sm text-slate-300">
                 자동 수집된 공개 공고만 표시합니다. 개인화 우선순위는 추천 공고 탭에서 `매칭하기`를 눌렀을 때 계산됩니다.
               </p>
@@ -718,13 +742,13 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
 
           <div className="mt-6 grid gap-3 xl:grid-cols-[1.2fr_0.32fr_0.32fr]">
             <label className="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3">
-              <Search size={16} className="text-slate-500" />
+              <Search size={16} className="text-slate-300" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder="공고 제목, 회사명, 키워드 검색"
-                className="w-full bg-transparent text-sm text-white outline-none placeholder:text-slate-500"
+                className="w-full bg-transparent text-sm text-white outline-none placeholder:text-slate-300"
               />
             </label>
             <select

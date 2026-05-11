@@ -2,9 +2,9 @@
   {
     "date": "2026-05-11",
     "generatedAt": "2026-05-10T16:37:57.098Z",
-    "referenceJobCount": 431,
-    "newJobsCount": 431,
-    "activeJobsCount": 431,
+    "referenceJobCount": 590,
+    "newJobsCount": 590,
+    "activeJobsCount": 590,
     "lastCrawlStatus": "success",
     "path": "./history/2026-05-11.json"
   },
@@ -20,9 +20,9 @@
   {
     "date": "2026-04-03",
     "generatedAt": "2026-04-03T11:00:57.173Z",
-    "referenceJobCount": 317,
-    "newJobsCount": 315,
-    "activeJobsCount": 317,
+    "referenceJobCount": 452,
+    "newJobsCount": 447,
+    "activeJobsCount": 452,
     "lastCrawlStatus": "success",
     "path": "./history/2026-04-03.json"
   }

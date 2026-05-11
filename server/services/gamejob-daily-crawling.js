@@ -23,7 +23,15 @@ import {
 export const DAILY_GAMEJOB_JOB_TAGS = [
   '게임개발(클라이언트)',
   '게임개발(모바일)',
+  '게임AI 개발',
+  '인터페이스 디자인',
+  '원화',
+  '모델링',
+  '애니메이션',
+  '이펙트·FX',
   '게임기획',
+  '게임운영',
+  'QA·테스터',
 ];
 
 export const DAILY_GAMEJOB_CAREER_TAGS = [

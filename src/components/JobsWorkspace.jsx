@@ -219,41 +219,41 @@ export default function JobsWorkspace({
 
         <aside className="rounded-[32px] border border-slate-200 bg-slate-950 p-6 text-white shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300">Profile Snapshot</p>
-          <h3 className="mt-2 text-2xl font-black tracking-tight">현재 프로필 기준 참고 포인트</h3>
+          <h3 className="mt-2 text-2xl font-black tracking-tight text-white">현재 프로필 기준 참고 포인트</h3>
           <div className="mt-5 space-y-5">
             <div>
-              <p className="text-xs font-bold text-slate-200">분석 기준 상위 후보</p>
+              <p className="text-xs font-bold text-slate-100">분석 기준 상위 후보</p>
               <div className="mt-2 flex flex-wrap gap-2">
                 {topCandidateJobs.length > 0 ? topCandidateJobs.map((job, index) => (
                   <span key={`${job.id}-${index}`} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-200">
                     {index + 1}. {job.company}
                   </span>
                 )) : (
-                  <span className="text-xs text-slate-400">먼저 분석을 실행하면 기준 후보가 정리됩니다.</span>
+                  <span className="text-xs text-slate-300">먼저 분석을 실행하면 기준 후보가 정리됩니다.</span>
                 )}
               </div>
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-200">강하게 연결되는 역량</p>
+              <p className="text-xs font-bold text-slate-100">강하게 연결되는 역량</p>
               <div className="mt-2 flex flex-wrap gap-2">
                 {strongSkillCandidates.length > 0 ? strongSkillCandidates.map((skill) => (
                   <span key={skill} className="rounded-full bg-emerald-400/15 px-3 py-1.5 text-xs text-emerald-100">
                     {skill}
                   </span>
                 )) : (
-                  <span className="text-xs text-slate-400">보유 기술 입력 후 분석하면 여기에 요약됩니다.</span>
+                  <span className="text-xs text-slate-300">보유 기술 입력 후 분석하면 여기에 요약됩니다.</span>
                 )}
               </div>
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-200">보완 후보</p>
+              <p className="text-xs font-bold text-slate-100">보완 후보</p>
               <div className="mt-2 flex flex-wrap gap-2">
                 {highlightedGapSkills.length > 0 ? highlightedGapSkills.map((skill) => (
                   <span key={skill} className="rounded-full bg-amber-400/15 px-3 py-1.5 text-xs text-amber-100">
                     {skill}
                   </span>
                 )) : (
-                  <span className="text-xs text-slate-400">현재 기준에서 큰 공백은 아직 집계되지 않았습니다.</span>
+                  <span className="text-xs text-slate-300">현재 기준에서 큰 공백은 아직 집계되지 않았습니다.</span>
                 )}
               </div>
             </div>

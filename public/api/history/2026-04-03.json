@@ -1,9 +1,9 @@
 {
   "date": "2026-04-03",
   "generatedAt": "2026-04-03T11:00:57.173Z",
-  "referenceJobCount": 317,
-  "newJobsCount": 315,
-  "activeJobsCount": 317,
+  "referenceJobCount": 452,
+  "newJobsCount": 447,
+  "activeJobsCount": 452,
   "lastCrawlStatus": "success",
   "jobs": [
     {
@@ -30,6 +30,38 @@
       "assignmentType": "",
       "mainGame": "히트2, 블루아카이브, 서든어택, V4",
       "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "클라이언트, VisualC, VisualC++, C, C++, 배경, 원화, 캐릭터원화, 배경원화, 포토샵, 몬스터, 모델링, 캐릭터, 이펙트, FX, 게임기획, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-242585",
+      "company": "넥슨 (NEXON)",
+      "title": "[블루아카이브] 기획, 프로그래밍, 아트 전분야, PM, QA 모집",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "아트/UI",
+        "기획"
+      ],
+      "reqSkills": [
+        "C++",
+        "Photoshop",
+        "밸런싱",
+        "레벨 디자인",
+        "시스템 기획",
+        "콘텐츠 기획"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=242585",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "히트2, 블루아카이브, 서든어택, V4",
+      "gameCategory": "모바일게임 RPG",
       "employmentType": "정규직",
       "deadline": "채용시 마감",
       "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
@@ -129,6 +161,42 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-246514",
+      "company": "넥슨 (NEXON)",
+      "title": "[넥슨게임즈] 기획, 프로그래밍, 아트 전분야, PM 모집",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "아트/UI",
+        "기획",
+        "서버"
+      ],
+      "reqSkills": [
+        "C++",
+        "UI/UX 기획",
+        "3ds Max",
+        "시나리오/퀘스트",
+        "PM",
+        "SQL",
+        "TCP/IP",
+        "QA/테스트",
+        "데이터 분석"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=246514",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "히트2, 블루아카이브, 서든어택, V4",
+      "gameCategory": "모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "C++, 모바일, 인터페이스, UX·UI, 배경, 모델링, 캐릭터, 하이폴리곤, 애니메이션, 3DMax, 이펙트, 게임기획, 시나리오, PM, 서버, MS-SQL, SQL, TCP·IP, QA, TQA",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-249415",
       "company": "㈜스티키핸즈",
       "title": "[머지 서바이벌] 캐주얼 게임 기획자 모집(스티키핸즈)",
@@ -207,6 +275,31 @@
       "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "모바일, 게임기획, 밸런스기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-253222",
+      "company": "넥슨 (NEXON)",
+      "title": "[퍼스트 디센던트] 라이브 시스템 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "Unreal Engine"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=253222",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "히트2, 블루아카이브, 서든어택, V4",
+      "gameCategory": "온라인PC게임 RPG, Shooting",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "컨셉, 게임기획",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -324,6 +417,60 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-263876",
+      "company": "넥슨 (NEXON)",
+      "title": "[던전앤파이터 아라드] 던전 레벨 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "Unreal Engine"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=263876",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "히트2, 블루아카이브, 서든어택, V4",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "게임기획, 레벨기획, 던전",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-266473",
+      "company": "넥슨 (NEXON)",
+      "title": "[마비노기 모바일] 퀘스트 디자이너 모집",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "시나리오/퀘스트",
+        "콘텐츠 기획",
+        "Unity"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=266473",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "마비노기모바일",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "게임기획, 퀘스트, 컨텐츠, 유니티, 이벤트, 스토리, 마비노기모바일",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-266964",
       "company": "넥슨 (NEXON)",
       "title": "[메이플스토리 PC] 게임 기획자",
@@ -431,6 +578,85 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-268794",
+      "company": "넥슨 (NEXON)",
+      "title": "[퍼스트 디센던트] 전투 컨텐츠 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "콘텐츠 기획",
+        "전투/액션 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=268794",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "히트2, 블루아카이브, 서든어택, V4",
+      "gameCategory": "온라인PC게임 RPG, Shooting",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "게임기획, 컨텐츠, 전투기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-268796",
+      "company": "넥슨 (NEXON)",
+      "title": "[퍼스트 디센던트] 캐릭터 전투 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "전투/액션 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=268796",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "히트2, 블루아카이브, 서든어택, V4",
+      "gameCategory": "온라인PC게임 RPG, Shooting",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "캐릭터, 게임기획, 전투",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-268798",
+      "company": "넥슨 (NEXON)",
+      "title": "[퍼스트 디센던트] 몬스터 전투 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "전투/액션 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=268798",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "히트2, 블루아카이브, 서든어택, V4",
+      "gameCategory": "온라인PC게임 RPG, Shooting",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "캐릭터, 게임기획, 전투",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-269366",
       "company": "넥슨 (NEXON)",
       "title": "[마비노기 모바일] 시나리오 라이터 모집",
@@ -455,6 +681,33 @@
       "salary": "회사내규에 따름\n연봉검색",
       "experience": "경력 2년 이상",
       "keywords": "게임기획, 퀘스트, 컨텐츠, 유니티, 이벤트, 스토리, 라이터, 마비노기모바일, 게임라이터",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-269988",
+      "company": "넥슨 (NEXON)",
+      "title": "[퍼스트 디센던트] 컨텐츠 시스템 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=269988",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "히트2, 블루아카이브, 서든어택, V4",
+      "gameCategory": "온라인PC게임 RPG, Shooting",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "게임기획, 시스템기획, 컨텐츠",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -592,6 +845,32 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-273634",
+      "company": "넥슨 (NEXON)",
+      "title": "[메이플스토리 PC] UI 디자이너",
+      "role": "아트/UI",
+      "roles": [
+        "기획",
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "UI/UX 기획"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=273634",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+      "gameCategory": "온라인PC게임, 모바일게임 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "UI·UX, 디자이너, 배너디자인",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-273807",
       "company": "㈜베이글코드",
       "title": "[신작팀] 하이브리드 게임 기획자",
@@ -695,6 +974,59 @@
       "salary": "회사내규에 따름\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "게임기획, 기획자",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-274374",
+      "company": "넥스트스테이지",
+      "title": "[콘솔/PC] 레벨 디자이너(기획) 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "콘텐츠 기획"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=274374",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "울트라에이지, 다이스 이즈 캐스트, 프로젝트 아크",
+      "gameCategory": "콘솔게임, 멀티플랫폼게임 기타",
+      "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 1년)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "레벨기획, 컨텐츠기획, 레벨디자인, 배경디자인, 맵기획, 배경기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-274566",
+      "company": "컴투스 (Com2uS)",
+      "title": "[컴투스] [서머너즈워] 차기 RPG UI디자이너 (3년 이상)",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI",
+        "기획"
+      ],
+      "reqSkills": [
+        "UI/UX 기획",
+        "PM"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=274566",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "서머너즈워, 프로야구시리즈, 낚시의신, 서머너즈워:백년전쟁 등",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "~ 04/07(화)",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "UX·UI, 컨셉, UI·UX, 프로젝트, 게임아트, 디자이너, 연출작업",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -1065,6 +1397,33 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-274867",
+      "company": "컴투스 (Com2uS)",
+      "title": "[컴투스] 2026 모바일 QA 담당자 (계약직)",
+      "role": "QA/테스트",
+      "roles": [
+        "기획",
+        "QA/테스트"
+      ],
+      "reqSkills": [
+        "QA/테스트",
+        "PM"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=274867",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "서머너즈워, 프로야구시리즈, 낚시의신, 서머너즈워:백년전쟁 등",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "계약직 (계약기간 : 6개월)",
+      "deadline": "~ 04/14(화)",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "QA, 프로젝트, 게임분석, 프로젝트개발, 게임테스팅, 이슈리포팅, 게임밸러스",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-274869",
       "company": "컴투스 (Com2uS)",
       "title": "[컴투스] [서머너즈워] 밸런스 기획자 (계약직)",
@@ -1117,6 +1476,33 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-274885",
+      "company": "컴투스 (Com2uS)",
+      "title": "[컴투스] 서머너즈워 차기 RPG 배경모델러 (3년 이상)",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI",
+        "기획"
+      ],
+      "reqSkills": [
+        "Illustrator",
+        "콘텐츠 기획"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=274885",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "서머너즈워, 프로야구시리즈, 낚시의신, 서머너즈워:백년전쟁 등",
+      "gameCategory": "모바일게임 RPG, Simulation",
+      "employmentType": "정규직",
+      "deadline": "상시채용",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "모바일, 배경, 일러스트, 게임기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-274894",
       "company": "스토리타코",
       "title": "[스토리타코] 게임 시니어 기획자 채용",
@@ -1141,6 +1527,32 @@
       "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "게임기획, PM, 시스템기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-274957",
+      "company": "시프트업 (SHIFT UP)",
+      "title": "[시프트업] 스텔라 블레이드 차기작 / 개발 PM",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=274957",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
+      "gameCategory": "콘솔게임, 멀티플랫폼게임 RPG, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "PM, 멀티플랫폼, 콘솔, 신작, 시프트업, EVE",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -1281,6 +1693,34 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-275002",
+      "company": "㈜캐킷",
+      "title": "[럽플레이스] 개발 PM 모집 (영어 가능자)",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "JIRA/Confluence",
+        "데이터 분석",
+        "Excel"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275002",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "천하제일상 거상모바일, 럽플레이스, 클럽오디션",
+      "gameCategory": "모바일게임, 멀티플랫폼게임 Casual, SNG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "모바일, 컨셉, PM",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-275059",
       "company": "넥슨 (NEXON)",
       "title": "[던파모바일2D] 플레이어 캐릭터 기획자 (근무지 서울지사)",
@@ -1337,6 +1777,61 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-275079",
+      "company": "㈜매드엔진",
+      "title": "[NX 스튜디오] [Project TAL] 3D 배경(극 실사) 아티스트 모집",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "3D",
+        "레벨 디자인",
+        "3ds Max",
+        "Unreal Engine"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275079",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "나이트 크로우",
+      "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "3D, 배경, 레벨, 원화, 컨셉, 배경원화, 모델링, 3DSmax, 텍스쳐, 3D일러스트",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275082",
+      "company": "넥슨 (NEXON)",
+      "title": "[플랫폼본부] 게임스케일 기술PM (계약직)",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "콘텐츠 기획",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275082",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+      "gameCategory": "온라인PC게임, 모바일게임 기타",
+      "employmentType": "계약직 (계약기간 : 9개월)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "PM, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-275107",
       "company": "데브시스터즈 (Devsisters)",
       "title": "[쿠키런 모험의 탑] 시스템 및 콘텐츠 기획자",
@@ -1364,6 +1859,31 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-275150",
+      "company": "㈜매드엔진",
+      "title": "[나이트 크로우] 배경 컨셉 아티스트 모집 (경력)",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "레벨 디자인"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275150",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "나이트 크로우",
+      "gameCategory": "모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "배경, 레벨, 원화, 컨셉, 배경원화, 레벨디자인, 컨셉디자인, 프랍디자인",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-275163",
       "company": "티쓰리엔터테인먼트",
       "title": "오디션 라이프 프로젝트 기획자 채용 (경력)(PC/Unity)",
@@ -1387,6 +1907,191 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "시스템기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275166",
+      "company": "넥슨 (NEXON)",
+      "title": "[빅게임본부] UI 디자이너",
+      "role": "아트/UI",
+      "roles": [
+        "기획",
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "UI/UX 기획",
+        "Unity",
+        "Photoshop",
+        "Illustrator",
+        "Figma",
+        "Git/SVN"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275166",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+      "gameCategory": "온라인PC게임, 모바일게임 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "UX·UI, UI·UX, 디자이너, 배너디자인",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275191",
+      "company": "빅파이어게임즈",
+      "title": "[NC자회사][빅파이어게임즈][단기계약직] PVE 기획 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "PM",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275191",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+      "employmentType": "계약직 (계약기간 : 3개월)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "신입",
+      "keywords": "레벨, 컨셉, 게임기획, 시나리오, 퀘스트, PD, 레벨기획, 시스템기획, 컨텐츠, PC, 콘솔, PVE, SF, 언리얼엔진, NC, CINDERCITY, 트리플A오픈월드, 신더시티",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275192",
+      "company": "빅파이어게임즈",
+      "title": "[NC자회사][빅파이어게임즈][단기계약직] 빌드매니저(BM) 모집",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획",
+        "PM/운영",
+        "QA/테스트"
+      ],
+      "reqSkills": [
+        "PM",
+        "시스템 기획",
+        "Unity",
+        "QA/테스트",
+        "CI/CD",
+        "경제/BM 설계",
+        "Unreal Engine",
+        "Git/SVN",
+        "Python"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275192",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+      "employmentType": "계약직 (계약기간 : 3개월)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "신입",
+      "keywords": "클라이언트, 게임기획, PM, 시스템기획, Unity, 모니터링, QA, 게임테스터, 시스템버전관리, 업데이트테스트, CI, BM, UnrealEngine, git, CD, Teamcity, CINDERCITY, Perforece",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275193",
+      "company": "빅파이어게임즈",
+      "title": "[NC자회사][빅파이어게임즈][단기계약직] 퀘스트 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "PM",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275193",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+      "employmentType": "계약직 (계약기간 : 3개월)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "신입",
+      "keywords": "레벨, 컨셉, 게임기획, 시나리오, 퀘스트, PM, PD, 레벨기획, 시스템기획, 컨텐츠, PC, 콘솔, 언리얼엔진, NC, CINDERCITY, 트리플A오픈월드, 신더시티",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275194",
+      "company": "메타본엔터테인먼트㈜",
+      "title": "[판교][건틀렛] RPG 기획 (경력/신입) 모십니다",
+      "role": "PM/운영",
+      "roles": [
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "UI/UX 기획",
+        "밸런싱",
+        "시스템 기획",
+        "경제/BM 설계",
+        "QA/테스트",
+        "Unity"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275194",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "건틀렛: 방치형 액션 RPG",
+      "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Simulation",
+      "employmentType": "정규직, 인턴직 (1개월~3개월 미만)",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, UX·UI, 게임기획, 밸런스기획, 시스템기획, 유료화, 게임운영, QA",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275202",
+      "company": "넥슨 (NEXON)",
+      "title": "[던파모바일2D] 개발/기술 PM (근무지 서울지사)",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "UI/UX 기획",
+        "PM",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275202",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "던전앤파이터, 던전앤파이터 모바일, 사이퍼즈, 퍼스트 버서커 : 카잔",
+      "gameCategory": "온라인PC게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 인터페이스, 게임기획, PM",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -1583,6 +2288,33 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-275246",
+      "company": "넥슨 (NEXON)",
+      "title": "[프로젝트 EL] 시스템 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "UI/UX 기획",
+        "시스템 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275246",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+      "gameCategory": "온라인PC게임, 웹게임 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "UX·UI, 게임기획, 시스템기획, UI·UX",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-275254",
       "company": "㈜바운더리",
       "title": "핵앤슬래시(PC/콘솔) 시스템 벨런스 기획자 모집",
@@ -1607,6 +2339,37 @@
       "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "밸런스기획, 시스템기획, 시스템, 언리얼, 데이터, 수학, 열정, 액션RPG, 테이블, 핵슬, 동양, 다크, 바운더리",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275267",
+      "company": "㈜매드엔진",
+      "title": "[NX 스튜디오] [Project TAL] 밸런스 디자이너 모집 (경력)",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "UI/UX 기획",
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "밸런싱",
+        "전투/액션 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275267",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "나이트 크로우",
+      "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "UX·UI, 레벨, 게임기획, 시나리오, 밸런스기획, 레벨기획, 액션RPG, 전투시스템설계, 전투밸런스, 콘솔RPG",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -1936,6 +2699,59 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-275442",
+      "company": "㈜매드엔진",
+      "title": "[NX 스튜디오] [Project TAL] 전투 디자이너 모집 (경력)",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "전투/액션 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275442",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "나이트 크로우",
+      "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "모바일, 게임기획, 전투, 전투기획, 전투디자이너",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275470",
+      "company": "데브시스터즈 (Devsisters)",
+      "title": "[쿠키런 킹덤] 개발 PM",
+      "role": "AI/데이터",
+      "roles": [
+        "기획",
+        "AI/데이터"
+      ],
+      "reqSkills": [
+        "PM"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275470",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "[쿠키런: 오븐브레이크], [쿠키런: 킹덤], [쿠키런: 모험의탑], [쿠키런 클래식]",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "PM, 개발PM, 데브시스터즈, 쿠키런, 킹덤",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-275472",
       "company": "에스씨에이게임부산",
       "title": "[SBS아카데미게임] 부산점 # 웹소설 강사 채용",
@@ -1958,6 +2774,66 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "신입",
       "keywords": "시나리오, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275505",
+      "company": "조이닉스",
+      "title": "[글로벌 유명 IP 프로젝트] 신규 PC MMORPG 기획자 모집 (Unity)",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "UI/UX 기획",
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "밸런싱",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unity"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275505",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "UX·UI, 레벨, 게임기획, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, UI·UX",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275551",
+      "company": "넥슨 (NEXON)",
+      "title": "[프로젝트DC] UI 디자이너 (근무지 서울지사)",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI",
+        "기획"
+      ],
+      "reqSkills": [
+        "UI/UX 기획",
+        "시스템 기획",
+        "Unity",
+        "Figma"
+      ],
+      "reqExp": 1,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275551",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "던전앤파이터, 던전앤파이터 모바일, 사이퍼즈, 퍼스트 버서커 : 카잔",
+      "gameCategory": "온라인PC게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "상시채용",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 1년 이상",
+      "keywords": "UX·UI, 게임기획, 시스템기획, UI·UX",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -2321,6 +3197,86 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-275649",
+      "company": "슈퍼센트 (Supercent)",
+      "title": "모바일 게임 사업 PM",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "시스템 기획"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275649",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "XP Hero, Burger Please!, Pizza Ready!, Snake Clash",
+      "gameCategory": "모바일게임 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "컨셉, 게임기획, PM, 시스템기획, 기획, 사업PM, 게임PM, 모바일게임, 시장분석, 게임출시, 트렌드분석, 라이브지표, 하이퍼캐쥬얼게임",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275651",
+      "company": "슈퍼센트 (Supercent)",
+      "title": "하이브리드 캐주얼 사업 PM",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "시스템 기획"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275651",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "XP Hero, Burger Please!, Pizza Ready!, Snake Clash",
+      "gameCategory": "모바일게임 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "컨셉, 게임기획, PM, 시스템기획, 기획, 사업PM, 게임PM, 모바일게임, 시장분석, 게임출시, 트렌드분석, 라이브지표, 하이브리드캐주얼게임",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275662",
+      "company": "시프트업 (SHIFT UP)",
+      "title": "[시프트업] 승리의 여신 니케 / 개발 PM",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "JIRA/Confluence",
+        "Git/SVN"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275662",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
+      "gameCategory": "웹게임, 모바일게임 RPG, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, PM, TPS, 시프트업, NIKKE, 니케, 승리의여신니케",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-275702",
       "company": "넷마블 (Netmarble)",
       "title": "[넷마블네오] 왕좌의게임 콘텐츠 시스템 기획 담당 모집",
@@ -2345,6 +3301,34 @@
       "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "모바일, iOS, Android, 게임기획, 시나리오, 퀘스트, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275711",
+      "company": "데브시스터즈 (Devsisters)",
+      "title": "[쿠키런 모험의 탑] 배경 2D 아티스트 (경력)",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "3D",
+        "Illustrator",
+        "Photoshop",
+        "3ds Max"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275711",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "[쿠키런: 오븐브레이크], [쿠키런: 킹덤], [쿠키런: 모험의탑], [쿠키런 클래식]",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "모바일, 3D, 배경, 원화, 일러스트, 컨셉, 배경원화, 포토샵, 3DMax, 배경컨셉, blender, 쿠키런",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -2430,6 +3414,32 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "무관",
       "keywords": "인터페이스, 게임기획, 시스템기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275741",
+      "company": "넥슨 (NEXON)",
+      "title": "[NEO PM팀] 신규 프로젝트/PMO 전략 주니어/시니어 개발PM (근무지 서울지사)",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 1,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275741",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "던전앤파이터, 던전앤파이터 모바일, 사이퍼즈, 퍼스트 버서커 : 카잔",
+      "gameCategory": "온라인PC게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "상시채용",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 1년 이상",
+      "keywords": "게임기획, PM",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -2543,6 +3553,36 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-275780",
+      "company": "㈜에스씨에이게임강남",
+      "title": "[강남지점] 게임기획/웹툰작가/웹소설/게임프로그래밍/게임원화/그래픽/QA 강사 모집",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "아트/UI",
+        "기획"
+      ],
+      "reqSkills": [
+        "3D",
+        "Illustrator",
+        "ZBrush",
+        "3ds Max"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275780",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+      "employmentType": "프리랜서",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "클라이언트, 3D, 맵핑, 원화, 일러스트, 캐릭터원화, 모델링, 로우폴리곤, 캐릭터, 하이폴리곤, Zbrush, 애니메이션, 3DMax, 이펙트, FX, 게임기획, 게임프로그래머",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-275814",
       "company": "㈜플레이엄",
       "title": "캐주얼/미드코어 모바일 게임 기획자",
@@ -2593,6 +3633,34 @@
       "salary": "회사내규에 따름\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "모바일, 컨셉, 밸런스기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275834",
+      "company": "넥슨 (NEXON)",
+      "title": "[OUTANT] UI 디자이너",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI",
+        "기획"
+      ],
+      "reqSkills": [
+        "UI/UX 기획",
+        "시나리오/퀘스트",
+        "Unreal Engine"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275834",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "로드나인, AVATARA, 로한M",
+      "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "인터페이스, UX·UI, 게임기획, 시나리오, 게임프로그래밍, RPG, PC, 콘솔, 언리얼엔진, MORPG, Unreal엔진, 엔엑스쓰리게임즈, NX3GAMES, OUTANT, 아웃턴트",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -2820,6 +3888,33 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-275948",
+      "company": "넥슨 (NEXON)",
+      "title": "[퍼스트 디센던트] PMO실 개발 PM",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "Unreal Engine",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275948",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "히트2, 블루아카이브, 서든어택, V4",
+      "gameCategory": "온라인PC게임 RPG, Shooting",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "PM, 관리, 번역, 개발PM",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-275985",
       "company": "㈜덱사스튜디오",
       "title": "[프로젝트R] 콘텐츠 기획팀 레벨 기획자 채용",
@@ -2843,6 +3938,37 @@
       "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "게임기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-276011",
+      "company": "헬로에이치알",
+      "title": "매출 1조 이상 게임사 컨셉 아티스트, 캐릭터기획자, 3D 캐릭터 모델링, 서버프로그래머 각각 모집",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI",
+        "기획",
+        "서버"
+      ],
+      "reqSkills": [
+        "C++",
+        "SQL",
+        "Unreal Engine",
+        "Photoshop",
+        "ZBrush"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276011",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "C, C++, 원화, 캐릭터원화, 캐릭터, 게임기획, 서버, SQL, 캐릭터기획",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -3053,6 +4179,32 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-276176",
+      "company": "스마일게이트 (Smilegate)",
+      "title": "[차세대 게임] 개발PM 담당 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276176",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "크로스파이어, CFHD",
+      "gameCategory": "멀티플랫폼게임 Shooting",
+      "employmentType": "정규직",
+      "deadline": "~ 04/30(목)",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "PM, 개발PM, 리스크관리, JIRA, Confluence, 프로세스개선",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-276179",
       "company": "넥슨 (NEXON)",
       "title": "[던전앤파이터] 콘텐츠 기획자 (근무지 제주본사)",
@@ -3125,6 +4277,32 @@
       "salary": "회사내규에 따름\n연봉검색",
       "experience": "무관",
       "keywords": "게임기획, 시나리오, 기획, 스크립트, 네오플, 던전앤파이터, 던파, 시놉시스",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-276238",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][Horizon Steel Frontiers] 전투 디자이너 모집",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "Unreal Engine"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276238",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 04/08(수)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "Game_Design, Game_Designer",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -3545,6 +4723,61 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-276528",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][Blade&Soul] 개발 PM 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "JIRA/Confluence",
+        "Excel"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276528",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 04/19(일)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "PM, MS_Office",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-276553",
+      "company": "시프트업 (SHIFT UP)",
+      "title": "[시프트업] 스텔라 블레이드 차기작 / 레벨 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276553",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
+      "gameCategory": "콘솔게임, 멀티플랫폼게임 RPG, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "레벨, 게임기획, 레벨기획, 시스템기획, 컨텐츠, 멀티플랫폼, 콘솔, 신작, 시프트업, EVE",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-276558",
       "company": "시프트업 (SHIFT UP)",
       "title": "[시프트업] 승리의 여신 니케 / 시나리오 기획자",
@@ -3620,6 +4853,67 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-276612",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][리니지W] 개발PM 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "Unreal Engine"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276612",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 04/22(수)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "PM, 개발PM",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-276615",
+      "company": "블루포션게임즈",
+      "title": "[블루포션게임즈] 각 부문 인재 모집",
+      "role": "서버",
+      "roles": [
+        "기획",
+        "서버",
+        "PM/운영",
+        "QA/테스트"
+      ],
+      "reqSkills": [
+        "C++",
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "PM",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "TCP/IP",
+        "QA/테스트"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276615",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "에오스 레드, 에오스블랙",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "상시채용",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "C, C++, 모바일, 레벨, 컨셉, 게임기획, 시나리오, PM, 시스템기획, 컨텐츠, 서버, 네트워크, 게임운영, 모니터링, QA, 게임테스터",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-276643",
       "company": "넥슨 (NEXON)",
       "title": "[마비노기 이터니티] 시나리오/퀘스트 기획자",
@@ -3643,6 +4937,37 @@
       "salary": "회사내규에 따름\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "게임기획, PM, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-276667",
+      "company": "㈜스탠드에그",
+      "title": "[Stand Egg] RPG QA&CS 채용",
+      "role": "PM/운영",
+      "roles": [
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "PM",
+        "시스템 기획",
+        "경제/BM 설계",
+        "Excel"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276667",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "고양이 정원, 천마 키우기, 고양이 카페",
+      "gameCategory": "모바일게임 Casual, SNG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, SNG, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, PM, PD, 레벨기획, 시스템기획, 유료화",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -3696,6 +5021,33 @@
       "salary": "회사내규에 따름\n연봉검색",
       "experience": "무관",
       "keywords": "모바일, 인터페이스, 레벨, 원화, 컨셉, 게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 시스템기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-276687",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][Blade&Soul][NEO] 클래스 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "전투/액션 기획",
+        "Unreal Engine",
+        "Excel"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276687",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 04/23(목)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "엔진, 전투",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -3919,6 +5271,32 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-276767",
+      "company": "데브시스터즈 (Devsisters)",
+      "title": "[쿠키런 킹덤] 스토리 아티스트",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "시나리오/퀘스트",
+        "콘텐츠 기획"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276767",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "[쿠키런: 오븐브레이크], [쿠키런: 킹덤], [쿠키런: 모험의탑], [쿠키런 클래식]",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "시나리오, 콘텐츠, 스토리기획, 스토리텔링, 내러티브",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-276772",
       "company": "코그",
       "title": "[신규RPG프로젝트] 개발 전 분야 수시 모집",
@@ -4000,6 +5378,30 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "모바일, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-276811",
+      "company": "㈜기어세컨드",
+      "title": "[기어세컨드] 게임 커뮤니티 매니저(CM)",
+      "role": "PM/운영",
+      "roles": [
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276811",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "슬레이어 키우기",
+      "gameCategory": "모바일게임 RPG, Simulation",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "게임운영, 고객서비스, 모니터링, 기획, 커뮤니티, 커뮤니케이션, CM, 지표관리, 문제해결",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -4141,6 +5543,33 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "무관",
       "keywords": "모바일, 인터페이스, 게임기획, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-276839",
+      "company": "넥슨 (NEXON)",
+      "title": "[프로젝트 DC] 2D 도트 디자이너 (근무지 서울지사)",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI",
+        "기획"
+      ],
+      "reqSkills": [
+        "Illustrator",
+        "Unity"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276839",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "던전앤파이터, 던전앤파이터 모바일, 사이퍼즈, 퍼스트 버서커 : 카잔",
+      "gameCategory": "온라인PC게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "상시채용",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "원화, 일러스트, 컨셉, 도트, 캐릭터도트, 배경도트, 캐릭터",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -4376,6 +5805,33 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-276900",
+      "company": "빅파이어게임즈",
+      "title": "[NC자회사][빅파이어게임즈] 개발 PM 모집",
+      "role": "PM/운영",
+      "roles": [
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "PM",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276900",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "PM, 게임개발, 프로젝트관리, JIRA, Wiki, NC, 빅파이어, CINDERCITY",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-276912",
       "company": "프로젝트문",
       "title": "[프로젝트문] Limbus Company 시나리오",
@@ -4429,6 +5885,113 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "무관",
       "keywords": "모바일, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, PM, PD, 레벨기획, 시스템기획, 유료화",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-276939",
+      "company": "데브시스터즈 (Devsisters)",
+      "title": "[쿠키런 오븐스매시] 배경 컨셉 2D 아티스트",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "3D",
+        "Illustrator",
+        "3ds Max"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276939",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "[쿠키런: 오븐브레이크], [쿠키런: 킹덤], [쿠키런: 모험의탑], [쿠키런 클래식]",
+      "gameCategory": "모바일게임 Casual, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "3D, 배경, 원화, 일러스트, 컨셉, 배경원화, 3DSmax, 캐릭터, 데브시스터즈, 쿠키런, 오븐스매시",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-276942",
+      "company": "시프트업 (SHIFT UP)",
+      "title": "[시프트업] 스텔라 블레이드 차기작 / 몬스터 전투 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276942",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
+      "gameCategory": "콘솔게임, 멀티플랫폼게임 RPG, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "게임기획, 시스템기획, 컨텐츠, 멀티플랫폼, 콘솔, 신작, 시프트업, EVE",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-276943",
+      "company": "시프트업 (SHIFT UP)",
+      "title": "[시프트업] 스텔라 블레이드 차기작 / PC 전투 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276943",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
+      "gameCategory": "콘솔게임, 멀티플랫폼게임 RPG, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "게임기획, 시스템기획, 컨텐츠, 멀티플랫폼, 콘솔, 신작, 시프트업, EVE",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-276944",
+      "company": "시프트업 (SHIFT UP)",
+      "title": "[시프트업] 스텔라 블레이드 차기작 / 시스템 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "시스템 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276944",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
+      "gameCategory": "콘솔게임, 멀티플랫폼게임 RPG, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "게임기획, 시스템기획, 멀티플랫폼, 콘솔, 신작, 시프트업, EVE",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -4696,6 +6259,33 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277037",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][단기계약직][Horizon Steel Frontiers] 아트 외주 관리 PM 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "JIRA/Confluence",
+        "Excel"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277037",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "계약직 (계약기간 : 협의 후 결정)",
+      "deadline": "~ 04/30(목)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "신입",
+      "keywords": "PM, 외주관리",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277054",
       "company": "㈜루노소프트",
       "title": "[루노소프트] 유명 브랜드 IP 기반 매치3 게임 기획자 모집",
@@ -4719,6 +6309,41 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "모바일, 컨셉, 게임기획, 시스템기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277061",
+      "company": "넥슨 (NEXON)",
+      "title": "[로드나인] 개발PM",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "C++",
+        "3D",
+        "UI/UX 기획",
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "PM",
+        "밸런싱",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unity"
+      ],
+      "reqExp": 1,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277061",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "로드나인, AVATARA, 로한M",
+      "gameCategory": "모바일게임, 멀티플랫폼게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 1년 이상",
+      "keywords": "C++, 3D, 인터페이스, UX·UI, 레벨, 애니메이션, 이펙트, 게임기획, 시나리오, 퀘스트, PM, 밸런스기획, 시스템기획, 컨텐츠, UI·UX, 지원, 게임프로그래머, 엔엑스쓰리게임즈, NX3GAMES, 로드나인",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -4748,6 +6373,32 @@
       "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
       "experience": "무관",
       "keywords": "클라이언트, 배경, 모델링, 애니메이션, Maya, KeyAnimation, 이펙트, 게임기획, 레벨기획, 언리얼엔진, blender",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277067",
+      "company": "넥슨 (NEXON)",
+      "title": "[프로젝트 EL] 레벨 디자이너 (계약직)",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "Unreal Engine"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277067",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+      "gameCategory": "온라인PC게임, 모바일게임 기타",
+      "employmentType": "계약직 (계약기간 : 2년)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "레벨, 게임기획, 레벨기획, 엔진, Unreal, 기획자",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -4807,6 +6458,34 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277124",
+      "company": "데브시스터즈 (Devsisters)",
+      "title": "[쿠키런 뉴월드] 전투 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "시나리오/퀘스트",
+        "시스템 기획",
+        "Unreal Engine",
+        "전투/액션 기획"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277124",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "[쿠키런: 오븐브레이크], [쿠키런: 킹덤], [쿠키런: 모험의탑], [쿠키런 클래식]",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "컨셉, 시나리오, 시스템기획, 기획, 언리얼, 전투, 데브시스터즈, 쿠키런",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277184",
       "company": "뉴메틱",
       "title": "[뉴메틱] 신규 프로젝트 게임 시스템/콘텐츠 기획자 모집 (신입/경력)",
@@ -4856,6 +6535,36 @@
       "salary": "회사내규에 따름\n연봉검색",
       "experience": "무관",
       "keywords": "게임기획, 시스템기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277193",
+      "company": "㈜매드엔진",
+      "title": "[NX 스튜디오] [Project TAL] 콘텐츠 디자이너 (계약직)",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "시나리오/퀘스트",
+        "밸런싱",
+        "레벨 디자인",
+        "시스템 기획",
+        "콘텐츠 기획"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277193",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "나이트 크로우",
+      "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+      "employmentType": "계약직 (계약기간 : 1년)",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "컨셉, 게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -4972,6 +6681,92 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277208",
+      "company": "넷마블 (Netmarble)",
+      "title": "[넷마블몬스터] 레이븐2 게임디자인 / 클라이언트 / 캐릭터원화",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "아트/UI",
+        "기획"
+      ],
+      "reqSkills": [
+        "시나리오/퀘스트",
+        "콘텐츠 기획",
+        "전투/액션 기획"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277208",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "마블퓨처파이트/몬스터길들이기/레이븐/레이븐2 外",
+      "gameCategory": "모바일게임 RPG, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "클라이언트, 원화, 캐릭터원화, 컨셉, 몬스터, 캐릭터, 게임기획, 시나리오, 퀘스트, 컨텐츠, 게임프로그래밍, 게임프로그래머, 전투, 게임디자인, PVP",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277209",
+      "company": "넷마블 (Netmarble)",
+      "title": "[넷마블몬스터] 몬길 STAR DIVE(신작) PM / 게임디자인 / 애니메이션",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "아트/UI",
+        "기획"
+      ],
+      "reqSkills": [
+        "3D",
+        "3ds Max",
+        "시나리오/퀘스트",
+        "PM",
+        "콘텐츠 기획"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277209",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "마블퓨처파이트/몬스터길들이기/레이븐/레이븐2 外",
+      "gameCategory": "모바일게임 RPG, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 3D, 3DSmax, 캐릭터, 애니메이션, 게임기획, 시나리오, 퀘스트, PM, 컨텐츠, 컨텐츠기획, 개발PM, 스토리, 아트PM, 서브컬처",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277226",
+      "company": "㈜퍼스트스파크게임즈",
+      "title": "[NC-퍼스트스파크게임즈][TL] UI 아티스트 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "UI/UX 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277226",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "THRONE AND LIBERTY",
+      "gameCategory": "온라인PC게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 05/09(토)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "UI·UX, 웹UI, 모바일UI",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277230",
       "company": "넥슨 (NEXON)",
       "title": "[프로젝트DC] 게임 시나리오 기획자 (근무지 서울지사)",
@@ -4993,6 +6788,32 @@
       "salary": "회사내규에 따름\n연봉검색",
       "experience": "무관",
       "keywords": "게임기획, 시나리오, 퀘스트, 던전앤파이터, 던파",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277236",
+      "company": "IMC games",
+      "title": "[그라나도 에스파다] QA Specialist 모집 (기획 연계형)",
+      "role": "QA/테스트",
+      "roles": [
+        "기획",
+        "QA/테스트"
+      ],
+      "reqSkills": [
+        "QA/테스트"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277236",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "그라나도에스파다, 트리오브세이비어",
+      "gameCategory": "온라인PC게임 RPG",
+      "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "게임기획, QA, QC, 게임테스터, 게임",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -5022,6 +6843,64 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "게임기획, PM, PD, 밸런스기획, 시스템기획, UI·UX",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277251",
+      "company": "빅파이어게임즈",
+      "title": "[NC자회사][빅파이어게임즈][단기계약직] 밸런스 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "PM",
+        "밸런싱",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unreal Engine",
+        "데이터 분석"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277251",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+      "employmentType": "계약직 (계약기간 : 3개월)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "신입",
+      "keywords": "레벨, 게임기획, PM, PD, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, PC, 콘솔, SF, 언리얼엔진, 기믹, 트리플A오픈월드",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277277",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][리니지 클래식] 사업 PM 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "SQL",
+        "데이터 분석"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277277",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 04/05(일)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "PM, 사업_PM",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -5103,6 +6982,62 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277326",
+      "company": "데브시스터즈 (Devsisters)",
+      "title": "[신규 프로젝트 AR] 3D 캐릭터 모델링 아티스트",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "3D",
+        "3ds Max",
+        "ZBrush",
+        "Photoshop"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277326",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "[쿠키런: 오븐브레이크], [쿠키런: 킹덤], [쿠키런: 모험의탑], [쿠키런 클래식]",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "3D, 모델링, 3DSmax, 캐릭터, Zbrush, Photoshop, 캐주얼, stylized",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277332",
+      "company": "팀써니트",
+      "title": "게임 QA 및 기획",
+      "role": "QA/테스트",
+      "roles": [
+        "기획",
+        "QA/테스트"
+      ],
+      "reqSkills": [
+        "밸런싱",
+        "레벨 디자인",
+        "QA/테스트"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277332",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "블레이드 어썰트, Dragon is Dead",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+      "employmentType": "인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 밸런스기획, 레벨기획, QA",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277342",
       "company": "게임베리 스튜디오",
       "title": "[(주)게임베리 스튜디오] 게임 기획자 (신입-3년차)",
@@ -5129,6 +7064,34 @@
       "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
       "experience": "무관",
       "keywords": "모바일, 컨셉, 게임기획, 시나리오, PM, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 인디, 방치형, 방치, 소규모",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277343",
+      "company": "㈜루디우스게임즈",
+      "title": "[NC 루디우스게임즈] [MDR] 콘텐츠 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "밸런싱",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277343",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "게임기획, 밸런스기획, 시스템기획, 컨텐츠",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -5163,6 +7126,33 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277346",
+      "company": "㈜루디우스게임즈",
+      "title": "[NC 루디우스게임즈] [MDR] 전투 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "밸런싱",
+        "콘텐츠 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277346",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "게임기획, 밸런스기획, 컨텐츠, 전투디자인",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277360",
       "company": "㈜밸로프",
       "title": "(주)밸로프 개발본부 게임기획자",
@@ -5192,6 +7182,33 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277362",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][Project NL] 차세대 리니지 프로젝트 개발 PM 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "Unreal Engine",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277362",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 05/10(일)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "PM, 개발PM",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277363",
       "company": "스토리타코",
       "title": "[스토리타코] 여성향 수집형 RPG 시나리오 라이터 채용 (정규직/계약직)",
@@ -5213,6 +7230,33 @@
       "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
       "experience": "무관",
       "keywords": "시나리오, 시나리오연출",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277365",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][Project NL] 차세대 리니지 프로젝트 컨텐츠 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "콘텐츠 기획",
+        "Unreal Engine",
+        "SQL"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277365",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 05/10(일)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "게임기획, 컨텐츠",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -5455,6 +7499,34 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277425",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][AION] 컨텐츠 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "콘텐츠 기획",
+        "JIRA/Confluence",
+        "데이터 분석",
+        "Excel"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277425",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 04/30(목)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "게임기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277457",
       "company": "㈜레드랩게임즈",
       "title": "MMORPG 시스템/컨텐츠 기획",
@@ -5503,6 +7575,59 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "모바일, 게임기획, 밸런스기획, 밸런스, 전투, 경제밸런스, 블록체인",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277485",
+      "company": "㈜에이버튼",
+      "title": "[Project ES] 레벨/콘텐츠 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "콘텐츠 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277485",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "프로젝트 ES, GD, EA (개발중)",
+      "gameCategory": "온라인PC게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "레벨, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277487",
+      "company": "㈜에이버튼",
+      "title": "[Project ES] 아트 PM",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "Unreal Engine"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277487",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "프로젝트 ES, GD, EA (개발중)",
+      "gameCategory": "온라인PC게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "PM, 프로젝트매니저",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -5562,6 +7687,66 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277519",
+      "company": "㈜브이파이브 게임즈",
+      "title": "[판교/게임] 모바일게임 CS 담당자 채용 (중국어 가능자 우대)",
+      "role": "PM/운영",
+      "roles": [
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "QA/테스트",
+        "Excel"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277519",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "천년어게인, 라테일플러스",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+      "deadline": "~ 05/13(수)",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 게임운영, GM, CS, TM, QA, 게임테스터, 중국",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277523",
+      "company": "빅파이어게임즈",
+      "title": "[NC자회사][빅파이어게임즈] 시스템 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "PM",
+        "밸런싱",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "C#",
+        "Scripting",
+        "Unreal Engine"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277523",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 Shooting, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "레벨, 컨셉, 게임기획, 시나리오, 퀘스트, PD, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, C#, Script, Unreal, Blueprint, NC, CINDERCITY, 신더시티",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277547",
       "company": "㈜5민랩",
       "title": "[5민랩][딩컴 투게더] 컨텐츠 기획자 모집",
@@ -5588,6 +7773,32 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277548",
+      "company": "㈜5민랩",
+      "title": "[5민랩][딩컴 투게더] 레벨디자이너 모집",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277548",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "SMASH LEGENDS",
+      "gameCategory": "모바일게임, 멀티플랫폼게임 Simulation",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "모바일, 레벨, 게임기획, 레벨기획, 멀티플랫폼, 라이프시뮬레이션, 동물의숲, 딩컴, 오민랩, 개척, 생활, 5MINLAB",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277553",
       "company": "아지트랩스",
       "title": "[아지트랩스] 시스템 기획자",
@@ -5610,6 +7821,31 @@
       "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
       "experience": "경력 1년 이상",
       "keywords": "게임기획, 시스템기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277554",
+      "company": "㈜겜프스엔",
+      "title": "[브라운더스트2] 프로젝트 매니저(PM) 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277554",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "브라운더스트2",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "모바일, PM, 개발, 개발관리, 빌드관리",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -5698,6 +7934,63 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277575",
+      "company": "시프트업 (SHIFT UP)",
+      "title": "[시프트업] 프로젝트 스피릿 / 2D 스토리보드 아티스트",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "Unity",
+        "Unreal Engine"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277575",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
+      "gameCategory": "멀티플랫폼게임 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "게임기획, 스토리보드, 콘티",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277588",
+      "company": "㈜슈퍼캣",
+      "title": "[아이스캣 / Project CM] 제네럴 기획자 모집 (신입/경력)",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "밸런싱",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "TCP/IP",
+        "Unity"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277588",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "바람의나라: 연, Project OQ",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "클라이언트, 모바일, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, 밸런스기획, 시스템기획, 컨텐츠, 네트워크, 유니티, 게임프로그래밍, 게임프로그래머",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277600",
       "company": "마상소프트",
       "title": "[부산] 게임 기획자 모집",
@@ -5726,6 +8019,33 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277603",
+      "company": "헬로에이치알",
+      "title": "1군 게임사 계열 스튜디오 시스템기획 / 아트PM 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "시스템 기획",
+        "Photoshop"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277603",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임 RPG, Shooting",
+      "employmentType": "정규직",
+      "deadline": "~ 05/31(일)",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "PM, 시스템기획, 아트PM, ARTPM",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277611",
       "company": "㈜플러피덕",
       "title": "[플러피덕/서울] R18남성향 서브컬처 - 이벤트/시스템 기획자 구인",
@@ -5747,6 +8067,32 @@
       "salary": "회사내규에 따름\n연봉검색",
       "experience": "신입",
       "keywords": "모바일, 게임기획, 시스템기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277614",
+      "company": "데브시스터즈 (Devsisters)",
+      "title": "[쿠키런 킹덤] 캐릭터 2D 아티스트",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "Illustrator",
+        "Photoshop"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277614",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "[쿠키런: 오븐브레이크], [쿠키런: 킹덤], [쿠키런: 모험의탑], [쿠키런 클래식]",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "원화, 일러스트, 캐릭터원화, 컨셉, 포토샵, 몬스터, 캐릭터, 디자인, 데브시스터즈, 쿠키런, 킹덤",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -6045,6 +8391,32 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277690",
+      "company": "㈜콩스튜디오코리아",
+      "title": "[Project ZERO] 게임 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "콘텐츠 기획",
+        "Unity"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277690",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "가디언테일즈",
+      "gameCategory": "모바일게임 RPG",
+      "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 협의 후 결정)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 게임기획, 컨텐츠, 유니티, 연출, 데이터관리, 컷씬",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277693",
       "company": "㈜네오위즈",
       "title": "[ROUND8 스튜디오] P의 거짓 차기작 던전 레벨 기획자",
@@ -6099,6 +8471,34 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "레벨, 컨셉, 게임기획, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 블루프린트, 언리얼5",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277696",
+      "company": "㈜네오위즈",
+      "title": "[ROUND8 스튜디오] P의 거짓 차기작 공간/배경 설정 내러티브 기획자",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "C++",
+        "시나리오/퀘스트",
+        "시스템 기획",
+        "콘텐츠 기획"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277696",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "P의 거짓,고양이와스프,스컬,브라운더스트2,DJMax,A.V.A,피망포커,피망고스톱",
+      "gameCategory": "온라인PC게임, 콘솔게임 RPG, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "클라이언트, C++, 배경, 컨셉, 게임기획, 시나리오, 시스템기획, 컨텐츠, 설정, 블루프린트, 공간, 내러티브, 언리얼5",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -6247,6 +8647,34 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277728",
+      "company": "㈜스튜디오비사이드",
+      "title": "[스타세이비어] 개발 PM 모집",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획",
+        "QA/테스트"
+      ],
+      "reqSkills": [
+        "PM",
+        "Excel"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277728",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "스타세이비어 (https://www.starsavior.com/kr)",
+      "gameCategory": "모바일게임 기타",
+      "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정)",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, PM, 개발PM",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277730",
       "company": "㈜플레이링스",
       "title": "[플레이링스] Rockncash 신규 메타 콘텐츠 기획자 경력 채용",
@@ -6329,6 +8757,32 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277744",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][단기계약직][리니지2M] 라이팅 아티스트 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "Unreal Engine",
+        "3ds Max"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277744",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "계약직 (계약기간 : 협의 후 결정)",
+      "deadline": "~ 05/18(월)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "신입",
+      "keywords": "라이팅, 라이팅_아티스트",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277749",
       "company": "엠비씨(MBC)아카데미 컴퓨터교육센터",
       "title": "[게임기획/3D게임디자인/유니티&언리얼] 최대국비지원 취업연계 취업연수생 모집공고",
@@ -6392,6 +8846,32 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "무관",
       "keywords": "모바일, 인터페이스, UX·UI, Unity",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277773",
+      "company": "그리다(GLEADA)",
+      "title": "[스타트업 GLEADA] 시나리오 기획자 모집",
+      "role": "PM/운영",
+      "roles": [
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "시나리오/퀘스트"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277773",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "평범한 날 : 청하구 편",
+      "gameCategory": "모바일게임, 멀티플랫폼게임 Casual, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "2,400~2,600만원\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 게임기획, 시나리오",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -6651,6 +9131,83 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277848",
+      "company": "데브시스터즈 (Devsisters)",
+      "title": "[쿠키런 오븐브레이크] 제네럴 아티스트",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "Illustrator",
+        "Photoshop"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277848",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "[쿠키런: 오븐브레이크], [쿠키런: 킹덤], [쿠키런: 모험의탑], [쿠키런 클래식]",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 원화, 일러스트, 컨셉, 배경원화, 포토샵, 핸드드로잉, 캐릭터, 2D, 데브시스터즈, 쿠키런",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277851",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][단기계약직][Motion Capture Studio] 모션캡처 스튜디오 PM 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277851",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "계약직 (계약기간 : 협의 후 결정)",
+      "deadline": "~ 04/09(목)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "신입",
+      "keywords": "PM, 모션캡쳐_스튜디오",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277885",
+      "company": "데브시스터즈 (Devsisters)",
+      "title": "[쿠키런 킹덤] 3D 이펙트 아티스트",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "3D",
+        "Unity"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277885",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "[쿠키런: 오븐브레이크], [쿠키런: 킹덤], [쿠키런: 모험의탑], [쿠키런 클래식]",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "3D, 이펙트, Unity, ui, 연출, 아트, 3D이펙트, 데브시스터즈, 쿠키런, 킹덤",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277886",
       "company": "데브시스터즈 (Devsisters)",
       "title": "[쿠키런 클래식] 레벨/맵 디자인 기획 (인턴)",
@@ -6703,6 +9260,34 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "클라이언트, C++, 컨셉, 게임기획, 시나리오, 시스템기획, 컨텐츠, 설정, 블루프린트, 내러티브, 언리얼5",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277905",
+      "company": "㈜네오위즈",
+      "title": "[보훈특별채용] [ROUND8 스튜디오] P의 거짓 차기작 공간/배경 설정 내러티브 기획자",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "C++",
+        "시나리오/퀘스트",
+        "시스템 기획",
+        "콘텐츠 기획"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277905",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "P의 거짓,고양이와스프,스컬,브라운더스트2,DJMax,A.V.A,피망포커,피망고스톱",
+      "gameCategory": "온라인PC게임, 콘솔게임 RPG, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "클라이언트, C++, 배경, 컨셉, 게임기획, 시나리오, 시스템기획, 컨텐츠, 설정, 블루프린트, 공간, 내러티브, 언리얼5",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -7088,6 +9673,57 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277962",
+      "company": "엔픽셀",
+      "title": "[엔픽셀] 이클립스스튜디오 (설정 기획자, 밸런스 기획자)",
+      "role": "PM/운영",
+      "roles": [
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "밸런싱",
+        "Unreal Engine"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277962",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "그랑사가",
+      "gameCategory": "모바일게임, 멀티플랫폼게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "게임기획, 밸런스기획, 밸런스, 설정, 설정기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277963",
+      "company": "(주)무브인터렉티브",
+      "title": "[무브인터렉티브-대구] 사운드 디자이너 모집 - 콘솔, PC, 모바일",
+      "role": "아트/UI",
+      "roles": [
+        "기획",
+        "아트/UI"
+      ],
+      "reqSkills": [],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277963",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "디지몬슈퍼럼블, 디지몬마스터즈, 디지몬RPG, 파워레인저, 디지몬소울체이서3, 연희몽상",
+      "gameCategory": "모바일게임, 콘솔게임 Casual, Shooting",
+      "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 2개월)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 사운드, 배경음악, 효과음, 스위치",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277968",
       "company": "㈜5민랩",
       "title": "[5민랩][세계허구관리연맹 WPCA] 액션 기획자 모집",
@@ -7194,6 +9830,112 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-277984",
+      "company": "㈜브이파이브 게임즈",
+      "title": "[판교/게임/중국어] 모바일게임 서브 사업PM 경력직 채용",
+      "role": "PM/운영",
+      "roles": [
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "QA/테스트"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277984",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "천년어게인, 라테일플러스",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+      "deadline": "~ 05/25(월)",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "모바일, 게임운영, GM, CS, TM, QA, 게임테스터, 중국",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277985",
+      "company": "㈜브이파이브 게임즈",
+      "title": "[판교/게임] 모바일게임 GM 담당 경력직 채용",
+      "role": "PM/운영",
+      "roles": [
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "QA/테스트"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277985",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "천년어게인, 라테일플러스",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+      "deadline": "~ 05/25(월)",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "모바일, 게임운영, GM, CS, TM, QA, 게임테스터, 중국",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277988",
+      "company": "컴투스 (Com2uS)",
+      "title": "[컴투스] [프로야구라이징] 모바일 야구 게임 사업 PM (3년 이상)",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "PM",
+        "경제/BM 설계"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277988",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "서머너즈워, 프로야구시리즈, 낚시의신, 서머너즈워:백년전쟁 등",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "~ 06/23(화)",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "PM, 기획, 운영, 전략, 시장조사, 지표분석, 이벤트기획, BM, VOC관리",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277989",
+      "company": "컴투스 (Com2uS)",
+      "title": "[컴투스] 게임 운영툴 기획자 (계약직/1년 이상)",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "콘텐츠 기획",
+        "시스템 기획"
+      ],
+      "reqExp": 1,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277989",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "서머너즈워, 프로야구시리즈, 낚시의신, 서머너즈워:백년전쟁 등",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "계약직 (계약기간 : 1년)",
+      "deadline": "~ 06/23(화)",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 1년 이상",
+      "keywords": "컨텐츠, 기획, 시스템, 밸런싱, 라이브서비스, 인사이트, 분석력, 시장변화, 게임프로젝트디렉팅",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-277992",
       "company": "㈜플레이위드코리아",
       "title": "신작 MMORPG 프로젝트 퀘스트 시스템 기획 경력사원 모집",
@@ -7253,6 +9995,40 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "모바일, iOS, Android, 게임기획, 퀘스트, 레벨기획, 시스템기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277999",
+      "company": "㈜나인헥타르",
+      "title": "클라이언트 개발자 / QA 테스터 / 게임 기획자 모집",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획",
+        "QA/테스트"
+      ],
+      "reqSkills": [
+        "C++",
+        "UI/UX 기획",
+        "시나리오/퀘스트",
+        "QA/테스트",
+        "Unity",
+        "Git/SVN",
+        "iOS",
+        "Android"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277999",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "회색낙원",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+      "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "클라이언트, C, C++, 모바일, UX·UI, 게임기획, 시나리오, QA, 게임프로그래밍, 게임프로그래머",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -7425,6 +10201,91 @@
       "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
       "experience": "경력 2년 이상",
       "keywords": "UI·UX, UI기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278079",
+      "company": "㈜조이시티",
+      "title": "[건쉽배틀 토탈워페어]개발PM 모집(신입/경력)",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "C++",
+        "PM"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278079",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "프리스타일 시리즈, 건쉽배틀: 토탈워페어, 캐리비안의 해적, 오션 앤 엠파이어",
+      "gameCategory": "모바일게임 기타",
+      "employmentType": "정규직",
+      "deadline": "~ 04/30(목)",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "클라이언트, C, C++, 모바일, 게임기획, PM, 게임프로그래밍, 게임프로그래머",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278091",
+      "company": "㈜엑소게임즈",
+      "title": "[경력] 개발 PM 채용",
+      "role": "PM/운영",
+      "roles": [
+        "기획",
+        "PM/운영",
+        "QA/테스트"
+      ],
+      "reqSkills": [
+        "QA/테스트",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278091",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "파파딜로 고!, 스퀴드워, 우리집에 곰이 돌아왔다!",
+      "gameCategory": "콘솔게임, 멀티플랫폼게임 Casual, 기타",
+      "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 8개월)",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "게임운영, GM, CS, QM, QA, 시스템버전관리, 업데이트테스트, 버그",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278109",
+      "company": "휴먼웍스",
+      "title": "게임 운영 및 기획자 채용",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "Java",
+        "레벨 디자인",
+        "데이터 분석"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278109",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "웹게임, 모바일게임 Casual, Arcade",
+      "employmentType": "정규직",
+      "deadline": "~ 04/05(일)",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, Java, 게임기획, 레벨기획, 게임운영, GM",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -7622,6 +10483,33 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-278159",
+      "company": "스마일게이트 (Smilegate)",
+      "title": "[LOST ARK] 개발PM 담당",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "JIRA/Confluence",
+        "Excel"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278159",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "LOST ARK, LOST ARK Mobile",
+      "gameCategory": "온라인PC게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "PM, 개발PM, 일정관리, 이슈관리",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-278166",
       "company": "㈜스튜디오비사이드",
       "title": "[스튜디오비사이드] 마케팅 영상제작 및 디자인 편집자",
@@ -7679,6 +10567,62 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-278173",
+      "company": "데브시스터즈 (Devsisters)",
+      "title": "[쿠키런 오븐스매시] 전투 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "시나리오/퀘스트",
+        "콘텐츠 기획",
+        "시스템 기획",
+        "밸런싱"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278173",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "[쿠키런: 오븐브레이크], [쿠키런: 킹덤], [쿠키런: 모험의탑], [쿠키런 클래식]",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 컨셉, 게임기획, 시나리오, 컨텐츠, 시스템, 밸런스, 슈팅, 데브시스터즈, 쿠키런, 오븐스매시",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278176",
+      "company": "빅파이어게임즈",
+      "title": "[NC자회사][빅파이어게임즈] 퀘스트 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "밸런싱",
+        "콘텐츠 기획"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278176",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 Shooting, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "레벨, 컨셉, 게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 컨텐츠, L10N, 밀리터리, 오픈월드, NC, CINDERCITY, 신더시티",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-278193",
       "company": "엔씨소프트 (NCSOFT)",
       "title": "[NC][리니지M] 컨텐츠 기획자 모집",
@@ -7703,6 +10647,33 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "경력 2년 이상",
       "keywords": "컨텐츠, 컨텐츠기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278201",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][단기계약직] 아웃소싱 PM 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "데이터 분석",
+        "Excel"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278201",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "계약직 (계약기간 : 협의 후 결정)",
+      "deadline": "~ 04/17(금)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "신입",
+      "keywords": "PM, 아웃소싱",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -7733,6 +10704,111 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "무관",
       "keywords": "모바일, 게임기획, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278206",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC] 글로벌 신규시장 발굴 및 사업 PM 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "Excel"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278206",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 05/30(토)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "PM, 글로벌, 신규시장",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278221",
+      "company": "파이드픽셀즈",
+      "title": "[파이드픽셀즈] 신작 대형 IP 게임 개발 PM 담당자 모집",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "PM"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278221",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "PM, 개발PM",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278224",
+      "company": "선시안 (SUNCYAN In",
+      "title": "[더 스파이크 크로스] UI·UX 디자이너",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI",
+        "기획"
+      ],
+      "reqSkills": [
+        "3D",
+        "UI/UX 기획",
+        "Photoshop",
+        "Illustrator"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278224",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "더 스파이크 크로스",
+      "gameCategory": "모바일게임, 콘솔게임 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "3D, UX·UI",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278225",
+      "company": "선시안 (SUNCYAN In",
+      "title": "[더 스파이크 크로스] 원화가",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI",
+        "기획"
+      ],
+      "reqSkills": [],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278225",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "더 스파이크 크로스",
+      "gameCategory": "모바일게임, 콘솔게임 기타",
+      "employmentType": "정규직, 계약직 (계약기간 : 1년)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "배경, 원화, 애니메이터",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -7826,6 +10902,36 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-278243",
+      "company": "㈜매드엔진",
+      "title": "[NX 스튜디오] [Project TAL] 월드/레벨 시스템 디자이너 모집 (경력)",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "iOS",
+        "Android",
+        "레벨 디자인",
+        "시스템 기획",
+        "콘텐츠 기획"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278243",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "나이트 크로우",
+      "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "iOS, Android, 레벨, 게임기획, 레벨기획, 시스템기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-278246",
       "company": "㈜덱사스튜디오",
       "title": "[프로젝트 R] 밸런스 기획자 채용",
@@ -7851,6 +10957,35 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "모바일, 게임기획, 밸런스기획, 유료화",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278247",
+      "company": "㈜매드엔진",
+      "title": "[프론티어 스튜디오] [MMORPG] 퀘스트 디자이너 모집 (계약직)",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "콘텐츠 기획",
+        "Unreal Engine"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278247",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "나이트 크로우",
+      "gameCategory": "모바일게임 RPG",
+      "employmentType": "계약직 (계약기간 : 1년)",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 레벨, 컨셉, 게임기획, 퀘스트, 레벨기획, 컨텐츠",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -7881,6 +11016,88 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-278254",
+      "company": "크립텍트",
+      "title": "게임 기획 PM 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unity",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278254",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "이세계 용병단 키우기",
+      "gameCategory": "모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 05/01(금)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 게임기획, PM, 시스템기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278272",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[AION2] 빌드 관리 PM (빌드 매니저) 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "Unreal Engine"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278272",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 04/30(목)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "PM, 빌드관리",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278274",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][AION2] 로컬라이제이션 PM 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "Unreal Engine",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278274",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 04/30(목)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "PM, 로컬라이제이션",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-278278",
       "company": "㈜컨트롤나인",
       "title": "[미래시] 2D 스파인 애니메이터",
@@ -7905,6 +11122,32 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "경력 3년 이상",
       "keywords": "모바일, 원화, 일러스트, 캐릭터원화, 아바타, 몬스터, 캐릭터, 애니메이션, 메카닉, 오브젝트, 2D, 언리얼, spine, 서브컬쳐, 서브컬처",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278282",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][AION2] 개발 PM 모집 (개발 담당)",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "Unreal Engine"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278282",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "정규직",
+      "deadline": "~ 04/30(목)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "PM, 개발PM",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -7991,6 +11234,67 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-278300",
+      "company": "빅파이어게임즈",
+      "title": "[NC자회사][빅파이어게임즈] 콘텐츠 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "밸런싱",
+        "콘텐츠 기획",
+        "Unreal Engine",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278300",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 Shooting, 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "레벨, 컨셉, 게임기획, 시나리오, 밸런스기획, 레벨기획, 컨텐츠, 오픈월드, NC, CINDERCITY, 신더시티",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278301",
+      "company": "빅파이어게임즈",
+      "title": "[NC자회사][빅파이어게임즈][단기계약직] 콘텐츠 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "PM",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unreal Engine",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278301",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+      "employmentType": "계약직 (계약기간 : 3개월)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "신입",
+      "keywords": "레벨, 컨셉, 게임기획, 시나리오, 퀘스트, PD, 레벨기획, 시스템기획, 컨텐츠, PC, 콘솔, SF, 언리얼엔진, 기믹, 트리플A오픈월드",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-278302",
       "company": "에이시티게임즈㈜",
       "title": "헬로키티 마이드림스토어 기획 담당자(글로벌버전)",
@@ -8072,6 +11376,55 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-278312",
+      "company": "㈜세인넛츠스튜디오",
+      "title": "[내러티브 CRPG] 함께할 ’내러티브 디자이너(작가)’를 찾습니다.",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "시나리오/퀘스트"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278312",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "메트로 블로썸, 와인드 업 데드맨",
+      "gameCategory": "콘솔게임, 멀티플랫폼게임 RPG",
+      "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 6개월)",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "시나리오, 퀘스트",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278314",
+      "company": "선시안 (SUNCYAN In",
+      "title": "[더 스파이크 크로스] 마케팅 영상 디자이너",
+      "role": "AI/데이터",
+      "roles": [
+        "기획",
+        "AI/데이터"
+      ],
+      "reqSkills": [],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278314",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "더 스파이크 크로스",
+      "gameCategory": "모바일게임, 콘솔게임 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 컨셉, 게임기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-278315",
       "company": "컴투스 (Com2uS)",
       "title": "[컴투스][컴투스프로야구2026] 콘텐츠 기획 (신입/경력)",
@@ -8121,6 +11474,42 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "신입",
       "keywords": "UX·UI, 게임기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278351",
+      "company": "㈜YH데이타베이스",
+      "title": "2025년 대구 근무 게임 기획자 모집 (경력2년이상 7년이하)",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "UI/UX 기획",
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "밸런싱",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "경제/BM 설계",
+        "Unity",
+        "데이터 분석",
+        "Excel"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278351",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "드로울리, 던전큐브, 머지머지얀",
+      "gameCategory": "모바일게임, 멀티플랫폼게임 Casual, Arcade",
+      "employmentType": "정규직",
+      "deadline": "상시채용",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "UX·UI, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 유료화, UI·UX, 모바일UI, CS, 기획, 마케팅, ,GM",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -8240,6 +11629,60 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-278395",
+      "company": "시프트업 (SHIFT UP)",
+      "title": "[시프트업] 프로젝트 스피릿 / 레벨 디자이너",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "Unreal Engine"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278395",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
+      "gameCategory": "멀티플랫폼게임 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "레벨, 게임기획",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278397",
+      "company": "선시안 (SUNCYAN In",
+      "title": "[더 스파이크 크로스] 마케팅 디자이너",
+      "role": "AI/데이터",
+      "roles": [
+        "기획",
+        "AI/데이터"
+      ],
+      "reqSkills": [
+        "Photoshop",
+        "Illustrator",
+        "Figma"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278397",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "더 스파이크 크로스",
+      "gameCategory": "모바일게임, 콘솔게임 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "게임, 마케팅",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-278400",
       "company": "시프트업 (SHIFT UP)",
       "title": "[시프트업] 프로젝트 스피릿 / 시나리오 라이터",
@@ -8261,6 +11704,32 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "무관",
       "keywords": "게임기획, 시나리오",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278401",
+      "company": "선시안 (SUNCYAN In",
+      "title": "[더 스파이크 크로스] (PM) 프로덕트 매니저",
+      "role": "AI/데이터",
+      "roles": [
+        "기획",
+        "AI/데이터"
+      ],
+      "reqSkills": [
+        "PM"
+      ],
+      "reqExp": 2,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278401",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "더 스파이크 크로스",
+      "gameCategory": "모바일게임, 콘솔게임 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 2년 이상",
+      "keywords": "PM, 게임",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -8345,6 +11814,85 @@
       "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
       "experience": "무관",
       "keywords": "모바일, 컨셉, 게임기획, 레벨기획, 시스템기획, 컨텐츠",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278413",
+      "company": "게임엔",
+      "title": "게임 운영 및 기획자 채용",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "데이터 분석"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278413",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "웹게임, 모바일게임 Casual, Arcade",
+      "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월), 병역특례",
+      "deadline": "~ 04/09(목)",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "모바일, 게임기획, 웹게임, HTML5, 게임운영, CS, 모니터링",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278416",
+      "company": "데브시스터즈 (Devsisters)",
+      "title": "[쿠키런 킹덤] 2D 일러스트 아티스트",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "Illustrator",
+        "Photoshop"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278416",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "[쿠키런: 오븐브레이크], [쿠키런: 킹덤], [쿠키런: 모험의탑], [쿠키런 클래식]",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "원화, 일러스트, 캐릭터원화, 포토샵, 캐릭터, 디자인, 연출, 캐쥬얼, 컷신, 데브시스터즈, 쿠키런, 타이틀, 서브컬처, 킹덤, 캐주얼아트",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278417",
+      "company": "데브시스터즈 (Devsisters)",
+      "title": "[쿠키런 킹덤] 2D 배경 아티스트",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "Illustrator",
+        "Photoshop"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278417",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "[쿠키런: 오븐브레이크], [쿠키런: 킹덤], [쿠키런: 모험의탑], [쿠키런 클래식]",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+      "experience": "무관",
+      "keywords": "원화, 일러스트, 캐릭터원화, 포토샵, 캐릭터, 디자인, 연출, 캐쥬얼, 컷신, 데브시스터즈, 쿠키런, 타이틀, 서브컬처, 킹덤, 캐주얼아트",
       "updatedAt": "2026-04-03",
       "source": "GameJob"
     },
@@ -8775,6 +12323,61 @@
       "source": "GameJob"
     },
     {
+      "id": "crawled-278458",
+      "company": "넥슨 (NEXON)",
+      "title": "[마비노기 모바일] 퀘스트 디자이너 모집 (계약직)",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "시나리오/퀘스트",
+        "콘텐츠 기획",
+        "Unity"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278458",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "마비노기모바일",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "계약직 (계약기간 : 1년)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "게임기획, 퀘스트, 컨텐츠, 유니티, 이벤트, 스토리, 마비노기모바일",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278460",
+      "company": "111퍼센트㈜",
+      "title": "[111퍼센트] 2D 게임 그래픽 디자이너",
+      "role": "아트/UI",
+      "roles": [
+        "아트/UI"
+      ],
+      "reqSkills": [
+        "Illustrator",
+        "Photoshop",
+        "Unity"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278460",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "운빨존많겜, 랜덤다이스:디펜스",
+      "gameCategory": "모바일게임 기타",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "무관",
+      "keywords": "배경, 원화, 일러스트, 컨셉, 포토샵, 이펙트, 2D, ux, ui, 유니티, 게임디자인, 모바일게임, 2D일러스트",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
       "id": "crawled-278461",
       "company": "㈜기어세컨드",
       "title": "[신규 프로젝트] 게임 클라이언트 개발자",
@@ -8825,6 +12428,119 @@
       "experience": "경력 2년 이상",
       "keywords": "마케팅, 게임마케팅, 마케팅기획, UA, 글로벌마케팅, 퍼포먼스마케팅, 퍼포먼스, 데이터마케팅, 퍼포먼스마케터, MMP, ,데이터",
       "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278463",
+      "company": "㈜기어세컨드",
+      "title": "[기어세컨드] 개발 PM",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획"
+      ],
+      "reqSkills": [
+        "PM",
+        "콘텐츠 기획"
+      ],
+      "reqExp": 1,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278463",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "슬레이어 키우기",
+      "gameCategory": "모바일게임 RPG, Casual",
+      "employmentType": "정규직",
+      "deadline": "채용시 마감",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 1년 이상",
+      "keywords": "모바일, PM, 컨텐츠, ProjectManager, 전략기획, 사업PM, 개발PM",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-278464",
+      "company": "㈜컨트롤나인",
+      "title": "[미래시] 글로벌 콘텐츠 PM",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "3D",
+        "시나리오/퀘스트",
+        "데이터 분석"
+      ],
+      "reqExp": 3,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278464",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "미래시: 보이지 않는 미래",
+      "gameCategory": "온라인PC게임, 멀티플랫폼게임 RPG, 기타",
+      "employmentType": "정규직",
+      "deadline": "~ 04/10(금)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "경력 3년 이상",
+      "keywords": "3D, 캐릭터, 게임기획, 시나리오, 서브컬쳐, 서브컬처, 비주얼노벨, 내러티브, 시간여행",
+      "updatedAt": "2026-04-03",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-274266",
+      "company": "빅파이어게임즈",
+      "title": "",
+      "role": "클라이언트",
+      "roles": [
+        "클라이언트",
+        "기획",
+        "PM/운영"
+      ],
+      "reqSkills": [
+        "PM",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=274266",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+      "employmentType": "계약직 (계약기간 : 3개월)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "신입",
+      "keywords": "PM, 게임개발, 프로젝트관리, JIRA, Wiki, NC, CINDERCITY, 신더시티",
+      "updatedAt": "2026-03-31",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-275390",
+      "company": "빅파이어게임즈",
+      "title": "[NC자회사][빅파이어게임즈][단기계약직] 레벨 콘텐츠 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "레벨 디자인",
+        "시나리오/퀘스트",
+        "PM",
+        "시스템 기획",
+        "콘텐츠 기획",
+        "Unreal Engine",
+        "JIRA/Confluence"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=275390",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "-",
+      "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+      "employmentType": "계약직 (계약기간 : 3개월)",
+      "deadline": "채용시 마감",
+      "salary": "회사내규에 따름\n연봉검색",
+      "experience": "신입",
+      "keywords": "레벨, 컨셉, 게임기획, 시나리오, 퀘스트, PD, 레벨기획, 시스템기획, 컨텐츠, PC, 콘솔, SF, 언리얼엔진, 기믹, 트리플A오픈월드",
+      "updatedAt": "2026-03-31",
       "source": "GameJob"
     },
     {
@@ -8880,6 +12596,31 @@
       "salary": "면접 시 협의\n연봉검색",
       "experience": "신입",
       "keywords": "게임기획, 시나리오, 퀘스트, 시스템기획, 컨텐츠",
+      "updatedAt": "2026-03-31",
+      "source": "GameJob"
+    },
+    {
+      "id": "crawled-277047",
+      "company": "엔씨소프트 (NCSOFT)",
+      "title": "[NC][단기계약직][CCG] 해외 유명 IP 기반의 신규 프로젝트 크리에이티브 디자이너 모집",
+      "role": "기획",
+      "roles": [
+        "기획"
+      ],
+      "reqSkills": [
+        "Photoshop"
+      ],
+      "reqExp": 0,
+      "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277047",
+      "hasAssignment": false,
+      "assignmentType": "",
+      "mainGame": "리니지, 리니지Ⅱ, AION 등",
+      "gameCategory": "온라인PC게임, 모바일게임 RPG",
+      "employmentType": "계약직 (계약기간 : 협의 후 결정)",
+      "deadline": "~ 03/31(화)",
+      "salary": "면접 시 협의\n연봉검색",
+      "experience": "신입",
+      "keywords": "Adobe_Photoshop, 크리에이티브_디자이너",
       "updatedAt": "2026-03-31",
       "source": "GameJob"
     }

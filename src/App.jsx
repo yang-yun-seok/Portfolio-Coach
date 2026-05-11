@@ -196,7 +196,7 @@ export default function App() {
     newJobsCount: 0,
     activeJobsCount: 0,
     filters: {
-      jobTags: ['게임개발(클라이언트)', '게임개발(모바일)', '게임기획'],
+      jobTags: ['게임개발(클라이언트)', '게임개발(모바일)', '게임AI 개발', '인터페이스 디자인', '원화', '모델링', '애니메이션', '이펙트·FX', '게임기획', '게임운영', 'QA·테스터'],
       careerTags: ['신입', '1~3년', '경력무관'],
     },
   });
