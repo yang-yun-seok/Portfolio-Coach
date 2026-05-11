@@ -1,0 +1,1471 @@
+  .coach-shell {
+    --coach-ink: #000000;
+    --coach-ink-soft: rgba(0, 0, 0, 0.62);
+    --coach-paper: #ffffff;
+    --coach-paper-deep: #f7f7f7;
+    --coach-surface: #ffffff;
+    --coach-panel: #ffffff;
+    --coach-line: rgba(0, 0, 0, 0.12);
+    --coach-accent: #000000;
+    --coach-accent-dark: #000000;
+    --coach-warm: #000000;
+    --coach-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+    --figma-gradient: linear-gradient(135deg, #00d084 0%, #fff06a 30%, #8b5cf6 63%, #ff4f9a 100%);
+    --feature-gradient: var(--figma-gradient);
+    --feature-soft: rgba(0, 0, 0, 0.05);
+    --feature-ink: #000000;
+    --apple-black: var(--coach-ink);
+    --apple-gray: var(--coach-paper);
+    --apple-ink: var(--coach-ink);
+    --apple-blue: var(--coach-accent);
+    --apple-link: var(--coach-accent-dark);
+    --apple-bright: var(--coach-ink);
+    --apple-border: var(--coach-line);
+    --apple-border-strong: rgba(0, 0, 0, 0.2);
+    --apple-muted: var(--coach-ink-soft);
+    --apple-shadow: var(--coach-shadow);
+    background:
+      radial-gradient(circle at 92% 8%, rgba(139, 92, 246, 0.16), transparent 23rem),
+      radial-gradient(circle at 52% -12%, rgba(0, 208, 132, 0.13), transparent 22rem),
+      #ffffff !important;
+    color: #000000 !important;
+    font-family: figmaSans, "figmaSans Fallback", "SF Pro Display", "Pretendard", "Apple SD Gothic Neo", system-ui, helvetica, sans-serif;
+    font-feature-settings: "kern";
+    letter-spacing: -0.01em;
+  }
+
+  .coach-shell[data-feature="input"] {
+    --feature-gradient: linear-gradient(135deg, #fff7ad 0%, #b9fbc0 38%, #8ec5ff 100%);
+    --feature-soft: rgba(0, 0, 0, 0.045);
+  }
+
+  .coach-shell[data-feature="feedback"] {
+    --feature-gradient: linear-gradient(135deg, #ffffff 0%, #c7d2fe 42%, #111111 100%);
+    --feature-soft: rgba(99, 102, 241, 0.08);
+  }
+
+  .coach-shell[data-feature="portfolio"] {
+    --feature-gradient: linear-gradient(135deg, #0f172a 0%, #2563eb 45%, #a7f3d0 100%);
+    --feature-soft: rgba(15, 23, 42, 0.07);
+  }
+
+  .coach-shell[data-feature="jobs"] {
+    --feature-gradient: linear-gradient(135deg, #ecfccb 0%, #67e8f9 46%, #111111 100%);
+    --feature-soft: rgba(20, 184, 166, 0.08);
+  }
+
+  .coach-shell[data-feature="interview"] {
+    --feature-gradient: linear-gradient(135deg, #fff1f2 0%, #fda4af 38%, #111111 100%);
+    --feature-soft: rgba(244, 63, 94, 0.08);
+  }
+
+  .coach-shell[data-feature="interview-basic"] {
+    --feature-gradient: linear-gradient(135deg, #fef3c7 0%, #fdba74 42%, #0f172a 100%);
+    --feature-soft: rgba(245, 158, 11, 0.09);
+  }
+
+  .coach-shell[data-feature="personality-test"] {
+    --feature-gradient: linear-gradient(135deg, #fdf2f8 0%, #f0abfc 42%, #111111 100%);
+    --feature-soft: rgba(217, 70, 239, 0.08);
+  }
+
+  .coach-shell[data-feature="pdf-export"] {
+    --feature-gradient: linear-gradient(135deg, #f8fafc 0%, #94a3b8 45%, #111111 100%);
+    --feature-soft: rgba(71, 85, 105, 0.08);
+  }
+
+  .coach-shell.apple-app-shell::before {
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.028) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 26%, #000 100%);
+    opacity: 0.7;
+  }
+
+  .coach-shell button:focus-visible,
+  .coach-shell a:focus-visible,
+  .coach-shell input:focus-visible,
+  .coach-shell textarea:focus-visible,
+  .coach-shell select:focus-visible {
+    outline: 2px dashed #000000 !important;
+    outline-offset: 3px;
+    box-shadow: none !important;
+  }
+
+  .coach-studio-shell {
+    overflow: hidden;
+  }
+
+  .coach-commandbar {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: minmax(15rem, auto) minmax(12rem, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1.15rem;
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(18px) saturate(140%);
+  }
+
+  .coach-brandlockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    justify-self: start;
+    padding: 0.4rem 0.55rem 0.4rem 0.4rem;
+    border: 0;
+    border-radius: 22px;
+    background: transparent;
+    color: var(--coach-ink);
+    text-align: left;
+  }
+
+  .coach-brandlockup:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  .coach-brandmark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50% !important;
+    background: #000000 !important;
+    box-shadow: none !important;
+  }
+
+  .coach-brandcopy {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  .coach-brand-title {
+    color: #000000 !important;
+    font-size: 1.15rem;
+    font-weight: 540;
+    letter-spacing: -0.035em;
+    line-height: 1;
+  }
+
+  .coach-brandcopy strong {
+    color: rgba(0, 0, 0, 0.58);
+    font-size: 0.65rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .coach-command-status {
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 2.75rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.62);
+  }
+
+  .coach-command-status span {
+    color: rgba(0, 0, 0, 0.58) !important;
+    font-size: 0.72rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .coach-command-status strong {
+    color: #000000;
+    font-size: 0.92rem;
+    font-weight: 540;
+  }
+
+  .coach-command-tools {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.45rem;
+    min-width: 0;
+  }
+
+  .coach-command-tools button,
+  .coach-mobile-tools button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 2.75rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 0.84rem;
+    font-weight: 450;
+    box-shadow: none !important;
+  }
+
+  .coach-command-tools button:hover,
+  .coach-mobile-tools button:hover {
+    border-color: #000000;
+    background: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  .coach-command-tools button:hover svg,
+  .coach-command-tools button:hover span,
+  .coach-mobile-tools button:hover svg,
+  .coach-mobile-tools button:hover span {
+    color: inherit !important;
+  }
+
+  .coach-command-tools .coach-model-command {
+    max-width: 16rem;
+  }
+
+  .coach-model-command small {
+    display: inline-block;
+    max-width: 7.8rem;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0.48) !important;
+    font-size: 0.66rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .coach-route-map {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-auto-columns: minmax(9.2rem, 1fr);
+    grid-auto-flow: column;
+    gap: 0.55rem;
+    padding: 0.85rem 1.35rem 1rem;
+    overflow-x: auto;
+    background:
+      linear-gradient(180deg, rgba(255, 250, 242, 0.72) 0%, rgba(244, 234, 220, 0.62) 100%);
+    border-bottom: 1px solid rgba(24, 32, 51, 0.1);
+    scrollbar-width: thin;
+  }
+
+  .coach-route-node {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 3.8rem;
+    padding: 0.72rem 0.78rem;
+    border-radius: 18px;
+    border: 1px solid rgba(24, 32, 51, 0.1);
+    background: rgba(255, 253, 248, 0.72) !important;
+    color: rgba(24, 32, 51, 0.62) !important;
+    box-shadow: none !important;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .coach-route-node:hover {
+    transform: translateY(-2px);
+    border-color: rgba(8, 127, 140, 0.22);
+    background: rgba(255, 253, 248, 0.96) !important;
+  }
+
+  .coach-route-node.is-active {
+    border-color: rgba(24, 32, 51, 0.18);
+    background: #182033 !important;
+    color: #fffaf2 !important;
+    box-shadow: 0 18px 40px rgba(24, 32, 51, 0.18) !important;
+  }
+
+  .coach-route-node.is-active::after {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: -1rem;
+    height: 0.22rem;
+    border-radius: 999px;
+    background: var(--coach-warm);
+  }
+
+  .coach-route-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 1.8rem;
+    border-radius: 999px;
+    background: rgba(24, 32, 51, 0.07);
+    color: rgba(24, 32, 51, 0.5) !important;
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .coach-route-node.is-active .coach-route-number {
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 250, 242, 0.82) !important;
+  }
+
+  .coach-route-symbol {
+    display: inline-flex;
+    color: inherit !important;
+  }
+
+  .coach-route-label {
+    overflow: hidden;
+    color: inherit !important;
+    font-size: 0.86rem;
+    font-weight: 850;
+    text-overflow: ellipsis;
+  }
+
+  .coach-mobile-tools {
+    display: none;
+    position: relative;
+    z-index: 4;
+    gap: 0.5rem;
+    padding: 0 1rem 0.85rem;
+    overflow-x: auto;
+    background: #ffffff;
+  }
+
+  .coach-body-shell {
+    position: relative;
+    z-index: 3;
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18.5rem, 22rem);
+    gap: 1.15rem;
+    overflow: hidden;
+    padding: 1.15rem;
+    background: #ffffff;
+  }
+
+  .coach-body-shell .coach-workspace {
+    min-width: 0;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  .coach-side-panel {
+    min-width: 0;
+    overflow-y: auto;
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    padding-right: 0.15rem;
+  }
+
+  .coach-side-card {
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #ffffff;
+    box-shadow: none;
+  }
+
+  .coach-side-current {
+    position: relative;
+    overflow: hidden;
+    padding: 1.2rem;
+    background: #000000;
+    color: #ffffff !important;
+  }
+
+  .coach-side-current::after {
+    content: "";
+    position: absolute;
+    inset: auto -18% -32% 16%;
+    height: 6rem;
+    border-radius: 999px;
+    background: var(--feature-gradient);
+    filter: blur(14px);
+    opacity: 0.85;
+    pointer-events: none;
+  }
+
+  .coach-side-current > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .coach-side-eyebrow {
+    margin: 0 0 0.55rem;
+    color: rgba(255, 255, 255, 0.74) !important;
+    font-size: 0.74rem !important;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .coach-side-current h2 {
+    margin: 0;
+    color: #ffffff !important;
+    font-size: 1.55rem;
+    font-weight: 450;
+    letter-spacing: -0.055em;
+    line-height: 1.05;
+  }
+
+  .coach-side-current > p:not(.coach-side-eyebrow) {
+    margin: 0.7rem 0 0;
+    color: rgba(255, 255, 255, 0.78) !important;
+    font-size: 0.92rem;
+    font-weight: 330;
+    line-height: 1.55;
+  }
+
+  .coach-side-actions {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .coach-side-actions button {
+    min-height: 2.8rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 50px;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 0.88rem;
+    font-weight: 540;
+    box-shadow: none !important;
+  }
+
+  .coach-side-actions .coach-secondary-action {
+    background: rgba(255, 255, 255, 0.16) !important;
+    color: #ffffff !important;
+  }
+
+  .coach-side-context-card {
+    display: grid;
+    gap: 0.55rem;
+    padding: 1.05rem;
+  }
+
+  .coach-side-context-card strong {
+    color: #000000 !important;
+    font-size: 1rem;
+    font-weight: 540;
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+  }
+
+  .coach-side-context-card p:not(.coach-side-eyebrow) {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.62) !important;
+    font-size: 0.86rem;
+    font-weight: 330;
+    line-height: 1.55;
+  }
+
+  .coach-side-card:not(.coach-side-current) .coach-side-eyebrow {
+    color: rgba(0, 0, 0, 0.58) !important;
+  }
+
+  .coach-side-tools {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1rem;
+  }
+
+  .coach-side-helper {
+    margin: -0.15rem 0 0.45rem;
+    color: rgba(0, 0, 0, 0.52) !important;
+    font-size: 0.82rem;
+    font-weight: 330;
+    line-height: 1.45;
+  }
+
+  .coach-side-tool {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 2.75rem;
+    padding: 0.48rem 0.58rem;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    background: transparent !important;
+    color: rgba(0, 0, 0, 0.62) !important;
+    box-shadow: none !important;
+    text-align: left;
+  }
+
+  .coach-side-tool:hover {
+    background: rgba(0, 0, 0, 0.06) !important;
+    color: #000000 !important;
+  }
+
+  .coach-side-tool.is-active {
+    background: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  .coach-side-tool-icon,
+  .coach-side-tool-label {
+    color: inherit !important;
+  }
+
+  .coach-side-tool-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--feature-soft);
+  }
+
+  .coach-side-tool.is-active .coach-side-tool-icon {
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .coach-side-tool-label {
+    overflow: hidden;
+    font-size: 0.88rem;
+    font-weight: 450;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .coach-start-panel {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.32fr);
+    gap: 1rem;
+    align-items: stretch;
+    padding: 1.05rem 1.35rem 0.85rem;
+    background: #f7f9fc;
+    border-bottom: 1px solid rgba(25, 31, 40, 0.08);
+  }
+
+  .coach-start-copy {
+    background: #ffffff;
+    border: 1px solid rgba(25, 31, 40, 0.08);
+    box-shadow: 0 14px 34px rgba(25, 31, 40, 0.06);
+  }
+
+  .coach-start-copy {
+    min-height: 10.8rem;
+    padding: 1.4rem 1.55rem;
+    border-radius: 28px;
+  }
+
+  .coach-case-kicker {
+    margin: 0 0 0.6rem;
+    color: var(--coach-accent-dark) !important;
+    font-size: 0.74rem !important;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .coach-start-copy h1 {
+    max-width: 46rem;
+    margin: 0;
+    color: #191f28 !important;
+    font-size: clamp(1.85rem, 4vw, 3.35rem);
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    line-height: 1.08;
+  }
+
+  .coach-start-copy > p:not(.coach-case-kicker) {
+    max-width: 42rem;
+    margin: 0.75rem 0 0;
+    color: #4e5968 !important;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .coach-start-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 1.15rem;
+  }
+
+  .coach-start-actions button {
+    min-height: 2.8rem;
+    padding: 0.7rem 1.05rem;
+    border: 0;
+    border-radius: 14px;
+    background: #3182f6 !important;
+    color: #ffffff !important;
+    font-size: 0.9rem;
+    font-weight: 800;
+    box-shadow: none !important;
+  }
+
+  .coach-start-actions .coach-secondary-action {
+    background: #eef4ff !important;
+    color: #1b64da !important;
+  }
+
+  .coach-step-tabs {
+    position: relative;
+    z-index: 4;
+    padding: 0.75rem 1.35rem 1rem;
+    background: #f7f9fc;
+    border-bottom: 1px solid rgba(25, 31, 40, 0.08);
+  }
+
+  .coach-step-strip {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.1rem;
+    scrollbar-width: none;
+  }
+
+  .coach-step-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .coach-step-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.85rem;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid rgba(25, 31, 40, 0.08);
+    border-radius: 999px;
+    background: #ffffff !important;
+    color: #4e5968 !important;
+    box-shadow: none !important;
+    white-space: nowrap;
+  }
+
+  .coach-step-pill:hover {
+    border-color: rgba(49, 130, 246, 0.25);
+    background: #f4f8ff !important;
+    color: #191f28 !important;
+  }
+
+  .coach-step-pill.is-active {
+    background: #191f28 !important;
+    color: #ffffff !important;
+    border-color: #191f28;
+  }
+
+  .coach-step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.55rem;
+    height: 1.55rem;
+    border-radius: 999px;
+    background: #f2f4f6;
+    color: inherit !important;
+    font-size: 0.72rem;
+    font-weight: 900;
+  }
+
+  .coach-step-pill.is-active .coach-step-number {
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .coach-step-icon,
+  .coach-step-label {
+    color: inherit !important;
+  }
+
+  .coach-step-label {
+    font-size: 0.88rem;
+    font-weight: 800;
+  }
+
+  .coach-case-board {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: minmax(19rem, 0.82fr) minmax(0, 1.18fr);
+    gap: 1rem;
+    align-items: stretch;
+    padding: 1rem 1.35rem 1.25rem;
+    background:
+      linear-gradient(120deg, rgba(24, 32, 51, 0.96) 0%, rgba(28, 44, 63, 0.94) 44%, rgba(8, 93, 104, 0.9) 100%),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: auto, 34px 34px, 34px 34px;
+    border-bottom: 1px solid rgba(255, 250, 242, 0.13);
+    box-shadow: 0 26px 70px rgba(24, 32, 51, 0.2);
+  }
+
+  .coach-case-board::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 22%, rgba(217, 111, 67, 0.34), transparent 18rem),
+      radial-gradient(circle at 80% 35%, rgba(42, 169, 184, 0.24), transparent 20rem);
+    pointer-events: none;
+  }
+
+  .coach-case-copy,
+  .coach-mission-grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .coach-case-copy {
+    display: grid;
+    align-content: center;
+    min-height: 14rem;
+    padding: 1.45rem 1.55rem;
+    border-radius: 30px 10px 30px 30px;
+    background: rgba(255, 250, 242, 0.08);
+    border: 1px solid rgba(255, 250, 242, 0.12);
+    color: rgba(255, 250, 242, 0.78);
+  }
+
+  .coach-case-kicker {
+    margin: 0 0 0.6rem;
+    color: var(--coach-accent-dark) !important;
+    font-size: 0.74rem !important;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .coach-case-copy h1 {
+    margin: 0;
+    color: #fffaf2 !important;
+    font-size: clamp(2.8rem, 6vw, 5.9rem);
+    font-weight: 950;
+    letter-spacing: -0.09em;
+    line-height: 0.88;
+  }
+
+  .coach-case-copy > p:not(.coach-case-kicker) {
+    max-width: 40rem;
+    margin: 1rem 0 0;
+    color: rgba(255, 250, 242, 0.72) !important;
+    font-size: 0.98rem;
+    line-height: 1.75;
+  }
+
+  .coach-case-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    align-items: center;
+    margin-top: 1.25rem;
+  }
+
+  .coach-case-actions button {
+    min-height: 2.7rem;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 250, 242, 0.18);
+    background: #fffaf2 !important;
+    color: #182033 !important;
+    font-size: 0.84rem;
+    font-weight: 900;
+    box-shadow: none !important;
+  }
+
+  .coach-case-actions span {
+    color: rgba(255, 250, 242, 0.58) !important;
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  .coach-mission-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: minmax(4.8rem, auto);
+    gap: 0.65rem;
+  }
+
+  .coach-mission-node {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "number symbol"
+      "label label";
+    gap: 0.45rem 0.6rem;
+    align-content: space-between;
+    padding: 0.82rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 250, 242, 0.13);
+    border-radius: 50px;
+    background: rgba(255, 250, 242, 0.085) !important;
+    color: rgba(255, 250, 242, 0.72) !important;
+    box-shadow: none !important;
+    text-align: left;
+  }
+
+  .coach-mission-node:nth-child(1),
+  .coach-mission-node:nth-child(4),
+  .coach-mission-node:nth-child(7) {
+    grid-column: span 2;
+  }
+
+  .coach-mission-node:nth-child(2),
+  .coach-mission-node:nth-child(3),
+  .coach-mission-node:nth-child(5),
+  .coach-mission-node:nth-child(6),
+  .coach-mission-node:nth-child(8),
+  .coach-mission-node:nth-child(9) {
+    grid-column: span 2;
+  }
+
+  .coach-mission-node:hover {
+    transform: translateY(-3px) rotate(-0.4deg);
+    border-color: rgba(255, 250, 242, 0.26);
+    background: rgba(255, 250, 242, 0.13) !important;
+  }
+
+  .coach-mission-node.is-active {
+    background: #fffaf2 !important;
+    color: #182033 !important;
+    border-color: rgba(255, 250, 242, 0.7);
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.22) !important;
+    transform: translateY(-4px) rotate(0.6deg);
+  }
+
+  .coach-mission-node.is-active::before {
+    content: "";
+    position: absolute;
+    right: -1.8rem;
+    top: -1.8rem;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 999px;
+    background: rgba(217, 111, 67, 0.2);
+  }
+
+  .coach-mission-number {
+    grid-area: number;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 1.75rem;
+    border-radius: 999px;
+    background: rgba(255, 250, 242, 0.12);
+    color: inherit !important;
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+  }
+
+  .coach-mission-symbol {
+    grid-area: symbol;
+    justify-self: end;
+    color: inherit !important;
+  }
+
+  .coach-mission-label {
+    grid-area: label;
+    color: inherit !important;
+    font-size: 0.92rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+  }
+
+  .coach-shell .coach-rail {
+    width: 17.5rem;
+    background:
+      linear-gradient(90deg, rgba(24, 32, 51, 0.98) 0 0.55rem, transparent 0.55rem),
+      linear-gradient(180deg, #fffaf0 0%, #f1e6d4 100%) !important;
+    color: var(--coach-ink) !important;
+    border-right: 1px solid rgba(42, 50, 66, 0.14);
+    box-shadow: 18px 0 60px rgba(50, 41, 29, 0.11) !important;
+    backdrop-filter: none;
+  }
+
+  .coach-shell .coach-brandbar {
+    min-height: 7.25rem;
+    padding: 1.45rem 1.2rem 1.2rem 1.65rem !important;
+    border-bottom-color: rgba(42, 50, 66, 0.12) !important;
+  }
+
+  .coach-shell .apple-brandmark {
+    border-radius: 50% !important;
+    background: #000000 !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell .apple-brandcopy h1 {
+    color: var(--coach-ink) !important;
+    font-size: 1.18rem;
+    font-weight: 850;
+    letter-spacing: -0.05em;
+  }
+
+  .coach-shell .apple-brandcopy p {
+    color: var(--coach-accent-dark) !important;
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+  }
+
+  .coach-shell .apple-nav {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .coach-shell .apple-nav-list {
+    gap: 0.38rem;
+    padding-left: 1.15rem !important;
+    padding-right: 0.85rem !important;
+  }
+
+  .coach-shell .coach-nav-button {
+    position: relative;
+    min-height: 3.25rem;
+    border-radius: 16px 24px 24px 16px !important;
+    border: 1px solid transparent;
+    background: transparent !important;
+    color: rgba(24, 32, 51, 0.72) !important;
+    box-shadow: none !important;
+    backdrop-filter: none;
+  }
+
+  .coach-shell .coach-nav-button:hover {
+    background: rgba(8, 127, 140, 0.08) !important;
+    border-color: rgba(8, 127, 140, 0.14);
+    color: var(--coach-ink) !important;
+    transform: translateX(2px);
+  }
+
+  .coach-shell .coach-nav-button.bg-indigo-600 {
+    background: linear-gradient(135deg, #172033 0%, #223049 100%) !important;
+    color: #ffffff !important;
+    border-color: rgba(24, 32, 51, 0.2) !important;
+    box-shadow: 0 18px 36px rgba(24, 32, 51, 0.18) !important;
+  }
+
+  .coach-shell .coach-nav-button.bg-indigo-600::before {
+    content: "";
+    position: absolute;
+    left: -0.38rem;
+    top: 0.65rem;
+    bottom: 0.65rem;
+    width: 0.24rem;
+    border-radius: 999px;
+    background: var(--coach-warm);
+  }
+
+  .coach-shell .coach-nav-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 1.7rem;
+    border-radius: 999px;
+    background: rgba(24, 32, 51, 0.07);
+    color: rgba(24, 32, 51, 0.48) !important;
+    font-size: 0.64rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+  }
+
+  .coach-shell .coach-nav-button.bg-indigo-600 .coach-nav-index {
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.78) !important;
+  }
+
+  .coach-shell .coach-nav-button svg,
+  .coach-shell .coach-nav-button span {
+    color: inherit !important;
+  }
+
+  .coach-shell .apple-sidebar .text-slate-400,
+  .coach-shell .apple-sidebar .text-slate-500,
+  .coach-shell .apple-sidebar .text-slate-600 {
+    color: rgba(24, 32, 51, 0.68) !important;
+  }
+
+  .coach-shell .apple-sidebar .hover\:text-slate-200:hover,
+  .coach-shell .apple-sidebar .hover\:text-slate-700:hover {
+    color: var(--coach-ink) !important;
+  }
+
+  .coach-rail-note {
+    margin: 0 0.85rem 1rem 1.15rem;
+    padding: 1rem 1rem 1rem 1.15rem;
+    border-radius: 22px;
+    background: rgba(24, 32, 51, 0.06);
+    border: 1px solid rgba(24, 32, 51, 0.09);
+  }
+
+  .coach-rail-note span {
+    display: block;
+    margin-bottom: 0.38rem;
+    color: var(--coach-accent-dark) !important;
+    font-size: 0.68rem;
+    font-weight: 850;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .coach-rail-note strong {
+    display: block;
+    color: #000000;
+    font-size: 1.05rem;
+    letter-spacing: -0.03em;
+  }
+
+  .coach-rail-note p {
+    margin: 0.32rem 0 0;
+    color: rgba(24, 32, 51, 0.58);
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+
+  .coach-shell .coach-workspace {
+    background: #ffffff !important;
+  }
+
+  .coach-shell .coach-stage {
+    width: min(100%, 1280px);
+    max-width: 1280px !important;
+    padding-top: 0;
+  }
+
+  .coach-workbench-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.25rem;
+    align-items: end;
+    margin-bottom: 1.35rem;
+    padding: 1.15rem 0 1.45rem;
+    border-bottom: 1px solid rgba(24, 32, 51, 0.12);
+  }
+
+  .coach-overline {
+    margin: 0 0 0.5rem;
+    color: rgba(0, 0, 0, 0.56) !important;
+    font-size: 0.72rem !important;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .coach-workbench-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .coach-workbench-heading h2 {
+    margin: 0;
+    color: var(--coach-ink) !important;
+    font-size: clamp(2.25rem, 4vw, 4.2rem);
+    font-weight: 400;
+    letter-spacing: -0.065em;
+    line-height: 1;
+  }
+
+  .coach-workbench-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: #000000;
+    color: #fff !important;
+    box-shadow: none;
+  }
+
+  .coach-workbench-title > p:last-child {
+    max-width: 44rem;
+    margin: 0.7rem 0 0;
+    color: rgba(0, 0, 0, 0.62) !important;
+    font-size: 0.98rem;
+    font-weight: 330;
+    line-height: 1.65;
+  }
+
+  .coach-workbench-meta {
+    display: grid;
+    grid-template-columns: repeat(2, auto) auto;
+    gap: 0.65rem;
+    align-items: stretch;
+  }
+
+  .coach-workbench-meta div,
+  .coach-workbench-meta button {
+    min-width: 8.25rem;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .coach-workbench-meta span {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: rgba(0, 0, 0, 0.5) !important;
+    font-size: 0.65rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .coach-workbench-meta strong {
+    display: block;
+    color: #000000;
+    font-size: 0.92rem;
+    line-height: 1.3;
+  }
+
+  .coach-workbench-meta button {
+    min-width: 9.5rem;
+    color: #ffffff !important;
+    background: #000000 !important;
+    border-color: #000000;
+    border-radius: 50px;
+    font-weight: 540;
+  }
+
+  .coach-shell .coach-stage {
+    position: relative;
+    margin-top: 0;
+    padding: 0 0 5rem !important;
+    border-radius: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .coach-shell .coach-stage::before {
+    content: none;
+  }
+
+  .coach-dossier-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    min-height: 8.5rem;
+    padding: 1.35rem;
+    border-radius: 18px;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.94) 0 38%, rgba(255, 255, 255, 0.16) 38%),
+      var(--feature-gradient);
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    box-shadow: none;
+  }
+
+  .coach-dossier-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-width: 0;
+  }
+
+  .coach-dossier-tab h2 {
+    margin: 0.15rem 0 0;
+    color: #000000 !important;
+    font-size: clamp(1.8rem, 3.1vw, 3.25rem);
+    font-weight: 400;
+    letter-spacing: -0.07em;
+    line-height: 1;
+  }
+
+  .coach-content-brief {
+    display: none;
+  }
+
+  .coach-content-brief div {
+    display: grid;
+    min-width: 10rem;
+    padding-right: 1rem;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .coach-content-brief span {
+    color: rgba(0, 0, 0, 0.48) !important;
+    font-size: 0.65rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .coach-content-brief strong {
+    margin-top: 0.15rem;
+    color: #000000;
+    font-size: 1rem;
+  }
+
+  .coach-content-brief p {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.62) !important;
+    font-size: 0.9rem;
+    font-weight: 330;
+    line-height: 1.55;
+  }
+
+  .coach-shell .apple-intro,
+  .coach-shell .apple-module-intro .mb-8:first-child,
+  .coach-shell .apple-module-export .mb-8:first-child,
+  .coach-shell .apple-module-result .mb-8:first-child {
+    border-radius: 8px;
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell .apple-intro::before,
+  .coach-shell .apple-module-intro .mb-8:first-child::before,
+  .coach-shell .apple-module-export .mb-8:first-child::before,
+  .coach-shell .apple-module-result .mb-8:first-child::before {
+    background: none !important;
+  }
+
+  .coach-shell .apple-intro::after {
+    left: 0;
+    width: 0.28rem;
+    background: #000000;
+    clip-path: none;
+    opacity: 1;
+  }
+
+  .coach-shell .apple-intro h2,
+  .coach-shell .apple-module-intro .mb-8:first-child h2,
+  .coach-shell .apple-module-export .mb-8:first-child h2,
+  .coach-shell .apple-module-result .mb-8:first-child h2 {
+    max-width: 20ch;
+    color: #000000 !important;
+    font-weight: 400;
+    letter-spacing: -0.055em;
+  }
+
+  .coach-shell .apple-intro p,
+  .coach-shell .apple-module-intro .mb-8:first-child p,
+  .coach-shell .apple-module-export .mb-8:first-child p,
+  .coach-shell .apple-module-result .mb-8:first-child p {
+    color: rgba(0, 0, 0, 0.62) !important;
+  }
+
+  .coach-shell .bg-white.p-6.rounded-2xl,
+  .coach-shell .bg-white.p-8.rounded-2xl,
+  .coach-shell .bg-white.rounded-2xl,
+  .coach-shell .bg-white.rounded-3xl,
+  .coach-shell .bg-white.rounded-xl {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell .apple-empty-state {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell input,
+  .coach-shell textarea,
+  .coach-shell select {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.18) !important;
+    color: #000000 !important;
+  }
+
+  .coach-shell input:focus,
+  .coach-shell textarea:focus,
+  .coach-shell select:focus {
+    border-color: #000000 !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell a.bg-indigo-600,
+  .coach-shell button.bg-indigo-600,
+  .coach-shell button.bg-sky-600,
+  .coach-shell button.bg-violet-600,
+  .coach-shell button.bg-purple-600 {
+    background: #000000 !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell .text-indigo-700,
+  .coach-shell .text-indigo-600,
+  .coach-shell .text-indigo-500,
+  .coach-shell .text-blue-700,
+  .coach-shell .text-blue-600,
+  .coach-shell .text-blue-500,
+  .coach-shell .text-sky-600,
+  .coach-shell .text-sky-700 {
+    color: #000000 !important;
+  }
+
+  .coach-shell .bg-indigo-100,
+  .coach-shell .bg-blue-50,
+  .coach-shell .bg-blue-50\/50,
+  .coach-shell .bg-indigo-50,
+  .coach-shell .bg-sky-50\/70 {
+    background: rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .coach-shell .border-indigo-100,
+  .coach-shell .border-indigo-200,
+  .coach-shell .border-blue-100,
+  .coach-shell .border-blue-200,
+  .coach-shell .border-sky-100 {
+    border-color: rgba(0, 0, 0, 0.12) !important;
+  }
+
+  .coach-shell .personality-hero,
+  .coach-shell .studio-assessment-copy,
+  .coach-shell .studio-readiness-note-muted {
+    background:
+      linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.62) 45%, rgba(0, 0, 0, 0.22) 100%),
+      var(--figma-gradient) !important;
+    color: #ffffff !important;
+  }
+
+  @media (max-width: 1024px) {
+    .coach-commandbar {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .coach-command-status,
+    .coach-command-tools {
+      justify-self: start;
+    }
+
+    .coach-body-shell {
+      grid-template-columns: 1fr;
+      overflow-y: auto;
+    }
+
+    .coach-body-shell .coach-workspace,
+    .coach-side-panel {
+      overflow: visible;
+    }
+
+    .coach-case-board {
+      grid-template-columns: 1fr;
+    }
+
+    .coach-mission-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .coach-mission-node:nth-child(n) {
+      grid-column: span 1;
+    }
+
+    .coach-workbench-header,
+    .coach-dossier-header,
+    .coach-workbench-meta {
+      grid-template-columns: 1fr;
+    }
+
+    .coach-workbench-meta {
+      display: grid;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .coach-commandbar {
+      padding: 0.85rem 1rem;
+    }
+
+    .coach-command-tools {
+      display: none;
+    }
+
+    .coach-command-status {
+      width: 100%;
+      justify-content: space-between;
+      border-radius: 18px;
+    }
+
+    .coach-case-board {
+      padding: 0.85rem 1rem 1rem;
+    }
+
+    .coach-case-copy {
+      min-height: 0;
+      padding: 1.1rem;
+    }
+
+    .coach-case-copy h1 {
+      font-size: clamp(2.4rem, 16vw, 4rem);
+    }
+
+    .coach-mission-grid {
+      display: flex;
+      overflow-x: auto;
+      padding-bottom: 0.2rem;
+    }
+
+    .coach-mission-node {
+      min-width: 9.4rem;
+    }
+
+    .coach-mobile-tools {
+      display: flex;
+    }
+
+    .coach-body-shell {
+      padding: 0.85rem 1rem 1.25rem;
+    }
+
+    .coach-shell .coach-rail {
+      width: 100%;
+      background: linear-gradient(180deg, #fffaf0 0%, #f1e6d4 100%) !important;
+    }
+
+    .coach-shell .apple-nav-list {
+      grid-template-columns: 1fr;
+    }
+
+    .coach-rail-note {
+      display: none;
+    }
+
+    .coach-workbench-heading h2 {
+      font-size: clamp(2rem, 11vw, 3rem);
+    }
+
+    .coach-dossier-header {
+      align-items: stretch;
+    }
+
+    .coach-content-brief {
+      grid-template-columns: 1fr;
+    }
+
+    .coach-content-brief div {
+      padding-right: 0;
+      padding-bottom: 0.75rem;
+      border-right: 0;
+      border-bottom: 1px solid rgba(24, 32, 51, 0.11);
+    }
+
+    .coach-workbench-meta div,
+    .coach-workbench-meta button {
+      min-width: 0;
+    }
+  }

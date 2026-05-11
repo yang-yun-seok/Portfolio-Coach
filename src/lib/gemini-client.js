@@ -5,6 +5,7 @@
  * 프론트엔드에 API 키 입력이 불필요하다.
  */
 
+import { buildUserPromptClient } from './prompt-builder.js';
 import { SUPABASE_URL, staticAssetUrl } from './runtime-config';
 
 const GEMINI_PROXY_URL = `${SUPABASE_URL}/functions/v1/gemini-proxy`;
@@ -55,7 +56,6 @@ export async function callGeminiProxy({ contents, systemInstruction, generationC
  * AI 분석 - Supabase gemini-proxy 경유 (API 키 불필요)
  */
 export async function analyzeViaProxy({ modelId, top3, profile, hasFiles, hasPortfolioFile, fileParts, portfolioFileNames, githubPortfolio }) {
-  const { buildUserPromptClient } = await import('./prompt-builder.js');
   const userPrompt = buildUserPromptClient({
     top3,
     profile,
