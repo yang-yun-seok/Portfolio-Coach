@@ -1,22 +1,20 @@
 {
   "source": "GameJob",
   "latestAppliedDate": "2026-05-11",
-  "referenceJobCount": 590,
+  "referenceJobCount": 431,
   "lastSuccessfulCrawlAt": "2026-05-10T16:37:57.098Z",
   "lastCrawlAttemptAt": "2026-05-10T16:37:57.098Z",
   "lastCrawlStatus": "success",
   "lastCrawlError": null,
   "newJobsCount": 0,
-  "activeJobsCount": 590,
-  "inactiveJobsCount": 289,
-  "totalManagedJobsCount": 879,
+  "activeJobsCount": 431,
+  "inactiveJobsCount": 190,
+  "totalManagedJobsCount": 621,
   "filters": {
     "jobTags": [
       "게임개발(클라이언트)",
       "게임개발(모바일)",
-      "게임기획",
-      "게임운영",
-      "QA·테스트"
+      "게임기획"
     ],
     "careerTags": [
       "신입",

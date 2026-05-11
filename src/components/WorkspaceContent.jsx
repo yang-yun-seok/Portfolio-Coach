@@ -4,6 +4,7 @@ import FeedbackWorkspace from './FeedbackWorkspace';
 import InputWorkspace from './InputWorkspace';
 import InterviewReadinessWorkspace from './InterviewReadinessWorkspace';
 import InterviewWorkspace from './InterviewWorkspace';
+import JobAnalysisWorkspace from './JobAnalysisWorkspace';
 import JobsWorkspace from './JobsWorkspace';
 import PersonalityTest from './PersonalityTest';
 import PdfExport from './PdfExport';
@@ -32,6 +33,7 @@ export default function WorkspaceContent({
   inputWorkspaceProps,
   interviewReadinessWorkspaceProps,
   interviewWorkspaceProps,
+  jobAnalysisWorkspaceProps,
   jobsWorkspaceProps,
   onGoToInput,
   pdfExportProps,
@@ -55,6 +57,10 @@ export default function WorkspaceContent({
         results ? (
           <PortfolioWorkspace {...portfolioWorkspaceProps} />
         ) : renderEmptyState(<ImageIcon size={48} />, '포트폴리오 가이드가 없습니다', '정보를 입력하고 AI 분석을 진행해주세요.', onGoToInput)
+      )}
+
+      {activeTab === 'job-analysis' && (
+        <JobAnalysisWorkspace {...jobAnalysisWorkspaceProps} />
       )}
 
       {activeTab === 'jobs' && (

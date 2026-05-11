@@ -24,8 +24,6 @@ export const DAILY_GAMEJOB_JOB_TAGS = [
   '게임개발(클라이언트)',
   '게임개발(모바일)',
   '게임기획',
-  '게임운영',
-  'QA·테스트',
 ];
 
 export const DAILY_GAMEJOB_CAREER_TAGS = [

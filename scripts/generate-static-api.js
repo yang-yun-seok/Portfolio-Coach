@@ -4,6 +4,9 @@ import { fileURLToPath } from 'url';
 import {
   JOB_HISTORY_DIR,
   buildPublicJobs,
+  countNewJobsForDate,
+  filterJobsByCatalogFilters,
+  isManagedCatalogJob,
   loadJobMetadata,
   loadJobRecords,
 } from '../lib/job-catalog.js';
@@ -76,18 +79,26 @@ function generateJobs() {
   if (!existsSync(jobsDir)) return;
 
   const allJobs = loadJobRecords(jobsDir);
-  const publicJobs = buildPublicJobs(allJobs);
+  const loadedMetadata = loadJobMetadata(jobsDir);
+  const filters = loadedMetadata.filters || {};
+  const publicJobs = buildPublicJobs(allJobs, filters);
+  const filteredManagedJobs = filterJobsByCatalogFilters(
+    allJobs.filter(isManagedCatalogJob),
+    filters,
+  );
   const fallbackLatestDate = publicJobs
     .map((job) => job.updatedAt)
     .filter(Boolean)
     .sort()
     .reverse()[0] || null;
-  const loadedMetadata = loadJobMetadata(jobsDir);
   const metadata = {
     ...loadedMetadata,
+    filters,
     latestAppliedDate: loadedMetadata.latestAppliedDate || fallbackLatestDate,
     referenceJobCount: publicJobs.length,
-    activeJobsCount: loadedMetadata.activeJobsCount || publicJobs.length,
+    activeJobsCount: publicJobs.length,
+    inactiveJobsCount: Math.max(0, filteredManagedJobs.length - publicJobs.length),
+    totalManagedJobsCount: filteredManagedJobs.length,
     lastCrawlStatus: loadedMetadata.lastCrawlStatus === 'idle' && publicJobs.length > 0 ? 'success' : loadedMetadata.lastCrawlStatus,
   };
 
@@ -97,6 +108,7 @@ function generateJobs() {
 
 function generateJobHistory() {
   const historyDir = join(ROOT, 'data', JOB_HISTORY_DIR);
+  const filters = loadJobMetadata(join(ROOT, 'data', 'jobs')).filters || {};
   ensureDir(PUBLIC_HISTORY);
   clearJsonFiles(PUBLIC_HISTORY);
 
@@ -114,15 +126,28 @@ function generateJobHistory() {
     const snapshot = loadJson(join(historyDir, fileName));
     if (!snapshot) return null;
 
-    writeJson(join(PUBLIC_HISTORY, fileName), snapshot);
+    const filteredJobs = Array.isArray(snapshot.jobs)
+      ? buildPublicJobs(snapshot.jobs, filters)
+      : [];
+    const filteredSnapshot = Array.isArray(snapshot.jobs)
+      ? {
+          ...snapshot,
+          jobs: filteredJobs,
+          referenceJobCount: filteredJobs.length,
+          activeJobsCount: filteredJobs.length,
+          newJobsCount: countNewJobsForDate(filteredJobs, date),
+        }
+      : snapshot;
+
+    writeJson(join(PUBLIC_HISTORY, fileName), filteredSnapshot);
 
     return {
       date,
-      generatedAt: snapshot.generatedAt || null,
-      referenceJobCount: snapshot.referenceJobCount || 0,
-      newJobsCount: snapshot.newJobsCount || 0,
-      activeJobsCount: snapshot.activeJobsCount || 0,
-      lastCrawlStatus: snapshot.lastCrawlStatus || 'unknown',
+      generatedAt: filteredSnapshot.generatedAt || null,
+      referenceJobCount: filteredSnapshot.referenceJobCount || 0,
+      newJobsCount: filteredSnapshot.newJobsCount || 0,
+      activeJobsCount: filteredSnapshot.activeJobsCount || 0,
+      lastCrawlStatus: filteredSnapshot.lastCrawlStatus || 'unknown',
       path: `./history/${fileName}`,
     };
   })

@@ -130,10 +130,10 @@ export default function JobsWorkspace({
           <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Daily Crawl Policy</p>
-              <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">게임잡 자동 수집 기준</h3>
+              <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">추천 공고 매칭 기준</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                배포 페이지에서는 수동 크롤링을 제공하지 않습니다. 매일 00시 자동 수집된 공고만 공개 추천에 반영되며,
-                AI 매칭은 아래 `매칭하기` 버튼을 눌렀을 때만 실행됩니다.
+                시장 전체 흐름과 공고 분포는 `공고 분석` 탭에서 확인하고, 이 화면은 개인 프로필 기준 AI 매칭만 다룹니다.
+                자동 수집된 공고를 기준으로 아래 `매칭하기` 버튼을 눌렀을 때만 1회 추천을 계산합니다.
               </p>
             </div>
             <span className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold ${crawlStatus.tone}`}>
@@ -146,13 +146,7 @@ export default function JobsWorkspace({
             <article className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5">
               <p className="text-xs font-semibold text-slate-500">직종 조건</p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {[
-                  '게임개발(클라이언트)',
-                  '게임개발(모바일)',
-                  '게임기획',
-                  '게임운영',
-                  'QA·테스트',
-                ].map((tag) => (
+                {(jobsMetadata.filters?.jobTags || []).map((tag) => (
                   <span key={tag} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700">
                     {tag}
                   </span>
@@ -163,7 +157,7 @@ export default function JobsWorkspace({
             <article className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-5">
               <p className="text-xs font-semibold text-slate-500">경력 조건</p>
               <div className="mt-3 flex flex-wrap gap-2">
-                {['신입', '1~3년', '경력무관'].map((tag) => (
+                {(jobsMetadata.filters?.careerTags || []).map((tag) => (
                   <span key={tag} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700">
                     {tag}
                   </span>
@@ -203,7 +197,7 @@ export default function JobsWorkspace({
                 {jobMatchState.attempted ? '다시 매칭하기' : '매칭하기'}
               </button>
               <span className="rounded-full border border-slate-200 bg-white px-4 py-3 text-xs text-slate-500">
-                클릭 시점의 프로필과 최신 공개 공고 기준으로 1회 AI 매칭을 수행합니다.
+                공고 분석 탭에서 흐름을 본 뒤, 클릭 시점의 프로필 기준으로 1회 AI 매칭만 수행합니다.
               </span>
             </div>
 

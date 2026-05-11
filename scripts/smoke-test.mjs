@@ -213,7 +213,7 @@ async function run() {
     await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
     await page.goto(`${baseUrl}?smoke=1`, { waitUntil: 'networkidle0', timeout: 45000 });
 
-    const expectedTools = ['정보 입력', '서류 피드백', '포트폴리오', '추천 공고', '면접 대비', '면접 기본 준비', '인성검사', 'PDF 출력'];
+    const expectedTools = ['정보 입력', '서류 피드백', '포트폴리오', '공고 분석', '추천 공고', '면접 대비', '면접 기본 준비', '인성검사', 'PDF 출력'];
 
     const initialState = await page.evaluate(() => {
       const toolLabels = [...document.querySelectorAll('.coach-side-tool-label')].map((node) => node.textContent.trim());
@@ -252,9 +252,19 @@ async function run() {
       if (state.overflowX) throw new Error(`Horizontal overflow detected after opening "${label}".`);
     }
 
+    await clickTool(page, '공고 분석');
+    await page.waitForFunction(
+      () => document.body.innerText.includes('게임잡 공고 현황'),
+      { timeout: 5000 },
+    );
+    const analysisTabState = await page.evaluate(() => ({
+      hasManualCrawlButton: [...document.querySelectorAll('button')].some((button) => button.innerText.trim().includes('수동 크롤링')),
+    }));
+    if (analysisTabState.hasManualCrawlButton) throw new Error('Manual crawl button is still exposed on the job analysis tab.');
+
     await clickTool(page, '추천 공고');
     await page.waitForFunction(
-      () => document.body.innerText.includes('매칭하기') && document.body.innerText.includes('매일 00시 자동 수집'),
+      () => document.body.innerText.includes('매칭하기') && document.body.innerText.includes('개인 프로필 기준 AI 매칭만'),
       { timeout: 5000 },
     );
     const jobsTabState = await page.evaluate(() => ({

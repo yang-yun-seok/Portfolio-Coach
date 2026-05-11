@@ -4,7 +4,7 @@ import {
   CheckCircle, Loader2,
   User,
   Smile,
-  Database, ClipboardList, Download,
+  Database, ClipboardList, Download, BarChart3,
 } from 'lucide-react';
 import {
   ROLE_GROUPS,
@@ -195,6 +195,10 @@ export default function App() {
     lastCrawlStatus: 'idle',
     newJobsCount: 0,
     activeJobsCount: 0,
+    filters: {
+      jobTags: ['게임개발(클라이언트)', '게임개발(모바일)', '게임기획'],
+      careerTags: ['신입', '1~3년', '경력무관'],
+    },
   });
 
   useEffect(() => {
@@ -710,6 +714,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     { id: 'input',           label: '정보 입력',       icon: User },
     { id: 'feedback',        label: '서류 피드백',      icon: FileText },
     { id: 'portfolio',       label: '포트폴리오',       icon: ImageIcon },
+    { id: 'job-analysis',    label: '공고 분석',        icon: BarChart3 },
     { id: 'jobs',            label: '추천 공고',        icon: Target },
     { id: 'interview',       label: '면접 대비',        icon: MessageSquare },
     { id: 'interview-basic', label: '면접 기본 준비',   icon: Smile },
@@ -743,10 +748,15 @@ const { analyzeApplication } = useApplicationAnalysis({
       description: '프로젝트 역할, 문제 해결 과정, 결과가 채용자가 읽기 쉽게 연결되는지 확인합니다.',
       hint: '플밍 직무는 GitHub 저장소 분석 결과도 함께 볼 수 있습니다.',
     },
+    'job-analysis': {
+      title: '시장 흐름과 채용 언어를 따로 봅니다',
+      description: '게임잡 자동 수집 공고를 기준으로 직군 분포, 경력 분포, 키워드 흐름과 대표 기업을 확인합니다.',
+      hint: '이 탭은 공고 시장 분석 전용입니다. 개인화 우선순위는 추천 공고 탭에서 따로 실행합니다.',
+    },
     jobs: {
-      title: '추천 공고와 데이터 운영을 함께 봅니다',
-      description: '입력한 직무와 역량 기준 추천 결과를 확인하고, 같은 화면에서 GameJob 데이터 최신화도 실행할 수 있습니다.',
-      hint: '추천 결과가 없어도 이 탭에서 공고 데이터 현황과 크롤링 상태를 먼저 확인할 수 있습니다.',
+      title: '내 프로필 기준 공고 매칭만 봅니다',
+      description: '입력한 직무와 역량을 바탕으로 AI가 1회 매칭한 추천 공고를 확인합니다.',
+      hint: '시장 전체 흐름은 공고 분석 탭에서 보고, 이 탭에서는 개인 적합도와 부족 역량에 집중합니다.',
     },
     interview: {
       title: '공고별 면접 대응을 만듭니다',
@@ -896,6 +906,10 @@ const { analyzeApplication } = useApplicationAnalysis({
     userInfo,
     visibleJobs,
   };
+  const jobAnalysisWorkspaceProps = {
+    jobs,
+    jobsMetadata,
+  };
   const personalityTestProps = {
     selectedProvider,
     selectedModelId,
@@ -942,6 +956,7 @@ const { analyzeApplication } = useApplicationAnalysis({
             inputWorkspaceProps={inputWorkspaceProps}
             interviewReadinessWorkspaceProps={interviewReadinessWorkspaceProps}
             interviewWorkspaceProps={interviewWorkspaceProps}
+            jobAnalysisWorkspaceProps={jobAnalysisWorkspaceProps}
             jobsWorkspaceProps={jobsWorkspaceProps}
             onGoToInput={() => setActiveTab('input')}
             pdfExportProps={pdfExportProps}
