@@ -1,0 +1,34 @@
+{
+  "id": "crawled-277652",
+  "company": "위메이드 (Wemade)",
+  "title": "[위메이드플레이] 2D 스파인(이펙트 가능) 애니메이터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Photoshop",
+    "Spine"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277652",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "애니팡 시리즈, 디즈니 팝 타운, 위 베어 베어스 더 퍼즐",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "캐릭터, 애니메이션, KeyAnimation, 이펙트, Unity, Photoshop, 유니티, spine, 캐주얼, 퍼즐, 북미풍",
+  "updatedAt": "2026-05-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
+  "inactiveAt": null
+}

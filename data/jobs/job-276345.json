@@ -1,0 +1,35 @@
+{
+  "id": "crawled-276345",
+  "company": "㈜스튜디오비사이드",
+  "title": "[스타세이비어] 3D 캐릭터 모델러 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Unity",
+    "Photoshop"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276345",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "스타세이비어 (https://www.starsavior.com/kr)",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정)",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 3D, 모델링, 3DSmax, 캐릭터",
+  "updatedAt": "2026-05-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
+  "inactiveAt": null
+}

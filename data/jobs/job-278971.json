@@ -1,0 +1,32 @@
+{
+  "id": "crawled-278971",
+  "company": "스튜디오라사㈜",
+  "title": "캐릭터 애니메이터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278971",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "콘솔게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 캐릭터, 애니메이션",
+  "updatedAt": "2026-05-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
+  "inactiveAt": null
+}

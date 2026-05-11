@@ -1,0 +1,32 @@
+{
+  "id": "crawled-279969",
+  "company": "알피네",
+  "title": "[디셉션 엔진] 스파인 애니메이터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Spine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279969",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "크로노 아크",
+  "gameCategory": "콘솔게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "애니메이션, spine",
+  "updatedAt": "2026-05-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
+  "inactiveAt": null
+}

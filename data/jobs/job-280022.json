@@ -1,0 +1,36 @@
+{
+  "id": "crawled-280022",
+  "company": "㈜스탠드에그",
+  "title": "[Stand Egg] 협동 디펜스 기획자 채용",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280022",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "고양이 정원, 천마 키우기, 고양이 카페",
+  "gameCategory": "모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, PM, PD, 레벨기획, 시스템기획, 유료화",
+  "updatedAt": "2026-05-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
+  "inactiveAt": null
+}

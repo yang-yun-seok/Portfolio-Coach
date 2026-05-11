@@ -24,13 +24,13 @@
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "API, C++, .NET, C#, 서버, 네트워크, 엔진, Unreal, 게임프로그래밍, 게임프로그래머, NC, CINDERCITY",
-  "updatedAt": "2026-05-10",
+  "updatedAt": "2026-05-11",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-10T16:37:57.098Z",
-  "lastSeenAt": "2026-05-10T16:37:57.098Z",
-  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
   "inactiveAt": null
 }

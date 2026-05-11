@@ -2,17 +2,16 @@
   "id": "crawled-279847",
   "company": "프론티어코어㈜",
   "title": "스타트업 턴제 전투기획 담당자 모집",
-  "role": "QA/테스트",
+  "role": "기획",
   "roles": [
-    "기획",
-    "QA/테스트"
+    "기획"
   ],
   "reqSkills": [
     "밸런싱",
     "레벨 디자인",
     "시스템/컨텐츠 기획"
   ],
-  "reqExp": 0,
+  "reqExp": 1,
   "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279847",
   "hasAssignment": false,
   "assignmentType": "",
@@ -21,15 +20,15 @@
   "employmentType": "정규직",
   "deadline": "~ 06/06(토)",
   "salary": "2,600~2,800만원\n연봉검색",
-  "experience": "무관",
+  "experience": "경력 1년 이상",
   "keywords": "게임기획, 밸런스기획, 레벨기획, 시스템기획",
-  "updatedAt": "2026-05-10",
+  "updatedAt": "2026-05-11",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-10T16:37:57.098Z",
-  "lastSeenAt": "2026-05-10T16:37:57.098Z",
-  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
   "inactiveAt": null
 }

@@ -1,0 +1,33 @@
+{
+  "id": "crawled-278500",
+  "company": "(주)무브인터렉티브",
+  "title": "[무브인터렉티브] 이펙트 디자이너 신입/경력 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278500",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "디지몬슈퍼럼블, 디지몬마스터즈, 디지몬RPG, 파워레인저, 디지몬소울체이서3, 연희몽상",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 06/06(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "이펙트, FX",
+  "updatedAt": "2026-05-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,38 @@
+{
+  "id": "crawled-276915",
+  "company": "㈜스탠드에그",
+  "title": "[Stand Egg] RPG 원화, 도터 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "도트 아트",
+    "시나리오/퀘스트",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276915",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "고양이 정원, 천마 키우기, 고양이 카페",
+  "gameCategory": "모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, SNG, 인터페이스, UX·UI, 컨셉, 도트, 픽셀, 캐릭터도트, 배경도트, 애니메이션, 이펙트, FX, 게임기획, 시나리오, 퀘스트, PM, PD, 레벨기획, 시스템기획, 유료화",
+  "updatedAt": "2026-05-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
+  "inactiveAt": null
+}

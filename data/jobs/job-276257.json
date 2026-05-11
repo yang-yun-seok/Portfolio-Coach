@@ -1,7 +1,7 @@
 {
   "id": "crawled-276257",
   "company": "라이온하트 스튜디오",
-  "title": "[프로젝트Q] 서버 프로그래머 모집",
+  "title": "[오딘Q-발키리스콜] 서버 프로그래머 모집",
   "role": "클라이언트",
   "roles": [
     "클라이언트",
@@ -24,13 +24,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "C++, 서버, 게임프로그래머",
-  "updatedAt": "2026-05-10",
+  "updatedAt": "2026-05-11",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-10T16:37:57.098Z",
-  "lastSeenAt": "2026-05-10T16:37:57.098Z",
-  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
   "inactiveAt": null
 }

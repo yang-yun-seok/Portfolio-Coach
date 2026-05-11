@@ -1,0 +1,34 @@
+{
+  "id": "crawled-279466",
+  "company": "㈜나인디지트",
+  "title": "[캐쥬얼] 3D 그래픽 전반 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279466",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "용사마을타이쿤(11월 서비스 예정) / 프로젝트 HT (12월 서비스 예정)",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 Casual, SNG",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월), 인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 모델링, 로우폴리곤, 3DSmax, 캐릭터, 애니메이션, 3DMax, 이펙트",
+  "updatedAt": "2026-05-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
+  "inactiveAt": null
+}

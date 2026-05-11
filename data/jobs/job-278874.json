@@ -1,0 +1,36 @@
+{
+  "id": "crawled-278874",
+  "company": "소울엑스",
+  "title": "언리얼기반 3D 비주얼 아티스트",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI",
+    "기획",
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unreal Engine",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278874",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "멀티플랫폼게임, 관련없음 Casual, VR·AR",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 06/14(일)",
+  "salary": "3,000~3,200만원\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 애니메이션, 영상제작·편집, Unreal, Unity, 언리얼4",
+  "updatedAt": "2026-05-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
+  "inactiveAt": null
+}

@@ -1,7 +1,7 @@
 {
   "id": "crawled-279611",
   "company": "이지팁스",
-  "title": "Unity게임 개발자 (초기 멤버/프로젝트 핵심개발자)",
+  "title": "Unity게임 개발자 (초기 멤버/1인 개발)",
   "role": "클라이언트",
   "roles": [
     "클라이언트"
@@ -26,13 +26,13 @@
   "salary": "4,000~5,000만원 / 면접 시 협의\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "클라이언트, 모바일, iOS, Android, 게임프로그래밍, 게임프로그래머",
-  "updatedAt": "2026-05-10",
+  "updatedAt": "2026-05-11",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-10T16:37:57.098Z",
-  "lastSeenAt": "2026-05-10T16:37:57.098Z",
-  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
   "inactiveAt": null
 }

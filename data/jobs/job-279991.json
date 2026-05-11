@@ -1,0 +1,32 @@
+{
+  "id": "crawled-279991",
+  "company": "라인게임즈㈜",
+  "title": "[라인게임즈] 게임 클라이언트 주니어 개발자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279991",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "창세기전 모바일, 대항해시대오리진, 언디셈버",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 RPG, Shooting",
+  "employmentType": "정규직",
+  "deadline": "~ 05/22(금)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, 게임프로그래머",
+  "updatedAt": "2026-05-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
+  "inactiveAt": null
+}

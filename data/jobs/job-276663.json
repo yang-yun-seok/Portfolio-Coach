@@ -27,13 +27,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "신입",
   "keywords": "C++, Python, Java, 서버, 네트워크, DB, Unix, Docker, Couchbase, AWS, MongoDB, JAVASCRIPT, Go, GCP, 데브시스터즈, 쿠키런, terraform, Kubernetes",
-  "updatedAt": "2026-05-10",
+  "updatedAt": "2026-05-11",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-10T16:37:57.098Z",
-  "lastSeenAt": "2026-05-10T16:37:57.098Z",
-  "lastCrawledAt": "2026-05-10T16:37:57.098Z",
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
   "inactiveAt": null
 }

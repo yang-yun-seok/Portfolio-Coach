@@ -1,0 +1,32 @@
+{
+  "id": "crawled-278689",
+  "company": "㈜앵커노드",
+  "title": "[채용] 아트(Artist) 전문 인력 모집 (Pixel & 2D)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Photoshop"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278689",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Bread Bear, Card of Legend",
+  "gameCategory": "온라인PC게임, 모바일게임 기타",
+  "employmentType": "계약직 (계약기간 : 2년)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "픽셀, 캐릭터도트, 캐릭터, 오브젝트",
+  "updatedAt": "2026-05-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastSeenAt": "2026-05-11T18:34:17.098Z",
+  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
+  "inactiveAt": null
+}
