@@ -3,12 +3,14 @@ import { runCrawler } from '../../lib/crawler.js';
 import {
   JOB_AGGREGATE_FILE,
   JOB_HISTORY_DIR,
+  JOB_HISTORY_RETENTION_DAYS,
   buildPublicJobs,
   formatKstDate,
   isActiveJob,
   isManagedCatalogJob,
   loadJobHistorySnapshot,
   loadJobMetadata,
+  pruneJobHistorySnapshots,
   loadJobRecords,
   readJsonFile,
   writeJobAggregate,
@@ -227,7 +229,15 @@ export function appendDailyHistorySnapshot({
     ...snapshot,
   });
 
-  return snapshot;
+  const prunedDates = pruneJobHistorySnapshots(historyDir, {
+    referenceDate: snapshotDate,
+  });
+
+  return {
+    ...snapshot,
+    retentionDays: JOB_HISTORY_RETENTION_DAYS,
+    prunedDates,
+  };
 }
 
 export function persistResolvedJobPosting({ dataDir, job }) {
