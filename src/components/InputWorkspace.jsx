@@ -57,113 +57,72 @@ export default function InputWorkspace({
 
   return (
     <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
-      <div className="apple-intro">
-        <h2 className="text-3xl font-bold text-slate-800 mb-2">분석 프로필 & 서류 입력</h2>
-        <p className="text-slate-500">정확한 매칭과 피드백을 위해 정보를 입력하고 관련 서류를 첨부해 주세요.</p>
-      </div>
+      <section className="overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-sm">
+        <div className="grid gap-0 xl:grid-cols-[1.18fr_0.82fr]">
+          <div className="p-6 xl:border-r xl:border-slate-200">
+            <div className="mb-6 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Profile Setup</p>
+                <h3 className="mt-2 text-3xl font-black tracking-tight text-slate-900">분석 프로필 입력</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">이 화면에서 직군, 세부 직무, 경력, 역량과 서류 기준을 정리합니다.</p>
+              </div>
+              <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                {profileDisplayRole}
+              </div>
+            </div>
 
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-        <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2"><User size={20} className="text-indigo-500" /> 내 프로필 정보</h3>
-        <div className="mb-5">
-          <div className="mb-2 flex items-center justify-between gap-3">
-            <label className="block text-sm font-semibold text-slate-700">직무 대분류</label>
-            <span className="text-xs text-slate-400">세부 직무와 역량 추천이 함께 바뀝니다.</span>
-          </div>
-          <div className="grid gap-2 md:grid-cols-3">
-            {ROLE_GROUPS.map((group) => {
-              const isActive = group.label === normalizedUserInfo.roleGroup;
-              return (
-                <button
-                  key={group.id}
-                  type="button"
-                  onClick={() => handleRoleGroupSelect(group.label)}
-                  className={`rounded-2xl border px-4 py-4 text-left transition ${
-                    isActive
-                      ? 'border-slate-900 bg-slate-900 text-white shadow-lg'
-                      : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-400 hover:bg-white'
-                  }`}
-                >
-                  <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${isActive ? 'text-slate-300' : 'text-slate-400'}`}>Track</p>
-                  <p className="mt-1 text-base font-bold">{group.label}</p>
-                  <p className={`mt-2 text-xs leading-relaxed ${isActive ? 'text-slate-200' : 'text-slate-500'}`}>{group.description}</p>
-                </button>
-              );
-            })}
-          </div>
-        </div>
+            <div className="mb-5">
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <label className="block text-sm font-semibold text-slate-700">직무 대분류</label>
+                <span className="text-xs text-slate-400">트랙을 바꾸면 세부 직무와 입력 가이드가 같이 바뀝니다.</span>
+              </div>
+              <div className="grid gap-2 md:grid-cols-3">
+                {ROLE_GROUPS.map((group) => {
+                  const isActive = group.label === normalizedUserInfo.roleGroup;
+                  return (
+                    <button
+                      key={group.id}
+                      type="button"
+                      onClick={() => handleRoleGroupSelect(group.label)}
+                      className={`rounded-[22px] border px-4 py-4 text-left transition ${
+                        isActive
+                          ? 'border-slate-900 bg-slate-900 text-white shadow-lg'
+                          : 'border-slate-200 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'
+                      }`}
+                    >
+                      <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${isActive ? 'text-slate-300' : 'text-slate-400'}`}>Track</p>
+                      <p className="mt-1 text-base font-bold">{group.label}</p>
+                      <p className={`mt-2 text-xs leading-relaxed ${isActive ? 'text-slate-200' : 'text-slate-500'}`}>{group.description}</p>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1">지원자 이름</label>
-            <input type="text" name="name" value={userInfo.name} onChange={handleInputChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="양윤석" />
-          </div>
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1">세부 직무</label>
-            <select value={normalizedUserInfo.subRole} onChange={handleSubRoleChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none">
-              {roleDetails.map((detail) => <option key={detail.label} value={detail.label}>{detail.label}</option>)}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1">총 경력 (년)</label>
-            <input type="number" name="experience" min="0" max="30" value={userInfo.experience} onChange={handleInputChange} className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" />
-          </div>
-        </div>
-        <p className="mb-5 rounded-xl bg-slate-50 px-4 py-3 text-sm leading-relaxed text-slate-600 border border-slate-100">
-          <span className="font-bold text-slate-800">{profileDisplayRole}</span>
-          <span className="mx-2 text-slate-300">|</span>
-          {selectedRoleDetail.focus}
-        </p>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div>
+                <label className="mb-1 block text-sm font-semibold text-slate-700">지원자 이름</label>
+                <input type="text" name="name" value={userInfo.name} onChange={handleInputChange} className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 outline-none focus:ring-2 focus:ring-slate-900" placeholder="양윤석" />
+              </div>
+              <div>
+                <label className="mb-1 block text-sm font-semibold text-slate-700">세부 직무</label>
+                <select value={normalizedUserInfo.subRole} onChange={handleSubRoleChange} className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 outline-none focus:ring-2 focus:ring-slate-900">
+                  {roleDetails.map((detail) => <option key={detail.label} value={detail.label}>{detail.label}</option>)}
+                </select>
+              </div>
+              <div>
+                <label className="mb-1 block text-sm font-semibold text-slate-700">총 경력 (년)</label>
+                <input type="number" name="experience" min="0" max="30" value={userInfo.experience} onChange={handleInputChange} className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 outline-none focus:ring-2 focus:ring-slate-900" />
+              </div>
+            </div>
 
-        <div className="mb-5 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Recruiter Lens</p>
-            <p className="mt-2 text-xs font-semibold text-slate-500">{selectedRoleGroupInfo.description}</p>
-            <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-900">{rolePlaybook.recruiterLens}</p>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600">{rolePlaybook.skillGuide}</p>
-          </div>
-          <div className="rounded-2xl border border-slate-200 bg-white px-5 py-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Evidence Checklist</p>
-            <ul className="mt-3 space-y-2">
-              {rolePlaybook.evidenceChecklist.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-slate-600">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+            <div className="mt-5 rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Current Focus</p>
+              <p className="mt-2 text-base font-bold text-slate-900">{selectedRoleDetail.label}</p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">{selectedRoleDetail.focus}</p>
+            </div>
 
-        {normalizedUserInfo.roleGroup === '프로그래밍' && (
-          <div className="mb-5 rounded-2xl border border-sky-100 bg-sky-50/70 p-4">
-            <label className="mb-1 flex items-center gap-2 text-sm font-bold text-slate-800">
-              <Code2 size={16} className="text-sky-600" />
-              GitHub 포트폴리오 저장소 URL
-              <span className="text-xs font-normal text-slate-400">(선택, public repo)</span>
-            </label>
-            <input
-              type="url"
-              name="githubUrl"
-              value={userInfo.githubUrl || ''}
-              onChange={handleInputChange}
-              className="mt-2 w-full rounded-xl border border-sky-100 bg-white px-4 py-2.5 text-sm text-slate-800 outline-none transition focus:border-sky-300 focus:ring-4 focus:ring-sky-100"
-              placeholder="https://github.com/username/project"
-            />
-            <p className="mt-2 text-xs leading-relaxed text-slate-500">
-              무료 서버 부담을 줄이기 위해 저장소를 clone하지 않고 README, 루트 구조, package 파일 같은 핵심 정보만 읽어 기술문서 초안을 만듭니다.
-            </p>
-            <ul className="mt-3 space-y-1.5">
-              {rolePlaybook.githubGuide?.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-xs leading-relaxed text-sky-900">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-600" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        <div>
+            <div className="mt-6">
           <div className="mb-3 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-1">직무 역량 및 숙련도</label>
@@ -252,33 +211,85 @@ export default function InputWorkspace({
                 ))}
           </div>
         </div>
-      </div>
+          </div>
+
+          <aside className="bg-slate-950 p-6 text-white">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300">Recruiter Lens</p>
+            <h4 className="mt-2 text-2xl font-black tracking-tight text-white">{normalizedUserInfo.roleGroup} 트랙 기준</h4>
+            <p className="mt-3 text-sm leading-relaxed text-slate-300">{selectedRoleGroupInfo.description}</p>
+            <p className="mt-4 rounded-[24px] border border-white/10 bg-white/5 px-4 py-4 text-sm leading-relaxed text-slate-100">
+              {rolePlaybook.recruiterLens}
+            </p>
+
+            <div className="mt-5 rounded-[24px] border border-white/10 bg-white/5 px-4 py-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Evidence Checklist</p>
+              <ul className="mt-3 space-y-2">
+                {rolePlaybook.evidenceChecklist.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-slate-200">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-300" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-5 rounded-[24px] border border-white/10 bg-white/5 px-4 py-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Writing Rule</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-200">{rolePlaybook.skillGuide}</p>
+            </div>
+
+            {normalizedUserInfo.roleGroup === '프로그래밍' && (
+              <div className="mt-5 rounded-[24px] border border-sky-400/20 bg-sky-400/10 p-4">
+                <label className="mb-1 flex items-center gap-2 text-sm font-bold text-sky-100">
+                  <Code2 size={16} className="text-sky-300" />
+                  GitHub 저장소 URL
+                  <span className="text-xs font-normal text-sky-200/70">(선택, public repo)</span>
+                </label>
+                <input
+                  type="url"
+                  name="githubUrl"
+                  value={userInfo.githubUrl || ''}
+                  onChange={handleInputChange}
+                  className="mt-2 w-full rounded-xl border border-sky-300/20 bg-slate-950 px-4 py-2.5 text-sm text-white outline-none transition focus:border-sky-300 focus:ring-4 focus:ring-sky-300/10"
+                  placeholder="https://github.com/username/project"
+                />
+                <ul className="mt-3 space-y-1.5">
+                  {rolePlaybook.githubGuide?.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-xs leading-relaxed text-sky-100">
+                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-300" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </aside>
+        </div>
+      </section>
 
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-        <h3 className="text-lg font-bold text-slate-800 mb-1 flex items-center gap-2">
-          <UploadCloud size={20} className="text-emerald-500" /> 서류 첨부
-          <span className="text-slate-400 font-normal text-sm ml-1">(선택)</span>
-        </h3>
+        <div className="mb-4 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Documents</p>
+            <h3 className="mt-2 flex items-center gap-2 text-lg font-bold text-slate-800">
+              <UploadCloud size={20} className="text-emerald-500" /> 서류 첨부
+              <span className="ml-1 text-sm font-normal text-slate-400">(선택)</span>
+            </h3>
+          </div>
+          <p className="max-w-xl text-sm leading-relaxed text-slate-500">{rolePlaybook.portfolioGuide}</p>
+        </div>
         {fileUploadDisabled && (
           <p className="text-amber-600 text-xs mb-4 bg-amber-50 border border-amber-200 px-3 py-2 rounded-lg">
             ※ PDF 파일 분석은 <strong>Gemini</strong> 제공자에서만 지원됩니다. 다른 제공자는 프로필 정보만으로 분석합니다.
           </p>
         )}
-        <div className="mb-4 rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-            <div className="lg:max-w-[18rem]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Document Strategy</p>
-              <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-900">{rolePlaybook.portfolioGuide}</p>
-            </div>
-            <ul className="grid flex-1 gap-2 md:grid-cols-3">
-              {rolePlaybook.fileChecklist.map((item) => (
-                <li key={item} className="rounded-xl border border-slate-200 bg-white px-3 py-3 text-xs leading-relaxed text-slate-600">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <ul className="mb-4 grid gap-2 md:grid-cols-3">
+          {rolePlaybook.fileChecklist.map((item) => (
+            <li key={item} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-3 text-xs leading-relaxed text-slate-600">
+              {item}
+            </li>
+          ))}
+        </ul>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className={`border border-slate-200 rounded-xl p-4 ${fileUploadDisabled ? 'opacity-50 pointer-events-none' : ''}`}>
             <label className="block text-sm font-semibold text-slate-700 mb-2">이력서 (PDF)</label>
