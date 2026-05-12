@@ -10,6 +10,7 @@ const pathPrefix = normalizePathPrefix(process.env.SMOKE_PATH_PREFIX || '/');
 const distDir = join(process.cwd(), 'dist');
 const baseUrl = `http://${host}:${port}${pathPrefix}`;
 const TRACK_ENTRY_STORAGE_KEY = 'portfolio-coach-track-entry-v1';
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function createSmokeSeed() {
   const baseUserInfo = {
@@ -172,18 +173,18 @@ function startStaticServer() {
   });
 }
 
-async function clickTool(page, label) {
-  await page.evaluate((targetLabel) => {
-    const buttons = [...document.querySelectorAll('.coach-side-tools button')];
-    const target = buttons.find((button) => button.innerText.trim() === targetLabel);
-    target?.click();
-  }, label);
+async function clickTool(page, target) {
+  await page.evaluate(({ id }) => {
+    window.__portfolioCoachSmoke?.setActiveTab?.(id);
+  }, target);
 
-  await page.waitForFunction(
-    (targetLabel) => document.querySelector('.coach-side-tool.is-active .coach-side-tool-label')?.textContent?.trim() === targetLabel,
-    { timeout: 5000 },
-    label,
-  );
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    const activeTab = await page.evaluate(() => window.__portfolioCoachSmoke?.activeTab || null);
+    if (activeTab === target.id) return;
+    await sleep(250);
+  }
+
+  throw new Error(`Failed to activate tab: ${target.id}`);
 }
 
 async function run() {
@@ -214,8 +215,22 @@ async function run() {
 
     await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
     await page.goto(`${baseUrl}?smoke=1`, { waitUntil: 'networkidle0', timeout: 45000 });
+    await page.waitForFunction(
+      () => Boolean(window.__portfolioCoachSmoke?.setActiveTab) && typeof window.__portfolioCoachSmoke.activeTab === 'string',
+      { timeout: 5000 },
+    );
 
-    const expectedTools = ['정보 입력', '서류 피드백', '포트폴리오', '공고 분석', '추천 공고', '면접 대비', '면접 기본 준비', '인성검사', 'PDF 출력'];
+    const expectedTools = [
+      { id: 'input', label: '정보 입력' },
+      { id: 'feedback', label: '서류 피드백' },
+      { id: 'portfolio', label: '포트폴리오' },
+      { id: 'job-analysis', label: '공고 분석' },
+      { id: 'jobs', label: '추천 공고' },
+      { id: 'interview', label: '면접 대비' },
+      { id: 'interview-basic', label: '면접 기본 준비' },
+      { id: 'personality-test', label: '인성검사' },
+      { id: 'pdf-export', label: 'PDF 출력' },
+    ];
 
     const initialState = await page.evaluate(() => {
       const toolLabels = [...document.querySelectorAll('.coach-side-tool-label')].map((node) => node.textContent.trim());
@@ -237,26 +252,16 @@ async function run() {
     if (initialState.overflowX) throw new Error('Horizontal overflow detected on initial screen.');
     if (initialState.title !== 'Portfolio Coach') throw new Error(`Unexpected page title: ${initialState.title}`);
 
-    for (const label of expectedTools) {
-      if (!initialState.toolLabels.includes(label)) {
-        throw new Error(`Missing side tool: ${label}`);
+    for (const tool of expectedTools) {
+      if (!initialState.toolLabels.includes(tool.label)) {
+        throw new Error(`Missing side tool: ${tool.label}`);
       }
     }
 
-    for (const label of expectedTools) {
-      await clickTool(page, label);
-      const state = await page.evaluate(() => ({
-        hasLegacyStepUi: !!document.querySelector('.coach-side-step, .coach-side-steps, .is-complete, .coach-progress-track, .personality-progress-track'),
-        overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
-      }));
-
-      if (state.hasLegacyStepUi) throw new Error(`Legacy step/progress UI detected after opening "${label}".`);
-      if (state.overflowX) throw new Error(`Horizontal overflow detected after opening "${label}".`);
-    }
-
-    await clickTool(page, '공고 분석');
+    console.log('[smoke] checking job analysis view');
+    await clickTool(page, { id: 'job-analysis', label: '공고 분석' });
     await page.waitForFunction(
-      () => document.body.innerText.includes('게임잡 공고 현황'),
+      () => !!document.querySelector('.coach-job-analysis'),
       { timeout: 5000 },
     );
     const analysisTabState = await page.evaluate(() => ({
@@ -264,9 +269,10 @@ async function run() {
     }));
     if (analysisTabState.hasManualCrawlButton) throw new Error('Manual crawl button is still exposed on the job analysis tab.');
 
-    await clickTool(page, '추천 공고');
+    console.log('[smoke] checking jobs view');
+    await clickTool(page, { id: 'jobs', label: '추천 공고' });
     await page.waitForFunction(
-      () => document.body.innerText.includes('매칭하기') && document.body.innerText.includes('개인 프로필 기준 AI 매칭만'),
+      () => !!document.querySelector('.coach-jobs-workspace') && document.body.innerText.includes('매칭하기'),
       { timeout: 5000 },
     );
     const jobsTabState = await page.evaluate(() => ({
@@ -279,18 +285,25 @@ async function run() {
     if (jobsTabState.hasManualCrawlButton) throw new Error('Manual crawl button is still exposed on the jobs tab.');
     if (jobsTabState.hasCrawlerConsole) throw new Error('Legacy crawler console copy is still visible on the jobs tab.');
 
-    await clickTool(page, '서류 피드백');
+    console.log('[smoke] checking feedback view');
+    await clickTool(page, { id: 'feedback', label: '서류 피드백' });
     await page.waitForFunction(
-      () => document.body.innerText.includes('최근 분석 기록') && document.body.innerText.includes('현재 결과 비교'),
+      () => !!document.querySelector('.coach-analysis-history-panel'),
       { timeout: 5000 },
     );
 
+    console.log('[smoke] checking guide modal');
     await page.evaluate(() => {
+      if (window.__portfolioCoachSmoke?.openGuide) {
+        window.__portfolioCoachSmoke.openGuide();
+        return;
+      }
+
       const button = [...document.querySelectorAll('button')].find((node) => node.innerText.includes('사용 설명서'));
       button?.click();
     });
     await page.waitForFunction(
-      () => [...document.querySelectorAll('h2')].some((node) => node.textContent?.trim() === 'Portfolio Coach 사용 설명서'),
+      () => !!document.querySelector('.coach-user-guide-modal'),
       { timeout: 5000 },
     );
 

@@ -1649,6 +1649,383 @@
     color: #ffffff !important;
   }
 
+  .coach-portfolio-workspace {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .coach-portfolio-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+    gap: 1rem;
+    padding: 1.35rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at top right, rgba(139, 92, 246, 0.1), transparent 32%),
+      linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+  }
+
+  .coach-portfolio-hero-copy h2,
+  .coach-portfolio-section-head h3,
+  .coach-portfolio-github-head h3,
+  .coach-portfolio-doc-head h4,
+  .coach-portfolio-lens-card h4,
+  .coach-portfolio-meta-card strong {
+    margin: 0;
+    color: #000000;
+    letter-spacing: -0.045em;
+  }
+
+  .coach-portfolio-hero-copy h2 {
+    font-size: clamp(1.85rem, 4vw, 3rem);
+    font-weight: 540;
+    line-height: 1.02;
+  }
+
+  .coach-portfolio-hero-copy > p:last-child,
+  .coach-portfolio-meta-card p,
+  .coach-portfolio-lens-card p,
+  .coach-portfolio-review-body,
+  .coach-portfolio-github-head > div > p:last-child {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.62);
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .coach-portfolio-kicker {
+    margin: 0 0 0.5rem;
+    color: rgba(0, 0, 0, 0.52);
+    font-size: 0.72rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .coach-portfolio-hero-meta {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .coach-portfolio-meta-card {
+    padding: 1rem 1.05rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    background: rgba(255, 255, 255, 0.78);
+  }
+
+  .coach-portfolio-meta-card span,
+  .coach-portfolio-lens-label,
+  .coach-portfolio-review-file,
+  .coach-portfolio-signal-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: rgba(0, 0, 0, 0.52);
+    font-size: 0.72rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .coach-portfolio-meta-card strong {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 1.55rem;
+    font-weight: 540;
+    line-height: 1;
+  }
+
+  .coach-portfolio-main-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+    gap: 1rem;
+  }
+
+  .coach-portfolio-lens-panel,
+  .coach-portfolio-review-panel,
+  .coach-portfolio-github {
+    padding: 1.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 28px;
+    background: #ffffff;
+  }
+
+  .coach-portfolio-section-head,
+  .coach-portfolio-github-head,
+  .coach-portfolio-doc-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .coach-portfolio-section-head {
+    margin-bottom: 1rem;
+  }
+
+  .coach-portfolio-section-head h3,
+  .coach-portfolio-github-head h3 {
+    font-size: 1.5rem;
+    font-weight: 540;
+    line-height: 1.08;
+  }
+
+  .coach-portfolio-head-pill,
+  .coach-portfolio-github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.55rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    background: #000000;
+    color: #ffffff !important;
+    font-size: 0.84rem;
+    font-weight: 540;
+    white-space: nowrap;
+  }
+
+  .coach-portfolio-lens-list,
+  .coach-portfolio-review-list {
+    display: grid;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .coach-portfolio-lens-card,
+  .coach-portfolio-review-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.85rem;
+    padding: 1rem;
+    border-radius: 22px;
+    background: #f8fafc;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .coach-portfolio-lens-index,
+  .coach-portfolio-review-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    background: #000000;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .coach-portfolio-lens-card h4,
+  .coach-portfolio-review-title {
+    margin: 0.25rem 0 0;
+    color: #000000;
+    font-size: 1rem;
+    font-weight: 540;
+    line-height: 1.35;
+  }
+
+  .coach-portfolio-review-copy {
+    min-width: 0;
+  }
+
+  .coach-portfolio-review-file {
+    margin-bottom: 0.5rem;
+    color: rgba(37, 99, 235, 0.82);
+  }
+
+  .coach-portfolio-empty {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 1.05rem;
+    border-radius: 18px;
+    background: #f8fafc;
+    color: rgba(0, 0, 0, 0.62);
+    font-size: 0.92rem;
+  }
+
+  .coach-portfolio-github {
+    background:
+      radial-gradient(circle at top right, rgba(59, 130, 246, 0.18), transparent 26%),
+      linear-gradient(180deg, #020617 0%, #0f172a 100%);
+    border-color: rgba(148, 163, 184, 0.22);
+    color: #ffffff;
+  }
+
+  .coach-portfolio-github .coach-portfolio-kicker,
+  .coach-portfolio-github .coach-portfolio-github-head > div > p:last-child,
+  .coach-portfolio-github .coach-portfolio-signal-list li,
+  .coach-portfolio-github .coach-portfolio-doc-head p {
+    color: rgba(226, 232, 240, 0.78);
+  }
+
+  .coach-portfolio-github .coach-portfolio-github-head h3,
+  .coach-portfolio-github .coach-portfolio-doc-head h4 {
+    color: #ffffff;
+  }
+
+  .coach-portfolio-github-link {
+    background: #ffffff;
+    color: #020617 !important;
+  }
+
+  .coach-portfolio-github-summary {
+    margin-top: 1rem;
+    padding: 1rem 1.05rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .coach-portfolio-github-summary p {
+    margin: 0;
+  }
+
+  .coach-portfolio-github-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 1rem;
+  }
+
+  .coach-portfolio-github-chips span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.1rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(226, 232, 240, 0.88);
+    font-size: 0.76rem;
+    font-weight: 450;
+  }
+
+  .coach-portfolio-signal-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .coach-portfolio-signal-card {
+    padding: 1rem;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .coach-portfolio-signal-title {
+    margin-bottom: 0.75rem;
+  }
+
+  .coach-portfolio-signal-title.is-sky {
+    color: #7dd3fc;
+  }
+
+  .coach-portfolio-signal-title.is-cyan {
+    color: #67e8f9;
+  }
+
+  .coach-portfolio-signal-title.is-emerald {
+    color: #6ee7b7;
+  }
+
+  .coach-portfolio-signal-title.is-indigo {
+    color: #a5b4fc;
+  }
+
+  .coach-portfolio-signal-title.is-lime {
+    color: #bef264;
+  }
+
+  .coach-portfolio-signal-title.is-violet {
+    color: #c4b5fd;
+  }
+
+  .coach-portfolio-signal-title.is-amber {
+    color: #fcd34d;
+  }
+
+  .coach-portfolio-signal-title.is-rose {
+    color: #fda4af;
+  }
+
+  .coach-portfolio-signal-list {
+    margin: 0;
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.45rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .coach-portfolio-doc-shell {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .coach-portfolio-doc-head {
+    margin-bottom: 0.75rem;
+  }
+
+  .coach-portfolio-doc-body {
+    max-height: 26rem;
+    margin: 0;
+    overflow: auto;
+    white-space: pre-wrap;
+    border-radius: 18px;
+    background: rgba(2, 6, 23, 0.78);
+    padding: 1rem;
+    color: rgba(226, 232, 240, 0.92);
+    font-size: 0.76rem;
+    line-height: 1.8;
+  }
+
+  .coach-job-analysis .coach-job-hero {
+    position: relative;
+  }
+
+  .coach-job-analysis .coach-job-tabstrip {
+    padding: 0.15rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.04);
+    width: fit-content;
+  }
+
+  .coach-job-analysis .coach-job-ai-panel,
+  .coach-job-analysis .coach-job-list-panel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .coach-job-analysis .coach-job-ai-panel::before,
+  .coach-job-analysis .coach-job-list-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0.22rem;
+    background: linear-gradient(180deg, #a78bfa 0%, #60a5fa 100%);
+    opacity: 0.95;
+  }
+
+  .coach-job-analysis .coach-job-overview {
+    display: grid;
+    gap: 1.5rem;
+  }
+
   @media (max-width: 1024px) {
     .coach-commandbar {
       grid-template-columns: 1fr;
@@ -1666,6 +2043,12 @@
     }
 
     .coach-track-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .coach-portfolio-hero,
+    .coach-portfolio-main-grid,
+    .coach-portfolio-signal-grid {
       grid-template-columns: 1fr;
     }
 
@@ -1766,6 +2149,13 @@
 
     .coach-dossier-header {
       align-items: stretch;
+    }
+
+    .coach-portfolio-section-head,
+    .coach-portfolio-github-head,
+    .coach-portfolio-doc-head {
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .coach-dossier-heading {

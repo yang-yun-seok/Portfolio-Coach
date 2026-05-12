@@ -15,7 +15,7 @@ export default function AnalysisHistoryPanel({
   if (!Array.isArray(analysisHistory) || analysisHistory.length === 0) return null;
 
   return (
-    <div className="grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
+    <div className="coach-analysis-history-panel grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
       <aside className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Analysis History</p>
         <h3 className="mt-2 text-xl font-black tracking-tight text-slate-900">최근 분석 기록</h3>

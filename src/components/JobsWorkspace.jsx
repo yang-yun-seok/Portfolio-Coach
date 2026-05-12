@@ -96,7 +96,7 @@ export default function JobsWorkspace({
   const showEmptyResult = jobMatchState.attempted && !jobMatchState.running && !jobMatchState.error && matchedJobs.length === 0;
 
   return (
-    <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
+    <div className="coach-jobs-workspace apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <article className="rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-5 shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">최근 반영일</p>

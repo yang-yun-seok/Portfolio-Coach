@@ -367,6 +367,24 @@ export default function App() {
   const [showSettings, setShowSettings] = useState(false);
   const [showModelSettings, setShowModelSettings] = useState(false);
   const [showUserGuide, setShowUserGuide] = useState(false);
+  const isSmokeMode = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('smoke') === '1';
+
+  useEffect(() => {
+    if (!isSmokeMode || typeof window === 'undefined') return undefined;
+
+    window.__portfolioCoachSmoke = window.__portfolioCoachSmoke || {};
+    window.__portfolioCoachSmoke.setActiveTab = setActiveTab;
+    window.__portfolioCoachSmoke.openGuide = () => setShowUserGuide(true);
+
+    return () => {
+      delete window.__portfolioCoachSmoke;
+    };
+  }, [isSmokeMode]);
+
+  useEffect(() => {
+    if (!isSmokeMode || typeof window === 'undefined' || !window.__portfolioCoachSmoke) return;
+    window.__portfolioCoachSmoke.activeTab = activeTab;
+  }, [activeTab, isSmokeMode]);
   const [matchedJobs, setMatchedJobs] = useState([]);
   const [jobMatchState, setJobMatchState] = useState({
     running: false,

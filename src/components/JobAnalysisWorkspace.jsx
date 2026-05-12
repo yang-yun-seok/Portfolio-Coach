@@ -740,8 +740,8 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
   }
 
   return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
-      <section className="overflow-hidden rounded-[36px] border border-slate-800 bg-slate-950 text-white shadow-2xl shadow-slate-950/20">
+    <div className="coach-job-analysis space-y-6 animate-in fade-in slide-in-from-bottom-4">
+      <section className="coach-job-hero overflow-hidden rounded-[36px] border border-slate-800 bg-slate-950 text-white shadow-2xl shadow-slate-950/20">
         <div className="bg-[radial-gradient(circle_at_top_right,_rgba(56,189,248,0.22),_transparent_28%),radial-gradient(circle_at_top_left,_rgba(34,197,94,0.16),_transparent_22%)] px-8 py-8">
           <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
             <div className="max-w-4xl">
@@ -798,7 +798,7 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
         </div>
       </section>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="coach-job-tabstrip flex flex-wrap gap-2">
         {[
           { id: 'overview', label: '게임잡 공고 현황', icon: TrendingUp },
           { id: 'list', label: '공고 목록', icon: Search },
@@ -820,9 +820,9 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
       </div>
 
       {view === 'overview' ? (
-        <div className="space-y-6">
+        <div className="coach-job-overview space-y-6">
           <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-            <section className="rounded-[32px] border border-slate-800 bg-slate-900 p-6 text-white shadow-xl shadow-slate-900/20">
+            <section className="coach-job-ai-panel rounded-[32px] border border-slate-800 bg-slate-900 p-6 text-white shadow-xl shadow-slate-900/20">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                 <div className="max-w-3xl">
                   <p className="text-xs uppercase tracking-[0.18em] text-violet-300">AI 시장 분석</p>
@@ -943,7 +943,7 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
           </div>
         </div>
       ) : (
-        <section className="rounded-[32px] border border-slate-800 bg-slate-900 p-6 text-white shadow-xl shadow-slate-900/20">
+        <section className="coach-job-list-panel rounded-[32px] border border-slate-800 bg-slate-900 p-6 text-white shadow-xl shadow-slate-900/20">
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <div className="max-w-3xl">
               <p className="text-xs uppercase tracking-[0.18em] text-slate-300">Public Job List</p>
