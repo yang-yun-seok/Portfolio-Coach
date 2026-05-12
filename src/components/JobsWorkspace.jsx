@@ -97,31 +97,31 @@ export default function JobsWorkspace({
 
   return (
     <div className="coach-jobs-workspace apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <article className="rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-5 shadow-sm">
+      <div className="coach-jobs-kpi-grid grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <article className="coach-jobs-kpi-card rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-5 shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">최근 반영일</p>
           <strong className="mt-3 block text-xl font-black tracking-tight text-slate-900">{jobsMetadata.latestAppliedDate || '정보 없음'}</strong>
           <p className="mt-2 text-sm text-slate-500">매일 00시 자동 크롤링 완료 기준입니다.</p>
         </article>
-        <article className="rounded-[28px] border border-slate-200 bg-white px-6 py-5 shadow-sm">
+        <article className="coach-jobs-kpi-card rounded-[28px] border border-slate-200 bg-white px-6 py-5 shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">참고 공고 수</p>
           <strong className="mt-3 block text-3xl font-black tracking-tight text-slate-900">{jobsMetadata.referenceJobCount || jobs.length}</strong>
           <p className="mt-2 text-sm text-slate-500">현재 공개 추천에 반영되는 유효 공고 수입니다.</p>
         </article>
-        <article className="rounded-[28px] border border-slate-200 bg-sky-50 px-6 py-5 shadow-sm">
+        <article className="coach-jobs-kpi-card is-soft-blue rounded-[28px] border border-slate-200 bg-sky-50 px-6 py-5 shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">신규 반영</p>
           <strong className="mt-3 block text-3xl font-black tracking-tight text-slate-900">{jobsMetadata.newJobsCount || 0}</strong>
           <p className="mt-2 text-sm text-slate-500">가장 최근 자동 수집 배치에서 추가된 공고입니다.</p>
         </article>
-        <article className="rounded-[28px] border border-slate-200 bg-violet-50 px-6 py-5 shadow-sm">
+        <article className="coach-jobs-kpi-card is-soft-violet rounded-[28px] border border-slate-200 bg-violet-50 px-6 py-5 shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">AI 매칭 결과</p>
           <strong className="mt-3 block text-3xl font-black tracking-tight text-slate-900">{matchedJobs.length}</strong>
           <p className="mt-2 text-sm text-slate-500">`매칭하기` 실행 후 생성된 개인화 추천 수입니다.</p>
         </article>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-        <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
+      <div className="coach-jobs-overview-grid grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+        <section className="coach-jobs-match-shell rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Personal Matching</p>
@@ -223,7 +223,7 @@ export default function JobsWorkspace({
           </div>
         </section>
 
-        <aside className="rounded-[32px] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+        <aside className="coach-jobs-profile-shell rounded-[32px] border border-slate-200 bg-slate-50 p-6 shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Profile Snapshot</p>
           <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">현재 프로필 기준 참고 포인트</h3>
           <div className="mt-5 space-y-5">
@@ -267,7 +267,7 @@ export default function JobsWorkspace({
         </aside>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="coach-jobs-lens-grid grid gap-4 md:grid-cols-3">
         {resultPlaybook.jobsCards.map((card) => (
           <article key={card.label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{card.label}</p>
@@ -277,7 +277,7 @@ export default function JobsWorkspace({
         ))}
       </div>
 
-      <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
+      <section className="coach-jobs-results-shell rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Matched Jobs</p>

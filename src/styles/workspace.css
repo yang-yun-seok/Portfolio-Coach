@@ -1994,6 +1994,370 @@
     line-height: 1.8;
   }
 
+  .coach-feedback-workspace {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .coach-feedback-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: 1rem;
+    padding: 1.35rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at top right, rgba(99, 102, 241, 0.12), transparent 28%),
+      linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  }
+
+  .coach-feedback-kicker {
+    margin: 0 0 0.5rem;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.72rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .coach-feedback-hero-copy h2,
+  .coach-feedback-section-head h3,
+  .coach-feedback-doc-head h3,
+  .coach-feedback-lens-card h4,
+  .coach-feedback-context-card h3,
+  .coach-feedback-custom-head strong {
+    margin: 0;
+    color: #000000;
+    letter-spacing: -0.045em;
+  }
+
+  .coach-feedback-hero-copy h2 {
+    font-size: clamp(1.85rem, 4vw, 3rem);
+    font-weight: 540;
+    line-height: 1.02;
+  }
+
+  .coach-feedback-hero-copy > p:last-child,
+  .coach-feedback-lens-card p,
+  .coach-feedback-doc-body,
+  .coach-feedback-empty-body,
+  .coach-feedback-context-card p:not(.coach-feedback-kicker) {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.62);
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .coach-feedback-hero-context {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .coach-feedback-context-card,
+  .coach-feedback-lens,
+  .coach-feedback-doc-card,
+  .coach-feedback-custom {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 28px;
+    background: #ffffff;
+  }
+
+  .coach-feedback-context-card {
+    padding: 1rem 1.05rem;
+  }
+
+  .coach-feedback-context-card.is-dark {
+    background:
+      radial-gradient(circle at top right, rgba(96, 165, 250, 0.18), transparent 28%),
+      linear-gradient(180deg, #020617 0%, #0f172a 100%);
+    border-color: rgba(148, 163, 184, 0.24);
+  }
+
+  .coach-feedback-context-card.is-dark h3,
+  .coach-feedback-context-card.is-dark p:not(.coach-feedback-kicker),
+  .coach-feedback-context-card.is-dark span {
+    color: #ffffff;
+  }
+
+  .coach-feedback-context-card.is-dark .coach-feedback-kicker {
+    color: rgba(191, 219, 254, 0.8);
+  }
+
+  .coach-feedback-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.7rem;
+  }
+
+  .coach-feedback-chip-list span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.32rem 0.72rem;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #f8fafc;
+    color: rgba(0, 0, 0, 0.72);
+    font-size: 0.78rem;
+    font-weight: 450;
+  }
+
+  .coach-feedback-context-card.is-dark .coach-feedback-chip-list span {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .coach-feedback-chip-list .is-muted {
+    color: rgba(0, 0, 0, 0.56);
+  }
+
+  .coach-feedback-context-card.is-dark .coach-feedback-chip-list .is-muted {
+    color: rgba(226, 232, 240, 0.72);
+  }
+
+  .coach-feedback-lens,
+  .coach-feedback-custom {
+    padding: 1.25rem;
+  }
+
+  .coach-feedback-section-head,
+  .coach-feedback-doc-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .coach-feedback-section-head {
+    margin-bottom: 1rem;
+  }
+
+  .coach-feedback-section-head h3,
+  .coach-feedback-doc-head h3 {
+    font-size: 1.45rem;
+    font-weight: 540;
+    line-height: 1.08;
+  }
+
+  .coach-feedback-lens-grid,
+  .coach-feedback-doc-grid,
+  .coach-feedback-custom-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .coach-feedback-lens-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .coach-feedback-doc-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .coach-feedback-lens-card {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.85rem;
+    padding: 1rem;
+    border-radius: 22px;
+    background: #f8fafc;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .coach-feedback-lens-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    background: #000000;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .coach-feedback-lens-label,
+  .coach-feedback-custom-head span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.72rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .coach-feedback-doc-card {
+    padding: 1.25rem;
+  }
+
+  .coach-feedback-doc-head h3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .coach-feedback-doc-icon {
+    flex-shrink: 0;
+  }
+
+  .coach-feedback-doc-icon.is-blue {
+    color: #2563eb;
+  }
+
+  .coach-feedback-doc-icon.is-violet {
+    color: #7c3aed;
+  }
+
+  .coach-feedback-doc-list,
+  .coach-feedback-custom-list {
+    display: grid;
+    gap: 0.85rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .coach-feedback-doc-list li,
+  .coach-feedback-custom-list li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .coach-feedback-doc-title,
+  .coach-feedback-empty-title {
+    margin: 0 0 0.25rem;
+    color: #000000;
+    font-size: 0.96rem;
+    font-weight: 540;
+    line-height: 1.45;
+  }
+
+  .coach-feedback-doc-empty {
+    color: rgba(0, 0, 0, 0.52);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .coach-feedback-head-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.45rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    background: #000000;
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 540;
+    white-space: nowrap;
+  }
+
+  .coach-feedback-empty-panel {
+    padding: 1rem 1.05rem;
+    border-radius: 22px;
+    border: 1px dashed rgba(0, 0, 0, 0.18);
+    background: #f8fafc;
+  }
+
+  .coach-feedback-custom-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 1rem;
+  }
+
+  .coach-feedback-custom-card {
+    padding: 1rem;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #ffffff;
+  }
+
+  .coach-feedback-custom-card.is-sky {
+    background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%);
+    border-color: rgba(96, 165, 250, 0.28);
+  }
+
+  .coach-feedback-custom-card.is-emerald {
+    background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%);
+    border-color: rgba(52, 211, 153, 0.26);
+  }
+
+  .coach-feedback-custom-card.is-amber {
+    background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
+    border-color: rgba(251, 191, 36, 0.28);
+  }
+
+  .coach-feedback-custom-head {
+    display: grid;
+    gap: 0.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .coach-feedback-custom-list li svg {
+    color: #000000;
+  }
+
+  .coach-jobs-kpi-grid,
+  .coach-jobs-overview-grid,
+  .coach-jobs-lens-grid,
+  .coach-jobs-results-shell {
+    position: relative;
+  }
+
+  .coach-jobs-kpi-card {
+    overflow: hidden;
+    background:
+      radial-gradient(circle at top right, rgba(148, 163, 184, 0.14), transparent 30%),
+      #ffffff;
+  }
+
+  .coach-jobs-kpi-card.is-soft-blue {
+    background:
+      radial-gradient(circle at top right, rgba(96, 165, 250, 0.22), transparent 34%),
+      linear-gradient(180deg, #f5fbff 0%, #ffffff 100%);
+  }
+
+  .coach-jobs-kpi-card.is-soft-violet {
+    background:
+      radial-gradient(circle at top right, rgba(167, 139, 250, 0.22), transparent 34%),
+      linear-gradient(180deg, #faf5ff 0%, #ffffff 100%);
+  }
+
+  .coach-jobs-match-shell {
+    background:
+      radial-gradient(circle at top right, rgba(59, 130, 246, 0.08), transparent 28%),
+      linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  }
+
+  .coach-jobs-profile-shell {
+    background:
+      radial-gradient(circle at top right, rgba(16, 185, 129, 0.12), transparent 28%),
+      linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  }
+
+  .coach-jobs-profile-shell h3,
+  .coach-jobs-results-shell h3 {
+    color: #000000 !important;
+  }
+
+  .coach-jobs-profile-shell .text-slate-500,
+  .coach-jobs-profile-shell .text-slate-800,
+  .coach-jobs-profile-shell .text-slate-900 {
+    color: inherit;
+  }
+
+  .coach-jobs-lens-grid article {
+    background:
+      linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  }
+
   .coach-job-analysis .coach-job-hero {
     position: relative;
   }
@@ -2047,8 +2411,12 @@
     }
 
     .coach-portfolio-hero,
+    .coach-feedback-hero,
     .coach-portfolio-main-grid,
-    .coach-portfolio-signal-grid {
+    .coach-portfolio-signal-grid,
+    .coach-feedback-doc-grid,
+    .coach-feedback-custom-grid,
+    .coach-feedback-lens-grid {
       grid-template-columns: 1fr;
     }
 
@@ -2153,7 +2521,9 @@
 
     .coach-portfolio-section-head,
     .coach-portfolio-github-head,
-    .coach-portfolio-doc-head {
+    .coach-portfolio-doc-head,
+    .coach-feedback-section-head,
+    .coach-feedback-doc-head {
       flex-direction: column;
       align-items: flex-start;
     }

@@ -3,6 +3,37 @@ import { Briefcase, CheckCircle, FileText, Target } from 'lucide-react';
 import { getProfileDisplayRole } from '../data/skills';
 import AnalysisHistoryPanel from './AnalysisHistoryPanel';
 
+function FeedbackList({ icon: Icon, iconTone, items, parseFeedbackItem, title }) {
+  return (
+    <section className="coach-feedback-doc-card">
+      <div className="coach-feedback-doc-head">
+        <h3>
+          <Icon size={18} className={`coach-feedback-doc-icon ${iconTone}`} />
+          {title}
+        </h3>
+      </div>
+      <ul className="coach-feedback-doc-list">
+        {Array.isArray(items) && items.length > 0 ? (
+          items.map((item, index) => {
+            const { title: itemTitle, body } = parseFeedbackItem(item);
+            return (
+              <li key={`${title}-${index}`}>
+                <CheckCircle size={16} className={`coach-feedback-doc-icon ${iconTone}`} />
+                <div>
+                  {itemTitle ? <p className="coach-feedback-doc-title">{itemTitle}</p> : null}
+                  {body ? <p className="coach-feedback-doc-body">{body}</p> : null}
+                </div>
+              </li>
+            );
+          })
+        ) : (
+          <li className="coach-feedback-doc-empty">관련 내용이 아직 정리되지 않았습니다.</li>
+        )}
+      </ul>
+    </section>
+  );
+}
+
 export default function FeedbackWorkspace({
   analysisHistory,
   formatSavedAt,
@@ -23,12 +54,71 @@ export default function FeedbackWorkspace({
   topRecommendedJobs,
   userInfo,
 }) {
+  const resumeItems = Array.isArray(results.resumeImprovements) ? results.resumeImprovements : [];
+  const coverItems = results.coverLetterImprovements?.common
+    ?? (Array.isArray(results.coverLetterImprovements) ? results.coverLetterImprovements : []);
+  const strongSkills = highlightedMatchedSkills.length > 0
+    ? highlightedMatchedSkills
+    : userInfo.skills.map((skill) => skill.name).slice(0, 5);
+  const roleLabel = getProfileDisplayRole(normalizedUserInfo);
+  const topCompanies = topRecommendedJobs.slice(0, 3);
+
+  const customSections = [
+    { key: 'rank1', rankLabel: '1순위', theme: 'is-sky' },
+    { key: 'rank2', rankLabel: '2순위', theme: 'is-emerald' },
+    { key: 'rank3', rankLabel: '3순위', theme: 'is-amber' },
+  ];
+
+  const hasPinnedCustom = pinnedSlots.some((slot) => slot.status === 'resolved' && slot.job);
+  const uniqueCustomSections = (() => {
+    const seen = new Set();
+    return customSections.filter(({ key }) => {
+      const company = recommendedJobs[parseInt(key.replace('rank', ''), 10) - 1]?.company;
+      if (!company || seen.has(company)) return false;
+      seen.add(company);
+      return true;
+    });
+  })();
+
   return (
-    <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
-      <div className="apple-intro">
-        <h2 className="text-3xl font-bold text-slate-800 mb-2">{resultPlaybook.feedbackTitle}</h2>
-        <p className="text-slate-500">{resultPlaybook.feedbackDescription}</p>
-      </div>
+    <div className="coach-feedback-workspace apple-view animate-in fade-in slide-in-from-bottom-4">
+      <section className="coach-feedback-hero">
+        <div className="coach-feedback-hero-copy">
+          <p className="coach-feedback-kicker">DOCUMENT REVIEW</p>
+          <h2>{resultPlaybook.feedbackTitle}</h2>
+          <p>{resultPlaybook.feedbackDescription}</p>
+        </div>
+
+        <div className="coach-feedback-hero-context">
+          <article className="coach-feedback-context-card is-dark">
+            <p className="coach-feedback-kicker">CURRENT REVIEW</p>
+            <h3>{roleLabel}</h3>
+            <p>{selectedRoleDetail.focus}</p>
+          </article>
+
+          <article className="coach-feedback-context-card">
+            <p className="coach-feedback-kicker">TOP TARGETS</p>
+            <div className="coach-feedback-chip-list">
+              {topCompanies.length > 0 ? topCompanies.map((job, index) => (
+                <span key={`${job.id}-${index}`}>{index + 1}. {job.company}</span>
+              )) : (
+                <span className="is-muted">추천 공고를 먼저 계산하면 여기서 우선 후보를 바로 볼 수 있습니다.</span>
+              )}
+            </div>
+          </article>
+
+          <article className="coach-feedback-context-card">
+            <p className="coach-feedback-kicker">STRONG SIGNALS</p>
+            <div className="coach-feedback-chip-list">
+              {strongSkills.length > 0 ? strongSkills.map((skill) => (
+                <span key={skill}>{skill}</span>
+              )) : (
+                <span className="is-muted">보유 기술을 입력한 뒤 분석하면 강조 신호를 여기에서 정리합니다.</span>
+              )}
+            </div>
+          </article>
+        </div>
+      </section>
 
       <AnalysisHistoryPanel
         analysisHistory={analysisHistory}
@@ -42,155 +132,104 @@ export default function FeedbackWorkspace({
         onResetComparison={() => setSelectedHistoryId('')}
       />
 
-      <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="grid gap-4 md:grid-cols-3">
-          {resultPlaybook.feedbackCards.map((card) => (
-            <article key={card.label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{card.label}</p>
-              <h3 className="mt-2 text-base font-bold leading-snug text-slate-900">{card.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">{card.body}</p>
+      <section className="coach-feedback-lens">
+        <div className="coach-feedback-section-head">
+          <div>
+            <p className="coach-feedback-kicker">REVIEW LENS</p>
+            <h3>이번 수정에서 먼저 보는 기준</h3>
+          </div>
+        </div>
+
+        <div className="coach-feedback-lens-grid">
+          {resultPlaybook.feedbackCards.map((card, index) => (
+            <article key={card.label} className="coach-feedback-lens-card">
+              <div className="coach-feedback-lens-index">{String(index + 1).padStart(2, '0')}</div>
+              <div>
+                <p className="coach-feedback-lens-label">{card.label}</p>
+                <h4>{card.title}</h4>
+                <p>{card.body}</p>
+              </div>
             </article>
           ))}
         </div>
+      </section>
 
-        <aside className="rounded-2xl border border-slate-200 bg-slate-950 p-6 text-white shadow-sm">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300">Current Review</p>
-          <h3 className="mt-2 text-2xl font-black tracking-tight">{getProfileDisplayRole(normalizedUserInfo)}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-slate-300">{selectedRoleDetail.focus}</p>
-          <div className="mt-5 space-y-4">
+      <div className="coach-feedback-doc-grid">
+        <FeedbackList
+          icon={FileText}
+          iconTone="is-blue"
+          items={resumeItems}
+          parseFeedbackItem={parseFeedbackItem}
+          title={resultPlaybook.feedbackSectionTitles.resume}
+        />
+        <FeedbackList
+          icon={Briefcase}
+          iconTone="is-violet"
+          items={coverItems}
+          parseFeedbackItem={parseFeedbackItem}
+          title={resultPlaybook.feedbackSectionTitles.cover}
+        />
+      </div>
+
+      {results.coverLetterImprovements && !Array.isArray(results.coverLetterImprovements) ? (
+        <section className="coach-feedback-custom">
+          <div className="coach-feedback-section-head">
             <div>
-              <p className="text-xs font-bold text-slate-200">우선 확인할 공고</p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {(topRecommendedJobs.length > 0 ? topRecommendedJobs : []).map((job, idx) => (
-                  <span key={`${job.id}-${idx}`} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-slate-200">
-                    {idx + 1}. {job.company}
-                  </span>
-                ))}
-                {topRecommendedJobs.length === 0 && (
-                  <span className="text-xs text-slate-400">추천 공고가 아직 없습니다.</span>
-                )}
-              </div>
+              <p className="coach-feedback-kicker">TARGETED NOTES</p>
+              <h3>{resultPlaybook.feedbackSectionTitles.custom}</h3>
             </div>
-            <div>
-              <p className="text-xs font-bold text-slate-200">현재 강조할 역량</p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {(highlightedMatchedSkills.length > 0 ? highlightedMatchedSkills : userInfo.skills.map((skill) => skill.name).slice(0, 5)).map((skill) => (
-                  <span key={skill} className="rounded-full bg-sky-400/15 px-3 py-1.5 text-xs text-sky-100">
-                    {skill}
-                  </span>
-                ))}
-                {highlightedMatchedSkills.length === 0 && userInfo.skills.length === 0 && (
-                  <span className="text-xs text-slate-400">직무 역량을 추가하면 여기서 우선 강조 포인트를 보여줍니다.</span>
-                )}
-              </div>
-            </div>
+            <span className="coach-feedback-head-pill">
+              <Target size={14} />
+              공고 맞춤
+            </span>
           </div>
-        </aside>
-      </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-            <FileText size={20} className="text-blue-500" /> {resultPlaybook.feedbackSectionTitles.resume}
-          </h3>
-          <ul className="space-y-4">
-            {Array.isArray(results.resumeImprovements) && results.resumeImprovements.length > 0
-              ? results.resumeImprovements.map((item, idx) => {
-                  const { title, body } = parseFeedbackItem(item);
-                  return (
-                    <li key={idx} className="flex items-start gap-2 text-slate-700 text-sm leading-relaxed">
-                      <CheckCircle size={18} className="text-blue-500 mt-0.5 shrink-0" />
-                      <div>
-                        {title && <p className="font-semibold text-slate-800 mb-0.5">{title}</p>}
-                        {body && <p className="text-slate-600">{body}</p>}
-                      </div>
-                    </li>
-                  );
-                })
-              : <li className="text-slate-400 text-sm">관련 내용이 없습니다.</li>}
-          </ul>
-        </div>
-
-        <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
-          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-            <Briefcase size={20} className="text-purple-500" /> {resultPlaybook.feedbackSectionTitles.cover}
-          </h3>
-          <ul className="space-y-4">
-            {(() => {
-              const items = results.coverLetterImprovements?.common
-                ?? (Array.isArray(results.coverLetterImprovements) ? results.coverLetterImprovements : []);
-              return items.length > 0
-                ? items.map((item, idx) => {
-                    const { title, body } = parseFeedbackItem(item);
-                    return (
-                      <li key={idx} className="flex items-start gap-2 text-slate-700 text-sm leading-relaxed">
-                        <CheckCircle size={18} className="text-purple-500 mt-0.5 shrink-0" />
-                        <div>
-                          {title && <p className="font-semibold text-slate-800 mb-0.5">{title}</p>}
-                          {body && <p className="text-slate-600">{body}</p>}
-                        </div>
-                      </li>
-                    );
-                  })
-                : <li className="text-slate-400 text-sm">관련 내용이 없습니다.</li>;
-            })()}
-          </ul>
-        </div>
-      </div>
-
-      {results.coverLetterImprovements && !Array.isArray(results.coverLetterImprovements) && (
-        <div className="space-y-4">
-          <h3 className="text-lg font-bold text-slate-700 flex items-center gap-2">
-            <Target size={18} className="text-indigo-500" /> {resultPlaybook.feedbackSectionTitles.custom}
-          </h3>
-          {!pinnedSlots.some((slot) => slot.status === 'resolved' && slot.job) ? (
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 text-center">
-              <p className="text-amber-700 text-sm font-bold mb-2">우선 공고를 지정하면 맞춤 분석이 제공됩니다</p>
-              <p className="text-amber-600 text-xs">정보 입력 탭 하단의 &quot;우선 공고 지정&quot;에서 GameJob 공고 번호를 입력해주세요.</p>
+          {!hasPinnedCustom ? (
+            <div className="coach-feedback-empty-panel">
+              <p className="coach-feedback-empty-title">우선 공고를 지정하면 맞춤 피드백이 열립니다.</p>
+              <p className="coach-feedback-empty-body">
+                정보 입력 탭 아래의 우선 공고 지정 영역에서 GameJob 공고 번호를 입력하면 이 영역을 채울 수 있습니다.
+              </p>
             </div>
           ) : null}
-          {pinnedSlots.some((slot) => slot.status === 'resolved' && slot.job) && (() => {
-            const seen = new Set();
-            return [
-              { key: 'rank1', rankLabel: '1순위', border: 'border-sky-200', bg: 'bg-sky-50', badge: 'bg-sky-100 text-sky-700', icon: 'text-sky-500' },
-              { key: 'rank2', rankLabel: '2순위', border: 'border-emerald-200', bg: 'bg-emerald-50', badge: 'bg-emerald-100 text-emerald-700', icon: 'text-emerald-500' },
-              { key: 'rank3', rankLabel: '3순위', border: 'border-amber-200', bg: 'bg-amber-50', badge: 'bg-amber-100 text-amber-700', icon: 'text-amber-500' },
-            ].filter(({ key }) => {
-              const company = recommendedJobs[parseInt(key.replace('rank', ''), 10) - 1]?.company;
-              if (!company || seen.has(company)) return false;
-              seen.add(company);
-              return true;
-            });
-          })().map(({ key, rankLabel, border, bg, badge, icon }) => {
-            const items = results.coverLetterImprovements?.[key] ?? [];
-            const jobName = recommendedJobs[parseInt(key.replace('rank', ''), 10) - 1]?.company ?? `${rankLabel} 공고`;
-            return (
-              <div key={key} className={`bg-white rounded-2xl shadow-sm border ${border} overflow-hidden`}>
-                <div className={`${bg} px-6 py-3 flex items-center gap-3 border-b ${border}`}>
-                  <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${badge}`}>{rankLabel}</span>
-                  <span className="font-bold text-slate-700 text-sm">{jobName}</span>
-                </div>
-                <ul className="divide-y divide-slate-50">
-                  {items.length > 0
-                    ? items.slice(0, 2).map((item, idx) => {
-                        const { title, body } = parseFeedbackItem(item);
-                        return (
-                          <li key={idx} className="flex items-start gap-3 px-6 py-4 text-sm leading-relaxed">
-                            <CheckCircle size={16} className={`${icon} mt-0.5 shrink-0`} />
-                            <div>
-                              {title && <p className="font-semibold text-slate-800 mb-0.5">{title}</p>}
-                              {body && <p className="text-slate-600">{body}</p>}
-                            </div>
-                          </li>
-                        );
-                      })
-                    : <li className="px-6 py-4 text-slate-400 text-sm">내용이 없습니다.</li>}
-                </ul>
-              </div>
-            );
-          })}
-        </div>
-      )}
+
+          {hasPinnedCustom ? (
+            <div className="coach-feedback-custom-grid">
+              {uniqueCustomSections.map(({ key, rankLabel, theme }) => {
+                const items = results.coverLetterImprovements?.[key] ?? [];
+                const companyName = recommendedJobs[parseInt(key.replace('rank', ''), 10) - 1]?.company ?? `${rankLabel} 공고`;
+
+                return (
+                  <article key={key} className={`coach-feedback-custom-card ${theme}`}>
+                    <div className="coach-feedback-custom-head">
+                      <span>{rankLabel}</span>
+                      <strong>{companyName}</strong>
+                    </div>
+                    <ul className="coach-feedback-custom-list">
+                      {items.length > 0 ? (
+                        items.slice(0, 2).map((item, index) => {
+                          const { title, body } = parseFeedbackItem(item);
+                          return (
+                            <li key={`${key}-${index}`}>
+                              <CheckCircle size={16} />
+                              <div>
+                                {title ? <p className="coach-feedback-doc-title">{title}</p> : null}
+                                {body ? <p className="coach-feedback-doc-body">{body}</p> : null}
+                              </div>
+                            </li>
+                          );
+                        })
+                      ) : (
+                        <li className="coach-feedback-doc-empty">아직 정리된 맞춤 항목이 없습니다.</li>
+                      )}
+                    </ul>
+                  </article>
+                );
+              })}
+            </div>
+          ) : null}
+        </section>
+      ) : null}
     </div>
   );
 }
