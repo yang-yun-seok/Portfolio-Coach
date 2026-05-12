@@ -2,6 +2,7 @@ import React from 'react';
 
 export default function WorkspaceSidebar({
   activeTab,
+  activeSectionLabel,
   navSections,
   onSelectTab,
   onSelectTrack,
@@ -14,12 +15,17 @@ export default function WorkspaceSidebar({
   return (
     <aside className="coach-side-panel custom-scrollbar" aria-label="작업 안내">
       <section className="coach-side-card coach-side-current">
-        <p className="coach-side-eyebrow">Current Track</p>
-        <h2>{roleGroup} 트랙</h2>
+        <div className="coach-side-current-head">
+          <div>
+            <p className="coach-side-eyebrow">Current Workspace</p>
+            <h2>{roleGroup} 트랙</h2>
+          </div>
+          <span className="coach-side-section-badge">{activeSectionLabel}</span>
+        </div>
         <p>{roleDescription}</p>
 
         <div className="coach-side-current-meta">
-          <span>현재 세부 초점</span>
+          <span>현재 세부 직무</span>
           <strong>{roleDetailLabel}</strong>
         </div>
 
@@ -40,9 +46,7 @@ export default function WorkspaceSidebar({
         </div>
 
         <div className="coach-side-actions">
-          <button type="button" onClick={onShowTrackGate}>
-            트랙 다시 고르기
-          </button>
+          <button type="button" onClick={onShowTrackGate}>트랙 다시 고르기</button>
         </div>
       </section>
 
@@ -61,7 +65,10 @@ export default function WorkspaceSidebar({
                   className={`coach-side-tool ${isActive ? 'is-active' : ''}`}
                 >
                   <span className="coach-side-tool-icon"><item.icon size={16} /></span>
-                  <span className="coach-side-tool-label">{item.label}</span>
+                  <span className="coach-side-tool-copy">
+                    <span className="coach-side-tool-label">{item.label}</span>
+                    <small>{section.label}</small>
+                  </span>
                 </button>
               );
             })}

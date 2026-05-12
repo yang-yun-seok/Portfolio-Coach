@@ -766,9 +766,9 @@ const { analyzeApplication } = useApplicationAnalysis({
     { id: 'pdf-export',       label: 'PDF 출력',        icon: Download,      group: 'prep' },
   ];
   const navSections = [
-    { id: 'profile', label: '내 자료', items: navItems.filter((item) => item.group === 'profile') },
-    { id: 'market', label: '시장 / 공고', items: navItems.filter((item) => item.group === 'market') },
-    { id: 'prep', label: '지원 준비', items: navItems.filter((item) => item.group === 'prep') },
+    { id: 'profile', label: '내 준비', items: navItems.filter((item) => item.group === 'profile') },
+    { id: 'market', label: '시장·공고', items: navItems.filter((item) => item.group === 'market') },
+    { id: 'prep', label: '면접·마감', items: navItems.filter((item) => item.group === 'prep') },
   ];
 
   useEffect(() => {
@@ -779,6 +779,7 @@ const { analyzeApplication } = useApplicationAnalysis({
 
   const activeNavIndex = navItems.findIndex((item) => item.id === activeTab);
   const activeNavItem = navItems[activeNavIndex >= 0 ? activeNavIndex : 0];
+  const activeNavSection = navSections.find((section) => section.id === activeNavItem.group) || navSections[0];
   const ActiveNavIcon = activeNavItem.icon;
   const featureKey = activeTab.replace(/[^a-z0-9-]/gi, '-');
   const featureGuides = {
@@ -976,6 +977,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     <div data-feature={featureKey} className="apple-shell coach-shell coach-studio-shell apple-app-shell flex h-screen flex-col bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
       <WorkspaceCommandBar
         activeLabel={activeNavItem.label}
+        activeSectionLabel={activeNavSection.label}
         currentTrackLabel={normalizedUserInfo.roleGroup}
         loading={loading}
         modelSummary={`${currentProvider?.label || '모델 선택'}${selectedModelId ? ` · ${selectedModelId}` : ''}`}
@@ -1001,6 +1003,7 @@ const { analyzeApplication } = useApplicationAnalysis({
           <WorkspaceFeatureHeader
             activeFeatureGuide={activeFeatureGuide}
             activeLabel={activeNavItem.label}
+            activeSectionLabel={activeNavSection.label}
             ActiveNavIcon={ActiveNavIcon}
             roleFocus={selectedRoleDetail.focus}
             roleGroup={normalizedUserInfo.roleGroup}
@@ -1038,6 +1041,7 @@ const { analyzeApplication } = useApplicationAnalysis({
         roleDetailLabel={selectedRoleDetail.label}
         roleGroup={normalizedUserInfo.roleGroup}
         roleGroups={ROLE_GROUPS}
+        activeSectionLabel={activeNavSection.label}
       />
       </div>
       )}

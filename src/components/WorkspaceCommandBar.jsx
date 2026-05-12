@@ -3,6 +3,7 @@ import { BookOpen, Gamepad2, Loader2, Settings, Sparkles } from 'lucide-react';
 
 export default function WorkspaceCommandBar({
   activeLabel,
+  activeSectionLabel,
   currentTrackLabel,
   loading,
   modelSummary,
@@ -25,10 +26,15 @@ export default function WorkspaceCommandBar({
         </button>
 
         <div className="coach-command-status" aria-live="polite">
-          <span>{loading ? 'AI 분석' : '현재 작업'}</span>
-          <strong>{activeLabel}</strong>
-          <em className="coach-command-track">{currentTrackLabel} 트랙</em>
-          {loading && <Loader2 size={16} className="animate-spin" />}
+          <div className="coach-command-context">
+            <span>{activeSectionLabel}</span>
+            <strong>{activeLabel}</strong>
+          </div>
+          <div className="coach-command-meta">
+            <em className="coach-command-track">{currentTrackLabel} 트랙</em>
+            <small>{loading ? 'AI 분석 중' : '로컬 저장 사용'}</small>
+            {loading && <Loader2 size={16} className="animate-spin" />}
+          </div>
         </div>
 
         <div className="coach-command-tools">

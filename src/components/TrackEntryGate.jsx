@@ -43,17 +43,14 @@ export default function TrackEntryGate({
   onConfirm,
 }) {
   return (
-    <section className="coach-case-board coach-track-gate-board">
-      <div className="coach-case-copy coach-track-gate-copy">
-        <p className="coach-case-kicker">TRACK SELECT</p>
-        <h1>어떤 준비를 먼저 볼지 선택합니다.</h1>
+    <section className="coach-track-gate-board">
+      <div className="coach-track-gate-copy">
+        <p className="coach-case-kicker">START</p>
+        <h1>먼저 준비할 직군을 선택합니다.</h1>
         <p>
-          선택한 트랙을 기준으로 정보 입력 가이드, 공고 읽는 기준, 포트폴리오 해석 방식이 달라집니다.
-          트랙은 나중에 다시 바꿀 수 있습니다.
+          선택한 트랙을 기준으로 입력 가이드, 포트폴리오 해석, 추천 공고와 면접 문맥이 바뀝니다.
+          기능은 그대로 유지되고, 읽는 기준만 달라집니다.
         </p>
-        <div className="coach-case-actions">
-          <span>시장 분석과 개인 매칭은 그대로 유지되고, 화면 문맥만 트랙 기준으로 정리됩니다.</span>
-        </div>
       </div>
 
       <div className="coach-track-grid">
@@ -90,7 +87,7 @@ export default function TrackEntryGate({
               </ul>
 
               <span className="coach-track-card-action">
-                이 트랙으로 시작
+                이 직군으로 시작
                 <ArrowRight size={15} />
               </span>
             </button>

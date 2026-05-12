@@ -64,9 +64,9 @@ export default function InputWorkspace({
           <div className="coach-input-main p-6 xl:border-r xl:border-slate-200">
             <div className="mb-6 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Profile Setup</p>
-                <h3 className="mt-2 text-3xl font-black tracking-tight text-slate-900">분석 프로필 입력</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">이 화면에서 직군, 세부 직무, 경력, 역량과 서류 기준을 정리합니다.</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">내 준비</p>
+                <h3 className="mt-2 text-3xl font-black tracking-tight text-slate-900">프로필과 자료를 정리합니다</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">개인화 분석에 필요한 직무, 경력, 역량과 첨부 문서를 한곳에서 정리합니다.</p>
               </div>
               <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                 {profileDisplayRole}
@@ -75,7 +75,7 @@ export default function InputWorkspace({
 
             <div className="coach-input-summary mb-5 grid gap-3 md:grid-cols-3">
               <article className="coach-input-summary-card">
-                <p className="coach-input-summary-label">Current Track</p>
+                <p className="coach-input-summary-label">현재 트랙</p>
                 <div className="coach-input-summary-value">
                   <User size={16} />
                   <strong>{normalizedUserInfo.roleGroup}</strong>
@@ -83,7 +83,7 @@ export default function InputWorkspace({
                 <p className="coach-input-summary-body">{selectedRoleDetail.label}</p>
               </article>
               <article className="coach-input-summary-card">
-                <p className="coach-input-summary-label">Documents</p>
+                <p className="coach-input-summary-label">첨부 문서</p>
                 <div className="coach-input-summary-value">
                   <UploadCloud size={16} />
                   <strong>{documentCount}개 첨부</strong>
@@ -91,7 +91,7 @@ export default function InputWorkspace({
                 <p className="coach-input-summary-body">이력서, 자기소개서, 포트폴리오를 합친 현재 기준입니다.</p>
               </article>
               <article className="coach-input-summary-card">
-                <p className="coach-input-summary-label">Priority Jobs</p>
+                <p className="coach-input-summary-label">우선 공고</p>
                 <div className="coach-input-summary-value">
                   <Pin size={16} />
                   <strong>{pinnedResolvedCount}개 연결</strong>
@@ -146,13 +146,13 @@ export default function InputWorkspace({
             </div>
 
             <div className="mt-5 rounded-[24px] border border-slate-200 bg-slate-50 px-4 py-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Current Focus</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">현재 초점</p>
               <p className="mt-2 text-base font-bold text-slate-900">{selectedRoleDetail.label}</p>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">{selectedRoleDetail.focus}</p>
             </div>
 
             <div className="coach-input-skill-shell mt-6">
-          <div className="mb-3 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+            <div className="mb-3 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-1">직무 역량 및 숙련도</label>
               <p className="text-xs text-slate-500">
@@ -160,7 +160,7 @@ export default function InputWorkspace({
               </p>
             </div>
             <div className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-              Current Category · {skillInput.category}
+              현재 카테고리 · {skillInput.category}
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-2 mb-3">
@@ -199,7 +199,7 @@ export default function InputWorkspace({
           </div>
 
           <div className="mb-3">
-            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Quick Add</p>
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">빠른 추가</p>
             <div className="flex flex-wrap gap-2">
               {selectedSkillSuggestions.map((skill) => {
                 const isSelected = userInfo.skills.some((entry) => entry.name === skill);
@@ -242,50 +242,50 @@ export default function InputWorkspace({
         </div>
           </div>
 
-          <aside className="coach-input-side bg-slate-950 p-6 text-white">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300">Recruiter Lens</p>
-            <h4 className="mt-2 text-2xl font-black tracking-tight text-white">{normalizedUserInfo.roleGroup} 트랙 기준</h4>
-            <p className="mt-3 text-sm leading-relaxed text-slate-300">{selectedRoleGroupInfo.description}</p>
-            <p className="mt-4 rounded-[24px] border border-white/10 bg-white/5 px-4 py-4 text-sm leading-relaxed text-slate-100">
+          <aside className="coach-input-side p-6">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">입력 가이드</p>
+            <h4 className="mt-2 text-2xl font-black tracking-tight text-slate-900">{normalizedUserInfo.roleGroup} 트랙 기준</h4>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600">{selectedRoleGroupInfo.description}</p>
+            <p className="mt-4 rounded-[24px] border border-slate-200 bg-white px-4 py-4 text-sm leading-relaxed text-slate-700">
               {rolePlaybook.recruiterLens}
             </p>
 
-            <div className="mt-5 rounded-[24px] border border-white/10 bg-white/5 px-4 py-4">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Evidence Checklist</p>
+            <div className="mt-5 rounded-[24px] border border-slate-200 bg-white px-4 py-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">빠진 정보 체크</p>
               <ul className="mt-3 space-y-2">
                 {rolePlaybook.evidenceChecklist.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-slate-200">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-300" />
+                  <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-slate-700">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="mt-5 rounded-[24px] border border-white/10 bg-white/5 px-4 py-4">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Writing Rule</p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-200">{rolePlaybook.skillGuide}</p>
+            <div className="mt-5 rounded-[24px] border border-slate-200 bg-white px-4 py-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">입력 원칙</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700">{rolePlaybook.skillGuide}</p>
             </div>
 
             {normalizedUserInfo.roleGroup === '프로그래밍' && (
-              <div className="mt-5 rounded-[24px] border border-sky-400/20 bg-sky-400/10 p-4">
-                <label className="mb-1 flex items-center gap-2 text-sm font-bold text-sky-100">
-                  <Code2 size={16} className="text-sky-300" />
+              <div className="mt-5 rounded-[24px] border border-slate-200 bg-white p-4">
+                <label className="mb-1 flex items-center gap-2 text-sm font-bold text-slate-900">
+                  <Code2 size={16} className="text-slate-700" />
                   GitHub 저장소 URL
-                  <span className="text-xs font-normal text-sky-200/70">(선택, public repo)</span>
+                  <span className="text-xs font-normal text-slate-400">(선택, public repo)</span>
                 </label>
                 <input
                   type="url"
                   name="githubUrl"
                   value={userInfo.githubUrl || ''}
                   onChange={handleInputChange}
-                  className="mt-2 w-full rounded-xl border border-sky-300/20 bg-slate-950 px-4 py-2.5 text-sm text-white outline-none transition focus:border-sky-300 focus:ring-4 focus:ring-sky-300/10"
+                  className="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-900 outline-none transition focus:border-slate-900 focus:ring-4 focus:ring-slate-200"
                   placeholder="https://github.com/username/project"
                 />
                 <ul className="mt-3 space-y-1.5">
                   {rolePlaybook.githubGuide?.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-xs leading-relaxed text-sky-100">
-                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-300" />
+                    <li key={item} className="flex items-start gap-2 text-xs leading-relaxed text-slate-700">
+                      <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-900" />
                       <span>{item}</span>
                     </li>
                   ))}
