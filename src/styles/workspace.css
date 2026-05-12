@@ -1649,6 +1649,423 @@
     color: #ffffff !important;
   }
 
+  .coach-interview-workspace,
+  .coach-readiness-workspace {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .coach-interview-hero,
+  .coach-readiness-hero {
+    margin-bottom: 0 !important;
+  }
+
+  .coach-interview-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.72fr);
+    gap: 1rem;
+  }
+
+  .coach-interview-card-grid,
+  .coach-readiness-card-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .coach-interview-card,
+  .coach-readiness-card {
+    padding: 1.15rem 1.2rem 1.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: none;
+  }
+
+  .coach-interview-card h3,
+  .coach-readiness-card h3,
+  .coach-interview-focus h3,
+  .coach-interview-question-copy h3,
+  .coach-readiness-note h3,
+  .coach-readiness-heading h3 {
+    margin: 0;
+    color: #000000;
+    letter-spacing: -0.04em;
+  }
+
+  .coach-interview-card h3,
+  .coach-readiness-card h3 {
+    margin-bottom: 0.45rem;
+    font-size: 1rem;
+    font-weight: 540;
+    line-height: 1.25;
+  }
+
+  .coach-interview-card p,
+  .coach-readiness-card p,
+  .coach-interview-focus-body,
+  .coach-interview-focus-subsection p,
+  .coach-readiness-note p,
+  .coach-readiness-point-desc {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.66);
+    font-size: 0.93rem;
+    line-height: 1.65;
+  }
+
+  .coach-interview-kicker,
+  .coach-readiness-kicker {
+    margin: 0 0 0.55rem;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.7rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .coach-interview-strategy {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    padding: 1.3rem;
+    border-radius: 28px;
+    background:
+      linear-gradient(155deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0)) padding-box,
+      linear-gradient(135deg, rgba(0, 0, 0, 0.92), rgba(15, 23, 42, 0.82), rgba(14, 165, 233, 0.34)) border-box;
+    border: 1px solid transparent;
+    color: #ffffff;
+  }
+
+  .coach-interview-strategy .coach-interview-kicker,
+  .coach-interview-strategy p {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .coach-interview-strategy h3,
+  .coach-interview-strategy-title {
+    margin: 0;
+    color: #ffffff;
+    letter-spacing: -0.04em;
+  }
+
+  .coach-interview-strategy h3 {
+    font-size: 1.15rem;
+    font-weight: 540;
+    line-height: 1.22;
+  }
+
+  .coach-interview-strategy-divider {
+    display: grid;
+    gap: 0.45rem;
+    margin-top: 0.15rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .coach-interview-strategy-title {
+    font-size: 0.9rem;
+    font-weight: 540;
+  }
+
+  .coach-interview-tabs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 0.6rem;
+  }
+
+  .coach-interview-tab {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 0.86rem;
+    font-weight: 540;
+    line-height: 1.25;
+    transition: border-color 160ms ease, background 160ms ease, color 160ms ease, transform 160ms ease;
+  }
+
+  .coach-interview-tab:hover {
+    color: rgba(0, 0, 0, 0.82);
+    border-color: rgba(0, 0, 0, 0.24);
+    transform: translateY(-1px);
+  }
+
+  .coach-interview-tab.is-active {
+    background: #000000;
+    border-color: #000000;
+    color: #ffffff;
+  }
+
+  .coach-interview-detail {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .coach-interview-focus,
+  .coach-interview-tip {
+    padding: 1.25rem 1.3rem;
+    border-radius: 28px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #ffffff;
+  }
+
+  .coach-interview-focus {
+    display: grid;
+    gap: 0.85rem;
+    background:
+      radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 32%),
+      linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+  }
+
+  .coach-interview-focus-head {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .coach-interview-focus h3 {
+    font-size: 1.1rem;
+    font-weight: 540;
+    line-height: 1.25;
+  }
+
+  .coach-interview-focus-body {
+    white-space: pre-line;
+  }
+
+  .coach-interview-focus-subsection {
+    display: grid;
+    gap: 0.45rem;
+    padding-top: 0.95rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .coach-interview-focus-subsection h4 {
+    margin: 0;
+    color: #000000;
+    font-size: 0.92rem;
+    font-weight: 540;
+  }
+
+  .coach-interview-question-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .coach-interview-question-card {
+    padding: 1.25rem 1.3rem;
+    border-radius: 28px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #ffffff;
+  }
+
+  .coach-interview-question-shell {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .coach-interview-question-index {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.06);
+    color: #000000;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .coach-interview-question-copy {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .coach-interview-question-copy h3 {
+    font-size: 1.18rem;
+    font-weight: 540;
+    line-height: 1.28;
+    white-space: pre-line;
+  }
+
+  .coach-interview-answer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .coach-interview-answer-panel {
+    display: grid;
+    gap: 0.45rem;
+    min-height: 100%;
+    padding: 1rem 1rem 1.05rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  .coach-interview-answer-panel.is-danger {
+    background: rgba(239, 68, 68, 0.06);
+    border-color: rgba(239, 68, 68, 0.16);
+  }
+
+  .coach-interview-answer-panel.is-success {
+    background: rgba(16, 185, 129, 0.07);
+    border-color: rgba(16, 185, 129, 0.18);
+  }
+
+  .coach-interview-answer-title {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #000000;
+    font-size: 0.9rem;
+    font-weight: 540;
+  }
+
+  .coach-interview-answer-panel p {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.66);
+    font-size: 0.92rem;
+    line-height: 1.62;
+    white-space: pre-line;
+  }
+
+  .coach-interview-tip {
+    display: grid;
+    gap: 0.55rem;
+    background: linear-gradient(180deg, #ffffff 0%, #f3f4f6 100%);
+  }
+
+  .coach-interview-tip strong {
+    color: #000000;
+  }
+
+  .coach-interview-tip > p {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.64);
+    font-size: 0.93rem;
+    line-height: 1.62;
+  }
+
+  .coach-interview-tip-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+    margin-top: 0.25rem;
+  }
+
+  .coach-interview-tip-grid > div {
+    padding: 0.95rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.82);
+    color: rgba(0, 0, 0, 0.66);
+    font-size: 0.9rem;
+    line-height: 1.62;
+  }
+
+  .coach-readiness-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+    gap: 1rem;
+    padding: 1.35rem;
+    border-radius: 28px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background:
+      radial-gradient(circle at top right, rgba(56, 189, 248, 0.1), transparent 35%),
+      linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+  }
+
+  .coach-readiness-summary {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+  }
+
+  .coach-readiness-stat {
+    padding: 0.9rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .coach-readiness-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .coach-readiness-layout {
+    display: grid;
+    grid-template-columns: minmax(17rem, 0.72fr) minmax(0, 1.28fr);
+    gap: 1rem;
+  }
+
+  .coach-readiness-aside,
+  .coach-readiness-flow {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .coach-readiness-note {
+    padding: 1.15rem 1.2rem;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background: #ffffff;
+  }
+
+  .coach-readiness-note h3 {
+    margin: 0 0 0.55rem;
+    font-size: 1.06rem;
+    font-weight: 540;
+    line-height: 1.22;
+  }
+
+  .coach-readiness-note ul {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .coach-readiness-note li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.55rem;
+    align-items: start;
+    color: rgba(0, 0, 0, 0.66);
+    font-size: 0.92rem;
+    line-height: 1.58;
+  }
+
+  .coach-readiness-section {
+    padding: 1.2rem 1.25rem;
+    border-radius: 28px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 249, 252, 0.96));
+  }
+
+  .coach-readiness-section .studio-readiness-kicker,
+  .coach-readiness-section .studio-readiness-point-label {
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .coach-readiness-section .studio-readiness-heading h3,
+  .coach-readiness-section .studio-readiness-point-label,
+  .coach-readiness-section .studio-readiness-point-desc,
+  .coach-readiness-section .studio-readiness-index {
+    color: #000000;
+  }
+
+  .coach-readiness-section .studio-readiness-point-desc {
+    color: rgba(0, 0, 0, 0.66);
+  }
+
   .coach-portfolio-workspace {
     display: grid;
     gap: 1.25rem;
@@ -2535,12 +2952,22 @@
 
     .coach-portfolio-hero,
     .coach-feedback-hero,
+    .coach-interview-overview,
+    .coach-readiness-hero,
+    .coach-readiness-layout,
     .coach-input-shell-grid,
     .coach-portfolio-main-grid,
     .coach-portfolio-signal-grid,
     .coach-feedback-doc-grid,
     .coach-feedback-custom-grid,
     .coach-feedback-lens-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .coach-interview-card-grid,
+    .coach-readiness-card-grid,
+    .coach-interview-answer-grid,
+    .coach-interview-tip-grid {
       grid-template-columns: 1fr;
     }
 
@@ -2670,6 +3097,19 @@
       padding-bottom: 0.75rem;
       border-right: 0;
       border-bottom: 1px solid rgba(24, 32, 51, 0.11);
+    }
+
+    .coach-interview-question-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .coach-interview-question-index {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .coach-interview-tabs {
+      grid-template-columns: 1fr;
     }
 
     .coach-workbench-meta div,

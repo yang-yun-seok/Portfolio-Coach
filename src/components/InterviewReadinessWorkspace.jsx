@@ -35,16 +35,16 @@ export default function InterviewReadinessWorkspace({
   readinessPlaybook,
 }) {
   return (
-    <div className="apple-view studio-readiness-view animate-in fade-in slide-in-from-bottom-4">
-      <section className="studio-readiness-hero">
+    <div className="apple-view coach-readiness-workspace studio-readiness-view animate-in fade-in slide-in-from-bottom-4">
+      <section className="studio-readiness-hero coach-readiness-hero">
         <div className="studio-readiness-copy">
           <p className="studio-eyebrow">Interview Readiness</p>
           <h2>{readinessPlaybook.heroTitle}</h2>
           <p>{readinessPlaybook.heroDescription}</p>
         </div>
-        <div className="studio-readiness-summary">
+        <div className="studio-readiness-summary coach-readiness-summary">
           {readinessPlaybook.summaryStats.map((stat) => (
-            <div key={stat.label} className="studio-readiness-stat">
+            <div key={stat.label} className="studio-readiness-stat coach-readiness-stat">
               <span>{stat.label}</span>
               <strong>{stat.value}</strong>
             </div>
@@ -56,19 +56,19 @@ export default function InterviewReadinessWorkspace({
         </div>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-3">
+      <section className="coach-readiness-card-grid">
         {readinessPlaybook.prepCards.map((card) => (
-          <article key={card.label} className="rounded-[28px] border border-slate-200 bg-white px-6 py-6 shadow-sm">
-            <p className="mb-3 text-[11px] font-black uppercase tracking-[0.24em] text-sky-600">{card.label}</p>
-            <h3 className="mb-2 text-base font-black text-slate-900">{card.title}</h3>
-            <p className="text-sm leading-relaxed text-slate-600">{card.body}</p>
+          <article key={card.label} className="coach-readiness-card">
+            <p className="coach-readiness-kicker">{card.label}</p>
+            <h3>{card.title}</h3>
+            <p>{card.body}</p>
           </article>
         ))}
       </section>
 
-      <section className="studio-readiness-layout">
-        <aside className="studio-readiness-aside">
-          <div className="studio-readiness-note">
+      <section className="studio-readiness-layout coach-readiness-layout">
+        <aside className="studio-readiness-aside coach-readiness-aside">
+          <div className="studio-readiness-note coach-readiness-note">
             <p className="studio-eyebrow">Quick Reset</p>
             <h3>면접 직전 5분 체크</h3>
             <ul>
@@ -81,18 +81,18 @@ export default function InterviewReadinessWorkspace({
             </ul>
           </div>
 
-          <div className="studio-readiness-note studio-readiness-note-muted">
+          <div className="studio-readiness-note studio-readiness-note-muted coach-readiness-note">
             <p className="studio-eyebrow">{readinessPlaybook.answerFrameTitle}</p>
             <p>{readinessPlaybook.answerFrameBody}</p>
           </div>
 
-          <div className="studio-readiness-note studio-readiness-note-muted">
+          <div className="studio-readiness-note studio-readiness-note-muted coach-readiness-note">
             <p className="studio-eyebrow">{readinessPlaybook.reviewerNoteTitle}</p>
             <p>{readinessPlaybook.reviewerNoteBody}</p>
           </div>
         </aside>
 
-        <div className="studio-readiness-flow">
+        <div className="studio-readiness-flow coach-readiness-flow">
           {interviewBasicData.map(({ icon: iconName, color, title, items }, index) => {
             const Icon = ICON_MAP[iconName] || Smile;
             const theme = INTERVIEW_THEME_MAP[color] || INTERVIEW_THEME_MAP.blue;
@@ -100,7 +100,7 @@ export default function InterviewReadinessWorkspace({
             return (
               <article
                 key={title}
-                className="studio-readiness-section"
+                className="studio-readiness-section coach-readiness-section"
                 style={{
                   '--studio-accent': theme.accent,
                   '--studio-soft': theme.soft,
