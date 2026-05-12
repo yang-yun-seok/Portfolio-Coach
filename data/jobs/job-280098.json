@@ -1,0 +1,34 @@
+{
+  "id": "crawled-280098",
+  "company": "펀웨이브",
+  "title": "Unity 프로그래머 모집 / 체험형 게임 · 모바일게임 개발",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Git/SVN"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280098",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "FUNWAVE 체험형 인터랙티브 게임 시리즈 및 CAPCOM 협업 체험형 게임 프로젝트",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 Arcade, VR·AR",
+  "employmentType": "정규직",
+  "deadline": "~ 06/12(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, 게임프로그래머, VR, AR",
+  "updatedAt": "2026-05-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-12T18:26:17.568Z",
+  "lastSeenAt": "2026-05-12T18:26:17.568Z",
+  "lastCrawledAt": "2026-05-12T18:26:17.568Z",
+  "inactiveAt": null
+}

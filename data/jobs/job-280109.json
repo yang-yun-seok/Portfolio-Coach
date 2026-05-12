@@ -1,0 +1,33 @@
+{
+  "id": "crawled-280109",
+  "company": "㈜루디우스게임즈",
+  "title": "[NC 루디우스게임즈] [MDR] 애니메이터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3ds Max",
+    "Maya"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280109",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3DSmax, Maya, AdobePhotoshop, Unreal5",
+  "updatedAt": "2026-05-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-12T18:26:17.568Z",
+  "lastSeenAt": "2026-05-12T18:26:17.568Z",
+  "lastCrawledAt": "2026-05-12T18:26:17.568Z",
+  "inactiveAt": null
+}

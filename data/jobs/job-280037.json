@@ -1,0 +1,35 @@
+{
+  "id": "crawled-280037",
+  "company": "슈퍼센트 (Supercent)",
+  "title": "게임 마케팅 3D 아티스트(2-7년)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Photoshop",
+    "Illustrator"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280037",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "XP Hero, Burger Please!, Pizza Ready!, Snake Clash",
+  "gameCategory": "모바일게임 Casual, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 모델링, 텍스쳐, 하이폴리곤, 애니메이션, Photoshop, Illustrator, Unity3D, blender",
+  "updatedAt": "2026-05-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-12T18:26:17.568Z",
+  "lastSeenAt": "2026-05-12T18:26:17.568Z",
+  "lastCrawledAt": "2026-05-12T18:26:17.568Z",
+  "inactiveAt": null
+}

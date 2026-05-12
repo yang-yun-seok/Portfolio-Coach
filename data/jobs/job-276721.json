@@ -23,13 +23,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "API, C, C++, ObjectiveC, 3D, 연구개발, 기술개발, 3DSmax, 3DMax, 오브젝트, 클라우드, 플랫폼개발, 서비스개발, 게임프로그래밍, 렌더링, UE5",
-  "updatedAt": "2026-05-11",
+  "updatedAt": "2026-05-12",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-11T18:34:17.098Z",
-  "lastSeenAt": "2026-05-11T18:34:17.098Z",
-  "lastCrawledAt": "2026-05-11T18:34:17.098Z",
+  "firstSeenAt": "2026-05-12T18:26:17.568Z",
+  "lastSeenAt": "2026-05-12T18:26:17.568Z",
+  "lastCrawledAt": "2026-05-12T18:26:17.568Z",
   "inactiveAt": null
 }

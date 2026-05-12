@@ -1,0 +1,36 @@
+{
+  "id": "crawled-280077",
+  "company": "㈜그린맨파워",
+  "title": "[삼성/복지우수/넥슨계열사] 삼성역 게임스튜디오 게임QA기획보조",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "PM/운영",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "QA/테스트",
+    "Excel"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280077",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Riot Games, SmileGate, Wemade, DaumKakao, Webzen",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+  "employmentType": "파견직",
+  "deadline": "~ 05/19(화)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 게임기획, 게임운영, QA, 빌드테스트, 아트리소스관리, QA보조, QA지원, 이벤트제작보조, 글로벌빌드기획데이터검수",
+  "updatedAt": "2026-05-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-12T18:26:17.568Z",
+  "lastSeenAt": "2026-05-12T18:26:17.568Z",
+  "lastCrawledAt": "2026-05-12T18:26:17.568Z",
+  "inactiveAt": null
+}
