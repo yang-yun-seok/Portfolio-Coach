@@ -54,12 +54,14 @@ export default function InputWorkspace({
   const roleDetails = getRoleDetails(normalizedUserInfo.roleGroup);
   const profileDisplayRole = getProfileDisplayRole(normalizedUserInfo);
   const fileUploadDisabled = currentProvider && !currentProvider.supportsFiles;
+  const documentCount = (resumeFile ? 1 : 0) + (coverLetterFile ? 1 : 0) + portfolioFiles.length;
+  const pinnedResolvedCount = pinnedSlots.filter((slot) => slot.status === 'resolved' && slot.job).length;
 
   return (
-    <div className="apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
-      <section className="overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-sm">
-        <div className="grid gap-0 xl:grid-cols-[1.18fr_0.82fr]">
-          <div className="p-6 xl:border-r xl:border-slate-200">
+    <div className="coach-input-workspace apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
+      <section className="coach-input-shell overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-sm">
+        <div className="coach-input-shell-grid grid gap-0 xl:grid-cols-[1.18fr_0.82fr]">
+          <div className="coach-input-main p-6 xl:border-r xl:border-slate-200">
             <div className="mb-6 flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Profile Setup</p>
@@ -69,6 +71,33 @@ export default function InputWorkspace({
               <div className="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                 {profileDisplayRole}
               </div>
+            </div>
+
+            <div className="coach-input-summary mb-5 grid gap-3 md:grid-cols-3">
+              <article className="coach-input-summary-card">
+                <p className="coach-input-summary-label">Current Track</p>
+                <div className="coach-input-summary-value">
+                  <User size={16} />
+                  <strong>{normalizedUserInfo.roleGroup}</strong>
+                </div>
+                <p className="coach-input-summary-body">{selectedRoleDetail.label}</p>
+              </article>
+              <article className="coach-input-summary-card">
+                <p className="coach-input-summary-label">Documents</p>
+                <div className="coach-input-summary-value">
+                  <UploadCloud size={16} />
+                  <strong>{documentCount}개 첨부</strong>
+                </div>
+                <p className="coach-input-summary-body">이력서, 자기소개서, 포트폴리오를 합친 현재 기준입니다.</p>
+              </article>
+              <article className="coach-input-summary-card">
+                <p className="coach-input-summary-label">Priority Jobs</p>
+                <div className="coach-input-summary-value">
+                  <Pin size={16} />
+                  <strong>{pinnedResolvedCount}개 연결</strong>
+                </div>
+                <p className="coach-input-summary-body">우선 공고를 지정하면 맞춤 피드백과 추천 기준이 더 선명해집니다.</p>
+              </article>
             </div>
 
             <div className="mb-5">
@@ -122,7 +151,7 @@ export default function InputWorkspace({
               <p className="mt-2 text-sm leading-relaxed text-slate-600">{selectedRoleDetail.focus}</p>
             </div>
 
-            <div className="mt-6">
+            <div className="coach-input-skill-shell mt-6">
           <div className="mb-3 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-1">직무 역량 및 숙련도</label>
@@ -213,7 +242,7 @@ export default function InputWorkspace({
         </div>
           </div>
 
-          <aside className="bg-slate-950 p-6 text-white">
+          <aside className="coach-input-side bg-slate-950 p-6 text-white">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300">Recruiter Lens</p>
             <h4 className="mt-2 text-2xl font-black tracking-tight text-white">{normalizedUserInfo.roleGroup} 트랙 기준</h4>
             <p className="mt-3 text-sm leading-relaxed text-slate-300">{selectedRoleGroupInfo.description}</p>
@@ -267,7 +296,7 @@ export default function InputWorkspace({
         </div>
       </section>
 
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+      <div className="coach-input-section-shell coach-input-doc-shell bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
         <div className="mb-4 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Documents</p>
@@ -356,7 +385,7 @@ export default function InputWorkspace({
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+      <div className="coach-input-section-shell coach-input-pin-shell bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
         <h3 className="text-lg font-bold text-slate-800 mb-1 flex items-center gap-2">
           <Pin size={20} className="text-rose-500" /> 우선 공고 지정
           <span className="text-slate-400 font-normal text-sm ml-1">(선택)</span>
@@ -455,33 +484,37 @@ export default function InputWorkspace({
         </div>
       </div>
 
-      <InstructorFeedbackForm value={instructorFeedback} onChange={setInstructorFeedback} />
+      <div className="coach-input-section-shell">
+        <InstructorFeedbackForm value={instructorFeedback} onChange={setInstructorFeedback} />
+      </div>
 
-      <button
-        type="button"
-        onClick={analyzeApplication}
-        disabled={loading}
-        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex justify-center items-center gap-2 disabled:opacity-70"
-      >
-        {loading
-          ? <><Loader2 size={20} className="animate-spin" /> AI 분석 요청 처리 중 ({currentProvider?.label || 'Gemini'})...</>
-          : <><Target size={20} /> AI 분석 시작 및 저장</>}
-      </button>
+      <section className="coach-input-submit-shell">
+        <button
+          type="button"
+          onClick={analyzeApplication}
+          disabled={loading}
+          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex justify-center items-center gap-2 disabled:opacity-70"
+        >
+          {loading
+            ? <><Loader2 size={20} className="animate-spin" /> AI 분석 요청 처리 중 ({currentProvider?.label || 'Gemini'})...</>
+            : <><Target size={20} /> AI 분석 시작 및 저장</>}
+        </button>
 
-      {loading && (
-        <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 shadow-sm">
-          <div className="flex items-start gap-3">
-            <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
-            <div className="space-y-1">
-              <p className="text-sm font-bold text-amber-900">분석 요청은 정상적으로 처리되고 있습니다.</p>
-              <p className="text-sm leading-relaxed text-amber-800">
-                서버와 AI 모델이 응답을 정리하는 과정이라 최대 1분 정도 걸릴 수 있습니다. 진행 중에는 새로고침, 뒤로 가기, 탭 닫기를 하지 말고 잠시만 기다려 주세요.
-              </p>
-              <p className="text-xs font-semibold text-amber-700">응답이 도착하면 결과를 로컬에 저장한 뒤 서류 피드백 화면으로 자동 이동합니다.</p>
+        {loading && (
+          <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 shadow-sm">
+            <div className="flex items-start gap-3">
+              <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
+              <div className="space-y-1">
+                <p className="text-sm font-bold text-amber-900">분석 요청은 정상적으로 처리되고 있습니다.</p>
+                <p className="text-sm leading-relaxed text-amber-800">
+                  서버와 AI 모델이 응답을 정리하는 과정이라 최대 1분 정도 걸릴 수 있습니다. 진행 중에는 새로고침, 뒤로 가기, 탭 닫기를 하지 말고 잠시만 기다려 주세요.
+                </p>
+                <p className="text-xs font-semibold text-amber-700">응답이 도착하면 결과를 로컬에 저장한 뒤 서류 피드백 화면으로 자동 이동합니다.</p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </section>
     </div>
   );
 }

@@ -279,7 +279,7 @@ function MetaPill({ label, value }) {
 
 function TrendChart({ data }) {
   if (!data.length) {
-    return <div className="rounded-[28px] border border-slate-800 bg-slate-950/70 px-5 py-8 text-sm text-slate-400">추이 데이터가 없습니다.</div>;
+    return <div className="coach-job-chart-panel coach-job-trend-panel rounded-[28px] border border-slate-800 bg-slate-950/70 px-5 py-8 text-sm text-slate-400">추이 데이터가 없습니다.</div>;
   }
 
   const referenceValues = data.map((item) => item.referenceJobCount || 0);
@@ -292,7 +292,7 @@ function TrendChart({ data }) {
   }).join(' ');
 
   return (
-    <div className="rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
+    <div className="coach-job-chart-panel coach-job-trend-panel rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
       <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">시장 추이</p>
@@ -345,7 +345,7 @@ function TrendChart({ data }) {
 function HistoryPanel({ historyIndex }) {
   if (!historyIndex.length) {
     return (
-      <div className="rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
+      <div className="coach-job-history-panel rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
         <p className="text-xs uppercase tracking-[0.18em] text-slate-300">Daily Records</p>
         <h4 className="mt-1 text-lg font-bold text-white">최근 기록</h4>
         <p className="mt-4 text-sm text-slate-400">표시할 기록이 없습니다.</p>
@@ -354,7 +354,7 @@ function HistoryPanel({ historyIndex }) {
   }
 
   return (
-    <div className="rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
+    <div className="coach-job-history-panel rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="text-xs uppercase tracking-[0.18em] text-slate-300">Daily Records</p>
@@ -400,7 +400,7 @@ function HistoryPanel({ historyIndex }) {
 
 function DistributionBars({ title, subtitle, entries, accentClass = 'bg-sky-400' }) {
   return (
-    <div className="rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
+    <div className="coach-job-chart-panel coach-job-bars-panel rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">{subtitle}</p>
       <h4 className="mt-1 text-lg font-bold text-white">{title}</h4>
       <div className="mt-5 space-y-3">
@@ -428,7 +428,7 @@ function DistributionBars({ title, subtitle, entries, accentClass = 'bg-sky-400'
 function CareerDonut({ entries }) {
   if (!entries.length) {
     return (
-      <div className="rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
+      <div className="coach-job-chart-panel coach-job-career-panel rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
         <h4 className="text-lg font-bold text-white">경력 분포</h4>
         <p className="mt-4 text-sm text-slate-400">경력 데이터가 없습니다.</p>
       </div>
@@ -446,7 +446,7 @@ function CareerDonut({ entries }) {
   });
 
   return (
-    <div className="rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
+    <div className="coach-job-chart-panel coach-job-career-panel rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">Career Split</p>
       <h4 className="mt-1 text-lg font-bold text-white">경력 분포</h4>
       <div className="mt-5 flex flex-col gap-5 lg:flex-row lg:items-center">
@@ -477,7 +477,7 @@ function CareerDonut({ entries }) {
 
 function KeywordCloud({ entries }) {
   return (
-    <div className="rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
+    <div className="coach-job-chart-panel coach-job-keyword-panel rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">Keywords</p>
       <h4 className="mt-1 text-lg font-bold text-white">키워드 인기 순위</h4>
       <div className="mt-5 flex flex-wrap gap-2">
@@ -502,7 +502,7 @@ function KeywordCloud({ entries }) {
 
 function SkillMatrix({ roles, rows }) {
   return (
-    <div className="rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
+    <div className="coach-job-chart-panel coach-job-skill-panel rounded-[28px] border border-slate-800 bg-slate-950/70 p-5">
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">Skill Matrix</p>
       <h4 className="mt-1 text-lg font-bold text-white">직군별 요구 기술 Top</h4>
       <div className="mt-5 overflow-x-auto">
@@ -537,7 +537,7 @@ function SkillMatrix({ roles, rows }) {
 
 function InsightCard({ label, title, body }) {
   return (
-    <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+    <article className="coach-job-insight-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{label}</p>
       <h3 className="mt-2 text-base font-bold leading-snug text-slate-900">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-slate-600">{body}</p>
@@ -552,7 +552,7 @@ function JobListCard({ job }) {
   const skillTokens = (Array.isArray(job.reqSkills) ? job.reqSkills : []).slice(0, 4);
 
   return (
-    <article className="rounded-[24px] border border-slate-800 bg-slate-950/60 p-5 transition hover:border-sky-500/40 hover:bg-slate-950">
+    <article className="coach-job-list-card rounded-[24px] border border-slate-800 bg-slate-950/60 p-5 transition hover:border-sky-500/40 hover:bg-slate-950">
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
           <h4 className="text-lg font-bold text-white">{job.title}</h4>
@@ -871,9 +871,9 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
             <HistoryPanel historyIndex={historyIndex} />
           </div>
 
-          <div className="grid gap-6 xl:grid-cols-[1.4fr_0.6fr]">
+          <div className="coach-job-story-grid grid gap-6 xl:grid-cols-[1.4fr_0.6fr]">
             <TrendChart data={trendData} />
-            <div className="grid gap-4">
+            <div className="coach-job-story-stack grid gap-4">
               <InsightCard
                 label="시장 포인트"
                 title="최근 7일 누적 신규 공고"
@@ -892,7 +892,7 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
             </div>
           </div>
 
-          <div className="grid gap-6 xl:grid-cols-2">
+          <div className="coach-job-distribution-grid grid gap-6 xl:grid-cols-2">
             <DistributionBars
               title="직군별 공고 분포"
               subtitle="Role Distribution"
@@ -914,12 +914,12 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
             />
           </div>
 
-          <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
+          <div className="coach-job-detail-grid grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
             <SkillMatrix roles={roleSkillRoles} rows={roleSkillMatrix} />
             <KeywordCloud entries={keywordCounts} />
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="coach-job-footnote-grid grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             <InsightCard
               label="추적 직군"
               title={`${trackedRoles.length}개 직군`}
@@ -958,7 +958,7 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
             </div>
           </div>
 
-          <div className="mt-6 grid gap-3 xl:grid-cols-[1.15fr_0.4fr_0.35fr]">
+          <div className="coach-job-list-filters mt-6 grid gap-3 xl:grid-cols-[1.15fr_0.4fr_0.35fr]">
             <label className="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-950/70 px-4 py-3">
               <Search size={16} className="text-slate-300" />
               <input
@@ -989,7 +989,7 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
             </select>
           </div>
 
-          <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          <div className="coach-job-list-summary mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             <div className="rounded-2xl border border-slate-800 bg-slate-950/60 px-4 py-4">
               <p className="text-[11px] uppercase tracking-[0.18em] text-slate-400">현재 필터 결과</p>
               <strong className="mt-2 block text-2xl font-black text-white">{filteredJobs.length}건</strong>
@@ -1008,7 +1008,7 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
             </div>
           </div>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
+          <div className="coach-job-list-grid mt-6 grid gap-4 md:grid-cols-2 2xl:grid-cols-3">
             {filteredJobs.length > 0 ? filteredJobs.map((job) => (
               <JobListCard key={job.id} job={job} />
             )) : (

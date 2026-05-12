@@ -1994,6 +1994,83 @@
     line-height: 1.8;
   }
 
+  .coach-input-workspace {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .coach-input-shell {
+    background:
+      radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 22%),
+      linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  }
+
+  .coach-input-summary {
+    align-items: stretch;
+  }
+
+  .coach-input-summary-card {
+    padding: 1rem 1.05rem;
+    border-radius: 22px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: #f8fafc;
+  }
+
+  .coach-input-summary-label {
+    margin: 0 0 0.55rem;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.72rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .coach-input-summary-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: #000000;
+  }
+
+  .coach-input-summary-value strong {
+    font-size: 1.05rem;
+    font-weight: 540;
+    letter-spacing: -0.03em;
+  }
+
+  .coach-input-summary-body {
+    margin: 0.6rem 0 0;
+    color: rgba(0, 0, 0, 0.62);
+    font-size: 0.84rem;
+    line-height: 1.55;
+  }
+
+  .coach-input-side {
+    background:
+      radial-gradient(circle at top right, rgba(96, 165, 250, 0.18), transparent 24%),
+      linear-gradient(180deg, #020617 0%, #0f172a 100%);
+  }
+
+  .coach-input-skill-shell {
+    position: relative;
+  }
+
+  .coach-input-section-shell {
+    position: relative;
+  }
+
+  .coach-input-doc-shell,
+  .coach-input-pin-shell {
+    background:
+      radial-gradient(circle at top right, rgba(148, 163, 184, 0.12), transparent 24%),
+      #ffffff;
+  }
+
+  .coach-input-submit-shell {
+    display: grid;
+    gap: 1rem;
+  }
+
   .coach-feedback-workspace {
     display: grid;
     gap: 1.25rem;
@@ -2358,6 +2435,52 @@
       linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   }
 
+  .coach-job-analysis .coach-job-meta-pill,
+  .coach-job-analysis .coach-job-stat-card,
+  .coach-job-analysis .coach-job-chart-panel,
+  .coach-job-analysis .coach-job-history-panel,
+  .coach-job-analysis .coach-job-list-card {
+    backdrop-filter: saturate(140%) blur(6px);
+  }
+
+  .coach-job-analysis .coach-job-chart-panel,
+  .coach-job-analysis .coach-job-history-panel,
+  .coach-job-analysis .coach-job-ai-panel,
+  .coach-job-analysis .coach-job-list-panel {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
+
+  .coach-job-analysis .coach-job-story-stack {
+    align-content: start;
+  }
+
+  .coach-job-analysis .coach-job-insight-card {
+    border-radius: 24px;
+    background:
+      radial-gradient(circle at top right, rgba(125, 211, 252, 0.16), transparent 24%),
+      linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .coach-job-analysis .coach-job-insight-card h3 {
+    letter-spacing: -0.03em;
+  }
+
+  .coach-job-analysis .coach-job-list-summary > div,
+  .coach-job-analysis .coach-job-list-filters > * {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  }
+
+  .coach-job-analysis .coach-job-list-grid {
+    align-items: stretch;
+  }
+
+  .coach-job-analysis .coach-job-list-card {
+    background:
+      radial-gradient(circle at top right, rgba(96, 165, 250, 0.08), transparent 24%),
+      rgba(2, 6, 23, 0.84);
+  }
+
   .coach-job-analysis .coach-job-hero {
     position: relative;
   }
@@ -2412,6 +2535,7 @@
 
     .coach-portfolio-hero,
     .coach-feedback-hero,
+    .coach-input-shell-grid,
     .coach-portfolio-main-grid,
     .coach-portfolio-signal-grid,
     .coach-feedback-doc-grid,
