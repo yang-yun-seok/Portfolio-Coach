@@ -9,6 +9,7 @@ const port = Number(process.env.SMOKE_PORT || '4173');
 const pathPrefix = normalizePathPrefix(process.env.SMOKE_PATH_PREFIX || '/');
 const distDir = join(process.cwd(), 'dist');
 const baseUrl = `http://${host}:${port}${pathPrefix}`;
+const TRACK_ENTRY_STORAGE_KEY = 'portfolio-coach-track-entry-v1';
 
 function createSmokeSeed() {
   const baseUserInfo = {
@@ -205,10 +206,11 @@ async function run() {
     });
     page.on('pageerror', (error) => pageErrors.push(error.message));
 
-    await page.evaluateOnNewDocument((seed) => {
+    await page.evaluateOnNewDocument((seed, trackStorageKey) => {
       localStorage.setItem('portfolio_bot_save', JSON.stringify(seed.currentSnapshot));
       localStorage.setItem('portfolio_bot_history', JSON.stringify([seed.currentSnapshot, seed.previousSnapshot]));
-    }, { currentSnapshot, previousSnapshot });
+      localStorage.setItem(trackStorageKey, seed.currentSnapshot.userInfo.roleGroup);
+    }, { currentSnapshot, previousSnapshot }, TRACK_ENTRY_STORAGE_KEY);
 
     await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
     await page.goto(`${baseUrl}?smoke=1`, { waitUntil: 'networkidle0', timeout: 45000 });

@@ -34,7 +34,10 @@ import WorkspaceMessages from './components/WorkspaceMessages';
 import CompanyInfoModal from './components/CompanyInfoModal';
 import ModelSettingsModal from './components/ModelSettingsModal';
 import SettingsModal from './components/SettingsModal';
+import TrackEntryGate from './components/TrackEntryGate';
 import UserGuideModal from './components/UserGuideModal';
+
+const TRACK_ENTRY_STORAGE_KEY = 'portfolio-coach-track-entry-v1';
 
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
 // "- **제목**: 내용" 또는 "**제목**: 내용" → { title, body } 로 분리
@@ -254,6 +257,10 @@ export default function App() {
   const [visibleJobs, setVisibleJobs] = useState(10);
   const [scoreFilter, setScoreFilter] = useState('all'); // 'all' | '90+' | '80+' | '70+' | '60+' | '60-'
   const [selectedCompanyModal, setSelectedCompanyModal] = useState(null);
+  const [showTrackGate, setShowTrackGate] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return !window.localStorage.getItem(TRACK_ENTRY_STORAGE_KEY);
+  });
 
   // 로딩 / 메시지
   const [loading, setLoading] = useState(false);
@@ -439,9 +446,6 @@ export default function App() {
     }));
     setSkillInput(getDefaultSkillInput(roleGroup));
   };
-  const handleRoleGroupChange = (e) => {
-    handleRoleGroupSelect(e.target.value);
-  };
 
   const handleSubRoleChange = (e) => {
     const subRole = e.target.value;
@@ -451,6 +455,28 @@ export default function App() {
       subRole,
       role: detail.matchRole,
     }));
+  };
+
+  const persistTrackChoice = (roleGroup) => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(TRACK_ENTRY_STORAGE_KEY, roleGroup);
+    }
+  };
+
+  const handleTrackGateConfirm = (roleGroup) => {
+    handleRoleGroupSelect(roleGroup);
+    persistTrackChoice(roleGroup);
+    setShowTrackGate(false);
+    setActiveTab('input');
+    setError('');
+    setInfoMessage('');
+  };
+
+  const handleQuickTrackSelect = (roleGroup) => {
+    handleRoleGroupSelect(roleGroup);
+    persistTrackChoice(roleGroup);
+    setShowTrackGate(false);
+    setActiveTab('input');
   };
 
   const handleAddSkill = () => {
@@ -711,15 +737,20 @@ const { analyzeApplication } = useApplicationAnalysis({
 
   // ── 네비게이션 ────────────────────────────────────────────────────────
   const navItems = [
-    { id: 'input',           label: '정보 입력',       icon: User },
-    { id: 'feedback',        label: '서류 피드백',      icon: FileText },
-    { id: 'portfolio',       label: '포트폴리오',       icon: ImageIcon },
-    { id: 'job-analysis',    label: '공고 분석',        icon: BarChart3 },
-    { id: 'jobs',            label: '추천 공고',        icon: Target },
-    { id: 'interview',       label: '면접 대비',        icon: MessageSquare },
-    { id: 'interview-basic', label: '면접 기본 준비',   icon: Smile },
-    { id: 'personality-test', label: '인성검사',         icon: ClipboardList },
-    { id: 'pdf-export',     label: 'PDF 출력',          icon: Download },
+    { id: 'input',            label: '정보 입력',       icon: User,          group: 'profile' },
+    { id: 'feedback',         label: '서류 피드백',     icon: FileText,      group: 'profile' },
+    { id: 'portfolio',        label: '포트폴리오',      icon: ImageIcon,     group: 'profile' },
+    { id: 'job-analysis',     label: '공고 분석',       icon: BarChart3,     group: 'market' },
+    { id: 'jobs',             label: '추천 공고',       icon: Target,        group: 'market' },
+    { id: 'interview',        label: '면접 대비',       icon: MessageSquare, group: 'prep' },
+    { id: 'interview-basic',  label: '면접 기본 준비',  icon: Smile,         group: 'prep' },
+    { id: 'personality-test', label: '인성검사',        icon: ClipboardList, group: 'prep' },
+    { id: 'pdf-export',       label: 'PDF 출력',        icon: Download,      group: 'prep' },
+  ];
+  const navSections = [
+    { id: 'profile', label: '내 자료', items: navItems.filter((item) => item.group === 'profile') },
+    { id: 'market', label: '시장 / 공고', items: navItems.filter((item) => item.group === 'market') },
+    { id: 'prep', label: '지원 준비', items: navItems.filter((item) => item.group === 'prep') },
   ];
 
   useEffect(() => {
@@ -927,6 +958,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     <div data-feature={featureKey} className="apple-shell coach-shell coach-studio-shell apple-app-shell flex h-screen flex-col bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
       <WorkspaceCommandBar
         activeLabel={activeNavItem.label}
+        currentTrackLabel={normalizedUserInfo.roleGroup}
         loading={loading}
         modelSummary={`${currentProvider?.label || '모델 선택'}${selectedModelId ? ` · ${selectedModelId}` : ''}`}
         onOpenGuide={() => setShowUserGuide(true)}
@@ -935,6 +967,15 @@ const { analyzeApplication } = useApplicationAnalysis({
         onSelectInput={() => setActiveTab('input')}
       />
 
+      {showTrackGate ? (
+        <main className="coach-track-gate-shell">
+          <TrackEntryGate
+            currentRoleGroup={normalizedUserInfo.roleGroup}
+            onConfirm={handleTrackGateConfirm}
+            roleGroups={ROLE_GROUPS}
+          />
+        </main>
+      ) : (
       <div className="coach-body-shell">
       {/* ── Main Content ────────────────────────────────────────────── */}
       <div className="apple-main coach-workspace apple-workspace flex-1 overflow-auto bg-slate-50 p-8 custom-scrollbar">
@@ -943,6 +984,8 @@ const { analyzeApplication } = useApplicationAnalysis({
             activeFeatureGuide={activeFeatureGuide}
             activeLabel={activeNavItem.label}
             ActiveNavIcon={ActiveNavIcon}
+            roleFocus={selectedRoleDetail.focus}
+            roleGroup={normalizedUserInfo.roleGroup}
           />
 
           <WorkspaceMessages
@@ -969,10 +1012,17 @@ const { analyzeApplication } = useApplicationAnalysis({
 
       <WorkspaceSidebar
         activeTab={activeTab}
-        navItems={navItems}
+        navSections={navSections}
         onSelectTab={setActiveTab}
+        onSelectTrack={handleQuickTrackSelect}
+        onShowTrackGate={() => setShowTrackGate(true)}
+        roleDescription={selectedRoleGroupInfo.description}
+        roleDetailLabel={selectedRoleDetail.label}
+        roleGroup={normalizedUserInfo.roleGroup}
+        roleGroups={ROLE_GROUPS}
       />
       </div>
+      )}
 
       <CompanyInfoModal
         company={selectedCompanyModal}
