@@ -292,6 +292,20 @@ async function run() {
       { timeout: 5000 },
     );
 
+    console.log('[smoke] checking personality view');
+    await clickTool(page, { id: 'personality-test', label: '?몄꽦寃??' });
+    await page.waitForFunction(
+      () => !!document.querySelector('.coach-personality-page'),
+      { timeout: 5000 },
+    );
+
+    console.log('[smoke] checking pdf export view');
+    await clickTool(page, { id: 'pdf-export', label: 'PDF 異쒕젰' });
+    await page.waitForFunction(
+      () => !!document.querySelector('.coach-pdf-page'),
+      { timeout: 5000 },
+    );
+
     console.log('[smoke] checking guide modal');
     await page.evaluate(() => {
       if (window.__portfolioCoachSmoke?.openGuide) {

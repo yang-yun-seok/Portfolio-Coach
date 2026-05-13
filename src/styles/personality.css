@@ -201,6 +201,320 @@
     min-width: 0;
   }
 
+  .coach-personality-page {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .coach-personality-overview-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 999px;
+    background: rgba(14, 165, 233, 0.12);
+    color: #0284c7;
+  }
+
+  .coach-personality-fit-grid,
+  .coach-personality-card-grid,
+  .coach-personality-tip-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .coach-personality-fit-card,
+  .coach-personality-trait,
+  .coach-personality-note-card {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 24px;
+    background: #f8fafc;
+    padding: 1rem 1.05rem;
+  }
+
+  .coach-personality-fit-card h4,
+  .coach-personality-note-head strong {
+    margin: 0.45rem 0 0.35rem;
+    color: #0f172a;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.35;
+  }
+
+  .coach-personality-fit-card p,
+  .coach-personality-note-card p {
+    margin: 0;
+    color: rgba(15, 23, 42, 0.72);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .coach-personality-actions {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .coach-personality-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0.85rem 1.35rem;
+    border-radius: 999px;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.16);
+  }
+
+  .coach-personality-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: flex-start;
+  }
+
+  .coach-personality-distribution-bar {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .coach-personality-distribution-track,
+  .coach-personality-trait-track,
+  .coach-personality-axis-track {
+    position: relative;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.07);
+  }
+
+  .coach-personality-distribution-track {
+    height: 0.72rem;
+  }
+
+  .coach-personality-distribution-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #0f172a 0%, #2563eb 100%);
+  }
+
+  .coach-personality-distribution-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.4rem;
+    color: rgba(15, 23, 42, 0.72);
+    font-size: 0.88rem;
+  }
+
+  .coach-personality-distribution-label strong {
+    color: #0f172a;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .coach-personality-inline-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(245, 158, 11, 0.26);
+    border-radius: 20px;
+    background: #fff7ed;
+    color: #9a3412;
+  }
+
+  .coach-personality-inline-alert p {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .coach-personality-loading {
+    display: grid;
+    gap: 0.8rem;
+    justify-items: start;
+  }
+
+  .coach-personality-loading h3 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 1.05rem;
+    font-weight: 800;
+  }
+
+  .coach-personality-loading p {
+    margin: 0;
+    color: rgba(15, 23, 42, 0.72);
+    font-size: 0.93rem;
+    line-height: 1.65;
+  }
+
+  .coach-personality-results {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .coach-personality-traits,
+  .coach-personality-axes,
+  .coach-personality-note-list,
+  .coach-personality-strategy-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .coach-personality-trait-head,
+  .coach-personality-axis-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .coach-personality-trait-head strong,
+  .coach-personality-axis-head span {
+    color: #0f172a;
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .coach-personality-trait-head span {
+    color: #2563eb;
+    font-weight: 800;
+  }
+
+  .coach-personality-trait-track {
+    height: 0.64rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .coach-personality-trait-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #2563eb 0%, #38bdf8 100%);
+  }
+
+  .coach-personality-trait p,
+  .coach-personality-axis p,
+  .coach-personality-consistency p {
+    margin: 0;
+    color: rgba(15, 23, 42, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .coach-personality-split-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .coach-personality-axis-track {
+    height: 0.8rem;
+    margin-bottom: 0.55rem;
+  }
+
+  .coach-personality-axis-mid {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.18);
+    transform: translateX(-50%);
+  }
+
+  .coach-personality-axis-fill {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #0f172a 0%, #8b5cf6 100%);
+  }
+
+  .coach-personality-consistency {
+    align-content: start;
+  }
+
+  .coach-personality-score-ring {
+    display: grid;
+    place-items: center;
+    width: 9rem;
+    height: 9rem;
+    margin: 0 auto 1rem;
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at center, #ffffff 42%, transparent 43%),
+      conic-gradient(#2563eb 0deg, #2563eb 250deg, rgba(15, 23, 42, 0.08) 250deg 360deg);
+  }
+
+  .coach-personality-score-ring-inner {
+    display: grid;
+    justify-items: center;
+    color: #0f172a;
+  }
+
+  .coach-personality-score-ring-inner strong {
+    font-size: 1.8rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .coach-personality-score-ring-inner span {
+    color: rgba(15, 23, 42, 0.52);
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  .coach-personality-note-head {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: #0f172a;
+  }
+
+  .coach-personality-strategy-row {
+    display: grid;
+    grid-template-columns: 2.4rem 1fr;
+    gap: 0.85rem;
+    align-items: start;
+    padding: 0.95rem 1rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 22px;
+    background: #f8fafc;
+  }
+
+  .coach-personality-strategy-row span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 999px;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 0.76rem;
+    font-weight: 800;
+  }
+
+  .coach-personality-strategy-row p {
+    margin: 0;
+    color: rgba(15, 23, 42, 0.74);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  .coach-personality-export-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
   .apple-instructor-form .grid.grid-cols-2,
   .apple-shell .grid.grid-cols-2.gap-4.mb-8 {
     gap: 1rem;
@@ -235,7 +549,11 @@
     }
 
     .personality-hero,
-    .personality-intro-grid {
+    .personality-intro-grid,
+    .coach-personality-fit-grid,
+    .coach-personality-card-grid,
+    .coach-personality-split-grid,
+    .coach-personality-tip-grid {
       grid-template-columns: 1fr;
     }
   }
@@ -317,6 +635,23 @@
       flex-wrap: wrap;
       justify-content: flex-start;
     }
+
+    .coach-personality-toolbar,
+    .coach-personality-export-actions {
+      width: 100%;
+    }
+
+    .coach-personality-toolbar .coach-history-action,
+    .coach-personality-export-actions .coach-history-action,
+    .coach-personality-primary {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .coach-personality-score-ring {
+      width: 7.8rem;
+      height: 7.8rem;
+    }
   }
 
   .apple-shell .apple-sidebar .text-slate-400,
@@ -344,4 +679,3 @@
   .apple-shell .text-pink-700 {
     opacity: 1 !important;
   }
-
