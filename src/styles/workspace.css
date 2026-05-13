@@ -1649,6 +1649,614 @@
     color: #ffffff !important;
   }
 
+  .coach-review-page,
+  .coach-portfolio-page {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .coach-review-shell {
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 28px;
+    background: #ffffff;
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.05);
+  }
+
+  .coach-review-header {
+    display: grid;
+    gap: 1rem;
+    padding: 1.35rem;
+  }
+
+  .coach-review-header-main {
+    display: grid;
+    gap: 0.6rem;
+    max-width: 46rem;
+  }
+
+  .coach-review-eyebrow {
+    margin: 0;
+    color: rgba(15, 23, 42, 0.48);
+    font-size: 0.72rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .coach-review-header-main h2,
+  .coach-review-section-head h3,
+  .coach-review-principle h4,
+  .coach-review-meta-card strong,
+  .coach-review-list-title,
+  .coach-review-empty-title,
+  .coach-review-target-head strong,
+  .coach-history-list-panel h3,
+  .coach-history-compare-panel h3,
+  .coach-history-metric-card strong,
+  .coach-portfolio-signal-panel h4 {
+    margin: 0;
+    color: #0f172a;
+    letter-spacing: -0.04em;
+  }
+
+  .coach-review-header-main h2 {
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.04;
+  }
+
+  .coach-review-header-main > p:last-child,
+  .coach-review-meta-card p,
+  .coach-review-principle p,
+  .coach-review-list-body,
+  .coach-review-empty-body,
+  .coach-history-copy,
+  .coach-history-item p,
+  .coach-review-section-body,
+  .coach-portfolio-github-summary p,
+  .coach-portfolio-signal-panel li {
+    margin: 0;
+    color: rgba(15, 23, 42, 0.68);
+    font-size: 0.95rem;
+    line-height: 1.68;
+  }
+
+  .coach-review-meta-grid {
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .coach-review-meta-card,
+  .coach-review-surface,
+  .coach-history-list-panel,
+  .coach-history-compare-panel {
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  }
+
+  .coach-review-meta-card {
+    display: grid;
+    gap: 0.45rem;
+    padding: 1rem 1.05rem;
+  }
+
+  .coach-review-meta-label,
+  .coach-review-principle-label,
+  .coach-history-item-label,
+  .coach-history-metric-card p,
+  .coach-portfolio-file-label,
+  .coach-review-target-head span {
+    margin: 0;
+    color: rgba(15, 23, 42, 0.52);
+    font-size: 0.72rem;
+    font-family: figmaMono, "SF Mono", Menlo, monospace;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .coach-review-meta-card strong {
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  .coach-review-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.1rem;
+  }
+
+  .coach-review-chip-row span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    padding: 0.3rem 0.72rem;
+    border-radius: 999px;
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    color: rgba(15, 23, 42, 0.72);
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  .coach-review-chip-row .is-muted {
+    color: rgba(15, 23, 42, 0.54);
+  }
+
+  .coach-review-surface {
+    padding: 1.25rem;
+  }
+
+  .coach-review-section-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .coach-review-section-head h3 {
+    font-size: 1.42rem;
+    font-weight: 600;
+    line-height: 1.08;
+  }
+
+  .coach-review-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 2.45rem;
+    padding: 0.52rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: #f8fafc;
+    color: #0f172a;
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .coach-review-badge.is-link {
+    text-decoration: none;
+  }
+
+  .coach-review-principles-grid {
+    display: grid;
+    gap: 0.9rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .coach-review-principle {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.85rem;
+    padding: 1rem;
+    border-radius: 20px;
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+  }
+
+  .coach-review-principle-index,
+  .coach-portfolio-queue-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .coach-review-principle h4 {
+    margin-top: 0.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.34;
+  }
+
+  .coach-review-doc-grid,
+  .coach-review-target-grid,
+  .coach-portfolio-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .coach-review-doc-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .coach-portfolio-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  }
+
+  .coach-review-target-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 1rem;
+  }
+
+  .coach-review-doc-panel {
+    min-height: 100%;
+  }
+
+  .coach-review-list,
+  .coach-portfolio-queue-list {
+    display: grid;
+    gap: 0.85rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .coach-review-list-row,
+  .coach-portfolio-queue-row {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.8rem;
+    align-items: flex-start;
+    padding: 0.95rem 0;
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
+  }
+
+  .coach-review-list-row:first-child,
+  .coach-portfolio-queue-row:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .coach-review-list-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 999px;
+    background: #eff6ff;
+    color: #2563eb;
+    flex-shrink: 0;
+  }
+
+  .coach-review-list-icon.is-blue {
+    background: #eff6ff;
+    color: #2563eb;
+  }
+
+  .coach-review-list-icon.is-violet {
+    background: #f5f3ff;
+    color: #7c3aed;
+  }
+
+  .coach-review-list-icon.is-neutral {
+    background: #f8fafc;
+    color: #0f172a;
+  }
+
+  .coach-review-list-copy,
+  .coach-portfolio-queue-copy {
+    min-width: 0;
+  }
+
+  .coach-review-list-title,
+  .coach-portfolio-queue-title {
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.42;
+  }
+
+  .coach-review-empty-inline {
+    color: rgba(15, 23, 42, 0.54);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .coach-review-empty-box {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1rem 1.05rem;
+    border-radius: 20px;
+    background: #f8fafc;
+    border: 1px dashed rgba(15, 23, 42, 0.16);
+  }
+
+  .coach-review-target-card {
+    padding: 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    background: #ffffff;
+  }
+
+  .coach-review-target-card.is-sky {
+    background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+    border-color: rgba(59, 130, 246, 0.18);
+  }
+
+  .coach-review-target-card.is-emerald {
+    background: linear-gradient(180deg, #f3fff8 0%, #ffffff 100%);
+    border-color: rgba(16, 185, 129, 0.18);
+  }
+
+  .coach-review-target-card.is-amber {
+    background: linear-gradient(180deg, #fffdf4 0%, #ffffff 100%);
+    border-color: rgba(245, 158, 11, 0.18);
+  }
+
+  .coach-review-target-head {
+    display: grid;
+    gap: 0.2rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .coach-history-panel {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .coach-history-list-panel,
+  .coach-history-compare-panel {
+    padding: 1.25rem;
+  }
+
+  .coach-history-list {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .coach-history-item {
+    width: 100%;
+    display: grid;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 20px;
+    background: #f8fafc;
+    text-align: left;
+    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .coach-history-item:hover {
+    border-color: rgba(15, 23, 42, 0.22);
+    background: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .coach-history-item.is-selected {
+    border-color: #0f172a;
+    background: #ffffff;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  }
+
+  .coach-history-item-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.8rem;
+  }
+
+  .coach-history-item-head strong {
+    display: block;
+    margin-top: 0.2rem;
+    color: #0f172a;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.38;
+  }
+
+  .coach-history-item-flags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: flex-end;
+  }
+
+  .coach-history-item-flags span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.8rem;
+    padding: 0.22rem 0.58rem;
+    border-radius: 999px;
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    color: rgba(15, 23, 42, 0.7);
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .coach-history-item-score {
+    margin: 0;
+    color: rgba(15, 23, 42, 0.54);
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  .coach-history-metric-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 1rem;
+  }
+
+  .coach-history-metric-card {
+    padding: 0.95rem 1rem;
+    border-radius: 18px;
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+  }
+
+  .coach-history-metric-card strong {
+    display: block;
+    margin-top: 0.38rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .coach-history-highlight-box {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 20px;
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+  }
+
+  .coach-history-highlight-title {
+    margin: 0 0 0.6rem;
+    color: #0f172a;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .coach-history-highlight-box ul {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0;
+    padding-left: 1rem;
+    color: rgba(15, 23, 42, 0.7);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .coach-history-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+
+  .coach-history-action {
+    min-height: 2.65rem;
+    padding: 0.55rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    background: #ffffff;
+    color: #0f172a;
+    font-size: 0.84rem;
+    font-weight: 600;
+  }
+
+  .coach-history-action.is-primary {
+    background: #0f172a;
+    color: #ffffff;
+    border-color: #0f172a;
+  }
+
+  .coach-portfolio-file-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin: 0 0 0.4rem;
+    color: #2563eb;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  .coach-portfolio-github-surface {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .coach-portfolio-github-summary {
+    padding: 1rem 1.05rem;
+    border-radius: 20px;
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+  }
+
+  .coach-portfolio-signal-grid {
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .coach-portfolio-signal-panel {
+    padding: 1rem;
+    border-radius: 20px;
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+  }
+
+  .coach-portfolio-signal-panel h4 {
+    font-size: 0.96rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .coach-portfolio-signal-panel ul {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0.7rem 0 0;
+    padding-left: 1rem;
+  }
+
+  .coach-portfolio-doc-block {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .coach-portfolio-doc-pre {
+    max-height: 28rem;
+    margin: 0;
+    overflow: auto;
+    white-space: pre-wrap;
+    border-radius: 18px;
+    background: #0f172a;
+    padding: 1rem;
+    color: rgba(248, 250, 252, 0.94);
+    font-size: 0.78rem;
+    line-height: 1.78;
+  }
+
+  @media (max-width: 1200px) {
+    .coach-review-meta-grid,
+    .coach-review-principles-grid,
+    .coach-review-target-grid,
+    .coach-history-metric-grid,
+    .coach-portfolio-signal-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .coach-history-panel,
+    .coach-portfolio-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .coach-review-header,
+    .coach-review-surface,
+    .coach-history-list-panel,
+    .coach-history-compare-panel {
+      padding: 1rem;
+    }
+
+    .coach-review-meta-grid,
+    .coach-review-doc-grid,
+    .coach-review-principles-grid,
+    .coach-review-target-grid,
+    .coach-history-metric-grid,
+    .coach-portfolio-signal-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .coach-review-section-head,
+    .coach-history-item-head {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .coach-history-item-flags {
+      justify-content: flex-start;
+    }
+  }
+
   .coach-interview-workspace,
   .coach-readiness-workspace {
     display: grid;

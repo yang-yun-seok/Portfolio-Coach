@@ -288,7 +288,7 @@ async function run() {
     console.log('[smoke] checking feedback view');
     await clickTool(page, { id: 'feedback', label: '서류 피드백' });
     await page.waitForFunction(
-      () => !!document.querySelector('.coach-analysis-history-panel'),
+      () => !!document.querySelector('.coach-history-panel'),
       { timeout: 5000 },
     );
 

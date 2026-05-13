@@ -1,37 +1,39 @@
 import React from 'react';
-import { AlertCircle, FileText, Github, Layers3, Sparkles } from 'lucide-react';
+import { AlertCircle, ExternalLink, FileText, Github, Layers3, Sparkles } from 'lucide-react';
 
 function FeedbackRow({ item, index, parseFeedbackItem, portfolioFiles }) {
   const { title, body } = parseFeedbackItem(item);
   const fileName = portfolioFiles[index]?.name;
 
   return (
-    <li className="coach-portfolio-review-row">
-      <div className="coach-portfolio-review-index">{index + 1}</div>
-      <div className="coach-portfolio-review-copy">
+    <li className="coach-portfolio-queue-row">
+      <div className="coach-portfolio-queue-index">{index + 1}</div>
+      <div className="coach-portfolio-queue-copy">
         {fileName && !title?.includes(fileName) ? (
-          <p className="coach-portfolio-review-file">
+          <p className="coach-portfolio-file-label">
             <FileText size={12} />
             {fileName}
           </p>
         ) : null}
-        {title ? <p className="coach-portfolio-review-title">{title}</p> : null}
-        {body ? <p className="coach-portfolio-review-body">{body}</p> : null}
+        {title ? <p className="coach-portfolio-queue-title">{title}</p> : null}
+        {body ? <p className="coach-portfolio-queue-body">{body}</p> : null}
       </div>
     </li>
   );
 }
 
-function SignalColumn({ title, items, toneClass }) {
+function SignalColumn({ title, items }) {
+  const rows = Array.isArray(items) && items.length > 0 ? items : ['아직 정리된 항목이 없습니다.'];
+
   return (
-    <div className="coach-portfolio-signal-card">
-      <h4 className={`coach-portfolio-signal-title ${toneClass}`}>{title}</h4>
-      <ul className="coach-portfolio-signal-list">
-        {(Array.isArray(items) && items.length > 0 ? items : ['분석된 항목이 없습니다.']).map((item) => (
+    <article className="coach-portfolio-signal-panel">
+      <h4>{title}</h4>
+      <ul>
+        {rows.map((item) => (
           <li key={item}>{item}</li>
         ))}
       </ul>
-    </div>
+    </article>
   );
 }
 
@@ -49,17 +51,17 @@ export default function PortfolioWorkspace({
     {
       label: '첨부 자료',
       value: `${portfolioFiles.length}개`,
-      helper: '현재 검토 대상으로 등록된 파일 수',
+      helper: '현재 포트폴리오로 등록된 파일 수입니다.',
     },
     {
-      label: '검토 포인트',
+      label: '수정 항목',
       value: `${improvementItems.length || 0}개`,
-      helper: '지금 바로 손대면 체감이 큰 수정 포인트',
+      helper: '분석 결과 기준으로 바로 손볼 포인트입니다.',
     },
     {
       label: 'GitHub 분석',
       value: hasGithubAnalysis ? '연결됨' : '미연결',
-      helper: hasGithubAnalysis ? '기술 문서화 초안까지 생성됨' : '프로그래밍 트랙에서 더 강하게 작동',
+      helper: hasGithubAnalysis ? '기술 문서 초안과 면접 포인트까지 정리합니다.' : '프로그래밍 트랙에서 가장 강하게 동작합니다.',
     },
   ];
 
@@ -72,66 +74,42 @@ export default function PortfolioWorkspace({
   ].filter(Boolean);
 
   return (
-    <div className="coach-portfolio-workspace apple-view animate-in fade-in slide-in-from-bottom-4">
-      <section className="coach-portfolio-hero">
-        <div className="coach-portfolio-hero-copy">
-          <p className="coach-portfolio-kicker">PORTFOLIO REVIEW</p>
-          <h2>{resultPlaybook.portfolioTitle}</h2>
-          <p>{resultPlaybook.portfolioDescription}</p>
-        </div>
-
-        <div className="coach-portfolio-hero-meta">
-          {portfolioMeta.map((item) => (
-            <article key={item.label} className="coach-portfolio-meta-card">
-              <span>{item.label}</span>
-              <strong>{item.value}</strong>
-              <p>{item.helper}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <div className="coach-portfolio-main-grid">
-        <section className="coach-portfolio-lens-panel">
-          <div className="coach-portfolio-section-head">
-            <div>
-              <p className="coach-portfolio-kicker">EDITOR'S LENS</p>
-              <h3>무엇을 먼저 보완할지 기준을 고정합니다</h3>
-            </div>
-            <span className="coach-portfolio-head-pill">
-              <Layers3 size={14} />
-              정리 기준
-            </span>
+    <div className="coach-portfolio-page">
+      <section className="coach-review-shell">
+        <div className="coach-review-header">
+          <div className="coach-review-header-main">
+            <p className="coach-review-eyebrow">포트폴리오</p>
+            <h2>{resultPlaybook.portfolioTitle}</h2>
+            <p>{resultPlaybook.portfolioDescription}</p>
           </div>
 
-          <div className="coach-portfolio-lens-list">
-            {resultPlaybook.portfolioCards.map((card, index) => (
-              <article key={card.label} className="coach-portfolio-lens-card">
-                <div className="coach-portfolio-lens-index">{String(index + 1).padStart(2, '0')}</div>
-                <div>
-                  <p className="coach-portfolio-lens-label">{card.label}</p>
-                  <h4>{card.title}</h4>
-                  <p>{card.body}</p>
-                </div>
+          <div className="coach-review-meta-grid">
+            {portfolioMeta.map((item) => (
+              <article key={item.label} className="coach-review-meta-card">
+                <p className="coach-review-meta-label">{item.label}</p>
+                <strong>{item.value}</strong>
+                <p>{item.helper}</p>
               </article>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="coach-portfolio-review-panel">
-          <div className="coach-portfolio-section-head">
+      <div className="coach-portfolio-grid">
+        <section className="coach-review-surface">
+          <div className="coach-review-section-head">
             <div>
-              <p className="coach-portfolio-kicker">REVISION QUEUE</p>
-              <h3>수정 순서대로 검토 포인트를 확인합니다</h3>
+              <p className="coach-review-eyebrow">수정 우선순위</p>
+              <h3>포트폴리오에서 먼저 손볼 항목</h3>
             </div>
-            <span className="coach-portfolio-head-pill">
+            <span className="coach-review-badge">
               <Sparkles size={14} />
               우선 수정
             </span>
           </div>
 
           {improvementItems.length > 0 ? (
-            <ul className="coach-portfolio-review-list">
+            <ul className="coach-portfolio-queue-list">
               {improvementItems.map((item, index) => (
                 <FeedbackRow
                   key={`${index}-${item}`}
@@ -143,29 +121,54 @@ export default function PortfolioWorkspace({
               ))}
             </ul>
           ) : (
-            <div className="coach-portfolio-empty">
-              <AlertCircle size={16} />
-              <p>분석 결과가 아직 없습니다. 먼저 분석을 실행하면 보완 포인트가 여기에 정리됩니다.</p>
+            <div className="coach-review-empty-box">
+              <p className="coach-review-empty-title">아직 포트폴리오 수정 항목이 없습니다.</p>
+              <p className="coach-review-empty-body">먼저 분석을 실행하면 구조, 설명, 전달력 기준의 수정 포인트가 여기에 정리됩니다.</p>
             </div>
           )}
+        </section>
+
+        <section className="coach-review-surface">
+          <div className="coach-review-section-head">
+            <div>
+              <p className="coach-review-eyebrow">검토 기준</p>
+              <h3>이번 포트폴리오를 읽는 기준</h3>
+            </div>
+            <span className="coach-review-badge">
+              <Layers3 size={14} />
+              리뷰 렌즈
+            </span>
+          </div>
+
+          <div className="coach-review-principles-grid">
+            {resultPlaybook.portfolioCards.map((card, index) => (
+              <article key={card.label} className="coach-review-principle">
+                <div className="coach-review-principle-index">{String(index + 1).padStart(2, '0')}</div>
+                <div>
+                  <p className="coach-review-principle-label">{card.label}</p>
+                  <h4>{card.title}</h4>
+                  <p>{card.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
       </div>
 
       {hasGithubAnalysis ? (
-        <section className="coach-portfolio-github">
-          <div className="coach-portfolio-github-head">
+        <section className="coach-review-surface coach-portfolio-github-surface">
+          <div className="coach-review-section-head">
             <div>
-              <p className="coach-portfolio-kicker">GITHUB TECHNICAL DOC</p>
-              <h3>코드 저장소를 기술 문서 관점으로 다시 읽습니다</h3>
-              <p>
-                README, 폴더 구조, 설정 파일, 릴리스/협업 신호를 묶어서 면접 설명 포인트와 보완 지점을
-                함께 정리합니다.
+              <p className="coach-review-eyebrow">GitHub 기술 문서</p>
+              <h3>저장소를 기술 설명 자료로 다시 읽습니다</h3>
+              <p className="coach-review-section-body">
+                README, 폴더 구조, 설정 파일, 릴리스 신호를 묶어서 면접 설명 포인트와 보완 지점을 정리합니다.
               </p>
             </div>
-
-            <a href={github.repoUrl} target="_blank" rel="noreferrer" className="coach-portfolio-github-link">
-              <Github size={15} />
+            <a href={github.repoUrl} target="_blank" rel="noreferrer" className="coach-review-badge is-link">
+              <Github size={14} />
               저장소 열기
+              <ExternalLink size={13} />
             </a>
           </div>
 
@@ -176,7 +179,7 @@ export default function PortfolioWorkspace({
           ) : null}
 
           {githubHighlights.length > 0 ? (
-            <div className="coach-portfolio-github-chips">
+            <div className="coach-review-chip-row">
               {githubHighlights.map((item) => (
                 <span key={item}>{item}</span>
               ))}
@@ -184,30 +187,41 @@ export default function PortfolioWorkspace({
           ) : null}
 
           <div className="coach-portfolio-signal-grid">
-            <SignalColumn title="기술 스택" items={github.techStack} toneClass="is-sky" />
-            <SignalColumn title="구조 해석" items={github.architecture} toneClass="is-cyan" />
-            <SignalColumn title="프로젝트 하이라이트" items={github.projectHighlights} toneClass="is-emerald" />
-            <SignalColumn title="면접 포인트" items={github.interviewTalkingPoints} toneClass="is-indigo" />
-          </div>
-
-          <div className="coach-portfolio-signal-grid">
-            <SignalColumn title="품질 신호" items={github.qualitySignals} toneClass="is-lime" />
-            <SignalColumn title="출시/협업 신호" items={github.shippingSignals} toneClass="is-violet" />
-            <SignalColumn title="보완 제안" items={github.refactorSuggestions} toneClass="is-amber" />
-            <SignalColumn title="리스크" items={github.risks} toneClass="is-rose" />
+            <SignalColumn title="기술 스택" items={github.techStack} />
+            <SignalColumn title="구조 해석" items={github.architecture} />
+            <SignalColumn title="프로젝트 하이라이트" items={github.projectHighlights} />
+            <SignalColumn title="면접 포인트" items={github.interviewTalkingPoints} />
+            <SignalColumn title="품질 신호" items={github.qualitySignals} />
+            <SignalColumn title="출시·협업 신호" items={github.shippingSignals} />
+            <SignalColumn title="보완 제안" items={github.refactorSuggestions} />
+            <SignalColumn title="리스크" items={github.risks} />
           </div>
 
           {github.documentation ? (
-            <div className="coach-portfolio-doc-shell">
-              <div className="coach-portfolio-doc-head">
-                <p className="coach-portfolio-kicker">DOCUMENT DRAFT</p>
-                <h4>기술 문서화 초안</h4>
+            <div className="coach-portfolio-doc-block">
+              <div className="coach-review-section-head">
+                <div>
+                  <p className="coach-review-eyebrow">문서 초안</p>
+                  <h3>기술 설명 초안</h3>
+                </div>
               </div>
-              <pre className="coach-portfolio-doc-body custom-scrollbar">{github.documentation}</pre>
+              <pre className="coach-portfolio-doc-pre custom-scrollbar">{github.documentation}</pre>
             </div>
           ) : null}
         </section>
-      ) : null}
+      ) : (
+        <section className="coach-review-surface">
+          <div className="coach-review-empty-box">
+            <AlertCircle size={16} />
+            <div>
+              <p className="coach-review-empty-title">GitHub 분석이 아직 연결되지 않았습니다.</p>
+              <p className="coach-review-empty-body">
+                프로그래밍 트랙에서는 GitHub 저장소를 연결하면 코드 구조, 기술 스택, 면접 설명 포인트까지 같이 정리합니다.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
