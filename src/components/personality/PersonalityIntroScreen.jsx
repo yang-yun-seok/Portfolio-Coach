@@ -78,12 +78,14 @@ export default function PersonalityIntroScreen({ personalityPlaybook, onStartPra
           {OVERVIEW_CARDS.map(({ icon: Icon, label, title, body }, index) => (
             <article key={label} className="coach-review-principle">
               <span className="coach-review-principle-index">{String(index + 1).padStart(2, '0')}</span>
-              <div className="coach-personality-overview-icon">
-                <Icon size={18} />
+              <div className="coach-personality-overview-copy">
+                <div className="coach-personality-overview-icon">
+                  <Icon size={18} />
+                </div>
+                <span className="coach-review-principle-label">{label}</span>
+                <h4>{title}</h4>
+                <p>{body}</p>
               </div>
-              <span className="coach-review-principle-label">{label}</span>
-              <h4>{title}</h4>
-              <p>{body}</p>
             </article>
           ))}
         </div>

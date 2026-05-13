@@ -58,24 +58,30 @@ export default function PersonalityPracticeScreen({
         <div className="coach-review-principles-grid">
           <article className="coach-review-principle">
             <span className="coach-review-principle-index">01</span>
-            <div className="coach-personality-overview-icon"><ClipboardCheck size={18} /></div>
-            <span className="coach-review-principle-label">응답 방식</span>
-            <h4>문항마다 가장 가까운 선택지를 바로 고릅니다</h4>
-            <p>정답을 맞히는 검사가 아니라, 평소 반응을 일정한 방식으로 답하는 과정입니다.</p>
+            <div className="coach-personality-overview-copy">
+              <div className="coach-personality-overview-icon"><ClipboardCheck size={18} /></div>
+              <span className="coach-review-principle-label">응답 방식</span>
+              <h4>문항마다 가장 가까운 선택지를 바로 고릅니다</h4>
+              <p>정답을 맞히는 검사가 아니라, 평소 반응을 일정한 방식으로 답하는 과정입니다.</p>
+            </div>
           </article>
           <article className="coach-review-principle">
             <span className="coach-review-principle-index">02</span>
-            <div className="coach-personality-overview-icon"><Clock size={18} /></div>
-            <span className="coach-review-principle-label">속도 감각</span>
-            <h4>본 검사는 제한 시간 안에서 진행됩니다</h4>
-            <p>연습 단계에서 답변 속도와 버튼 위치를 미리 익혀두면 본 검사 흐름이 훨씬 안정적입니다.</p>
+            <div className="coach-personality-overview-copy">
+              <div className="coach-personality-overview-icon"><Clock size={18} /></div>
+              <span className="coach-review-principle-label">속도 감각</span>
+              <h4>본 검사는 제한 시간 안에서 진행됩니다</h4>
+              <p>연습 단계에서 답변 속도와 버튼 위치를 미리 익혀두면 본 검사 흐름이 훨씬 안정적입니다.</p>
+            </div>
           </article>
           <article className="coach-review-principle">
             <span className="coach-review-principle-index">03</span>
-            <div className="coach-personality-overview-icon"><PlayCircle size={18} /></div>
-            <span className="coach-review-principle-label">전환 준비</span>
-            <h4>연습이 끝나면 바로 본 검사로 넘어갑니다</h4>
-            <p>문항을 읽고 반응을 고르는 흐름에 무리가 없다면 본 검사 시작 버튼을 눌러 진행하면 됩니다.</p>
+            <div className="coach-personality-overview-copy">
+              <div className="coach-personality-overview-icon"><PlayCircle size={18} /></div>
+              <span className="coach-review-principle-label">전환 준비</span>
+              <h4>연습이 끝나면 바로 본 검사로 넘어갑니다</h4>
+              <p>문항을 읽고 반응을 고르는 흐름에 무리가 없다면 본 검사 시작 버튼을 눌러 진행하면 됩니다.</p>
+            </div>
           </article>
         </div>
       </section>

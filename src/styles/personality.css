@@ -217,6 +217,13 @@
     color: #0284c7;
   }
 
+  .coach-personality-overview-copy {
+    display: grid;
+    gap: 0.4rem;
+    align-content: start;
+    min-width: 0;
+  }
+
   .coach-personality-fit-grid,
   .coach-personality-card-grid,
   .coach-personality-tip-grid {
