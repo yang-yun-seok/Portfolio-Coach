@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export default function WorkspaceSidebar({
   activeTab,
@@ -12,8 +12,14 @@ export default function WorkspaceSidebar({
   roleGroup,
   roleGroups,
 }) {
+  const panelRef = useRef(null);
+
+  useEffect(() => {
+    panelRef.current?.scrollTo({ top: 0, behavior: 'auto' });
+  }, [activeTab, roleGroup]);
+
   return (
-    <aside className="coach-side-panel custom-scrollbar" aria-label="작업 안내">
+    <aside ref={panelRef} className="coach-side-panel custom-scrollbar" aria-label="작업 안내">
       <section className="coach-side-card coach-side-current">
         <div className="coach-side-current-head">
           <div>
