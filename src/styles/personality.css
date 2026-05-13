@@ -359,6 +359,256 @@
     gap: 1.25rem;
   }
 
+  .coach-personality-question-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .coach-personality-question {
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 28px;
+    background: #ffffff;
+    box-shadow: 0 16px 44px rgba(15, 23, 42, 0.06);
+    overflow: hidden;
+  }
+
+  .coach-personality-question-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.9rem;
+    align-items: start;
+    padding: 1.2rem 1.25rem 1rem;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    background: #f8fafc;
+  }
+
+  .coach-personality-question-head p {
+    margin: 0;
+    color: #0f172a;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.55;
+  }
+
+  .coach-personality-question-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 0.55rem;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563eb;
+    font-size: 0.78rem;
+    font-weight: 900;
+  }
+
+  .coach-personality-question-group {
+    display: inline-block;
+    margin-bottom: 0.35rem;
+    color: #475569;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .coach-personality-question-body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .coach-personality-likert-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .coach-personality-likert-grid button,
+  .coach-personality-binary-option {
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 20px;
+    background: #ffffff;
+    color: rgba(15, 23, 42, 0.76);
+    transition: border-color 160ms ease, background 160ms ease, color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .coach-personality-likert-grid button {
+    min-height: 4.4rem;
+    padding: 0.85rem 0.55rem;
+  }
+
+  .coach-personality-likert-grid button span {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: center;
+  }
+
+  .coach-personality-likert-grid button:hover,
+  .coach-personality-binary-option:hover {
+    border-color: rgba(37, 99, 235, 0.32);
+    background: #f8fbff;
+    color: #0f172a;
+    transform: translateY(-1px);
+  }
+
+  .coach-personality-likert-grid button.is-selected,
+  .coach-personality-binary-option.is-selected {
+    border-color: #0f172a;
+    background: #0f172a;
+    color: #ffffff;
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.18);
+  }
+
+  .coach-personality-binary-stack {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .coach-personality-binary-option {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.8rem;
+    align-items: start;
+    padding: 1rem 1.05rem;
+    text-align: left;
+  }
+
+  .coach-personality-binary-option span:last-child {
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  .coach-personality-binary-option-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(15, 23, 42, 0.14);
+    background: rgba(15, 23, 42, 0.04);
+    color: #0f172a;
+    font-size: 0.8rem;
+    font-weight: 900;
+  }
+
+  .coach-personality-binary-option.is-selected .coach-personality-binary-option-label {
+    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+
+  .coach-personality-phase-tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 999px;
+    background: #ffffff;
+  }
+
+  .coach-personality-phase-tabs button {
+    min-height: 2.45rem;
+    padding: 0.55rem 0.95rem;
+    border-radius: 999px;
+    color: rgba(15, 23, 42, 0.56);
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .coach-personality-phase-tabs button.is-active {
+    background: #0f172a;
+    color: #ffffff;
+  }
+
+  .coach-personality-nav-shell {
+    position: sticky;
+    bottom: 0;
+  }
+
+  .coach-personality-nav {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.9rem;
+    align-items: center;
+  }
+
+  .coach-personality-nav-center {
+    display: grid;
+    justify-items: center;
+    gap: 0.18rem;
+    min-width: 0;
+  }
+
+  .coach-personality-nav-center span {
+    color: rgba(15, 23, 42, 0.48);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .coach-personality-nav-center strong {
+    color: #0f172a;
+    font-size: 0.98rem;
+    font-weight: 800;
+  }
+
+  .coach-personality-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.48);
+    backdrop-filter: blur(8px);
+  }
+
+  .coach-personality-modal {
+    width: min(30rem, 100%);
+    padding: 1.4rem;
+    border-radius: 26px;
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 22px 56px rgba(15, 23, 42, 0.22);
+  }
+
+  .coach-personality-modal h3 {
+    margin: 0 0 0.55rem;
+    color: #0f172a;
+    font-size: 1.1rem;
+    font-weight: 900;
+  }
+
+  .coach-personality-modal p {
+    margin: 0 0 1rem;
+    color: rgba(15, 23, 42, 0.72);
+    font-size: 0.93rem;
+    line-height: 1.65;
+  }
+
+  .coach-personality-floating-alert {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 90;
+    padding: 0.9rem 1.25rem;
+    border-radius: 999px;
+    background: #dc2626;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 800;
+    box-shadow: 0 16px 36px rgba(220, 38, 38, 0.3);
+  }
+
   .coach-personality-traits,
   .coach-personality-axes,
   .coach-personality-note-list,
@@ -651,6 +901,19 @@
     .coach-personality-score-ring {
       width: 7.8rem;
       height: 7.8rem;
+    }
+
+    .coach-personality-likert-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .coach-personality-nav {
+      grid-template-columns: 1fr;
+    }
+
+    .coach-personality-nav .coach-history-action {
+      width: 100%;
+      justify-content: center;
     }
   }
 
