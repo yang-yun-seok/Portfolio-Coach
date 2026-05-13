@@ -188,6 +188,7 @@ function generateInterviewQuestionsLocal(topJobs, user) {
 export default function App() {
   // ── 모델 관련 (서버에서 동적 로드) ──────────────────────────────────────
   const { enabledProviders, disabledProviders, loading: modelsLoading, getDefaultModel } = useModels();
+  const workspaceRef = useRef(null);
   const [selectedProvider, setSelectedProvider] = useState('gemini');
   const [selectedModelId, setSelectedModelId] = useState('');
   // API 키는 Supabase Edge Function(gemini-proxy)이 서버측에서 관리
@@ -973,6 +974,10 @@ const { analyzeApplication } = useApplicationAnalysis({
     instructorFeedback,
   };
 
+  useEffect(() => {
+    workspaceRef.current?.scrollTo({ top: 0, behavior: 'auto' });
+  }, [activeTab, normalizedUserInfo.roleGroup]);
+
   // ── 렌더링 ────────────────────────────────────────────────────────────
   return (
     <div data-feature={featureKey} className="apple-shell coach-shell coach-studio-shell apple-app-shell flex h-screen flex-col bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
@@ -999,7 +1004,7 @@ const { analyzeApplication } = useApplicationAnalysis({
       ) : (
       <div className="coach-body-shell">
       {/* ── Main Content ────────────────────────────────────────────── */}
-      <div className="apple-main coach-workspace apple-workspace flex-1 overflow-auto bg-slate-50 p-8 custom-scrollbar">
+      <div ref={workspaceRef} className="apple-main coach-workspace apple-workspace flex-1 overflow-auto bg-slate-50 p-8 custom-scrollbar">
         <div className="apple-stage coach-stage max-w-5xl mx-auto pb-20">
           <WorkspaceFeatureHeader
             activeFeatureGuide={activeFeatureGuide}
