@@ -21,7 +21,7 @@ export default function WorkspaceCommandBar({
           </span>
           <span className="coach-brandcopy">
             <span className="coach-brand-title">Portfolio Coach</span>
-            <strong>Game Career Workbench</strong>
+            <strong>게임 취업 준비 작업공간</strong>
           </span>
         </button>
 

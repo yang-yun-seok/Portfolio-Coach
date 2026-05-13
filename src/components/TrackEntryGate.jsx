@@ -4,7 +4,7 @@ import { ArrowRight, ClipboardList, Code2, Palette } from 'lucide-react';
 const TRACK_CONTENT = {
   기획: {
     icon: ClipboardList,
-    badge: 'PLANNING · QA · PM',
+    badge: '기획 · QA · PM',
     title: '게임 기획 트랙',
     description: '시스템, 컨텐츠, 라이브 운영과 함께 QA, 개발PM, 사업PM 관점까지 같은 흐름으로 정리합니다.',
     bullets: [
@@ -15,7 +15,7 @@ const TRACK_CONTENT = {
   },
   프로그래밍: {
     icon: Code2,
-    badge: 'PROGRAMMING',
+    badge: '프로그래밍',
     title: '게임 프로그래밍 트랙',
     description: '클라이언트, 모바일, AI 구현과 구조 설명, GitHub 포트폴리오, 기술 문서화 기준으로 읽습니다.',
     bullets: [
@@ -26,7 +26,7 @@ const TRACK_CONTENT = {
   },
   아트: {
     icon: Palette,
-    badge: 'ART',
+    badge: '아트',
     title: '게임 아트 트랙',
     description: '원화, UI, 모델링, 애니메이션, 이펙트 작업을 역할 범위와 파이프라인 기준으로 정리합니다.',
     bullets: [
@@ -45,7 +45,7 @@ export default function TrackEntryGate({
   return (
     <section className="coach-track-gate-board">
       <div className="coach-track-gate-copy">
-        <p className="coach-case-kicker">START</p>
+        <p className="coach-case-kicker">직군 선택</p>
         <h1>먼저 준비할 직군을 선택합니다.</h1>
         <p>
           선택한 트랙을 기준으로 입력 가이드, 포트폴리오 해석, 추천 공고와 면접 문맥이 바뀝니다.

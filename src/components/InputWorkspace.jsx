@@ -119,7 +119,7 @@ export default function InputWorkspace({
                           : 'border-slate-200 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'
                       }`}
                     >
-                      <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${isActive ? 'text-slate-300' : 'text-slate-400'}`}>Track</p>
+                      <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${isActive ? 'text-slate-300' : 'text-slate-400'}`}>트랙</p>
                       <p className="mt-1 text-base font-bold">{group.label}</p>
                       <p className={`mt-2 text-xs leading-relaxed ${isActive ? 'text-slate-200' : 'text-slate-500'}`}>{group.description}</p>
                     </button>

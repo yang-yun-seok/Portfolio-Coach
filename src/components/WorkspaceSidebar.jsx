@@ -17,7 +17,7 @@ export default function WorkspaceSidebar({
       <section className="coach-side-card coach-side-current">
         <div className="coach-side-current-head">
           <div>
-            <p className="coach-side-eyebrow">Current Workspace</p>
+            <p className="coach-side-eyebrow">현재 작업 기준</p>
             <h2>{roleGroup} 트랙</h2>
           </div>
           <span className="coach-side-section-badge">{activeSectionLabel}</span>
