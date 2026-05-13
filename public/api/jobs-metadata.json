@@ -1,14 +1,14 @@
 {
   "source": "GameJob",
-  "latestAppliedDate": "2026-05-13",
-  "referenceJobCount": 985,
-  "lastSuccessfulCrawlAt": "2026-05-12T18:26:17.568Z",
-  "lastCrawlAttemptAt": "2026-05-12T18:26:17.568Z",
+  "latestAppliedDate": "2026-05-14",
+  "referenceJobCount": 0,
+  "lastSuccessfulCrawlAt": "2026-05-13T17:22:14.809Z",
+  "lastCrawlAttemptAt": "2026-05-13T17:22:14.809Z",
   "lastCrawlStatus": "success",
   "lastCrawlError": null,
   "newJobsCount": 0,
-  "activeJobsCount": 985,
-  "inactiveJobsCount": 326,
+  "activeJobsCount": 0,
+  "inactiveJobsCount": 1311,
   "totalManagedJobsCount": 1311,
   "filters": {
     "jobTags": [

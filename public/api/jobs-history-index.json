@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-05-14",
+    "generatedAt": "2026-05-13T17:22:14.809Z",
+    "referenceJobCount": 0,
+    "newJobsCount": 0,
+    "activeJobsCount": 0,
+    "lastCrawlStatus": "success",
+    "path": "./history/2026-05-14.json"
+  },
+  {
     "date": "2026-05-13",
     "generatedAt": "2026-05-12T18:26:17.568Z",
     "referenceJobCount": 985,
