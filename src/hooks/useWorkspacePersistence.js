@@ -63,7 +63,9 @@ export function useWorkspacePersistence({
     }
     try {
       localStorage.removeItem(ANALYSIS_HISTORY_KEY);
-    } catch {}
+    } catch {
+      return [];
+    }
     return [];
   };
 
@@ -187,8 +189,18 @@ export function useWorkspacePersistence({
 
       setAnalysisHistory(restoredHistory);
       setSelectedHistoryId(restoredHistory[1]?.id || '');
-    } catch {}
-  }, []);
+    } catch {
+      setAnalysisHistory([]);
+      setSelectedHistoryId('');
+    }
+  }, [
+    emptyInstructorFeedback,
+    normalizeProfile,
+    setInstructorFeedback,
+    setRecommendedJobs,
+    setResults,
+    setUserInfo,
+  ]);
 
   useEffect(() => () => {
     if (saveStatusTimerRef.current) {

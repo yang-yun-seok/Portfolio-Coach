@@ -16,7 +16,7 @@ import { Sparkles, Loader2, ChevronDown } from 'lucide-react';
  */
 export default function ModelSelector({
   enabledProviders,
-  disabledProviders,
+  disabledProviders: _disabledProviders,
   selectedProvider,
   selectedModelId,
   onProviderChange,

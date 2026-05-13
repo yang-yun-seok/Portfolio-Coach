@@ -42,18 +42,30 @@ const TRACK_ENTRY_STORAGE_KEY = 'portfolio-coach-track-entry-v1';
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
 // "- **제목**: 내용" 또는 "**제목**: 내용" → { title, body } 로 분리
 function parseFeedbackItem(text) {
-  const cleaned = text.replace(/^[\-\*\s]+/, '').trim(); // 앞의 - * 공백 제거
+  const cleaned = text.replace(/^[-*\s]+/, '').trim(); // 앞의 - * 공백 제거
   const match = cleaned.match(/^\*\*(.+?)\*\*[:：]?\s*([\s\S]*)/);
   if (match) return { title: match[1].trim(), body: match[2].trim() };
   return { title: null, body: cleaned };
 }
+
+const NAV_ITEMS = [
+  { id: 'input', label: '정보 입력', icon: User, group: 'profile' },
+  { id: 'feedback', label: '서류 피드백', icon: FileText, group: 'profile' },
+  { id: 'portfolio', label: '포트폴리오', icon: ImageIcon, group: 'profile' },
+  { id: 'job-analysis', label: '공고 분석', icon: BarChart3, group: 'market' },
+  { id: 'jobs', label: '추천 공고', icon: Target, group: 'market' },
+  { id: 'interview', label: '면접 대비', icon: MessageSquare, group: 'prep' },
+  { id: 'interview-basic', label: '면접 기본 준비', icon: Smile, group: 'prep' },
+  { id: 'personality-test', label: '인성검사', icon: ClipboardList, group: 'prep' },
+  { id: 'pdf-export', label: 'PDF 출력', icon: Download, group: 'prep' },
+];
 
 // ── 스킬 매칭 헬퍼 ─────────────────────────────────────────────────────────
 function skillMatches(userSkillName, reqSkill) {
   const normalize = (value) => String(value || '')
     .toLowerCase()
     .replace(/콘텐츠/g, '컨텐츠')
-    .replace(/[\/\s·_\-()]/g, '');
+    .replace(/[/\s·_()-]/g, '');
   const expand = (value) => {
     const normalized = normalize(value);
     const variants = [normalized];
@@ -186,7 +198,7 @@ export default function App() {
       const defaultModel = getDefaultModel(selectedProvider);
       if (defaultModel) setSelectedModelId(defaultModel.id);
     }
-  }, [enabledProviders, selectedProvider]);
+  }, [enabledProviders, getDefaultModel, selectedModelId, selectedProvider]);
 
   // ── 기업/공고 데이터 (서버 API에서 로드) ──────────────────────────────
   const [companies, setCompanies] = useState([]);
@@ -754,31 +766,20 @@ const { analyzeApplication } = useApplicationAnalysis({
   };
 
   // ── 네비게이션 ────────────────────────────────────────────────────────
-  const navItems = [
-    { id: 'input',            label: '정보 입력',       icon: User,          group: 'profile' },
-    { id: 'feedback',         label: '서류 피드백',     icon: FileText,      group: 'profile' },
-    { id: 'portfolio',        label: '포트폴리오',      icon: ImageIcon,     group: 'profile' },
-    { id: 'job-analysis',     label: '공고 분석',       icon: BarChart3,     group: 'market' },
-    { id: 'jobs',             label: '추천 공고',       icon: Target,        group: 'market' },
-    { id: 'interview',        label: '면접 대비',       icon: MessageSquare, group: 'prep' },
-    { id: 'interview-basic',  label: '면접 기본 준비',  icon: Smile,         group: 'prep' },
-    { id: 'personality-test', label: '인성검사',        icon: ClipboardList, group: 'prep' },
-    { id: 'pdf-export',       label: 'PDF 출력',        icon: Download,      group: 'prep' },
-  ];
   const navSections = [
-    { id: 'profile', label: '내 준비', items: navItems.filter((item) => item.group === 'profile') },
-    { id: 'market', label: '시장·공고', items: navItems.filter((item) => item.group === 'market') },
-    { id: 'prep', label: '면접·마감', items: navItems.filter((item) => item.group === 'prep') },
+    { id: 'profile', label: '내 준비', items: NAV_ITEMS.filter((item) => item.group === 'profile') },
+    { id: 'market', label: '시장·공고', items: NAV_ITEMS.filter((item) => item.group === 'market') },
+    { id: 'prep', label: '면접·마감', items: NAV_ITEMS.filter((item) => item.group === 'prep') },
   ];
 
   useEffect(() => {
-    if (!navItems.some((item) => item.id === activeTab)) {
+    if (!NAV_ITEMS.some((item) => item.id === activeTab)) {
       setActiveTab('input');
     }
   }, [activeTab]);
 
-  const activeNavIndex = navItems.findIndex((item) => item.id === activeTab);
-  const activeNavItem = navItems[activeNavIndex >= 0 ? activeNavIndex : 0];
+  const activeNavIndex = NAV_ITEMS.findIndex((item) => item.id === activeTab);
+  const activeNavItem = NAV_ITEMS[activeNavIndex >= 0 ? activeNavIndex : 0];
   const activeNavSection = navSections.find((section) => section.id === activeNavItem.group) || navSections[0];
   const ActiveNavIcon = activeNavItem.icon;
   const featureKey = activeTab.replace(/[^a-z0-9-]/gi, '-');

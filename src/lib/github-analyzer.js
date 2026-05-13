@@ -190,7 +190,6 @@ function buildArchitecture({
   inspectedDirs,
   workflowFiles,
   packageScripts,
-  repo,
 }) {
   const rootDirNames = rootFiles.filter((file) => file.type === 'dir').map((file) => file.path.toLowerCase());
   const architecture = [];
