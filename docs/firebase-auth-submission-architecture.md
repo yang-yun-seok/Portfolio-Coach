@@ -794,3 +794,182 @@ AI API 보호는 롤백해도 제출 저장 구조는 남을 수 있으므로,
 이 방식이면 비용을 가장 낮게 유지하면서도,  
 “아무나 남용 못 하게 하고”, “제출물을 저장하고”, “관리자가 따로 확인하는 구조”를 만들 수 있다.
 
+---
+
+## 23. Replit 운영 전환 계획
+
+### 23.1 전제
+
+장기적으로 `GitHub Pages + Render` 대신 `Replit` 중심 운영으로 옮기고 싶다면,  
+이번 Firebase 인증/제출 구조는 그 전환을 막지 않게 설계해야 한다.
+
+핵심 원칙:
+
+1. 인증과 데이터 저장은 Firebase에 둔다.
+2. 앱 서버는 Render에서 시작하되, 나중에 Replit로 옮길 수 있게 한다.
+3. 프론트와 백엔드의 배포 경계를 문서화해 둔다.
+
+즉, 지금 해야 하는 설계는 “Render 고정”이 아니라 “서버 런타임 교체 가능” 구조여야 한다.
+
+### 23.2 Replit에서 가능한 배포 방식
+
+Replit 공식 문서 기준으로 주요 배포 타입은 다음과 같다.
+
+- `Static Deployment`
+- `Autoscale Deployment`
+- `Reserved VM Deployment`
+- `Scheduled Deployment`
+
+공식 참고:
+
+- Deployments 개요: [Replit Deployments](https://docs.replit.com/cloud-services/deployments)
+- 커스텀 도메인: [Replit Custom Domains](https://docs.replit.com/cloud-services/deployments/custom-domains)
+- 배포 모니터링: [Monitoring a Deployment](https://docs.replit.com/cloud-services/deployments/monitoring-a-deployment)
+- App 구성 및 `.replit`: [Replit App Configuration](https://docs.replit.com/replit-app/configuration)
+
+### 23.3 이 프로젝트에 맞는 Replit 배포 후보
+
+#### 안 A. 프론트/백 분리 유지
+
+- 프론트: Replit Static Deployment
+- 백엔드: Replit Autoscale 또는 Reserved VM
+- 인증/DB/파일: Firebase
+
+장점:
+
+- 현재 구조와 가장 비슷하다
+- 리스크가 낮다
+- 정적 프론트와 API 서버를 독립적으로 관리 가능
+
+단점:
+
+- 서비스가 둘로 나뉜다
+- 프론트와 백엔드 배포를 각각 관리해야 한다
+
+#### 안 B. 단일 Replit 서버로 통합
+
+- 하나의 Node 서버가 `dist` 정적 파일 + API를 같이 서빙
+- 배포 타입: Replit Autoscale 또는 Reserved VM
+- 인증/DB/파일: Firebase
+
+장점:
+
+- 운영 경로가 단순해진다
+- 도메인/배포 포인트가 하나가 된다
+- GitHub Pages를 제거할 수 있다
+
+단점:
+
+- 현재 정적 배포 구조를 바꿔야 한다
+- 서버 장애 시 프론트와 API가 같이 영향받는다
+
+### 23.4 추천 방향
+
+처음 Replit로 옮길 때는 `안 A`가 더 안전하다.
+
+즉:
+
+1. Firebase 인증/제출 구조 먼저 완성
+2. Render 백엔드를 Replit API 서버로 대체
+3. 그 다음 필요하면 GitHub Pages 프론트도 Replit Static 또는 통합 서버로 이전
+
+이유:
+
+- 한번에 모든 런타임을 바꾸면 원인 분리가 어렵다
+- 인증, 제출 저장, AI API 보호가 먼저 안정화되어야 한다
+- 프론트와 백엔드를 나눠 옮기면 롤백이 쉽다
+
+### 23.5 Replit 전환 시 주의할 점
+
+Replit 문서상 배포는 타입별로 운영 특성이 다르다. 특히 아래를 미리 고려해야 한다.
+
+1. 포트 바인딩
+   - 서버는 `0.0.0.0`에 바인딩해야 한다
+2. 환경변수/Secrets
+   - Firebase 키, 서버 키, 디스코드 웹훅 모두 Replit Secrets로 이동 필요
+3. 영구 저장소 의존 금지
+   - 앱 내부 디스크를 영구 데이터 저장소로 가정하지 않는다
+   - 제출 파일과 메타데이터는 계속 Firebase에 둔다
+4. 스케줄 작업 분리
+   - 현재 일일 크롤링은 GitHub Actions 기반
+   - 나중에 Replit로 옮길 경우 `Scheduled Deployment` 또는 외부 스케줄러 검토
+
+### 23.6 현재 구조에서 Replit 전환을 위해 미리 지켜야 할 규칙
+
+#### 규칙 1. 상태 저장은 서버 로컬 파일에 의존하지 않는다
+
+지금도 제출 데이터는 Firebase로 넣을 계획이다.  
+이 원칙을 유지하면 Replit로 옮겨도 이전 비용이 낮다.
+
+#### 규칙 2. API Base URL은 환경변수로만 관리한다
+
+프론트는 계속 아래 방식 유지:
+
+- `VITE_API_BASE_URL`
+- `VITE_SUPABASE_URL`
+
+즉, 배포 대상이 Render에서 Replit로 바뀌어도 코드 수정 없이 환경값만 바꿀 수 있어야 한다.
+
+#### 규칙 3. 서버 인증은 런타임 비종속적으로 구현한다
+
+`firebase-admin` 검증 로직은 Render 전용이 아니라 Node 서버 공통 코드로 작성한다.
+
+즉:
+
+- Express 미들웨어
+- 환경변수 기반 초기화
+- 런타임에 종속적인 파일 경로 최소화
+
+#### 규칙 4. 일일 크롤링은 배포 플랫폼과 분리된 작업으로 본다
+
+현재는 GitHub Actions가 더 단순하고 안정적이다.  
+Replit 전환 후에도 즉시 옮기지 말고, 먼저 서비스 서버만 이전하는 편이 낫다.
+
+### 23.7 단계별 Replit 이전 로드맵
+
+#### 단계 1. 지금
+
+- GitHub Pages 유지
+- Render 유지
+- Firebase Auth/Firestore/Storage 도입
+
+#### 단계 2. 인증 안정화 후
+
+- Render 백엔드를 Replit Autoscale 또는 Reserved VM으로 대체 검토
+- API 정상 동작, 토큰 검증, 파일 저장 확인
+
+#### 단계 3. 이후
+
+- 프론트를 계속 GitHub Pages에 둘지
+- Replit Static Deployment로 옮길지
+- 단일 Replit 서버에 통합할지 결정
+
+#### 단계 4. 마지막
+
+- 필요 시 일일 크롤링 스케줄도 Replit Scheduled Deployment 검토
+- 단, 초기에는 GitHub Actions 유지 권장
+
+### 23.8 Replit 전환 시 체크리스트
+
+- [ ] 서버가 `0.0.0.0` 포트 바인딩으로 동작하는지 확인
+- [ ] `.replit` 또는 Replit Deployment 설정 정리
+- [ ] Firebase Secrets를 Replit Secrets로 이전
+- [ ] API Base URL을 Replit 도메인으로 교체
+- [ ] 커스텀 도메인 연결 여부 결정
+- [ ] Replit Deployment 타입 결정
+- [ ] 제출 업로드와 관리자 API가 정상 작동하는지 검증
+- [ ] 기존 GitHub Pages / Render 롤백 경로 유지
+
+### 23.9 최종 판단
+
+장기적으로 Replit 운영은 충분히 가능하다.  
+다만 순서는 다음이 맞다.
+
+1. Firebase 인증/제출 구조 완성
+2. AI API 보호 완성
+3. Render 서버를 Replit로 이전
+4. 필요하면 프론트도 Replit로 이전
+
+즉, `Firebase 도입`과 `Replit 이전`은 충돌하지 않는다.  
+오히려 Firebase를 먼저 넣어두면 배포 플랫폼을 바꾸더라도 데이터와 인증 계층은 그대로 유지할 수 있다.
+
