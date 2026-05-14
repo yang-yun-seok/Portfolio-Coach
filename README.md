@@ -197,3 +197,7 @@ tests/               현재 단위 테스트
 - 추천 공고는 자동으로 매칭되지 않습니다. 사용자가 직접 실행해야 합니다.
 - 공고 분석은 시장 데이터용이고, 추천 공고는 개인 매칭용입니다.
 - 디스코드 웹훅 알림은 GitHub Actions 기준으로 연결되어 있습니다.
+
+## 추가 설계 문서
+
+- Firebase 인증 및 제출 저장 구조: [C:\Users\user\Documents\Codex\portfolio-bot-github\docs\firebase-auth-submission-architecture.md](C:/Users/user/Documents/Codex/portfolio-bot-github/docs/firebase-auth-submission-architecture.md)
