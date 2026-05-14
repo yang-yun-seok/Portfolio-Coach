@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: '0 15 * * *'
     - cron: '0 17 * * *'
+    - cron: '0 21 * * *'
   workflow_dispatch:
 
 permissions:
@@ -37,7 +38,7 @@ jobs:
             exit 0
           fi
 
-          if [ "$SCHEDULE_EXPR" = "0 17 * * *" ]; then
+          if [ "$SCHEDULE_EXPR" = "0 17 * * *" ] || [ "$SCHEDULE_EXPR" = "0 21 * * *" ]; then
             SHOULD_RUN=$(node <<'NODE'
 const fs = require('fs');
 const path = 'data/jobs/_meta.json';
@@ -71,9 +72,17 @@ NODE
 )
             echo "should_run=$SHOULD_RUN" >> "$GITHUB_OUTPUT"
             if [ "$SHOULD_RUN" = "true" ]; then
-              echo "run_label=retry" >> "$GITHUB_OUTPUT"
+              if [ "$SCHEDULE_EXPR" = "0 17 * * *" ]; then
+                echo "run_label=retry" >> "$GITHUB_OUTPUT"
+              else
+                echo "run_label=final-retry" >> "$GITHUB_OUTPUT"
+              fi
             else
-              echo "run_label=retry-skip" >> "$GITHUB_OUTPUT"
+              if [ "$SCHEDULE_EXPR" = "0 17 * * *" ]; then
+                echo "run_label=retry-skip" >> "$GITHUB_OUTPUT"
+              else
+                echo "run_label=final-retry-skip" >> "$GITHUB_OUTPUT"
+              fi
             fi
             exit 0
           fi
