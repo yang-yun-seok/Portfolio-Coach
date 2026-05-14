@@ -6,6 +6,19 @@
 - 서비스 주소: [https://yang-yun-seok.github.io/Portfolio-Coach/](https://yang-yun-seok.github.io/Portfolio-Coach/)
 - 지원 트랙: `기획`, `프로그래밍`, `아트`
 
+## 최종 운영 목표
+
+이 프로젝트의 최종 목표는 아래 구조입니다.
+
+- 사용자 입장에서는 무료로 접근 가능한 서비스
+- 저장소는 `GitHub Private`으로 유지
+- 실제 서비스 운영은 장기적으로 `Replit` 중심으로 이전
+- 인증, 제출 저장, 파일 관리는 `Firebase` 사용
+- 공개 회원가입은 열지 않고, 계정 발급형으로 운영
+
+즉, 현재 `GitHub Pages + Render` 구조는 과도기 배포 구조이고,  
+최종 목표는 `Private GitHub + Replit 운영 + Firebase 인증/저장`입니다.
+
 ## 현재 기능
 
 - `정보 입력`
@@ -151,7 +164,7 @@ npm run verify
 - 프로덕션 빌드
 - 스모크 테스트
 
-## 배포 구조
+## 현재 배포 구조 (과도기)
 
 - Frontend: GitHub Pages
 - Backend: Render Web Service
@@ -159,6 +172,16 @@ npm run verify
 - Daily Crawl: GitHub Actions
 
 정적 페이지는 GitHub Pages에 배포되고, 서버 기능이 필요한 요청은 Render 백엔드가 처리합니다.
+
+## 최종 배포 목표
+
+- Source of Truth: `GitHub Private Repository`
+- App Hosting: `Replit`
+- Auth / DB / File Storage: `Firebase`
+- Daily Crawl: 초기에는 `GitHub Actions`, 필요 시 이후 이전 검토
+
+즉, GitHub는 코드 저장용 비공개 저장소로 두고,  
+사용자에게 보이는 실제 서비스는 Replit에서 운영하는 방향을 목표로 합니다.
 
 ## 공고 데이터와 이력 파일
 
@@ -197,6 +220,7 @@ tests/               현재 단위 테스트
 - 추천 공고는 자동으로 매칭되지 않습니다. 사용자가 직접 실행해야 합니다.
 - 공고 분석은 시장 데이터용이고, 추천 공고는 개인 매칭용입니다.
 - 디스코드 웹훅 알림은 GitHub Actions 기준으로 연결되어 있습니다.
+- 최종적으로는 무료 구간 안에서 운영하는 것을 목표로 하지만, 사용량 증가 시 플랫폼 무료 한도를 계속 확인해야 합니다.
 
 ## 추가 설계 문서
 
