@@ -3,8 +3,9 @@ name: Daily GameJob Crawl
 on:
   schedule:
     - cron: '0 15 * * *'
-    - cron: '0 17 * * *'
+    - cron: '0 18 * * *'
     - cron: '0 21 * * *'
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 permissions:
@@ -38,7 +39,7 @@ jobs:
             exit 0
           fi
 
-          if [ "$SCHEDULE_EXPR" = "0 17 * * *" ] || [ "$SCHEDULE_EXPR" = "0 21 * * *" ]; then
+          if [ "$SCHEDULE_EXPR" = "0 18 * * *" ] || [ "$SCHEDULE_EXPR" = "0 21 * * *" ] || [ "$SCHEDULE_EXPR" = "0 0 * * *" ]; then
             SHOULD_RUN=$(node <<'NODE'
 const fs = require('fs');
 const path = 'data/jobs/_meta.json';
@@ -72,16 +73,20 @@ NODE
 )
             echo "should_run=$SHOULD_RUN" >> "$GITHUB_OUTPUT"
             if [ "$SHOULD_RUN" = "true" ]; then
-              if [ "$SCHEDULE_EXPR" = "0 17 * * *" ]; then
-                echo "run_label=retry" >> "$GITHUB_OUTPUT"
+              if [ "$SCHEDULE_EXPR" = "0 18 * * *" ]; then
+                echo "run_label=retry-1" >> "$GITHUB_OUTPUT"
+              elif [ "$SCHEDULE_EXPR" = "0 21 * * *" ]; then
+                echo "run_label=retry-2" >> "$GITHUB_OUTPUT"
               else
-                echo "run_label=final-retry" >> "$GITHUB_OUTPUT"
+                echo "run_label=retry-3" >> "$GITHUB_OUTPUT"
               fi
             else
-              if [ "$SCHEDULE_EXPR" = "0 17 * * *" ]; then
-                echo "run_label=retry-skip" >> "$GITHUB_OUTPUT"
+              if [ "$SCHEDULE_EXPR" = "0 18 * * *" ]; then
+                echo "run_label=retry-1-skip" >> "$GITHUB_OUTPUT"
+              elif [ "$SCHEDULE_EXPR" = "0 21 * * *" ]; then
+                echo "run_label=retry-2-skip" >> "$GITHUB_OUTPUT"
               else
-                echo "run_label=final-retry-skip" >> "$GITHUB_OUTPUT"
+                echo "run_label=retry-3-skip" >> "$GITHUB_OUTPUT"
               fi
             fi
             exit 0
