@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { enforceAdminCrawlAccess } from './admin-guard.js';
 
-export function createDataRouter({ dataLoader, crawlService }) {
+export function createDataRouter({ dataLoader, crawlService, authMiddleware }) {
   const router = Router();
 
   router.get('/api/companies', (req, res) => {
@@ -58,7 +58,7 @@ export function createDataRouter({ dataLoader, crawlService }) {
     res.json({ success: true, status: dataLoader.getStatus() });
   });
 
-  router.post('/api/jobs/resolve', async (req, res) => {
+  router.post('/api/jobs/resolve', authMiddleware.requireAuth, async (req, res) => {
     const result = await crawlService.resolveJobByGiNo(req.body?.giNo);
     res.status(result.status).json(result.body);
   });

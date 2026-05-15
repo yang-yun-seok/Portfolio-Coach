@@ -490,8 +490,306 @@ export function createAnalysisService({
     }
   }
 
+  async function requestGeminiJson({ modelId = 'gemini-2.5-flash', systemPrompt, userPrompt, responseSchema, temperature = 0.4 }) {
+    const providerConfig = getProviderConfig('gemini');
+    const payloadData = {
+      contents: [{ parts: [{ text: userPrompt }] }],
+      systemInstruction: { parts: [{ text: systemPrompt }] },
+      generationConfig: {
+        responseMimeType: 'application/json',
+        responseSchema,
+        temperature,
+      },
+    };
+
+    const data = await requestGeminiData({
+      apiKey: '',
+      providerConfig,
+      modelId,
+      payload: payloadData,
+      fetchWithRetry,
+      fetchImpl,
+    });
+
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!text) throw new Error('Gemini 응답이 비어 있습니다.');
+    return JSON.parse(text);
+  }
+
+  async function requestGeminiText({ modelId = 'gemini-2.5-flash', systemPrompt, userPrompt, temperature = 0.4 }) {
+    const providerConfig = getProviderConfig('gemini');
+    const payloadData = {
+      contents: [{ parts: [{ text: userPrompt }] }],
+      systemInstruction: { parts: [{ text: systemPrompt }] },
+      generationConfig: {
+        temperature,
+      },
+    };
+
+    const data = await requestGeminiData({
+      apiKey: '',
+      providerConfig,
+      modelId,
+      payload: payloadData,
+      fetchWithRetry,
+      fetchImpl,
+    });
+
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+    if (!text) throw new Error('Gemini 응답이 비어 있습니다.');
+    return text;
+  }
+
+  async function matchJobs(payload) {
+    const schema = {
+      type: 'OBJECT',
+      properties: {
+        summary: { type: 'STRING' },
+        matches: {
+          type: 'ARRAY',
+          items: {
+            type: 'OBJECT',
+            properties: {
+              id: { type: 'STRING' },
+              score: { type: 'NUMBER' },
+              reason: { type: 'STRING' },
+              strengths: { type: 'ARRAY', items: { type: 'STRING' } },
+              cautions: { type: 'ARRAY', items: { type: 'STRING' } },
+            },
+            required: ['id', 'score', 'reason', 'strengths', 'cautions'],
+          },
+        },
+      },
+      required: ['summary', 'matches'],
+    };
+
+    try {
+      const candidates = Array.isArray(payload?.candidates) ? payload.candidates.slice(0, 24) : [];
+      const profile = payload?.profile || {};
+      const modelId = String(payload?.modelId || '').startsWith('gemini-') ? payload.modelId : 'gemini-2.5-flash';
+      const profileText = [
+        `지원자 이름: ${profile?.name || '미입력'}`,
+        `직무 대분류: ${profile?.roleGroup || '미입력'}`,
+        `세부 직무: ${profile?.subRole || profile?.role || '미입력'}`,
+        `경력: ${profile?.experience ?? 0}년`,
+        `보유 기술: ${(profile?.skills || []).map((skill) => `${skill.name}(${skill.level})`).join(', ') || '없음'}`,
+      ].join('\n');
+
+      const candidateText = candidates.map((job, index) => [
+        `[후보 ${index + 1}]`,
+        `id: ${job.id}`,
+        `회사: ${job.company}`,
+        `공고명: ${job.title}`,
+        `직무: ${job.role}`,
+        `경력조건: ${job.reqExp === 0 ? '신입/무관' : `${job.reqExp}년 이상`}`,
+        `요구기술: ${(job.reqSkills || []).join(', ') || '없음'}`,
+        `로컬 점수: ${job.score ?? 0}`,
+        `카테고리: ${[job.mainGame, job.gameCategory].filter(Boolean).join(' / ') || '없음'}`,
+      ].join('\n')).join('\n\n');
+
+      const systemPrompt = [
+        '당신은 게임업계 채용공고 추천 분석가다.',
+        '지원자 프로필과 공고 후보를 비교해 실제 지원 우선순위가 높은 공고만 골라라.',
+        '반드시 JSON만 반환한다.',
+        '점수는 0~100 정수로 주고, reason은 두 문장 이내로 제한한다.',
+      ].join('\n');
+
+      const userPrompt = [
+        '아래 지원자 프로필과 공고 후보를 보고 상위 매칭 공고를 최대 8개 반환하라.',
+        '단순 키워드 일치보다 직무 적합도, 경력 적합도, 실제 지원 가능성을 우선한다.',
+        '',
+        '## 지원자 프로필',
+        profileText,
+        '',
+        '## 후보 공고',
+        candidateText,
+      ].join('\n');
+
+      const result = await requestGeminiJson({
+        modelId,
+        systemPrompt,
+        userPrompt,
+        responseSchema: schema,
+        temperature: 0.4,
+      });
+
+      return { status: 200, body: result };
+    } catch (error) {
+      console.error('[/api/match-jobs] Error:', error.message);
+      return { status: 500, body: { error: error.message } };
+    }
+  }
+
+  async function analyzeCompany(payload) {
+    const schema = {
+      type: 'OBJECT',
+      properties: {
+        games: { type: 'STRING' },
+        employees: { type: 'STRING' },
+        revenue: { type: 'STRING' },
+        benefits: { type: 'STRING' },
+        news: { type: 'ARRAY', items: { type: 'STRING' } },
+        aiAnalysis: { type: 'STRING' },
+      },
+      required: ['games', 'employees', 'revenue', 'benefits', 'news', 'aiAnalysis'],
+    };
+
+    try {
+      const name = payload?.name || '';
+      const roles = payload?.roles || '';
+      const skills = payload?.skills || '';
+      const gameCategories = payload?.gameCategories || '';
+      const companyJobsCount = Number(payload?.companyJobsCount) || 0;
+
+      const systemPrompt = '당신은 한국 게임회사 리서치 어시스턴트다. 정확한 정보만 간결하게 JSON으로 정리한다.';
+      const userPrompt = [
+        `회사명: ${name}`,
+        `현재 수집된 공고 수: ${companyJobsCount}`,
+        `주요 직군: ${roles || '-'}`,
+        `주요 요구 기술: ${skills || '-'}`,
+        `카테고리/장르: ${gameCategories || '-'}`,
+        '',
+        '아래 JSON 형식으로 답변해라.',
+        '{"games":"대표 게임 타이틀","employees":"직원 수","revenue":"매출 또는 규모","benefits":"복리후생 요약","news":["최근 이슈 1","최근 이슈 2"],"aiAnalysis":"회사와 채용 흐름 요약"}',
+      ].join('\n');
+
+      const result = await requestGeminiJson({
+        systemPrompt,
+        userPrompt,
+        responseSchema: schema,
+        temperature: 0.3,
+      });
+
+      return { status: 200, body: result };
+    } catch (error) {
+      console.error('[/api/company-insights] Error:', error.message);
+      return { status: 500, body: { error: error.message } };
+    }
+  }
+
+  async function analyzeMarket(payload) {
+    try {
+      const topCompanies = Array.isArray(payload?.topCompanies) ? payload.topCompanies : [];
+      const topKeywords = Array.isArray(payload?.topKeywords) ? payload.topKeywords : [];
+      const topSkills = Array.isArray(payload?.topSkills) ? payload.topSkills : [];
+      const historyIndex = Array.isArray(payload?.historyIndex) ? payload.historyIndex : [];
+
+      const trendSummary = historyIndex
+        .slice(0, 7)
+        .reverse()
+        .map((entry) => `${entry.date}: 전체 ${entry.referenceJobCount}건 / 신규 ${entry.newJobsCount}건`)
+        .join('\n');
+
+      const systemPrompt = [
+        '당신은 게임업계 채용시장 분석가다.',
+        '과장하지 말고 제공된 데이터만 근거로 간결한 한국어 보고서를 작성한다.',
+      ].join('\n');
+
+      const userPrompt = [
+        '다음 데이터를 근거로 시장 보고서를 작성해라.',
+        '- 제목 없이 바로 1. 시장 개요, 2. 채용 신호, 3. 직무별 인사이트, 4. 지원 전략, 5. 한 줄 결론 순서로 작성',
+        '- 각 항목은 2~4문장',
+        '',
+        `[총 공고 수] ${payload?.totalJobs || 0}`,
+        `[최다 직군] ${payload?.dominantRole || '정보 없음'}`,
+        `[최다 경력 조건] ${payload?.dominantCareer || '정보 없음'}`,
+        `[상위 기업] ${topCompanies.slice(0, 8).map(([name, count]) => `${name}(${count})`).join(', ')}`,
+        `[상위 키워드] ${topKeywords.slice(0, 12).map(([label, count]) => `${label}(${count})`).join(', ')}`,
+        `[상위 요구 기술] ${topSkills.slice(0, 10).map(([label, count]) => `${label}(${count})`).join(', ')}`,
+        '',
+        '[최근 추이]',
+        trendSummary || '추이 데이터 없음',
+      ].join('\n');
+
+      const text = await requestGeminiText({
+        systemPrompt,
+        userPrompt,
+        temperature: 0.5,
+      });
+
+      return { status: 200, body: { text } };
+    } catch (error) {
+      console.error('[/api/market-insights] Error:', error.message);
+      return { status: 500, body: { error: error.message } };
+    }
+  }
+
+  async function generateInstructorDraft(payload) {
+    try {
+      const normalizedProfile = normalizeUserProfile(payload?.profile || {});
+      const aiResults = payload?.aiResults || {};
+      const today = new Date().toISOString().slice(0, 10);
+
+      const prompt = `당신은 게임업계 취업 컨설턴트 강사다. 아래 AI 분석 결과를 바탕으로 강사 피드백 초고를 작성해라.
+
+지원자: ${normalizedProfile.name} | 직무: ${getProfileDisplayRole(normalizedProfile)} | 경력: ${normalizedProfile.experience}년 | 기술: ${(normalizedProfile.skills || []).map((skill) => `${skill.name}(${skill.level})`).join(', ')}
+
+AI 분석 요약:
+- 프로필: ${JSON.stringify(aiResults.profileAnalysis || {}).slice(0, 600)}
+- 이력서: ${JSON.stringify(aiResults.resumeImprovements || []).slice(0, 600)}
+- 포트폴리오: ${JSON.stringify(aiResults.portfolioImprovements || []).slice(0, 600)}
+
+아래 마크다운 형식으로 작성해라.
+
+# 강사명
+AI 초고
+
+# 피드백 일자
+${today}
+
+# 통합 피드백
+## 전체 평가
+
+## 주요 개선사항
+- 항목
+
+# 이력서 피드백
+## 강점
+- 항목
+
+## 개선 사항
+- 항목
+
+# 자기소개서 피드백
+## 강점
+- 항목
+
+## 개선 사항
+- 항목
+
+# 포트폴리오 피드백
+## 강점
+- 항목
+
+## 개선 사항
+- 항목
+
+# 면접 준비
+## 예상 질문
+- 항목
+
+## 준비 방향
+- 항목`;
+
+      const markdown = await requestGeminiText({
+        systemPrompt: '당신은 게임업계 취업 컨설턴트 강사다. 마크다운 형식만 반환한다.',
+        userPrompt: prompt,
+        temperature: 0.7,
+      });
+
+      return { status: 200, body: { markdown } };
+    } catch (error) {
+      console.error('[/api/instructor-draft] Error:', error.message);
+      return { status: 500, body: { error: error.message } };
+    }
+  }
+
   return {
     analyze,
     analyzePersonality,
+    analyzeCompany,
+    analyzeMarket,
+    generateInstructorDraft,
+    matchJobs,
   };
 }

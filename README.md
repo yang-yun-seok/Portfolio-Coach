@@ -225,3 +225,7 @@ tests/               현재 단위 테스트
 ## 추가 설계 문서
 
 - Firebase 인증 및 제출 저장 구조: [C:\Users\user\Documents\Codex\portfolio-bot-github\docs\firebase-auth-submission-architecture.md](C:/Users/user/Documents/Codex/portfolio-bot-github/docs/firebase-auth-submission-architecture.md)
+
+### Firebase 설정 문서
+
+- [Firebase 인증/제출 설정 가이드](C:/Users/user/Documents/Codex/portfolio-bot-github/docs/firebase-auth-setup.md)

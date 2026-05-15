@@ -10,7 +10,7 @@ import {
   TrendingUp,
   Users,
 } from 'lucide-react';
-import { callGeminiProxy } from '../lib/gemini-client';
+import { requestMarketInsights } from '../lib/gemini-client';
 import { staticAssetUrl } from '../lib/runtime-config';
 
 const DEFAULT_TRACKED_ROLES = [
@@ -199,6 +199,7 @@ function buildLocalMarketNarrative({ totalJobs, dominantRole, dominantCareer, to
   ].join('\n');
 }
 
+// eslint-disable-next-line no-unused-vars
 function buildAiPrompt({ totalJobs, dominantRole, dominantCareer, topCompanies, topKeywords, topSkills, historyIndex }) {
   const trendSummary = historyIndex
     .slice(0, 7)
@@ -619,7 +620,7 @@ function JobListCard({ job }) {
   );
 }
 
-export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
+export default function JobAnalysisWorkspace({ getAccessToken, jobs = [], jobsMetadata = {} }) {
   const [view, setView] = useState('overview');
   const [historyIndex, setHistoryIndex] = useState([]);
   const [historyError, setHistoryError] = useState('');
@@ -713,9 +714,9 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
     setAnalysisLoading(true);
     setAnalysisError('');
     try {
-      const response = await callGeminiProxy({
-        model: 'gemini-2.5-flash',
-        contents: [{ parts: [{ text: buildAiPrompt({
+      const response = await requestMarketInsights({
+        getAccessToken,
+        payload: {
           totalJobs: jobs.length,
           dominantRole,
           dominantCareer,
@@ -723,13 +724,10 @@ export default function JobAnalysisWorkspace({ jobs = [], jobsMetadata = {} }) {
           topKeywords: keywordCounts,
           topSkills: skillCounts,
           historyIndex,
-        }) }] }],
-        generationConfig: {
-          temperature: 0.5,
         },
       });
 
-      const text = response?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+      const text = String(response?.text || '').trim();
       if (!text) throw new Error('AI 응답이 비어 있습니다.');
       setAnalysisText(text);
     } catch (error) {

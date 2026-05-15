@@ -20,11 +20,15 @@ import {
   ROLE_READINESS_PLAYBOOK,
   ROLE_RESULT_PLAYBOOK,
 } from './data/skills';
-import { callGeminiProxy, matchJobsViaProxy } from './lib/gemini-client';
+import { matchJobsViaProxy, requestCompanyInsights } from './lib/gemini-client';
+import { buildAuthorizedHeaders } from './lib/auth-fetch';
 import { apiUrl, staticAssetUrl } from './lib/runtime-config';
 import { useApplicationAnalysis } from './hooks/useApplicationAnalysis';
+import { useFirebaseSession } from './hooks/useFirebaseSession';
 import { useModels } from './hooks/useModels';
+import { usePortfolioSubmissions } from './hooks/usePortfolioSubmissions';
 import { useWorkspacePersistence } from './hooks/useWorkspacePersistence';
+import AuthGate from './components/AuthGate';
 import { EMPTY_INSTRUCTOR } from './components/InstructorFeedbackForm';
 import WorkspaceSidebar from './components/WorkspaceSidebar';
 import WorkspaceCommandBar from './components/WorkspaceCommandBar';
@@ -188,6 +192,17 @@ function generateInterviewQuestionsLocal(topJobs, user) {
 export default function App() {
   // ── 모델 관련 (서버에서 동적 로드) ──────────────────────────────────────
   const { enabledProviders, disabledProviders, loading: modelsLoading, getDefaultModel } = useModels();
+  const {
+    authEnabled,
+    authError,
+    authLoading,
+    authUser,
+    configReady,
+    getAccessToken,
+    signIn,
+    signOutUser,
+    userProfile,
+  } = useFirebaseSession();
   const workspaceRef = useRef(null);
   const [selectedProvider, setSelectedProvider] = useState('gemini');
   const [selectedModelId, setSelectedModelId] = useState('');
@@ -329,9 +344,12 @@ export default function App() {
     );
 
     try {
+      const headers = await buildAuthorizedHeaders(getAccessToken, {
+        'Content-Type': 'application/json',
+      });
       const res = await fetch(apiUrl('api/jobs/resolve'), {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({ giNo: slot.giNo.trim() }),
       });
       const data = await res.json();
@@ -454,6 +472,25 @@ export default function App() {
     emptyInstructorFeedback: EMPTY_INSTRUCTOR,
     setActiveTab,
     setInfoMessage,
+  });
+
+  const {
+    submissions,
+    submissionsLoading,
+    submissionError,
+    submissionSaving,
+    submissionSuccess,
+    submitPortfolio,
+  } = usePortfolioSubmissions({
+    authEnabled,
+    authUser,
+    userProfile,
+    userInfo: normalizedUserInfo,
+    resumeFile,
+    coverLetterFile,
+    portfolioFiles,
+    results,
+    recommendedJobs,
   });
 
   const handleProviderChange = (providerId) => {
@@ -594,6 +631,7 @@ const { analyzeApplication } = useApplicationAnalysis({
   currentProvider,
   coverLetterFile,
   generateInterviewQuestionsLocal,
+  getAccessToken,
   instructorFeedback,
   persistWorkspaceSnapshot,
   portfolioFiles,
@@ -651,6 +689,7 @@ const { analyzeApplication } = useApplicationAnalysis({
 
     try {
       const response = await matchJobsViaProxy({
+        getAccessToken,
         modelId: selectedModelId,
         profile: analysisProfile,
         candidates: candidateJobs,
@@ -735,31 +774,29 @@ const { analyzeApplication } = useApplicationAnalysis({
     };
     setSelectedCompanyModal(baseInfo);
 
-    // Gemini로 기업 상세 정보 요청
+    // 보호된 백엔드 경유 AI 기업 정보 요청
     try {
-      const prompt = `한국 게임 회사 "${name}"에 대해 아래 JSON 형식으로 간결하게 답변하세요. 정확한 정보만 작성하고, 모르면 "-"로 표기하세요.
-{"games":"대표 게임 타이틀 (쉼표 구분, 최대 5개)","employees":"직원 수 (예: 약 500명)","revenue":"최근 연 매출 또는 자본 규모","benefits":"주요 복리후생 (2~3개)","news":["최근 뉴스 1","최근 뉴스 2"],"aiAnalysis":"2~3문장 기업 분석 요약"}`;
-
-      const data = await callGeminiProxy({
-        model: 'gemini-2.5-flash',
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { responseMimeType: 'application/json', temperature: 0.3 },
-      });
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (text) {
-        const ai = JSON.parse(text);
-        const enriched = {
+      const ai = await requestCompanyInsights({
+        getAccessToken,
+        payload: {
           name,
-          games: ai.games || baseInfo.games,
-          employees: ai.employees || '-',
-          revenue: ai.revenue || '-',
-          benefits: ai.benefits || '-',
-          news: [...(Array.isArray(ai.news) ? ai.news : []), `채용 공고 ${companyJobs.length}건 등록`],
-          aiAnalysis: (ai.aiAnalysis || '') + `\n\n주요 요구 기술: ${skills || '-'}`,
-        };
-        companyInfoCache.current[name] = enriched;
-        setSelectedCompanyModal(enriched);
-      }
+          roles,
+          skills,
+          gameCategories,
+          companyJobsCount: companyJobs.length,
+        },
+      });
+      const enriched = {
+        name,
+        games: ai.games || baseInfo.games,
+        employees: ai.employees || '-',
+        revenue: ai.revenue || '-',
+        benefits: ai.benefits || '-',
+        news: [...(Array.isArray(ai.news) ? ai.news : []), `채용 공고 ${companyJobs.length}건 등록`],
+        aiAnalysis: (ai.aiAnalysis || '') + `\n\n주요 요구 기술: ${skills || '-'}`,
+      };
+      companyInfoCache.current[name] = enriched;
+      setSelectedCompanyModal(enriched);
     } catch (err) {
       console.warn('AI 기업 정보 조회 실패:', err.message);
       companyInfoCache.current[name] = baseInfo;
@@ -924,10 +961,18 @@ const { analyzeApplication } = useApplicationAnalysis({
     userInfo,
   };
   const portfolioWorkspaceProps = {
+    authEnabled,
+    authUser,
+    onSubmitPortfolio: submitPortfolio,
     parseFeedbackItem,
     portfolioFiles,
     resultPlaybook,
     results,
+    submissionError,
+    submissionSaving,
+    submissionSuccess,
+    submissions,
+    submissionsLoading,
   };
 
   const interviewWorkspaceProps = {
@@ -959,10 +1004,12 @@ const { analyzeApplication } = useApplicationAnalysis({
     visibleJobs,
   };
   const jobAnalysisWorkspaceProps = {
+    getAccessToken,
     jobs,
     jobsMetadata,
   };
   const personalityTestProps = {
+    getAccessToken,
     selectedProvider,
     selectedModelId,
     userInfo: normalizedUserInfo,
@@ -980,10 +1027,19 @@ const { analyzeApplication } = useApplicationAnalysis({
 
   // ── 렌더링 ────────────────────────────────────────────────────────────
   return (
-    <div data-feature={featureKey} className="apple-shell coach-shell coach-studio-shell apple-app-shell flex h-screen flex-col bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
+    <AuthGate
+      authEnabled={authEnabled}
+      authLoading={authLoading}
+      authUser={authUser}
+      configReady={configReady}
+      authError={authError}
+      onSignIn={signIn}
+    >
+      <div data-feature={featureKey} className="apple-shell coach-shell coach-studio-shell apple-app-shell flex h-screen flex-col bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
       <WorkspaceCommandBar
         activeLabel={activeNavItem.label}
         activeSectionLabel={activeNavSection.label}
+        authUser={authUser}
         currentTrackLabel={normalizedUserInfo.roleGroup}
         loading={loading}
         modelSummary={`${currentProvider?.label || '모델 선택'}${selectedModelId ? ` · ${selectedModelId}` : ''}`}
@@ -991,6 +1047,7 @@ const { analyzeApplication } = useApplicationAnalysis({
         onOpenModelSettings={() => setShowModelSettings(true)}
         onOpenSettings={() => setShowSettings(true)}
         onSelectInput={() => setActiveTab('input')}
+        onSignOut={signOutUser}
       />
 
       {showTrackGate ? (
@@ -1088,6 +1145,7 @@ const { analyzeApplication } = useApplicationAnalysis({
         selectedModelId={selectedModelId}
         selectedProvider={selectedProvider}
       />
-    </div>
+      </div>
+    </AuthGate>
   );
 }

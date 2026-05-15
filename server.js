@@ -9,9 +9,11 @@ import { createAnalysisRouter } from './server/routes/analysis-routes.js';
 import { createConfigRouter } from './server/routes/config-routes.js';
 import { createDataRouter } from './server/routes/data-routes.js';
 import { createCrawlRouter } from './server/routes/crawl-routes.js';
+import { createAuthMiddleware } from './server/routes/auth-middleware.js';
 import { createAnalysisService } from './server/services/analysis-service.js';
 import { createConfigService } from './server/services/config-service.js';
 import { createCrawlService } from './server/services/crawl-service.js';
+import { createFirebaseAdminService } from './server/services/firebase-admin-service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -33,6 +35,8 @@ app.use(cors());
 app.use(express.json({ limit: serverConfig.bodyLimit }));
 
 const crawlService = createCrawlService({ dataDir, dataLoader });
+const firebaseAdminService = createFirebaseAdminService();
+const authMiddleware = createAuthMiddleware({ firebaseAdminService });
 const analysisService = createAnalysisService({
   loadPrompts: configService.loadPrompts,
   loadServerConfig: configService.loadServerConfig,
@@ -42,9 +46,9 @@ const analysisService = createAnalysisService({
   fetchImpl: fetch,
 });
 
-app.use(createAnalysisRouter({ analysisService }));
+app.use(createAnalysisRouter({ analysisService, authMiddleware }));
 app.use(createConfigRouter({ configService }));
-app.use(createDataRouter({ dataLoader, crawlService }));
+app.use(createDataRouter({ dataLoader, crawlService, authMiddleware }));
 app.use(createCrawlRouter({ crawlService }));
 
 const distDir = join(__dirname, 'dist');

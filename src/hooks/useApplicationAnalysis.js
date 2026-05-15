@@ -2,35 +2,40 @@ import { useCallback } from 'react';
 import { parseInstructorMd } from '../components/InstructorFeedbackForm';
 import { getProfileDisplayRole, normalizeUserProfile } from '../data/skills';
 import { analyzeGitHubPortfolio } from '../lib/github-analyzer';
-import { analyzeViaProxy, callGeminiProxy } from '../lib/gemini-client';
+import { analyzeViaProxy, requestInstructorDraft } from '../lib/gemini-client';
 
 function buildLocalGitHubPortfolioAnalysis(githubPortfolio) {
   if (!githubPortfolio) return null;
+
   const stack = Array.isArray(githubPortfolio.topLanguages) && githubPortfolio.topLanguages.length > 0
     ? githubPortfolio.topLanguages.map((language) => `${language.name}${language.share ? ` (${language.share})` : ''}`)
     : (githubPortfolio.languages || []).slice(0, 6);
+
   const projectHighlights = Array.isArray(githubPortfolio.projectHighlights) && githubPortfolio.projectHighlights.length > 0
     ? githubPortfolio.projectHighlights
     : [
       githubPortfolio.readme
-        ? 'README에 프로젝트 목적과 구조가 드러나면 지원자가 문제 정의를 설명하기 쉬워집니다.'
+        ? 'README에서 프로젝트 목적과 구조가 드러나면 지원자가 문제 정의를 설명하기 쉬워집니다.'
         : 'README가 약하면 프로젝트 목적과 실행 흐름을 별도 문서로 보강해야 합니다.',
       githubPortfolio.workflowFiles?.length
-        ? 'CI 또는 배포 워크플로 흔적이 있어 협업/출시 경험을 설명할 근거가 생깁니다.'
+        ? 'CI 또는 배포 워크플로 흔적이 있어 작업/출시 경험을 설명할 근거가 생깁니다.'
         : '워크플로 파일이 없으면 검증과 배포 과정을 직접 설명할 준비가 필요합니다.',
     ];
+
   const architecture = Array.isArray(githubPortfolio.architecture) && githubPortfolio.architecture.length > 0
     ? githubPortfolio.architecture
     : (githubPortfolio.rootFiles || [])
       .slice(0, 8)
       .map((file) => `${file.type === 'dir' ? '폴더' : '파일'}: ${file.path}`);
+
   const qualitySignals = Array.isArray(githubPortfolio.qualitySignals) && githubPortfolio.qualitySignals.length > 0
     ? githubPortfolio.qualitySignals
     : [
       githubPortfolio.readme
-        ? 'README 기반 실행/설명 문서가 있어 프로젝트 소개 근거를 확보할 수 있습니다.'
-        : 'README가 약하면 저장소 첫인상과 실행 안내 품질이 떨어질 수 있습니다.',
+        ? 'README 기반 실행/설명 문서가 있어 프로젝트 소개 근거가 남아 있습니다.'
+        : 'README가 약해 저장소 첫인상과 실행 안내가 떨어집니다.',
     ];
+
   const shippingSignals = Array.isArray(githubPortfolio.shippingSignals) && githubPortfolio.shippingSignals.length > 0
     ? githubPortfolio.shippingSignals
     : [
@@ -38,26 +43,30 @@ function buildLocalGitHubPortfolioAnalysis(githubPortfolio) {
         ? '자동화 워크플로 흔적이 있어 검증 또는 배포 경험을 설명할 수 있습니다.'
         : '자동화 워크플로가 보이지 않으면 수동 검증/배포 과정을 직접 설명해야 합니다.',
     ];
+
   const refactorSuggestions = Array.isArray(githubPortfolio.refactorSuggestions) && githubPortfolio.refactorSuggestions.length > 0
     ? githubPortfolio.refactorSuggestions
     : [
-      '핵심 모듈 2~3개를 별도 설명 문서로 정리하면 면접 대응력이 더 좋아집니다.',
+      '핵심 모듈 2~3개를 별도 설명 문서로 정리하면 면접 대응력이 좋아집니다.',
     ];
+
   const risks = Array.isArray(githubPortfolio.risks) && githubPortfolio.risks.length > 0
     ? githubPortfolio.risks
     : [
       githubPortfolio.readme
-        ? 'README에 실행 방법, 담당 역할, 핵심 구현 근거가 충분한지 확인이 필요합니다.'
-        : 'README가 없거나 읽히지 않아 프로젝트 설명력이 약해질 수 있습니다.',
-      '무료 분석 모드는 public repo의 핵심 구조와 대표 설정 파일 위주로 확인하므로, 핵심 구현 파일은 면접용 설명으로 별도 보강하는 편이 좋습니다.',
+        ? 'README의 실행 방법, 역할, 핵심 구현 근거가 충분한지 추가 확인이 필요합니다.'
+        : 'README가 비어 있어 프로젝트 설명력이 떨어집니다.',
+      '무료 분석 모드는 public repo의 구조와 설정 파일 중심으로만 확인하므로, 핵심 구현은 면접에서 별도 설명 자료로 보강하는 편이 좋습니다.',
     ];
+
   const interviewTalkingPoints = Array.isArray(githubPortfolio.interviewTalkingPoints) && githubPortfolio.interviewTalkingPoints.length > 0
     ? githubPortfolio.interviewTalkingPoints
     : [
       '이 프로젝트를 만든 문제 상황과 목표를 30초 안에 설명하세요.',
-      '핵심 기능 1~2개를 골라 본인의 설계 판단, 예외 처리, 검증 방법을 말하세요.',
-      '지금 다시 만든다면 바꿀 구조나 테스트/배포 개선점을 준비하세요.',
+      '핵심 기능 1~2개를 골라 설계 판단, 예외 처리, 검증 방법을 말할 수 있어야 합니다.',
+      '지금 다시 만든다면 바꿀 구조나 테스트·배포 개선점을 준비하세요.',
     ];
+
   return {
     repoUrl: githubPortfolio.repoUrl,
     fullName: githubPortfolio.fullName,
@@ -66,7 +75,7 @@ function buildLocalGitHubPortfolioAnalysis(githubPortfolio) {
     stars: githubPortfolio.stars,
     forks: githubPortfolio.forks,
     updatedAt: githubPortfolio.updatedAt,
-    summary: githubPortfolio.summary || `${githubPortfolio.fullName} 저장소는 ${githubPortfolio.language || '확인 필요'} 기반 프로젝트입니다. README, 핵심 디렉터리, 설정 파일, 자동화 신호를 기준으로 기술 설명 자료를 구성했습니다.`,
+    summary: githubPortfolio.summary || `${githubPortfolio.fullName} 저장소를 기준으로 프로젝트 구조와 기술 설명 포인트를 정리했습니다.`,
     techStack: stack,
     projectHighlights,
     architecture,
@@ -121,7 +130,7 @@ function fileToBase64(file) {
       if (encoded.length % 4 > 0) encoded += '='.repeat(4 - (encoded.length % 4));
       resolve(encoded);
     };
-    reader.onerror = (err) => reject(err);
+    reader.onerror = (error) => reject(error);
   });
 }
 
@@ -137,32 +146,32 @@ function buildLocalFallbackResults({
 
   return {
     resumeImprovements: [
-      `**성과 중심 재배치**: ${userInfo.experience}년차 ${profileRoleLabel} 경험을 상단에 두괄식으로 배치하세요.`,
-      `**핵심 기술 증명**: [${userInfo.skills[0]?.name || '주요 기술'}] 활용 프로젝트 사례를 수치화하여 보강하세요.`,
+      `**성과 중심 배치**: ${userInfo.experience}년차 ${profileRoleLabel} 경험을 상단 핵심 문장으로 다시 정리하세요.`,
+      `**핵심 기술 증명**: ${userInfo.skills[0]?.name || '주요 기술'}을 실제 프로젝트 결과와 연결해 보강하세요.`,
     ],
     coverLetterImprovements: {
       common: [
-        '**지원 동기 구체화**: 본인의 가치관과 목표가 게임 업계 방향성과 어떻게 일치하는지 첫 문장에 두괄식으로 서술하세요.',
-        "**논리적 트러블슈팅**: '문제 발생 → 가설 수립 → 기술적 해결 → 결과 지표' 순으로 개조식 정리하세요.",
+        '**지원 동기 구체화**: 본인의 가치와 목표가 회사/직무와 어떻게 맞는지 첫 문단에서 분명히 쓰세요.',
+        "**문제 해결 내러티브**: '문제 발견 → 판단 → 실행 → 결과' 구조로 바꾸면 설득력이 높아집니다.",
       ],
       rank1: [
-        `**${top3[0]?.company || '1순위 공고'} 맞춤 전략**: 해당 공고의 핵심 인재상 키워드를 자소서 도입부에 직접 언급하고, 본인의 경험과 연결하세요.`,
-        `**직무 이해도 어필**: ${top3[0]?.company || '1순위 회사'}의 최신 이슈·신작·방향성을 인용하여 진정성 있는 지원 동기를 구성하세요.`,
+        `**${top3[0]?.company || '1순위 공고'} 맞춤 문장**: 해당 공고가 요구하는 핵심 역량을 자기소개서 도입부와 직접 연결하세요.`,
+        `**직무 이해도 강조**: ${top3[0]?.company || '1순위 회사'}의 제품/서비스 방향성과 본인 경험을 엮어 쓰세요.`,
       ],
       rank2: [
-        `**${top3[1]?.company || '2순위 공고'} 맞춤 전략**: 해당 공고가 요구하는 역량 중 본인의 경험과 가장 가까운 사례를 중심으로 자소서를 재구성하세요.`,
-        `**차별화 포인트 강조**: ${top3[1]?.company || '2순위 회사'} 관점에서 다른 지원자와 차별화되는 본인의 강점을 구체적인 수치·결과물로 뒷받침하세요.`,
+        `**${top3[1]?.company || '2순위 공고'} 맞춤 문장**: 가장 가까운 경험 사례를 중심으로 근거를 재배치하세요.`,
+        `**차별점 강조**: 다른 지원자와 구분되는 강점을 수치나 산출물로 보여주세요.`,
       ],
       rank3: [
-        `**${top3[2]?.company || '3순위 공고'} 맞춤 전략**: 해당 공고의 요구 조건 중 충족하는 항목을 먼저 명시하고, 부족한 부분은 성장 의지와 대안으로 보완하세요.`,
-        `**문화 핏 어필**: ${top3[2]?.company || '3순위 회사'}의 개발 철학·장르 특성과 본인의 커리어 방향성이 일치함을 구체적으로 서술하세요.`,
+        `**${top3[2]?.company || '3순위 공고'} 맞춤 문장**: 충족되는 조건과 보완 중인 조건을 명확히 나눠 서술하세요.`,
+        `**문화 적합성 보강**: 회사 방향성과 본인의 커리어 방향이 만나는 지점을 쓰세요.`,
       ],
     },
     portfolioImprovements: portfolioFiles.length > 0
-      ? portfolioFiles.map((file, index) => `**포트폴리오 ${index + 1} (${file.name})**: 해당 문서의 핵심 기여도와 문제 해결 과정을 수치화하여 보강하세요.`)
+      ? portfolioFiles.map((file, index) => `**포트폴리오 ${index + 1} (${file.name})**: 역할, 문제 해결 과정, 결과 지표가 보이게 다시 정리하세요.`)
       : [
-        '**과정 및 최적화 문서화**: 결과물 외에 문제 해결 과정(퍼포먼스 향상 등)을 노션/깃허브에 문서화하여 링크하세요.',
-        '**기여도 명시**: 팀 프로젝트 내 본인의 명확한 역할과 기여도(%)를 앞장에 요약하세요.',
+        '**과정 문서화**: 결과물 외에 문제 정의와 해결 과정을 따로 문서로 남기세요.',
+        '**기여도 명시**: 프로젝트별 본인 역할과 기여 범위를 첫 화면에 넣으세요.',
       ],
     interviewPreps: generateInterviewQuestionsLocal(top3, userInfo),
     instructorFeedback,
@@ -174,6 +183,7 @@ export function useApplicationAnalysis({
   currentProvider,
   coverLetterFile,
   generateInterviewQuestionsLocal,
+  getAccessToken,
   instructorFeedback,
   persistWorkspaceSnapshot,
   portfolioFiles,
@@ -196,80 +206,32 @@ export function useApplicationAnalysis({
     try {
       const today = new Date().toISOString().slice(0, 10);
       const normalizedProfile = normalizeUserProfile(profile);
-      const prompt = `당신은 게임 업계 취업 컨설팅 강사입니다. 아래 AI 분석 결과를 바탕으로 강사 피드백 초고를 작성하세요.
-
-지원자: ${normalizedProfile.name} | 직군: ${getProfileDisplayRole(normalizedProfile)} | 경력: ${normalizedProfile.experience}년
-스킬: ${(normalizedProfile.skills || []).map((skill) => `${skill.name}(${skill.level})`).join(', ')}
-
-AI 분석 요약:
-- 프로필: ${JSON.stringify(aiResults.profileAnalysis || {}).slice(0, 500)}
-- 이력서: ${JSON.stringify(aiResults.resumeImprovements || []).slice(0, 500)}
-- 포트폴리오: ${JSON.stringify(aiResults.portfolioImprovements || []).slice(0, 500)}
-
-아래 마크다운 형식으로 정확히 작성하세요:
-
-# 통합 피드백
-
-## 전체 평가
-(2~3문장 종합 평가)
-
-## 주요 개선사항
-- (핵심 개선 항목 3~5개)
-
-# 이력서 피드백
-
-## 강점
-- (2~3개)
-
-## 개선 포인트
-- (2~3개)
-
-# 자기소개서 피드백
-
-## 강점
-- (2~3개)
-
-## 개선 포인트
-- (2~3개)
-
-# 포트폴리오 피드백
-
-## 강점
-- (2~3개)
-
-## 개선 포인트
-- (2~3개)
-
-# 면접 대비
-
-## 예상 질문
-- (3~4개)
-
-## 준비 방향
-- (2~3개)
-
-게임 업계 실무 관점에서 구체적으로 작성하세요.`;
-
-      const data = await callGeminiProxy({
-        model: 'gemini-2.5-flash',
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.7 },
+      const response = await requestInstructorDraft({
+        getAccessToken,
+        payload: {
+          profile: normalizedProfile,
+          aiResults,
+        },
       });
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (text) {
-        const parsed = parseInstructorMd(`# 강사명\nAI 초고\n\n# 피드백 일자\n${today}\n\n${text}`);
+      const markdown = response?.markdown;
+      if (markdown) {
+        const parsed = parseInstructorMd(
+          markdown.includes('# 피드백 일자')
+            ? markdown
+            : `# 강사명\nAI 초고\n\n# 피드백 일자\n${today}\n\n${markdown}`,
+        );
         setInstructorFeedback(parsed);
         return parsed;
       }
     } catch (error) {
-      console.warn('강사피드백 AI 초고 생성 실패:', error.message);
+      console.warn('강사 피드백 초안 생성 실패:', error.message);
     }
     return null;
-  }, [setInstructorFeedback]);
+  }, [getAccessToken, setInstructorFeedback]);
 
   const analyzeApplication = useCallback(async () => {
     if (!userInfo.name || userInfo.skills.length === 0) {
-      setError('지원자 이름과 최소 1개 이상의 스킬을 입력해주세요.');
+      setError('지원자 이름과 최소 1개 이상의 보유 기술을 입력해 주세요.');
       return;
     }
 
@@ -295,7 +257,7 @@ AI 분석 요약:
 
       let githubPortfolio = null;
       if (analysisProfile.roleGroup === '프로그래밍' && analysisProfile.githubUrl?.trim()) {
-        setInfoMessage('GitHub 저장소를 분석하는 중입니다. README, 핵심 디렉터리, 설정 파일, 자동화 신호를 확인합니다. public repo 기준으로만 동작합니다.');
+        setInfoMessage('GitHub 저장소를 분석 중입니다. README, 핵심 디렉터리, 설정 파일, 자동화 흔적을 확인합니다.');
         try {
           githubPortfolio = await analyzeGitHubPortfolio(analysisProfile.githubUrl.trim());
         } catch (githubError) {
@@ -309,7 +271,10 @@ AI 분석 요약:
           const maxFileSize = 10 * 1024 * 1024;
           const addFile = async (label, file) => {
             if (!file || file.size > maxFileSize) return;
-            fileParts.push({ text: label }, { inlineData: { mimeType: 'application/pdf', data: await fileToBase64(file) } });
+            fileParts.push(
+              { text: label },
+              { inlineData: { mimeType: 'application/pdf', data: await fileToBase64(file) } },
+            );
           };
 
           await addFile('이력서 첨부:', resumeFile);
@@ -323,14 +288,13 @@ AI 분석 요약:
       }
 
       const data = await analyzeViaProxy({
+        getAccessToken,
         modelId: selectedModelId,
         top3,
         profile: analysisProfile,
         hasFiles: fileParts.length > 0,
         hasPortfolioFile: portfolioFiles.length > 0,
         fileParts: fileParts.length > 0 ? fileParts : undefined,
-        portfolioFileNames: portfolioFiles.map((file) => file.name),
-        githubPortfolio,
       });
 
       const localGitHubAnalysis = buildLocalGitHubPortfolioAnalysis(githubPortfolio);
@@ -338,10 +302,12 @@ AI 분석 요약:
         ...data,
         resumeImprovements: Array.isArray(data.resumeImprovements) ? data.resumeImprovements : [],
         portfolioImprovements: Array.isArray(data.portfolioImprovements) ? data.portfolioImprovements : [],
-        interviewPreps: Array.isArray(data.interviewPreps) ? data.interviewPreps.map((prep) => ({
-          ...prep,
-          questions: Array.isArray(prep.questions) ? prep.questions : [],
-        })) : [],
+        interviewPreps: Array.isArray(data.interviewPreps)
+          ? data.interviewPreps.map((prep) => ({
+            ...prep,
+            questions: Array.isArray(prep.questions) ? prep.questions : [],
+          }))
+          : [],
         coverLetterImprovements: data.coverLetterImprovements || {},
         profileAnalysis: data.profileAnalysis || {},
         githubPortfolioAnalysis: mergeGitHubPortfolioAnalysis(localGitHubAnalysis, data.githubPortfolioAnalysis),
@@ -369,7 +335,7 @@ AI 분석 요약:
         instructorFeedback,
       }, { showConfirmation: true, trackHistory: true });
     } catch (error) {
-      console.warn('AI 분석 오류 → 로컬 Fallback:', error.message);
+      console.warn('AI 분석 오류, 로컬 fallback 사용:', error.message);
       try {
         const jobsWithScores = computeJobsWithScores();
         const localResults = buildLocalFallbackResults({
@@ -383,7 +349,7 @@ AI 분석 요약:
         setRecommendedJobs(jobsWithScores);
         setVisibleJobs(10);
         setResults(localResults);
-        setInfoMessage(`AI API 연동 오류로 로컬 분석 엔진으로 결과를 대체 생성했습니다. (${error.message})`);
+        setInfoMessage(`AI 분석에 실패해 로컬 보조 결과를 먼저 표시합니다. (${error.message})`);
         setActiveTab('feedback');
         persistWorkspaceSnapshot({
           userInfo,
@@ -392,7 +358,7 @@ AI 분석 요약:
           instructorFeedback,
         }, { showConfirmation: true, trackHistory: true });
       } catch (fallbackError) {
-        console.warn('로컬 Fallback도 실패:', fallbackError.message);
+        console.warn('로컬 fallback도 실패:', fallbackError.message);
         setError(`분석 실패: ${error.message}`);
       }
     } finally {
@@ -404,6 +370,7 @@ AI 분석 요약:
     currentProvider?.supportsFiles,
     generateInstructorDraft,
     generateInterviewQuestionsLocal,
+    getAccessToken,
     instructorFeedback,
     persistWorkspaceSnapshot,
     portfolioFiles,

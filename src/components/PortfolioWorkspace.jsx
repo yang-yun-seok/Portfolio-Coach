@@ -1,5 +1,6 @@
 import React from 'react';
 import { AlertCircle, ExternalLink, FileText, Github, Layers3, Sparkles } from 'lucide-react';
+import PortfolioSubmissionPanel from './PortfolioSubmissionPanel';
 
 function FeedbackRow({ item, index, parseFeedbackItem, portfolioFiles }) {
   const { title, body } = parseFeedbackItem(item);
@@ -38,10 +39,18 @@ function SignalColumn({ title, items }) {
 }
 
 export default function PortfolioWorkspace({
+  authEnabled,
+  authUser,
+  onSubmitPortfolio,
   parseFeedbackItem,
   portfolioFiles,
   resultPlaybook,
   results,
+  submissionError,
+  submissionSaving,
+  submissionSuccess,
+  submissions,
+  submissionsLoading,
 }) {
   const improvementItems = Array.isArray(results.portfolioImprovements) ? results.portfolioImprovements : [];
   const github = results.githubPortfolioAnalysis;
@@ -222,6 +231,17 @@ export default function PortfolioWorkspace({
           </div>
         </section>
       )}
+
+      <PortfolioSubmissionPanel
+        authEnabled={authEnabled}
+        authUser={authUser}
+        submissionError={submissionError}
+        submissionSaving={submissionSaving}
+        submissionSuccess={submissionSuccess}
+        submissions={submissions}
+        submissionsLoading={submissionsLoading}
+        onSubmitPortfolio={onSubmitPortfolio}
+      />
     </div>
   );
 }

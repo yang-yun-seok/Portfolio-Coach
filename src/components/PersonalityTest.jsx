@@ -4,7 +4,7 @@ import {
   MAIN_QUESTIONS,
 } from '../data/personalityTestData';
 import { normalizeUserProfile, ROLE_PERSONALITY_PLAYBOOK } from '../data/skills';
-import { apiUrl } from '../lib/runtime-config';
+import { analyzePersonalityViaApi } from '../lib/gemini-client';
 import PersonalityIntroScreen from './personality/PersonalityIntroScreen';
 import PersonalityPracticeScreen from './personality/PersonalityPracticeScreen';
 import PersonalityResultScreen from './personality/PersonalityResultScreen';
@@ -20,7 +20,12 @@ import {
   TOTAL_TIME,
 } from './personality/personality-utils';
 
-export default function PersonalityTest({ selectedProvider, selectedModelId, userInfo }) {
+export default function PersonalityTest({
+  getAccessToken,
+  selectedProvider,
+  selectedModelId,
+  userInfo,
+}) {
   const normalizedUser = normalizeUserProfile(userInfo || {});
   const personalityPlaybook = ROLE_PERSONALITY_PLAYBOOK[normalizedUser.roleGroup] || ROLE_PERSONALITY_PLAYBOOK.기획;
   const [step, setStep] = useState('intro');
@@ -184,28 +189,16 @@ export default function PersonalityTest({ selectedProvider, selectedModelId, use
     };
 
     try {
-      const response = await fetch(apiUrl('api/analyze-personality'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          provider: selectedProvider,
-          modelId: selectedModelId,
-          likertAnswers,
-          binaryAnswers,
-          questions: MAIN_QUESTIONS,
-          binaryQuestions: BINARY_QUESTIONS,
-        }),
-      }).catch(() => null);
+      const data = await analyzePersonalityViaApi({
+        getAccessToken,
+        provider: selectedProvider,
+        modelId: selectedModelId,
+        likertAnswers,
+        binaryAnswers,
+        questions: MAIN_QUESTIONS,
+        binaryQuestions: BINARY_QUESTIONS,
+      });
 
-      if (!response || !response.ok) {
-        const failureReason = !response
-          ? 'AI 서버에 연결하지 못했습니다.'
-          : `AI 서버가 ${response.status} 상태를 반환했습니다.`;
-        fallbackWithNotice(`${failureReason} 로컬 분석 결과를 먼저 표시합니다. 잠시 후 AI 분석을 다시 요청할 수 있습니다.`);
-        return;
-      }
-
-      const data = await response.json();
       setAiResult(data);
       setAnalysisSource('ai');
     } catch (error) {
@@ -216,6 +209,7 @@ export default function PersonalityTest({ selectedProvider, selectedModelId, use
     }
   }, [
     binaryAnswers,
+    getAccessToken,
     likertAnswers,
     normalizedUser.roleGroup,
     selectedModelId,
