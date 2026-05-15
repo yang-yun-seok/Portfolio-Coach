@@ -135,9 +135,17 @@ NODE
           REFERENCE_JOB_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('public/api/jobs-metadata.json','utf8')).referenceJobCount || 0")
           NEW_JOBS_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('public/api/jobs-metadata.json','utf8')).newJobsCount || 0")
           RUN_KIND="${{ steps.crawl_plan.outputs.run_label }}"
+          case "$RUN_KIND" in
+            manual) RUN_KIND_LABEL="수동 실행" ;;
+            primary) RUN_KIND_LABEL="정규 실행" ;;
+            retry-1) RUN_KIND_LABEL="1차 재시도" ;;
+            retry-2) RUN_KIND_LABEL="2차 재시도" ;;
+            retry-3) RUN_KIND_LABEL="3차 재시도" ;;
+            *) RUN_KIND_LABEL="$RUN_KIND" ;;
+          esac
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d "{\"content\":\"[Portfolio-Coach] ${RUN_KIND} GameJob crawl succeeded\nDate: ${LATEST_APPLIED_DATE}\nReference jobs: ${REFERENCE_JOB_COUNT}\nNew jobs: ${NEW_JOBS_COUNT}\nRun: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            -d "{\"content\":\"[Portfolio-Coach] ${RUN_KIND_LABEL} 게임잡 크롤링 성공\n반영일: ${LATEST_APPLIED_DATE}\n참고 공고 수: ${REFERENCE_JOB_COUNT}\n신규 공고 수: ${NEW_JOBS_COUNT}\n실행 링크: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
             "$DISCORD_WEBHOOK_URL"
 
       - name: Notify Discord on crawl failure
@@ -146,9 +154,17 @@ NODE
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           RUN_KIND="${{ steps.crawl_plan.outputs.run_label }}"
+          case "$RUN_KIND" in
+            manual) RUN_KIND_LABEL="수동 실행" ;;
+            primary) RUN_KIND_LABEL="정규 실행" ;;
+            retry-1) RUN_KIND_LABEL="1차 재시도" ;;
+            retry-2) RUN_KIND_LABEL="2차 재시도" ;;
+            retry-3) RUN_KIND_LABEL="3차 재시도" ;;
+            *) RUN_KIND_LABEL="$RUN_KIND" ;;
+          esac
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d "{\"content\":\"[Portfolio-Coach] ${RUN_KIND} GameJob crawl failed\nRepository: ${{ github.repository }}\nBranch: ${{ github.ref_name }}\nRun: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            -d "{\"content\":\"[Portfolio-Coach] ${RUN_KIND_LABEL} 게임잡 크롤링 실패\n저장소: ${{ github.repository }}\n브랜치: ${{ github.ref_name }}\n실행 링크: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
             "$DISCORD_WEBHOOK_URL"
 
       - name: Fail workflow when crawl failed

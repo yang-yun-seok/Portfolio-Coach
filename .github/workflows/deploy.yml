@@ -75,9 +75,9 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           if [[ "${{ needs.build.result }}" == "success" && "${{ needs.deploy.result }}" == "success" ]]; then
-            MESSAGE="[Portfolio-Coach] GitHub Pages deploy succeeded\nBranch: ${{ github.ref_name }}\nRun: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            MESSAGE="[Portfolio-Coach] GitHub Pages 배포 성공\n브랜치: ${{ github.ref_name }}\n실행 링크: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           else
-            MESSAGE="[Portfolio-Coach] GitHub Pages deploy failed\nBuild: ${{ needs.build.result }}\nDeploy: ${{ needs.deploy.result }}\nBranch: ${{ github.ref_name }}\nRun: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            MESSAGE="[Portfolio-Coach] GitHub Pages 배포 실패\n빌드 상태: ${{ needs.build.result }}\n배포 상태: ${{ needs.deploy.result }}\n브랜치: ${{ github.ref_name }}\n실행 링크: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           fi
 
           curl -H "Content-Type: application/json" \
