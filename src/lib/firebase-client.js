@@ -13,11 +13,13 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || '',
 };
 
-export const isFirebaseAuthEnabled = import.meta.env.VITE_FIREBASE_AUTH_ENABLED === 'true';
-
 const requiredConfigKeys = ['apiKey', 'authDomain', 'projectId', 'storageBucket', 'appId'];
 
 export const firebaseConfigIssues = requiredConfigKeys.filter((key) => !firebaseConfig[key]);
+const authFlag = String(import.meta.env.VITE_FIREBASE_AUTH_ENABLED || '').trim().toLowerCase();
+const hasRequiredFirebaseConfig = firebaseConfigIssues.length === 0;
+
+export const isFirebaseAuthEnabled = authFlag === 'true' || (authFlag !== 'false' && hasRequiredFirebaseConfig);
 export const isFirebaseClientReady = !isFirebaseAuthEnabled || firebaseConfigIssues.length === 0;
 
 let firebaseApp = null;
@@ -38,4 +40,3 @@ export {
   firebaseDb,
   firebaseStorage,
 };
-
