@@ -14,6 +14,7 @@ permissions:
 jobs:
   crawl:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
       - name: Checkout
@@ -114,7 +115,7 @@ NODE
         run: npm run crawl:daily
 
       - name: Commit updated crawl data
-        if: steps.crawl_plan.outputs.should_run == 'true'
+        if: steps.crawl_plan.outputs.should_run == 'true' && steps.daily_crawl.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -127,10 +128,15 @@ NODE
           git push origin HEAD:main
 
       - name: Notify Discord on crawl success
-        if: steps.crawl_plan.outputs.should_run == 'true' && steps.daily_crawl.outcome == 'success' && env.DISCORD_WEBHOOK_URL != ''
+        if: steps.crawl_plan.outputs.should_run == 'true' && steps.daily_crawl.outcome == 'success'
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "DISCORD_WEBHOOK_URL is not configured. Skip notification."
+            exit 0
+          fi
+
           LATEST_APPLIED_DATE=$(node -p "JSON.parse(require('fs').readFileSync('public/api/jobs-metadata.json','utf8')).latestAppliedDate || ''")
           REFERENCE_JOB_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('public/api/jobs-metadata.json','utf8')).referenceJobCount || 0")
           NEW_JOBS_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('public/api/jobs-metadata.json','utf8')).newJobsCount || 0")
@@ -149,10 +155,15 @@ NODE
             "$DISCORD_WEBHOOK_URL"
 
       - name: Notify Discord on crawl failure
-        if: steps.crawl_plan.outputs.should_run == 'true' && steps.daily_crawl.outcome == 'failure' && env.DISCORD_WEBHOOK_URL != ''
+        if: steps.crawl_plan.outputs.should_run == 'true' && steps.daily_crawl.outcome == 'failure'
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
+          if [ -z "$DISCORD_WEBHOOK_URL" ]; then
+            echo "DISCORD_WEBHOOK_URL is not configured. Skip notification."
+            exit 0
+          fi
+
           RUN_KIND="${{ steps.crawl_plan.outputs.run_label }}"
           case "$RUN_KIND" in
             manual) RUN_KIND_LABEL="수동 실행" ;;
