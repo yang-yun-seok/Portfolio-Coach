@@ -42,36 +42,36 @@ jobs:
 
           if [ "$SCHEDULE_EXPR" = "0 18 * * *" ] || [ "$SCHEDULE_EXPR" = "0 21 * * *" ] || [ "$SCHEDULE_EXPR" = "0 0 * * *" ]; then
             SHOULD_RUN=$(node <<'NODE'
-const fs = require('fs');
-const path = 'data/jobs/_meta.json';
-const formatKstDate = (value) => new Intl.DateTimeFormat('en-CA', {
-  timeZone: 'Asia/Seoul',
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-}).format(value);
+          const fs = require('fs');
+          const path = 'data/jobs/_meta.json';
+          const formatKstDate = (value) => new Intl.DateTimeFormat('en-CA', {
+            timeZone: 'Asia/Seoul',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+          }).format(value);
 
-const todayKst = formatKstDate(new Date());
-let meta = {};
+          const todayKst = formatKstDate(new Date());
+          let meta = {};
 
-try {
-  meta = JSON.parse(fs.readFileSync(path, 'utf8'));
-} catch {
-  process.stdout.write('true');
-  process.exit(0);
-}
+          try {
+            meta = JSON.parse(fs.readFileSync(path, 'utf8'));
+          } catch {
+            process.stdout.write('true');
+            process.exit(0);
+          }
 
-const lastSuccessKst = meta.lastSuccessfulCrawlAt
-  ? formatKstDate(new Date(meta.lastSuccessfulCrawlAt))
-  : '';
+          const lastSuccessKst = meta.lastSuccessfulCrawlAt
+            ? formatKstDate(new Date(meta.lastSuccessfulCrawlAt))
+            : '';
 
-if (meta.lastCrawlStatus === 'success' && lastSuccessKst === todayKst) {
-  process.stdout.write('false');
-} else {
-  process.stdout.write('true');
-}
-NODE
-)
+          if (meta.lastCrawlStatus === 'success' && lastSuccessKst === todayKst) {
+            process.stdout.write('false');
+          } else {
+            process.stdout.write('true');
+          }
+          NODE
+          )
             echo "should_run=$SHOULD_RUN" >> "$GITHUB_OUTPUT"
             if [ "$SHOULD_RUN" = "true" ]; then
               if [ "$SCHEDULE_EXPR" = "0 18 * * *" ]; then
