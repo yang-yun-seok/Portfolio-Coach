@@ -1,0 +1,38 @@
+{
+  "id": "crawled-280307",
+  "company": "넷마블엔투㈜",
+  "title": "[넷마블엔투] [신작] TA 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Maya",
+    "C#",
+    "Unity",
+    "TA"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280307",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "모두의마블,페이트:그랜드오더,마구마구,신의탑:새로운세계,RF온라인 넥스트,스톤에이지 키우기",
+  "gameCategory": "모바일게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 3D, 배경, 모델링, 3DSmax, 캐릭터, 애니메이션, Maya, 시네마틱, C#, 엔진, Unity, Max, 유니티3D, 게임프로그래밍, 렌더링, TA, HLSL, 넷마블엔투, NPR",
+  "updatedAt": "2026-05-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
+}

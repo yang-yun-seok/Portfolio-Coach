@@ -1,7 +1,7 @@
 {
   "id": "crawled-279489",
   "company": "프롬서울",
-  "title": "[3D 아바타테크 스타트업] 3D 모델러(리깅, 모델링) 채용 - 서브컬처",
+  "title": "[3D 아바타테크 스타트업] 3D 모델러(리깅, 메쉬 대응) 채용 - 서브컬처",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
@@ -22,13 +22,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "3D, 모델링, 캐릭터, Unity, 유니티, 블렌더, blender, 서브컬쳐, 버츄얼",
-  "updatedAt": "2026-05-12",
+  "updatedAt": "2026-05-23",
   "source": "GameJob",
   "catalogManaged": true,
-  "status": "inactive",
-  "isActive": false,
-  "firstSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastCrawledAt": "2026-05-13T17:22:14.809Z",
-  "inactiveAt": "2026-05-13T17:22:14.809Z"
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
 }

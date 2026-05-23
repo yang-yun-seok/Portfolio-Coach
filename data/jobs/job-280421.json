@@ -1,0 +1,36 @@
+{
+  "id": "crawled-280421",
+  "company": "㈜슈퍼진스",
+  "title": "[묵혼] MMORPG 서버 프로그래머 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "밸런싱",
+    "SQL",
+    "TCP/IP"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280421",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "묵혼온라인",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 08/18(화)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "VisualC, VisualC++, STL, Win32, C++, 게임기획, 밸런스기획, 서버, MS-SQL, SQL, 네트워크, DB, 게임프로그래머, 컨텐츠++",
+  "updatedAt": "2026-05-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
+}

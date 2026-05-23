@@ -1,0 +1,35 @@
+{
+  "id": "crawled-280450",
+  "company": "유닉온",
+  "title": "[모바일] 시뮬레이션 게임 프로그래머분을 모십니다.",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280450",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "모퉁이뜨개방with카페, 헬프 미!",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 Casual, Simulation",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 6개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, iOS, Android, 연구개발, 기술개발, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-05-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
+}

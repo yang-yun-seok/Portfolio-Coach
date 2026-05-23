@@ -2,16 +2,17 @@
   "id": "crawled-276965",
   "company": "코그",
   "title": "[엘소드] 게임 개발 전 분야 수시 모집",
-  "role": "클라이언트",
+  "role": "아트/UI",
   "roles": [
-    "클라이언트",
     "아트/UI",
     "기획"
   ],
   "reqSkills": [
     "C++",
     "3D",
+    "UI/UX 기획",
     "3ds Max",
+    "시나리오/퀘스트",
     "밸런싱",
     "시스템/컨텐츠 기획"
   ],
@@ -25,14 +26,14 @@
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "무관",
-  "keywords": "클라이언트, C++, 3D, 맵핑, 원화, 컨셉, 배경원화, 모델링, 로우폴리곤, 캐릭터, 애니메이션, 3DMax, 게임기획, PM, 밸런스기획, 시스템기획, 컨텐츠, 서버, 게임프로그래밍",
-  "updatedAt": "2026-05-12",
+  "keywords": "클라이언트, C++, 3D, 인터페이스, 맵핑, 원화, 배경원화, 모델링, 로우폴리곤, 캐릭터, 애니메이션, 3DMax, 게임기획, 퀘스트, PM, 밸런스기획, 시스템기획, 컨텐츠, 서버, 게임프로그래밍",
+  "updatedAt": "2026-05-23",
   "source": "GameJob",
   "catalogManaged": true,
-  "status": "inactive",
-  "isActive": false,
-  "firstSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastCrawledAt": "2026-05-13T17:22:14.809Z",
-  "inactiveAt": "2026-05-13T17:22:14.809Z"
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
 }

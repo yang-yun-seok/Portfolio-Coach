@@ -1,13 +1,13 @@
 {
   "id": "crawled-272693",
   "company": "㈜베이글코드",
-  "title": "[신작팀] 하이브리드 게임 UI 연출 및 에디터",
+  "title": "[신작팀] 하이브리드 게임 UI/UX, 연출 및 에디터",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
   ],
   "reqSkills": [
-    "3D",
+    "UI/UX 기획",
     "Unity"
   ],
   "reqExp": 3,
@@ -20,14 +20,14 @@
   "deadline": "채용시 마감",
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
-  "keywords": "3D, 모델링, 애니메이션, 이펙트, FX, Unity",
-  "updatedAt": "2026-05-12",
+  "keywords": "UX·UI, 모션, 이펙트, FX, Unity",
+  "updatedAt": "2026-05-23",
   "source": "GameJob",
   "catalogManaged": true,
-  "status": "inactive",
-  "isActive": false,
-  "firstSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastCrawledAt": "2026-05-13T17:22:14.809Z",
-  "inactiveAt": "2026-05-13T17:22:14.809Z"
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
 }

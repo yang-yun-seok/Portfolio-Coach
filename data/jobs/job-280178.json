@@ -1,0 +1,33 @@
+{
+  "id": "crawled-280178",
+  "company": "㈜레트로아츠",
+  "title": "[채용] 2D 도트 아티스트 및 애니메이터 (정규직)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "도트 아트",
+    "Photoshop"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280178",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "이블헌터 타이쿤",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "~ 06/13(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "도트, 픽셀, 캐릭터도트, 배경도트, 핸드드로잉, 몬스터, 캐릭터",
+  "updatedAt": "2026-05-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
+}

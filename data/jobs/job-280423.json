@@ -1,0 +1,36 @@
+{
+  "id": "crawled-280423",
+  "company": "넥슨 (NEXON)",
+  "title": "[슈터본부] 슈터플랫폼실 프론트 엔지니어",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "JavaScript",
+    "Photoshop",
+    "Figma",
+    "iOS",
+    "Android"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280423",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+  "gameCategory": "온라인PC게임, 모바일게임 기타",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "HTML5, CSS3, JAVASCRIPT",
+  "updatedAt": "2026-05-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
+}

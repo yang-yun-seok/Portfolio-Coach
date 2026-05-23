@@ -1,0 +1,37 @@
+{
+  "id": "crawled-280386",
+  "company": "티팟스튜디오㈜",
+  "title": "[재택근무]3D 배경 모델러 모십니다.",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Unity",
+    "Photoshop",
+    "Maya"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280386",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Forgotten Chambers, 왕립 고양이 학회, Tiny Pond,",
+  "gameCategory": "관련없음 기타",
+  "employmentType": "아르바이트(재택), 프리랜서",
+  "deadline": "~ 07/20(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 배경, 맵핑, 모델링, 3DSmax, 텍스쳐, 3D일러스트, Max",
+  "updatedAt": "2026-05-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
+}

@@ -1,7 +1,7 @@
 {
   "id": "crawled-279903",
   "company": "㈜5민랩",
-  "title": "[5민랩][세계허구관리연맹 WPCA] 아트 직군(애니메이터,TA) 모집",
+  "title": "[5민랩][세계허구관리연맹 WPCA] 테크니컬 아티스트 (TA) 모집",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
@@ -22,13 +22,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "3DSmax, 캐릭터, 3D일러스트, 애니메이션, Maya, Physique, Max, 애니메이터, TA, 오민랩, 5MINLAB",
-  "updatedAt": "2026-05-12",
+  "updatedAt": "2026-05-23",
   "source": "GameJob",
   "catalogManaged": true,
-  "status": "inactive",
-  "isActive": false,
-  "firstSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastCrawledAt": "2026-05-13T17:22:14.809Z",
-  "inactiveAt": "2026-05-13T17:22:14.809Z"
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
 }

@@ -1,7 +1,7 @@
 {
   "id": "crawled-279606",
   "company": "러쉬에잇㈜",
-  "title": "[러쉬에잇] 신규 클래식 MMORPG 직군별 채용 (인프라 리드 / 클라이언트 리드(Unity) / 기술 PM / 사업, BM기획 / 게임 서버 리드(C++))",
+  "title": "[러쉬에잇/에버플래닛] 신규 클래식 MMORPG 직군별 채용 (인프라 리드 / 클라이언트 리드(Unity) / 기술 PM / 사업, BM기획 / 게임 서버 리드(C++))",
   "role": "클라이언트",
   "roles": [
     "클라이언트",
@@ -25,13 +25,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "클라이언트, C++, 게임기획, PM, 시스템기획, 유료화, 서버, Unity, 클라우드, 플랫폼개발, 서비스개발, 게임프로그래밍, 게임프로그래머, 기술PM, 인프라, 테크니컬, urp",
-  "updatedAt": "2026-05-12",
+  "updatedAt": "2026-05-23",
   "source": "GameJob",
   "catalogManaged": true,
-  "status": "inactive",
-  "isActive": false,
-  "firstSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastCrawledAt": "2026-05-13T17:22:14.809Z",
-  "inactiveAt": "2026-05-13T17:22:14.809Z"
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
 }

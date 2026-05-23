@@ -1,0 +1,37 @@
+{
+  "id": "crawled-280142",
+  "company": "노바플레어",
+  "title": "[Project Rabbit] 레벨 기획",
+  "role": "PM/운영",
+  "roles": [
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "UI/UX 기획",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280142",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Project Rabbit",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 06/15(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "레벨, 게임기획, 밸런스기획, 레벨기획, 컨텐츠, UI·UX",
+  "updatedAt": "2026-05-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
+}

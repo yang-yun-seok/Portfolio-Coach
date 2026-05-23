@@ -1,0 +1,35 @@
+{
+  "id": "crawled-280519",
+  "company": "㈜트라이닷",
+  "title": "[3D 모델러] 언리얼 엔진 기반 AI 캐릭터챗 배경 3D 모델링 (정규직/프리랜서 협의)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Maya",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280519",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임 Simulation",
+  "employmentType": "정규직, 프리랜서",
+  "deadline": "~ 06/21(일)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 배경, 맵핑, 모델링, 3DSmax, 캐릭터, Maya, Max, Substance, PBR, blender, UE5",
+  "updatedAt": "2026-05-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
+}

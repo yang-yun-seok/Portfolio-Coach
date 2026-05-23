@@ -1,7 +1,7 @@
 {
   "id": "crawled-279603",
   "company": "러쉬에잇㈜",
-  "title": "[러쉬에잇] 메이플스토리 월드 아르테일 직군별 채용 (기술 PM / 사업 PM / 2D 도트 아티스트)",
+  "title": "[러쉬에잇] 메이플스토리 월드 아르테일 직군별 채용 (번체 번역,영상편집 유튜브담당)",
   "role": "아트/UI",
   "roles": [
     "아트/UI",
@@ -9,8 +9,7 @@
     "PM/운영"
   ],
   "reqSkills": [
-    "도트 아트",
-    "사업PM"
+    "시스템/컨텐츠 기획"
   ],
   "reqExp": 3,
   "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279603",
@@ -22,14 +21,14 @@
   "deadline": "~ 05/31(일)",
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
-  "keywords": "도트, 픽셀, 캐릭터도트, 게임기획, PM, 사업PM, 기술PM, 2D도트",
-  "updatedAt": "2026-05-12",
+  "keywords": "컨텐츠, 영상편집, 유저커뮤니케이션, 번체번역, 유튜브관리",
+  "updatedAt": "2026-05-23",
   "source": "GameJob",
   "catalogManaged": true,
-  "status": "inactive",
-  "isActive": false,
-  "firstSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastCrawledAt": "2026-05-13T17:22:14.809Z",
-  "inactiveAt": "2026-05-13T17:22:14.809Z"
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
 }

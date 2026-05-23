@@ -1,7 +1,7 @@
 {
   "id": "crawled-279079",
   "company": "스마일게이트 (Smilegate)",
-  "title": "[카오스 제로 나이트메어 집중 채용] UI 및 아이콘 작업자 (6개월 계약직)",
+  "title": "[카오스 제로 나이트메어] UI 및 아이콘 작업자 (6개월 계약직)",
   "role": "기획",
   "roles": [
     "기획"
@@ -26,13 +26,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "모바일, 레벨, 게임기획, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 유료화, 기획, 전투, 게임디자인",
-  "updatedAt": "2026-05-12",
+  "updatedAt": "2026-05-23",
   "source": "GameJob",
   "catalogManaged": true,
-  "status": "inactive",
-  "isActive": false,
-  "firstSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastCrawledAt": "2026-05-13T17:22:14.809Z",
-  "inactiveAt": "2026-05-13T17:22:14.809Z"
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
 }

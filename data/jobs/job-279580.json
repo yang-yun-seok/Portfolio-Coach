@@ -30,13 +30,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "클라이언트, C, C++, 모바일, 인터페이스, UX·UI, 원화, 컨셉, 캐릭터, 게임기획, PM, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 유료화, UI·UX, C#, 웹UI, 전투기획",
-  "updatedAt": "2026-05-12",
+  "updatedAt": "2026-05-23",
   "source": "GameJob",
   "catalogManaged": true,
-  "status": "inactive",
-  "isActive": false,
-  "firstSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastCrawledAt": "2026-05-13T17:22:14.809Z",
-  "inactiveAt": "2026-05-13T17:22:14.809Z"
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
 }

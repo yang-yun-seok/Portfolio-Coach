@@ -1,0 +1,39 @@
+{
+  "id": "crawled-280252",
+  "company": "㈜매드엔진",
+  "title": "[NX 스튜디오] [Project TAL] 게임 기획자 (계약직)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280252",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "나이트 크로우",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+  "employmentType": "계약직 (계약기간 : 1년)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "UX·UI, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 유료화, UI·UX, NPC",
+  "updatedAt": "2026-05-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
+}

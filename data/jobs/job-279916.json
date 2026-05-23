@@ -12,7 +12,7 @@
     "3ds Max",
     "Maya"
   ],
-  "reqExp": 2,
+  "reqExp": 0,
   "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279916",
   "hasAssignment": false,
   "assignmentType": "",
@@ -21,15 +21,15 @@
   "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
   "deadline": "~ 06/07(일)",
   "salary": "3,200~3,400만원\n연봉검색",
-  "experience": "경력 2년 이상",
+  "experience": "무관",
   "keywords": "3D, 모델링, 로우폴리곤, 텍스쳐, 하이폴리곤, Zbrush",
-  "updatedAt": "2026-05-12",
+  "updatedAt": "2026-05-23",
   "source": "GameJob",
   "catalogManaged": true,
-  "status": "inactive",
-  "isActive": false,
-  "firstSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastCrawledAt": "2026-05-13T17:22:14.809Z",
-  "inactiveAt": "2026-05-13T17:22:14.809Z"
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
 }

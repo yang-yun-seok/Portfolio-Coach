@@ -12,7 +12,7 @@
     "밸런싱",
     "시스템/컨텐츠 기획"
   ],
-  "reqExp": 3,
+  "reqExp": 1,
   "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277694",
   "hasAssignment": false,
   "assignmentType": "",
@@ -21,15 +21,15 @@
   "employmentType": "정규직",
   "deadline": "채용시 마감",
   "salary": "면접 시 협의\n연봉검색",
-  "experience": "경력 3년 이상",
+  "experience": "경력 1년 이상",
   "keywords": "레벨, 컨셉, 게임기획, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 블루프린트, 언리얼5",
-  "updatedAt": "2026-05-12",
+  "updatedAt": "2026-05-23",
   "source": "GameJob",
   "catalogManaged": true,
-  "status": "inactive",
-  "isActive": false,
-  "firstSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastSeenAt": "2026-05-12T18:26:17.568Z",
-  "lastCrawledAt": "2026-05-13T17:22:14.809Z",
-  "inactiveAt": "2026-05-13T17:22:14.809Z"
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
 }

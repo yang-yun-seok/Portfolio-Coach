@@ -1,0 +1,36 @@
+{
+  "id": "crawled-280530",
+  "company": "㈜디벨로켓",
+  "title": "[디벨로켓] [부산] UGC기반 게임개발 강사",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Lua",
+    "Python",
+    "Java",
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280530",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 웹게임 RPG, Casual",
+  "employmentType": "프리랜서",
+  "deadline": "상시채용",
+  "salary": "시간당 / 60,000원\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C, Lua, Python, 모바일, Java, 연구개발, 기술개발, C#, 엔진, Unity, 게임프로그래밍, 게임프로그래머, VR, AR",
+  "updatedAt": "2026-05-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
+}

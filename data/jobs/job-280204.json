@@ -1,0 +1,30 @@
+{
+  "id": "crawled-280204",
+  "company": "넥슨 (NEXON)",
+  "title": "[메이플스토리 PC] 픽셀 아티스트 (글로벌)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280204",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+  "gameCategory": "온라인PC게임, 모바일게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "애니메이션, 2D, 디자인, 인게임리소스, 애니메이션아티스트",
+  "updatedAt": "2026-05-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
+}

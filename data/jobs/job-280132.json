@@ -1,0 +1,36 @@
+{
+  "id": "crawled-280132",
+  "company": "컴투스 (Com2uS)",
+  "title": "[컴투스] 2026 컴투스그룹 인턴십 GENIUS 8th",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "Machine Learning",
+    "데이터 분석"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280132",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "서머너즈워, 프로야구시리즈, 낚시의신, 서머너즈워:백년전쟁 등",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "인턴직 (1개월~3개월 미만)",
+  "deadline": "~ 05/26(화)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, 원화, 캐릭터원화, 배경원화, 애니메이션, 게임기획, 서버, AI, 경영, 데이터분석, 게임사업, 모델러",
+  "updatedAt": "2026-05-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastSeenAt": "2026-05-23T16:56:24.732Z",
+  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "inactiveAt": null
+}
