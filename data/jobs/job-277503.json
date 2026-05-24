@@ -26,13 +26,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "API, C++, Java, MySQL, .NET, C#, HTML, CSS, 서버, SQL, 네트워크, 플랫폼, 엔엑스쓰리게임즈, NX3GAMES",
-  "updatedAt": "2026-05-23",
+  "updatedAt": "2026-05-24",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-23T16:56:24.732Z",
-  "lastSeenAt": "2026-05-23T16:56:24.732Z",
-  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
+  "firstSeenAt": "2026-05-24T16:56:13.393Z",
+  "lastSeenAt": "2026-05-24T16:56:13.393Z",
+  "lastCrawledAt": "2026-05-24T16:56:13.393Z",
   "inactiveAt": null
 }

@@ -23,10 +23,10 @@
   "updatedAt": "2026-05-23",
   "source": "GameJob",
   "catalogManaged": true,
-  "status": "active",
-  "isActive": true,
+  "status": "inactive",
+  "isActive": false,
   "firstSeenAt": "2026-05-23T16:56:24.732Z",
   "lastSeenAt": "2026-05-23T16:56:24.732Z",
-  "lastCrawledAt": "2026-05-23T16:56:24.732Z",
-  "inactiveAt": null
+  "lastCrawledAt": "2026-05-24T16:56:13.393Z",
+  "inactiveAt": "2026-05-24T16:56:13.393Z"
 }
