@@ -22,13 +22,13 @@
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "무관",
   "keywords": "QA, 프로젝트, 게임분석, 프로젝트개발, 게임테스팅, 이슈리포팅, 게임밸러스",
-  "updatedAt": "2026-05-24",
+  "updatedAt": "2026-05-25",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-24T16:56:13.393Z",
-  "lastSeenAt": "2026-05-24T16:56:13.393Z",
-  "lastCrawledAt": "2026-05-24T16:56:13.393Z",
+  "firstSeenAt": "2026-05-25T18:03:02.809Z",
+  "lastSeenAt": "2026-05-25T18:03:02.809Z",
+  "lastCrawledAt": "2026-05-25T18:03:02.809Z",
   "inactiveAt": null
 }

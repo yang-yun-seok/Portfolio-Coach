@@ -22,13 +22,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "API, C, C++, 언리얼, 유니티, 게임프로그래밍, 게임프로그래머, 클라이언트++",
-  "updatedAt": "2026-05-24",
+  "updatedAt": "2026-05-25",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-24T16:56:13.393Z",
-  "lastSeenAt": "2026-05-24T16:56:13.393Z",
-  "lastCrawledAt": "2026-05-24T16:56:13.393Z",
+  "firstSeenAt": "2026-05-25T18:03:02.809Z",
+  "lastSeenAt": "2026-05-25T18:03:02.809Z",
+  "lastCrawledAt": "2026-05-25T18:03:02.809Z",
   "inactiveAt": null
 }

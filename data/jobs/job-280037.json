@@ -23,13 +23,13 @@
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "3D, 모델링, 텍스쳐, 하이폴리곤, 애니메이션, Photoshop, Illustrator, Unity3D, blender",
-  "updatedAt": "2026-05-24",
+  "updatedAt": "2026-05-25",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-24T16:56:13.393Z",
-  "lastSeenAt": "2026-05-24T16:56:13.393Z",
-  "lastCrawledAt": "2026-05-24T16:56:13.393Z",
+  "firstSeenAt": "2026-05-25T18:03:02.809Z",
+  "lastSeenAt": "2026-05-25T18:03:02.809Z",
+  "lastCrawledAt": "2026-05-25T18:03:02.809Z",
   "inactiveAt": null
 }
