@@ -29,13 +29,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "클라이언트, DirectX, Direct3D, API, C++, OpenGL, 3D, 연구개발, 기술개발, C#, 서버, TCP·IP, DB, UDP, Unreal, Unity, OpenGL_ES_3.0, Node.js, Redis, 게임프로그래밍",
-  "updatedAt": "2026-05-25",
+  "updatedAt": "2026-05-26",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-25T18:03:02.809Z",
-  "lastSeenAt": "2026-05-25T18:03:02.809Z",
-  "lastCrawledAt": "2026-05-25T18:03:02.809Z",
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastCrawledAt": "2026-05-26T20:58:54.330Z",
   "inactiveAt": null
 }

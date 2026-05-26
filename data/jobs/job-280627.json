@@ -1,0 +1,37 @@
+{
+  "id": "crawled-280627",
+  "company": "아폴로스튜디오코리아㈜",
+  "title": "테크니컬 아티스트 채용 (계약)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unreal Engine",
+    "TA",
+    "3ds Max",
+    "Maya"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280627",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 웹게임 RPG, Simulation",
+  "employmentType": "계약직 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "8,000~9,000만원 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, FX, 시네마틱, 언리얼, TA, 테크니컬아티스트, Unreal5",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastCrawledAt": "2026-05-26T20:58:54.330Z",
+  "inactiveAt": null
+}

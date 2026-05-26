@@ -1,7 +1,7 @@
 {
   "id": "crawled-276772",
   "company": "코그",
-  "title": "[신규RPG프로젝트] 게임디자인, 3D배경, 애니메이션",
+  "title": "[신규RPG프로젝트] 스토리, 게임디자인, 3D배경, 애니메이션",
   "role": "아트/UI",
   "roles": [
     "아트/UI",
@@ -9,6 +9,7 @@
   ],
   "reqSkills": [
     "3ds Max",
+    "시나리오/퀘스트",
     "밸런싱",
     "레벨 디자인",
     "시스템/컨텐츠 기획"
@@ -23,14 +24,14 @@
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "무관",
-  "keywords": "모델링, 3DSmax, 캐릭터, 애니메이션, 게임기획, 밸런스기획, 레벨기획, 컨텐츠",
-  "updatedAt": "2026-05-25",
+  "keywords": "모델링, 3DSmax, 캐릭터, 애니메이션, 게임기획, 시나리오, 밸런스기획, 레벨기획, 컨텐츠",
+  "updatedAt": "2026-05-26",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-25T18:03:02.809Z",
-  "lastSeenAt": "2026-05-25T18:03:02.809Z",
-  "lastCrawledAt": "2026-05-25T18:03:02.809Z",
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastCrawledAt": "2026-05-26T20:58:54.330Z",
   "inactiveAt": null
 }

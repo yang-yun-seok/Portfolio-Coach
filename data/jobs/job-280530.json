@@ -24,13 +24,13 @@
   "salary": "시간당 / 60,000원\n연봉검색",
   "experience": "무관",
   "keywords": "클라이언트, C, Lua, Python, 모바일, Java, 연구개발, 기술개발, C#, 엔진, Unity, 게임프로그래밍, 게임프로그래머, VR, AR",
-  "updatedAt": "2026-05-25",
+  "updatedAt": "2026-05-26",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-25T18:03:02.809Z",
-  "lastSeenAt": "2026-05-25T18:03:02.809Z",
-  "lastCrawledAt": "2026-05-25T18:03:02.809Z",
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastCrawledAt": "2026-05-26T20:58:54.330Z",
   "inactiveAt": null
 }

@@ -1,0 +1,36 @@
+{
+  "id": "crawled-280626",
+  "company": "㈜슈퍼캣",
+  "title": "[슈퍼캣/ Project OQ] 서버 프로그래머 모집 (신입/경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C#",
+    "TCP/IP",
+    "Unity",
+    "SQL",
+    "Redis"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280626",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "바람의나라: 연, Project OQ",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 06/01(월)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, MySQL, C#, 서버, 네트워크, 유니티, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastCrawledAt": "2026-05-26T20:58:54.330Z",
+  "inactiveAt": null
+}
