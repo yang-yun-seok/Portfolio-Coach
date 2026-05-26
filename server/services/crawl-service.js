@@ -1,9 +1,60 @@
+import { join } from 'path';
+import { runCrawler } from '../../lib/crawler.js';
+import { buildPublicJobs, loadJobRecords } from '../../lib/job-catalog.js';
 import { normalizeJob } from '../../lib/job-normalizer.js';
 import {
+  DAILY_GAMEJOB_CAREER_TAGS,
+  DAILY_GAMEJOB_JOB_TAGS,
+  DAILY_GAMEJOB_TARGETS,
+  appendDailyHistorySnapshot,
+  crawlGameJobPostings,
   persistResolvedJobPosting,
   updateCrawlingMetadata,
   upsertJobPostings,
 } from './gamejob-daily-crawling.js';
+
+function getJobsDir(dataDir) {
+  return join(dataDir, 'jobs');
+}
+
+function normalizeTargets(targets) {
+  if (!Array.isArray(targets)) return [];
+  return [...new Set(targets.map((target) => String(target || '').trim()).filter(Boolean))];
+}
+
+function hasSameTargets(left, right) {
+  if (left.length !== right.length) return false;
+  const leftSet = new Set(left);
+  return right.every((target) => leftSet.has(target));
+}
+
+function getCatalogFiltersForTargets(targets) {
+  const targetSet = new Set(targets);
+  return {
+    jobTags: DAILY_GAMEJOB_JOB_TAGS.filter((tag) => targetSet.has(tag)),
+    careerTags: DAILY_GAMEJOB_CAREER_TAGS.filter((tag) => targetSet.has(tag)),
+  };
+}
+
+function isManagedCatalogSync(targets) {
+  return targets.length === 0 || hasSameTargets(targets, DAILY_GAMEJOB_TARGETS);
+}
+
+function getManagedCatalogFilters() {
+  return {
+    jobTags: DAILY_GAMEJOB_JOB_TAGS,
+    careerTags: DAILY_GAMEJOB_CAREER_TAGS,
+  };
+}
+
+function buildExistingJobsForTargets(dataDir, targets) {
+  const filters = getCatalogFiltersForTargets(targets);
+  return buildPublicJobs(loadJobRecords(getJobsDir(dataDir)), filters);
+}
+
+function buildStartMessage(targets) {
+  return `크롤링 시작: [${targets.join(', ')}]`;
+}
 
 export function createCrawlService({ dataDir, dataLoader }) {
   const state = {
@@ -21,7 +72,7 @@ export function createCrawlService({ dataDir, dataLoader }) {
 
   async function resolveJobByGiNo(giNo) {
     if (!giNo) {
-      return { status: 400, body: { error: 'giNo (공고 번호)가 필요합니다.' } };
+      return { status: 400, body: { error: 'giNo(공고 번호)가 필요합니다.' } };
     }
 
     const cleanGiNo = String(giNo).replace(/\D/g, '');
@@ -43,7 +94,7 @@ export function createCrawlService({ dataDir, dataLoader }) {
           status: 404,
           body: {
             found: false,
-            error: crawlResult.error || `공고 ${cleanGiNo}을(를) 크롤링할 수 없습니다.`,
+            error: crawlResult.error || `공고 ${cleanGiNo}를 찾을 수 없습니다.`,
           },
         };
       }
@@ -69,7 +120,9 @@ export function createCrawlService({ dataDir, dataLoader }) {
       return { status: 409, body: { error: '이미 크롤링이 진행 중입니다.' } };
     }
 
-    const crawlTargets = targets && targets.length > 0 ? targets : ['게임기획', '신입'];
+    const requestedTargets = normalizeTargets(targets);
+    const managedSync = isManagedCatalogSync(requestedTargets);
+    const crawlTargets = managedSync ? DAILY_GAMEJOB_TARGETS : requestedTargets;
 
     state.running = true;
     state.abortController = new AbortController();
@@ -78,55 +131,90 @@ export function createCrawlService({ dataDir, dataLoader }) {
 
     void (async () => {
       try {
-        const { runCrawler } = await import('../../lib/crawler.js');
+        pushEvent({ stage: 'init', message: buildStartMessage(crawlTargets), percent: 0 });
 
-        pushEvent({ stage: 'init', message: `크롤링 시작: [${crawlTargets.join(', ')}]`, percent: 0 });
-
-        const result = await runCrawler({
-          targets: crawlTargets,
-          dataDir,
-          signal: state.abortController.signal,
-          onProgress: pushEvent,
-        });
-
-        const wasCancelled = result.errors.includes('사용자에 의해 중단됨');
-
-        if (result.count > 0) {
-          pushEvent({ stage: 'normalize', message: '공개 공고 데이터 갱신 중...', percent: 96 });
-          try {
-            const finishedAt = new Date().toISOString();
-            const upsertResult = upsertJobPostings({
+        const result = managedSync
+          ? await crawlGameJobPostings({
               dataDir,
-              crawledJobs: result.jobs || [],
-              crawlFinishedAt: finishedAt,
+              signal: state.abortController.signal,
+              onProgress: pushEvent,
+            })
+          : await runCrawler({
+              targets: crawlTargets,
+              dataDir,
+              signal: state.abortController.signal,
+              onProgress: pushEvent,
+              existingJobs: buildExistingJobsForTargets(dataDir, crawlTargets),
             });
-            updateCrawlingMetadata({
+
+        const wasCancelled = result.success === false;
+
+        if (!wasCancelled) {
+          pushEvent({ stage: 'normalize', message: '공개 공고 데이터를 반영하는 중입니다.', percent: 96 });
+
+          const finishedAt = result.finishedAt || new Date().toISOString();
+          const upsertResult = upsertJobPostings({
+            dataDir,
+            crawledJobs: result.jobs || [],
+            crawlFinishedAt: finishedAt,
+            listedJobIds: result.listedJobIds || [],
+            removeMissingManagedJobs: managedSync,
+          });
+
+          if (managedSync) {
+            const metadata = updateCrawlingMetadata({
               dataDir,
               crawlResult: {
                 finishedAt,
                 errors: result.errors || [],
-                filters: { jobTags: crawlTargets, careerTags: [] },
+                filters: result.filters || getManagedCatalogFilters(),
               },
               upsertResult,
             });
-            pushEvent({ stage: 'normalize', message: `데이터 갱신 완료: 신규 ${upsertResult.newJobsCount}건`, percent: 98 });
-          } catch (normErr) {
-            pushEvent({ stage: 'normalize', message: `데이터 갱신 오류: ${normErr.message}`, percent: 98 });
+            appendDailyHistorySnapshot({
+              dataDir,
+              crawlFinishedAt: finishedAt,
+              publicJobs: upsertResult.publicJobs,
+              metadata,
+            });
           }
 
+          pushEvent({
+            stage: 'normalize',
+            message: managedSync
+              ? `데이터 반영 완료: 신규 ${upsertResult.newJobsCount}건, 삭제 ${upsertResult.deletedJobsCount}건`
+              : `부분 반영 완료: 신규 ${upsertResult.newJobsCount}건, 유지 ${upsertResult.jobs.length}건`,
+            percent: 98,
+          });
+
           dataLoader.refresh();
-          pushEvent({ stage: 'refresh', message: '데이터 캐시 갱신 완료', percent: 99 });
+          pushEvent({ stage: 'refresh', message: '데이터 캐시를 새로고침했습니다.', percent: 99 });
         }
 
         pushEvent({
           stage: wasCancelled ? 'cancelled' : 'complete',
           message: wasCancelled
-            ? `중단됨. ${result.count}건까지 저장했습니다. (오류: ${result.errors.length}건)`
-            : `완료! ${result.count}건 수집 (오류: ${result.errors.length}건)`,
+            ? `크롤링이 중단되었습니다. ${result.count}건까지 확보했습니다.`
+            : `크롤링 완료: 목록 ${result.listedJobIds?.length || result.count}건, 저장 ${result.count}건, 오류 ${(result.errors || []).length}건`,
           percent: 100,
           result,
         });
       } catch (err) {
+        if (managedSync) {
+          try {
+            updateCrawlingMetadata({
+              dataDir,
+              error: err,
+              crawlResult: {
+                finishedAt: new Date().toISOString(),
+                filters: getManagedCatalogFilters(),
+              },
+            });
+            dataLoader.refresh();
+          } catch (metadataError) {
+            console.error('[crawl-service] failed to persist crawl error metadata:', metadataError.message);
+          }
+        }
         pushEvent({ stage: 'error', message: err.message, percent: 0 });
       } finally {
         state.running = false;
@@ -136,7 +224,7 @@ export function createCrawlService({ dataDir, dataLoader }) {
 
     return {
       status: 200,
-      body: { success: true, message: `크롤링 시작: [${crawlTargets.join(', ')}]` },
+      body: { success: true, message: buildStartMessage(crawlTargets) },
     };
   }
 
@@ -185,7 +273,7 @@ export function createCrawlService({ dataDir, dataLoader }) {
   function stopCrawl() {
     if (state.running && state.abortController) {
       state.abortController.abort();
-      return { success: true, message: '크롤링 중단 요청됨' };
+      return { success: true, message: '크롤링 중단을 요청했습니다.' };
     }
 
     return { success: false, message: '진행 중인 크롤링이 없습니다.' };

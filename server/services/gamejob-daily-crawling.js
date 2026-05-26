@@ -5,6 +5,7 @@ import {
   JOB_HISTORY_DIR,
   JOB_HISTORY_RETENTION_DAYS,
   buildPublicJobs,
+  deleteJobRecord,
   formatKstDate,
   isActiveJob,
   isManagedCatalogJob,
@@ -20,6 +21,7 @@ import {
   writeJobRecord,
 } from '../../lib/job-catalog.js';
 
+/*
 export const DAILY_GAMEJOB_JOB_TAGS = [
   '게임개발(클라이언트)',
   '게임개발(모바일)',
@@ -44,6 +46,32 @@ export const DAILY_GAMEJOB_TARGETS = [
   ...DAILY_GAMEJOB_JOB_TAGS,
   ...DAILY_GAMEJOB_CAREER_TAGS,
 ];
+*/
+
+export const DAILY_GAMEJOB_JOB_TAGS = [
+  '\uac8c\uc784\uac1c\ubc1c(\ud074\ub77c\uc774\uc5b8\ud2b8)',
+  '\uac8c\uc784\uac1c\ubc1c(\ubaa8\ubc14\uc77c)',
+  '\uac8c\uc784AI \uac1c\ubc1c',
+  '\uc778\ud130\ud398\uc774\uc2a4 \ub514\uc790\uc778',
+  '\uc6d0\ud654',
+  '\ubaa8\ub378\ub9c1',
+  '\uc560\ub2c8\uba54\uc774\uc158',
+  '\uc774\ud399\ud2b8\u00b7FX',
+  '\uac8c\uc784\uae30\ud68d',
+  '\uac8c\uc784\uc6b4\uc601',
+  'QA\u00b7\ud14c\uc2a4\ud130',
+];
+
+export const DAILY_GAMEJOB_CAREER_TAGS = [
+  '\uc2e0\uc785',
+  '1~3\ub144',
+  '\uacbd\ub825\ubb34\uad00',
+];
+
+export const DAILY_GAMEJOB_TARGETS = [
+  ...DAILY_GAMEJOB_JOB_TAGS,
+  ...DAILY_GAMEJOB_CAREER_TAGS,
+];
 
 function getJobsDir(dataDir) {
   return join(dataDir, 'jobs');
@@ -55,6 +83,13 @@ function getHistoryDir(dataDir) {
 
 function getJobMap(jobs) {
   return new Map((jobs || []).filter(Boolean).map((job) => [String(job.id), job]));
+}
+
+function getCatalogFilters() {
+  return {
+    jobTags: DAILY_GAMEJOB_JOB_TAGS,
+    careerTags: DAILY_GAMEJOB_CAREER_TAGS,
+  };
 }
 
 function buildManagedJob(previousJob, nextJob, crawlFinishedAt) {
@@ -72,14 +107,15 @@ function buildManagedJob(previousJob, nextJob, crawlFinishedAt) {
   };
 }
 
-function buildInactiveJob(previousJob, crawlFinishedAt) {
+function buildListedManagedFallback(previousJob, crawlFinishedAt) {
   return {
     ...previousJob,
-    catalogManaged: previousJob?.catalogManaged === false ? false : true,
-    status: 'inactive',
-    isActive: false,
+    catalogManaged: true,
+    status: 'active',
+    isActive: true,
+    lastSeenAt: crawlFinishedAt,
     lastCrawledAt: crawlFinishedAt,
-    inactiveAt: previousJob?.inactiveAt || crawlFinishedAt,
+    inactiveAt: null,
   };
 }
 
@@ -89,21 +125,21 @@ export async function crawlGameJobPostings({
   signal = null,
 } = {}) {
   const startedAt = new Date().toISOString();
+  const filters = getCatalogFilters();
+  const existingJobs = buildPublicJobs(loadJobRecords(getJobsDir(dataDir)), filters);
   const result = await runCrawler({
     targets: DAILY_GAMEJOB_TARGETS,
     dataDir,
     signal,
     onProgress,
+    existingJobs,
   });
 
   return {
     ...result,
     startedAt,
     finishedAt: new Date().toISOString(),
-    filters: {
-      jobTags: DAILY_GAMEJOB_JOB_TAGS,
-      careerTags: DAILY_GAMEJOB_CAREER_TAGS,
-    },
+    filters,
   };
 }
 
@@ -111,17 +147,23 @@ export function upsertJobPostings({
   dataDir,
   crawledJobs = [],
   crawlFinishedAt = new Date().toISOString(),
+  listedJobIds = [],
+  removeMissingManagedJobs = true,
 } = {}) {
   const jobsDir = getJobsDir(dataDir);
   const previousJobs = loadJobRecords(jobsDir);
   const previousMap = getJobMap(previousJobs);
   const crawledMap = getJobMap(crawledJobs);
+  const listedJobIdSet = new Set(
+    (listedJobIds.length > 0 ? listedJobIds : [...crawledMap.keys()]).map((jobId) => String(jobId)),
+  );
   const nextJobs = [];
   const touchedIds = new Set();
+  const removedManagedJobIds = [];
 
   let newJobsCount = 0;
   let reactivatedJobsCount = 0;
-  let inactiveJobsCount = 0;
+  let deletedJobsCount = 0;
 
   for (const [jobId, crawledJob] of crawledMap.entries()) {
     const previousJob = previousMap.get(jobId);
@@ -141,10 +183,23 @@ export function upsertJobPostings({
     if (touchedIds.has(jobId)) continue;
 
     if (isManagedCatalogJob(previousJob)) {
-      if (isActiveJob(previousJob)) {
-        inactiveJobsCount += 1;
+      if (!removeMissingManagedJobs) {
+        nextJobs.push(previousJob);
+        continue;
       }
-      nextJobs.push(buildInactiveJob(previousJob, crawlFinishedAt));
+
+      if (listedJobIdSet.has(jobId)) {
+        nextJobs.push(buildListedManagedFallback(previousJob, crawlFinishedAt));
+        if (!isActiveJob(previousJob)) {
+          reactivatedJobsCount += 1;
+        }
+        continue;
+      }
+
+      if (isActiveJob(previousJob)) {
+        deletedJobsCount += 1;
+      }
+      removedManagedJobIds.push(jobId);
       continue;
     }
 
@@ -152,12 +207,13 @@ export function upsertJobPostings({
   }
 
   nextJobs.sort((left, right) => String(right.updatedAt || '').localeCompare(String(left.updatedAt || '')));
+  removedManagedJobIds.forEach((jobId) => deleteJobRecord(jobsDir, jobId));
   nextJobs.forEach((job) => writeJobRecord(jobsDir, job));
   writeJobAggregate(jobsDir, nextJobs);
   writeJobIndex(jobsDir, nextJobs);
 
   const publicJobs = buildPublicJobs(nextJobs);
-  const activeJobsCount = nextJobs.filter(isActiveJob).length;
+  const activeJobsCount = publicJobs.length;
   const totalManagedJobsCount = nextJobs.filter(isManagedCatalogJob).length;
 
   return {
@@ -165,8 +221,9 @@ export function upsertJobPostings({
     publicJobs,
     newJobsCount,
     reactivatedJobsCount,
-    deactivatedJobsCount: inactiveJobsCount,
-    inactiveJobsCount: nextJobs.filter((job) => isManagedCatalogJob(job) && !isActiveJob(job)).length,
+    deletedJobsCount,
+    deactivatedJobsCount: deletedJobsCount,
+    inactiveJobsCount: 0,
     activeJobsCount,
     totalManagedJobsCount,
     referenceJobCount: publicJobs.length,
@@ -288,6 +345,7 @@ export async function runDailyGameJobCrawling({
       dataDir,
       crawledJobs: crawlResult.jobs || [],
       crawlFinishedAt: crawlResult.finishedAt,
+      listedJobIds: crawlResult.listedJobIds || [],
     });
 
     const metadata = updateCrawlingMetadata({
@@ -318,10 +376,7 @@ export async function runDailyGameJobCrawling({
       error,
       crawlResult: {
         finishedAt: new Date().toISOString(),
-        filters: {
-          jobTags: DAILY_GAMEJOB_JOB_TAGS,
-          careerTags: DAILY_GAMEJOB_CAREER_TAGS,
-        },
+        filters: getCatalogFilters(),
       },
     });
 
