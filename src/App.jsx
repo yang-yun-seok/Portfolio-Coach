@@ -1007,6 +1007,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     getAccessToken,
     jobs,
     jobsMetadata,
+    roleGroup: normalizedUserInfo.roleGroup,
   };
   const personalityTestProps = {
     getAccessToken,

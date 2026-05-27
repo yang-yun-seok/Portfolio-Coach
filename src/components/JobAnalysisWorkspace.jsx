@@ -29,6 +29,33 @@ const DEFAULT_TRACKED_ROLES = [
 
 const DEFAULT_TRACKED_CAREERS = ['신입', '1~3년', '경력무관'];
 
+const ALL_ROLE_OPTION = '\uC804\uCCB4 \uC9C1\uAD70';
+const ALL_CAREER_OPTION = '\uC804\uCCB4 \uACBD\uB825';
+
+const ROLE_GROUP_ANALYSIS_LABELS = {
+  '\uAE30\uD68D': [
+    '\uAC8C\uC784\uAE30\uD68D',
+    '\uAC8C\uC784\uC6B4\uC601',
+    'QA\u00B7\uD14C\uC2A4\uD130',
+  ],
+  '\uD504\uB85C\uADF8\uB798\uBC0D': [
+    '\uAC8C\uC784\uAC1C\uBC1C(\uD074\uB77C\uC774\uC5B8\uD2B8)',
+    '\uAC8C\uC784\uAC1C\uBC1C(\uBAA8\uBC14\uC77C)',
+    '\uAC8C\uC784AI \uAC1C\uBC1C',
+  ],
+  '\uC544\uD2B8': [
+    '\uC778\uD130\uD398\uC774\uC2A4 \uB514\uC790\uC778',
+    '\uC6D0\uD654',
+    '\uBAA8\uB378\uB9C1',
+    '\uC560\uB2C8\uBA54\uC774\uC158',
+    '\uC774\uD399\uD2B8\u00B7FX',
+  ],
+};
+
+function getAnalysisRoleLabels(roleGroup) {
+  return ROLE_GROUP_ANALYSIS_LABELS[roleGroup] || [];
+}
+
 function formatDateLabel(value) {
   if (!value) return '정보 없음';
   try {
@@ -620,7 +647,12 @@ function JobListCard({ job }) {
   );
 }
 
-export default function JobAnalysisWorkspace({ getAccessToken, jobs = [], jobsMetadata = {} }) {
+export default function JobAnalysisWorkspace({
+  getAccessToken,
+  jobs = [],
+  jobsMetadata = {},
+  roleGroup = '\uAE30\uD68D',
+}) {
   const [view, setView] = useState('overview');
   const [historyIndex, setHistoryIndex] = useState([]);
   const [historyError, setHistoryError] = useState('');
@@ -628,8 +660,8 @@ export default function JobAnalysisWorkspace({ getAccessToken, jobs = [], jobsMe
   const [analysisLoading, setAnalysisLoading] = useState(false);
   const [analysisError, setAnalysisError] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [roleFilter, setRoleFilter] = useState('전체 직군');
-  const [careerFilter, setCareerFilter] = useState('전체 경력');
+  const [roleFilter, setRoleFilter] = useState(ALL_ROLE_OPTION);
+  const [careerFilter, setCareerFilter] = useState(ALL_CAREER_OPTION);
 
   useEffect(() => {
     let active = true;
@@ -648,12 +680,16 @@ export default function JobAnalysisWorkspace({ getAccessToken, jobs = [], jobsMe
     };
   }, []);
 
+  useEffect(() => {
+    setAnalysisText('');
+    setAnalysisError('');
+  }, [roleGroup, jobsMetadata?.latestAppliedDate]);
+
   const roleCounts = summarizeCounts(jobs, classifyRole, 8);
   const careerCounts = summarizeCounts(jobs, classifyCareer, 5);
   const genreCounts = summarizeTokenCounts(jobs, 'gameCategory', 8);
   const companyCounts = summarizeCounts(jobs, (job) => job.company || '회사 정보 없음', 15);
   const keywordCounts = summarizeTokenCounts(jobs, 'keywords', 30);
-  const skillCounts = summarizeTokenCounts(jobs, 'reqSkills', 12);
 
   const dominantRole = roleCounts[0]?.[0] || '데이터 없음';
   const dominantCareer = careerCounts[0]?.[0] || '데이터 없음';
@@ -664,23 +700,40 @@ export default function JobAnalysisWorkspace({ getAccessToken, jobs = [], jobsMe
   const latestHistory = historyIndex[0] || null;
   const previousHistory = historyIndex[1] || null;
   const statusTone = formatCrawlStatus(jobsMetadata?.lastCrawlStatus);
+  const currentTrackRoleLabels = getAnalysisRoleLabels(roleGroup);
+  const trackScopedJobs = currentTrackRoleLabels.length > 0
+    ? jobs.filter((job) => currentTrackRoleLabels.includes(classifyRole(job)))
+    : [];
+  const analysisJobs = trackScopedJobs.length > 0 ? trackScopedJobs : jobs;
+  const analysisUsesTrackScope = trackScopedJobs.length > 0;
+  const analysisRoleCounts = summarizeCounts(analysisJobs, classifyRole, 8);
+  const analysisCareerCounts = summarizeCounts(analysisJobs, classifyCareer, 5);
+  const analysisCompanyCounts = summarizeCounts(analysisJobs, (job) => job.company || '?뚯궗 ?뺣낫 ?놁쓬', 15);
+  const analysisKeywordCounts = summarizeTokenCounts(analysisJobs, 'keywords', 30);
+  const analysisSkillCounts = summarizeTokenCounts(analysisJobs, 'reqSkills', 12);
+  const analysisDominantRole = analysisRoleCounts[0]?.[0] || dominantRole;
+  const analysisDominantCareer = analysisCareerCounts[0]?.[0] || dominantCareer;
+  const analysisScopeLabel = analysisUsesTrackScope ? `${roleGroup} 직군` : '전체 공고';
+  const analysisScopeDescription = analysisUsesTrackScope
+    ? `${analysisJobs.length}건 기준 요약`
+    : `${jobs.length}건 전체 기준 요약`;
 
-  const overviewNarrative = buildLocalMarketNarrative({
-    totalJobs: jobs.length,
-    dominantRole,
-    dominantCareer,
-    topCompanies: companyCounts,
-    topKeywords: keywordCounts,
-    topSkills: skillCounts,
+  const analysisNarrative = buildLocalMarketNarrative({
+    totalJobs: analysisJobs.length,
+    dominantRole: analysisDominantRole,
+    dominantCareer: analysisDominantCareer,
+    topCompanies: analysisCompanyCounts,
+    topKeywords: analysisKeywordCounts,
+    topSkills: analysisSkillCounts,
   });
 
-  const displayedAnalysis = analysisText || overviewNarrative;
+  const displayedAnalysis = analysisText || analysisNarrative;
   const trendData = historyIndex.slice(0, 12).reverse();
   const roleSkillRoles = roleCounts.slice(0, 4).map(([label]) => label);
   const roleSkillMatrix = buildRoleSkillMatrix(jobs, roleSkillRoles, 6);
   const trackedCareerLabels = trackedCareers.map((item) => normalizeCareerFilterLabel(item));
-  const roleOptions = useMemo(() => ['전체 직군', ...new Set([...trackedRoles, ...roleCounts.map(([label]) => label)])], [trackedRoles, roleCounts]);
-  const careerOptions = ['전체 경력', ...trackedCareerLabels];
+  const roleOptions = useMemo(() => [ALL_ROLE_OPTION, ...new Set([...trackedRoles, ...roleCounts.map(([label]) => label)])], [trackedRoles, roleCounts]);
+  const careerOptions = [ALL_CAREER_OPTION, ...trackedCareerLabels];
 
   const dayOverDayDelta = formatSignedDelta(getDelta(
     latestHistory?.referenceJobCount ?? jobsMetadata?.referenceJobCount ?? jobs.length,
@@ -693,8 +746,8 @@ export default function JobAnalysisWorkspace({ getAccessToken, jobs = [], jobsMe
 
   const filteredJobs = jobs.filter((job) => {
     const normalizedQuery = searchQuery.trim().toLowerCase();
-    const roleMatched = roleFilter === '전체 직군' || classifyRole(job) === roleFilter;
-    const careerMatched = careerFilter === '전체 경력' || classifyCareer(job) === careerFilter;
+    const roleMatched = roleFilter === ALL_ROLE_OPTION || classifyRole(job) === roleFilter;
+    const careerMatched = careerFilter === ALL_CAREER_OPTION || classifyCareer(job) === careerFilter;
     if (!roleMatched || !careerMatched) return false;
     if (!normalizedQuery) return true;
 
@@ -717,13 +770,15 @@ export default function JobAnalysisWorkspace({ getAccessToken, jobs = [], jobsMe
       const response = await requestMarketInsights({
         getAccessToken,
         payload: {
-          totalJobs: jobs.length,
-          dominantRole,
-          dominantCareer,
-          topCompanies: companyCounts,
-          topKeywords: keywordCounts,
-          topSkills: skillCounts,
+          totalJobs: analysisJobs.length,
+          dominantRole: analysisDominantRole,
+          dominantCareer: analysisDominantCareer,
+          topCompanies: analysisCompanyCounts,
+          topKeywords: analysisKeywordCounts,
+          topSkills: analysisSkillCounts,
           historyIndex,
+          scopeLabel: analysisScopeLabel,
+          scopeDescription: analysisScopeDescription,
         },
       });
 
@@ -829,6 +884,10 @@ export default function JobAnalysisWorkspace({ getAccessToken, jobs = [], jobsMe
                     현재 누적 공고와 최근 이력을 기준으로 시장 해석을 제공합니다.
                     버튼을 눌렀을 때만 AI 분석을 1회 실행하며, 수집 자체를 다시 돌리지는 않습니다.
                   </p>
+                  <div className="mt-4 flex flex-wrap gap-2 text-xs">
+                    <span className="coach-market-inline-chip">{analysisScopeLabel}</span>
+                    <span className="coach-market-inline-chip">{analysisScopeDescription}</span>
+                  </div>
                 </div>
                 <button
                   type="button"
