@@ -1,0 +1,34 @@
+{
+  "id": "crawled-280682",
+  "company": "파이드픽셀즈",
+  "title": "[파이드픽셀즈] 라이브 사업 PM 담당자 채용",
+  "role": "PM/운영",
+  "roles": [
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "사업PM",
+    "경제/BM 설계"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280682",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "PM, 게임운영, 서비스, 사업PM, 라이브, BM",
+  "updatedAt": "2026-05-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastCrawledAt": "2026-05-27T18:02:58.675Z",
+  "inactiveAt": null
+}

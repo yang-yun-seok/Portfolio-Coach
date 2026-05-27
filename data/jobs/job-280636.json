@@ -1,0 +1,34 @@
+{
+  "id": "crawled-280636",
+  "company": "㈜이토이랩",
+  "title": "[일본 IP기반 수집형 턴제 RPG] 게임 기획 모집",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "전투/액션 기획",
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280636",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": ".",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 08/25(화)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "시스템기획, 전투기획",
+  "updatedAt": "2026-05-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastCrawledAt": "2026-05-27T18:02:58.675Z",
+  "inactiveAt": null
+}

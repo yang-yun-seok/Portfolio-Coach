@@ -1,0 +1,35 @@
+{
+  "id": "crawled-279395",
+  "company": "슈퍼센트 (Supercent)",
+  "title": "[AD-Tech] 머신러닝 엔지니어(2-6년)",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "서버"
+  ],
+  "reqSkills": [
+    "SQL",
+    "Machine Learning",
+    "데이터 분석"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279395",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "XP Hero, Burger Please!, Pizza Ready!, Snake Clash",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "모바일, 연구개발, 기술개발, SQL, AI, 광고, 마케팅, 통계, 데이터, 이벤트, 데이터분석, 게임마케팅, 머신러닝, SPSS, KPI, ML, 데이터사이언스, 데이터사이언티스트, 애드테크, 예측모델",
+  "updatedAt": "2026-05-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastCrawledAt": "2026-05-27T18:02:58.675Z",
+  "inactiveAt": null
+}

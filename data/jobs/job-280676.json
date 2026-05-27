@@ -1,0 +1,35 @@
+{
+  "id": "crawled-280676",
+  "company": "래빗홀컴퍼니",
+  "title": "[AI시뮬레이션 게임] 프론트엔드 엔지니어 React Native",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android",
+    "JavaScript",
+    "TypeScript"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280676",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 Simulation",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 6개월)",
+  "deadline": "~ 06/27(토)",
+  "salary": "3,000~3,200만원\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, iOS, Android, 프론트엔드",
+  "updatedAt": "2026-05-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastCrawledAt": "2026-05-27T18:02:58.675Z",
+  "inactiveAt": null
+}
