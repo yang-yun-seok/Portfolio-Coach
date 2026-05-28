@@ -1,5 +1,5 @@
 {
-  "id": "crawled-276965",
+  "id": "crawled-280691",
   "company": "코그",
   "title": "[엘소드] 게임 개발 전 분야 수시 모집",
   "role": "아트/UI",
@@ -10,14 +10,13 @@
   "reqSkills": [
     "C++",
     "3D",
-    "UI/UX 기획",
     "3ds Max",
     "시나리오/퀘스트",
     "밸런싱",
     "시스템/컨텐츠 기획"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=276965",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280691",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "그랜드체이스, 엘소드, 커츠펠, 리턴얼라이브",
@@ -26,14 +25,14 @@
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "무관",
-  "keywords": "클라이언트, C++, 3D, 인터페이스, 맵핑, 원화, 배경원화, 모델링, 로우폴리곤, 캐릭터, 애니메이션, 3DMax, 게임기획, 퀘스트, PM, 밸런스기획, 시스템기획, 컨텐츠, 서버, 게임프로그래밍",
-  "updatedAt": "2026-05-26",
+  "keywords": "클라이언트, C++, 3D, 맵핑, 원화, 모델링, 로우폴리곤, 캐릭터, 애니메이션, 3DMax, 게임기획, 퀘스트, PM, 밸런스기획, 시스템기획, 컨텐츠, 서버, 게임프로그래밍",
+  "updatedAt": "2026-05-28",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-05-27T18:02:58.675Z",
-  "lastCrawledAt": "2026-05-27T18:02:58.675Z",
+  "firstSeenAt": "2026-05-28T18:12:09.369Z",
+  "lastSeenAt": "2026-05-28T18:12:09.369Z",
+  "lastCrawledAt": "2026-05-28T18:12:09.369Z",
   "inactiveAt": null
 }

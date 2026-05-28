@@ -1,0 +1,35 @@
+{
+  "id": "crawled-280698",
+  "company": "㈜이엔피게임즈",
+  "title": "[ENP] 게임 기획자 채용 (주소지 대전 / 장르 RPG, 방치형)",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "레벨 디자인",
+    "밸런싱",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280698",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "모바일RPG(반지), 모바일퍼즐(쥬얼레거시 / 로스트킹덤), PC온라인(드래곤네스트)",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 06/28(일)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, UX·UI, 레벨, 게임기획, 밸런스기획, 레벨기획, 시스템기획, 웹UI, 콘텐츠, RPG, 퍼즐, UIUX, 방치형",
+  "updatedAt": "2026-05-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-28T18:12:09.369Z",
+  "lastSeenAt": "2026-05-28T18:12:09.369Z",
+  "lastCrawledAt": "2026-05-28T18:12:09.369Z",
+  "inactiveAt": null
+}
