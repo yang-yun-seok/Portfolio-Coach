@@ -1,0 +1,35 @@
+{
+  "id": "crawled-277646",
+  "company": "㈜넵튠",
+  "title": "엔플라이유닛(무한의 계단) 백엔드개발자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "Go",
+    "SQL",
+    "Redis"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277646",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "고양이 스낵바, 무한의 계단, 우르르 용병단, 이터널리턴, 다크스타, 앵커패닉 등",
+  "gameCategory": "모바일게임 Casual, 기타",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "API, 개발, 게임, 데이터베이스, Docker, 게임프로그래밍, 게임프로그래머, RDBMS, AWS, 서버개발, GOLANG, 백엔드, 백엔드개발자, 클라우드인프라, 무한의계단",
+  "updatedAt": "2026-05-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-29T18:14:14.323Z",
+  "lastSeenAt": "2026-05-29T18:14:14.323Z",
+  "lastCrawledAt": "2026-05-29T18:14:14.323Z",
+  "inactiveAt": null
+}
