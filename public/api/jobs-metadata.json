@@ -1,15 +1,15 @@
 {
   "source": "GameJob",
-  "latestAppliedDate": "2026-05-30",
-  "referenceJobCount": 1010,
-  "lastSuccessfulCrawlAt": "2026-05-29T18:14:14.323Z",
-  "lastCrawlAttemptAt": "2026-05-29T18:14:14.323Z",
+  "latestAppliedDate": "2026-05-31",
+  "referenceJobCount": 1006,
+  "lastSuccessfulCrawlAt": "2026-05-30T16:04:11.146Z",
+  "lastCrawlAttemptAt": "2026-05-30T16:04:11.146Z",
   "lastCrawlStatus": "success",
   "lastCrawlError": null,
   "newJobsCount": 0,
-  "activeJobsCount": 1010,
+  "activeJobsCount": 1006,
   "inactiveJobsCount": 0,
-  "totalManagedJobsCount": 1010,
+  "totalManagedJobsCount": 1006,
   "filters": {
     "jobTags": [
       "게임개발(클라이언트)",
