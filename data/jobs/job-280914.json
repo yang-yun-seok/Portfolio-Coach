@@ -1,5 +1,5 @@
 {
-  "id": "crawled-277112",
+  "id": "crawled-280914",
   "company": "빅파이어게임즈",
   "title": "[NC자회사][빅파이어게임즈][단기계약직] 3D 캐릭터 애니메이터 모집",
   "role": "클라이언트",
@@ -13,7 +13,7 @@
     "Maya"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277112",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280914",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "-",
@@ -23,13 +23,13 @@
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "신입",
   "keywords": "3D, 맵핑, 모델링, 캐릭터, 텍스쳐, 애니메이션, 3DMax, Maya, 플래쉬애니메이션, KeyAnimation, Max, FPS, SF, TPS, Shooter, NC, CINDERCITY, 신더시티",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-06-02",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-06-01T19:57:35.254Z",
-  "lastCrawledAt": "2026-06-01T19:57:35.254Z",
+  "firstSeenAt": "2026-06-02T18:39:59.086Z",
+  "lastSeenAt": "2026-06-02T18:39:59.086Z",
+  "lastCrawledAt": "2026-06-02T18:39:59.086Z",
   "inactiveAt": null
 }

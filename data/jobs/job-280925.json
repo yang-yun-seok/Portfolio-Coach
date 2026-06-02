@@ -1,0 +1,33 @@
+{
+  "id": "crawled-280925",
+  "company": "111퍼센트㈜",
+  "title": "[ZZOO] 캐릭터 2D 애니메이터",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Photoshop",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280925",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "운빨존많겜, 랜덤다이스:디펜스",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "애니메이션, 영상제작·편집, 2D, Photoshop, 콘텐츠, 영상, 게임디자인, 모바일게임, 애프터이펙트, 크리에이터, TVP",
+  "updatedAt": "2026-06-02",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-02T18:39:59.086Z",
+  "lastSeenAt": "2026-06-02T18:39:59.086Z",
+  "lastCrawledAt": "2026-06-02T18:39:59.086Z",
+  "inactiveAt": null
+}
