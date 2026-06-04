@@ -1,0 +1,36 @@
+{
+  "id": "crawled-280905",
+  "company": "휴먼웍스",
+  "title": "게임 운영 및 기획자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "Java",
+    "레벨 디자인",
+    "데이터 분석"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280905",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "웹게임, 모바일게임 Casual, Arcade",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 06/07(일)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, Java, 게임기획, 레벨기획, 게임운영, GM",
+  "updatedAt": "2026-06-04",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastCrawledAt": "2026-06-04T17:47:05.005Z",
+  "inactiveAt": null
+}

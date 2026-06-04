@@ -1,0 +1,37 @@
+{
+  "id": "crawled-280940",
+  "company": "러쉬에잇㈜",
+  "title": "[러쉬에잇/에버플래닛] 신규 클래식 MMORPG 직군별 채용 (인프라 리드 / 사업, BM기획 / 게임 서버 리드(C++))",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280940",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, C++, 게임기획, PM, 시스템기획, 유료화, 서버, Unity, 클라우드, 플랫폼개발, 서비스개발, 게임프로그래밍, 게임프로그래머, 기술PM, 인프라, 테크니컬, urp",
+  "updatedAt": "2026-06-04",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastCrawledAt": "2026-06-04T17:47:05.005Z",
+  "inactiveAt": null
+}

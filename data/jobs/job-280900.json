@@ -1,0 +1,33 @@
+{
+  "id": "crawled-280900",
+  "company": "(주)무브인터렉티브",
+  "title": "[무브인터렉티브-대구] 액션 게임 기획 · 구조설계 · QA 전문인력 모집 -콘솔,PC,모바일",
+  "role": "QA/테스트",
+  "roles": [
+    "기획",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "QA/테스트"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280900",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "디지몬슈퍼럼블, 디지몬마스터즈, 디지몬RPG, 파워레인저, 디지몬소울체이서3, 연희몽상",
+  "gameCategory": "모바일게임, 콘솔게임 Casual, Shooting",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 2개월)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "게임기획, QA, PC, 콘솔",
+  "updatedAt": "2026-06-04",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastCrawledAt": "2026-06-04T17:47:05.005Z",
+  "inactiveAt": null
+}

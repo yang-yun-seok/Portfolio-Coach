@@ -1,7 +1,7 @@
 {
-  "id": "crawled-280680",
+  "id": "crawled-280950",
   "company": "㈜이엑스투게임즈",
-  "title": "[Ex2games] 프로젝트 K (FX) (3개월 계약직)",
+  "title": "[Ex2games] 프로젝트 K (FX) (6개월 계약직)",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
@@ -12,23 +12,23 @@
     "3ds Max"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280680",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280950",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "-",
   "gameCategory": "모바일게임 Casual",
-  "employmentType": "계약직 (계약기간 : 3개월)",
+  "employmentType": "계약직 (계약기간 : 6개월)",
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "이펙트, FX",
-  "updatedAt": "2026-05-27",
+  "updatedAt": "2026-06-04",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-27T18:02:58.675Z",
-  "lastSeenAt": "2026-06-03T20:51:45.692Z",
-  "lastCrawledAt": "2026-06-03T20:51:45.692Z",
+  "firstSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastCrawledAt": "2026-06-04T17:47:05.005Z",
   "inactiveAt": null
 }

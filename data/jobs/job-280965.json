@@ -1,0 +1,32 @@
+{
+  "id": "crawled-280965",
+  "company": "컴포트게임즈",
+  "title": "[컴포트게임즈] AI 아티스트 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Illustrator"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280965",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "배경, 원화, 일러스트, 캐릭터원화, 컨셉, 배경원화",
+  "updatedAt": "2026-06-04",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastCrawledAt": "2026-06-04T17:47:05.005Z",
+  "inactiveAt": null
+}

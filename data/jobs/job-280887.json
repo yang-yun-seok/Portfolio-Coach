@@ -1,0 +1,34 @@
+{
+  "id": "crawled-280887",
+  "company": "서비스점검",
+  "title": "TEST공고입니다",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Lua",
+    "Python"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280887",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "예: 카트라이더, 리니지, 스타크래프트 등",
+  "gameCategory": "관련없음 RPG, 관련없음",
+  "employmentType": "헤드헌팅, 프리랜서, 병역특례",
+  "deadline": "~ 08/02(일)",
+  "salary": "9,000~1억원\n연봉검색",
+  "experience": "신입",
+  "keywords": "DirectX, Lua, Python",
+  "updatedAt": "2026-06-04",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastCrawledAt": "2026-06-04T17:47:05.005Z",
+  "inactiveAt": null
+}
