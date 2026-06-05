@@ -1,19 +1,17 @@
 {
-  "id": "crawled-277800",
+  "id": "crawled-281076",
   "company": "㈜플린트",
-  "title": "[플린트] 신규 프로젝트 UI 디자이너(신입)",
+  "title": "[플린트] 신규 프로젝트 배경 원화가",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
   ],
   "reqSkills": [
-    "UI/UX 기획",
     "Photoshop",
-    "Unity",
-    "Illustrator"
+    "Unity"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277800",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281076",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "별이되어라! for Kakao",
@@ -21,15 +19,15 @@
   "employmentType": "정규직",
   "deadline": "채용시 마감",
   "salary": "면접 시 협의\n연봉검색",
-  "experience": "신입",
-  "keywords": "인터페이스, 포토샵, 일러스트레이터, 모바일UI",
-  "updatedAt": "2026-05-27",
+  "experience": "무관",
+  "keywords": "배경, 배경원화, 포토샵, 핸드드로잉",
+  "updatedAt": "2026-06-05",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-27T18:02:58.675Z",
-  "lastSeenAt": "2026-06-04T17:47:05.005Z",
-  "lastCrawledAt": "2026-06-04T17:47:05.005Z",
+  "firstSeenAt": "2026-06-05T17:17:28.365Z",
+  "lastSeenAt": "2026-06-05T17:17:28.365Z",
+  "lastCrawledAt": "2026-06-05T17:17:28.365Z",
   "inactiveAt": null
 }

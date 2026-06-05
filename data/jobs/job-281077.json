@@ -1,5 +1,5 @@
 {
-  "id": "crawled-277802",
+  "id": "crawled-281077",
   "company": "㈜플린트",
   "title": "[플린트] 신규 프로젝트 캐릭터원화가",
   "role": "클라이언트",
@@ -13,7 +13,7 @@
     "Unity"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277802",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281077",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "별이되어라! for Kakao",
@@ -23,13 +23,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "원화, 일러스트, 캐릭터원화, 포토샵, 캐릭터, 2D, 캐릭커컨셉",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-06-05",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-06-04T17:47:05.005Z",
-  "lastCrawledAt": "2026-06-04T17:47:05.005Z",
+  "firstSeenAt": "2026-06-05T17:17:28.365Z",
+  "lastSeenAt": "2026-06-05T17:17:28.365Z",
+  "lastCrawledAt": "2026-06-05T17:17:28.365Z",
   "inactiveAt": null
 }

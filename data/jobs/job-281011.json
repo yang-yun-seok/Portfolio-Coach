@@ -1,32 +1,35 @@
 {
-  "id": "crawled-266448",
+  "id": "crawled-281011",
   "company": "크래프톤 (KRAFTON)",
-  "title": "[Loonshot Games] 3D Effect Artist - Project AA (3년 이상)",
+  "title": "[Loonshot Games] 3D Character Artist - Project AA (3년 이상)",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
   ],
   "reqSkills": [
-    "Unity"
+    "3D",
+    "3ds Max",
+    "Unity",
+    "ZBrush"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=266448",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281011",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "PUBG: 배틀그라운드",
-  "gameCategory": "온라인PC게임, 멀티플랫폼게임 Shooting",
+  "gameCategory": "모바일게임 RPG",
   "employmentType": "정규직",
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
-  "keywords": "이펙트, FX",
-  "updatedAt": "2026-05-26",
+  "keywords": "3D, 모델링, 3DSmax, 캐릭터",
+  "updatedAt": "2026-06-05",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-06-04T17:47:05.005Z",
-  "lastCrawledAt": "2026-06-04T17:47:05.005Z",
+  "firstSeenAt": "2026-06-05T17:17:28.365Z",
+  "lastSeenAt": "2026-06-05T17:17:28.365Z",
+  "lastCrawledAt": "2026-06-05T17:17:28.365Z",
   "inactiveAt": null
 }

@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281059",
+  "company": "스튜디오라사㈜",
+  "title": "캐릭터 모델러 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "ZBrush",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281059",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "콘솔게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모델링, 캐릭터, Zbrush",
+  "updatedAt": "2026-06-05",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-05T17:17:28.365Z",
+  "lastSeenAt": "2026-06-05T17:17:28.365Z",
+  "lastCrawledAt": "2026-06-05T17:17:28.365Z",
+  "inactiveAt": null
+}
