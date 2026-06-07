@@ -1,0 +1,32 @@
+{
+  "id": "crawled-281080",
+  "company": "㈜소울게임즈",
+  "title": "3D 캐릭터 모델러",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281080",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "루나모바일, 레이더즈M",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정), 프리랜서",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 맵핑, 모델링",
+  "updatedAt": "2026-06-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-07T22:12:07.397Z",
+  "lastSeenAt": "2026-06-07T22:12:07.397Z",
+  "lastCrawledAt": "2026-06-07T22:12:07.397Z",
+  "inactiveAt": null
+}
