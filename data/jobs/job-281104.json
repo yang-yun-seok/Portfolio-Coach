@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281104",
+  "company": "㈜스펠바인드 게임즈",
+  "title": "[신규프로젝트] 이펙트 아티스트",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity",
+    "3ds Max"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281104",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Heli Hog Hunt, Coast Guard Ops, Heli Flame Hunt",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "이펙트, FX",
+  "updatedAt": "2026-06-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-08T20:09:39.955Z",
+  "lastSeenAt": "2026-06-08T20:09:39.955Z",
+  "lastCrawledAt": "2026-06-08T20:09:39.955Z",
+  "inactiveAt": null
+}
