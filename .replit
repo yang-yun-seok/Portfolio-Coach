@@ -1,0 +1,11 @@
+entrypoint = "server.js"
+modules = ["nodejs-20"]
+run = "npm run build && PORT=3002 npm start"
+
+[deployment]
+build = "npm run build"
+run = "PORT=3002 npm start"
+
+[[ports]]
+localPort = 3002
+externalPort = 80
