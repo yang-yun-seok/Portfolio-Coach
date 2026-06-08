@@ -1,19 +1,6 @@
 import React from 'react';
-import { Sparkles, Loader2, ChevronDown } from 'lucide-react';
+import { ChevronDown, Loader2, Sparkles } from 'lucide-react';
 
-/**
- * AI 모델 선택 사이드바 위젯.
- * API 키는 Supabase Edge Function(gemini-proxy)이 서버측에서 관리하므로 입력 불필요.
- *
- * Props:
- * - enabledProviders: 활성화된 프로바이더 목록
- * - disabledProviders: 비활성화된 프로바이더 목록
- * - selectedProvider: 현재 선택된 프로바이더 ID
- * - selectedModelId: 현재 선택된 모델 ID
- * - onProviderChange: 프로바이더 변경 콜백
- * - onModelChange: 모델 변경 콜백
- * - modelsLoading: 모델 목록 로딩 중 여부
- */
 export default function ModelSelector({
   enabledProviders,
   disabledProviders: _disabledProviders,
@@ -24,15 +11,15 @@ export default function ModelSelector({
   modelsLoading,
   variant = 'sidebar',
 }) {
-  const currentProvider = enabledProviders.find((p) => p.id === selectedProvider);
+  const currentProvider = enabledProviders.find((provider) => provider.id === selectedProvider);
   const currentModels = currentProvider?.models || [];
-  const currentModel = currentModels.find((m) => m.id === selectedModelId) || currentModels[0];
+  const currentModel = currentModels.find((model) => model.id === selectedModelId) || currentModels[0];
 
   if (modelsLoading) {
     return (
       <div className={`model-selector-shell model-selector-loading ${variant === 'modal' ? 'model-selector-shell-modal' : ''}`}>
-        <Loader2 size={16} className="animate-spin text-slate-300 mx-auto" />
-        <p className="text-[10px] text-slate-400 mt-2">모델 로딩 중...</p>
+        <Loader2 size={16} className="mx-auto animate-spin text-slate-300" />
+        <p className="mt-2 text-[10px] text-slate-400">모델 로딩 중...</p>
       </div>
     );
   }
@@ -44,20 +31,22 @@ export default function ModelSelector({
           <Sparkles size={15} />
           <span>AI 모델 선택</span>
         </div>
-        <p className="model-selector-caption">분석에 사용할 엔진과 세부 모델을 정합니다.</p>
+        <p className="model-selector-caption">학생 API 키로 직접 호출할 제공자와 모델을 정합니다.</p>
       </div>
 
       <div className="model-selector-providers">
-        {enabledProviders.map((p) => (
+        {enabledProviders.map((provider) => (
           <button
-            key={p.id}
-            onClick={() => onProviderChange(p.id)}
-            className={`model-selector-provider
-              ${selectedProvider === p.id
+            type="button"
+            key={provider.id}
+            onClick={() => onProviderChange(provider.id)}
+            className={`model-selector-provider ${
+              selectedProvider === provider.id
                 ? 'model-selector-provider-active'
-                : 'model-selector-provider-idle'}`}
+                : 'model-selector-provider-idle'
+            }`}
           >
-            {p.label}
+            {provider.label}
           </button>
         ))}
       </div>
@@ -66,12 +55,12 @@ export default function ModelSelector({
         <div className="model-selector-select-wrap">
           <select
             value={selectedModelId}
-            onChange={(e) => onModelChange(e.target.value)}
+            onChange={(event) => onModelChange(event.target.value)}
             className="model-selector-select"
           >
-            {currentModels.map((m) => (
-              <option key={m.id} value={m.id}>
-                {m.label} — {m.description}
+            {currentModels.map((model) => (
+              <option key={model.id} value={model.id}>
+                {model.label} · {model.description}
               </option>
             ))}
           </select>
@@ -80,7 +69,7 @@ export default function ModelSelector({
       )}
 
       {currentProvider && !currentProvider.supportsFiles && (
-        <p className="model-selector-note">※ PDF 업로드는 Gemini만 지원합니다.</p>
+        <p className="model-selector-note">PDF 파일 분석은 Gemini에서만 지원됩니다.</p>
       )}
 
       <div className="model-selector-current">

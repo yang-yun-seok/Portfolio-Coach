@@ -648,9 +648,11 @@ function JobListCard({ job }) {
 }
 
 export default function JobAnalysisWorkspace({
-  getAccessToken,
+  apiKey,
   jobs = [],
   jobsMetadata = {},
+  selectedModelId,
+  selectedProvider,
   roleGroup = '\uAE30\uD68D',
 }) {
   const [view, setView] = useState('overview');
@@ -768,7 +770,9 @@ export default function JobAnalysisWorkspace({
     setAnalysisError('');
     try {
       const response = await requestMarketInsights({
-        getAccessToken,
+        provider: selectedProvider,
+        apiKey,
+        modelId: selectedModelId,
         payload: {
           totalJobs: analysisJobs.length,
           dominantRole: analysisDominantRole,

@@ -12,7 +12,9 @@ export function createAuthMiddleware({ firebaseAdminService }) {
     }
 
     if (!firebaseAdminService.configReady) {
-      return res.status(503).json({ error: 'Firebase 인증 설정이 서버에 아직 적용되지 않았습니다.' });
+      return res.status(503).json({
+        error: firebaseAdminService.initError || 'Firebase 인증 설정이 서버에 아직 적용되지 않았습니다.',
+      });
     }
 
     const token = extractBearerToken(req);
@@ -48,4 +50,3 @@ export function createAuthMiddleware({ firebaseAdminService }) {
     requireAdmin,
   };
 }
-

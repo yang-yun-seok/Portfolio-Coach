@@ -21,6 +21,7 @@ import {
   ROLE_RESULT_PLAYBOOK,
 } from './data/skills';
 import { matchJobsViaProxy, requestCompanyInsights } from './lib/gemini-client';
+import { getAiApiKey, hasAiApiKey, loadAiApiKeys, saveAiApiKeys } from './lib/ai-key-storage';
 import { buildAuthorizedHeaders } from './lib/auth-fetch';
 import { apiUrl, staticAssetUrl } from './lib/runtime-config';
 import { useApplicationAnalysis } from './hooks/useApplicationAnalysis';
@@ -206,7 +207,8 @@ export default function App() {
   const workspaceRef = useRef(null);
   const [selectedProvider, setSelectedProvider] = useState('gemini');
   const [selectedModelId, setSelectedModelId] = useState('');
-  // API 키는 Supabase Edge Function(gemini-proxy)이 서버측에서 관리
+  const [aiApiKeys, setAiApiKeys] = useState(() => loadAiApiKeys());
+  const selectedApiKey = getAiApiKey(aiApiKeys, selectedProvider);
 
   // 모델 로드 후 기본 모델 선택
   useEffect(() => {
@@ -499,6 +501,23 @@ export default function App() {
     if (defaultModel) setSelectedModelId(defaultModel.id);
   };
 
+  const handleApiKeyChange = (providerId, apiKey) => {
+    setAiApiKeys((prev) => {
+      const next = { ...prev, [providerId]: apiKey };
+      saveAiApiKeys(next);
+      return next;
+    });
+  };
+
+  const handleApiKeyDelete = (providerId) => {
+    setAiApiKeys((prev) => {
+      const next = { ...prev };
+      delete next[providerId];
+      saveAiApiKeys(next);
+      return next;
+    });
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserInfo((prev) => ({ ...prev, [name]: value }));
@@ -631,11 +650,12 @@ const { analyzeApplication } = useApplicationAnalysis({
   currentProvider,
   coverLetterFile,
   generateInterviewQuestionsLocal,
-  getAccessToken,
   instructorFeedback,
   persistWorkspaceSnapshot,
   portfolioFiles,
   resumeFile,
+  selectedApiKey,
+  selectedProvider,
   selectedModelId,
   setActiveTab,
     setError,
@@ -689,7 +709,8 @@ const { analyzeApplication } = useApplicationAnalysis({
 
     try {
       const response = await matchJobsViaProxy({
-        getAccessToken,
+        provider: selectedProvider,
+        apiKey: selectedApiKey,
         modelId: selectedModelId,
         profile: analysisProfile,
         candidates: candidateJobs,
@@ -777,7 +798,9 @@ const { analyzeApplication } = useApplicationAnalysis({
     // 보호된 백엔드 경유 AI 기업 정보 요청
     try {
       const ai = await requestCompanyInsights({
-        getAccessToken,
+        provider: selectedProvider,
+        apiKey: selectedApiKey,
+        modelId: selectedModelId,
         payload: {
           name,
           roles,
@@ -1004,13 +1027,15 @@ const { analyzeApplication } = useApplicationAnalysis({
     visibleJobs,
   };
   const jobAnalysisWorkspaceProps = {
-    getAccessToken,
+    apiKey: selectedApiKey,
     jobs,
     jobsMetadata,
+    selectedModelId,
+    selectedProvider,
     roleGroup: normalizedUserInfo.roleGroup,
   };
   const personalityTestProps = {
-    getAccessToken,
+    apiKey: selectedApiKey,
     selectedProvider,
     selectedModelId,
     userInfo: normalizedUserInfo,
@@ -1043,7 +1068,7 @@ const { analyzeApplication } = useApplicationAnalysis({
         authUser={authUser}
         currentTrackLabel={normalizedUserInfo.roleGroup}
         loading={loading}
-        modelSummary={`${currentProvider?.label || '모델 선택'}${selectedModelId ? ` · ${selectedModelId}` : ''}`}
+        modelSummary={`${currentProvider?.label || '모델 선택'}${selectedModelId ? ` · ${selectedModelId}` : ''}${hasAiApiKey(aiApiKeys, selectedProvider) ? ' · 키 설정됨' : ' · 키 필요'}`}
         onOpenGuide={() => setShowUserGuide(true)}
         onOpenModelSettings={() => setShowModelSettings(true)}
         onOpenSettings={() => setShowSettings(true)}
@@ -1139,10 +1164,13 @@ const { analyzeApplication } = useApplicationAnalysis({
         disabledProviders={disabledProviders}
         enabledProviders={enabledProviders}
         modelsLoading={modelsLoading}
+        onApiKeyChange={handleApiKeyChange}
+        onApiKeyDelete={handleApiKeyDelete}
         onClose={() => setShowModelSettings(false)}
         onModelChange={setSelectedModelId}
         onProviderChange={handleProviderChange}
         open={showModelSettings}
+        providerApiKey={selectedApiKey}
         selectedModelId={selectedModelId}
         selectedProvider={selectedProvider}
       />

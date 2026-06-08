@@ -47,7 +47,7 @@
   },
   "openai": {
     "label": "GPT",
-    "enabled": false,
+    "enabled": true,
     "color": "bg-emerald-600",
     "supportsFiles": false,
     "models": [

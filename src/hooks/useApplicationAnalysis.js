@@ -183,11 +183,12 @@ export function useApplicationAnalysis({
   currentProvider,
   coverLetterFile,
   generateInterviewQuestionsLocal,
-  getAccessToken,
   instructorFeedback,
   persistWorkspaceSnapshot,
   portfolioFiles,
   resumeFile,
+  selectedApiKey,
+  selectedProvider,
   selectedModelId,
   setActiveTab,
   setError,
@@ -207,7 +208,9 @@ export function useApplicationAnalysis({
       const today = new Date().toISOString().slice(0, 10);
       const normalizedProfile = normalizeUserProfile(profile);
       const response = await requestInstructorDraft({
-        getAccessToken,
+        provider: selectedProvider,
+        apiKey: selectedApiKey,
+        modelId: selectedModelId,
         payload: {
           profile: normalizedProfile,
           aiResults,
@@ -227,7 +230,7 @@ export function useApplicationAnalysis({
       console.warn('강사 피드백 초안 생성 실패:', error.message);
     }
     return null;
-  }, [getAccessToken, setInstructorFeedback]);
+  }, [selectedApiKey, selectedModelId, selectedProvider, setInstructorFeedback]);
 
   const analyzeApplication = useCallback(async () => {
     if (!userInfo.name || userInfo.skills.length === 0) {
@@ -288,13 +291,15 @@ export function useApplicationAnalysis({
       }
 
       const data = await analyzeViaProxy({
-        getAccessToken,
+        provider: selectedProvider,
+        apiKey: selectedApiKey,
         modelId: selectedModelId,
         top3,
         profile: analysisProfile,
         hasFiles: fileParts.length > 0,
         hasPortfolioFile: portfolioFiles.length > 0,
         fileParts: fileParts.length > 0 ? fileParts : undefined,
+        portfolioFileNames: portfolioFiles.map((file) => file.name).filter(Boolean),
       });
 
       const localGitHubAnalysis = buildLocalGitHubPortfolioAnalysis(githubPortfolio);
@@ -370,12 +375,13 @@ export function useApplicationAnalysis({
     currentProvider?.supportsFiles,
     generateInstructorDraft,
     generateInterviewQuestionsLocal,
-    getAccessToken,
     instructorFeedback,
     persistWorkspaceSnapshot,
     portfolioFiles,
     resumeFile,
+    selectedApiKey,
     selectedModelId,
+    selectedProvider,
     setActiveTab,
     setError,
     setInfoMessage,

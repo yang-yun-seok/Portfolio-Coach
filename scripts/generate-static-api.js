@@ -32,6 +32,10 @@ function writeJson(path, payload) {
   writeFileSync(path, JSON.stringify(payload, null, 2), 'utf-8');
 }
 
+function writeText(path, payload) {
+  writeFileSync(path, payload, 'utf-8');
+}
+
 function clearJsonFiles(dir) {
   if (!existsSync(dir)) return;
   readdirSync(dir)
@@ -164,12 +168,34 @@ function generateInterviewBasic() {
   writeJson(join(PUBLIC_PROMPTS, 'interview-basic.json'), data);
 }
 
+function generatePromptAssets() {
+  ensureDir(PUBLIC_PROMPTS);
+  const promptFiles = [
+    'analysis-schema.json',
+    'analysis-schema.md',
+    'system-prompt.md',
+    'user-prompt-template.md',
+  ];
+
+  for (const fileName of promptFiles) {
+    const sourcePath = join(ROOT, 'prompts', fileName);
+    if (!existsSync(sourcePath)) continue;
+    const targetPath = join(PUBLIC_PROMPTS, fileName);
+    if (fileName.endsWith('.json')) {
+      writeJson(targetPath, loadJson(sourcePath));
+    } else {
+      writeText(targetPath, readFileSync(sourcePath, 'utf-8'));
+    }
+  }
+}
+
 export function generateStaticApi() {
   ensureDir(PUBLIC_API);
   generateModels();
   generateCompanies();
   generateJobs();
   generateJobHistory();
+  generatePromptAssets();
   generateInterviewBasic();
 }
 

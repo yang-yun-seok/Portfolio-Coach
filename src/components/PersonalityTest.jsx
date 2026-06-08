@@ -21,7 +21,7 @@ import {
 } from './personality/personality-utils';
 
 export default function PersonalityTest({
-  getAccessToken,
+  apiKey,
   selectedProvider,
   selectedModelId,
   userInfo,
@@ -190,8 +190,8 @@ export default function PersonalityTest({
 
     try {
       const data = await analyzePersonalityViaApi({
-        getAccessToken,
         provider: selectedProvider,
+        apiKey,
         modelId: selectedModelId,
         likertAnswers,
         binaryAnswers,
@@ -208,8 +208,8 @@ export default function PersonalityTest({
       setAiLoading(false);
     }
   }, [
+    apiKey,
     binaryAnswers,
-    getAccessToken,
     likertAnswers,
     normalizedUser.roleGroup,
     selectedModelId,
