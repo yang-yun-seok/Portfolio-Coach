@@ -1,0 +1,38 @@
+{
+  "id": "crawled-281157",
+  "company": "㈜메타에듀",
+  "title": "[단기 계약] 유니티 클라이언트 개발자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Unity",
+    "Git/SVN",
+    "iOS",
+    "Android"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281157",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "멀티플랫폼게임 Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 9개월)",
+  "deadline": "~ 07/09(목)",
+  "salary": "3,200~3,400만원\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, UX·UI, 게임기획, 게임프로그래밍, VR",
+  "updatedAt": "2026-06-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastCrawledAt": "2026-06-10T22:59:27.902Z",
+  "inactiveAt": null
+}

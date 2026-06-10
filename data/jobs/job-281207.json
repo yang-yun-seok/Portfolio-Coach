@@ -1,0 +1,35 @@
+{
+  "id": "crawled-281207",
+  "company": "㈜락킨포지드",
+  "title": "[Project S] 서브컬쳐 핵앤슬래쉬 액션 RPG 3D 배경 및 레벨 아티스트 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "ZBrush",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281207",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Project S, Project P, Project R",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 배경, 맵핑, 모델링, 3DSmax, 텍스쳐, Zbrush, 언리얼, blender",
+  "updatedAt": "2026-06-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastCrawledAt": "2026-06-10T22:59:27.902Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "crawled-281164",
+  "company": "NC",
+  "title": "[NC][AION2] 캐릭터 모델러 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unreal Engine",
+    "Photoshop",
+    "ZBrush"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281164",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 08/07(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 모델링, 캐릭터",
+  "updatedAt": "2026-06-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastCrawledAt": "2026-06-10T22:59:27.902Z",
+  "inactiveAt": null
+}

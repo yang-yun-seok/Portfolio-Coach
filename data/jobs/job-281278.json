@@ -1,0 +1,38 @@
+{
+  "id": "crawled-281278",
+  "company": "램퍼스",
+  "title": "[램퍼스] 테크니컬아티스트 TA 채용 (언리얼, 유니티)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "C++",
+    "Python",
+    "3D",
+    "Unity",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281278",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "멀티플랫폼게임 VR·AR, 관련없음",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "5,000~6,000만원 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "API, C++, Python, 3D, 캐릭터, 애니메이션, 유니티, 언리얼엔진, 터치디자이너",
+  "updatedAt": "2026-06-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastCrawledAt": "2026-06-10T22:59:27.902Z",
+  "inactiveAt": null
+}

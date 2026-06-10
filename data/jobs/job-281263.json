@@ -1,0 +1,39 @@
+{
+  "id": "crawled-281263",
+  "company": "넥슨 (NEXON)",
+  "title": "[미디어실] 3D 배경모델링 (근무지 제주본사)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Photoshop",
+    "도트 아트",
+    "3ds Max",
+    "Unity",
+    "Unreal Engine",
+    "Maya",
+    "ZBrush"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281263",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "던전앤파이터, 던전앤파이터 모바일, 사이퍼즈, 퍼스트 버서커 : 카잔",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "3D, 배경원화, 포토샵, 도트, 아바타, 핸드드로잉, 3DMax, 이펙트, 디렉터",
+  "updatedAt": "2026-06-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastCrawledAt": "2026-06-10T22:59:27.902Z",
+  "inactiveAt": null
+}
