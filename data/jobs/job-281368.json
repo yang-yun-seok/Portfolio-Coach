@@ -1,0 +1,35 @@
+{
+  "id": "crawled-281368",
+  "company": "㈜버거몬스터",
+  "title": "[신입] 클라이언트 프로그래머 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android",
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281368",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "포트리스사가, 무명기시단",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 6개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, 모바일, iOS, Android, C#, Unity, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-06-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-11T20:16:51.084Z",
+  "lastSeenAt": "2026-06-11T20:16:51.084Z",
+  "lastCrawledAt": "2026-06-11T20:16:51.084Z",
+  "inactiveAt": null
+}
