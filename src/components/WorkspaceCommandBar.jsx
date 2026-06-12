@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, ChevronDown, KeyRound, Loader2, LogIn, LogOut, Moon, Settings, Sparkles } from 'lucide-react';
+import { BookOpen, ChevronDown, KeyRound, Loader2, LogIn, LogOut, Moon, Settings } from 'lucide-react';
 
 export default function WorkspaceCommandBar({
   activeTab,
@@ -110,13 +110,9 @@ export default function WorkspaceCommandBar({
           <Settings size={17} />
           <span>설정</span>
         </button>
-        <button type="button" onClick={onOpenModelSettings} className="coach-api-command" title={`AI API 키 설정: ${modelSummary}`} aria-label="AI API 키 설정">
+        <button type="button" onClick={onOpenModelSettings} className="coach-model-command" title={`AI API 연결: ${modelSummary}`} aria-label="AI API 연결">
           <KeyRound size={17} />
           <span>AI API 연결</span>
-        </button>
-        <button type="button" onClick={onOpenModelSettings} className="coach-model-command" title={`AI 모델: ${modelSummary}`} aria-label="AI 모델">
-          <Sparkles size={17} />
-          <span>AI 모델</span>
           <small>{modelSummary}</small>
         </button>
         <button type="button" onClick={onOpenSettings} className="coach-theme-command" title="화면 모드" aria-label="화면 모드">
