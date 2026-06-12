@@ -43,6 +43,7 @@ import UserGuideModal from './components/UserGuideModal';
 
 const TRACK_ENTRY_STORAGE_KEY = 'portfolio-coach-track-entry-v1';
 const PREVIEW_AUTH_STORAGE_KEY = 'portfolio-coach-preview-auth-v1';
+const FORCE_AUTH_SCREEN_STORAGE_KEY = 'portfolio-coach-force-auth-screen-v1';
 
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
 // "- **제목**: 내용" 또는 "**제목**: 내용" → { title, body } 로 분리
@@ -1054,6 +1055,7 @@ const { analyzeApplication } = useApplicationAnalysis({
   const handleRequestLogin = () => {
     if (typeof window === 'undefined') return;
     window.sessionStorage.removeItem(PREVIEW_AUTH_STORAGE_KEY);
+    window.sessionStorage.setItem(FORCE_AUTH_SCREEN_STORAGE_KEY, '1');
     window.location.reload();
   };
 

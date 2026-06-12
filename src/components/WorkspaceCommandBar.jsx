@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, ChevronDown, Gamepad2, Loader2, LogIn, LogOut, Settings, Sparkles } from 'lucide-react';
+import { BookOpen, ChevronDown, LogIn, LogOut, Moon, Settings, Sparkles } from 'lucide-react';
 
 export default function WorkspaceCommandBar({
   activeTab,
@@ -24,14 +24,10 @@ export default function WorkspaceCommandBar({
 }) {
   return (
     <header className="coach-commandbar">
-      <button type="button" onClick={onSelectInput} className="coach-brandlockup">
-        <span className="apple-brandmark coach-brandmark bg-indigo-500 p-2 rounded-lg">
-          <Gamepad2 size={24} className="text-white" />
-        </span>
-        <span className="coach-brandcopy">
-          <span className="coach-brand-title">Portfolio Coach</span>
-          <strong>게임 취업 준비 작업공간</strong>
-        </span>
+      <button type="button" onClick={onSelectInput} className="coach-navigator-breadcrumb">
+        <span>{currentTrackLabel}</span>
+        <em>›</em>
+        <strong>{activeLabel}</strong>
       </button>
 
       <nav className="coach-top-nav" aria-label="Portfolio Coach 기능 이동">
@@ -106,27 +102,31 @@ export default function WorkspaceCommandBar({
           </div>
         ) : null}
 
-        <button type="button" onClick={onOpenGuide}>
+        <button type="button" onClick={onOpenGuide} title="사용 설명서" aria-label="사용 설명서">
           <BookOpen size={17} />
           <span>사용 설명서</span>
         </button>
-        <button type="button" onClick={onOpenSettings}>
+        <button type="button" onClick={onOpenSettings} title="설정" aria-label="설정">
           <Settings size={17} />
           <span>설정</span>
         </button>
-        <button type="button" onClick={onOpenModelSettings} className="coach-model-command">
+        <button type="button" onClick={onOpenModelSettings} className="coach-model-command" title={`AI 모델: ${modelSummary}`} aria-label="AI 모델">
           <Sparkles size={17} />
           <span>AI 모델</span>
           <small>{modelSummary}</small>
         </button>
-        {authEnabled && !authUser ? (
-          <button type="button" onClick={onRequestLogin}>
+        <button type="button" onClick={onOpenSettings} className="coach-theme-command" title="화면 모드" aria-label="화면 모드">
+          <Moon size={20} />
+          <span>화면 모드</span>
+        </button>
+        {!authUser ? (
+          <button type="button" onClick={onRequestLogin} className="coach-login-command" title={authEnabled ? '로그인' : '로그인 화면 확인'} aria-label="로그인">
             <LogIn size={17} />
             <span>로그인</span>
           </button>
         ) : null}
         {authUser ? (
-          <button type="button" onClick={onSignOut}>
+          <button type="button" onClick={onSignOut} className="coach-login-command" title="로그아웃" aria-label="로그아웃">
             <LogOut size={17} />
             <span>로그아웃</span>
           </button>
