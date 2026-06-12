@@ -4418,6 +4418,69 @@
     align-content: start;
   }
 
+  .coach-shell[data-feature="jobs"] .coach-stage {
+    max-width: 1120px;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex {
+    gap: 1.5rem;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 {
+    min-width: 0;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 {
+    align-self: stretch;
+    width: 11rem;
+    min-width: 11rem;
+    flex-shrink: 0;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 > a,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 > button {
+    min-height: 2.625rem;
+    padding-inline: 0.75rem;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 > a svg,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 > button svg {
+    flex-shrink: 0;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article .truncate {
+    min-width: 0;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 .bg-blue-500 {
+    background-color: #93c5fd !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 .bg-green-500 {
+    background-color: #86efac !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 .bg-purple-500 {
+    background-color: #c4b5fd !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 .bg-orange-500 {
+    background-color: #fde68a !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 .bg-pink-500 {
+    background-color: #fda4af !important;
+  }
+
+  @media (max-width: 1279px) {
+    .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+
   .coach-market-panel,
   .coach-market-panel-large {
     border: 1px solid rgba(0, 0, 0, 0.08);
