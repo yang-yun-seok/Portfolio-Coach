@@ -1,7 +1,7 @@
 {
-  "id": "crawled-280266",
+  "id": "crawled-281400",
   "company": "㈜에이버튼",
-  "title": "[EA] 개발 프로젝트 매니저 (PM)",
+  "title": "[Project EA] 개발 프로젝트 매니저 (PM)",
   "role": "클라이언트",
   "roles": [
     "클라이언트"
@@ -12,7 +12,7 @@
     "JIRA/Confluence"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280266",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281400",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "프로젝트 ES, GD, EA (개발중)",
@@ -22,13 +22,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "PM, 프로젝트매니저, 개발PM, 일정관리, 언리얼5, UE5, 협업관리",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-06-12",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-06-11T20:16:51.084Z",
-  "lastCrawledAt": "2026-06-11T20:16:51.084Z",
+  "firstSeenAt": "2026-06-12T17:38:38.519Z",
+  "lastSeenAt": "2026-06-12T17:38:38.519Z",
+  "lastCrawledAt": "2026-06-12T17:38:38.519Z",
   "inactiveAt": null
 }

@@ -1,0 +1,36 @@
+{
+  "id": "crawled-281417",
+  "company": "블랙해머게임즈",
+  "title": "[블랙해머게임즈] 모바일 게임 개발자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "Unity",
+    "Git/SVN",
+    "iOS",
+    "Android"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281417",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "성지키기온라인, 왕키우기온라인, 미니디펜더스",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 06/30(화)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C, C++, 모바일, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-06-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-12T17:38:38.519Z",
+  "lastSeenAt": "2026-06-12T17:38:38.519Z",
+  "lastCrawledAt": "2026-06-12T17:38:38.519Z",
+  "inactiveAt": null
+}

@@ -1,5 +1,5 @@
 {
-  "id": "crawled-280271",
+  "id": "crawled-281407",
   "company": "㈜에이버튼",
   "title": "[Project ES] (계약직) 주니어 3D 배경 모델러",
   "role": "아트/UI",
@@ -14,7 +14,7 @@
     "ZBrush"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280271",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281407",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "프로젝트 ES, GD, EA (개발중)",
@@ -24,13 +24,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "3D, 배경, 원화, 모델링",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-06-12",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-06-11T20:16:51.084Z",
-  "lastCrawledAt": "2026-06-11T20:16:51.084Z",
+  "firstSeenAt": "2026-06-12T17:38:38.519Z",
+  "lastSeenAt": "2026-06-12T17:38:38.519Z",
+  "lastCrawledAt": "2026-06-12T17:38:38.519Z",
   "inactiveAt": null
 }

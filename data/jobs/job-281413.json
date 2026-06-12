@@ -1,5 +1,5 @@
 {
-  "id": "crawled-277604",
+  "id": "crawled-281413",
   "company": "㈜레드랩게임즈",
   "title": "[레드랩게임즈] MMORPG DBA",
   "role": "클라이언트",
@@ -11,7 +11,7 @@
     "SQL"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=277604",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281413",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "롬(ROM: Remember Of Majesty)",
@@ -21,13 +21,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "MS-SQL, DB, DB관리, Bi, DW",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-06-12",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-06-11T20:16:51.084Z",
-  "lastCrawledAt": "2026-06-11T20:16:51.084Z",
+  "firstSeenAt": "2026-06-12T17:38:38.519Z",
+  "lastSeenAt": "2026-06-12T17:38:38.519Z",
+  "lastCrawledAt": "2026-06-12T17:38:38.519Z",
   "inactiveAt": null
 }
