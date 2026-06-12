@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { AlertCircle, Eye, Loader2, LockKeyhole, LogIn } from 'lucide-react';
 
 const PREVIEW_AUTH_STORAGE_KEY = 'portfolio-coach-preview-auth-v1';
+const FORCE_AUTH_SCREEN_STORAGE_KEY = 'portfolio-coach-force-auth-screen-v1';
 
 function AuthLoadingScreen() {
   return (
@@ -142,12 +143,17 @@ export default function AuthGate({
   const handlePreviewEnter = () => {
     if (typeof window !== 'undefined') {
       window.sessionStorage.setItem(PREVIEW_AUTH_STORAGE_KEY, '1');
+      window.sessionStorage.removeItem(FORCE_AUTH_SCREEN_STORAGE_KEY);
     }
     setPreviewUnlocked(true);
   };
+  const shouldShowAuthPreview = typeof window !== 'undefined'
+    && window.sessionStorage.getItem(FORCE_AUTH_SCREEN_STORAGE_KEY) === '1'
+    && !authUser;
 
   if (isLocalSmokeBypass) return children;
   if (previewUnlocked) return children;
+  if (shouldShowAuthPreview) return <LoginScreen onSubmit={onSignIn} onPreviewEnter={handlePreviewEnter} error={authError} />;
   if (!authEnabled) return children;
   if (!configReady) {
     return <AuthErrorScreen message={authError || 'Firebase 클라이언트 설정이 완전하지 않습니다.'} />;

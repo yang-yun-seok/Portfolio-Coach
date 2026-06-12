@@ -6026,3 +6026,305 @@
       padding: 0.85rem;
     }
   }
+
+  /* Navigator reference instance override */
+  .coach-commandbar {
+    position: sticky;
+    top: 0;
+    z-index: 9000;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    isolation: isolate;
+    width: 100%;
+    min-height: 50px;
+    height: 50px;
+    padding: 0;
+    overflow: visible !important;
+    border-bottom: 1px solid #e2e8f0;
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+  }
+
+  .coach-navigator-breadcrumb {
+    position: absolute;
+    left: 16px;
+    top: 1px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 16px;
+    max-width: 18rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+    line-height: 13px;
+    text-align: left;
+  }
+
+  .coach-navigator-breadcrumb span {
+    color: #334155;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .coach-navigator-breadcrumb em {
+    color: #cbd5e1;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .coach-navigator-breadcrumb strong {
+    max-width: 180px;
+    overflow: hidden;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .coach-brandlockup,
+  .coach-command-status,
+  .coach-command-account,
+  .coach-track-menu {
+    display: none !important;
+  }
+
+  .coach-top-nav {
+    position: absolute;
+    left: calc(50% - 335px + 83px);
+    top: 18px;
+    z-index: 3;
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 80px;
+    width: 670px;
+    height: 30px;
+    min-width: 0;
+    overflow: visible !important;
+  }
+
+  .coach-top-nav-menu {
+    position: relative;
+    width: 170px;
+    height: 30px;
+    overflow: visible;
+  }
+
+  .coach-top-nav-menu summary {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 170px;
+    height: 32px;
+    min-height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent !important;
+    color: #000000 !important;
+    cursor: pointer;
+    font-family: "NEXON Lv1 Gothic", "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    list-style: none;
+    white-space: nowrap;
+  }
+
+  .coach-top-nav-menu summary span {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    min-width: max-content;
+    height: 28px;
+    color: #000000;
+  }
+
+  .coach-top-nav-menu summary svg {
+    width: 32px;
+    height: 32px;
+    color: #000000;
+    stroke-width: 4;
+  }
+
+  .coach-top-nav-menu[open] summary,
+  .coach-top-nav-menu.is-active summary {
+    border: 0;
+    background: transparent !important;
+    color: #000000 !important;
+  }
+
+  .coach-top-nav-dropdown {
+    position: absolute;
+    top: 46px;
+    left: 0;
+    z-index: 99999;
+    display: grid;
+    gap: 15px;
+    width: max-content;
+    min-width: 155px;
+    max-width: none;
+    padding: 16px 11px;
+    overflow: visible;
+    border: 0;
+    border-radius: 20px;
+    background: #ceddf3;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .coach-top-nav-item {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start !important;
+    gap: 8px;
+    width: 100%;
+    min-width: 133px;
+    min-height: 32px !important;
+    padding: 0 8px !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    background: transparent !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .coach-top-nav-item:hover,
+  .coach-top-nav-item.is-active {
+    background: rgba(255, 255, 255, 0.72) !important;
+    color: #000000 !important;
+  }
+
+  .coach-command-tools {
+    position: absolute;
+    top: 7px;
+    right: 16px;
+    z-index: 4;
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    min-width: 0;
+  }
+
+  .coach-command-tools > button {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: #1e1e1e !important;
+    box-shadow: none !important;
+  }
+
+  .coach-command-tools > button svg {
+    width: 36px;
+    height: 36px;
+    color: #1e1e1e !important;
+    stroke-width: 2.5;
+  }
+
+  .coach-login-command {
+    order: 1;
+  }
+
+  .coach-theme-command {
+    order: 2;
+  }
+
+  .coach-command-tools > button span,
+  .coach-command-tools > button small {
+    display: none !important;
+  }
+
+  .coach-command-tools > button:not(.coach-theme-command):not(.coach-login-command) {
+    display: none !important;
+  }
+
+  .coach-body-shell,
+  .coach-studio-shell {
+    overflow: visible;
+  }
+
+  .coach-body-shell .coach-workspace {
+    overflow: auto;
+  }
+
+  @media (max-width: 980px) {
+    .coach-top-nav {
+      left: 12px;
+      right: 88px;
+      top: 18px;
+      width: auto;
+      gap: 28px;
+      justify-content: flex-start;
+      overflow: visible !important;
+    }
+
+    .coach-top-nav-menu,
+    .coach-top-nav-menu summary {
+      width: auto;
+    }
+
+    .coach-top-nav-menu summary {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    .coach-top-nav-menu summary svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .coach-navigator-breadcrumb {
+      display: none;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .coach-commandbar {
+      height: auto;
+      min-height: 86px;
+    }
+
+    .coach-top-nav {
+      top: 48px;
+      left: 12px;
+      right: 12px;
+      gap: 18px;
+      overflow-x: visible !important;
+    }
+
+    .coach-top-nav-menu summary {
+      font-size: 15px;
+    }
+
+    .coach-top-nav-dropdown {
+      top: 34px;
+    }
+  }
