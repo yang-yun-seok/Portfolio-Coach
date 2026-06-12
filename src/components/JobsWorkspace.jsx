@@ -60,17 +60,52 @@ export default function JobsWorkspace({
     ? highlightedMatchedSkills
     : userInfo.skills.map((skill) => skill.name).slice(0, 6);
   const crawlStatus = formatCrawlStatus(jobsMetadata.lastCrawlStatus);
+  const previewMatchedJobs = (candidateJobs.length > 0 ? candidateJobs : jobs).slice(0, 3).map((job, index) => {
+    const score = [94, 87, 78][index] || Math.max(60, 92 - (index * 7));
+    const reqSkills = Array.isArray(job.reqSkills) && job.reqSkills.length > 0
+      ? job.reqSkills
+      : ['직무 이해', '협업', '포트폴리오 정리'];
+    return {
+      ...job,
+      id: job.id || `preview-job-${index}`,
+      score,
+      reqSkills,
+      aiMatchReason: 'AI 모델 없이 카드 디자인을 확인하기 위한 임시 추천 카드입니다. 실제 매칭 실행 전에도 카드 간격, 점수 breakdown, CTA 위치를 검수할 수 있습니다.',
+      aiStrengths: reqSkills.slice(0, 2),
+      aiCautions: ['실제 AI 우선순위 아님', '디자인 확인용'],
+      matchDetail: job.matchDetail || {
+        roleScore: index === 0 ? 15 : 10,
+        expScore: index === 0 ? 15 : 10,
+        skillScore: index === 0 ? 27 : 22,
+        fitScore: index === 0 ? 24 : 19,
+        multiScore: index === 0 ? 13 : 10,
+      },
+      companyInfo: job.companyInfo || {
+        name: job.company || '회사 정보',
+        games: job.mainGame || job.gameCategory || '-',
+        employees: '확인용',
+        revenue: '확인용',
+        benefits: '확인용',
+        news: ['AI 모델 없이 표시되는 임시 카드입니다.'],
+        aiAnalysis: '추천 공고 카드 UI 검수를 위한 임시 회사 정보입니다.',
+      },
+      url: job.url || 'https://www.gamejob.co.kr/',
+      isPreviewMatch: true,
+    };
+  });
+  const isPreviewResults = matchedJobs.length === 0 && !jobMatchState.running && previewMatchedJobs.length > 0;
+  const displayMatchedJobs = matchedJobs.length > 0 ? matchedJobs : previewMatchedJobs;
 
   const scoreCounts = {
-    all: matchedJobs.length,
-    '90+': matchedJobs.filter((job) => job.score >= 90).length,
-    '80+': matchedJobs.filter((job) => job.score >= 80).length,
-    '70+': matchedJobs.filter((job) => job.score >= 70).length,
-    '60+': matchedJobs.filter((job) => job.score >= 60).length,
-    '60-': matchedJobs.filter((job) => job.score < 60).length,
+    all: displayMatchedJobs.length,
+    '90+': displayMatchedJobs.filter((job) => job.score >= 90).length,
+    '80+': displayMatchedJobs.filter((job) => job.score >= 80).length,
+    '70+': displayMatchedJobs.filter((job) => job.score >= 70).length,
+    '60+': displayMatchedJobs.filter((job) => job.score >= 60).length,
+    '60-': displayMatchedJobs.filter((job) => job.score < 60).length,
   };
 
-  const filteredMatchedJobs = matchedJobs.filter((job) => {
+  const filteredMatchedJobs = displayMatchedJobs.filter((job) => {
     const scoreMatched = scoreFilter === 'all'
       ? true
       : scoreFilter === '60-'
@@ -92,8 +127,8 @@ export default function JobsWorkspace({
   });
 
   const visibleMatchedJobs = filteredMatchedJobs.slice(0, visibleJobs);
-  const hasMatchResults = jobMatchState.attempted && matchedJobs.length > 0;
-  const showEmptyResult = jobMatchState.attempted && !jobMatchState.running && !jobMatchState.error && matchedJobs.length === 0;
+  const hasMatchResults = !jobMatchState.running && displayMatchedJobs.length > 0;
+  const showEmptyResult = jobMatchState.attempted && !jobMatchState.running && !jobMatchState.error && displayMatchedJobs.length === 0;
 
   return (
     <div className="coach-jobs-workspace apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
@@ -115,8 +150,8 @@ export default function JobsWorkspace({
         </article>
         <article className="coach-jobs-kpi-card rounded-[24px] border border-slate-200 bg-white px-5 py-4 shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">매칭 결과</p>
-          <strong className="mt-2 block text-2xl font-black tracking-tight text-slate-900">{matchedJobs.length}건</strong>
-          <p className="mt-1 text-sm text-slate-500">사용자 실행 후 생성</p>
+          <strong className="mt-2 block text-2xl font-black tracking-tight text-slate-900">{displayMatchedJobs.length}건</strong>
+          <p className="mt-1 text-sm text-slate-500">{isPreviewResults ? '디자인 확인용 임시 표시' : '사용자 실행 후 생성'}</p>
         </article>
       </div>
 
@@ -282,7 +317,11 @@ export default function JobsWorkspace({
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Matched Jobs</p>
             <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">AI 추천 공고 목록</h3>
-            <p className="mt-2 text-sm text-slate-600">매칭 실행 후에만 결과가 생성됩니다. 검색어와 점수 구간으로 후보를 좁혀 보세요.</p>
+            <p className="mt-2 text-sm text-slate-600">
+              {isPreviewResults
+                ? 'AI 모델 없이 카드 UI를 검수할 수 있도록 실제 공고 데이터 일부를 임시 카드로 표시하고 있습니다.'
+                : '매칭 실행 후 생성된 결과입니다. 검색어와 점수 구간으로 후보를 좁혀 보세요.'}
+            </p>
           </div>
           <div className="w-full max-w-md">
             <label className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
@@ -308,6 +347,11 @@ export default function JobsWorkspace({
 
         {hasMatchResults && (
           <div className="mt-5 flex flex-wrap gap-2">
+            {isPreviewResults && (
+              <span className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-700">
+                확인용 임시 카드
+              </span>
+            )}
             {[
               { key: 'all', label: '전체', color: 'bg-slate-100 text-slate-700' },
               { key: '90+', label: '90점↑', color: 'bg-emerald-100 text-emerald-700' },
@@ -345,7 +389,7 @@ export default function JobsWorkspace({
             </div>
           )}
 
-          {!jobMatchState.running && !jobMatchState.attempted && (
+          {!jobMatchState.running && !jobMatchState.attempted && !isPreviewResults && (
             <div className="rounded-[28px] border border-dashed border-slate-300 bg-slate-50 px-6 py-16 text-center">
               <Target size={28} className="mx-auto mb-4 text-slate-400" />
               <p className="text-lg font-bold text-slate-700">아직 AI 추천 공고 매칭을 실행하지 않았습니다.</p>
