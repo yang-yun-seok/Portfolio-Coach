@@ -233,20 +233,22 @@ async function run() {
     ];
 
     const initialState = await page.evaluate(() => {
-      const toolLabels = [...document.querySelectorAll('.coach-side-tool-label')].map((node) => node.textContent.trim());
+      const toolLabels = [...document.querySelectorAll('.coach-top-nav-item span')].map((node) => node.textContent.trim());
+      const groupLabels = [...document.querySelectorAll('.coach-top-nav-menu summary span')].map((node) => node.textContent.trim());
       return {
         title: document.title,
         hasRootShell: !!document.querySelector('.coach-shell'),
-        hasSideTools: !!document.querySelector('.coach-side-tools'),
+        hasTopNav: !!document.querySelector('.coach-top-nav'),
         hasGuideButton: [...document.querySelectorAll('button')].some((button) => button.innerText.includes('사용 설명서')),
         hasLegacyStepUi: !!document.querySelector('.coach-side-step, .coach-side-steps, .is-complete, .coach-progress-track, .personality-progress-track'),
         overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+        groupLabels,
         toolLabels,
       };
     });
 
     if (!initialState.hasRootShell) throw new Error('Root shell not found.');
-    if (!initialState.hasSideTools) throw new Error('Side tools navigation not found.');
+    if (!initialState.hasTopNav) throw new Error('Top navigation not found.');
     if (!initialState.hasGuideButton) throw new Error('User guide button not found.');
     if (initialState.hasLegacyStepUi) throw new Error('Legacy step/progress UI is still present.');
     if (initialState.overflowX) throw new Error('Horizontal overflow detected on initial screen.');
@@ -254,7 +256,13 @@ async function run() {
 
     for (const tool of expectedTools) {
       if (!initialState.toolLabels.includes(tool.label)) {
-        throw new Error(`Missing side tool: ${tool.label}`);
+        throw new Error(`Missing top navigation tool: ${tool.label}`);
+      }
+    }
+
+    for (const groupLabel of ['내 준비', '시장·공고', '면접·마감']) {
+      if (!initialState.groupLabels.includes(groupLabel)) {
+        throw new Error(`Missing top navigation group: ${groupLabel}`);
       }
     }
 

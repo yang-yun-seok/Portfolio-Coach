@@ -5738,3 +5738,291 @@
       min-width: 0;
     }
   }
+
+  /* Top Navigator transplant: sidebar-free workspace */
+  .coach-commandbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    min-height: 50px;
+    width: 100%;
+    padding: 0 0.75rem;
+    isolation: isolate;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+  }
+
+  .coach-brandlockup {
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding: 0.25rem 0.45rem;
+  }
+
+  .coach-brandmark {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .coach-brand-title {
+    font-size: 1rem;
+  }
+
+  .coach-brandcopy strong {
+    max-width: 11rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .coach-top-nav {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .coach-top-nav-menu,
+  .coach-track-menu {
+    position: relative;
+    flex: 0 0 auto;
+  }
+
+  .coach-top-nav-menu summary,
+  .coach-track-menu summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-height: 34px;
+    padding: 0 0.8rem;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+    color: #334155;
+    cursor: pointer;
+    font-size: 0.84rem;
+    font-weight: 700;
+    list-style: none;
+    white-space: nowrap;
+  }
+
+  .coach-top-nav-menu summary::-webkit-details-marker,
+  .coach-track-menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .coach-top-nav-menu[open] summary,
+  .coach-top-nav-menu.is-active summary,
+  .coach-track-menu[open] summary {
+    border-color: #111827;
+    background: #111827;
+    color: #ffffff;
+  }
+
+  .coach-top-nav-dropdown,
+  .coach-track-dropdown {
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    left: 0;
+    z-index: 60;
+    display: grid;
+    gap: 0.35rem;
+    min-width: 12.5rem;
+    padding: 0.45rem;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .coach-track-dropdown {
+    left: auto;
+    right: 0;
+  }
+
+  .coach-top-nav-item,
+  .coach-track-dropdown button {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start !important;
+    gap: 0.5rem;
+    min-height: 2.35rem !important;
+    width: 100%;
+    padding: 0.55rem 0.7rem !important;
+    border: 0 !important;
+    border-radius: 12px !important;
+    background: transparent !important;
+    color: #334155 !important;
+    box-shadow: none !important;
+    font-size: 0.84rem !important;
+    font-weight: 650 !important;
+    text-align: left;
+  }
+
+  .coach-top-nav-item:hover,
+  .coach-top-nav-item.is-active,
+  .coach-track-dropdown button:hover,
+  .coach-track-dropdown button.is-active {
+    background: #f1f5f9 !important;
+    color: #111827 !important;
+  }
+
+  .coach-track-dropdown .coach-track-reset {
+    margin-top: 0.25rem;
+    border-top: 1px solid #e2e8f0 !important;
+    border-radius: 0 0 12px 12px !important;
+    color: #64748b !important;
+  }
+
+  .coach-command-status {
+    flex: 0 1 18rem;
+    min-width: 13rem;
+    width: auto;
+    min-height: 38px;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(248, 250, 252, 0.72);
+  }
+
+  .coach-command-meta small {
+    display: none;
+  }
+
+  .coach-command-tools {
+    flex: 0 1 auto;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .coach-command-tools > button,
+  .coach-command-tools .coach-track-menu summary {
+    min-height: 34px;
+    padding: 0 0.75rem;
+  }
+
+  .coach-command-account {
+    min-height: 34px;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+  }
+
+  .coach-body-shell {
+    display: block;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    padding: 1.5rem;
+    background: #ffffff;
+  }
+
+  .coach-body-shell .coach-workspace {
+    height: 100%;
+    padding: 0 !important;
+  }
+
+  .coach-shell .coach-stage,
+  .coach-shell[data-feature="input"] .coach-stage,
+  .coach-shell[data-feature="feedback"] .coach-stage,
+  .coach-shell[data-feature="portfolio"] .coach-stage,
+  .coach-shell[data-feature="job-analysis"] .coach-stage,
+  .coach-shell[data-feature="jobs"] .coach-stage {
+    width: min(100%, 1280px);
+    max-width: min(100%, 1280px);
+  }
+
+  .coach-mobile-tools {
+    display: none !important;
+  }
+
+  @media (max-width: 1280px) {
+    .coach-body-shell {
+      padding: 1rem;
+    }
+
+    .coach-commandbar {
+      flex-wrap: wrap;
+      min-height: 50px;
+      padding-block: 0.4rem;
+    }
+
+    .coach-top-nav {
+      justify-content: flex-start;
+      order: 3;
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 0.1rem;
+    }
+
+    .coach-command-status {
+      flex: 1 1 14rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .coach-commandbar {
+      align-items: flex-start;
+    }
+
+    .coach-command-tools {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .coach-shell[data-feature="input"] .coach-input-shell-grid,
+    .coach-shell[data-feature="feedback"] .coach-feedback-hero,
+    .coach-shell[data-feature="portfolio"] .coach-portfolio-main-grid,
+    .coach-shell[data-feature="job-analysis"] .coach-job-overview,
+    .coach-shell[data-feature="jobs"] .coach-jobs-overview-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .coach-commandbar {
+      gap: 0.5rem;
+      padding: 0.55rem 0.65rem;
+      overflow-x: clip;
+    }
+
+    .coach-brandcopy strong,
+    .coach-command-status,
+    .coach-command-tools .coach-model-command small,
+    .coach-command-tools button span {
+      display: none;
+    }
+
+    .coach-command-tools {
+      margin-left: auto;
+    }
+
+    .coach-top-nav-menu summary {
+      min-height: 32px;
+      padding-inline: 0.65rem;
+      font-size: 0.78rem;
+    }
+
+    .coach-top-nav-dropdown,
+    .coach-track-dropdown {
+      position: fixed;
+      top: 3.35rem;
+      left: 0.75rem;
+      right: 0.75rem;
+      min-width: 0;
+    }
+
+    .coach-body-shell {
+      padding: 0.85rem;
+    }
+  }
