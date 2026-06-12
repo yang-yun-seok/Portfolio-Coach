@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
-import { AlertCircle, Loader2, LockKeyhole, LogIn } from 'lucide-react';
+import { AlertCircle, Eye, Loader2, LockKeyhole, LogIn } from 'lucide-react';
+
+const PREVIEW_AUTH_STORAGE_KEY = 'portfolio-coach-preview-auth-v1';
 
 function AuthLoadingScreen() {
   return (
@@ -40,7 +42,7 @@ function AuthErrorScreen({ message }) {
   );
 }
 
-function LoginScreen({ onSubmit, error }) {
+function LoginScreen({ onSubmit, onPreviewEnter, error }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -108,6 +110,10 @@ function LoginScreen({ onSubmit, error }) {
             {submitting ? <Loader2 size={18} className="animate-spin" /> : <LogIn size={18} />}
             로그인
           </button>
+          <button type="button" className="coach-auth-preview-button" onClick={onPreviewEnter}>
+            <Eye size={18} />
+            미리보기로 들어가기
+          </button>
         </form>
       </section>
     </main>
@@ -123,19 +129,30 @@ export default function AuthGate({
   onSignIn,
   children,
 }) {
+  const [previewUnlocked, setPreviewUnlocked] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.sessionStorage.getItem(PREVIEW_AUTH_STORAGE_KEY) === '1';
+  });
   const isLocalSmokeBypass = useMemo(() => {
     if (!authEnabled || typeof window === 'undefined') return false;
     const allowedHosts = new Set(['127.0.0.1', 'localhost']);
     const search = new URLSearchParams(window.location.search);
     return allowedHosts.has(window.location.hostname) && search.get('smoke') === '1';
   }, [authEnabled]);
+  const handlePreviewEnter = () => {
+    if (typeof window !== 'undefined') {
+      window.sessionStorage.setItem(PREVIEW_AUTH_STORAGE_KEY, '1');
+    }
+    setPreviewUnlocked(true);
+  };
 
   if (isLocalSmokeBypass) return children;
+  if (previewUnlocked) return children;
   if (!authEnabled) return children;
   if (!configReady) {
     return <AuthErrorScreen message={authError || 'Firebase 클라이언트 설정이 완전하지 않습니다.'} />;
   }
   if (authLoading) return <AuthLoadingScreen />;
-  if (!authUser) return <LoginScreen onSubmit={onSignIn} error={authError} />;
+  if (!authUser) return <LoginScreen onSubmit={onSignIn} onPreviewEnter={handlePreviewEnter} error={authError} />;
   return children;
 }
