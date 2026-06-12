@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, ChevronDown, LogIn, LogOut, Moon, Settings, Sparkles } from 'lucide-react';
+import { BookOpen, ChevronDown, KeyRound, Loader2, LogIn, LogOut, Moon, Settings, Sparkles } from 'lucide-react';
 
 export default function WorkspaceCommandBar({
   activeTab,
@@ -109,6 +109,10 @@ export default function WorkspaceCommandBar({
         <button type="button" onClick={onOpenSettings} title="설정" aria-label="설정">
           <Settings size={17} />
           <span>설정</span>
+        </button>
+        <button type="button" onClick={onOpenModelSettings} className="coach-api-command" title={`AI API 키 설정: ${modelSummary}`} aria-label="AI API 키 설정">
+          <KeyRound size={17} />
+          <span>AI API 연결</span>
         </button>
         <button type="button" onClick={onOpenModelSettings} className="coach-model-command" title={`AI 모델: ${modelSummary}`} aria-label="AI 모델">
           <Sparkles size={17} />
