@@ -31,7 +31,6 @@ import { usePortfolioSubmissions } from './hooks/usePortfolioSubmissions';
 import { useWorkspacePersistence } from './hooks/useWorkspacePersistence';
 import AuthGate from './components/AuthGate';
 import { EMPTY_INSTRUCTOR } from './components/InstructorFeedbackForm';
-import WorkspaceSidebar from './components/WorkspaceSidebar';
 import WorkspaceCommandBar from './components/WorkspaceCommandBar';
 import WorkspaceContent from './components/WorkspaceContent';
 import WorkspaceFeatureHeader from './components/WorkspaceFeatureHeader';
@@ -43,6 +42,7 @@ import TrackEntryGate from './components/TrackEntryGate';
 import UserGuideModal from './components/UserGuideModal';
 
 const TRACK_ENTRY_STORAGE_KEY = 'portfolio-coach-track-entry-v1';
+const PREVIEW_AUTH_STORAGE_KEY = 'portfolio-coach-preview-auth-v1';
 
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
 // "- **제목**: 내용" 또는 "**제목**: 내용" → { title, body } 로 분리
@@ -1051,6 +1051,12 @@ const { analyzeApplication } = useApplicationAnalysis({
     workspaceRef.current?.scrollTo({ top: 0, behavior: 'auto' });
   }, [activeTab, normalizedUserInfo.roleGroup]);
 
+  const handleRequestLogin = () => {
+    if (typeof window === 'undefined') return;
+    window.sessionStorage.removeItem(PREVIEW_AUTH_STORAGE_KEY);
+    window.location.reload();
+  };
+
   // ── 렌더링 ────────────────────────────────────────────────────────────
   return (
     <AuthGate
@@ -1063,17 +1069,25 @@ const { analyzeApplication } = useApplicationAnalysis({
     >
       <div data-feature={featureKey} className="apple-shell coach-shell coach-studio-shell apple-app-shell flex h-screen flex-col bg-slate-50 font-sans text-slate-900 selection:bg-indigo-100 relative">
       <WorkspaceCommandBar
+        activeTab={activeTab}
         activeLabel={activeNavItem.label}
         activeSectionLabel={activeNavSection.label}
+        authEnabled={authEnabled}
         authUser={authUser}
         currentTrackLabel={normalizedUserInfo.roleGroup}
         loading={loading}
         modelSummary={`${currentProvider?.label || '모델 선택'}${selectedModelId ? ` · ${selectedModelId}` : ''}${hasAiApiKey(aiApiKeys, selectedProvider) ? ' · 키 설정됨' : ' · 키 필요'}`}
+        navSections={navSections}
         onOpenGuide={() => setShowUserGuide(true)}
         onOpenModelSettings={() => setShowModelSettings(true)}
         onOpenSettings={() => setShowSettings(true)}
+        onRequestLogin={handleRequestLogin}
         onSelectInput={() => setActiveTab('input')}
+        onSelectTab={setActiveTab}
+        onSelectTrack={handleQuickTrackSelect}
+        onShowTrackGate={() => setShowTrackGate(true)}
         onSignOut={signOutUser}
+        roleGroups={ROLE_GROUPS}
       />
 
       {showTrackGate ? (
@@ -1120,18 +1134,6 @@ const { analyzeApplication } = useApplicationAnalysis({
         </div>
       </div>
 
-      <WorkspaceSidebar
-        activeTab={activeTab}
-        navSections={navSections}
-        onSelectTab={setActiveTab}
-        onSelectTrack={handleQuickTrackSelect}
-        onShowTrackGate={() => setShowTrackGate(true)}
-        roleDescription={selectedRoleGroupInfo.description}
-        roleDetailLabel={selectedRoleDetail.label}
-        roleGroup={normalizedUserInfo.roleGroup}
-        roleGroups={ROLE_GROUPS}
-        activeSectionLabel={activeNavSection.label}
-      />
       </div>
       )}
 
