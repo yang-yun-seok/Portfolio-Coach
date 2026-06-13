@@ -1,5 +1,5 @@
-import React from 'react';
-import { BookOpen, ChevronDown, KeyRound, Loader2, LogIn, LogOut, Moon, Settings } from 'lucide-react';
+import React, { useState } from 'react';
+import { BookOpen, ChevronDown, Gamepad2, KeyRound, Loader2, LogIn, LogOut, Settings } from 'lucide-react';
 
 export default function WorkspaceCommandBar({
   activeTab,
@@ -22,40 +22,66 @@ export default function WorkspaceCommandBar({
   onSignOut,
   roleGroups,
 }) {
+  const [openMenuId, setOpenMenuId] = useState(null);
+
+  const handleToggleMenu = (sectionId) => {
+    setOpenMenuId((current) => (current === sectionId ? null : sectionId));
+  };
+
+  const handleSelectTab = (tabId) => {
+    setOpenMenuId(null);
+    onSelectTab(tabId);
+  };
+
   return (
     <header className="coach-commandbar">
-      <button type="button" onClick={onSelectInput} className="coach-navigator-breadcrumb">
-        <span>{currentTrackLabel}</span>
-        <em>›</em>
-        <strong>{activeLabel}</strong>
+      <button type="button" onClick={onSelectInput} className="coach-brandlockup">
+        <span className="apple-brandmark coach-brandmark bg-indigo-500 p-2 rounded-lg">
+          <Gamepad2 size={24} className="text-white" />
+        </span>
+        <span className="coach-brandcopy">
+          <span className="coach-brand-title">Portfolio Coach</span>
+          <strong>게임 취업 준비 작업공간</strong>
+        </span>
       </button>
 
       <nav className="coach-top-nav" aria-label="Portfolio Coach 기능 이동">
         {navSections.map((section) => {
           const sectionActive = section.items.some((item) => item.id === activeTab);
+          const isOpen = openMenuId === section.id;
+          const menuId = `coach-top-nav-menu-${section.id}`;
           return (
-            <details key={section.id} className={`coach-top-nav-menu ${sectionActive ? 'is-active' : ''}`}>
-              <summary>
+            <div key={section.id} className={`coach-top-nav-menu ${sectionActive ? 'is-active' : ''} ${isOpen ? 'is-open' : ''}`}>
+              <button
+                type="button"
+                className="coach-top-nav-trigger"
+                aria-expanded={isOpen}
+                aria-controls={menuId}
+                onClick={() => handleToggleMenu(section.id)}
+              >
                 <span>{section.label}</span>
                 <ChevronDown size={15} />
-              </summary>
-              <div className="coach-top-nav-dropdown">
+              </button>
+              {isOpen ? (
+                <div id={menuId} className="coach-top-nav-dropdown" role="menu">
                 {section.items.map((item) => {
                   const isActive = activeTab === item.id;
                   return (
                     <button
                       key={item.id}
                       type="button"
+                      role="menuitem"
                       className={`coach-top-nav-item ${isActive ? 'is-active' : ''}`}
-                      onClick={() => onSelectTab(item.id)}
+                      onClick={() => handleSelectTab(item.id)}
                     >
                       <item.icon size={15} />
                       <span>{item.label}</span>
                     </button>
                   );
                 })}
-              </div>
-            </details>
+                </div>
+              ) : null}
+            </div>
           );
         })}
       </nav>
@@ -115,9 +141,9 @@ export default function WorkspaceCommandBar({
           <span>AI API 연결</span>
           <small>{modelSummary}</small>
         </button>
-        <button type="button" onClick={onOpenSettings} className="coach-theme-command" title="화면 모드" aria-label="화면 모드">
-          <Moon size={20} />
-          <span>화면 모드</span>
+        <button type="button" onClick={onOpenSettings} className="coach-settings-command" title="설정" aria-label="설정">
+          <Settings size={20} />
+          <span>설정</span>
         </button>
         {!authUser ? (
           <button type="button" onClick={onRequestLogin} className="coach-login-command" title={authEnabled ? '로그인' : '로그인 화면 확인'} aria-label="로그인">
