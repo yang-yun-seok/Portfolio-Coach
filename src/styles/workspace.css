@@ -6159,16 +6159,16 @@
   .coach-top-nav {
     position: absolute;
     left: 244px;
-    top: 18px;
+    top: 8px;
     z-index: 3;
     display: flex;
     flex: none;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 80px;
     width: 670px;
-    height: 30px;
+    height: 36px;
     min-width: 0;
     overflow: visible !important;
   }
@@ -6176,7 +6176,7 @@
   .coach-top-nav-menu {
     position: relative;
     width: 170px;
-    height: 30px;
+    height: 36px;
     overflow: visible;
   }
 
@@ -6186,8 +6186,8 @@
     justify-content: flex-start;
     gap: 10px;
     width: 170px;
-    height: 32px;
-    min-height: 32px;
+    height: 36px;
+    min-height: 36px;
     padding: 0;
     border: 0;
     border-radius: 8px;
@@ -6197,7 +6197,7 @@
     font-family: "NEXON Lv1 Gothic", "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
     font-size: 24px;
     font-weight: 700;
-    line-height: 28px;
+    line-height: 32px;
     list-style: none;
     white-space: nowrap;
     transition: background 160ms ease, color 160ms ease, transform 160ms ease;
@@ -6208,13 +6208,13 @@
     flex: 0 0 auto;
     align-items: center;
     min-width: max-content;
-    height: 28px;
+    height: 32px;
     color: #000000;
   }
 
   .coach-top-nav-trigger svg {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     color: #000000;
     stroke-width: 4;
     transition: transform 160ms ease;
@@ -6234,7 +6234,7 @@
 
   .coach-top-nav-dropdown {
     position: absolute;
-    top: 46px;
+    top: 43px;
     left: 0;
     z-index: 99999;
     display: grid;
@@ -6345,7 +6345,7 @@
     .coach-top-nav {
       left: 210px;
       right: 88px;
-      top: 18px;
+      top: 9px;
       width: auto;
       gap: 28px;
       justify-content: flex-start;
@@ -6359,12 +6359,12 @@
 
     .coach-top-nav-trigger {
       font-size: 18px;
-      line-height: 24px;
+      line-height: 26px;
     }
 
     .coach-top-nav-trigger svg {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
     }
 
     .coach-navigator-breadcrumb {
