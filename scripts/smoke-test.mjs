@@ -233,8 +233,7 @@ async function run() {
     ];
 
     const initialState = await page.evaluate(() => {
-      const toolLabels = [...document.querySelectorAll('.coach-top-nav-item span')].map((node) => node.textContent.trim());
-      const groupLabels = [...document.querySelectorAll('.coach-top-nav-menu summary span')].map((node) => node.textContent.trim());
+      const groupLabels = [...document.querySelectorAll('.coach-top-nav-trigger span')].map((node) => node.textContent.trim());
       return {
         title: document.title,
         hasRootShell: !!document.querySelector('.coach-shell'),
@@ -243,7 +242,6 @@ async function run() {
         hasLegacyStepUi: !!document.querySelector('.coach-side-step, .coach-side-steps, .is-complete, .coach-progress-track, .personality-progress-track'),
         overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
         groupLabels,
-        toolLabels,
       };
     });
 
@@ -254,15 +252,51 @@ async function run() {
     if (initialState.overflowX) throw new Error('Horizontal overflow detected on initial screen.');
     if (initialState.title !== 'Portfolio Coach') throw new Error(`Unexpected page title: ${initialState.title}`);
 
-    for (const tool of expectedTools) {
-      if (!initialState.toolLabels.includes(tool.label)) {
-        throw new Error(`Missing top navigation tool: ${tool.label}`);
-      }
-    }
-
     for (const groupLabel of ['내 준비', '시장·공고', '면접·마감']) {
       if (!initialState.groupLabels.includes(groupLabel)) {
         throw new Error(`Missing top navigation group: ${groupLabel}`);
+      }
+    }
+
+    const discoveredToolLabels = [];
+    const triggerCount = await page.$$eval('.coach-top-nav-trigger', (triggers) => triggers.length);
+    if (triggerCount !== 3) throw new Error(`Unexpected top navigation group count: ${triggerCount}`);
+
+    for (let index = 0; index < triggerCount; index += 1) {
+      await page.evaluate((triggerIndex) => {
+        document.querySelectorAll('.coach-top-nav-trigger')[triggerIndex]?.click();
+      }, index);
+      await page.waitForFunction(
+        (triggerIndex) => {
+          const menus = [...document.querySelectorAll('.coach-top-nav-menu')];
+          return menus.filter((menu) => menu.classList.contains('is-open')).length === 1
+            && menus[triggerIndex]?.classList.contains('is-open')
+            && menus[triggerIndex]?.querySelectorAll('.coach-top-nav-item').length > 0;
+        },
+        { timeout: 5000 },
+        index,
+      );
+
+      const openState = await page.evaluate((triggerIndex) => {
+        const menus = [...document.querySelectorAll('.coach-top-nav-menu')];
+        const openMenus = menus
+          .map((menu, menuIndex) => ({ menuIndex, isOpen: menu.classList.contains('is-open') }))
+          .filter((menu) => menu.isOpen);
+        const labels = [...(menus[triggerIndex]?.querySelectorAll('.coach-top-nav-item span') || [])]
+          .map((node) => node.textContent.trim());
+        return { openMenus, labels };
+      }, index);
+
+      if (openState.openMenus.length !== 1 || openState.openMenus[0].menuIndex !== index) {
+        throw new Error(`Top navigation dropdown exclusivity failed at index ${index}.`);
+      }
+
+      discoveredToolLabels.push(...openState.labels);
+    }
+
+    for (const tool of expectedTools) {
+      if (!discoveredToolLabels.includes(tool.label)) {
+        throw new Error(`Missing top navigation tool: ${tool.label}`);
       }
     }
 
