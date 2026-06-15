@@ -52,6 +52,12 @@
     --feature-soft: rgba(37, 99, 235, 0.06);
   }
 
+  .coach-shell[data-feature="job-analysis"] {
+    --feature-accent: #334155;
+    --feature-gradient: linear-gradient(135deg, rgba(51, 65, 85, 0.08) 0%, rgba(14, 165, 233, 0.03) 100%);
+    --feature-soft: rgba(51, 65, 85, 0.06);
+  }
+
   .coach-shell[data-feature="jobs"] {
     --feature-accent: #0f766e;
     --feature-gradient: linear-gradient(135deg, rgba(15, 118, 110, 0.08) 0%, rgba(15, 118, 110, 0.01) 100%);
@@ -497,6 +503,73 @@
   .coach-auth-form button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  .coach-auth-shell {
+    background:
+      radial-gradient(circle at 78% 24%, rgba(148, 163, 184, 0.16), transparent 12rem),
+      radial-gradient(circle at 18% 12%, rgba(37, 99, 235, 0.07), transparent 16rem),
+      #f8fafc;
+  }
+
+  .coach-auth-card {
+    gap: 1.15rem;
+    width: min(100%, 28rem);
+    padding: 2rem;
+    border-color: #d9e2ec;
+    border-radius: 26px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.96) 100%);
+    box-shadow: 0 28px 70px rgba(15, 23, 42, 0.12);
+  }
+
+  .coach-auth-card h1 {
+    font-size: 1.65rem;
+    letter-spacing: -0.035em;
+  }
+
+  .coach-auth-card p {
+    max-width: 23rem;
+    color: #64748b;
+    font-size: 0.88rem;
+  }
+
+  .coach-auth-logo {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 16px;
+    background: #111827;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+  }
+
+  .coach-auth-form {
+    gap: 1rem;
+  }
+
+  .coach-auth-form input {
+    min-height: 3.05rem;
+    border-color: #cbd5e1;
+    border-radius: 16px;
+    background: #ffffff;
+  }
+
+  .coach-auth-form button {
+    min-height: 3.05rem;
+    border-radius: 16px;
+    background: #111827;
+    box-shadow: 0 12px 24px rgba(17, 24, 39, 0.16);
+  }
+
+  .coach-auth-form .coach-auth-preview-button {
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #111827;
+    box-shadow: none;
+  }
+
+  .coach-auth-form .coach-auth-preview-button:hover {
+    border-color: #111827;
+    background: #f8fafc;
   }
 
   .coach-submission-meta {
@@ -4062,6 +4135,152 @@
     gap: 1.5rem;
   }
 
+  .coach-shell[data-feature="input"] .coach-stage,
+  .coach-shell[data-feature="feedback"] .coach-stage,
+  .coach-shell[data-feature="portfolio"] .coach-stage,
+  .coach-shell[data-feature="job-analysis"] .coach-stage,
+  .coach-shell[data-feature="jobs"] .coach-stage {
+    max-width: 1120px;
+  }
+
+  .coach-shell[data-feature="input"] .coach-workbench-header,
+  .coach-shell[data-feature="feedback"] .coach-workbench-header,
+  .coach-shell[data-feature="portfolio"] .coach-workbench-header,
+  .coach-shell[data-feature="job-analysis"] .coach-workbench-header,
+  .coach-shell[data-feature="jobs"] .coach-workbench-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.8rem;
+    border-bottom: 0;
+  }
+
+  .coach-shell[data-feature="input"] .coach-workbench-heading h2,
+  .coach-shell[data-feature="feedback"] .coach-workbench-heading h2,
+  .coach-shell[data-feature="portfolio"] .coach-workbench-heading h2,
+  .coach-shell[data-feature="job-analysis"] .coach-workbench-heading h2,
+  .coach-shell[data-feature="jobs"] .coach-workbench-heading h2 {
+    font-size: clamp(2.15rem, 3.3vw, 3rem);
+    font-weight: 780;
+    letter-spacing: -0.04em;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-shell,
+  .coach-shell[data-feature="input"] .coach-input-section-shell,
+  .coach-shell[data-feature="feedback"] .coach-feedback-hero,
+  .coach-shell[data-feature="feedback"] .coach-feedback-context-card,
+  .coach-shell[data-feature="feedback"] .coach-feedback-lens,
+  .coach-shell[data-feature="feedback"] .coach-feedback-doc-card,
+  .coach-shell[data-feature="feedback"] .coach-feedback-custom,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-hero,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-lens-panel,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-review-panel,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-github,
+  .coach-shell[data-feature="job-analysis"] .coach-job-hero,
+  .coach-shell[data-feature="job-analysis"] .coach-job-stat-card,
+  .coach-shell[data-feature="job-analysis"] .coach-job-chart-panel,
+  .coach-shell[data-feature="job-analysis"] .coach-job-history-panel,
+  .coach-shell[data-feature="job-analysis"] .coach-job-ai-panel,
+  .coach-shell[data-feature="job-analysis"] .coach-job-list-panel,
+  .coach-shell[data-feature="jobs"] .coach-jobs-kpi-card,
+  .coach-shell[data-feature="jobs"] .coach-jobs-match-shell,
+  .coach-shell[data-feature="jobs"] .coach-jobs-profile-shell,
+  .coach-shell[data-feature="jobs"] .coach-jobs-lens-grid article,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell {
+    border-color: #d9e2ec !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-shell,
+  .coach-shell[data-feature="feedback"] .coach-feedback-hero,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-hero,
+  .coach-shell[data-feature="job-analysis"] .coach-job-hero {
+    border-radius: 26px !important;
+    background:
+      radial-gradient(circle at 86% 16%, rgba(148, 163, 184, 0.14), transparent 15rem),
+      linear-gradient(180deg, #ffffff 0%, #fbfdff 100%) !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-section-shell,
+  .coach-shell[data-feature="feedback"] .coach-feedback-context-card,
+  .coach-shell[data-feature="feedback"] .coach-feedback-lens,
+  .coach-shell[data-feature="feedback"] .coach-feedback-doc-card,
+  .coach-shell[data-feature="feedback"] .coach-feedback-custom,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-lens-panel,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-review-panel,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-github,
+  .coach-shell[data-feature="job-analysis"] .coach-job-stat-card,
+  .coach-shell[data-feature="job-analysis"] .coach-job-chart-panel,
+  .coach-shell[data-feature="job-analysis"] .coach-job-history-panel,
+  .coach-shell[data-feature="job-analysis"] .coach-job-ai-panel,
+  .coach-shell[data-feature="job-analysis"] .coach-job-list-panel {
+    border-radius: 22px !important;
+    background: #ffffff !important;
+  }
+
+  .coach-shell[data-feature="input"] input,
+  .coach-shell[data-feature="input"] select,
+  .coach-shell[data-feature="input"] textarea,
+  .coach-shell[data-feature="job-analysis"] input,
+  .coach-shell[data-feature="job-analysis"] select {
+    min-height: 2.75rem;
+    border-color: #cbd5e1 !important;
+    border-radius: 14px !important;
+    background: #ffffff !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-summary-card,
+  .coach-shell[data-feature="input"] .coach-input-skill-shell,
+  .coach-shell[data-feature="input"] .coach-input-doc-shell li,
+  .coach-shell[data-feature="feedback"] .coach-feedback-lens-card,
+  .coach-shell[data-feature="feedback"] .coach-feedback-custom-card,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-meta-card,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-lens-card,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-review-row,
+  .coach-shell[data-feature="job-analysis"] .coach-job-insight-card,
+  .coach-shell[data-feature="job-analysis"] .coach-job-list-card {
+    border-color: #e2e8f0 !important;
+    border-radius: 18px !important;
+    background: #fbfdff !important;
+  }
+
+  .coach-shell[data-feature="input"] button.bg-indigo-600,
+  .coach-shell[data-feature="input"] button.bg-indigo-100,
+  .coach-shell[data-feature="feedback"] button.bg-indigo-600,
+  .coach-shell[data-feature="portfolio"] button.bg-indigo-600,
+  .coach-shell[data-feature="job-analysis"] button.bg-indigo-600,
+  .coach-shell[data-feature="jobs"] button.bg-indigo-600 {
+    background: #111827 !important;
+    color: #ffffff !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-side {
+    border-left-color: #d9e2ec !important;
+    background:
+      radial-gradient(circle at 90% 14%, rgba(45, 212, 191, 0.16), transparent 12rem),
+      linear-gradient(180deg, #f8fafc 0%, #ffffff 100%) !important;
+    color: #0f172a;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-side h4,
+  .coach-shell[data-feature="input"] .coach-input-side p,
+  .coach-shell[data-feature="input"] .coach-input-side li {
+    color: #0f172a !important;
+  }
+
+  .coach-shell[data-feature="feedback"] .apple-empty-state,
+  .coach-shell[data-feature="portfolio"] .apple-empty-state {
+    min-height: 26rem;
+    border: 1px dashed #cbd5e1;
+    border-radius: 26px;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(148, 163, 184, 0.16), transparent 12rem),
+      #ffffff;
+  }
+
+  .coach-shell[data-feature="job-analysis"] .coach-job-ai-panel::before,
+  .coach-shell[data-feature="job-analysis"] .coach-job-list-panel::before {
+    background: #111827;
+  }
+
   .coach-commandbar {
     grid-template-columns: minmax(14rem, auto) minmax(18rem, 1fr) auto;
     gap: 0.8rem;
@@ -4416,6 +4635,419 @@
   .coach-jobs-profile-shell {
     display: grid;
     align-content: start;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-stage {
+    max-width: 1120px;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-workbench-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.8rem;
+    border-bottom: 0;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-workbench-heading h2 {
+    font-size: clamp(2.15rem, 3.3vw, 3rem);
+    font-weight: 780;
+    letter-spacing: -0.04em;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-workbench-title > p:last-child {
+    max-width: 48rem;
+    color: #64748b !important;
+    font-size: 0.96rem;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-workspace {
+    gap: 1.9rem;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-kpi-grid {
+    gap: 1.35rem;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-kpi-card {
+    min-height: 6.25rem;
+    padding: 1.1rem 1.25rem !important;
+    border-color: #d9e2ec !important;
+    border-radius: 18px !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-kpi-card strong {
+    font-size: 1.65rem;
+    letter-spacing: -0.035em;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-overview-grid {
+    gap: 2rem;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-match-shell,
+  .coach-shell[data-feature="jobs"] .coach-jobs-profile-shell,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell {
+    border-color: #b8c7d9 !important;
+    border-radius: 26px !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-match-shell,
+  .coach-shell[data-feature="jobs"] .coach-jobs-profile-shell {
+    padding: 1.55rem !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-workflow-card,
+  .coach-shell[data-feature="jobs"] .coach-jobs-filter-scope,
+  .coach-shell[data-feature="jobs"] .coach-jobs-match-shell .rounded-2xl {
+    border-color: #dbe4ef !important;
+    border-radius: 18px !important;
+    background: #fbfdff !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-lens-grid {
+    gap: 2rem;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-lens-grid article {
+    min-height: 6.1rem;
+    padding: 1.25rem !important;
+    border-color: #d9e2ec !important;
+    border-radius: 18px !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell {
+    padding: 1.55rem !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .flex {
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .flex > .w-full {
+    max-width: 20rem;
+    padding: 1rem;
+    border: 1px solid #d9e2ec;
+    border-radius: 18px;
+    background: #ffffff;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .mt-5 {
+    gap: 0.65rem;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 18px;
+    background: #fbfdff;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .mt-5 button {
+    min-width: 4.25rem;
+    border-radius: 999px !important;
+    background: #ffffff;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .mt-5 button.bg-slate-100,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .mt-5 button.bg-emerald-100,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .mt-5 button.bg-green-100,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .mt-5 button.bg-blue-100,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .mt-5 button.bg-amber-100,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .mt-5 button.bg-red-100 {
+    background: #111827 !important;
+    color: #ffffff !important;
+    border-color: #111827 !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .mt-6.grid {
+    gap: 2rem;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .mt-6.grid > article {
+    padding: 1.55rem !important;
+    border-color: #b8c7d9 !important;
+    border-radius: 26px !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex {
+    gap: 1.5rem;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 {
+    min-width: 0;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 > .mb-3 span {
+    min-height: 1.85rem;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px !important;
+    border-color: #cbd5e1 !important;
+    background: #ffffff !important;
+    color: #64748b !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 > .mb-3 span.bg-indigo-100 {
+    background: #eef2ff !important;
+    color: #4338ca !important;
+    border-color: #c7d2fe !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 > .mb-3 span.bg-rose-100 {
+    background: #fff1f2 !important;
+    color: #be123c !important;
+    border-color: #fecdd3 !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article h4 {
+    max-width: 42rem;
+    color: #0f172a !important;
+    font-size: 1.4rem;
+    line-height: 1.25;
+    letter-spacing: -0.035em;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article h4 + p {
+    color: #64748b !important;
+    font-size: 0.9rem;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article h4 + p + div span {
+    border-radius: 999px !important;
+    border-color: #d9e2ec !important;
+    background: #ffffff !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article .bg-indigo-50 {
+    min-height: 10rem;
+    border-color: #dbe4ef !important;
+    border-radius: 20px !important;
+    background: #fbfdff !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article .bg-indigo-50 > p:first-child {
+    color: #2563eb !important;
+    font-size: 0.68rem;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article .bg-indigo-50 > p:nth-child(2) {
+    color: #475569 !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article .bg-indigo-50 span {
+    border: 1px solid #d9e2ec;
+    background: #ffffff !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article .border-slate-200.bg-white.p-4 {
+    border-color: transparent !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article .border-slate-200.bg-white.p-4 .grid {
+    gap: 1rem;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article .border-slate-200.bg-white.p-4 .grid > div {
+    padding: 0.85rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    background: #ffffff;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article .border-slate-200.bg-white.p-4 .grid > div > div:first-child {
+    margin-bottom: 0.25rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 {
+    align-self: stretch;
+    width: 12rem;
+    min-width: 12rem;
+    flex-shrink: 0;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 > div:first-child {
+    border-color: #16a34a !important;
+    border-radius: 18px !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 > div:first-child::before {
+    content: "TOTAL MATCH";
+    display: block;
+    margin-bottom: 0.25rem;
+    color: #16a34a;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 > a,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 > button {
+    min-height: 2.625rem;
+    padding-inline: 0.75rem;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 > a {
+    background: #111827 !important;
+    color: #ffffff !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 > button {
+    border-color: #cbd5e1 !important;
+    background: #ffffff !important;
+    color: #64748b !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 > a svg,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 > button svg {
+    flex-shrink: 0;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article .truncate {
+    min-width: 0;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 .bg-blue-500 {
+    background-color: #93c5fd !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 .bg-green-500 {
+    background-color: #86efac !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 .bg-purple-500 {
+    background-color: #c4b5fd !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 .bg-orange-500 {
+    background-color: #fde68a !important;
+  }
+
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .min-w-0 .bg-pink-500 {
+    background-color: #fda4af !important;
+  }
+
+  @media (max-width: 1279px) {
+    .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex > .shrink-0 {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+
+  @media (max-width: 1180px) {
+    .coach-shell[data-feature="input"] .coach-workspace,
+    .coach-shell[data-feature="feedback"] .coach-workspace,
+    .coach-shell[data-feature="portfolio"] .coach-workspace,
+    .coach-shell[data-feature="job-analysis"] .coach-workspace,
+    .coach-shell[data-feature="jobs"] .coach-workspace {
+      padding: 1.5rem !important;
+    }
+
+    .coach-shell[data-feature="input"] .coach-stage,
+    .coach-shell[data-feature="feedback"] .coach-stage,
+    .coach-shell[data-feature="portfolio"] .coach-stage,
+    .coach-shell[data-feature="job-analysis"] .coach-stage,
+    .coach-shell[data-feature="jobs"] .coach-stage {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .coach-shell[data-feature="input"] .coach-input-shell-grid,
+    .coach-shell[data-feature="feedback"] .coach-feedback-hero,
+    .coach-shell[data-feature="portfolio"] .coach-portfolio-main-grid,
+    .coach-shell[data-feature="job-analysis"] .coach-job-overview,
+    .coach-shell[data-feature="jobs"] .coach-jobs-overview-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    .coach-shell[data-feature="input"] .coach-input-main {
+      border-right: 0 !important;
+    }
+
+    .coach-shell[data-feature="feedback"] .coach-feedback-lens-grid,
+    .coach-shell[data-feature="feedback"] .coach-feedback-doc-grid,
+    .coach-shell[data-feature="feedback"] .coach-feedback-custom-grid,
+    .coach-shell[data-feature="portfolio"] .coach-portfolio-signal-grid,
+    .coach-shell[data-feature="job-analysis"] .coach-job-list-grid,
+    .coach-shell[data-feature="jobs"] .coach-jobs-kpi-grid,
+    .coach-shell[data-feature="jobs"] .coach-jobs-lens-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .flex {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .flex > .w-full {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .coach-shell[data-feature="input"] .coach-workspace,
+    .coach-shell[data-feature="feedback"] .coach-workspace,
+    .coach-shell[data-feature="portfolio"] .coach-workspace,
+    .coach-shell[data-feature="job-analysis"] .coach-workspace,
+    .coach-shell[data-feature="jobs"] .coach-workspace {
+      padding: 1rem !important;
+    }
+
+    .coach-shell[data-feature="input"] .coach-input-shell,
+    .coach-shell[data-feature="input"] .coach-input-section-shell,
+    .coach-shell[data-feature="feedback"] .coach-feedback-hero,
+    .coach-shell[data-feature="feedback"] .coach-feedback-context-card,
+    .coach-shell[data-feature="feedback"] .coach-feedback-lens,
+    .coach-shell[data-feature="feedback"] .coach-feedback-doc-card,
+    .coach-shell[data-feature="feedback"] .coach-feedback-custom,
+    .coach-shell[data-feature="portfolio"] .coach-portfolio-hero,
+    .coach-shell[data-feature="portfolio"] .coach-portfolio-lens-panel,
+    .coach-shell[data-feature="portfolio"] .coach-portfolio-review-panel,
+    .coach-shell[data-feature="portfolio"] .coach-portfolio-github,
+    .coach-shell[data-feature="job-analysis"] .coach-job-hero,
+    .coach-shell[data-feature="job-analysis"] .coach-job-stat-card,
+    .coach-shell[data-feature="job-analysis"] .coach-job-chart-panel,
+    .coach-shell[data-feature="job-analysis"] .coach-job-history-panel,
+    .coach-shell[data-feature="job-analysis"] .coach-job-ai-panel,
+    .coach-shell[data-feature="job-analysis"] .coach-job-list-panel,
+    .coach-shell[data-feature="jobs"] .coach-jobs-kpi-card,
+    .coach-shell[data-feature="jobs"] .coach-jobs-match-shell,
+    .coach-shell[data-feature="jobs"] .coach-jobs-profile-shell,
+    .coach-shell[data-feature="jobs"] .coach-jobs-results-shell {
+      border-radius: 18px !important;
+      padding: 1rem !important;
+    }
+
+    .coach-shell[data-feature="input"] .coach-input-summary,
+    .coach-shell[data-feature="feedback"] .coach-feedback-lens-grid,
+    .coach-shell[data-feature="feedback"] .coach-feedback-doc-grid,
+    .coach-shell[data-feature="feedback"] .coach-feedback-custom-grid,
+    .coach-shell[data-feature="portfolio"] .coach-portfolio-signal-grid,
+    .coach-shell[data-feature="job-analysis"] .coach-job-list-grid,
+    .coach-shell[data-feature="jobs"] .coach-jobs-kpi-grid,
+    .coach-shell[data-feature="jobs"] .coach-jobs-lens-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article > .flex {
+      gap: 1rem;
+    }
+
+    .coach-shell[data-feature="jobs"] .coach-jobs-results-shell article h4 {
+      max-width: none;
+      font-size: 1.18rem;
+    }
   }
 
   .coach-market-panel,
@@ -5104,5 +5736,896 @@
     .coach-workbench-meta div,
     .coach-workbench-meta button {
       min-width: 0;
+    }
+  }
+
+  /* Top Navigator transplant: sidebar-free workspace */
+  .coach-commandbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    min-height: 50px;
+    width: 100%;
+    padding: 0 0.75rem;
+    isolation: isolate;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+  }
+
+  .coach-brandlockup {
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding: 0.25rem 0.45rem;
+  }
+
+  .coach-brandmark {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .coach-brand-title {
+    font-size: 1rem;
+  }
+
+  .coach-brandcopy strong {
+    max-width: 11rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .coach-top-nav {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .coach-top-nav-menu,
+  .coach-track-menu {
+    position: relative;
+    flex: 0 0 auto;
+  }
+
+  .coach-top-nav-menu summary,
+  .coach-track-menu summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-height: 34px;
+    padding: 0 0.8rem;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+    color: #334155;
+    cursor: pointer;
+    font-size: 0.84rem;
+    font-weight: 700;
+    list-style: none;
+    white-space: nowrap;
+  }
+
+  .coach-top-nav-menu summary::-webkit-details-marker,
+  .coach-track-menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .coach-top-nav-menu[open] summary,
+  .coach-top-nav-menu.is-active summary,
+  .coach-track-menu[open] summary {
+    border-color: #111827;
+    background: #111827;
+    color: #ffffff;
+  }
+
+  .coach-top-nav-dropdown,
+  .coach-track-dropdown {
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    left: 0;
+    z-index: 60;
+    display: grid;
+    gap: 0.35rem;
+    min-width: 12.5rem;
+    padding: 0.45rem;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .coach-track-dropdown {
+    left: auto;
+    right: 0;
+  }
+
+  .coach-top-nav-item,
+  .coach-track-dropdown button {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start !important;
+    gap: 0.5rem;
+    min-height: 2.35rem !important;
+    width: 100%;
+    padding: 0.55rem 0.7rem !important;
+    border: 0 !important;
+    border-radius: 12px !important;
+    background: transparent !important;
+    color: #334155 !important;
+    box-shadow: none !important;
+    font-size: 0.84rem !important;
+    font-weight: 650 !important;
+    text-align: left;
+  }
+
+  .coach-top-nav-item:hover,
+  .coach-top-nav-item.is-active,
+  .coach-track-dropdown button:hover,
+  .coach-track-dropdown button.is-active {
+    background: #f1f5f9 !important;
+    color: #111827 !important;
+  }
+
+  .coach-track-dropdown .coach-track-reset {
+    margin-top: 0.25rem;
+    border-top: 1px solid #e2e8f0 !important;
+    border-radius: 0 0 12px 12px !important;
+    color: #64748b !important;
+  }
+
+  .coach-command-status {
+    flex: 0 1 18rem;
+    min-width: 13rem;
+    width: auto;
+    min-height: 38px;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(248, 250, 252, 0.72);
+  }
+
+  .coach-command-meta small {
+    display: none;
+  }
+
+  .coach-command-tools {
+    flex: 0 1 auto;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .coach-command-tools > button,
+  .coach-command-tools .coach-track-menu summary {
+    min-height: 34px;
+    padding: 0 0.75rem;
+  }
+
+  .coach-command-account {
+    min-height: 34px;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+  }
+
+  .coach-body-shell {
+    display: block;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    padding: 1.5rem;
+    background: #ffffff;
+  }
+
+  .coach-body-shell .coach-workspace {
+    height: 100%;
+    padding: 0 !important;
+  }
+
+  .coach-shell .coach-stage,
+  .coach-shell[data-feature="input"] .coach-stage,
+  .coach-shell[data-feature="feedback"] .coach-stage,
+  .coach-shell[data-feature="portfolio"] .coach-stage,
+  .coach-shell[data-feature="job-analysis"] .coach-stage,
+  .coach-shell[data-feature="jobs"] .coach-stage {
+    width: min(100%, 1280px);
+    max-width: min(100%, 1280px);
+  }
+
+  .coach-mobile-tools {
+    display: none !important;
+  }
+
+  @media (max-width: 1280px) {
+    .coach-body-shell {
+      padding: 1rem;
+    }
+
+    .coach-commandbar {
+      flex-wrap: wrap;
+      min-height: 50px;
+      padding-block: 0.4rem;
+    }
+
+    .coach-top-nav {
+      justify-content: flex-start;
+      order: 3;
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 0.1rem;
+    }
+
+    .coach-command-status {
+      flex: 1 1 14rem;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .coach-commandbar {
+      align-items: flex-start;
+    }
+
+    .coach-command-tools {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .coach-shell[data-feature="input"] .coach-input-shell-grid,
+    .coach-shell[data-feature="feedback"] .coach-feedback-hero,
+    .coach-shell[data-feature="portfolio"] .coach-portfolio-main-grid,
+    .coach-shell[data-feature="job-analysis"] .coach-job-overview,
+    .coach-shell[data-feature="jobs"] .coach-jobs-overview-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .coach-commandbar {
+      gap: 0.5rem;
+      padding: 0.55rem 0.65rem;
+      overflow-x: clip;
+    }
+
+    .coach-brandcopy strong,
+    .coach-command-status,
+    .coach-command-tools .coach-model-command small,
+    .coach-command-tools button span {
+      display: none;
+    }
+
+    .coach-command-tools {
+      margin-left: auto;
+    }
+
+    .coach-top-nav-menu summary {
+      min-height: 32px;
+      padding-inline: 0.65rem;
+      font-size: 0.78rem;
+    }
+
+    .coach-top-nav-dropdown,
+    .coach-track-dropdown {
+      position: fixed;
+      top: 3.35rem;
+      left: 0.75rem;
+      right: 0.75rem;
+      min-width: 0;
+    }
+
+    .coach-body-shell {
+      padding: 0.85rem;
+    }
+  }
+
+  /* Navigator reference instance override */
+  .coach-commandbar {
+    position: sticky;
+    top: 0;
+    z-index: 9000;
+    box-sizing: border-box;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    isolation: isolate;
+    width: 100%;
+    min-height: 50px;
+    height: 50px;
+    padding: 0;
+    overflow: visible !important;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.42);
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+  }
+
+  .coach-commandbar::after {
+    content: none;
+  }
+
+  .coach-navigator-breadcrumb {
+    position: absolute;
+    left: 16px;
+    top: 1px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 16px;
+    max-width: 18rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+    line-height: 13px;
+    text-align: left;
+  }
+
+  .coach-navigator-breadcrumb span {
+    color: #334155;
+    font-size: 11px;
+    font-weight: 500;
+  }
+
+  .coach-navigator-breadcrumb em {
+    color: #cbd5e1;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .coach-navigator-breadcrumb strong {
+    max-width: 180px;
+    overflow: hidden;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .coach-command-status,
+  .coach-command-account,
+  .coach-track-menu {
+    display: none !important;
+  }
+
+  .coach-brandlockup {
+    position: absolute;
+    top: 4px;
+    left: 16px;
+    z-index: 2;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 9px;
+    width: auto;
+    height: 42px;
+    min-height: 0;
+    padding: 0 10px 0 0;
+    border: 0;
+    border-radius: 16px;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .coach-brandlockup:hover {
+    background: rgba(15, 23, 42, 0.06) !important;
+  }
+
+  .coach-brandmark {
+    width: 34px;
+    height: 34px;
+    border-radius: 50% !important;
+    background: #000000 !important;
+  }
+
+  .coach-brandmark svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .coach-brandcopy {
+    display: grid;
+    gap: 2px;
+  }
+
+  .coach-brand-title {
+    font-size: 15px;
+    line-height: 1;
+  }
+
+  .coach-brandcopy strong {
+    font-size: 10px;
+    line-height: 1.1;
+  }
+
+  .coach-workspace p,
+  .coach-workspace li,
+  .coach-workspace input,
+  .coach-workspace select,
+  .coach-workspace textarea {
+    font-size: 15px;
+  }
+
+  .coach-workspace p,
+  .coach-workspace li {
+    line-height: 1.65;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-workspace,
+  .coach-shell[data-feature="feedback"] .coach-review-page,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-page,
+  .coach-shell[data-feature="job-analysis"] .coach-job-analysis,
+  .coach-shell[data-feature="jobs"] .coach-jobs-workspace {
+    gap: clamp(1.5rem, 2vw, 2.1rem) !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-summary,
+  .coach-shell[data-feature="feedback"] .coach-review-meta-grid,
+  .coach-shell[data-feature="feedback"] .coach-review-doc-grid,
+  .coach-shell[data-feature="feedback"] .coach-review-principles-grid,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-grid,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-signal-grid,
+  .coach-shell[data-feature="job-analysis"] .coach-job-overview,
+  .coach-shell[data-feature="job-analysis"] .coach-job-list-grid,
+  .coach-shell[data-feature="jobs"] .coach-jobs-kpi-grid,
+  .coach-shell[data-feature="jobs"] .coach-jobs-overview-grid,
+  .coach-shell[data-feature="jobs"] .coach-jobs-lens-grid {
+    gap: clamp(1rem, 1.45vw, 1.45rem) !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-main,
+  .coach-shell[data-feature="input"] .coach-input-side,
+  .coach-shell[data-feature="input"] .coach-input-section-shell,
+  .coach-shell[data-feature="feedback"] .coach-review-header,
+  .coach-shell[data-feature="feedback"] .coach-review-surface,
+  .coach-shell[data-feature="portfolio"] .coach-review-surface,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-signal-panel,
+  .coach-shell[data-feature="job-analysis"] .coach-market-panel,
+  .coach-shell[data-feature="job-analysis"] .coach-market-panel-large,
+  .coach-shell[data-feature="jobs"] .coach-jobs-match-shell,
+  .coach-shell[data-feature="jobs"] .coach-jobs-profile-shell,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell {
+    padding: clamp(1.35rem, 1.7vw, 1.8rem) !important;
+  }
+
+  .coach-shell[data-feature="feedback"] .coach-review-list,
+  .coach-shell[data-feature="feedback"] .coach-review-target-grid,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-queue-list,
+  .coach-shell[data-feature="job-analysis"] .coach-market-analysis-body,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .mt-6.grid {
+    gap: clamp(1rem, 1.35vw, 1.35rem) !important;
+  }
+
+  .coach-shell[data-feature="feedback"] .coach-review-list-row,
+  .coach-shell[data-feature="portfolio"] .coach-portfolio-queue-row,
+  .coach-shell[data-feature="job-analysis"] .coach-market-list-card,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell > .mt-6.grid > article {
+    padding: clamp(1.1rem, 1.4vw, 1.5rem) !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-section-shell h3,
+  .coach-shell[data-feature="feedback"] .coach-review-section-head,
+  .coach-shell[data-feature="portfolio"] .coach-review-section-head,
+  .coach-shell[data-feature="job-analysis"] .coach-market-title,
+  .coach-shell[data-feature="jobs"] .coach-jobs-results-shell h3 {
+    margin-bottom: 0.25rem;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-stage,
+  .coach-shell[data-feature="interview-basic"] .coach-stage,
+  .coach-shell[data-feature="personality-test"] .coach-stage,
+  .coach-shell[data-feature="pdf-export"] .coach-stage {
+    max-width: 1120px;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-interview-page,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-page,
+  .coach-shell[data-feature="personality-test"] .coach-personality-page,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-page {
+    gap: clamp(1.55rem, 2vw, 2.15rem) !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-review-shell,
+  .coach-shell[data-feature="interview"] .coach-review-surface,
+  .coach-shell[data-feature="interview-basic"] .coach-review-shell,
+  .coach-shell[data-feature="interview-basic"] .coach-review-surface,
+  .coach-shell[data-feature="personality-test"] .coach-review-shell,
+  .coach-shell[data-feature="personality-test"] .coach-review-surface,
+  .coach-shell[data-feature="personality-test"] .coach-personality-fit-card,
+  .coach-shell[data-feature="personality-test"] .coach-personality-question,
+  .coach-shell[data-feature="personality-test"] .coach-personality-trait,
+  .coach-shell[data-feature="personality-test"] .coach-personality-note-card,
+  .coach-shell[data-feature="pdf-export"] .coach-review-shell,
+  .coach-shell[data-feature="pdf-export"] .coach-review-surface {
+    border-color: #d9e2ec !important;
+    border-radius: 24px !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-review-header,
+  .coach-shell[data-feature="interview"] .coach-review-surface,
+  .coach-shell[data-feature="interview-basic"] .coach-review-header,
+  .coach-shell[data-feature="interview-basic"] .coach-review-surface,
+  .coach-shell[data-feature="personality-test"] .coach-review-header,
+  .coach-shell[data-feature="personality-test"] .coach-review-surface,
+  .coach-shell[data-feature="personality-test"] .coach-personality-fit-card,
+  .coach-shell[data-feature="personality-test"] .coach-personality-question,
+  .coach-shell[data-feature="personality-test"] .coach-personality-trait,
+  .coach-shell[data-feature="personality-test"] .coach-personality-note-card,
+  .coach-shell[data-feature="pdf-export"] .coach-review-header,
+  .coach-shell[data-feature="pdf-export"] .coach-review-surface {
+    padding: clamp(1.35rem, 1.8vw, 1.8rem) !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-review-meta-grid,
+  .coach-shell[data-feature="interview"] .coach-review-principles-grid,
+  .coach-shell[data-feature="interview"] .coach-interview-overview-grid,
+  .coach-shell[data-feature="interview"] .coach-interview-detail-grid,
+  .coach-shell[data-feature="interview-basic"] .coach-review-meta-grid,
+  .coach-shell[data-feature="interview-basic"] .coach-review-principles-grid,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-layout-grid,
+  .coach-shell[data-feature="personality-test"] .coach-personality-fit-grid,
+  .coach-shell[data-feature="personality-test"] .coach-personality-card-grid,
+  .coach-shell[data-feature="personality-test"] .coach-personality-tip-grid,
+  .coach-shell[data-feature="personality-test"] .coach-personality-question-list,
+  .coach-shell[data-feature="personality-test"] .coach-personality-split-grid,
+  .coach-shell[data-feature="pdf-export"] .coach-review-meta-grid,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-grid {
+    gap: clamp(1rem, 1.45vw, 1.45rem) !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-review-meta-card,
+  .coach-shell[data-feature="interview"] .coach-review-principle,
+  .coach-shell[data-feature="interview"] .coach-interview-brief-block,
+  .coach-shell[data-feature="interview"] .coach-interview-focus-block,
+  .coach-shell[data-feature="interview"] .coach-interview-question-item,
+  .coach-shell[data-feature="interview"] .coach-interview-answer-block,
+  .coach-shell[data-feature="interview"] .coach-interview-framework-card,
+  .coach-shell[data-feature="interview-basic"] .coach-review-meta-card,
+  .coach-shell[data-feature="interview-basic"] .coach-review-principle,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-flow-item,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-flow-point,
+  .coach-shell[data-feature="pdf-export"] .coach-review-meta-card,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-card,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-instructor-row,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-export-box {
+    border-color: #dbe4ef !important;
+    border-radius: 18px !important;
+    background: #fbfdff !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-review-header-main > p:last-child,
+  .coach-shell[data-feature="interview"] .coach-review-meta-card p,
+  .coach-shell[data-feature="interview"] .coach-review-principle p,
+  .coach-shell[data-feature="interview"] .coach-interview-brief-block p,
+  .coach-shell[data-feature="interview"] .coach-interview-focus-block p,
+  .coach-shell[data-feature="interview"] .coach-interview-answer-block p,
+  .coach-shell[data-feature="interview"] .coach-interview-framework-card p,
+  .coach-shell[data-feature="interview-basic"] .coach-review-header-main > p:last-child,
+  .coach-shell[data-feature="interview-basic"] .coach-review-meta-card p,
+  .coach-shell[data-feature="interview-basic"] .coach-review-principle p,
+  .coach-shell[data-feature="interview-basic"] .coach-review-section-body,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-checklist span,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-flow-body,
+  .coach-shell[data-feature="personality-test"] .coach-personality-page p,
+  .coach-shell[data-feature="personality-test"] .coach-personality-page li,
+  .coach-shell[data-feature="pdf-export"] .coach-review-header-main > p:last-child,
+  .coach-shell[data-feature="pdf-export"] .coach-review-meta-card p,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-card p,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-instructor-row p {
+    font-size: 15px !important;
+    line-height: 1.68 !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-review-eyebrow,
+  .coach-shell[data-feature="interview"] .coach-review-meta-label,
+  .coach-shell[data-feature="interview"] .coach-review-principle-label,
+  .coach-shell[data-feature="interview-basic"] .coach-review-eyebrow,
+  .coach-shell[data-feature="interview-basic"] .coach-review-meta-label,
+  .coach-shell[data-feature="interview-basic"] .coach-review-principle-label,
+  .coach-shell[data-feature="pdf-export"] .coach-review-eyebrow,
+  .coach-shell[data-feature="pdf-export"] .coach-review-meta-label,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-instructor-row span {
+    color: #64748b !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-interview-answer-block.is-danger,
+  .coach-shell[data-feature="interview"] .coach-interview-answer-block.is-success,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-flow-icon,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-card.is-ready,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-card.is-pending {
+    background: #ffffff !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-interview-answer-block.is-danger {
+    border-left: 4px solid #fca5a5 !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-interview-answer-block.is-success,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-card.is-ready {
+    border-left: 4px solid #86efac !important;
+  }
+
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-card.is-pending {
+    border-left: 4px solid #fcd34d !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-role-section {
+    margin-bottom: 2rem !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-role-grid {
+    gap: 1rem !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-role-card {
+    min-height: 126px;
+    padding: 1.25rem !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-role-title {
+    font-size: 18px !important;
+    line-height: 1.35;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-role-body {
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+  }
+
+  .coach-top-nav {
+    position: absolute;
+    left: 244px;
+    top: 8px;
+    z-index: 3;
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    width: 670px;
+    height: 36px;
+    min-width: 0;
+    overflow: visible !important;
+  }
+
+  .coach-top-nav-menu {
+    position: relative;
+    width: 170px;
+    height: 36px;
+    overflow: visible;
+  }
+
+  .coach-top-nav-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 170px;
+    height: 36px;
+    min-height: 36px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: transparent !important;
+    color: #000000 !important;
+    cursor: pointer;
+    font-family: "NEXON Lv1 Gothic", "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    list-style: none;
+    white-space: nowrap;
+    transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+  }
+
+  .coach-top-nav-trigger span {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    min-width: max-content;
+    height: 32px;
+    color: #000000;
+  }
+
+  .coach-top-nav-trigger svg {
+    width: 28px;
+    height: 28px;
+    color: #000000;
+    stroke-width: 4;
+    transition: transform 160ms ease;
+  }
+
+  .coach-top-nav-trigger:hover,
+  .coach-top-nav-menu.is-open .coach-top-nav-trigger,
+  .coach-top-nav-menu.is-active .coach-top-nav-trigger {
+    border: 0;
+    background: rgba(255, 255, 255, 0.52) !important;
+    color: #000000 !important;
+  }
+
+  .coach-top-nav-menu.is-open .coach-top-nav-trigger svg {
+    transform: rotate(180deg);
+  }
+
+  .coach-top-nav-dropdown {
+    position: absolute;
+    top: 43px;
+    left: 0;
+    z-index: 99999;
+    display: grid;
+    gap: 15px;
+    width: max-content;
+    min-width: 155px;
+    max-width: none;
+    padding: 16px 11px;
+    overflow: visible;
+    border: 0;
+    border-radius: 20px;
+    background: #ceddf3;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .coach-top-nav-item {
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start !important;
+    gap: 8px;
+    width: 100%;
+    min-width: 133px;
+    min-height: 32px !important;
+    padding: 0 8px !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    background: transparent !important;
+    color: #0f172a !important;
+    box-shadow: none !important;
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .coach-top-nav-item:hover,
+  .coach-top-nav-item.is-active {
+    background: rgba(255, 255, 255, 0.72) !important;
+    color: #000000 !important;
+  }
+
+  .coach-command-tools {
+    position: absolute;
+    top: 7px;
+    right: 16px;
+    z-index: 4;
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+    min-width: 0;
+  }
+
+  .coach-command-tools > button {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: #1e1e1e !important;
+    box-shadow: none !important;
+  }
+
+  .coach-command-tools > button svg {
+    width: 36px;
+    height: 36px;
+    color: #1e1e1e !important;
+    stroke-width: 2.5;
+  }
+
+  .coach-login-command {
+    order: 2;
+  }
+
+  .coach-model-command {
+    order: 1;
+  }
+
+  .coach-settings-command {
+    order: 3;
+  }
+
+  .coach-command-tools > button span,
+  .coach-command-tools > button small {
+    display: none !important;
+  }
+
+  .coach-command-tools > button:not(.coach-model-command):not(.coach-settings-command):not(.coach-login-command) {
+    display: none !important;
+  }
+
+  .coach-body-shell,
+  .coach-studio-shell {
+    overflow: visible;
+  }
+
+  .coach-body-shell .coach-workspace {
+    overflow: auto;
+  }
+
+  @media (max-width: 980px) {
+    .coach-top-nav {
+      left: 210px;
+      right: 88px;
+      top: 9px;
+      width: auto;
+      gap: 28px;
+      justify-content: flex-start;
+      overflow: visible !important;
+    }
+
+    .coach-top-nav-menu,
+    .coach-top-nav-trigger {
+      width: auto;
+    }
+
+    .coach-top-nav-trigger {
+      font-size: 18px;
+      line-height: 26px;
+    }
+
+    .coach-top-nav-trigger svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .coach-navigator-breadcrumb {
+      display: none;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .coach-commandbar {
+      height: auto;
+      min-height: 86px;
+    }
+
+    .coach-top-nav {
+      top: 48px;
+      left: 12px;
+      right: 12px;
+      gap: 18px;
+      overflow-x: visible !important;
+    }
+
+    .coach-top-nav-trigger {
+      font-size: 15px;
+    }
+
+    .coach-top-nav-dropdown {
+      top: 34px;
     }
   }

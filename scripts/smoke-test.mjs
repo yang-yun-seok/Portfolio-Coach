@@ -233,28 +233,70 @@ async function run() {
     ];
 
     const initialState = await page.evaluate(() => {
-      const toolLabels = [...document.querySelectorAll('.coach-side-tool-label')].map((node) => node.textContent.trim());
+      const groupLabels = [...document.querySelectorAll('.coach-top-nav-trigger span')].map((node) => node.textContent.trim());
       return {
         title: document.title,
         hasRootShell: !!document.querySelector('.coach-shell'),
-        hasSideTools: !!document.querySelector('.coach-side-tools'),
+        hasTopNav: !!document.querySelector('.coach-top-nav'),
         hasGuideButton: [...document.querySelectorAll('button')].some((button) => button.innerText.includes('사용 설명서')),
         hasLegacyStepUi: !!document.querySelector('.coach-side-step, .coach-side-steps, .is-complete, .coach-progress-track, .personality-progress-track'),
         overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
-        toolLabels,
+        groupLabels,
       };
     });
 
     if (!initialState.hasRootShell) throw new Error('Root shell not found.');
-    if (!initialState.hasSideTools) throw new Error('Side tools navigation not found.');
+    if (!initialState.hasTopNav) throw new Error('Top navigation not found.');
     if (!initialState.hasGuideButton) throw new Error('User guide button not found.');
     if (initialState.hasLegacyStepUi) throw new Error('Legacy step/progress UI is still present.');
     if (initialState.overflowX) throw new Error('Horizontal overflow detected on initial screen.');
     if (initialState.title !== 'Portfolio Coach') throw new Error(`Unexpected page title: ${initialState.title}`);
 
+    for (const groupLabel of ['내 준비', '시장·공고', '면접·마감']) {
+      if (!initialState.groupLabels.includes(groupLabel)) {
+        throw new Error(`Missing top navigation group: ${groupLabel}`);
+      }
+    }
+
+    const discoveredToolLabels = [];
+    const triggerCount = await page.$$eval('.coach-top-nav-trigger', (triggers) => triggers.length);
+    if (triggerCount !== 3) throw new Error(`Unexpected top navigation group count: ${triggerCount}`);
+
+    for (let index = 0; index < triggerCount; index += 1) {
+      await page.evaluate((triggerIndex) => {
+        document.querySelectorAll('.coach-top-nav-trigger')[triggerIndex]?.click();
+      }, index);
+      await page.waitForFunction(
+        (triggerIndex) => {
+          const menus = [...document.querySelectorAll('.coach-top-nav-menu')];
+          return menus.filter((menu) => menu.classList.contains('is-open')).length === 1
+            && menus[triggerIndex]?.classList.contains('is-open')
+            && menus[triggerIndex]?.querySelectorAll('.coach-top-nav-item').length > 0;
+        },
+        { timeout: 5000 },
+        index,
+      );
+
+      const openState = await page.evaluate((triggerIndex) => {
+        const menus = [...document.querySelectorAll('.coach-top-nav-menu')];
+        const openMenus = menus
+          .map((menu, menuIndex) => ({ menuIndex, isOpen: menu.classList.contains('is-open') }))
+          .filter((menu) => menu.isOpen);
+        const labels = [...(menus[triggerIndex]?.querySelectorAll('.coach-top-nav-item span') || [])]
+          .map((node) => node.textContent.trim());
+        return { openMenus, labels };
+      }, index);
+
+      if (openState.openMenus.length !== 1 || openState.openMenus[0].menuIndex !== index) {
+        throw new Error(`Top navigation dropdown exclusivity failed at index ${index}.`);
+      }
+
+      discoveredToolLabels.push(...openState.labels);
+    }
+
     for (const tool of expectedTools) {
-      if (!initialState.toolLabels.includes(tool.label)) {
-        throw new Error(`Missing side tool: ${tool.label}`);
+      if (!discoveredToolLabels.includes(tool.label)) {
+        throw new Error(`Missing top navigation tool: ${tool.label}`);
       }
     }
 

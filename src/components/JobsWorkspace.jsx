@@ -60,17 +60,18 @@ export default function JobsWorkspace({
     ? highlightedMatchedSkills
     : userInfo.skills.map((skill) => skill.name).slice(0, 6);
   const crawlStatus = formatCrawlStatus(jobsMetadata.lastCrawlStatus);
+  const displayMatchedJobs = matchedJobs;
 
   const scoreCounts = {
-    all: matchedJobs.length,
-    '90+': matchedJobs.filter((job) => job.score >= 90).length,
-    '80+': matchedJobs.filter((job) => job.score >= 80).length,
-    '70+': matchedJobs.filter((job) => job.score >= 70).length,
-    '60+': matchedJobs.filter((job) => job.score >= 60).length,
-    '60-': matchedJobs.filter((job) => job.score < 60).length,
+    all: displayMatchedJobs.length,
+    '90+': displayMatchedJobs.filter((job) => job.score >= 90).length,
+    '80+': displayMatchedJobs.filter((job) => job.score >= 80).length,
+    '70+': displayMatchedJobs.filter((job) => job.score >= 70).length,
+    '60+': displayMatchedJobs.filter((job) => job.score >= 60).length,
+    '60-': displayMatchedJobs.filter((job) => job.score < 60).length,
   };
 
-  const filteredMatchedJobs = matchedJobs.filter((job) => {
+  const filteredMatchedJobs = displayMatchedJobs.filter((job) => {
     const scoreMatched = scoreFilter === 'all'
       ? true
       : scoreFilter === '60-'
@@ -92,8 +93,8 @@ export default function JobsWorkspace({
   });
 
   const visibleMatchedJobs = filteredMatchedJobs.slice(0, visibleJobs);
-  const hasMatchResults = jobMatchState.attempted && matchedJobs.length > 0;
-  const showEmptyResult = jobMatchState.attempted && !jobMatchState.running && !jobMatchState.error && matchedJobs.length === 0;
+  const hasMatchResults = !jobMatchState.running && displayMatchedJobs.length > 0;
+  const showEmptyResult = jobMatchState.attempted && !jobMatchState.running && !jobMatchState.error && displayMatchedJobs.length === 0;
 
   return (
     <div className="coach-jobs-workspace apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
@@ -115,7 +116,7 @@ export default function JobsWorkspace({
         </article>
         <article className="coach-jobs-kpi-card rounded-[24px] border border-slate-200 bg-white px-5 py-4 shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">매칭 결과</p>
-          <strong className="mt-2 block text-2xl font-black tracking-tight text-slate-900">{matchedJobs.length}건</strong>
+          <strong className="mt-2 block text-2xl font-black tracking-tight text-slate-900">{displayMatchedJobs.length}건</strong>
           <p className="mt-1 text-sm text-slate-500">사용자 실행 후 생성</p>
         </article>
       </div>
@@ -282,7 +283,9 @@ export default function JobsWorkspace({
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Matched Jobs</p>
             <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">AI 추천 공고 목록</h3>
-            <p className="mt-2 text-sm text-slate-600">매칭 실행 후에만 결과가 생성됩니다. 검색어와 점수 구간으로 후보를 좁혀 보세요.</p>
+            <p className="mt-2 text-sm text-slate-600">
+              매칭 실행 후 생성된 결과입니다. 검색어와 점수 구간으로 후보를 좁혀 보세요.
+            </p>
           </div>
           <div className="w-full max-w-md">
             <label className="mb-2 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
