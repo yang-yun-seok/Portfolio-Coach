@@ -151,95 +151,6 @@ export default function InputWorkspace({
               <p className="mt-2 text-sm leading-relaxed text-slate-600">{selectedRoleDetail.focus}</p>
             </div>
 
-            <div className="coach-input-skill-shell mt-6">
-            <div className="mb-3 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <label className="block text-sm font-semibold text-slate-700 mb-1">직무 역량 및 숙련도</label>
-              <p className="text-xs text-slate-500">
-                {rolePlaybook.skillGuide}
-              </p>
-            </div>
-            <div className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-              현재 카테고리 · {skillInput.category}
-            </div>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-2 mb-3">
-            <select
-              value={skillInput.category}
-              onChange={(e) => setSkillInput({ category: e.target.value, name: skillCategories[e.target.value][0], level: '중' })}
-              className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none text-sm"
-            >
-              {Object.keys(skillCategories).map((cat) => <option key={cat} value={cat}>{cat}</option>)}
-            </select>
-            <select
-              value={skillInput.name}
-              onChange={(e) => setSkillInput((prev) => ({ ...prev, name: e.target.value }))}
-              className="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none text-sm"
-            >
-              {(skillCategories[skillInput.category] || Object.values(skillCategories)[0]).map((skill) => <option key={skill} value={skill}>{skill}</option>)}
-            </select>
-            <div className="flex gap-2">
-              <select
-                value={skillInput.level}
-                onChange={(e) => setSkillInput((prev) => ({ ...prev, level: e.target.value }))}
-                className="w-20 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none text-sm font-bold text-center"
-              >
-                <option value="상">상</option>
-                <option value="중">중</option>
-                <option value="하">하</option>
-              </select>
-              <button
-                type="button"
-                onClick={handleAddSkill}
-                className="px-4 py-2 bg-indigo-100 hover:bg-indigo-200 text-indigo-700 rounded-lg flex items-center gap-1 text-sm font-semibold transition-colors shrink-0"
-              >
-                <Plus className="w-4 h-4" /> 추가
-              </button>
-            </div>
-          </div>
-
-          <div className="mb-3">
-            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">빠른 추가</p>
-            <div className="flex flex-wrap gap-2">
-              {selectedSkillSuggestions.map((skill) => {
-                const isSelected = userInfo.skills.some((entry) => entry.name === skill);
-                return (
-                  <button
-                    key={skill}
-                    type="button"
-                    onClick={() => handleQuickAddSkill(skill)}
-                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
-                      isSelected
-                        ? 'border-slate-900 bg-slate-900 text-white'
-                        : 'border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-900'
-                    }`}
-                  >
-                    {skill}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="mb-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-            <p className="text-xs font-semibold text-slate-800">서류에 적기 좋은 기준</p>
-            <p className="mt-1 text-xs leading-relaxed text-slate-600">
-              사용해본 항목보다 증명 가능한 항목만 남기세요. 프로젝트명, 산출물, 성과 수치, 협업 역할 중 최소 하나와 연결되는 역량이 좋습니다.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-2 min-h-[44px] p-3 bg-slate-50 rounded-xl border border-slate-100">
-            {userInfo.skills.length === 0
-              ? <span className="text-sm text-slate-400 my-auto">추가된 기술이 없습니다.</span>
-              : userInfo.skills.map((skill, idx) => (
-                  <div key={idx} className="flex items-center gap-1.5 bg-white border border-indigo-100 text-indigo-700 px-3 py-1.5 rounded-full text-sm shadow-sm">
-                    <span className="font-semibold">{skill.name}</span>
-                    <span className={`text-xs px-1.5 py-0.5 rounded-md font-bold ${skill.level === '상' ? 'bg-emerald-100 text-emerald-700' : skill.level === '중' ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-600'}`}>{skill.level}</span>
-                    <button type="button" onClick={() => handleRemoveSkill(skill.name)} className="text-indigo-300 hover:text-red-500 ml-0.5"><X className="w-4 h-4" /></button>
-                  </div>
-                ))}
-          </div>
-        </div>
           </div>
 
           <aside className="coach-input-side p-6">
@@ -293,6 +204,102 @@ export default function InputWorkspace({
               </div>
             )}
           </aside>
+        </div>
+      </section>
+
+      <section className="coach-input-section-shell coach-input-skill-shell bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+        <div className="mb-4 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Skills</p>
+            <h3 className="mt-2 text-lg font-bold text-slate-800">직무 역량 및 숙련도</h3>
+            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-500">
+              {rolePlaybook.skillGuide}
+            </p>
+          </div>
+          <div className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+            현재 카테고리 · {skillInput.category}
+          </div>
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.42fr)]">
+          <div>
+            <div className="flex flex-col sm:flex-row gap-2 mb-4">
+              <select
+                value={skillInput.category}
+                onChange={(e) => setSkillInput({ category: e.target.value, name: skillCategories[e.target.value][0], level: '중' })}
+                className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none text-sm"
+              >
+                {Object.keys(skillCategories).map((cat) => <option key={cat} value={cat}>{cat}</option>)}
+              </select>
+              <select
+                value={skillInput.name}
+                onChange={(e) => setSkillInput((prev) => ({ ...prev, name: e.target.value }))}
+                className="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none text-sm"
+              >
+                {(skillCategories[skillInput.category] || Object.values(skillCategories)[0]).map((skill) => <option key={skill} value={skill}>{skill}</option>)}
+              </select>
+              <div className="flex gap-2">
+                <select
+                  value={skillInput.level}
+                  onChange={(e) => setSkillInput((prev) => ({ ...prev, level: e.target.value }))}
+                  className="w-20 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none text-sm font-bold text-center"
+                >
+                  <option value="상">상</option>
+                  <option value="중">중</option>
+                  <option value="하">하</option>
+                </select>
+                <button
+                  type="button"
+                  onClick={handleAddSkill}
+                  className="px-4 py-2 bg-indigo-100 hover:bg-indigo-200 text-indigo-700 rounded-lg flex items-center gap-1 text-sm font-semibold transition-colors shrink-0"
+                >
+                  <Plus className="w-4 h-4" /> 추가
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">빠른 추가</p>
+              <div className="flex flex-wrap gap-2">
+                {selectedSkillSuggestions.map((skill) => {
+                  const isSelected = userInfo.skills.some((entry) => entry.name === skill);
+                  return (
+                    <button
+                      key={skill}
+                      type="button"
+                      onClick={() => handleQuickAddSkill(skill)}
+                      className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+                        isSelected
+                          ? 'border-slate-900 bg-slate-900 text-white'
+                          : 'border-slate-200 bg-white text-slate-600 hover:border-slate-400 hover:text-slate-900'
+                      }`}
+                    >
+                      {skill}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+            <p className="text-xs font-semibold text-slate-800">서류에 적기 좋은 기준</p>
+            <p className="mt-1 text-xs leading-relaxed text-slate-600">
+              사용해본 항목보다 증명 가능한 항목만 남기세요. 프로젝트명, 산출물, 성과 수치, 협업 역할 중 최소 하나와 연결되는 역량이 좋습니다.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-4 flex flex-wrap gap-2 min-h-[44px] p-3 bg-slate-50 rounded-xl border border-slate-100">
+          {userInfo.skills.length === 0
+            ? <span className="text-sm text-slate-400 my-auto">추가된 기술이 없습니다.</span>
+            : userInfo.skills.map((skill, idx) => (
+                <div key={idx} className="flex items-center gap-1.5 bg-white border border-indigo-100 text-indigo-700 px-3 py-1.5 rounded-full text-sm shadow-sm">
+                  <span className="font-semibold">{skill.name}</span>
+                  <span className={`text-xs px-1.5 py-0.5 rounded-md font-bold ${skill.level === '상' ? 'bg-emerald-100 text-emerald-700' : skill.level === '중' ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-600'}`}>{skill.level}</span>
+                  <button type="button" onClick={() => handleRemoveSkill(skill.name)} className="text-indigo-300 hover:text-red-500 ml-0.5"><X className="w-4 h-4" /></button>
+                </div>
+              ))}
         </div>
       </section>
 
