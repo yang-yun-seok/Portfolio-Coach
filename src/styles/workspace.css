@@ -6223,6 +6223,147 @@
     margin-bottom: 0.25rem;
   }
 
+  .coach-shell[data-feature="interview"] .coach-stage,
+  .coach-shell[data-feature="interview-basic"] .coach-stage,
+  .coach-shell[data-feature="personality-test"] .coach-stage,
+  .coach-shell[data-feature="pdf-export"] .coach-stage {
+    max-width: 1120px;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-interview-page,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-page,
+  .coach-shell[data-feature="personality-test"] .coach-personality-page,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-page {
+    gap: clamp(1.55rem, 2vw, 2.15rem) !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-review-shell,
+  .coach-shell[data-feature="interview"] .coach-review-surface,
+  .coach-shell[data-feature="interview-basic"] .coach-review-shell,
+  .coach-shell[data-feature="interview-basic"] .coach-review-surface,
+  .coach-shell[data-feature="personality-test"] .coach-review-shell,
+  .coach-shell[data-feature="personality-test"] .coach-review-surface,
+  .coach-shell[data-feature="personality-test"] .coach-personality-fit-card,
+  .coach-shell[data-feature="personality-test"] .coach-personality-question,
+  .coach-shell[data-feature="personality-test"] .coach-personality-trait,
+  .coach-shell[data-feature="personality-test"] .coach-personality-note-card,
+  .coach-shell[data-feature="pdf-export"] .coach-review-shell,
+  .coach-shell[data-feature="pdf-export"] .coach-review-surface {
+    border-color: #d9e2ec !important;
+    border-radius: 24px !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-review-header,
+  .coach-shell[data-feature="interview"] .coach-review-surface,
+  .coach-shell[data-feature="interview-basic"] .coach-review-header,
+  .coach-shell[data-feature="interview-basic"] .coach-review-surface,
+  .coach-shell[data-feature="personality-test"] .coach-review-header,
+  .coach-shell[data-feature="personality-test"] .coach-review-surface,
+  .coach-shell[data-feature="personality-test"] .coach-personality-fit-card,
+  .coach-shell[data-feature="personality-test"] .coach-personality-question,
+  .coach-shell[data-feature="personality-test"] .coach-personality-trait,
+  .coach-shell[data-feature="personality-test"] .coach-personality-note-card,
+  .coach-shell[data-feature="pdf-export"] .coach-review-header,
+  .coach-shell[data-feature="pdf-export"] .coach-review-surface {
+    padding: clamp(1.35rem, 1.8vw, 1.8rem) !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-review-meta-grid,
+  .coach-shell[data-feature="interview"] .coach-review-principles-grid,
+  .coach-shell[data-feature="interview"] .coach-interview-overview-grid,
+  .coach-shell[data-feature="interview"] .coach-interview-detail-grid,
+  .coach-shell[data-feature="interview-basic"] .coach-review-meta-grid,
+  .coach-shell[data-feature="interview-basic"] .coach-review-principles-grid,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-layout-grid,
+  .coach-shell[data-feature="personality-test"] .coach-personality-fit-grid,
+  .coach-shell[data-feature="personality-test"] .coach-personality-card-grid,
+  .coach-shell[data-feature="personality-test"] .coach-personality-tip-grid,
+  .coach-shell[data-feature="personality-test"] .coach-personality-question-list,
+  .coach-shell[data-feature="personality-test"] .coach-personality-split-grid,
+  .coach-shell[data-feature="pdf-export"] .coach-review-meta-grid,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-grid {
+    gap: clamp(1rem, 1.45vw, 1.45rem) !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-review-meta-card,
+  .coach-shell[data-feature="interview"] .coach-review-principle,
+  .coach-shell[data-feature="interview"] .coach-interview-brief-block,
+  .coach-shell[data-feature="interview"] .coach-interview-focus-block,
+  .coach-shell[data-feature="interview"] .coach-interview-question-item,
+  .coach-shell[data-feature="interview"] .coach-interview-answer-block,
+  .coach-shell[data-feature="interview"] .coach-interview-framework-card,
+  .coach-shell[data-feature="interview-basic"] .coach-review-meta-card,
+  .coach-shell[data-feature="interview-basic"] .coach-review-principle,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-flow-item,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-flow-point,
+  .coach-shell[data-feature="pdf-export"] .coach-review-meta-card,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-card,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-instructor-row,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-export-box {
+    border-color: #dbe4ef !important;
+    border-radius: 18px !important;
+    background: #fbfdff !important;
+    box-shadow: none !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-review-header-main > p:last-child,
+  .coach-shell[data-feature="interview"] .coach-review-meta-card p,
+  .coach-shell[data-feature="interview"] .coach-review-principle p,
+  .coach-shell[data-feature="interview"] .coach-interview-brief-block p,
+  .coach-shell[data-feature="interview"] .coach-interview-focus-block p,
+  .coach-shell[data-feature="interview"] .coach-interview-answer-block p,
+  .coach-shell[data-feature="interview"] .coach-interview-framework-card p,
+  .coach-shell[data-feature="interview-basic"] .coach-review-header-main > p:last-child,
+  .coach-shell[data-feature="interview-basic"] .coach-review-meta-card p,
+  .coach-shell[data-feature="interview-basic"] .coach-review-principle p,
+  .coach-shell[data-feature="interview-basic"] .coach-review-section-body,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-checklist span,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-flow-body,
+  .coach-shell[data-feature="personality-test"] .coach-personality-page p,
+  .coach-shell[data-feature="personality-test"] .coach-personality-page li,
+  .coach-shell[data-feature="pdf-export"] .coach-review-header-main > p:last-child,
+  .coach-shell[data-feature="pdf-export"] .coach-review-meta-card p,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-card p,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-instructor-row p {
+    font-size: 15px !important;
+    line-height: 1.68 !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-review-eyebrow,
+  .coach-shell[data-feature="interview"] .coach-review-meta-label,
+  .coach-shell[data-feature="interview"] .coach-review-principle-label,
+  .coach-shell[data-feature="interview-basic"] .coach-review-eyebrow,
+  .coach-shell[data-feature="interview-basic"] .coach-review-meta-label,
+  .coach-shell[data-feature="interview-basic"] .coach-review-principle-label,
+  .coach-shell[data-feature="pdf-export"] .coach-review-eyebrow,
+  .coach-shell[data-feature="pdf-export"] .coach-review-meta-label,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-instructor-row span {
+    color: #64748b !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-interview-answer-block.is-danger,
+  .coach-shell[data-feature="interview"] .coach-interview-answer-block.is-success,
+  .coach-shell[data-feature="interview-basic"] .coach-readiness-flow-icon,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-card.is-ready,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-card.is-pending {
+    background: #ffffff !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-interview-answer-block.is-danger {
+    border-left: 4px solid #fca5a5 !important;
+  }
+
+  .coach-shell[data-feature="interview"] .coach-interview-answer-block.is-success,
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-card.is-ready {
+    border-left: 4px solid #86efac !important;
+  }
+
+  .coach-shell[data-feature="pdf-export"] .coach-pdf-status-card.is-pending {
+    border-left: 4px solid #fcd34d !important;
+  }
+
   .coach-shell[data-feature="input"] .coach-input-role-section {
     margin-bottom: 2rem !important;
   }
