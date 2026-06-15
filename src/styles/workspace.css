@@ -6032,6 +6032,7 @@
     position: sticky;
     top: 0;
     z-index: 9000;
+    box-sizing: border-box;
     display: flex !important;
     flex-direction: row;
     align-items: center;
@@ -6042,21 +6043,14 @@
     height: 50px;
     padding: 0;
     overflow: visible !important;
-    border-bottom: 0;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.42);
     background: rgba(255, 255, 255, 0.6) !important;
     backdrop-filter: blur(2.5px);
     -webkit-backdrop-filter: blur(2.5px);
   }
 
   .coach-commandbar::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 1px;
-    background: rgba(148, 163, 184, 0.42);
-    pointer-events: none;
+    content: none;
   }
 
   .coach-navigator-breadcrumb {
@@ -6154,6 +6148,42 @@
   .coach-brandcopy strong {
     font-size: 10px;
     line-height: 1.1;
+  }
+
+  .coach-workspace p,
+  .coach-workspace li,
+  .coach-workspace input,
+  .coach-workspace select,
+  .coach-workspace textarea {
+    font-size: 15px;
+  }
+
+  .coach-workspace p,
+  .coach-workspace li {
+    line-height: 1.65;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-role-section {
+    margin-bottom: 2rem !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-role-grid {
+    gap: 1rem !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-role-card {
+    min-height: 126px;
+    padding: 1.25rem !important;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-role-title {
+    font-size: 18px !important;
+    line-height: 1.35;
+  }
+
+  .coach-shell[data-feature="input"] .coach-input-role-body {
+    font-size: 15px !important;
+    line-height: 1.65 !important;
   }
 
   .coach-top-nav {
@@ -6316,11 +6346,15 @@
   }
 
   .coach-login-command {
+    order: 2;
+  }
+
+  .coach-model-command {
     order: 1;
   }
 
   .coach-settings-command {
-    order: 2;
+    order: 3;
   }
 
   .coach-command-tools > button span,
@@ -6328,7 +6362,7 @@
     display: none !important;
   }
 
-  .coach-command-tools > button:not(.coach-settings-command):not(.coach-login-command) {
+  .coach-command-tools > button:not(.coach-model-command):not(.coach-settings-command):not(.coach-login-command) {
     display: none !important;
   }
 

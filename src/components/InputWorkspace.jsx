@@ -100,12 +100,12 @@ export default function InputWorkspace({
               </article>
             </div>
 
-            <div className="mb-5">
+            <div className="coach-input-role-section mb-7">
               <div className="mb-2 flex items-center justify-between gap-3">
                 <label className="block text-sm font-semibold text-slate-700">직무 대분류</label>
                 <span className="text-xs text-slate-400">트랙을 바꾸면 세부 직무와 입력 가이드가 같이 바뀝니다.</span>
               </div>
-              <div className="grid gap-2 md:grid-cols-3">
+              <div className="coach-input-role-grid grid gap-4 md:grid-cols-3">
                 {ROLE_GROUPS.map((group) => {
                   const isActive = group.label === normalizedUserInfo.roleGroup;
                   return (
@@ -113,15 +113,15 @@ export default function InputWorkspace({
                       key={group.id}
                       type="button"
                       onClick={() => handleRoleGroupSelect(group.label)}
-                      className={`rounded-[22px] border px-4 py-4 text-left transition ${
+                      className={`coach-input-role-card rounded-[24px] border px-5 py-5 text-left transition ${
                         isActive
                           ? 'border-slate-900 bg-slate-900 text-white shadow-lg'
                           : 'border-slate-200 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50'
                       }`}
                     >
-                      <p className={`text-[11px] font-semibold uppercase tracking-[0.18em] ${isActive ? 'text-slate-300' : 'text-slate-400'}`}>트랙</p>
-                      <p className="mt-1 text-base font-bold">{group.label}</p>
-                      <p className={`mt-2 text-xs leading-relaxed ${isActive ? 'text-slate-200' : 'text-slate-500'}`}>{group.description}</p>
+                      <p className={`coach-input-role-kicker text-[11px] font-semibold uppercase tracking-[0.18em] ${isActive ? 'text-slate-300' : 'text-slate-400'}`}>트랙</p>
+                      <p className="coach-input-role-title mt-2 text-base font-bold">{group.label}</p>
+                      <p className={`coach-input-role-body mt-3 text-xs leading-relaxed ${isActive ? 'text-slate-200' : 'text-slate-500'}`}>{group.description}</p>
                     </button>
                   );
                 })}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileText, Image as ImageIcon, KeyRound, MessageSquare } from 'lucide-react';
+import { FileText, Image as ImageIcon, MessageSquare } from 'lucide-react';
 import FeedbackWorkspace from './FeedbackWorkspace';
 import InputWorkspace from './InputWorkspace';
 import InterviewReadinessWorkspace from './InterviewReadinessWorkspace';
@@ -27,34 +27,6 @@ function renderEmptyState(icon, title, desc, onGoToInput) {
   );
 }
 
-function openAiApiSettings() {
-  if (typeof document === 'undefined') return;
-  const button = document.querySelector('[aria-label="AI API 연결"], [aria-label="AI API 키 설정"], [aria-label="AI 모델"]');
-  button?.click();
-}
-
-function renderTemporaryAiApiButton() {
-  return (
-    <div className="mb-4 rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm">
-      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Temporary Control</p>
-          <h3 className="mt-1 text-lg font-bold text-slate-900">AI API 연결</h3>
-          <p className="mt-1 text-sm leading-relaxed text-slate-500">상단 버튼이 네비게이터에 가려지는 동안 이 버튼으로 API 키와 모델 설정을 엽니다.</p>
-        </div>
-        <button
-          type="button"
-          onClick={openAiApiSettings}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-bold text-white transition hover:bg-slate-700"
-        >
-          <KeyRound size={17} />
-          AI API 연결 열기
-        </button>
-      </div>
-    </div>
-  );
-}
-
 export default function WorkspaceContent({
   activeTab,
   feedbackWorkspaceProps,
@@ -72,10 +44,7 @@ export default function WorkspaceContent({
   return (
     <>
       {activeTab === 'input' && (
-        <>
-          {renderTemporaryAiApiButton()}
-          <InputWorkspace {...inputWorkspaceProps} />
-        </>
+        <InputWorkspace {...inputWorkspaceProps} />
       )}
 
       {activeTab === 'feedback' && (
