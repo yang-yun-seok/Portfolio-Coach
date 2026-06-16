@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281545",
+  "company": "코그",
+  "title": "[그랜드체이스 모바일] 3D캐릭터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281545",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "그랜드체이스, 엘소드, 커츠펠, 리턴얼라이브",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 모델링, 로우폴리곤, 3DSmax, 캐릭터, 3DMax",
+  "updatedAt": "2026-06-16",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}
