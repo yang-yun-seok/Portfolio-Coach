@@ -1,34 +1,35 @@
 {
-  "id": "crawled-281336",
+  "id": "crawled-281579",
   "company": "사자가온다",
   "title": "언리얼 강사님을 찾고 있습니다.",
-  "role": "AI/데이터",
+  "role": "아트/UI",
   "roles": [
-    "AI/데이터",
-    "아트/UI"
+    "아트/UI",
+    "기획"
   ],
   "reqSkills": [
     "3D",
+    "UI/UX 기획",
     "Unreal Engine"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281336",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281579",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "-",
   "gameCategory": "웹게임, 모바일게임 관련없음",
   "employmentType": "프리랜서",
-  "deadline": "채용시 마감",
+  "deadline": "~ 06/30(화)",
   "salary": "시간당 / 50,000원\n연봉검색",
   "experience": "무관",
-  "keywords": "3D, 모델링, 언리얼, 블렌더, 게임그래픽",
-  "updatedAt": "2026-06-11",
+  "keywords": "3D, 인터페이스, 배경, 맵핑, 모델링, 캐릭터",
+  "updatedAt": "2026-06-17",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-11T20:16:51.084Z",
-  "lastSeenAt": "2026-06-16T18:59:21.985Z",
-  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "firstSeenAt": "2026-06-17T22:49:26.849Z",
+  "lastSeenAt": "2026-06-17T22:49:26.849Z",
+  "lastCrawledAt": "2026-06-17T22:49:26.849Z",
   "inactiveAt": null
 }

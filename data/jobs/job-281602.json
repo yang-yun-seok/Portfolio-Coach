@@ -1,5 +1,5 @@
 {
-  "id": "crawled-281091",
+  "id": "crawled-281602",
   "company": "㈜넵튠",
   "title": "H5개발팀 클라이언트 개발",
   "role": "클라이언트",
@@ -10,7 +10,7 @@
     "Unity"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281091",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281602",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "고양이 스낵바, 무한의 계단, 우르르 용병단, 이터널리턴, 다크스타, 앵커패닉 등",
@@ -20,13 +20,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "클라이언트, HTML5, Unity, Cocos, 게임, 게임프로그래밍, 게임프로그래머, SDK, WebGL, 클라이언트개발, 게임클라이언트, H5",
-  "updatedAt": "2026-06-08",
+  "updatedAt": "2026-06-17",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-08T20:09:39.955Z",
-  "lastSeenAt": "2026-06-16T18:59:21.985Z",
-  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "firstSeenAt": "2026-06-17T22:49:26.849Z",
+  "lastSeenAt": "2026-06-17T22:49:26.849Z",
+  "lastCrawledAt": "2026-06-17T22:49:26.849Z",
   "inactiveAt": null
 }

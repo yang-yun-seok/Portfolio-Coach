@@ -1,0 +1,39 @@
+{
+  "id": "crawled-281605",
+  "company": "ZEP",
+  "title": "[인턴] ZEP School 콘텐츠 크리에이터",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "Photoshop",
+    "도트 아트",
+    "시스템/컨텐츠 기획",
+    "JavaScript",
+    "TypeScript",
+    "Figma"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281605",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "웹게임 Casual, 메타버스",
+  "employmentType": "인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "원화, 컨셉, 포토샵, 도트, 픽셀, 아바타, 캐릭터도트, 컨텐츠",
+  "updatedAt": "2026-06-17",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-17T22:49:26.849Z",
+  "lastSeenAt": "2026-06-17T22:49:26.849Z",
+  "lastCrawledAt": "2026-06-17T22:49:26.849Z",
+  "inactiveAt": null
+}

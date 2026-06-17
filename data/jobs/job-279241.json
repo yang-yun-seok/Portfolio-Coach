@@ -1,0 +1,33 @@
+{
+  "id": "crawled-279241",
+  "company": "라이온하트 스튜디오",
+  "title": "[오딘Q-발키리스콜] 밸런스 기획자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279241",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "오딘: 발할라 라이징",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "게임기획, 밸런스기획",
+  "updatedAt": "2026-06-17",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-17T22:49:26.849Z",
+  "lastSeenAt": "2026-06-17T22:49:26.849Z",
+  "lastCrawledAt": "2026-06-17T22:49:26.849Z",
+  "inactiveAt": null
+}

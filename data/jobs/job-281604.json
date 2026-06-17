@@ -1,0 +1,37 @@
+{
+  "id": "crawled-281604",
+  "company": "넥슨 (NEXON)",
+  "title": "[개발실] 비주얼팀 캐릭터 모델링 파트",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "ZBrush",
+    "Machine Learning",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281604",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로드나인, AVATARA, 로한M",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 연구개발, 기술개발, 모델링, 3DSmax, 캐릭터, Zbrush, AI, 게임프로그래밍, RPG, PC, 콘솔, 언리얼엔진, MORPG, Unreal엔진, 엔엑스쓰리게임즈, NX3GAMES",
+  "updatedAt": "2026-06-17",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-17T22:49:26.849Z",
+  "lastSeenAt": "2026-06-17T22:49:26.849Z",
+  "lastCrawledAt": "2026-06-17T22:49:26.849Z",
+  "inactiveAt": null
+}

@@ -1,7 +1,7 @@
 {
-  "id": "crawled-281286",
+  "id": "crawled-281591",
   "company": "키위웍스㈜",
-  "title": "[Project ESi] 캐릭터 일러스트레이터 모집 (경력 2년 이상)",
+  "title": "[Project ESi] 3D 배경 모델러 모집 (경력 2년 이상)",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
@@ -10,7 +10,7 @@
     "Illustrator"
   ],
   "reqExp": 2,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281286",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281591",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "마녀의 샘",
@@ -20,13 +20,13 @@
   "salary": "5,000~6,000만원\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "원화, 일러스트, 캐릭터원화, 몬스터, 캐릭터",
-  "updatedAt": "2026-06-11",
+  "updatedAt": "2026-06-17",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-11T20:16:51.084Z",
-  "lastSeenAt": "2026-06-16T18:59:21.985Z",
-  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "firstSeenAt": "2026-06-17T22:49:26.849Z",
+  "lastSeenAt": "2026-06-17T22:49:26.849Z",
+  "lastCrawledAt": "2026-06-17T22:49:26.849Z",
   "inactiveAt": null
 }
