@@ -1,0 +1,33 @@
+{
+  "id": "crawled-280998",
+  "company": "㈜알트나인",
+  "title": "[알트나인] QA 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "QA/테스트"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280998",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "SOL: enchant",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "모바일, QA, 게임테스터",
+  "updatedAt": "2026-06-04",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-04T17:47:05.005Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "crawled-280846",
+  "company": "㈜드림모션",
+  "title": "[PC 신작 프로젝트] UI 디자이너 인재 채용 (경력)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280846",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로닌: 더 라스트 사무라이 / 로드 투 발러 시리즈 / 마이 리틀 퍼피",
+  "gameCategory": "온라인PC게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "인터페이스, UX·UI",
+  "updatedAt": "2026-06-01",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-01T19:57:35.254Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

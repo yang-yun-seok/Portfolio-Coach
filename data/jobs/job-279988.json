@@ -1,0 +1,33 @@
+{
+  "id": "crawled-279988",
+  "company": "스튜디오라사㈜",
+  "title": "레벨 디자이너 모집",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279988",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "콘솔게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "게임기획, 레벨기획",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "crawled-280052",
+  "company": "슈퍼센트 (Supercent)",
+  "title": "3D 게임 이펙터(2-6년)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "UI/UX 기획",
+    "Photoshop",
+    "Illustrator"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280052",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "XP Hero, Burger Please!, Pizza Ready!, Snake Clash",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 인터페이스, UX·UI, 맵핑, 모션, 모델링, 로우폴리곤, 하이폴리곤, 애니메이션, CharacterStudio, 플래쉬애니메이션, 메카닉, KeyAnimation, 이펙트, FX, 시네마틱, Photoshop, Illustrator, Unity3D, blender",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

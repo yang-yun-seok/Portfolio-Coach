@@ -1,0 +1,33 @@
+{
+  "id": "crawled-280081",
+  "company": "레트로캣",
+  "title": "[레트로캣] 노아(N.O.A.H) 애니메이터(Spine) 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Photoshop"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280081",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "NOAH",
+  "gameCategory": "모바일게임, 콘솔게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "5,000~6,000만원 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "캐릭터, 애니메이션, 플래쉬애니메이션",
+  "updatedAt": "2026-05-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-29T18:14:14.323Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

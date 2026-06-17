@@ -1,0 +1,41 @@
+{
+  "id": "crawled-280503",
+  "company": "슈퍼플럭스",
+  "title": "[신규 프로젝트] 시나리오 / 캐릭터 설정 기획 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280503",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Project S",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, UX·UI, 게임기획, 시나리오, 퀘스트, PM, PD, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 유료화, UI·UX, 모바일UI, 컨텐츠기획, 커뮤니티기획, 모바일기획, 게임운영, GM, 모니터링",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

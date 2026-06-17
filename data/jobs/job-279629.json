@@ -1,0 +1,32 @@
+{
+  "id": "crawled-279629",
+  "company": "크래프톤 (KRAFTON)",
+  "title": "[AI Research Div.] [전문연구요원] Research Scientist - Generalist Agent for Game Environments (2년 이상)",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "Machine Learning"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279629",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "PUBG: 배틀그라운드",
+  "gameCategory": "관련없음 관련없음",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "연구개발, 기술개발, 게임AI, AI, ML, 딥러닝, 강화학습, LLM, VLM",
+  "updatedAt": "2026-05-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

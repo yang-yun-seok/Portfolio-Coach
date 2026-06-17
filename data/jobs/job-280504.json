@@ -1,0 +1,37 @@
+{
+  "id": "crawled-280504",
+  "company": "슈퍼플럭스",
+  "title": "[신규 프로젝트] 캐릭터/배경 원화가",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "UI/UX 기획",
+    "Illustrator",
+    "Photoshop",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280504",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Project S",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 3D, 인터페이스, 원화, 일러스트, 캐릭터원화, 컨셉, 배경원화, 포토샵, 캐릭터",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

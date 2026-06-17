@@ -1,0 +1,38 @@
+{
+  "id": "crawled-278429",
+  "company": "(주)웹젠",
+  "title": "2026년 웹젠크레빅스 수시채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "C++",
+    "UI/UX 기획",
+    "도트 아트",
+    "3ds Max",
+    "Unreal Engine",
+    "TA"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278429",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "뮤 온라인, R2, 샷온라인, 썬 클래식, 뮤 아크엔젤, 뮤 모나크, 뮤:포켓 나이츠",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "~ 06/30(화)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "C++, UX·UI, 캐릭터원화, 도트, 캐릭터도트, 배경도트, 3DMax, 이펙트, Unreal, ux, ui, 도트디자인, 게임프로그래밍, TA, UI디자이너, 3D모델링, 도트애니메이션",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

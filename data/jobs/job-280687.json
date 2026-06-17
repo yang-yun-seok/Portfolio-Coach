@@ -1,0 +1,35 @@
+{
+  "id": "crawled-280687",
+  "company": "프롬서울",
+  "title": "[3D 아바타테크 스타트업] 3D 모델러(프리랜서/재택) - 서브컬처",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "ZBrush",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280687",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 VR·AR, 기타",
+  "employmentType": "프리랜서",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 모델링, 로우폴리곤, 3DSmax, 캐릭터, 텍스쳐, 하이폴리곤, Zbrush, Unity, Max, 유니티, SubStancePainter, 블렌더, blender, 서브컬처, 버츄얼",
+  "updatedAt": "2026-05-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

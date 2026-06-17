@@ -1,0 +1,34 @@
+{
+  "id": "crawled-280651",
+  "company": "리터리온",
+  "title": "[국풀교육 AI연구소] 콘텐츠 디자인 부문 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Photoshop",
+    "Illustrator",
+    "Figma"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280651",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 Casual, SNG",
+  "employmentType": "정규직",
+  "deadline": "~ 07/27(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "배경, 맵핑, 캐릭터, 애니메이션, 오브젝트",
+  "updatedAt": "2026-05-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

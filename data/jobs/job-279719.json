@@ -1,0 +1,36 @@
+{
+  "id": "crawled-279719",
+  "company": "㈜나날이",
+  "title": "[나날이 스튜디오] 3D 애니메이터",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "UI/UX 기획",
+    "Illustrator",
+    "3ds Max",
+    "Maya"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279719",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "포레스트 아일랜드, 타이니카페, 샐리의 법칙",
+  "gameCategory": "모바일게임, 콘솔게임 Casual, Simulation",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 협의 후 결정)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "모바일, 3D, UX·UI, 배경, 원화, 일러스트, 컨셉, 모델링, 로우폴리곤, 캐릭터, 3D일러스트, 애니메이션, 3DMax, Maya, 오브젝트, 이펙트, 스토리보드아트",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

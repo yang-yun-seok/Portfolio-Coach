@@ -1,0 +1,36 @@
+{
+  "id": "crawled-280454",
+  "company": "㈜이스트게임즈",
+  "title": "[신입] 산업기능요원 보충역 (클라이언트/서버)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "Python",
+    "Java",
+    "C#"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280454",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "카발RED, 카발온라인, 카발모바일, 고양이다방",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, SNG",
+  "employmentType": "병역특례",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, C, C++, Python, Java, C#, Unix, Linux, 게임프로그래머, Swift, Kotlin",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

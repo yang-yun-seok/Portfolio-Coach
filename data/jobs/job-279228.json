@@ -1,0 +1,33 @@
+{
+  "id": "crawled-279228",
+  "company": "㈜젠틀매니악",
+  "title": "[호라이즌 워커] 배경 모델러 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Illustrator",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279228",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "호라이즌 워커, 마대자",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 배경, 원화, 일러스트, 컨셉, 배경원화",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

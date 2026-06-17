@@ -1,0 +1,33 @@
+{
+  "id": "crawled-280314",
+  "company": "엠게임",
+  "title": "[엠게임] 플랫폼 개발팀원 모집 (부산)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "JavaScript"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280314",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "열혈강호, 나이트, 영웅, 귀혼, 풍림화산, 홀릭 등",
+  "gameCategory": "온라인PC게임 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 07/18(토)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "Node.js, DBMS, react",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

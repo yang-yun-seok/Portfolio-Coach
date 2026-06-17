@@ -1,0 +1,32 @@
+{
+  "id": "crawled-279193",
+  "company": "엠게임",
+  "title": "[엠게임] 게임 디자이너 모집(3D 애니메이션)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3ds Max"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279193",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "열혈강호, 나이트, 영웅, 귀혼, 풍림화산, 홀릭 등",
+  "gameCategory": "온라인PC게임 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 06/20(토)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3DSmax, 캐릭터, 애니메이션, 3DMax, KeyAnimation",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

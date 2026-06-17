@@ -1,0 +1,37 @@
+{
+  "id": "crawled-281124",
+  "company": "㈜펀치라인게임즈",
+  "title": "펀치라인게임즈 기획 보조",
+  "role": "PM/운영",
+  "roles": [
+    "기획",
+    "PM/운영",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "QA/테스트"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281124",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "나 혼자 만렙 키우기, 응발로 키우기",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 07/08(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "모바일, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 게임운영, GM, 고객서비스, CS, 모니터링, QA, QC, 업데이트테스트",
+  "updatedAt": "2026-06-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-08T20:09:39.955Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,31 @@
+{
+  "id": "crawled-261213",
+  "company": "㈜플레이링스",
+  "title": "[플레이링스] 게임 클라이언트 신입 개발자 채용(산업기능요원 보충역)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=261213",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "락앤캐쉬,슬롯메이트, 애니팡포커, 애니팡맞고, 하이롤러베가스 등",
+  "gameCategory": "웹게임, 모바일게임 기타",
+  "employmentType": "정규직, 병역특례",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "신입",
+  "keywords": "게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-06-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-08T20:09:39.955Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

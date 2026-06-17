@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281519",
+  "company": "아지트랩스",
+  "title": "[아지트랩스] 전투/시스템 기획자",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "Unreal Engine"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281519",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "NGM(개발중)",
+  "gameCategory": "온라인PC게임, 콘솔게임 기타",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "게임기획, 시스템기획",
+  "updatedAt": "2026-06-16",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

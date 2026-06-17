@@ -1,0 +1,33 @@
+{
+  "id": "crawled-273568",
+  "company": "크래프톤 (KRAFTON)",
+  "title": "[AI Research Div.] Postdoctoral Researcher-LLMs(계약직)",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "Python",
+    "Machine Learning"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=273568",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "PUBG: 배틀그라운드",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 Shooting",
+  "employmentType": "계약직 (계약기간 : 2년)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "신입·경력",
+  "keywords": "Python, 연구개발, AI, 딥러닝, LLM",
+  "updatedAt": "2026-05-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

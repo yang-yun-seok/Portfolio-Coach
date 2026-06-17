@@ -1,0 +1,35 @@
+{
+  "id": "crawled-280149",
+  "company": "세사람",
+  "title": "[일본 극장판 애니메이션] 3D 캐릭터 모델링 아티스트 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Maya",
+    "Unreal Engine",
+    "3ds Max"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280149",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "관련없음 관련없음",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 협의 후 결정)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 맵핑, 모델링, 캐릭터, 텍스쳐, 하이폴리곤, Maya, Max",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

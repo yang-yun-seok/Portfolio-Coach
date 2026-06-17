@@ -1,0 +1,34 @@
+{
+  "id": "crawled-281268",
+  "company": "㈜버거몬스터",
+  "title": "[신규프로젝트] 캐쥬얼 ART 제너럴리스트",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Illustrator",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281268",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "포트리스사가, 무명기시단",
+  "gameCategory": "모바일게임 Casual, Simulation",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 6개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 인터페이스, UX·UI, 원화, 일러스트, 캐릭터원화, 배경원화, 이펙트, FX",
+  "updatedAt": "2026-06-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

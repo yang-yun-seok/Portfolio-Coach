@@ -1,0 +1,33 @@
+{
+  "id": "crawled-265445",
+  "company": "라이온하트 스튜디오",
+  "title": "[프로젝트S] 배경 원화가 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=265445",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "오딘: 발할라 라이징",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG, Shooting",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "배경, 원화, 배경원화",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

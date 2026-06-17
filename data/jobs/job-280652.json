@@ -1,0 +1,36 @@
+{
+  "id": "crawled-280652",
+  "company": "리터리온",
+  "title": "[국풀교육 AI연구소] 서비스 기획/운영",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "기획"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280652",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 Casual, SNG",
+  "employmentType": "정규직",
+  "deadline": "~ 07/27(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "UX·UI, 레벨, 게임기획, 시나리오, 레벨기획, 시스템기획, 모바일UI",
+  "updatedAt": "2026-05-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-27T18:02:58.675Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

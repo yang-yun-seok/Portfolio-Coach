@@ -1,0 +1,33 @@
+{
+  "id": "crawled-280756",
+  "company": "스마일게이트 (Smilegate)",
+  "title": "[차세대 게임] NPC 전투기획 담당",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280756",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "크로스파이어, CFHD",
+  "gameCategory": "멀티플랫폼게임 Shooting",
+  "employmentType": "정규직",
+  "deadline": "~ 06/30(화)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "게임기획, 시스템기획, UE5",
+  "updatedAt": "2026-05-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-29T18:14:14.323Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "crawled-280127",
+  "company": "선시안 (SUNCYAN In",
+  "title": "[더 스파이크 크로스] 시나리오 라이터",
+  "role": "PM/운영",
+  "roles": [
+    "기획",
+    "PM/운영",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280127",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "더 스파이크 크로스",
+  "gameCategory": "모바일게임, 콘솔게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "시나리오, 밸런스기획, 컨텐츠, 게임",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

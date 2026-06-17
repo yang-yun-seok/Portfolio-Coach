@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281444",
+  "company": "바삭한소프트",
+  "title": "[연애혁명 키우기, 취준생 키우기] Unity 개발자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281444",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "수험생 키우기 : 수능 시뮬레이션 게임",
+  "gameCategory": "모바일게임 Casual, Simulation",
+  "employmentType": "정규직",
+  "deadline": "~ 06/25(목)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, 모바일, iOS, Android, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-06-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-14T16:20:55.032Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,34 @@
+{
+  "id": "crawled-281266",
+  "company": "㈜위메이드커넥트",
+  "title": "[위메이드커넥트] 배경 원화 담당자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Illustrator",
+    "Photoshop"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281266",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로스트소드, 여신의키스, 프리프유니버스, 서먼헌터키우기, 에브리타운, 어비스리움",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "배경, 일러스트, 배경원화, 포토샵",
+  "updatedAt": "2026-06-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

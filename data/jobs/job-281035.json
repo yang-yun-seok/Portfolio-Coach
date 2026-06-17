@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281035",
+  "company": "(주)무브인터렉티브",
+  "title": "[무브인터렉티브] MMORPG 클라이언트 경력자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281035",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "디지몬슈퍼럼블, 디지몬마스터즈, 디지몬RPG, 파워레인저, 디지몬소울체이서3, 연희몽상",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 08/05(수)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "클라이언트, C#, Unity, 게임프로그래밍",
+  "updatedAt": "2026-06-05",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-05T17:17:28.365Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

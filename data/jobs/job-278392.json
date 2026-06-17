@@ -1,0 +1,32 @@
+{
+  "id": "crawled-278392",
+  "company": "시프트업 (SHIFT UP)",
+  "title": "[시프트업] 프로젝트 스피릿 / 몬스터 원화가",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "ZBrush"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278392",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
+  "gameCategory": "멀티플랫폼게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "원화, 컨셉, 몬스터, 게임기획",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

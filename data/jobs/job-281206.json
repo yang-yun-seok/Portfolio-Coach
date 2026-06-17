@@ -1,0 +1,37 @@
+{
+  "id": "crawled-281206",
+  "company": "㈔한국인공지능게임협",
+  "title": "게임 분야 취업생 모집!! 게임부트캠프!",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "3D",
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281206",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 웹게임 RPG, 메타버스",
+  "employmentType": "정규직",
+  "deadline": "~ 08/07(금)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 게임기획, C#, 유니티, 게임프로그래밍, VR, 게임디자인",
+  "updatedAt": "2026-06-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-10T22:59:27.902Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

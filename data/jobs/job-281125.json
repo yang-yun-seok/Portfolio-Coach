@@ -1,0 +1,38 @@
+{
+  "id": "crawled-281125",
+  "company": "㈜펀치라인게임즈",
+  "title": "펀치라인게임즈 개발자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android",
+    "C#",
+    "Unity",
+    "Git/SVN",
+    "데이터 분석"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281125",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "나 혼자 만렙 키우기, 응발로 키우기",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, 모바일, iOS, Android, C#, Unity, 게임개발, 유니티, 게임프로그래머",
+  "updatedAt": "2026-06-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-08T20:09:39.955Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

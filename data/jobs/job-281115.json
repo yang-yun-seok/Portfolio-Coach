@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281115",
+  "company": "에이스프로젝트",
+  "title": "[모바일 게임개발사] 2D 아티스트 정규직 모집(2년차 이내)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Illustrator",
+    "Photoshop"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281115",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "컴투스프로야구for매니저, MLB 9이닝스 GM, 9UP 프로야구",
+  "gameCategory": "모바일게임 Simulation, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "모바일, 배경, 원화, 일러스트, 컨셉, 포토샵",
+  "updatedAt": "2026-06-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-08T20:09:39.955Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,34 @@
+{
+  "id": "crawled-280737",
+  "company": "㈜퍼니팩",
+  "title": "모바일 방치형 게임 QA 모집",
+  "role": "PM/운영",
+  "roles": [
+    "기획",
+    "PM/운영",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "QA/테스트"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280737",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "라이벌피싱, 리얼피싱 VR",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Simulation",
+  "employmentType": "정규직, 계약직 (계약기간 : 6개월), 프리랜서",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, QM, QA, QC, 베타테스터, 게임테스터",
+  "updatedAt": "2026-05-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-29T18:14:14.323Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

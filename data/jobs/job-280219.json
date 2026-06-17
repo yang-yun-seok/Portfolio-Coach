@@ -1,0 +1,37 @@
+{
+  "id": "crawled-280219",
+  "company": "CCR",
+  "title": "포트리스 컨텐츠 및 시스템 기획자 모집 공조",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "Unity",
+    "Excel"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280219",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "RF온라인, 포트리스",
+  "gameCategory": "온라인PC게임, 모바일게임 Casual, Shooting",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 게임기획, 시스템기획, 유료화",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

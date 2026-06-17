@@ -1,0 +1,39 @@
+{
+  "id": "crawled-279615",
+  "company": "넥슨 (NEXON)",
+  "title": "[개발실] 비주얼팀 배경 파트",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "UI/UX 기획",
+    "3ds Max",
+    "ZBrush",
+    "Machine Learning",
+    "Unreal Engine",
+    "Dedicated Server"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279615",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로드나인, AVATARA, 로한M",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 연구개발, 기술개발, 인터페이스, UX·UI, 배경, 배경원화, 3DSmax, Zbrush, AI, 게임프로그래밍, RPG, PC, 콘솔, 언리얼엔진, MORPG, DedicatedServer, Unreal엔진, 엔엑스쓰리게임즈, NX3GAMES",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

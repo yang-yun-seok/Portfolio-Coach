@@ -1,0 +1,34 @@
+{
+  "id": "crawled-281408",
+  "company": "㈜에이버튼",
+  "title": "[Project ES] (계약직) 주니어 3D 캐릭터 모델러",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unreal Engine",
+    "3ds Max",
+    "ZBrush"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281408",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "프로젝트 ES, GD, EA (개발중)",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "계약직 (계약기간 : 1년)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "원화, 모델링, 애니메이션, 이펙트",
+  "updatedAt": "2026-06-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-12T17:38:38.519Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}

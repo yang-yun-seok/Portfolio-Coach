@@ -1,0 +1,33 @@
+{
+  "id": "crawled-278268",
+  "company": "룸톤",
+  "title": "[룸톤게임즈] 3D 환경 아티스트 모집 (언리얼엔진5)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278268",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "INTERSCAPE",
+  "gameCategory": "콘솔게임 기타",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 1년)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 배경, 모델링, 언리얼엔진, blender",
+  "updatedAt": "2026-05-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-05-26T20:58:54.330Z",
+  "lastSeenAt": "2026-06-16T18:59:21.985Z",
+  "lastCrawledAt": "2026-06-16T18:59:21.985Z",
+  "inactiveAt": null
+}
