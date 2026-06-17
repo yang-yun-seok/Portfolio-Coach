@@ -137,9 +137,6 @@ jobs:
             exit 0
           fi
 
-          LATEST_APPLIED_DATE=$(node -p "JSON.parse(require('fs').readFileSync('public/api/jobs-metadata.json','utf8')).latestAppliedDate || ''")
-          REFERENCE_JOB_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('public/api/jobs-metadata.json','utf8')).referenceJobCount || 0")
-          NEW_JOBS_COUNT=$(node -p "JSON.parse(require('fs').readFileSync('public/api/jobs-metadata.json','utf8')).newJobsCount || 0")
           RUN_KIND="${{ steps.crawl_plan.outputs.run_label }}"
           case "$RUN_KIND" in
             manual) RUN_KIND_LABEL="수동 실행" ;;
@@ -149,9 +146,35 @@ jobs:
             retry-3) RUN_KIND_LABEL="3차 재시도" ;;
             *) RUN_KIND_LABEL="$RUN_KIND" ;;
           esac
+          export RUN_KIND_LABEL
+          node <<'NODE' > discord-payload.json
+          const fs = require('fs');
+
+          const meta = JSON.parse(fs.readFileSync('public/api/jobs-metadata.json', 'utf8'));
+          const toCount = (value) => {
+            const count = Number(value);
+            return Number.isFinite(count) ? count : 0;
+          };
+          const lines = [
+            `[Portfolio-Coach] ${process.env.RUN_KIND_LABEL} 게임잡 크롤링 성공`,
+            `반영일: ${meta.latestAppliedDate || ''}`,
+            `기존 공고 수: ${toCount(meta.previousReferenceJobCount)}`,
+            `현재 참고 공고 수: ${toCount(meta.referenceJobCount)}`,
+            `신규 공고 수: ${toCount(meta.newJobsCount)}`,
+            `재활성 공고 수: ${toCount(meta.reactivatedJobsCount)}`,
+            `마감/삭제 공고 수: ${toCount(meta.deletedJobsCount)}`,
+            `목록 감지 수: ${toCount(meta.listedJobsCount)}`,
+            `상세 저장 수: ${toCount(meta.crawledJobsCount)}`,
+            `상세 신규 수집 수: ${toCount(meta.fetchedJobsCount)}`,
+            `기존 상세 재사용 수: ${toCount(meta.reusedJobsCount)}`,
+            `크롤링 오류 수: ${toCount(meta.errorCount)}`,
+            `실행 링크: https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`,
+          ];
+          process.stdout.write(JSON.stringify({ content: lines.join('\n') }));
+          NODE
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d "{\"content\":\"[Portfolio-Coach] ${RUN_KIND_LABEL} 게임잡 크롤링 성공\n반영일: ${LATEST_APPLIED_DATE}\n참고 공고 수: ${REFERENCE_JOB_COUNT}\n신규 공고 수: ${NEW_JOBS_COUNT}\n실행 링크: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            --data @discord-payload.json \
             "$DISCORD_WEBHOOK_URL"
 
       - name: Notify Discord on crawl failure
@@ -173,9 +196,39 @@ jobs:
             retry-3) RUN_KIND_LABEL="3차 재시도" ;;
             *) RUN_KIND_LABEL="$RUN_KIND" ;;
           esac
+          export RUN_KIND_LABEL
+          node <<'NODE' > discord-payload.json
+          const fs = require('fs');
+
+          let meta = {};
+          try {
+            meta = JSON.parse(fs.readFileSync('public/api/jobs-metadata.json', 'utf8'));
+          } catch {
+            meta = {};
+          }
+
+          const toCount = (value) => {
+            const count = Number(value);
+            return Number.isFinite(count) ? count : 0;
+          };
+          const lines = [
+            `[Portfolio-Coach] ${process.env.RUN_KIND_LABEL} 게임잡 크롤링 실패`,
+            `사유: ${meta.lastCrawlError || '알 수 없음'}`,
+            `보존된 참고 공고 수: ${toCount(meta.referenceJobCount)}`,
+            `목록 감지 수: ${toCount(meta.listedJobsCount)}`,
+            `상세 저장 수: ${toCount(meta.crawledJobsCount)}`,
+            `상세 신규 수집 수: ${toCount(meta.fetchedJobsCount)}`,
+            `기존 상세 재사용 수: ${toCount(meta.reusedJobsCount)}`,
+            `크롤링 오류 수: ${toCount(meta.errorCount)}`,
+            `저장소: ${process.env.GITHUB_REPOSITORY}`,
+            `브랜치: ${process.env.GITHUB_REF_NAME || ''}`,
+            `실행 링크: https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`,
+          ];
+          process.stdout.write(JSON.stringify({ content: lines.join('\n') }));
+          NODE
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d "{\"content\":\"[Portfolio-Coach] ${RUN_KIND_LABEL} 게임잡 크롤링 실패\n저장소: ${{ github.repository }}\n브랜치: ${{ github.ref_name }}\n실행 링크: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\"}" \
+            --data @discord-payload.json \
             "$DISCORD_WEBHOOK_URL"
 
       - name: Fail workflow when crawl failed

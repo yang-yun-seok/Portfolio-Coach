@@ -73,6 +73,9 @@ export const DAILY_GAMEJOB_TARGETS = [
   ...DAILY_GAMEJOB_CAREER_TAGS,
 ];
 
+const MANAGED_CRAWL_MIN_PREVIOUS_COUNT_FOR_DROP_GUARD = 50;
+const MANAGED_CRAWL_MIN_RETAIN_RATIO = 0.5;
+
 function getJobsDir(dataDir) {
   return join(dataDir, 'jobs');
 }
@@ -90,6 +93,47 @@ function getCatalogFilters() {
     jobTags: DAILY_GAMEJOB_JOB_TAGS,
     careerTags: DAILY_GAMEJOB_CAREER_TAGS,
   };
+}
+
+function toCount(value) {
+  const count = Number(value);
+  return Number.isFinite(count) ? count : 0;
+}
+
+function getCrawlSummaryCounts(crawlResult = {}) {
+  return {
+    listedJobsCount: Array.isArray(crawlResult?.listedJobIds) ? crawlResult.listedJobIds.length : 0,
+    crawledJobsCount: Array.isArray(crawlResult?.jobs) ? crawlResult.jobs.length : toCount(crawlResult?.count),
+    fetchedJobsCount: toCount(crawlResult?.fetchedCount),
+    reusedJobsCount: toCount(crawlResult?.reusedCount),
+    pendingJobCount: toCount(crawlResult?.pendingJobCount),
+    errorCount: Array.isArray(crawlResult?.errors) ? crawlResult.errors.length : 0,
+  };
+}
+
+function createEmptyManagedCrawlError(crawlResult = {}) {
+  const summary = getCrawlSummaryCounts(crawlResult);
+  const error = new Error('게임잡 목록을 한 건도 확인하지 못해 이번 크롤링 반영을 중단했습니다. 기존 공고 데이터는 보존됩니다.');
+  error.code = 'EMPTY_GAMEJOB_CRAWL';
+  error.summary = summary;
+  return error;
+}
+
+function createSuspiciousManagedCrawlError({ previousReferenceJobCount, listedJobsCount }) {
+  const error = new Error(
+    `게임잡 목록 수가 기존 ${previousReferenceJobCount}건에서 ${listedJobsCount}건으로 급감해 이번 반영을 중단했습니다. 기존 공고 데이터는 보존됩니다.`,
+  );
+  error.code = 'SUSPICIOUS_GAMEJOB_CRAWL';
+  error.summary = { previousReferenceJobCount, listedJobsCount };
+  return error;
+}
+
+export function assertManagedCrawlHasResults(crawlResult = {}) {
+  const { listedJobsCount, crawledJobsCount } = getCrawlSummaryCounts(crawlResult);
+
+  if (listedJobsCount === 0 && crawledJobsCount === 0) {
+    throw createEmptyManagedCrawlError(crawlResult);
+  }
 }
 
 function buildManagedJob(previousJob, nextJob, crawlFinishedAt) {
@@ -149,14 +193,33 @@ export function upsertJobPostings({
   crawlFinishedAt = new Date().toISOString(),
   listedJobIds = [],
   removeMissingManagedJobs = true,
+  filters = {},
 } = {}) {
   const jobsDir = getJobsDir(dataDir);
   const previousJobs = loadJobRecords(jobsDir);
   const previousMap = getJobMap(previousJobs);
   const crawledMap = getJobMap(crawledJobs);
+
+  if (removeMissingManagedJobs && crawledMap.size === 0 && listedJobIds.length === 0) {
+    throw createEmptyManagedCrawlError({ jobs: crawledJobs, listedJobIds });
+  }
+
+  const previousPublicJobs = buildPublicJobs(previousJobs, filters);
   const listedJobIdSet = new Set(
     (listedJobIds.length > 0 ? listedJobIds : [...crawledMap.keys()]).map((jobId) => String(jobId)),
   );
+
+  if (
+    removeMissingManagedJobs
+    && previousPublicJobs.length >= MANAGED_CRAWL_MIN_PREVIOUS_COUNT_FOR_DROP_GUARD
+    && listedJobIdSet.size < Math.floor(previousPublicJobs.length * MANAGED_CRAWL_MIN_RETAIN_RATIO)
+  ) {
+    throw createSuspiciousManagedCrawlError({
+      previousReferenceJobCount: previousPublicJobs.length,
+      listedJobsCount: listedJobIdSet.size,
+    });
+  }
+
   const nextJobs = [];
   const touchedIds = new Set();
   const removedManagedJobIds = [];
@@ -212,7 +275,7 @@ export function upsertJobPostings({
   writeJobAggregate(jobsDir, nextJobs);
   writeJobIndex(jobsDir, nextJobs);
 
-  const publicJobs = buildPublicJobs(nextJobs);
+  const publicJobs = buildPublicJobs(nextJobs, filters);
   const activeJobsCount = publicJobs.length;
   const totalManagedJobsCount = nextJobs.filter(isManagedCatalogJob).length;
 
@@ -227,6 +290,11 @@ export function upsertJobPostings({
     activeJobsCount,
     totalManagedJobsCount,
     referenceJobCount: publicJobs.length,
+    previousReferenceJobCount: previousPublicJobs.length,
+    previousManagedJobsCount: previousJobs.filter(isManagedCatalogJob).length,
+    listedJobsCount: listedJobIdSet.size,
+    crawledJobsCount: crawledMap.size,
+    keptJobsCount: Math.max(0, publicJobs.length - newJobsCount - reactivatedJobsCount),
     latestAppliedDate: formatKstDate(crawlFinishedAt),
   };
 }
@@ -244,6 +312,7 @@ export function updateCrawlingMetadata({
   const lastCrawlStatus = succeeded
     ? ((crawlResult.errors?.length || 0) > 0 ? 'partial-success' : 'success')
     : 'failed';
+  const crawlCounts = getCrawlSummaryCounts(crawlResult);
 
   const nextMeta = {
     ...previousMeta,
@@ -252,13 +321,23 @@ export function updateCrawlingMetadata({
     lastCrawlStatus,
     lastCrawlError: error ? error.message || String(error) : null,
     filters: crawlResult?.filters || previousMeta.filters,
+    listedJobsCount: crawlCounts.listedJobsCount,
+    crawledJobsCount: crawlCounts.crawledJobsCount,
+    fetchedJobsCount: crawlCounts.fetchedJobsCount,
+    reusedJobsCount: crawlCounts.reusedJobsCount,
+    pendingJobCount: crawlCounts.pendingJobCount,
+    errorCount: crawlCounts.errorCount,
   };
 
   if (succeeded) {
     nextMeta.latestAppliedDate = upsertResult.latestAppliedDate;
     nextMeta.referenceJobCount = upsertResult.referenceJobCount;
+    nextMeta.previousReferenceJobCount = upsertResult.previousReferenceJobCount;
     nextMeta.lastSuccessfulCrawlAt = finishedAt;
     nextMeta.newJobsCount = upsertResult.newJobsCount;
+    nextMeta.reactivatedJobsCount = upsertResult.reactivatedJobsCount;
+    nextMeta.deletedJobsCount = upsertResult.deletedJobsCount;
+    nextMeta.keptJobsCount = upsertResult.keptJobsCount;
     nextMeta.activeJobsCount = upsertResult.activeJobsCount;
     nextMeta.inactiveJobsCount = upsertResult.inactiveJobsCount;
     nextMeta.totalManagedJobsCount = upsertResult.totalManagedJobsCount;
@@ -282,6 +361,15 @@ export function appendDailyHistorySnapshot({
     generatedAt: crawlFinishedAt,
     referenceJobCount: publicJobs.length,
     newJobsCount: metadata.newJobsCount || 0,
+    previousReferenceJobCount: metadata.previousReferenceJobCount || 0,
+    reactivatedJobsCount: metadata.reactivatedJobsCount || 0,
+    deletedJobsCount: metadata.deletedJobsCount || 0,
+    listedJobsCount: metadata.listedJobsCount || 0,
+    crawledJobsCount: metadata.crawledJobsCount || 0,
+    fetchedJobsCount: metadata.fetchedJobsCount || 0,
+    reusedJobsCount: metadata.reusedJobsCount || 0,
+    pendingJobCount: metadata.pendingJobCount || 0,
+    errorCount: metadata.errorCount || 0,
     activeJobsCount: metadata.activeJobsCount || publicJobs.length,
     lastCrawlStatus: metadata.lastCrawlStatus || 'success',
     jobs: publicJobs,
@@ -332,20 +420,24 @@ export async function runDailyGameJobCrawling({
   logger = console,
   signal = null,
 } = {}) {
+  let crawlResult = null;
+
   try {
-    const crawlResult = await crawlGameJobPostings({
+    crawlResult = await crawlGameJobPostings({
       dataDir,
       signal,
       onProgress: ({ message, percent }) => {
         logger.log(`[daily-crawl ${percent ?? 0}%] ${message}`);
       },
     });
+    assertManagedCrawlHasResults(crawlResult);
 
     const upsertResult = upsertJobPostings({
       dataDir,
       crawledJobs: crawlResult.jobs || [],
       crawlFinishedAt: crawlResult.finishedAt,
       listedJobIds: crawlResult.listedJobIds || [],
+      filters: crawlResult.filters || getCatalogFilters(),
     });
 
     const metadata = updateCrawlingMetadata({
@@ -374,10 +466,16 @@ export async function runDailyGameJobCrawling({
     const metadata = updateCrawlingMetadata({
       dataDir,
       error,
-      crawlResult: {
-        finishedAt: new Date().toISOString(),
-        filters: getCatalogFilters(),
-      },
+      crawlResult: crawlResult
+        ? {
+            ...crawlResult,
+            finishedAt: crawlResult.finishedAt || new Date().toISOString(),
+            filters: crawlResult.filters || getCatalogFilters(),
+          }
+        : {
+            finishedAt: new Date().toISOString(),
+            filters: getCatalogFilters(),
+          },
     });
 
     dataLoader?.refresh?.();

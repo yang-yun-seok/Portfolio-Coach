@@ -7,6 +7,7 @@ import {
   DAILY_GAMEJOB_JOB_TAGS,
   DAILY_GAMEJOB_TARGETS,
   appendDailyHistorySnapshot,
+  assertManagedCrawlHasResults,
   crawlGameJobPostings,
   persistResolvedJobPosting,
   updateCrawlingMetadata,
@@ -150,24 +151,31 @@ export function createCrawlService({ dataDir, dataLoader }) {
         const wasCancelled = result.success === false;
 
         if (!wasCancelled) {
+          if (managedSync) {
+            assertManagedCrawlHasResults(result);
+          }
+
           pushEvent({ stage: 'normalize', message: '공개 공고 데이터를 반영하는 중입니다.', percent: 96 });
 
           const finishedAt = result.finishedAt || new Date().toISOString();
+          const filters = result.filters || (managedSync ? getManagedCatalogFilters() : getCatalogFiltersForTargets(crawlTargets));
           const upsertResult = upsertJobPostings({
             dataDir,
             crawledJobs: result.jobs || [],
             crawlFinishedAt: finishedAt,
             listedJobIds: result.listedJobIds || [],
             removeMissingManagedJobs: managedSync,
+            filters,
           });
 
           if (managedSync) {
             const metadata = updateCrawlingMetadata({
               dataDir,
               crawlResult: {
+                ...result,
                 finishedAt,
                 errors: result.errors || [],
-                filters: result.filters || getManagedCatalogFilters(),
+                filters,
               },
               upsertResult,
             });
@@ -182,7 +190,7 @@ export function createCrawlService({ dataDir, dataLoader }) {
           pushEvent({
             stage: 'normalize',
             message: managedSync
-              ? `데이터 반영 완료: 신규 ${upsertResult.newJobsCount}건, 삭제 ${upsertResult.deletedJobsCount}건`
+              ? `데이터 반영 완료: 기존 ${upsertResult.previousReferenceJobCount}건, 현재 ${upsertResult.referenceJobCount}건, 신규 ${upsertResult.newJobsCount}건, 삭제 ${upsertResult.deletedJobsCount}건`
               : `부분 반영 완료: 신규 ${upsertResult.newJobsCount}건, 유지 ${upsertResult.jobs.length}건`,
             percent: 98,
           });
