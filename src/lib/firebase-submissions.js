@@ -80,11 +80,14 @@ export async function createPortfolioSubmission({
   trimmedPortfolioFiles.forEach((file) => assertPdfFile(file, '포트폴리오'));
   assertPdfFile(resumeFile, '이력서');
   assertPdfFile(coverLetterFile, '자기소개서');
+  const accountDisplayName = userProfile?.studentName || userProfile?.displayName || authUser.displayName || '';
 
   const submissionsRef = collection(firebaseDb, 'portfolioSubmissions');
   const submissionRef = await addDoc(submissionsRef, {
     userId: authUser.uid,
     userEmail: authUser.email || '',
+    userDisplayName: accountDisplayName,
+    accountStudentName: userProfile?.studentName || accountDisplayName,
     applicantName: userInfo.name.trim(),
     track: userInfo.roleGroup,
     subRole: userInfo.subRole,

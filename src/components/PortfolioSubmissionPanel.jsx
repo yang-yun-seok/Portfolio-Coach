@@ -34,6 +34,7 @@ export default function PortfolioSubmissionPanel({
   submissions,
   submissionsLoading,
   onSubmitPortfolio,
+  userProfile,
 }) {
   if (!authEnabled) {
     return (
@@ -48,6 +49,8 @@ export default function PortfolioSubmissionPanel({
       </section>
     );
   }
+
+  const accountDisplayName = userProfile?.studentName || userProfile?.displayName || authUser?.displayName || '';
 
   return (
     <section className="coach-review-surface">
@@ -73,7 +76,7 @@ export default function PortfolioSubmissionPanel({
       <div className="coach-submission-meta">
         <div>
           <span>로그인 계정</span>
-          <strong>{authUser?.email || '로그인 필요'}</strong>
+          <strong>{accountDisplayName ? `${accountDisplayName} · ${authUser?.email || ''}` : authUser?.email || '로그인 필요'}</strong>
         </div>
         <div>
           <span>저장 위치</span>

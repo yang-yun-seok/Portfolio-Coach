@@ -29,6 +29,7 @@ import { useFirebaseSession } from './hooks/useFirebaseSession';
 import { useModels } from './hooks/useModels';
 import { usePortfolioSubmissions } from './hooks/usePortfolioSubmissions';
 import { useWorkspacePersistence } from './hooks/useWorkspacePersistence';
+import AccountNameModal from './components/AccountNameModal';
 import AuthGate from './components/AuthGate';
 import { EMPTY_INSTRUCTOR } from './components/InstructorFeedbackForm';
 import WorkspaceCommandBar from './components/WorkspaceCommandBar';
@@ -201,6 +202,7 @@ export default function App() {
     getAccessToken,
     signIn,
     signOutUser,
+    updateUserDisplayName,
     userProfile,
   } = useFirebaseSession();
   const workspaceRef = useRef(null);
@@ -397,6 +399,7 @@ export default function App() {
 
   // 설정 / 추천 공고
   const [showSettings, setShowSettings] = useState(false);
+  const [showAccountNameModal, setShowAccountNameModal] = useState(false);
   const [showModelSettings, setShowModelSettings] = useState(false);
   const [showUserGuide, setShowUserGuide] = useState(false);
   const isSmokeMode = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('smoke') === '1';
@@ -995,6 +998,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     submissionSuccess,
     submissions,
     submissionsLoading,
+    userProfile,
   };
 
   const interviewWorkspaceProps = {
@@ -1063,6 +1067,13 @@ const { analyzeApplication } = useApplicationAnalysis({
     }
   };
 
+  const handleSaveAccountName = async (name) => {
+    setError('');
+    await updateUserDisplayName(name);
+    setShowAccountNameModal(false);
+    setInfoMessage('계정 이름을 Firebase에 저장했습니다.');
+  };
+
   // ── 렌더링 ────────────────────────────────────────────────────────────
   return (
     <AuthGate
@@ -1084,6 +1095,7 @@ const { analyzeApplication } = useApplicationAnalysis({
         loading={loading}
         modelSummary={`${currentProvider?.label || '모델 선택'}${selectedModelId ? ` · ${selectedModelId}` : ''}${hasAiApiKey(aiApiKeys, selectedProvider) ? ' · 키 설정됨' : ' · 키 필요'}`}
         navSections={navSections}
+        onOpenAccountName={() => setShowAccountNameModal(true)}
         onOpenGuide={() => setShowUserGuide(true)}
         onOpenModelSettings={() => setShowModelSettings(true)}
         onOpenSettings={() => setShowSettings(true)}
@@ -1094,6 +1106,7 @@ const { analyzeApplication } = useApplicationAnalysis({
         onShowTrackGate={() => setShowTrackGate(true)}
         onSignOut={signOutUser}
         roleGroups={ROLE_GROUPS}
+        userProfile={userProfile}
       />
 
       {showTrackGate ? (
@@ -1153,6 +1166,14 @@ const { analyzeApplication } = useApplicationAnalysis({
         onClose={() => setShowUserGuide(false)}
         roleGroup={normalizedUserInfo.roleGroup}
         guidePlaybook={guidePlaybook}
+      />
+
+      <AccountNameModal
+        authUser={authUser}
+        onClose={() => setShowAccountNameModal(false)}
+        onSave={handleSaveAccountName}
+        open={showAccountNameModal}
+        userProfile={userProfile}
       />
 
       {/* ?? ?? ?? ??????????????????????????????????????????????? */}

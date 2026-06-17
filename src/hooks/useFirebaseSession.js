@@ -7,6 +7,7 @@ import {
   signInWithPopup,
   signInWithRedirect,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import {
   doc,
@@ -23,6 +24,7 @@ import {
 
 const DEFAULT_ROLE = 'user';
 const GOOGLE_PROVIDER_ID = 'google.com';
+const MAX_STUDENT_NAME_LENGTH = 40;
 
 function createGoogleProvider() {
   const provider = new GoogleAuthProvider();
@@ -155,6 +157,43 @@ export function useFirebaseSession() {
     await signOut(firebaseAuth);
   }, []);
 
+  const updateUserDisplayName = useCallback(async (name) => {
+    if (!firebaseAuth?.currentUser || !firebaseDb) {
+      throw new Error('로그인 정보가 없습니다.');
+    }
+
+    const trimmedName = String(name || '').trim().replace(/\s+/g, ' ');
+    if (!trimmedName) {
+      throw new Error('이름을 입력해 주세요.');
+    }
+    if (trimmedName.length > MAX_STUDENT_NAME_LENGTH) {
+      throw new Error(`이름은 ${MAX_STUDENT_NAME_LENGTH}자 이하로 입력해 주세요.`);
+    }
+
+    const currentUser = firebaseAuth.currentUser;
+    const updatedAt = new Date().toISOString();
+    const nextProfilePatch = {
+      displayName: trimmedName,
+      studentName: trimmedName,
+      email: currentUser.email || '',
+      photoURL: currentUser.photoURL || '',
+      authProvider: GOOGLE_PROVIDER_ID,
+      active: true,
+      nameUpdatedAt: updatedAt,
+      lastLoginAt: updatedAt,
+    };
+
+    await updateProfile(currentUser, { displayName: trimmedName });
+    await setDoc(doc(firebaseDb, 'users', currentUser.uid), nextProfilePatch, { merge: true });
+    setAuthUser(currentUser);
+    setUserProfile((currentProfile) => ({
+      ...(currentProfile || {}),
+      ...nextProfilePatch,
+    }));
+
+    return nextProfilePatch;
+  }, []);
+
   const getAccessToken = useCallback(async () => {
     if (!authUser) return '';
     return authUser.getIdToken();
@@ -170,6 +209,7 @@ export function useFirebaseSession() {
     isAdmin: userProfile?.role === 'admin',
     signIn,
     signOutUser,
+    updateUserDisplayName,
     getAccessToken,
     configReady: isFirebaseClientReady,
     configIssues: firebaseConfigIssues,
@@ -180,6 +220,7 @@ export function useFirebaseSession() {
     userProfile,
     signIn,
     signOutUser,
+    updateUserDisplayName,
     getAccessToken,
   ]);
 }

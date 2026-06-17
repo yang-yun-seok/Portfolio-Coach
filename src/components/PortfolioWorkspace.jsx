@@ -51,6 +51,7 @@ export default function PortfolioWorkspace({
   submissionSuccess,
   submissions,
   submissionsLoading,
+  userProfile,
 }) {
   const improvementItems = Array.isArray(results.portfolioImprovements) ? results.portfolioImprovements : [];
   const github = results.githubPortfolioAnalysis;
@@ -240,6 +241,7 @@ export default function PortfolioWorkspace({
         submissionSuccess={submissionSuccess}
         submissions={submissions}
         submissionsLoading={submissionsLoading}
+        userProfile={userProfile}
         onSubmitPortfolio={onSubmitPortfolio}
       />
     </div>

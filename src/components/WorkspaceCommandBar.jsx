@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, ChevronDown, Gamepad2, KeyRound, Loader2, LogIn, LogOut, Settings } from 'lucide-react';
+import { BookOpen, ChevronDown, Gamepad2, KeyRound, Loader2, LogIn, LogOut, Settings, UserRound } from 'lucide-react';
 
 export default function WorkspaceCommandBar({
   activeTab,
@@ -11,6 +11,7 @@ export default function WorkspaceCommandBar({
   loading,
   modelSummary,
   navSections,
+  onOpenAccountName,
   onOpenGuide,
   onOpenModelSettings,
   onOpenSettings,
@@ -21,8 +22,10 @@ export default function WorkspaceCommandBar({
   onShowTrackGate,
   onSignOut,
   roleGroups,
+  userProfile,
 }) {
   const [openMenuId, setOpenMenuId] = useState(null);
+  const accountDisplayName = userProfile?.studentName || userProfile?.displayName || authUser?.displayName || authUser?.email || '계정';
 
   const handleToggleMenu = (sectionId) => {
     setOpenMenuId((current) => (current === sectionId ? null : sectionId));
@@ -124,7 +127,7 @@ export default function WorkspaceCommandBar({
         {authUser?.email ? (
           <div className="coach-command-account">
             <small>로그인 계정</small>
-            <strong>{authUser.email}</strong>
+            <strong>{accountDisplayName}</strong>
           </div>
         ) : null}
 
@@ -149,6 +152,18 @@ export default function WorkspaceCommandBar({
           <button type="button" onClick={onRequestLogin} className="coach-login-command" title={authEnabled ? '로그인' : '로그인 화면 확인'} aria-label="로그인">
             <LogIn size={17} />
             <span>로그인</span>
+          </button>
+        ) : null}
+        {authUser ? (
+          <button
+            type="button"
+            onClick={onOpenAccountName}
+            className="coach-login-command"
+            title={`이름 설정: ${accountDisplayName}`}
+            aria-label="이름 설정"
+          >
+            <UserRound size={17} />
+            <span>이름 설정</span>
           </button>
         ) : null}
         {authUser ? (
