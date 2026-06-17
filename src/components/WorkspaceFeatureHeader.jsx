@@ -13,9 +13,9 @@ export default function WorkspaceFeatureHeader({
       <div className="coach-dossier-tab">
         <span className="coach-workbench-icon"><ActiveNavIcon size={20} /></span>
         <div className="coach-dossier-copy">
-          <p className="coach-overline">{activeSectionLabel}</p>
+          <p className="coach-overline">{activeSectionLabel} · {activeLabel}</p>
           <div className="coach-dossier-heading">
-            <h2>{activeLabel}</h2>
+            <h2>{activeFeatureGuide.title}</h2>
           </div>
           <p>{activeFeatureGuide.description}</p>
         </div>

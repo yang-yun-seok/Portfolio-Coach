@@ -135,10 +135,6 @@ export default function WorkspaceCommandBar({
           <BookOpen size={17} />
           <span>사용 설명서</span>
         </button>
-        <button type="button" onClick={onOpenSettings} title="설정" aria-label="설정">
-          <Settings size={17} />
-          <span>설정</span>
-        </button>
         <button type="button" onClick={onOpenModelSettings} className="coach-model-command" title={`AI API 연결: ${modelSummary}`} aria-label="AI API 연결">
           <KeyRound size={17} />
           <span>AI API 연결</span>

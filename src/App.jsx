@@ -36,6 +36,7 @@ import WorkspaceCommandBar from './components/WorkspaceCommandBar';
 import WorkspaceContent from './components/WorkspaceContent';
 import WorkspaceFeatureHeader from './components/WorkspaceFeatureHeader';
 import WorkspaceMessages from './components/WorkspaceMessages';
+import WorkspaceProgressPanel from './components/WorkspaceProgressPanel';
 import CompanyInfoModal from './components/CompanyInfoModal';
 import ModelSettingsModal from './components/ModelSettingsModal';
 import SettingsModal from './components/SettingsModal';
@@ -1049,6 +1050,25 @@ const { analyzeApplication } = useApplicationAnalysis({
     recommendedJobs,
     instructorFeedback,
   };
+  const progressPanelProps = {
+    activeFeatureGuide,
+    activeLabel: activeNavItem.label,
+    activeTab,
+    authUser,
+    coverLetterFile,
+    loading,
+    normalizedUserInfo,
+    onAnalyze: analyzeApplication,
+    onOpenAccountName: () => setShowAccountNameModal(true),
+    onSelectTab: setActiveTab,
+    portfolioFiles,
+    recommendedJobs,
+    results,
+    resumeFile,
+    submissionSaving,
+    submissions,
+    userProfile,
+  };
 
   useEffect(() => {
     workspaceRef.current?.scrollTo({ top: 0, behavior: 'auto' });
@@ -1153,6 +1173,7 @@ const { analyzeApplication } = useApplicationAnalysis({
         </div>
       </div>
 
+      <WorkspaceProgressPanel {...progressPanelProps} />
       </div>
       )}
 
