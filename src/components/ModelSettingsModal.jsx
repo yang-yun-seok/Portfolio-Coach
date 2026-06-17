@@ -26,7 +26,7 @@ export default function ModelSettingsModal({
   useEffect(() => {
     if (!open) return;
     setDraftKey(providerApiKey || '');
-    setStatus(providerApiKey ? { type: 'saved', message: `저장된 키: ${maskAiApiKey(providerApiKey)}` } : { type: '', message: '' });
+    setStatus(providerApiKey ? { type: 'saved', message: `설정된 키: ${maskAiApiKey(providerApiKey)}` } : { type: '', message: '' });
   }, [open, providerApiKey, selectedProvider]);
 
   if (!open) return null;
@@ -38,14 +38,14 @@ export default function ModelSettingsModal({
     onApiKeyChange?.(selectedProvider, draftKey.trim());
     setStatus({
       type: draftKey.trim() ? 'saved' : 'error',
-      message: draftKey.trim() ? `저장된 키: ${maskAiApiKey(draftKey)}` : 'API 키가 비어 있습니다.',
+      message: draftKey.trim() ? `설정된 키: ${maskAiApiKey(draftKey)}` : 'API 키가 비어 있습니다.',
     });
   };
 
   const handleDelete = () => {
     setDraftKey('');
     onApiKeyDelete?.(selectedProvider);
-    setStatus({ type: 'deleted', message: '저장된 API 키를 삭제했습니다.' });
+    setStatus({ type: 'deleted', message: 'API 키 설정을 초기화했습니다.' });
   };
 
   const handleValidate = async () => {
@@ -108,7 +108,7 @@ export default function ModelSettingsModal({
               <KeyRound size={17} className="text-slate-500" />
               <div>
                 <p className="text-sm font-bold text-slate-800">{providerLabel} API 키</p>
-                <p className="text-xs text-slate-500">키는 이 브라우저에만 저장되고 AI 요청은 학생 키로 직접 호출됩니다.</p>
+                <p className="text-xs text-slate-500">AI 요청에 사용할 개인 키를 입력합니다.</p>
               </div>
             </div>
 
@@ -138,7 +138,7 @@ export default function ModelSettingsModal({
                 className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-3 py-2 text-xs font-bold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {validating ? <Loader2 size={14} className="animate-spin" /> : <CheckCircle size={14} />}
-                검증 후 저장
+                검증 후 적용
               </button>
               <button
                 type="button"
@@ -146,7 +146,7 @@ export default function ModelSettingsModal({
                 disabled={!hasDraftKey}
                 className="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-xs font-bold text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                저장
+                적용
               </button>
               <button
                 type="button"

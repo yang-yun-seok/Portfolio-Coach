@@ -35,7 +35,7 @@ export default function AccountNameModal({
     try {
       await onSave(trimmedName);
     } catch (saveError) {
-      setError(saveError.message || '이름 저장에 실패했습니다.');
+      setError(saveError.message || '이름 설정에 실패했습니다.');
     } finally {
       setSaving(false);
     }
@@ -53,8 +53,8 @@ export default function AccountNameModal({
               <UserRound size={20} className="text-white" />
             </div>
             <div>
-              <h2 className="text-xl font-bold text-slate-800">계정 이름 설정</h2>
-              <p className="text-sm text-slate-500">Firebase에서 학생 계정을 식별할 이름입니다.</p>
+              <h2 className="text-xl font-bold text-slate-800">이름 설정</h2>
+              <p className="text-sm text-slate-500">수업 담당자가 확인할 수 있는 이름을 입력해 주세요.</p>
             </div>
           </div>
           <button type="button" onClick={onClose} className="text-slate-400 transition-colors hover:text-slate-600">
@@ -93,7 +93,7 @@ export default function AccountNameModal({
           ) : (
             <div className="flex items-start gap-2 rounded-xl border border-emerald-100 bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
               <CheckCircle size={16} className="mt-0.5 shrink-0" />
-              <span>저장하면 Firestore users 문서에 이메일과 함께 기록됩니다.</span>
+              <span>이 이름은 담당자가 제출자를 확인할 때 사용합니다.</span>
             </div>
           )}
         </div>
@@ -112,7 +112,7 @@ export default function AccountNameModal({
             className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2 text-sm font-bold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {saving ? <Loader2 size={16} className="animate-spin" /> : <CheckCircle size={16} />}
-            저장
+            완료
           </button>
         </div>
       </form>

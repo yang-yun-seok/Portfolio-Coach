@@ -41,11 +41,11 @@ function getReadableAuthError(error) {
     case 'auth/popup-closed-by-user':
       return 'Google 로그인이 취소되었습니다.';
     case 'auth/account-exists-with-different-credential':
-      return '이미 다른 로그인 방식으로 가입된 이메일입니다. Firebase Authentication에서 Google 제공업체 연결 상태를 확인해 주세요.';
+      return '이미 다른 로그인 방식으로 가입된 이메일입니다. 관리자에게 문의해 주세요.';
     case 'auth/unauthorized-domain':
-      return '현재 도메인이 Firebase 승인 도메인에 등록되어 있지 않습니다.';
+      return '현재 주소에서는 로그인할 수 없습니다. 관리자에게 문의해 주세요.';
     case 'auth/operation-not-allowed':
-      return 'Firebase Authentication에서 Google 로그인 제공업체가 활성화되어 있지 않습니다.';
+      return 'Google 로그인 설정이 아직 완료되지 않았습니다. 관리자에게 문의해 주세요.';
     default:
       return error?.message || 'Google 로그인에 실패했습니다.';
   }
@@ -65,7 +65,7 @@ export function useFirebaseSession() {
 
     if (!isFirebaseClientReady || !firebaseAuth || !firebaseDb) {
       setAuthLoading(false);
-      setAuthError(`Firebase 설정이 완전하지 않습니다. ${firebaseConfigIssues.join(', ')}`);
+      setAuthError('로그인 설정이 완전하지 않습니다. 관리자에게 문의해 주세요.');
       return undefined;
     }
 
@@ -134,7 +134,7 @@ export function useFirebaseSession() {
 
   const signIn = useCallback(async () => {
     if (!firebaseAuth) {
-      throw new Error('Firebase 인증이 활성화되어 있지 않습니다.');
+      throw new Error('로그인 기능이 아직 활성화되어 있지 않습니다.');
     }
 
     setAuthError('');

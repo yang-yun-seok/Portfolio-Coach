@@ -504,7 +504,7 @@ export default function InputWorkspace({
         >
           {loading
             ? <><Loader2 size={20} className="animate-spin" /> AI 분석 요청 처리 중 ({currentProvider?.label || 'Gemini'})...</>
-            : <><Target size={20} /> AI 분석 시작 및 저장</>}
+            : <><Target size={20} /> AI 분석 시작</>}
         </button>
 
         {loading && (
@@ -516,7 +516,7 @@ export default function InputWorkspace({
                 <p className="text-sm leading-relaxed text-amber-800">
                   서버와 AI 모델이 응답을 정리하는 과정이라 최대 1분 정도 걸릴 수 있습니다. 진행 중에는 새로고침, 뒤로 가기, 탭 닫기를 하지 말고 잠시만 기다려 주세요.
                 </p>
-                <p className="text-xs font-semibold text-amber-700">응답이 도착하면 결과를 로컬에 저장한 뒤 서류 피드백 화면으로 자동 이동합니다.</p>
+                <p className="text-xs font-semibold text-amber-700">응답이 도착하면 서류 피드백 화면으로 자동 이동합니다.</p>
               </div>
             </div>
           </div>

@@ -19,21 +19,18 @@ function AuthLoadingScreen() {
   );
 }
 
-function AuthErrorScreen({ message }) {
+function AuthErrorScreen() {
   return (
     <main className="coach-auth-shell">
       <section className="coach-auth-card">
         <div className="coach-auth-logo is-warning">
           <AlertCircle size={26} />
         </div>
-        <h1>Firebase 로그인이 필요합니다</h1>
-        <p>{message}</p>
+        <h1>로그인 설정 확인이 필요합니다</h1>
+        <p>현재 로그인 기능을 사용할 수 없습니다. 관리자에게 문의해 주세요.</p>
         <div className="coach-auth-note">
-          <strong>필수 설정값</strong>
-          <span>
-            VITE_FIREBASE_AUTH_ENABLED, VITE_FIREBASE_API_KEY, VITE_FIREBASE_AUTH_DOMAIN,
-            VITE_FIREBASE_PROJECT_ID, VITE_FIREBASE_STORAGE_BUCKET, VITE_FIREBASE_APP_ID
-          </span>
+          <strong>안내</strong>
+          <span>수업 담당자가 설정을 확인한 뒤 다시 이용할 수 있습니다.</span>
         </div>
       </section>
     </main>
@@ -64,7 +61,7 @@ function LoginScreen({ onSignIn, error }) {
         </div>
         <h1>Google 로그인 후 이용할 수 있습니다</h1>
         <p>
-          학생 제출 자료와 분석 결과를 안전하게 저장하기 위해 Firebase Google 로그인을 사용합니다.
+          수업용 계정을 확인한 뒤 포트폴리오 코치를 이용할 수 있습니다.
         </p>
 
         {(localError || error) ? (
@@ -108,7 +105,7 @@ export default function AuthGate({
   if (isLocalSmokeBypass) return children;
   if (!authEnabled) return children;
   if (!configReady) {
-    return <AuthErrorScreen message={authError || 'Firebase 클라이언트 설정이 완전하지 않습니다.'} />;
+    return <AuthErrorScreen />;
   }
   if (authLoading) return <AuthLoadingScreen />;
   if (!authUser) return <LoginScreen onSignIn={onSignIn} error={authError} />;

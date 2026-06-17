@@ -59,11 +59,11 @@ export function usePortfolioSubmissions({
         results,
         recommendedJobs,
       });
-      setSubmissionSuccess('포트폴리오 제출이 저장되었습니다. 제출 내역에서 상태를 확인할 수 있습니다.');
+      setSubmissionSuccess('포트폴리오 제출이 완료되었습니다. 제출 내역에서 상태를 확인할 수 있습니다.');
       await reloadSubmissions();
       return result;
     } catch (error) {
-      setSubmissionError(error.message || '제출 저장에 실패했습니다.');
+      setSubmissionError(error.message || '제출에 실패했습니다.');
       throw error;
     } finally {
       setSubmissionSaving(false);

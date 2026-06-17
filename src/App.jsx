@@ -889,7 +889,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     },
     'pdf-export': {
       title: '필요한 결과만 문서로 묶습니다',
-      description: '분석 결과와 강사 피드백을 저장하거나 공유할 수 있는 문서로 출력합니다.',
+      description: '분석 결과와 강사 피드백을 제출용 문서로 출력합니다.',
       hint: '공유가 필요한 항목만 골라 제출용 검토 자료로 정리합니다.',
     },
   };
@@ -905,7 +905,7 @@ const { analyzeApplication } = useApplicationAnalysis({
       icon: Database,
       label: 'Recovered',
       title: '마지막 작업을 복구했습니다.',
-      body: `${formatSavedAt(restoreNotice.savedAt) || '최근 저장 시점'} 기준으로 ${restoreNotice.hasResults ? '분석 결과와 프로필' : '프로필'}을 불러왔습니다.`,
+      body: `${formatSavedAt(restoreNotice.savedAt) || '최근 작업'} 기준으로 ${restoreNotice.hasResults ? '분석 결과와 프로필' : '프로필'}을 불러왔습니다.`,
       actionLabel: restoreNotice.hasResults ? '결과 열기' : '입력 확인',
       onAction: () => {
         setActiveTab(restoreNotice.hasResults ? 'feedback' : 'input');
@@ -920,16 +920,16 @@ const { analyzeApplication } = useApplicationAnalysis({
       icon: Loader2,
       label: 'Saving',
       title: '강사 피드백 초안을 정리하고 있습니다.',
-      body: '분석 결과는 이미 보존되어 있습니다. 저장 문구가 사라질 때까지 새로고침하지 않는 편이 안전합니다.',
+      body: '정리가 끝날 때까지 새로고침하지 않는 편이 안전합니다.',
       spin: true,
     },
     saveStatus === 'saved' && lastSavedAt && {
       id: 'saved',
       tone: 'success',
       icon: CheckCircle,
-      label: 'Saved',
-      title: '현재 결과를 로컬에 저장했습니다.',
-      body: `${formatSavedAt(lastSavedAt)} 기준 스냅샷입니다. 다시 열어도 복구할 수 있습니다.`,
+      label: 'Ready',
+      title: '현재 결과가 준비되었습니다.',
+      body: `${formatSavedAt(lastSavedAt)} 기준으로 이어서 확인할 수 있습니다.`,
     },
   ].filter(Boolean);
   const inputWorkspaceProps = {
@@ -1071,7 +1071,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     setError('');
     await updateUserDisplayName(name);
     setShowAccountNameModal(false);
-    setInfoMessage('계정 이름을 Firebase에 저장했습니다.');
+    setInfoMessage('이름 설정이 완료되었습니다.');
   };
 
   // ── 렌더링 ────────────────────────────────────────────────────────────

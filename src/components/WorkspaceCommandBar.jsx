@@ -96,7 +96,7 @@ export default function WorkspaceCommandBar({
         </div>
         <div className="coach-command-meta">
           <em className="coach-command-track">{currentTrackLabel} 트랙</em>
-          <small>{loading ? 'AI 분석 중' : '로컬 상태 보존 중'}</small>
+          <small>{loading ? 'AI 분석 중' : '준비 완료'}</small>
           {loading && <Loader2 size={16} className="animate-spin" />}
         </div>
       </div>

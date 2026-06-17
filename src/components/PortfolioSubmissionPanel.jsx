@@ -42,8 +42,8 @@ export default function PortfolioSubmissionPanel({
         <div className="coach-review-empty-box">
           <AlertCircle size={16} />
           <div>
-            <p className="coach-review-empty-title">제출 저장 기능이 아직 비활성 상태입니다.</p>
-            <p className="coach-review-empty-body">Firebase 인증과 저장소 설정을 마치면 이 화면에서 제출을 저장할 수 있습니다.</p>
+            <p className="coach-review-empty-title">제출 기능을 아직 사용할 수 없습니다.</p>
+            <p className="coach-review-empty-body">담당자 설정이 완료된 뒤 이 화면에서 자료를 제출할 수 있습니다.</p>
           </div>
         </div>
       </section>
@@ -56,10 +56,10 @@ export default function PortfolioSubmissionPanel({
     <section className="coach-review-surface">
       <div className="coach-review-section-head">
         <div>
-          <p className="coach-review-eyebrow">제출 관리</p>
-          <h3>포트폴리오 제출 저장</h3>
+          <p className="coach-review-eyebrow">제출</p>
+          <h3>포트폴리오 자료 제출</h3>
           <p className="coach-review-section-body">
-            로그인한 계정을 기준으로 현재 이력서, 자기소개서, 포트폴리오 파일을 Firebase에 저장합니다.
+            현재 이력서, 자기소개서, 포트폴리오 파일을 담당자 확인용으로 제출합니다.
           </p>
         </div>
         <button
@@ -69,7 +69,7 @@ export default function PortfolioSubmissionPanel({
           className="coach-review-badge is-action"
         >
           {submissionSaving ? <Loader2 size={14} className="animate-spin" /> : <Send size={14} />}
-          제출 저장
+          제출하기
         </button>
       </div>
 
@@ -79,8 +79,8 @@ export default function PortfolioSubmissionPanel({
           <strong>{accountDisplayName ? `${accountDisplayName} · ${authUser?.email || ''}` : authUser?.email || '로그인 필요'}</strong>
         </div>
         <div>
-          <span>저장 위치</span>
-          <strong>Firebase Firestore / Storage</strong>
+          <span>처리 상태</span>
+          <strong>담당자 확인 대기</strong>
         </div>
       </div>
 
@@ -121,8 +121,8 @@ export default function PortfolioSubmissionPanel({
         ) : (
           <div className="coach-review-empty-box">
             <div>
-              <p className="coach-review-empty-title">아직 저장된 제출 내역이 없습니다.</p>
-              <p className="coach-review-empty-body">현재 문서를 정리한 뒤 제출 저장을 누르면 목록이 여기에 쌓입니다.</p>
+              <p className="coach-review-empty-title">아직 제출 내역이 없습니다.</p>
+              <p className="coach-review-empty-body">현재 문서를 정리한 뒤 제출하기를 누르면 상태를 확인할 수 있습니다.</p>
             </div>
           </div>
         )}
