@@ -62,7 +62,7 @@
 2. 저장소는 `GitHub Private`으로 유지한다.
 3. 실제 운영은 장기적으로 `Replit`에서 수행한다.
 4. 인증, 제출 메타데이터, 파일 저장은 `Firebase`에 둔다.
-5. 공개 회원가입은 열지 않고 계정 발급형으로 운영한다.
+5. 공개 회원가입 화면은 열지 않고 Google 로그인 기반으로 운영한다.
 6. 무료 구간을 넘길 수 있는 기능은 제한 정책과 함께 설계한다.
 
 ### 비목표
@@ -85,7 +85,7 @@
 Firebase를 쓰는 이유는 다음과 같다.
 
 1. 정적 프론트와 서버형 프론트 모두에 붙이기 쉽다.
-2. 이메일/비밀번호 로그인만 붙이는 경우 설정이 단순하다.
+2. Google 로그인만 붙이면 학생이 별도 비밀번호를 관리하지 않아도 된다.
 3. Firestore + Storage 조합으로 제출 메타데이터와 파일을 분리 저장하기 좋다.
 4. 초기 무료 구간이 비교적 넉넉하다.
 5. Render든 Replit이든 Node 서버에서 Firebase Admin SDK로 토큰 검증을 붙이기 쉽다.
@@ -97,12 +97,13 @@ Spark 무료 플랜 기준에서 시작한다.
 Firebase 공식 문서:
 
 - 가격: [Firebase Pricing](https://firebase.google.com/pricing)
-- 이메일/비밀번호 로그인: [Firebase Auth Web Password](https://firebase.google.com/docs/auth/web/password-auth)
+- Google 로그인: [Firebase Auth Web Google](https://firebase.google.com/docs/auth/web/google-signin)
 
 현재 설계에서 무료 구간 안에 맞추려는 방향:
 
 - 공개 회원가입 없음
-- 운영자가 계정을 직접 발급
+- 학생은 Google 계정으로 로그인
+- 필요하면 운영자가 Firestore 사용자 문서에서 승인 상태를 관리
 - 사용자당 제출 횟수 제한
 - 사용자당 AI 호출 횟수 제한
 - 첨부 파일 개수와 크기 제한
@@ -145,7 +146,7 @@ flowchart LR
 
 #### Firebase Auth
 
-- 이메일/비밀번호 로그인
+- Google 로그인
 - 세션 유지
 
 #### Firestore
@@ -209,13 +210,13 @@ flowchart LR
 ### 7.1 로그인 방식
 
 - Firebase Authentication
-- Email/Password only
+- Google only
 - 공개 회원가입 UI 없음
-- 계정은 운영자가 Firebase Console에서 생성
+- 첫 로그인 시 사용자 문서를 만들고, 필요하면 운영자가 승인 상태를 관리
 
 이유:
 
-- 남용 방지에 직접적
+- 학생이 별도 비밀번호를 관리하지 않아도 됨
 - 비용 통제 쉬움
 - 초기 운영 단순
 
@@ -249,11 +250,11 @@ UI만 숨겨도 API가 열려 있으면 의미가 없다.
 
 활성화:
 
-- Email/Password
+- Google
 
 비활성화:
 
-- Google
+- Email/Password
 - Anonymous
 - Phone
 - GitHub
@@ -583,16 +584,14 @@ service firebase.storage {
 
 필수 요소:
 
-- 이메일
-- 비밀번호
-- 로그인 버튼
-- 비밀번호 재설정 링크
-- “계정은 관리자에게 요청” 안내
+- Google 로그인 버튼
+- Firebase 설정 오류 안내
+- 승인형 운영이 필요할 경우 관리자 문의 안내
 
 제외:
 
 - 회원가입 버튼
-- 소셜 로그인
+- 이메일/비밀번호 로그인 폼
 
 ## 16.2 로그인 이후
 
@@ -737,10 +736,10 @@ service firebase.storage {
 ### Firebase Console
 
 - [ ] Firebase 프로젝트 생성
-- [ ] Authentication Email/Password 활성화
+- [ ] Authentication Google 활성화
 - [ ] Firestore 생성
 - [ ] Storage 생성
-- [ ] 관리자 계정 1개 생성
+- [ ] 관리자 Google 계정 1개 로그인 후 role 승격
 
 ### 프론트
 
@@ -772,7 +771,7 @@ service firebase.storage {
 
 - [ ] Render 환경변수 등록
 - [ ] Firebase 설정값 프론트 환경변수 등록
-- [ ] 관리자 계정 발급 절차 정리
+- [ ] Google 로그인 승인/차단 정책 정리
 - [ ] 호출 제한 정책 확정
 
 ---

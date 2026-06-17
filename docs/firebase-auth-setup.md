@@ -25,8 +25,9 @@
 ### Authentication
 Firebase Console > Authentication > Sign-in method
 
-- `Email/Password` 활성화
-- 그 외 로그인 방식은 일단 비활성 유지
+- `Google` 활성화
+- `Email/Password`는 사용하지 않으면 비활성 유지
+- 배포 도메인을 Firebase Authentication > Settings > Authorized domains에 추가
 
 ### Firestore
 Firebase Console > Firestore Database
@@ -96,12 +97,14 @@ Firebase Console > Project settings > Service accounts
 
 현재 권장 운영 방식:
 - 공개 회원가입 UI 없음
-- 운영자가 Firebase Console에서 사용자 계정을 직접 생성
+- 학생은 Google 계정으로 로그인
+- 첫 로그인 시 Firestore `users/{uid}` 문서가 자동 생성됨
+- 특정 학생만 허용해야 하면 Firestore `users/{uid}.active` 또는 학교 도메인 allowlist 정책을 추가
 
 절차:
-1. Firebase Console > Authentication > Users
-2. `사용자 추가`
-3. 이메일/비밀번호 발급
+1. Firebase Console > Authentication > Sign-in method
+2. `Google` 제공업체 활성화
+3. 학생이 사이트에서 `Google로 로그인` 선택
 4. 첫 로그인 후 Firestore `users/{uid}` 문서가 자동 생성됨
 
 기본값:

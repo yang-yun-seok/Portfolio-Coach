@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   browserLocalPersistence,
+  GoogleAuthProvider,
   onAuthStateChanged,
   setPersistence,
-  signInWithEmailAndPassword,
+  signInWithPopup,
+  signInWithRedirect,
   signOut,
 } from 'firebase/auth';
 import {
@@ -20,6 +22,32 @@ import {
 } from '../lib/firebase-client';
 
 const DEFAULT_ROLE = 'user';
+const GOOGLE_PROVIDER_ID = 'google.com';
+
+function createGoogleProvider() {
+  const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' });
+  return provider;
+}
+
+function isGoogleSignedInUser(user) {
+  return user?.providerData?.some((provider) => provider.providerId === GOOGLE_PROVIDER_ID);
+}
+
+function getReadableAuthError(error) {
+  switch (error?.code) {
+    case 'auth/popup-closed-by-user':
+      return 'Google 로그인이 취소되었습니다.';
+    case 'auth/account-exists-with-different-credential':
+      return '이미 다른 로그인 방식으로 가입된 이메일입니다. Firebase Authentication에서 Google 제공업체 연결 상태를 확인해 주세요.';
+    case 'auth/unauthorized-domain':
+      return '현재 도메인이 Firebase 승인 도메인에 등록되어 있지 않습니다.';
+    case 'auth/operation-not-allowed':
+      return 'Firebase Authentication에서 Google 로그인 제공업체가 활성화되어 있지 않습니다.';
+    default:
+      return error?.message || 'Google 로그인에 실패했습니다.';
+  }
+}
 
 export function useFirebaseSession() {
   const [authLoading, setAuthLoading] = useState(isFirebaseAuthEnabled);
@@ -54,21 +82,33 @@ export function useFirebaseSession() {
         return;
       }
 
+      if (!isGoogleSignedInUser(nextUser)) {
+        await signOut(firebaseAuth);
+        if (!active) return;
+        setAuthUser(null);
+        setUserProfile(null);
+        setAuthError('Google 계정으로 다시 로그인해 주세요.');
+        setAuthLoading(false);
+        return;
+      }
+
       try {
         const userRef = doc(firebaseDb, 'users', nextUser.uid);
         const snapshot = await getDoc(userRef);
         const baseProfile = {
           email: nextUser.email || '',
           displayName: nextUser.displayName || '',
+          photoURL: nextUser.photoURL || '',
           role: DEFAULT_ROLE,
           trackDefault: '기획',
           active: true,
           createdAt: new Date().toISOString(),
           lastLoginAt: new Date().toISOString(),
+          authProvider: GOOGLE_PROVIDER_ID,
         };
 
         const nextProfile = snapshot.exists()
-          ? { ...baseProfile, ...snapshot.data(), lastLoginAt: new Date().toISOString() }
+          ? { ...baseProfile, ...snapshot.data(), lastLoginAt: new Date().toISOString(), authProvider: GOOGLE_PROVIDER_ID }
           : baseProfile;
 
         await setDoc(userRef, nextProfile, { merge: true });
@@ -90,11 +130,24 @@ export function useFirebaseSession() {
     };
   }, []);
 
-  const signIn = useCallback(async (email, password) => {
+  const signIn = useCallback(async () => {
     if (!firebaseAuth) {
-      throw new Error('Firebase 인증이 활성화되지 않았습니다.');
+      throw new Error('Firebase 인증이 활성화되어 있지 않습니다.');
     }
-    await signInWithEmailAndPassword(firebaseAuth, email.trim(), password);
+
+    setAuthError('');
+    const provider = createGoogleProvider();
+
+    try {
+      await setPersistence(firebaseAuth, browserLocalPersistence);
+      await signInWithPopup(firebaseAuth, provider);
+    } catch (error) {
+      if (error?.code === 'auth/popup-blocked' || error?.code === 'auth/cancelled-popup-request') {
+        await signInWithRedirect(firebaseAuth, provider);
+        return;
+      }
+      throw new Error(getReadableAuthError(error));
+    }
   }, []);
 
   const signOutUser = useCallback(async () => {

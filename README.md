@@ -14,7 +14,7 @@
 - 저장소는 `GitHub Private`으로 유지
 - 실제 서비스 운영은 장기적으로 `Replit` 중심으로 이전
 - 인증, 제출 저장, 파일 관리는 `Firebase` 사용
-- 공개 회원가입은 열지 않고, 계정 발급형으로 운영
+- 공개 회원가입 화면은 열지 않고, Firebase Google 로그인 기반으로 운영
 
 즉, 현재 `GitHub Pages + Render` 구조는 과도기 배포 구조이고,  
 최종 목표는 `Private GitHub + Replit 운영 + Firebase 인증/저장`입니다.
