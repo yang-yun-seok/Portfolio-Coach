@@ -1050,9 +1050,17 @@ const { analyzeApplication } = useApplicationAnalysis({
     workspaceRef.current?.scrollTo({ top: 0, behavior: 'auto' });
   }, [activeTab, normalizedUserInfo.roleGroup]);
 
-  const handleRequestLogin = () => {
-    if (typeof window === 'undefined') return;
-    window.location.reload();
+  const handleRequestLogin = async () => {
+    if (!authEnabled) {
+      setInfoMessage('로그인 기능이 현재 비활성화되어 있습니다.');
+      return;
+    }
+
+    try {
+      await signIn();
+    } catch (loginError) {
+      setError(loginError.message || 'Google 로그인에 실패했습니다.');
+    }
   };
 
   // ── 렌더링 ────────────────────────────────────────────────────────────
