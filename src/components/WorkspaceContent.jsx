@@ -1,5 +1,6 @@
 import React from 'react';
 import { FileText, Image as ImageIcon, MessageSquare } from 'lucide-react';
+import AdminWorkspace from './AdminWorkspace';
 import FeedbackWorkspace from './FeedbackWorkspace';
 import InputWorkspace from './InputWorkspace';
 import InterviewReadinessWorkspace from './InterviewReadinessWorkspace';
@@ -29,6 +30,7 @@ function renderEmptyState(icon, title, desc, onGoToInput) {
 
 export default function WorkspaceContent({
   activeTab,
+  adminWorkspaceProps,
   feedbackWorkspaceProps,
   inputWorkspaceProps,
   interviewReadinessWorkspaceProps,
@@ -45,6 +47,10 @@ export default function WorkspaceContent({
     <>
       {activeTab === 'input' && (
         <InputWorkspace {...inputWorkspaceProps} />
+      )}
+
+      {activeTab === 'admin' && (
+        <AdminWorkspace {...adminWorkspaceProps} />
       )}
 
       {activeTab === 'feedback' && (

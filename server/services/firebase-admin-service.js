@@ -89,6 +89,24 @@ function buildFirebaseConfig() {
   };
 }
 
+function serializeFirestoreValue(value) {
+  if (value == null) return value;
+  if (typeof value?.toDate === 'function') return value.toDate().toISOString();
+  if (Array.isArray(value)) return value.map((item) => serializeFirestoreValue(item));
+  if (typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, entryValue]) => [key, serializeFirestoreValue(entryValue)]),
+    );
+  }
+  return value;
+}
+
+function sortBySubmittedAtDesc(left, right) {
+  const leftTime = new Date(left.submittedAtIso || left.createdAt || 0).getTime();
+  const rightTime = new Date(right.submittedAtIso || right.createdAt || 0).getTime();
+  return rightTime - leftTime;
+}
+
 export function createFirebaseAdminService() {
   const authRequired = process.env.FIREBASE_AUTH_REQUIRED === 'true';
   const config = buildFirebaseConfig();
@@ -126,11 +144,75 @@ export function createFirebaseAdminService() {
     return snapshot.exists ? snapshot.data()?.role || 'user' : 'user';
   }
 
+  function requireFirestore() {
+    if (!db || !configReady) {
+      throw new Error(initError || 'Firebase Admin Firestore is not configured.');
+    }
+    return db;
+  }
+
+  async function listAdminUsers({ limit = 200 } = {}) {
+    const firestore = requireFirestore();
+    const snapshot = await firestore.collection('users').limit(limit).get();
+    return snapshot.docs.map((entry) => {
+      const data = serializeFirestoreValue(entry.data()) || {};
+      return {
+        id: entry.id,
+        uid: entry.id,
+        email: data.email || '',
+        studentName: data.studentName || '',
+        displayName: data.displayName || '',
+        role: data.role || 'user',
+        active: data.active !== false,
+        trackDefault: data.trackDefault || '',
+        createdAt: data.createdAt || '',
+        lastLoginAt: data.lastLoginAt || '',
+        nameUpdatedAt: data.nameUpdatedAt || '',
+        authProvider: data.authProvider || '',
+      };
+    });
+  }
+
+  async function listAdminSubmissions({ limit = 100 } = {}) {
+    const firestore = requireFirestore();
+    const submissionsRef = firestore.collection('portfolioSubmissions');
+    let snapshot;
+
+    try {
+      snapshot = await submissionsRef.orderBy('submittedAtIso', 'desc').limit(limit).get();
+    } catch {
+      snapshot = await submissionsRef.limit(limit).get();
+    }
+
+    return snapshot.docs
+      .map((entry) => {
+        const data = serializeFirestoreValue(entry.data()) || {};
+        return {
+          id: entry.id,
+          ...data,
+          status: data.status || 'submitted',
+          userId: data.userId || '',
+          userEmail: data.userEmail || '',
+          userDisplayName: data.userDisplayName || '',
+          accountStudentName: data.accountStudentName || '',
+          applicantName: data.applicantName || '',
+          track: data.track || '',
+          subRole: data.subRole || '',
+          submittedAtIso: data.submittedAtIso || data.createdAt || '',
+          fileCounts: data.fileCounts || { resume: 0, coverLetter: 0, portfolio: 0 },
+          files: data.files || { resume: null, coverLetter: null, portfolio: [] },
+        };
+      })
+      .sort(sortBySubmittedAtDesc);
+  }
+
   return {
     authRequired,
     configReady,
     initError,
     verifyIdToken,
     getUserRole,
+    listAdminUsers,
+    listAdminSubmissions,
   };
 }

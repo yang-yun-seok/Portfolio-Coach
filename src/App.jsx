@@ -5,6 +5,7 @@ import {
   User,
   Smile,
   Database, ClipboardList, Download, BarChart3,
+  ShieldCheck,
 } from 'lucide-react';
 import {
   ROLE_GROUPS,
@@ -65,6 +66,8 @@ const NAV_ITEMS = [
   { id: 'personality-test', label: '인성검사', icon: ClipboardList, group: 'prep' },
   { id: 'pdf-export', label: 'PDF 출력', icon: Download, group: 'prep' },
 ];
+
+const ADMIN_NAV_ITEM = { id: 'admin', label: '관리자', icon: ShieldCheck, group: 'admin' };
 
 // ── 스킬 매칭 헬퍼 ─────────────────────────────────────────────────────────
 function skillMatches(userSkillName, reqSkill) {
@@ -201,6 +204,7 @@ export default function App() {
     authUser,
     configReady,
     getAccessToken,
+    isAdmin,
     signIn,
     signOutUser,
     updateUserDisplayName,
@@ -830,20 +834,27 @@ const { analyzeApplication } = useApplicationAnalysis({
   };
 
   // ── 네비게이션 ────────────────────────────────────────────────────────
+  const availableNavItems = isAdmin ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
   const navSections = [
-    { id: 'profile', label: '내 준비', items: NAV_ITEMS.filter((item) => item.group === 'profile') },
-    { id: 'market', label: '시장·공고', items: NAV_ITEMS.filter((item) => item.group === 'market') },
-    { id: 'prep', label: '면접·마감', items: NAV_ITEMS.filter((item) => item.group === 'prep') },
+    { id: 'profile', label: '내 준비', items: availableNavItems.filter((item) => item.group === 'profile') },
+    { id: 'market', label: '시장·공고', items: availableNavItems.filter((item) => item.group === 'market') },
+    { id: 'prep', label: '면접·마감', items: availableNavItems.filter((item) => item.group === 'prep') },
+    ...(isAdmin ? [{ id: 'admin', label: '관리', items: availableNavItems.filter((item) => item.group === 'admin') }] : []),
   ];
 
   useEffect(() => {
-    if (!NAV_ITEMS.some((item) => item.id === activeTab)) {
+    const currentNavItems = isAdmin ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
+    if (!currentNavItems.some((item) => item.id === activeTab)) {
       setActiveTab('input');
     }
-  }, [activeTab]);
+  }, [activeTab, isAdmin]);
 
-  const activeNavIndex = NAV_ITEMS.findIndex((item) => item.id === activeTab);
-  const activeNavItem = NAV_ITEMS[activeNavIndex >= 0 ? activeNavIndex : 0];
+  useEffect(() => {
+    if (isAdmin) setShowTrackGate(false);
+  }, [isAdmin]);
+
+  const activeNavIndex = availableNavItems.findIndex((item) => item.id === activeTab);
+  const activeNavItem = availableNavItems[activeNavIndex >= 0 ? activeNavIndex : 0];
   const activeNavSection = navSections.find((section) => section.id === activeNavItem.group) || navSections[0];
   const ActiveNavIcon = activeNavItem.icon;
   const featureKey = activeTab.replace(/[^a-z0-9-]/gi, '-');
@@ -892,6 +903,11 @@ const { analyzeApplication } = useApplicationAnalysis({
       title: '필요한 결과만 문서로 묶습니다',
       description: '분석 결과와 강사 피드백을 제출용 문서로 출력합니다.',
       hint: '공유가 필요한 항목만 골라 제출용 검토 자료로 정리합니다.',
+    },
+    admin: {
+      title: '학생 제출과 계정을 확인합니다',
+      description: '관리자 권한으로 제출 내역, 학생 이름, Google 계정, 파일 상태를 확인합니다.',
+      hint: '학생 화면에 노출하지 않는 운영 정보는 이 화면에서만 확인합니다.',
     },
   };
   const activeFeatureGuide = featureGuides[activeTab] || {
@@ -1050,6 +1066,11 @@ const { analyzeApplication } = useApplicationAnalysis({
     recommendedJobs,
     instructorFeedback,
   };
+  const adminWorkspaceProps = {
+    getAccessToken,
+    isAdmin,
+    userProfile,
+  };
   const progressPanelProps = {
     activeFeatureGuide,
     activeLabel: activeNavItem.label,
@@ -1158,6 +1179,7 @@ const { analyzeApplication } = useApplicationAnalysis({
           />
           <WorkspaceContent
             activeTab={activeTab}
+            adminWorkspaceProps={adminWorkspaceProps}
             feedbackWorkspaceProps={feedbackWorkspaceProps}
             inputWorkspaceProps={inputWorkspaceProps}
             interviewReadinessWorkspaceProps={interviewReadinessWorkspaceProps}
