@@ -1,10 +1,12 @@
 import {
   addDoc,
   collection,
+  doc,
   getDocs,
   limit,
   query,
   serverTimestamp,
+  setDoc,
   where,
 } from 'firebase/firestore';
 import {
@@ -83,7 +85,9 @@ export async function createPortfolioSubmission({
   const accountDisplayName = userProfile?.studentName || userProfile?.displayName || authUser.displayName || '';
 
   const submissionsRef = collection(firebaseDb, 'portfolioSubmissions');
-  const submissionRef = await addDoc(submissionsRef, {
+  const submissionRef = doc(submissionsRef);
+  const submissionId = submissionRef.id;
+  const baseSubmission = {
     userId: authUser.uid,
     userEmail: authUser.email || '',
     userDisplayName: accountDisplayName,
@@ -116,9 +120,8 @@ export async function createPortfolioSubmission({
       coverLetter: coverLetterFile ? 1 : 0,
       portfolio: trimmedPortfolioFiles.length,
     },
-  });
+  };
 
-  const submissionId = submissionRef.id;
   const uploadedResume = await uploadSingleFile({
     uid: authUser.uid,
     submissionId,
@@ -145,6 +148,17 @@ export async function createPortfolioSubmission({
     }));
   }
 
+  const uploadedFiles = {
+    resume: uploadedResume,
+    coverLetter: uploadedCoverLetter,
+    portfolio: uploadedPortfolioFiles.filter(Boolean),
+  };
+
+  await setDoc(submissionRef, {
+    ...baseSubmission,
+    files: uploadedFiles,
+  });
+
   await addDoc(collection(firebaseDb, 'submissionEvents'), {
     submissionId,
     actorId: authUser.uid,
@@ -165,9 +179,9 @@ export async function createPortfolioSubmission({
 
   return {
     id: submissionId,
-    resumeFile: uploadedResume,
-    coverLetterFile: uploadedCoverLetter,
-    portfolioFiles: uploadedPortfolioFiles.filter(Boolean),
+    resumeFile: uploadedFiles.resume,
+    coverLetterFile: uploadedFiles.coverLetter,
+    portfolioFiles: uploadedFiles.portfolio,
   };
 }
 
