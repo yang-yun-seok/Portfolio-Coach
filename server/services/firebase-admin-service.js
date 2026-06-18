@@ -21,6 +21,18 @@ function stripWrappingQuotes(value) {
   return trimmed;
 }
 
+function decodeBase64Pem(value) {
+  const trimmed = String(value || '').trim();
+  if (!trimmed || trimmed.includes(PRIVATE_KEY_BEGIN)) return trimmed;
+
+  try {
+    const decoded = Buffer.from(trimmed, 'base64').toString('utf-8').trim();
+    return decoded.includes(PRIVATE_KEY_BEGIN) ? decoded : trimmed;
+  } catch {
+    return trimmed;
+  }
+}
+
 function formatPemPrivateKey(value) {
   if (!value.includes(PRIVATE_KEY_BEGIN) || !value.includes(PRIVATE_KEY_END)) {
     return value;
@@ -38,7 +50,8 @@ function formatPemPrivateKey(value) {
 }
 
 export function normalizePrivateKey(value = '') {
-  const normalized = stripWrappingQuotes(value)
+  const decoded = decodeBase64Pem(stripWrappingQuotes(value));
+  const normalized = decoded
     .replace(/\\r\\n/g, '\n')
     .replace(/\\n/g, '\n')
     .replace(/\r\n/g, '\n')
@@ -80,12 +93,13 @@ function loadServiceAccountFromEnv() {
 
 function buildFirebaseConfig() {
   const serviceAccount = loadServiceAccountFromEnv() || {};
+  const envPrivateKey = normalizePrivateKey(process.env.FIREBASE_PRIVATE_KEY || '');
+  const serviceAccountPrivateKey = normalizePrivateKey(serviceAccount.private_key || serviceAccount.privateKey || '');
   return {
     projectId: process.env.FIREBASE_PROJECT_ID || serviceAccount.project_id || serviceAccount.projectId || '',
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL || serviceAccount.client_email || serviceAccount.clientEmail || '',
-    privateKey: normalizePrivateKey(
-      process.env.FIREBASE_PRIVATE_KEY || serviceAccount.private_key || serviceAccount.privateKey || '',
-    ),
+    privateKey: envPrivateKey || serviceAccountPrivateKey,
+    privateKeyCandidates: [...new Set([envPrivateKey, serviceAccountPrivateKey].filter(Boolean))],
   };
 }
 
@@ -110,21 +124,32 @@ function sortBySubmittedAtDesc(left, right) {
 export function createFirebaseAdminService() {
   const authRequired = process.env.FIREBASE_AUTH_REQUIRED === 'true';
   const config = buildFirebaseConfig();
-  let configReady = Boolean(config.projectId && config.clientEmail && config.privateKey);
+  let configReady = Boolean(config.projectId && config.clientEmail && config.privateKeyCandidates.length > 0);
   let initError = '';
   let auth = null;
   let db = null;
 
   if (configReady) {
-    try {
-      const app = getApps()[0] || initializeApp({
-        credential: cert(config),
-        projectId: config.projectId,
-      });
-      auth = getAuth(app);
-      db = getFirestore(app);
-    } catch (error) {
-      initError = error.message || 'Firebase Admin initialization failed.';
+    for (const privateKey of config.privateKeyCandidates) {
+      try {
+        const app = getApps()[0] || initializeApp({
+          credential: cert({
+            projectId: config.projectId,
+            clientEmail: config.clientEmail,
+            privateKey,
+          }),
+          projectId: config.projectId,
+        });
+        auth = getAuth(app);
+        db = getFirestore(app);
+        initError = '';
+        break;
+      } catch (error) {
+        initError = error.message || 'Firebase Admin initialization failed.';
+      }
+    }
+
+    if (!auth || !db) {
       configReady = false;
       console.error(`[Firebase Admin] Initialization failed: ${initError}`);
     }
