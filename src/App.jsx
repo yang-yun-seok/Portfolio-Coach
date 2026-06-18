@@ -30,6 +30,7 @@ import { useFirebaseSession } from './hooks/useFirebaseSession';
 import { useModels } from './hooks/useModels';
 import { usePortfolioSubmissions } from './hooks/usePortfolioSubmissions';
 import { useWorkspacePersistence } from './hooks/useWorkspacePersistence';
+import { fetchAdminOverview } from './lib/admin-api';
 import AccountNameModal from './components/AccountNameModal';
 import AuthGate from './components/AuthGate';
 import { EMPTY_INSTRUCTOR } from './components/InstructorFeedbackForm';
@@ -206,7 +207,6 @@ export default function App() {
     authUser,
     configReady,
     getAccessToken,
-    isAdmin,
     signIn,
     signOutUser,
     updateUserDisplayName,
@@ -459,7 +459,7 @@ export default function App() {
   const highlightedGapSkills = [...new Set(
     topRecommendedJobs.flatMap((job) => job.matchDetail?.unmatchedSkills || [])
   )].slice(0, 6);
-  const isAdminModeActive = isAdmin && adminModeUnlocked;
+  const isAdminModeActive = adminModeUnlocked;
   const {
     saveStatus,
     restoreNotice,
@@ -861,13 +861,13 @@ const { analyzeApplication } = useApplicationAnalysis({
   }, [isAdminModeActive]);
 
   useEffect(() => {
-    if (authLoading || isAdmin || !adminModeUnlocked) return;
+    if (authLoading || authUser || !adminModeUnlocked) return;
     setAdminModeUnlocked(false);
     if (typeof window !== 'undefined') {
       window.sessionStorage.removeItem(ADMIN_UNLOCK_STORAGE_KEY);
     }
     if (activeTab === 'admin') setActiveTab('input');
-  }, [activeTab, adminModeUnlocked, authLoading, isAdmin]);
+  }, [activeTab, adminModeUnlocked, authLoading, authUser]);
 
   const activeNavIndex = availableNavItems.findIndex((item) => item.id === activeTab);
   const activeNavItem = availableNavItems[activeNavIndex >= 0 ? activeNavIndex : 0];
@@ -1140,15 +1140,32 @@ const { analyzeApplication } = useApplicationAnalysis({
     }
   };
 
-  const handleUnlockAdminMode = (password) => {
+  const handleUnlockAdminMode = async (password) => {
     if (String(password || '').trim() !== ADMIN_MODE_PASSWORD) {
       return { ok: false, message: '비밀번호가 맞지 않습니다.' };
     }
     if (authLoading) {
       return { ok: false, message: '계정 정보를 확인 중입니다. 잠시 후 다시 시도해 주세요.' };
     }
-    if (!isAdmin) {
-      return { ok: false, message: '관리자 계정으로 로그인한 상태에서만 열 수 있습니다.' };
+    if (!authUser) {
+      return { ok: false, message: 'Google 로그인 후 다시 시도해 주세요.' };
+    }
+
+    let token = '';
+    try {
+      token = await getAccessToken();
+    } catch (error) {
+      return { ok: false, message: error.message || '로그인 토큰을 확인하지 못했습니다.' };
+    }
+
+    if (!token) {
+      return { ok: false, message: '로그인 토큰을 확인하지 못했습니다. 다시 로그인해 주세요.' };
+    }
+
+    try {
+      await fetchAdminOverview(() => token);
+    } catch (error) {
+      return { ok: false, message: error.message || '관리자 권한을 확인하지 못했습니다.' };
     }
 
     setAdminModeUnlocked(true);
@@ -1281,7 +1298,6 @@ const { analyzeApplication } = useApplicationAnalysis({
       {/* ?? ?? ?? ??????????????????????????????????????????????? */}
       <SettingsModal
         adminModeUnlocked={adminModeUnlocked}
-        isAdmin={isAdmin}
         jobs={jobs}
         jobsMetadata={jobsMetadata}
         onClose={() => setShowSettings(false)}

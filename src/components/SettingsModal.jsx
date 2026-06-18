@@ -3,7 +3,6 @@ import { Database, KeyRound, Settings, ShieldCheck, X } from 'lucide-react';
 
 export default function SettingsModal({
   adminModeUnlocked,
-  isAdmin,
   jobs,
   jobsMetadata,
   onClose,
@@ -15,25 +14,36 @@ export default function SettingsModal({
 }) {
   const [adminPassword, setAdminPassword] = useState('');
   const [adminPasswordError, setAdminPasswordError] = useState('');
+  const [adminUnlocking, setAdminUnlocking] = useState(false);
 
   useEffect(() => {
     if (!open) {
       setAdminPassword('');
       setAdminPasswordError('');
+      setAdminUnlocking(false);
     }
   }, [open]);
 
   if (!open) return null;
 
-  const handleAdminSubmit = (event) => {
+  const handleAdminSubmit = async (event) => {
     event.preventDefault();
-    const result = onUnlockAdminMode?.(adminPassword);
-    if (result?.ok) {
-      setAdminPassword('');
-      setAdminPasswordError('');
-      return;
+    if (adminUnlocking) return;
+
+    setAdminUnlocking(true);
+    try {
+      const result = await onUnlockAdminMode?.(adminPassword);
+      if (result?.ok) {
+        setAdminPassword('');
+        setAdminPasswordError('');
+        return;
+      }
+      setAdminPasswordError(result?.message || '비밀번호를 다시 확인해 주세요.');
+    } catch (error) {
+      setAdminPasswordError(error.message || '관리자 모드를 열지 못했습니다.');
+    } finally {
+      setAdminUnlocking(false);
     }
-    setAdminPasswordError(result?.message || '비밀번호를 다시 확인해 주세요.');
   };
 
   return (
@@ -88,7 +98,7 @@ export default function SettingsModal({
               </div>
             </div>
 
-            {adminModeUnlocked && isAdmin ? (
+            {adminModeUnlocked ? (
               <div className="mt-4 grid gap-2 sm:grid-cols-[1fr_auto]">
                 <button
                   type="button"
@@ -115,12 +125,13 @@ export default function SettingsModal({
                     type="password"
                     inputMode="numeric"
                     autoComplete="off"
+                    disabled={adminUnlocking}
                     value={adminPassword}
                     onChange={(event) => {
                       setAdminPassword(event.target.value);
                       setAdminPasswordError('');
                     }}
-                    className="min-w-0 flex-1 bg-transparent text-sm font-semibold text-slate-800 outline-none placeholder:text-slate-400"
+                    className="min-w-0 flex-1 bg-transparent text-sm font-semibold text-slate-800 outline-none placeholder:text-slate-400 disabled:cursor-not-allowed disabled:text-slate-400"
                     placeholder="비밀번호"
                   />
                 </div>
@@ -129,9 +140,10 @@ export default function SettingsModal({
                 )}
                 <button
                   type="submit"
-                  className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+                  disabled={adminUnlocking}
+                  className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-300"
                 >
-                  관리자 모드 열기
+                  {adminUnlocking ? '확인 중...' : '관리자 모드 열기'}
                 </button>
               </form>
             )}
