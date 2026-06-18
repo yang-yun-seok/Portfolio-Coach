@@ -115,7 +115,7 @@ export function createFirebaseAdminService() {
   let auth = null;
   let db = null;
 
-  if (authRequired && configReady) {
+  if (configReady) {
     try {
       const app = getApps()[0] || initializeApp({
         credential: cert(config),
@@ -130,8 +130,8 @@ export function createFirebaseAdminService() {
     }
   }
 
-  async function verifyIdToken(idToken) {
-    if (!authRequired) return null;
+  async function verifyIdToken(idToken, { force = false } = {}) {
+    if (!authRequired && !force) return null;
     if (!auth || !configReady) {
       throw new Error(initError || 'Firebase Admin is not configured.');
     }
@@ -210,6 +210,7 @@ export function createFirebaseAdminService() {
     authRequired,
     configReady,
     initError,
+    canVerifyTokens: Boolean(auth && configReady),
     verifyIdToken,
     getUserRole,
     listAdminUsers,
