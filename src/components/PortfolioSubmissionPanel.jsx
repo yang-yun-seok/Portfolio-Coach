@@ -75,8 +75,8 @@ export default function PortfolioSubmissionPanel({
 
       <div className="coach-submission-meta">
         <div>
-          <span>로그인 계정</span>
-          <strong>{accountDisplayName ? `${accountDisplayName} · ${authUser?.email || ''}` : authUser?.email || '로그인 필요'}</strong>
+          <span>제출자</span>
+          <strong>{accountDisplayName || '이름 설정 필요'}</strong>
         </div>
         <div>
           <span>처리 상태</span>

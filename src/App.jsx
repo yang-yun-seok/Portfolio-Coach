@@ -338,7 +338,7 @@ export default function App() {
     );
   };
 
-  // 우선 공고 조회 (서버에 요청: 기존 데이터 확인 → 없으면 자동 크롤링)
+  // 우선 공고 조회 (서버에 요청: 기존 데이터 확인 → 없으면 공고 갱신)
   const resolvePinnedJob = async (rank) => {
     const slot = pinnedSlots.find((s) => s.rank === rank);
     if (!slot || !slot.giNo.trim()) return;
@@ -366,7 +366,7 @@ export default function App() {
               : s
           )
         );
-        // 크롤링으로 새로 가져온 경우 jobs 목록도 갱신
+        // 새로 가져온 공고가 있으면 jobs 목록도 갱신
         if (data.source === 'crawled') {
           let jobRes = await fetch(staticAssetUrl('api/jobs.json')).catch(() => null);
           if (jobRes.ok) setJobs(await jobRes.json());
@@ -780,7 +780,7 @@ const { analyzeApplication } = useApplicationAnalysis({
       setSelectedCompanyModal(companyInfoCache.current[name]);
       return;
     }
-    // 크롤링 데이터 기반 기본 정보
+    // 공고 데이터 기반 기본 정보
     const companyJobs = jobs.filter(j => j.company === name);
     const roles = [...new Set(companyJobs.map(j => j.role).filter(Boolean))].join(', ');
     const skills = [...new Set(companyJobs.flatMap(j => Array.isArray(j.reqSkills) ? j.reqSkills : []))].slice(0, 10).join(', ');

@@ -3,38 +3,14 @@ import {
   AlertCircle,
   Building2,
   CheckCircle,
-  Clock3,
   ExternalLink,
   Loader2,
   Pin,
   Search,
-  ShieldCheck,
   Sparkles,
   Star,
   Target,
 } from 'lucide-react';
-
-function formatDateTime(value) {
-  if (!value) return '정보 없음';
-  try {
-    return new Date(value).toLocaleString('ko-KR');
-  } catch {
-    return value;
-  }
-}
-
-function formatCrawlStatus(status) {
-  switch (status) {
-    case 'success':
-      return { label: '성공', tone: 'text-emerald-600 bg-emerald-50 border-emerald-200' };
-    case 'partial-success':
-      return { label: '부분 성공', tone: 'text-amber-600 bg-amber-50 border-amber-200' };
-    case 'failed':
-      return { label: '실패', tone: 'text-rose-600 bg-rose-50 border-rose-200' };
-    default:
-      return { label: '대기', tone: 'text-slate-500 bg-slate-50 border-slate-200' };
-  }
-}
 
 export default function JobsWorkspace({
   candidateJobs,
@@ -59,8 +35,8 @@ export default function JobsWorkspace({
   const strongSkillCandidates = highlightedMatchedSkills.length > 0
     ? highlightedMatchedSkills
     : userInfo.skills.map((skill) => skill.name).slice(0, 6);
-  const crawlStatus = formatCrawlStatus(jobsMetadata.lastCrawlStatus);
   const displayMatchedJobs = matchedJobs;
+  const strongMatchCount = displayMatchedJobs.filter((job) => job.score >= 80).length;
 
   const scoreCounts = {
     all: displayMatchedJobs.length,
@@ -102,17 +78,17 @@ export default function JobsWorkspace({
         <article className="coach-jobs-kpi-card rounded-[24px] border border-slate-200 bg-white px-5 py-4 shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">최근 반영일</p>
           <strong className="mt-2 block text-xl font-black tracking-tight text-slate-900">{jobsMetadata.latestAppliedDate || '정보 없음'}</strong>
-          <p className="mt-1 text-sm text-slate-500">자동 수집 완료 기준</p>
+          <p className="mt-1 text-sm text-slate-500">현재 공고 기준일</p>
         </article>
         <article className="coach-jobs-kpi-card rounded-[24px] border border-slate-200 bg-white px-5 py-4 shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">참고 공고</p>
           <strong className="mt-2 block text-2xl font-black tracking-tight text-slate-900">{jobsMetadata.referenceJobCount || jobs.length}건</strong>
-          <p className="mt-1 text-sm text-slate-500">현재 매칭 기준 전체 공고</p>
+          <p className="mt-1 text-sm text-slate-500">추천에 참고하는 공고</p>
         </article>
         <article className="coach-jobs-kpi-card rounded-[24px] border border-slate-200 bg-white px-5 py-4 shadow-sm">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">신규 반영</p>
-          <strong className="mt-2 block text-2xl font-black tracking-tight text-slate-900">{jobsMetadata.newJobsCount || 0}건</strong>
-          <p className="mt-1 text-sm text-slate-500">최근 배치 기준</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">높은 추천</p>
+          <strong className="mt-2 block text-2xl font-black tracking-tight text-slate-900">{strongMatchCount}건</strong>
+          <p className="mt-1 text-sm text-slate-500">우선 검토할 추천 공고</p>
         </article>
         <article className="coach-jobs-kpi-card rounded-[24px] border border-slate-200 bg-white px-5 py-4 shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">매칭 결과</p>
@@ -131,9 +107,8 @@ export default function JobsWorkspace({
                 {resultPlaybook.jobsDescription}
               </p>
             </div>
-            <span className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold ${crawlStatus.tone}`}>
-              <ShieldCheck size={13} />
-              {crawlStatus.label}
+            <span className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-600">
+              기준일 {jobsMetadata.latestAppliedDate || '정보 없음'}
             </span>
           </div>
 
@@ -147,46 +122,18 @@ export default function JobsWorkspace({
             </article>
 
             <article className="coach-jobs-filter-scope rounded-[24px] border border-slate-200 bg-white px-5 py-5">
-              <div className="grid gap-3 md:grid-cols-2">
-                <div>
-                  <p className="text-xs font-semibold text-slate-500">수집 직종</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {(jobsMetadata.filters?.jobTags || []).slice(0, 8).map((tag) => (
-                      <span key={tag} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <p className="text-xs font-semibold text-slate-500">수집 경력</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {(jobsMetadata.filters?.careerTags || []).map((tag) => (
-                      <span key={tag} className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+              <p className="text-xs font-semibold text-slate-500">결과에서 확인할 것</p>
+              <div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-600">
+                <p>추천 이유, 강점 포인트, 주의 포인트를 먼저 확인하세요.</p>
+                <p>점수는 후보를 좁히기 위한 참고값입니다. 실제 지원 여부는 공고 내용과 포트폴리오 준비도를 함께 보고 결정하세요.</p>
               </div>
             </article>
           </div>
 
           <div className="mt-5 rounded-[24px] border border-slate-200 bg-slate-50 px-5 py-5">
             <div className="flex items-center gap-2">
-              <Clock3 size={16} className="text-slate-500" />
-              <p className="text-sm font-semibold text-slate-900">최신 배치 메타데이터</p>
-            </div>
-            <div className="mt-4 grid gap-3 md:grid-cols-2">
-              <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Last Success</p>
-                <strong className="mt-1 block text-slate-900">{formatDateTime(jobsMetadata.lastSuccessfulCrawlAt)}</strong>
-              </div>
-              <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-600">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Active Jobs</p>
-                <strong className="mt-1 block text-slate-900">{jobsMetadata.activeJobsCount || jobsMetadata.referenceJobCount || jobs.length}건</strong>
-              </div>
+              <Sparkles size={16} className="text-slate-500" />
+              <p className="text-sm font-semibold text-slate-900">추천 만들기</p>
             </div>
 
             <div className="mt-4 flex flex-wrap items-center gap-3">
@@ -204,7 +151,7 @@ export default function JobsWorkspace({
                 {jobMatchState.attempted ? '다시 매칭하기' : '매칭하기'}
               </button>
               <span className="rounded-full border border-slate-200 bg-white px-4 py-3 text-xs text-slate-500">
-                공고 분석 탭에서 흐름을 본 뒤, 클릭 시점의 프로필 기준으로 1회 AI 매칭만 수행합니다.
+                클릭 시점의 프로필을 바탕으로 추천 공고를 정렬합니다.
               </span>
             </div>
 
@@ -226,17 +173,17 @@ export default function JobsWorkspace({
 
         <aside className="coach-jobs-profile-shell rounded-[32px] border border-slate-200 bg-slate-50 p-6 shadow-sm">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">프로필 스냅샷</p>
-          <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">매칭 전에 볼 기준</h3>
+          <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">매칭 전에 확인할 내용</h3>
           <div className="mt-5 space-y-5">
             <div>
-              <p className="text-xs font-bold text-slate-800">분석 기준 상위 후보</p>
+              <p className="text-xs font-bold text-slate-800">우선 확인할 공고</p>
               <div className="mt-2 flex flex-wrap gap-2">
                 {topCandidateJobs.length > 0 ? topCandidateJobs.map((job, index) => (
                   <span key={`${job.id}-${index}`} className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-700">
                     {index + 1}. {job.company}
                   </span>
                 )) : (
-                  <span className="text-xs text-slate-500">먼저 분석을 실행하면 기준 후보가 정리됩니다.</span>
+                  <span className="text-xs text-slate-500">먼저 분석을 실행하면 후보 공고가 정리됩니다.</span>
                 )}
               </div>
             </div>
@@ -260,22 +207,12 @@ export default function JobsWorkspace({
                     {skill}
                   </span>
                 )) : (
-                  <span className="text-xs text-slate-500">현재 기준에서 큰 공백은 아직 집계되지 않았습니다.</span>
+                  <span className="text-xs text-slate-500">아직 크게 보완할 항목이 집계되지 않았습니다.</span>
                 )}
               </div>
             </div>
           </div>
         </aside>
-      </div>
-
-      <div className="coach-jobs-lens-grid grid gap-4 md:grid-cols-3">
-        {resultPlaybook.jobsCards.map((card) => (
-          <article key={card.label} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{card.label}</p>
-            <h3 className="mt-2 text-base font-bold leading-snug text-slate-900">{card.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600">{card.body}</p>
-          </article>
-        ))}
       </div>
 
       <section className="coach-jobs-results-shell rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
@@ -284,7 +221,7 @@ export default function JobsWorkspace({
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Matched Jobs</p>
             <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">AI 추천 공고 목록</h3>
             <p className="mt-2 text-sm text-slate-600">
-              매칭 실행 후 생성된 결과입니다. 검색어와 점수 구간으로 후보를 좁혀 보세요.
+              매칭 실행 후 생성된 결과입니다. 검색어와 추천 강도로 후보를 좁혀 보세요.
             </p>
           </div>
           <div className="w-full max-w-md">
@@ -313,11 +250,11 @@ export default function JobsWorkspace({
           <div className="mt-5 flex flex-wrap gap-2">
             {[
               { key: 'all', label: '전체', color: 'bg-slate-100 text-slate-700' },
-              { key: '90+', label: '90점↑', color: 'bg-emerald-100 text-emerald-700' },
-              { key: '80+', label: '80점↑', color: 'bg-green-100 text-green-700' },
-              { key: '70+', label: '70점↑', color: 'bg-blue-100 text-blue-700' },
-              { key: '60+', label: '60점↑', color: 'bg-amber-100 text-amber-700' },
-              { key: '60-', label: '60점↓', color: 'bg-red-100 text-red-700' },
+              { key: '90+', label: '매우 높음', color: 'bg-emerald-100 text-emerald-700' },
+              { key: '80+', label: '높음', color: 'bg-green-100 text-green-700' },
+              { key: '70+', label: '검토', color: 'bg-blue-100 text-blue-700' },
+              { key: '60+', label: '보완 후 검토', color: 'bg-amber-100 text-amber-700' },
+              { key: '60-', label: '낮음', color: 'bg-red-100 text-red-700' },
             ].map((filter) => (
               <button
                 key={filter.key}
@@ -352,7 +289,7 @@ export default function JobsWorkspace({
             <div className="rounded-[28px] border border-dashed border-slate-300 bg-slate-50 px-6 py-16 text-center">
               <Target size={28} className="mx-auto mb-4 text-slate-400" />
               <p className="text-lg font-bold text-slate-700">아직 AI 추천 공고 매칭을 실행하지 않았습니다.</p>
-              <p className="mt-2 text-sm text-slate-500">자동 수집된 공개 공고를 기준으로 한 번만 실행되며, 클릭하기 전에는 결과를 생성하지 않습니다.</p>
+              <p className="mt-2 text-sm text-slate-500">매칭하기를 누르면 현재 프로필에 맞춰 추천 공고가 정리됩니다.</p>
             </div>
           )}
 
@@ -414,28 +351,6 @@ export default function JobsWorkspace({
                           </div>
                         </div>
                       )}
-                    </div>
-                  )}
-
-                  {job.matchDetail && (
-                    <div className="mt-4 rounded-2xl border border-slate-200 bg-white p-4">
-                      <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
-                        {[
-                          { label: '직군', score: job.matchDetail.roleScore, max: 15, color: 'bg-blue-500' },
-                          { label: '경력', score: job.matchDetail.expScore, max: 15, color: 'bg-green-500' },
-                          { label: '스킬', score: job.matchDetail.skillScore, max: 30, color: 'bg-purple-500' },
-                          { label: '정합도', score: job.matchDetail.fitScore, max: 25, color: 'bg-orange-500' },
-                          { label: '복수매칭', score: job.matchDetail.multiScore, max: 15, color: 'bg-pink-500' },
-                        ].map((item) => (
-                          <div key={item.label}>
-                            <div className="mb-1 text-[10px] text-slate-500">{item.label}</div>
-                            <div className="h-1.5 w-full rounded-full bg-slate-200">
-                              <div className={`h-full rounded-full ${item.color}`} style={{ width: `${item.max > 0 ? (item.score / item.max) * 100 : 0}%` }} />
-                            </div>
-                            <div className="mt-1 text-[10px] font-bold text-slate-600">{item.score}/{item.max}</div>
-                          </div>
-                        ))}
-                      </div>
                     </div>
                   )}
 

@@ -27,12 +27,12 @@ export default function InterviewWorkspace({
             <article className="coach-review-meta-card">
               <p className="coach-review-meta-label">예상 회사</p>
               <strong>{interviewPreps.length}개</strong>
-              <p>추천 공고 기준으로 회사별 질문 세트를 정리합니다.</p>
+              <p>추천 공고를 바탕으로 회사별 질문 세트를 정리합니다.</p>
             </article>
             <article className="coach-review-meta-card">
               <p className="coach-review-meta-label">현재 선택</p>
               <strong>{activePrep ? activePrep.company : '대기 중'}</strong>
-              <p>{activePrep ? `${activePrep.rank}순위 공고 기준 면접 브리프` : '추천 공고를 계산한 뒤 회사별 대비를 확인합니다.'}</p>
+              <p>{activePrep ? `${activePrep.rank}순위 추천 공고 면접 브리프` : '추천 공고를 계산한 뒤 회사별 대비를 확인합니다.'}</p>
             </article>
             <article className="coach-review-meta-card">
               <p className="coach-review-meta-label">답변 프레임</p>
@@ -44,28 +44,6 @@ export default function InterviewWorkspace({
       </section>
 
       <div className="coach-interview-overview-grid">
-        <section className="coach-review-surface">
-          <div className="coach-review-section-head">
-            <div>
-              <p className="coach-review-eyebrow">핵심 기준</p>
-              <h3>이 면접에서 먼저 보는 것</h3>
-            </div>
-          </div>
-
-          <div className="coach-review-principles-grid">
-            {interviewPlaybook.cards.map((card, index) => (
-              <article key={card.label} className="coach-review-principle">
-                <div className="coach-review-principle-index">{String(index + 1).padStart(2, '0')}</div>
-                <div>
-                  <p className="coach-review-principle-label">{card.label}</p>
-                  <h4>{card.title}</h4>
-                  <p>{card.body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <aside className="coach-review-surface coach-interview-brief-panel">
           <div className="coach-review-section-head">
             <div>
@@ -122,7 +100,7 @@ export default function InterviewWorkspace({
               </div>
               <span className="coach-review-badge">
                 <Target size={14} />
-                {activePrep.rank}순위 기준
+                추천 {activePrep.rank}순위
               </span>
             </div>
 
@@ -183,7 +161,7 @@ export default function InterviewWorkspace({
             <div className="coach-review-section-head">
               <div>
                 <p className="coach-review-eyebrow">답변 프레임</p>
-                <h3>짧고 구조적으로 말하는 기준</h3>
+                <h3>짧고 구조적으로 말하기</h3>
               </div>
             </div>
 

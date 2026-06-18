@@ -147,7 +147,7 @@ export default function WorkspaceProgressPanel({
           <UserRound size={16} />
           <span>
             <strong>{accountName || '이름 설정'}</strong>
-            <small>{authUser?.email || 'Google 계정'}</small>
+            <small>{authUser ? 'Google 로그인' : '로그인 필요'}</small>
           </span>
         </button>
       </section>

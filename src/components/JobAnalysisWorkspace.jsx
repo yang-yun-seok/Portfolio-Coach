@@ -269,19 +269,6 @@ function sumHistoryField(historyIndex, field, count = 7) {
   return historyIndex.slice(0, count).reduce((sum, entry) => sum + (entry?.[field] || 0), 0);
 }
 
-function formatCrawlStatus(status) {
-  switch (status) {
-    case 'success':
-      return { label: '자동 수집 정상', tone: 'coach-status-chip is-success' };
-    case 'partial-success':
-      return { label: '일부 수집 성공', tone: 'coach-status-chip is-warning' };
-    case 'failed':
-      return { label: '수집 실패', tone: 'coach-status-chip is-danger' };
-    default:
-      return { label: '상태 확인 필요', tone: 'coach-status-chip is-neutral' };
-  }
-}
-
 function StatCard({ icon: Icon, label, value, helper, delta }) {
   return (
     <article className="coach-market-stat">
@@ -324,7 +311,7 @@ function TrendChart({ data }) {
       <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="coach-market-kicker">시장 추이</p>
-          <h4 className="coach-market-title">최근 수집 이력</h4>
+          <h4 className="coach-market-title">최근 반영 흐름</h4>
           <p className="coach-market-copy">전체 유효 공고 수와 일자별 신규 반영 수를 동시에 확인합니다.</p>
         </div>
         <div className="flex flex-wrap gap-2 text-xs">
@@ -391,36 +378,30 @@ function HistoryPanel({ historyIndex }) {
         <span className="coach-market-count">{historyIndex.length}개</span>
       </div>
       <div className="mt-5 space-y-3">
-        {historyIndex.slice(0, 6).map((entry) => {
-          const status = formatCrawlStatus(entry.lastCrawlStatus);
-          return (
-            <div key={entry.date} className="coach-market-record">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-sm font-semibold text-slate-900">{entry.date}</p>
-                  <p className="mt-1 text-xs text-slate-500">{formatDateTime(entry.generatedAt)}</p>
-                </div>
-                <span className={status.tone}>
-                  {status.label}
-                </span>
-              </div>
-              <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
-                <div className="coach-market-record-stat">
-                  <p>전체</p>
-                  <strong>{entry.referenceJobCount || 0}</strong>
-                </div>
-                <div className="coach-market-record-stat">
-                  <p>신규</p>
-                  <strong>{entry.newJobsCount || 0}</strong>
-                </div>
-                <div className="coach-market-record-stat">
-                  <p>유효</p>
-                  <strong>{entry.activeJobsCount || 0}</strong>
-                </div>
+        {historyIndex.slice(0, 6).map((entry) => (
+          <div key={entry.date} className="coach-market-record">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm font-semibold text-slate-900">{entry.date}</p>
+                <p className="mt-1 text-xs text-slate-500">{formatDateTime(entry.generatedAt)}</p>
               </div>
             </div>
-          );
-        })}
+            <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
+              <div className="coach-market-record-stat">
+                <p>전체</p>
+                <strong>{entry.referenceJobCount || 0}</strong>
+              </div>
+              <div className="coach-market-record-stat">
+                <p>신규</p>
+                <strong>{entry.newJobsCount || 0}</strong>
+              </div>
+              <div className="coach-market-record-stat">
+                <p>유효</p>
+                <strong>{entry.activeJobsCount || 0}</strong>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -701,7 +682,6 @@ export default function JobAnalysisWorkspace({
   const latestAppliedDate = jobsMetadata?.latestAppliedDate || historyIndex[0]?.date || null;
   const latestHistory = historyIndex[0] || null;
   const previousHistory = historyIndex[1] || null;
-  const statusTone = formatCrawlStatus(jobsMetadata?.lastCrawlStatus);
   const currentTrackRoleLabels = getAnalysisRoleLabels(roleGroup);
   const trackScopedJobs = currentTrackRoleLabels.length > 0
     ? jobs.filter((job) => currentTrackRoleLabels.includes(classifyRole(job)))
@@ -805,16 +785,16 @@ export default function JobAnalysisWorkspace({
               <p className="coach-market-kicker">시장·공고</p>
               <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-900">게임잡 공고 현황</h2>
               <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                자동 수집된 게임잡 공고를 기준으로 시장 흐름, 채용 언어, 직군별 분포를 읽는 화면입니다.
-                수동 크롤링 기능은 제공하지 않으며, 공고 목록과 시장 분석은 매일 00시 기준 데이터로 갱신됩니다.
+                최근 반영된 게임잡 공고를 바탕으로 시장 흐름, 채용 언어, 직군별 분포를 읽는 화면입니다.
+                공고 목록과 시장 분석은 현재 제공되는 데이터를 기준으로 확인합니다.
               </p>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2 xl:min-w-[420px]">
-              <MetaPill label="최근 반영일" value={latestAppliedDate || '정보 없음'} />
-              <MetaPill label="마지막 성공" value={formatDateTime(jobsMetadata?.lastSuccessfulCrawlAt)} />
-              <MetaPill label="수집 상태" value={statusTone.label} />
-              <MetaPill label="최근 7일 신규" value={`${newJobsLast7Days}건`} />
+              <MetaPill label="공고 기준일" value={latestAppliedDate || '정보 없음'} />
+              <MetaPill label="분석 공고" value={`${jobsMetadata?.referenceJobCount || jobs.length}건`} />
+              <MetaPill label="최근 흐름" value={`${newJobsLast7Days}건`} />
+              <MetaPill label="대표 직군" value={dominantRole} />
             </div>
           </div>
 
@@ -847,10 +827,9 @@ export default function JobAnalysisWorkspace({
           </div>
 
           <div className="mt-4 flex flex-wrap gap-2 text-xs">
-            <span className={statusTone.tone}>{statusTone.label}</span>
-            <span className="coach-market-inline-chip">추적 직군 {trackedRoles.length}개</span>
-            <span className="coach-market-inline-chip">추적 경력 {trackedCareers.length}개</span>
-            <span className="coach-market-inline-chip">이력 포인트 {historyIndex.length}개</span>
+            <span className="coach-market-inline-chip">직군 범위 {trackedRoles.length}개</span>
+            <span className="coach-market-inline-chip">경력 범위 {trackedCareers.length}개</span>
+            <span className="coach-market-inline-chip">최근 기록 {historyIndex.length}개</span>
           </div>
         </div>
       </section>
@@ -886,7 +865,7 @@ export default function JobAnalysisWorkspace({
                   <h3 className="coach-market-section-title mt-2">채용 흐름 요약</h3>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">
                     현재 누적 공고와 최근 이력을 기준으로 시장 해석을 제공합니다.
-                    버튼을 눌렀을 때만 AI 분석을 1회 실행하며, 수집 자체를 다시 돌리지는 않습니다.
+                    버튼을 눌렀을 때만 AI 분석을 1회 실행합니다.
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2 text-xs">
                     <span className="coach-market-inline-chip">{analysisScopeLabel}</span>
@@ -992,14 +971,14 @@ export default function JobAnalysisWorkspace({
               body={trackedCareers.map((item) => normalizeCareerFilterLabel(item)).join(', ')}
             />
             <InsightCard
-              label="마지막 성공"
-              title={formatDateTime(jobsMetadata?.lastSuccessfulCrawlAt)}
-              body="운영 배치는 매일 00시 기준으로 실행되며, 성공 직후 메타데이터와 이력 파일이 함께 갱신됩니다."
+              label="공고 기준일"
+              title={latestAppliedDate || '정보 없음'}
+              body="현재 화면의 공고 목록과 시장 요약에 적용되는 기준일입니다."
             />
             <InsightCard
-              label="이력 포인트"
+              label="최근 기록"
               title={`${historyIndex.length}개`}
-              body={historyError || '최근 수집 이력 기준으로 시장 추이를 계속 누적합니다.'}
+              body={historyError || '최근 반영 기록을 바탕으로 시장 추이를 확인합니다.'}
             />
           </div>
         </div>
@@ -1010,12 +989,11 @@ export default function JobAnalysisWorkspace({
               <p className="coach-market-kicker">Public Job List</p>
               <h3 className="coach-market-section-title mt-2">공고 목록</h3>
               <p className="mt-2 text-sm text-slate-600">
-                자동 수집된 공개 공고만 표시합니다. 이 화면은 시장 데이터 확인용이며, 개인화 우선순위는 추천 공고 탭에서 매칭하기를 눌렀을 때 계산됩니다.
+                현재 참고 가능한 공고를 표시합니다. 개인화 우선순위는 추천 공고 탭에서 매칭하기를 눌렀을 때 계산됩니다.
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-2">
               <span className="coach-market-count is-filled">{filteredJobs.length}건</span>
-              <span className="coach-market-inline-chip">수동 크롤링 없음</span>
             </div>
           </div>
 

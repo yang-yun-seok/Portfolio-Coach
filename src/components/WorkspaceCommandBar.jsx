@@ -126,7 +126,7 @@ export default function WorkspaceCommandBar({
 
         {authUser?.email ? (
           <div className="coach-command-account">
-            <small>로그인 계정</small>
+            <small>사용자</small>
             <strong>{accountDisplayName}</strong>
           </div>
         ) : null}

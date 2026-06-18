@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertCircle, ExternalLink, FileText, Github, Layers3, Sparkles } from 'lucide-react';
+import { AlertCircle, ExternalLink, FileText, Github, Sparkles } from 'lucide-react';
 import PortfolioSubmissionPanel from './PortfolioSubmissionPanel';
 
 function FeedbackRow({ item, index, parseFeedbackItem, portfolioFiles }) {
@@ -133,35 +133,9 @@ export default function PortfolioWorkspace({
           ) : (
             <div className="coach-review-empty-box">
               <p className="coach-review-empty-title">아직 포트폴리오 수정 항목이 없습니다.</p>
-              <p className="coach-review-empty-body">먼저 분석을 실행하면 구조, 설명, 전달력 기준의 수정 포인트가 여기에 정리됩니다.</p>
+              <p className="coach-review-empty-body">먼저 분석을 실행하면 구조, 설명, 전달력을 보완할 항목이 여기에 정리됩니다.</p>
             </div>
           )}
-        </section>
-
-        <section className="coach-review-surface">
-          <div className="coach-review-section-head">
-            <div>
-              <p className="coach-review-eyebrow">검토 기준</p>
-              <h3>이번 포트폴리오를 읽는 기준</h3>
-            </div>
-            <span className="coach-review-badge">
-              <Layers3 size={14} />
-              리뷰 렌즈
-            </span>
-          </div>
-
-          <div className="coach-review-principles-grid">
-            {resultPlaybook.portfolioCards.map((card, index) => (
-              <article key={card.label} className="coach-review-principle">
-                <div className="coach-review-principle-index">{String(index + 1).padStart(2, '0')}</div>
-                <div>
-                  <p className="coach-review-principle-label">{card.label}</p>
-                  <h4>{card.title}</h4>
-                  <p>{card.body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
         </section>
       </div>
 

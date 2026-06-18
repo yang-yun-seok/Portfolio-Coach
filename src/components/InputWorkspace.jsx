@@ -399,7 +399,7 @@ export default function InputWorkspace({
         </h3>
         <p className="text-xs text-slate-500 mb-4">
           GameJob 공고 번호(GI_No)를 입력하면 해당 공고가 1~3순위에 고정됩니다.
-          기존 데이터에 없는 공고는 자동으로 크롤링합니다.
+          목록에 없는 공고는 잠시 조회한 뒤 연결합니다.
           <span className="text-slate-400 ml-1">(예: 258667 또는 URL 전체 붙여넣기 가능)</span>
         </p>
         <div className="space-y-3">
@@ -453,7 +453,7 @@ export default function InputWorkspace({
                 {slot.status === 'loading' && (
                   <p className="mt-1.5 text-xs text-indigo-500 flex items-center gap-1">
                     <Loader2 size={12} className="animate-spin" />
-                    공고 조회 중... (없으면 자동 크롤링)
+                    공고 조회 중...
                   </p>
                 )}
                 {slot.status === 'error' && (
@@ -514,7 +514,7 @@ export default function InputWorkspace({
               <div className="space-y-1">
                 <p className="text-sm font-bold text-amber-900">분석 요청은 정상적으로 처리되고 있습니다.</p>
                 <p className="text-sm leading-relaxed text-amber-800">
-                  서버와 AI 모델이 응답을 정리하는 과정이라 최대 1분 정도 걸릴 수 있습니다. 진행 중에는 새로고침, 뒤로 가기, 탭 닫기를 하지 말고 잠시만 기다려 주세요.
+                  분석 결과를 정리하는 과정이라 최대 1분 정도 걸릴 수 있습니다. 진행 중에는 새로고침, 뒤로 가기, 탭 닫기를 하지 말고 잠시만 기다려 주세요.
                 </p>
                 <p className="text-xs font-semibold text-amber-700">응답이 도착하면 서류 피드백 화면으로 자동 이동합니다.</p>
               </div>

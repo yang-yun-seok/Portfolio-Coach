@@ -1,5 +1,5 @@
 import React from 'react';
-import { Briefcase, CheckCircle2, FileText, ShieldCheck, Target } from 'lucide-react';
+import { Briefcase, CheckCircle2, FileText, Target } from 'lucide-react';
 import { getProfileDisplayRole } from '../data/skills';
 import AnalysisHistoryPanel from './AnalysisHistoryPanel';
 
@@ -96,7 +96,7 @@ export default function FeedbackWorkspace({
 
           <div className="coach-review-meta-grid">
             <article className="coach-review-meta-card">
-              <p className="coach-review-meta-label">현재 검토 기준</p>
+              <p className="coach-review-meta-label">지원 방향</p>
               <strong>{roleLabel}</strong>
               <p>{selectedRoleDetail.focus}</p>
             </article>
@@ -137,32 +137,6 @@ export default function FeedbackWorkspace({
         onLoadHistory={loadHistorySnapshot}
         onResetComparison={() => setSelectedHistoryId('')}
       />
-
-      <section className="coach-review-surface">
-        <div className="coach-review-section-head">
-          <div>
-            <p className="coach-review-eyebrow">검토 기준</p>
-            <h3>이번 수정에서 먼저 볼 항목</h3>
-          </div>
-          <span className="coach-review-badge">
-            <ShieldCheck size={14} />
-            채용 기준 요약
-          </span>
-        </div>
-
-        <div className="coach-review-principles-grid">
-          {resultPlaybook.feedbackCards.map((card, index) => (
-            <article key={card.label} className="coach-review-principle">
-              <div className="coach-review-principle-index">{String(index + 1).padStart(2, '0')}</div>
-              <div>
-                <p className="coach-review-principle-label">{card.label}</p>
-                <h4>{card.title}</h4>
-                <p>{card.body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
 
       <div className="coach-review-doc-grid">
         <FeedbackList
