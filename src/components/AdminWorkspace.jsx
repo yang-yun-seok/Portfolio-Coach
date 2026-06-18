@@ -2,14 +2,29 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   AlertCircle,
   CheckCircle2,
+  Clock3,
   ExternalLink,
   FileText,
+  FolderOpen,
   Loader2,
+  Mail,
+  MessageSquare,
   RefreshCw,
-  ShieldCheck,
+  Save,
+  Search,
+  UserRound,
   UsersRound,
 } from 'lucide-react';
-import { fetchAdminOverview } from '../lib/admin-api';
+import { fetchAdminOverview, updateAdminSubmissionReview } from '../lib/admin-api';
+
+const REVIEW_STATUS_OPTIONS = [
+  { id: 'submitted', label: '제출 완료' },
+  { id: 'reviewing', label: '검토 중' },
+  { id: 'reviewed', label: '검토 완료' },
+  { id: 'rejected', label: '반려' },
+];
+
+const REVIEW_STATUS_LABELS = Object.fromEntries(REVIEW_STATUS_OPTIONS.map((status) => [status.id, status.label]));
 
 function formatDateTime(value) {
   if (!value) return '정보 없음';
@@ -22,18 +37,27 @@ function formatDateTime(value) {
   }
 }
 
-function mapStatus(status) {
+function formatBytes(value) {
+  const bytes = Number(value) || 0;
+  if (bytes <= 0) return '';
+  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)}KB`;
+  return `${(bytes / 1024 / 1024).toFixed(1)}MB`;
+}
+
+function getStatusLabel(status) {
+  return REVIEW_STATUS_LABELS[status] || status || '상태 확인 필요';
+}
+
+function getStatusTone(status) {
   switch (status) {
-    case 'submitted':
-      return '제출 완료';
     case 'reviewing':
-      return '검토 중';
+      return 'border-sky-200 bg-sky-50 text-sky-700';
     case 'reviewed':
-      return '검토 완료';
+      return 'border-emerald-200 bg-emerald-50 text-emerald-700';
     case 'rejected':
-      return '반려';
+      return 'border-rose-200 bg-rose-50 text-rose-700';
     default:
-      return status || '상태 확인 필요';
+      return 'border-amber-200 bg-amber-50 text-amber-700';
   }
 }
 
@@ -50,6 +74,10 @@ function getStudentEmail(submission) {
   return submission.userEmail || submission.account?.email || '이메일 없음';
 }
 
+function getUserDisplayName(user) {
+  return user.studentName || user.displayName || user.email || '이름 미설정';
+}
+
 function flattenFiles(files = {}) {
   return [
     files.resume ? { label: '이력서', ...files.resume } : null,
@@ -61,17 +89,22 @@ function flattenFiles(files = {}) {
   ].filter(Boolean);
 }
 
-function StatCard({ icon: Icon, label, value, helper }) {
-  return (
-    <article className="rounded-[24px] border border-slate-200 bg-white px-5 py-4 shadow-sm">
-      <div className="flex items-center justify-between gap-3">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{label}</p>
-        <Icon size={17} className="text-slate-400" />
-      </div>
-      <strong className="mt-2 block text-2xl font-black tracking-tight text-slate-900">{value}</strong>
-      <p className="mt-1 text-sm text-slate-500">{helper}</p>
-    </article>
-  );
+function getFileTotal(fileCounts = {}) {
+  return (Number(fileCounts.resume) || 0) + (Number(fileCounts.coverLetter) || 0) + (Number(fileCounts.portfolio) || 0);
+}
+
+function buildAdminSummary(submissions = [], users = []) {
+  const uniqueSubmitters = new Set(submissions.map((item) => item.userId).filter(Boolean));
+  return {
+    totalSubmissions: submissions.length,
+    totalUsers: users.length,
+    uniqueSubmitters: uniqueSubmitters.size,
+    submittedCount: submissions.filter((item) => item.status === 'submitted').length,
+    reviewingCount: submissions.filter((item) => item.status === 'reviewing').length,
+    reviewedCount: submissions.filter((item) => item.status === 'reviewed').length,
+    rejectedCount: submissions.filter((item) => item.status === 'rejected').length,
+    latestSubmittedAtIso: submissions[0]?.submittedAtIso || '',
+  };
 }
 
 function FileLinks({ files }) {
@@ -82,21 +115,47 @@ function FileLinks({ files }) {
   }
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="grid gap-2">
       {fileRows.map((file) => (
         <a
           key={`${file.label}-${file.storagePath || file.url || file.fileName}`}
           href={file.url}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400"
+          className="flex min-w-0 items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-400"
         >
-          <FileText size={13} />
-          {file.label}
-          <ExternalLink size={12} />
+          <span className="flex min-w-0 items-center gap-2">
+            <FileText size={15} className="shrink-0 text-slate-400" />
+            <span className="truncate">{file.label}</span>
+          </span>
+          <span className="flex shrink-0 items-center gap-2 text-xs text-slate-400">
+            {formatBytes(file.size)}
+            <ExternalLink size={13} />
+          </span>
         </a>
       ))}
     </div>
+  );
+}
+
+function StatusBadge({ status }) {
+  return (
+    <span className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-xs font-bold ${getStatusTone(status)}`}>
+      {getStatusLabel(status)}
+    </span>
+  );
+}
+
+function Metric({ icon: Icon, label, value, helper }) {
+  return (
+    <article className="rounded-lg border border-slate-200 bg-white px-4 py-3">
+      <div className="flex items-center justify-between gap-3">
+        <p className="text-[11px] font-semibold text-slate-400">{label}</p>
+        <Icon size={16} className="text-slate-400" />
+      </div>
+      <strong className="mt-2 block text-2xl font-black text-slate-900">{value}</strong>
+      <p className="mt-1 text-xs text-slate-500">{helper}</p>
+    </article>
   );
 }
 
@@ -108,14 +167,25 @@ export default function AdminWorkspace({
   const [overview, setOverview] = useState({ summary: {}, submissions: [], users: [] });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [actionMessage, setActionMessage] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [trackFilter, setTrackFilter] = useState('all');
+  const [selectedSubmissionId, setSelectedSubmissionId] = useState('');
+  const [reviewDrafts, setReviewDrafts] = useState({});
+  const [savingSubmissionId, setSavingSubmissionId] = useState('');
 
   const loadOverview = useCallback(async () => {
     if (!isAdmin) return;
     setLoading(true);
     setError('');
     try {
-      setOverview(await fetchAdminOverview(getAccessToken));
+      const nextOverview = await fetchAdminOverview(getAccessToken);
+      setOverview({
+        ...nextOverview,
+        summary: buildAdminSummary(nextOverview.submissions, nextOverview.users),
+      });
+      setActionMessage('');
     } catch (loadError) {
       setError(loadError.message || '관리자 데이터를 불러오지 못했습니다.');
     } finally {
@@ -127,23 +197,144 @@ export default function AdminWorkspace({
     void loadOverview();
   }, [loadOverview]);
 
-  const filteredSubmissions = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
-    if (!query) return overview.submissions;
-    return overview.submissions.filter((submission) => [
+  useEffect(() => {
+    if (!overview.submissions.length) {
+      setSelectedSubmissionId('');
+      return;
+    }
+    if (!overview.submissions.some((submission) => submission.id === selectedSubmissionId)) {
+      setSelectedSubmissionId(overview.submissions[0].id);
+    }
+  }, [overview.submissions, selectedSubmissionId]);
+
+  const summary = overview.summary || {};
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+
+  const trackOptions = useMemo(() => (
+    [...new Set(overview.submissions.map((submission) => submission.track).filter(Boolean))]
+      .sort((left, right) => left.localeCompare(right, 'ko-KR'))
+  ), [overview.submissions]);
+
+  const filteredSubmissions = useMemo(() => overview.submissions.filter((submission) => {
+    if (statusFilter !== 'all' && submission.status !== statusFilter) return false;
+    if (trackFilter !== 'all' && submission.track !== trackFilter) return false;
+    if (!normalizedQuery) return true;
+    return [
       getStudentName(submission),
       getStudentEmail(submission),
       submission.applicantName,
       submission.track,
       submission.subRole,
       submission.userId,
-    ].join(' ').toLowerCase().includes(query));
-  }, [overview.submissions, searchQuery]);
+      submission.adminMemo,
+    ].join(' ').toLowerCase().includes(normalizedQuery);
+  }), [normalizedQuery, overview.submissions, statusFilter, trackFilter]);
+
+  const selectedSubmission = useMemo(() => (
+    filteredSubmissions.find((submission) => submission.id === selectedSubmissionId)
+    || filteredSubmissions[0]
+    || null
+  ), [filteredSubmissions, selectedSubmissionId]);
+
+  const selectedDraft = selectedSubmission
+    ? reviewDrafts[selectedSubmission.id] || {
+      status: selectedSubmission.status || 'submitted',
+      adminMemo: selectedSubmission.adminMemo || '',
+    }
+    : null;
+
+  const isReviewDirty = Boolean(selectedSubmission && selectedDraft && (
+    selectedDraft.status !== (selectedSubmission.status || 'submitted')
+    || selectedDraft.adminMemo !== (selectedSubmission.adminMemo || '')
+  ));
+
+  const userRows = useMemo(() => {
+    const submissionMap = new Map();
+    overview.submissions.forEach((submission) => {
+      if (!submission.userId) return;
+      const current = submissionMap.get(submission.userId) || { count: 0, latestSubmittedAtIso: '' };
+      submissionMap.set(submission.userId, {
+        count: current.count + 1,
+        latestSubmittedAtIso: current.latestSubmittedAtIso || submission.submittedAtIso || '',
+      });
+    });
+
+    return overview.users
+      .map((user) => ({
+        ...user,
+        submissionCount: submissionMap.get(user.uid)?.count || 0,
+        latestSubmittedAtIso: submissionMap.get(user.uid)?.latestSubmittedAtIso || '',
+      }))
+      .filter((user) => {
+        if (!normalizedQuery) return true;
+        return [
+          getUserDisplayName(user),
+          user.email,
+          user.uid,
+          user.role,
+          user.trackDefault,
+        ].join(' ').toLowerCase().includes(normalizedQuery);
+      })
+      .sort((left, right) => {
+        if (right.submissionCount !== left.submissionCount) return right.submissionCount - left.submissionCount;
+        return getUserDisplayName(left).localeCompare(getUserDisplayName(right), 'ko-KR');
+      });
+  }, [normalizedQuery, overview.submissions, overview.users]);
+
+  const updateSelectedDraft = (patch) => {
+    if (!selectedSubmission) return;
+    setReviewDrafts((current) => ({
+      ...current,
+      [selectedSubmission.id]: {
+        status: selectedSubmission.status || 'submitted',
+        adminMemo: selectedSubmission.adminMemo || '',
+        ...(current[selectedSubmission.id] || {}),
+        ...patch,
+      },
+    }));
+  };
+
+  const handleSaveReview = async () => {
+    if (!selectedSubmission || !selectedDraft || !isReviewDirty) return;
+    setSavingSubmissionId(selectedSubmission.id);
+    setError('');
+    setActionMessage('');
+
+    try {
+      const updatedSubmission = await updateAdminSubmissionReview(getAccessToken, selectedSubmission.id, {
+        status: selectedDraft.status,
+        adminMemo: selectedDraft.adminMemo,
+      });
+
+      setOverview((current) => {
+        const nextSubmissions = current.submissions.map((submission) => (
+          submission.id === updatedSubmission.id
+            ? { ...submission, ...updatedSubmission, account: submission.account || updatedSubmission.account || null }
+            : submission
+        ));
+        return {
+          ...current,
+          submissions: nextSubmissions,
+          summary: buildAdminSummary(nextSubmissions, current.users),
+        };
+      });
+      setReviewDrafts((current) => {
+        const next = { ...current };
+        delete next[selectedSubmission.id];
+        return next;
+      });
+      setActionMessage('검토 상태를 저장했습니다.');
+    } catch (saveError) {
+      setError(saveError.message || '검토 상태를 저장하지 못했습니다.');
+    } finally {
+      setSavingSubmissionId('');
+    }
+  };
 
   if (!isAdmin) {
     return (
-      <section className="rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm">
-        <div className="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-amber-900">
+      <section className="rounded-lg border border-slate-200 bg-white p-8">
+        <div className="flex items-start gap-3 rounded-lg border border-amber-200 bg-amber-50 px-5 py-4 text-amber-900">
           <AlertCircle size={18} className="mt-0.5 shrink-0" />
           <div>
             <h3 className="font-bold">관리자 권한이 필요합니다.</h3>
@@ -156,28 +347,26 @@ export default function AdminWorkspace({
     );
   }
 
-  const summary = overview.summary || {};
-
   return (
-    <div className="coach-admin-workspace space-y-6 animate-in fade-in slide-in-from-bottom-4">
-      <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
+    <div className="coach-admin-workspace space-y-5 animate-in fade-in slide-in-from-bottom-4">
+      <section className="rounded-lg border border-slate-200 bg-white p-5">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Admin</p>
-            <h2 className="mt-2 text-3xl font-black tracking-tight text-slate-900">제출 관리</h2>
+            <p className="text-[11px] font-semibold text-slate-400">Admin Console</p>
+            <h2 className="mt-2 text-2xl font-black text-slate-900">제출 운영 관리</h2>
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
-              Google 로그인 계정, 학생이 설정한 이름, 제출 파일 상태를 한 화면에서 확인합니다.
+              학생 계정, 제출 파일, 검토 상태와 관리자 메모를 한 화면에서 관리합니다.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600">
+            <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600">
               {userProfile?.studentName || userProfile?.displayName || '관리자'}
             </span>
             <button
               type="button"
               onClick={loadOverview}
               disabled={loading}
-              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+              className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-300"
             >
               {loading ? <Loader2 size={15} className="animate-spin" /> : <RefreshCw size={15} />}
               새로고침
@@ -186,93 +375,265 @@ export default function AdminWorkspace({
         </div>
       </section>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <StatCard icon={FileText} label="제출" value={`${summary.totalSubmissions || 0}건`} helper="최근 제출 목록 기준" />
-        <StatCard icon={UsersRound} label="사용자" value={`${summary.totalUsers || 0}명`} helper={`${summary.uniqueSubmitters || 0}명이 제출함`} />
-        <StatCard icon={ShieldCheck} label="대기" value={`${summary.submittedCount || 0}건`} helper="담당자 확인 필요" />
-        <StatCard icon={CheckCircle2} label="검토 완료" value={`${summary.reviewedCount || 0}건`} helper={`최근 제출 ${formatDateTime(summary.latestSubmittedAtIso)}`} />
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+        <Metric icon={FileText} label="전체 제출" value={`${summary.totalSubmissions || 0}건`} helper={`최근 제출 ${formatDateTime(summary.latestSubmittedAtIso)}`} />
+        <Metric icon={UsersRound} label="사용자" value={`${summary.totalUsers || 0}명`} helper={`${summary.uniqueSubmitters || 0}명이 제출함`} />
+        <Metric icon={Clock3} label="확인 필요" value={`${summary.submittedCount || 0}건`} helper="신규 제출 상태" />
+        <Metric icon={MessageSquare} label="검토 중" value={`${summary.reviewingCount || 0}건`} helper="진행 중인 검토" />
+        <Metric icon={CheckCircle2} label="검토 완료" value={`${summary.reviewedCount || 0}건`} helper={`반려 ${summary.rejectedCount || 0}건`} />
       </div>
 
       {error ? (
-        <div className="flex items-start gap-2 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
+        <div className="flex items-start gap-2 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
           <AlertCircle size={16} className="mt-0.5 shrink-0" />
           <span>{error}</span>
         </div>
       ) : null}
 
-      <section className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-sm">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      {actionMessage ? (
+        <div className="flex items-start gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+          <CheckCircle2 size={16} className="mt-0.5 shrink-0" />
+          <span>{actionMessage}</span>
+        </div>
+      ) : null}
+
+      <section className="rounded-lg border border-slate-200 bg-white p-5">
+        <div className="grid gap-3 xl:grid-cols-[1fr_auto_auto_auto] xl:items-center">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Submissions</p>
-            <h3 className="mt-2 text-2xl font-black tracking-tight text-slate-900">학생 제출 목록</h3>
-            <p className="mt-2 text-sm text-slate-600">학생 이름, Google 계정, 제출 상태와 파일 링크를 확인합니다.</p>
+            <h3 className="text-lg font-black text-slate-900">제출 목록</h3>
+            <p className="mt-1 text-sm text-slate-500">총 {overview.submissions.length}건 중 {filteredSubmissions.length}건 표시</p>
           </div>
-          <input
-            type="search"
-            value={searchQuery}
-            onChange={(event) => setSearchQuery(event.target.value)}
-            placeholder="이름, 이메일, 직무 검색"
-            className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-slate-400 lg:max-w-sm"
-          />
+          <label className="flex min-w-0 items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 focus-within:border-slate-400">
+            <Search size={16} className="shrink-0 text-slate-400" />
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="이름, 이메일, 직무 검색"
+              className="min-w-0 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400 xl:w-72"
+            />
+          </label>
+          <select
+            value={statusFilter}
+            onChange={(event) => setStatusFilter(event.target.value)}
+            className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 outline-none focus:border-slate-400"
+          >
+            <option value="all">전체 상태</option>
+            {REVIEW_STATUS_OPTIONS.map((status) => (
+              <option key={status.id} value={status.id}>{status.label}</option>
+            ))}
+          </select>
+          <select
+            value={trackFilter}
+            onChange={(event) => setTrackFilter(event.target.value)}
+            className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 outline-none focus:border-slate-400"
+          >
+            <option value="all">전체 트랙</option>
+            {trackOptions.map((track) => (
+              <option key={track} value={track}>{track}</option>
+            ))}
+          </select>
         </div>
 
-        <div className="mt-6 grid gap-4">
-          {loading && overview.submissions.length === 0 ? (
-            <div className="rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-12 text-center">
-              <Loader2 size={24} className="mx-auto mb-3 animate-spin text-slate-500" />
-              <p className="font-semibold text-slate-700">관리자 데이터를 불러오는 중입니다.</p>
-            </div>
-          ) : null}
+        <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1fr)_420px]">
+          <div className="min-w-0 space-y-2">
+            {loading && overview.submissions.length === 0 ? (
+              <div className="rounded-lg border border-slate-200 bg-slate-50 px-6 py-12 text-center">
+                <Loader2 size={24} className="mx-auto mb-3 animate-spin text-slate-500" />
+                <p className="font-semibold text-slate-700">관리자 데이터를 불러오는 중입니다.</p>
+              </div>
+            ) : null}
 
-          {!loading && filteredSubmissions.length === 0 ? (
-            <div className="rounded-[28px] border border-dashed border-slate-300 bg-slate-50 px-6 py-12 text-center text-sm text-slate-500">
-              표시할 제출 내역이 없습니다.
-            </div>
-          ) : null}
+            {!loading && filteredSubmissions.length === 0 ? (
+              <div className="rounded-lg border border-dashed border-slate-300 bg-slate-50 px-6 py-12 text-center text-sm text-slate-500">
+                표시할 제출 내역이 없습니다.
+              </div>
+            ) : null}
 
-          {filteredSubmissions.map((submission) => (
-            <article key={submission.id} className="rounded-[28px] border border-slate-200 bg-slate-50/70 p-5">
-              <div className="grid gap-5 xl:grid-cols-[1fr_1.2fr]">
+            {filteredSubmissions.map((submission) => {
+              const selected = selectedSubmission?.id === submission.id;
+              return (
+                <button
+                  key={submission.id}
+                  type="button"
+                  onClick={() => setSelectedSubmissionId(submission.id)}
+                  className={`block w-full rounded-lg border px-4 py-3 text-left transition ${
+                    selected
+                      ? 'border-slate-900 bg-slate-900 text-white'
+                      : 'border-slate-200 bg-slate-50 text-slate-900 hover:border-slate-400 hover:bg-white'
+                  }`}
+                >
+                  <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <StatusBadge status={submission.status} />
+                        <span className={`rounded-lg border px-2.5 py-1 text-xs font-bold ${
+                          selected ? 'border-white/20 bg-white/10 text-white' : 'border-slate-200 bg-white text-slate-600'
+                        }`}>
+                          {submission.track || '트랙 없음'} · {submission.subRole || '세부 직무 없음'}
+                        </span>
+                      </div>
+                      <h4 className="mt-3 truncate text-lg font-black">{submission.applicantName || getStudentName(submission)}</h4>
+                      <p className={`mt-1 truncate text-sm ${selected ? 'text-slate-300' : 'text-slate-500'}`}>
+                        {getStudentEmail(submission)}
+                      </p>
+                    </div>
+                    <div className={`shrink-0 text-sm ${selected ? 'text-slate-300' : 'text-slate-500'}`}>
+                      <p>{formatDateTime(submission.submittedAtIso)}</p>
+                      <p className="mt-1 font-semibold">{getFileTotal(submission.fileCounts)}개 파일</p>
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          <aside className="min-w-0 rounded-lg border border-slate-200 bg-slate-50 p-4 xl:sticky xl:top-4 xl:self-start">
+            {selectedSubmission ? (
+              <div className="space-y-5">
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-bold text-slate-600">
-                      {mapStatus(submission.status)}
-                    </span>
-                    <span className="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-bold text-slate-600">
-                      {submission.track || '트랙 없음'} · {submission.subRole || '세부 직무 없음'}
+                    <StatusBadge status={selectedSubmission.status} />
+                    <span className="rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs font-bold text-slate-600">
+                      {selectedSubmission.track || '트랙 없음'}
                     </span>
                   </div>
-                  <h4 className="mt-3 text-xl font-bold text-slate-900">{submission.applicantName || '지원자 이름 없음'}</h4>
-                  <p className="mt-1 text-sm text-slate-500">{formatDateTime(submission.submittedAtIso)}</p>
-                  <div className="mt-4 grid gap-2 text-sm text-slate-600">
-                    <p><span className="font-semibold text-slate-900">계정 이름:</span> {getStudentName(submission)}</p>
-                    <p><span className="font-semibold text-slate-900">Google 계정:</span> {getStudentEmail(submission)}</p>
-                    <p className="break-all"><span className="font-semibold text-slate-900">UID:</span> {submission.userId || '정보 없음'}</p>
+                  <h4 className="mt-3 text-xl font-black text-slate-900">{selectedSubmission.applicantName || '지원자 이름 없음'}</h4>
+                  <p className="mt-1 text-sm text-slate-500">{selectedSubmission.subRole || '세부 직무 없음'} · {formatDateTime(selectedSubmission.submittedAtIso)}</p>
+                </div>
+
+                <div className="grid gap-2 border-t border-slate-200 pt-4 text-sm">
+                  <p className="flex items-center gap-2 text-slate-700">
+                    <UserRound size={15} className="text-slate-400" />
+                    <span className="font-semibold text-slate-900">학생 이름</span>
+                    <span className="min-w-0 truncate">{getStudentName(selectedSubmission)}</span>
+                  </p>
+                  <p className="flex items-center gap-2 text-slate-700">
+                    <Mail size={15} className="text-slate-400" />
+                    <span className="font-semibold text-slate-900">Google</span>
+                    <span className="min-w-0 truncate">{getStudentEmail(selectedSubmission)}</span>
+                  </p>
+                  <p className="break-all text-xs text-slate-400">UID: {selectedSubmission.userId || '정보 없음'}</p>
+                </div>
+
+                <div className="border-t border-slate-200 pt-4">
+                  <div className="mb-2 flex items-center gap-2">
+                    <FolderOpen size={16} className="text-slate-400" />
+                    <h5 className="font-bold text-slate-900">제출 파일</h5>
+                  </div>
+                  <FileLinks files={selectedSubmission.files} />
+                </div>
+
+                <div className="border-t border-slate-200 pt-4">
+                  <h5 className="font-bold text-slate-900">검토 상태</h5>
+                  <div className="mt-3 grid gap-3">
+                    <select
+                      value={selectedDraft?.status || 'submitted'}
+                      onChange={(event) => updateSelectedDraft({ status: event.target.value })}
+                      className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 outline-none focus:border-slate-400"
+                    >
+                      {REVIEW_STATUS_OPTIONS.map((status) => (
+                        <option key={status.id} value={status.id}>{status.label}</option>
+                      ))}
+                    </select>
+                    <textarea
+                      value={selectedDraft?.adminMemo || ''}
+                      onChange={(event) => updateSelectedDraft({ adminMemo: event.target.value })}
+                      rows={5}
+                      maxLength={2000}
+                      placeholder="관리자 메모"
+                      className="resize-none rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-slate-400"
+                    />
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-xs text-slate-400">{(selectedDraft?.adminMemo || '').length}/2000</span>
+                      <button
+                        type="button"
+                        onClick={handleSaveReview}
+                        disabled={!isReviewDirty || savingSubmissionId === selectedSubmission.id}
+                        className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+                      >
+                        {savingSubmissionId === selectedSubmission.id ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
+                        저장
+                      </button>
+                    </div>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-slate-200 bg-white p-4">
-                  <div className="grid gap-3 md:grid-cols-3">
-                    <div>
-                      <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">이력서</p>
-                      <strong className="text-slate-900">{submission.fileCounts?.resume || 0}개</strong>
-                    </div>
-                    <div>
-                      <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">자기소개서</p>
-                      <strong className="text-slate-900">{submission.fileCounts?.coverLetter || 0}개</strong>
-                    </div>
-                    <div>
-                      <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">포트폴리오</p>
-                      <strong className="text-slate-900">{submission.fileCounts?.portfolio || 0}개</strong>
-                    </div>
+                {selectedSubmission.latestAnalysisSummary || selectedSubmission.latestRecommendedJobsSnapshot?.length ? (
+                  <div className="border-t border-slate-200 pt-4">
+                    <h5 className="font-bold text-slate-900">분석 스냅샷</h5>
+                    {selectedSubmission.latestAnalysisSummary ? (
+                      <p className="mt-2 text-sm leading-relaxed text-slate-600">{selectedSubmission.latestAnalysisSummary}</p>
+                    ) : null}
+                    {selectedSubmission.latestRecommendedJobsSnapshot?.length ? (
+                      <div className="mt-3 grid gap-2">
+                        {selectedSubmission.latestRecommendedJobsSnapshot.map((job) => (
+                          <div key={`${job.id}-${job.company}`} className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm">
+                            <p className="font-semibold text-slate-900">{job.company || '회사 정보 없음'}</p>
+                            <p className="mt-1 text-slate-500">{job.title || '공고명 없음'} · {job.score || 0}점</p>
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
                   </div>
-                  <div className="mt-4">
-                    <FileLinks files={submission.files} />
-                  </div>
-                </div>
+                ) : null}
               </div>
-            </article>
-          ))}
+            ) : (
+              <div className="rounded-lg border border-dashed border-slate-300 bg-white px-5 py-10 text-center text-sm text-slate-500">
+                제출을 선택하면 상세 정보가 표시됩니다.
+              </div>
+            )}
+          </aside>
+        </div>
+      </section>
+
+      <section className="rounded-lg border border-slate-200 bg-white p-5">
+        <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h3 className="text-lg font-black text-slate-900">사용자 명단</h3>
+            <p className="mt-1 text-sm text-slate-500">학생이 설정한 이름, Google 계정, 제출 횟수를 확인합니다.</p>
+          </div>
+          <p className="text-sm font-semibold text-slate-500">{userRows.length}명 표시</p>
+        </div>
+
+        <div className="mt-4 overflow-x-auto">
+          <table className="min-w-full text-left text-sm">
+            <thead>
+              <tr className="border-b border-slate-200 text-xs font-bold text-slate-400">
+                <th className="px-3 py-3">이름</th>
+                <th className="px-3 py-3">이메일</th>
+                <th className="px-3 py-3">권한</th>
+                <th className="px-3 py-3">제출</th>
+                <th className="px-3 py-3">최근 제출</th>
+                <th className="px-3 py-3">최근 로그인</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userRows.length === 0 ? (
+                <tr>
+                  <td colSpan="6" className="px-3 py-8 text-center text-slate-400">표시할 사용자가 없습니다.</td>
+                </tr>
+              ) : null}
+              {userRows.map((user) => (
+                <tr key={user.uid} className="border-b border-slate-100 last:border-b-0">
+                  <td className="px-3 py-3 font-semibold text-slate-900">{getUserDisplayName(user)}</td>
+                  <td className="px-3 py-3 text-slate-600">{user.email || '이메일 없음'}</td>
+                  <td className="px-3 py-3">
+                    <span className={`rounded-lg border px-2.5 py-1 text-xs font-bold ${
+                      user.role === 'admin'
+                        ? 'border-slate-900 bg-slate-900 text-white'
+                        : 'border-slate-200 bg-slate-50 text-slate-600'
+                    }`}>
+                      {user.role || 'user'}
+                    </span>
+                  </td>
+                  <td className="px-3 py-3 font-semibold text-slate-900">{user.submissionCount}건</td>
+                  <td className="px-3 py-3 text-slate-500">{formatDateTime(user.latestSubmittedAtIso)}</td>
+                  <td className="px-3 py-3 text-slate-500">{formatDateTime(user.lastLoginAt)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
     </div>

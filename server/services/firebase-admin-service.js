@@ -1,6 +1,6 @@
 import { cert, getApps, initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
-import { getFirestore } from 'firebase-admin/firestore';
+import { FieldValue, getFirestore } from 'firebase-admin/firestore';
 
 const PRIVATE_KEY_BEGIN = '-----BEGIN PRIVATE KEY-----';
 const PRIVATE_KEY_END = '-----END PRIVATE KEY-----';
@@ -121,6 +121,30 @@ function sortBySubmittedAtDesc(left, right) {
   return rightTime - leftTime;
 }
 
+function serializeSubmissionDoc(entry) {
+  const data = serializeFirestoreValue(entry.data()) || {};
+  return {
+    id: entry.id,
+    ...data,
+    status: data.status || 'submitted',
+    userId: data.userId || '',
+    userEmail: data.userEmail || '',
+    userDisplayName: data.userDisplayName || '',
+    accountStudentName: data.accountStudentName || '',
+    applicantName: data.applicantName || '',
+    track: data.track || '',
+    subRole: data.subRole || '',
+    submittedAtIso: data.submittedAtIso || data.createdAt || '',
+    fileCounts: data.fileCounts || { resume: 0, coverLetter: 0, portfolio: 0 },
+    files: data.files || { resume: null, coverLetter: null, portfolio: [] },
+    adminMemo: data.adminMemo || '',
+    reviewUpdatedAtIso: data.reviewUpdatedAtIso || '',
+    reviewedAtIso: data.reviewedAtIso || '',
+    reviewedBy: data.reviewedBy || '',
+    reviewedByEmail: data.reviewedByEmail || '',
+  };
+}
+
 export function createFirebaseAdminService() {
   const authRequired = process.env.FIREBASE_AUTH_REQUIRED === 'true';
   const config = buildFirebaseConfig();
@@ -210,25 +234,65 @@ export function createFirebaseAdminService() {
     }
 
     return snapshot.docs
-      .map((entry) => {
-        const data = serializeFirestoreValue(entry.data()) || {};
-        return {
-          id: entry.id,
-          ...data,
-          status: data.status || 'submitted',
-          userId: data.userId || '',
-          userEmail: data.userEmail || '',
-          userDisplayName: data.userDisplayName || '',
-          accountStudentName: data.accountStudentName || '',
-          applicantName: data.applicantName || '',
-          track: data.track || '',
-          subRole: data.subRole || '',
-          submittedAtIso: data.submittedAtIso || data.createdAt || '',
-          fileCounts: data.fileCounts || { resume: 0, coverLetter: 0, portfolio: 0 },
-          files: data.files || { resume: null, coverLetter: null, portfolio: [] },
-        };
-      })
+      .map(serializeSubmissionDoc)
       .sort(sortBySubmittedAtDesc);
+  }
+
+  async function updateAdminSubmissionReview({
+    submissionId,
+    status,
+    adminMemo,
+    actor,
+  }) {
+    const firestore = requireFirestore();
+    const normalizedSubmissionId = String(submissionId || '').trim();
+    if (!normalizedSubmissionId) {
+      const error = new Error('제출 ID가 필요합니다.');
+      error.statusCode = 400;
+      throw error;
+    }
+
+    const submissionRef = firestore.collection('portfolioSubmissions').doc(normalizedSubmissionId);
+    const snapshot = await submissionRef.get();
+    if (!snapshot.exists) {
+      const error = new Error('제출 내역을 찾을 수 없습니다.');
+      error.statusCode = 404;
+      throw error;
+    }
+
+    const nowIso = new Date().toISOString();
+    const patch = {
+      updatedAt: FieldValue.serverTimestamp(),
+      reviewUpdatedAtIso: nowIso,
+      reviewedBy: actor?.uid || '',
+      reviewedByEmail: actor?.email || '',
+    };
+
+    if (status !== undefined) {
+      patch.status = status;
+      if (status === 'reviewed') {
+        patch.reviewedAtIso = nowIso;
+      }
+    }
+
+    if (adminMemo !== undefined) {
+      patch.adminMemo = adminMemo;
+    }
+
+    await submissionRef.set(patch, { merge: true });
+    await firestore.collection('submissionEvents').add({
+      submissionId: normalizedSubmissionId,
+      actorId: actor?.uid || '',
+      actorEmail: actor?.email || '',
+      actorRole: 'admin',
+      type: 'admin_review_updated',
+      note: status ? `관리자 상태 변경: ${status}` : '관리자 메모 변경',
+      createdAt: FieldValue.serverTimestamp(),
+      createdAtIso: nowIso,
+    });
+
+    const updatedSnapshot = await submissionRef.get();
+    return serializeSubmissionDoc(updatedSnapshot);
   }
 
   return {
@@ -240,5 +304,6 @@ export function createFirebaseAdminService() {
     getUserRole,
     listAdminUsers,
     listAdminSubmissions,
+    updateAdminSubmissionReview,
   };
 }

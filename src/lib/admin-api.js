@@ -18,3 +18,21 @@ export async function fetchAdminOverview(getAccessToken) {
     users: Array.isArray(data.users) ? data.users : [],
   };
 }
+
+export async function updateAdminSubmissionReview(getAccessToken, submissionId, payload) {
+  const headers = await buildAuthorizedHeaders(getAccessToken, {
+    'Content-Type': 'application/json',
+  });
+  const response = await fetch(apiUrl(`api/admin/submissions/${encodeURIComponent(submissionId)}`), {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify(payload || {}),
+  });
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.error || '제출 검토 정보를 저장하지 못했습니다.');
+  }
+
+  return data.submission || null;
+}
