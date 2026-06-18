@@ -121,6 +121,14 @@ function sortBySubmittedAtDesc(left, right) {
   return rightTime - leftTime;
 }
 
+function isValidFirestoreDocumentId(value) {
+  return Boolean(value)
+    && !value.includes('/')
+    && value !== '.'
+    && value !== '..'
+    && !/^__.*__$/.test(value);
+}
+
 function serializeSubmissionDoc(entry) {
   const data = serializeFirestoreValue(entry.data()) || {};
   return {
@@ -246,8 +254,8 @@ export function createFirebaseAdminService() {
   }) {
     const firestore = requireFirestore();
     const normalizedSubmissionId = String(submissionId || '').trim();
-    if (!normalizedSubmissionId) {
-      const error = new Error('제출 ID가 필요합니다.');
+    if (!isValidFirestoreDocumentId(normalizedSubmissionId)) {
+      const error = new Error('올바른 제출 ID가 필요합니다.');
       error.statusCode = 400;
       throw error;
     }
