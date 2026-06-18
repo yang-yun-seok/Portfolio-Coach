@@ -45,6 +45,8 @@ import TrackEntryGate from './components/TrackEntryGate';
 import UserGuideModal from './components/UserGuideModal';
 
 const TRACK_ENTRY_STORAGE_KEY = 'portfolio-coach-track-entry-v1';
+const ADMIN_UNLOCK_STORAGE_KEY = 'portfolio-coach-admin-mode-unlocked-v1';
+const ADMIN_MODE_PASSWORD = '0808';
 
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
 // "- **제목**: 내용" 또는 "**제목**: 내용" → { title, body } 로 분리
@@ -407,6 +409,10 @@ export default function App() {
   const [showAccountNameModal, setShowAccountNameModal] = useState(false);
   const [showModelSettings, setShowModelSettings] = useState(false);
   const [showUserGuide, setShowUserGuide] = useState(false);
+  const [adminModeUnlocked, setAdminModeUnlocked] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.sessionStorage.getItem(ADMIN_UNLOCK_STORAGE_KEY) === 'true';
+  });
   const isSmokeMode = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('smoke') === '1';
 
   useEffect(() => {
@@ -453,6 +459,7 @@ export default function App() {
   const highlightedGapSkills = [...new Set(
     topRecommendedJobs.flatMap((job) => job.matchDetail?.unmatchedSkills || [])
   )].slice(0, 6);
+  const isAdminModeActive = isAdmin && adminModeUnlocked;
   const {
     saveStatus,
     restoreNotice,
@@ -834,24 +841,33 @@ const { analyzeApplication } = useApplicationAnalysis({
   };
 
   // ── 네비게이션 ────────────────────────────────────────────────────────
-  const availableNavItems = isAdmin ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
+  const availableNavItems = isAdminModeActive ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
   const navSections = [
     { id: 'profile', label: '내 준비', items: availableNavItems.filter((item) => item.group === 'profile') },
     { id: 'market', label: '시장·공고', items: availableNavItems.filter((item) => item.group === 'market') },
     { id: 'prep', label: '면접·마감', items: availableNavItems.filter((item) => item.group === 'prep') },
-    ...(isAdmin ? [{ id: 'admin', label: '관리', items: availableNavItems.filter((item) => item.group === 'admin') }] : []),
+    ...(isAdminModeActive ? [{ id: 'admin', label: '관리', items: availableNavItems.filter((item) => item.group === 'admin') }] : []),
   ];
 
   useEffect(() => {
-    const currentNavItems = isAdmin ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
+    const currentNavItems = isAdminModeActive ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
     if (!currentNavItems.some((item) => item.id === activeTab)) {
       setActiveTab('input');
     }
-  }, [activeTab, isAdmin]);
+  }, [activeTab, isAdminModeActive]);
 
   useEffect(() => {
-    if (isAdmin) setShowTrackGate(false);
-  }, [isAdmin]);
+    if (isAdminModeActive) setShowTrackGate(false);
+  }, [isAdminModeActive]);
+
+  useEffect(() => {
+    if (authLoading || isAdmin || !adminModeUnlocked) return;
+    setAdminModeUnlocked(false);
+    if (typeof window !== 'undefined') {
+      window.sessionStorage.removeItem(ADMIN_UNLOCK_STORAGE_KEY);
+    }
+    if (activeTab === 'admin') setActiveTab('input');
+  }, [activeTab, adminModeUnlocked, authLoading, isAdmin]);
 
   const activeNavIndex = availableNavItems.findIndex((item) => item.id === activeTab);
   const activeNavItem = availableNavItems[activeNavIndex >= 0 ? activeNavIndex : 0];
@@ -1068,7 +1084,7 @@ const { analyzeApplication } = useApplicationAnalysis({
   };
   const adminWorkspaceProps = {
     getAccessToken,
-    isAdmin,
+    isAdmin: isAdminModeActive,
     userProfile,
   };
   const progressPanelProps = {
@@ -1113,6 +1129,49 @@ const { analyzeApplication } = useApplicationAnalysis({
     await updateUserDisplayName(name);
     setShowAccountNameModal(false);
     setInfoMessage('이름 설정이 완료되었습니다.');
+  };
+
+  const persistAdminModeUnlock = (unlocked) => {
+    if (typeof window === 'undefined') return;
+    if (unlocked) {
+      window.sessionStorage.setItem(ADMIN_UNLOCK_STORAGE_KEY, 'true');
+    } else {
+      window.sessionStorage.removeItem(ADMIN_UNLOCK_STORAGE_KEY);
+    }
+  };
+
+  const handleUnlockAdminMode = (password) => {
+    if (String(password || '').trim() !== ADMIN_MODE_PASSWORD) {
+      return { ok: false, message: '비밀번호가 맞지 않습니다.' };
+    }
+    if (authLoading) {
+      return { ok: false, message: '계정 정보를 확인 중입니다. 잠시 후 다시 시도해 주세요.' };
+    }
+    if (!isAdmin) {
+      return { ok: false, message: '관리자 계정으로 로그인한 상태에서만 열 수 있습니다.' };
+    }
+
+    setAdminModeUnlocked(true);
+    persistAdminModeUnlock(true);
+    setShowSettings(false);
+    setShowTrackGate(false);
+    setActiveTab('admin');
+    setInfoMessage('관리자 모드로 전환했습니다.');
+    return { ok: true };
+  };
+
+  const handleGoToAdminMode = () => {
+    if (!isAdminModeActive) return;
+    setShowSettings(false);
+    setShowTrackGate(false);
+    setActiveTab('admin');
+  };
+
+  const handleLockAdminMode = () => {
+    setAdminModeUnlocked(false);
+    persistAdminModeUnlock(false);
+    if (activeTab === 'admin') setActiveTab('input');
+    setInfoMessage('관리자 모드를 종료했습니다.');
   };
 
   // ── 렌더링 ────────────────────────────────────────────────────────────
@@ -1221,13 +1280,18 @@ const { analyzeApplication } = useApplicationAnalysis({
 
       {/* ?? ?? ?? ??????????????????????????????????????????????? */}
       <SettingsModal
+        adminModeUnlocked={adminModeUnlocked}
+        isAdmin={isAdmin}
         jobs={jobs}
         jobsMetadata={jobsMetadata}
         onClose={() => setShowSettings(false)}
+        onGoToAdmin={handleGoToAdminMode}
         onGoToJobs={() => {
           setShowSettings(false);
           setActiveTab('jobs');
         }}
+        onLockAdminMode={handleLockAdminMode}
+        onUnlockAdminMode={handleUnlockAdminMode}
         open={showSettings}
       />
 

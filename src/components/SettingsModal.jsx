@@ -1,14 +1,40 @@
-import React from 'react';
-import { Database, Settings, X } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Database, KeyRound, Settings, ShieldCheck, X } from 'lucide-react';
 
 export default function SettingsModal({
+  adminModeUnlocked,
+  isAdmin,
   jobs,
   jobsMetadata,
   onClose,
   onGoToJobs,
+  onGoToAdmin,
+  onLockAdminMode,
+  onUnlockAdminMode,
   open,
 }) {
+  const [adminPassword, setAdminPassword] = useState('');
+  const [adminPasswordError, setAdminPasswordError] = useState('');
+
+  useEffect(() => {
+    if (!open) {
+      setAdminPassword('');
+      setAdminPasswordError('');
+    }
+  }, [open]);
+
   if (!open) return null;
+
+  const handleAdminSubmit = (event) => {
+    event.preventDefault();
+    const result = onUnlockAdminMode?.(adminPassword);
+    if (result?.ok) {
+      setAdminPassword('');
+      setAdminPasswordError('');
+      return;
+    }
+    setAdminPasswordError(result?.message || '비밀번호를 다시 확인해 주세요.');
+  };
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -41,11 +67,74 @@ export default function SettingsModal({
               현재 입력한 직무와 역량을 기준으로 공고 추천을 확인할 수 있습니다. 모델 설정은 상단의 AI API 연결에서 변경합니다.
             </p>
             <button
+              type="button"
               onClick={onGoToJobs}
               className="mt-4 w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
             >
               추천 공고 탭 열기
             </button>
+          </div>
+
+          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <div className="flex items-start gap-3">
+              <div className="rounded-lg bg-slate-900 p-2 text-white">
+                <ShieldCheck size={18} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="font-semibold text-slate-800">관리자 모드</h3>
+                <p className="mt-1 text-xs leading-relaxed text-slate-500">
+                  비밀번호 확인 후 현재 브라우저 세션에서 관리자 화면으로 이동합니다.
+                </p>
+              </div>
+            </div>
+
+            {adminModeUnlocked && isAdmin ? (
+              <div className="mt-4 grid gap-2 sm:grid-cols-[1fr_auto]">
+                <button
+                  type="button"
+                  onClick={onGoToAdmin}
+                  className="rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+                >
+                  관리자 화면 열기
+                </button>
+                <button
+                  type="button"
+                  onClick={onLockAdminMode}
+                  className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-600 transition hover:border-slate-300 hover:bg-slate-50"
+                >
+                  잠그기
+                </button>
+              </div>
+            ) : (
+              <form className="mt-4 space-y-3" onSubmit={handleAdminSubmit}>
+                <label className="sr-only" htmlFor="admin-mode-password">관리자 모드 비밀번호</label>
+                <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 focus-within:border-slate-900 focus-within:bg-white">
+                  <KeyRound size={18} className="shrink-0 text-slate-400" />
+                  <input
+                    id="admin-mode-password"
+                    type="password"
+                    inputMode="numeric"
+                    autoComplete="off"
+                    value={adminPassword}
+                    onChange={(event) => {
+                      setAdminPassword(event.target.value);
+                      setAdminPasswordError('');
+                    }}
+                    className="min-w-0 flex-1 bg-transparent text-sm font-semibold text-slate-800 outline-none placeholder:text-slate-400"
+                    placeholder="비밀번호"
+                  />
+                </div>
+                {adminPasswordError && (
+                  <p className="text-xs font-semibold text-rose-600">{adminPasswordError}</p>
+                )}
+                <button
+                  type="submit"
+                  className="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+                >
+                  관리자 모드 열기
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </div>
