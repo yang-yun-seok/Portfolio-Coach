@@ -385,7 +385,7 @@ function makeTechnicalDocument(summary) {
     .map((file) => `- ${file.path}`)
     .join('\n') || '- 주요 설정 파일이 확인되지 않았습니다.';
 
-  const stacks = summary.stack.length ? summary.stack.join(', ') : '저장소 메타데이터 기준으로 명확히 식별되지 않음';
+  const stacks = summary.stack.length ? summary.stack.join(', ') : '저장소 정보 기준으로 명확히 식별되지 않음';
   const workflowNames = summary.workflowFiles.length ? listWorkflowNames(summary.workflowFiles).join(', ') : '확인되지 않음';
   const packageScripts = summary.packageScripts.length ? summary.packageScripts.join(' / ') : '확인되지 않음';
 
