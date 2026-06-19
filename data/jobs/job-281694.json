@@ -1,0 +1,35 @@
+{
+  "id": "crawled-281694",
+  "company": "EA코리아 (Electronic Arts Korea)",
+  "title": "[FC Online] 게임플레이 프로듀서 (Gameplay Producer)",
+  "role": "AI/데이터",
+  "roles": [
+    "기획",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "사업PM",
+    "데이터 분석",
+    "Excel"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281694",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "FC Online , FIFA Online 3",
+  "gameCategory": "온라인PC게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "게임기획, 사업기획, 전략기획, 사업관리, 프로듀서",
+  "updatedAt": "2026-06-19",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-19T17:20:04.928Z",
+  "lastSeenAt": "2026-06-19T17:20:04.928Z",
+  "lastCrawledAt": "2026-06-19T17:20:04.928Z",
+  "inactiveAt": null
+}

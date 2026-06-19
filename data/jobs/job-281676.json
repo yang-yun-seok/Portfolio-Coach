@@ -1,0 +1,37 @@
+{
+  "id": "crawled-281676",
+  "company": "ZEP",
+  "title": "[ZEP SCHOOL] 게임 크리에이터",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Photoshop",
+    "도트 아트",
+    "JavaScript",
+    "TypeScript",
+    "Figma"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281676",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "ZEP QUIZ , ZEP SCHOOL",
+  "gameCategory": "웹게임 Casual, 메타버스",
+  "employmentType": "정규직, 인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "원화, 컨셉, 배경원화, 포토샵, 도트, 픽셀, 캐릭터도트, 배경도트, AI원화, AI게임",
+  "updatedAt": "2026-06-19",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-19T17:20:04.928Z",
+  "lastSeenAt": "2026-06-19T17:20:04.928Z",
+  "lastCrawledAt": "2026-06-19T17:20:04.928Z",
+  "inactiveAt": null
+}

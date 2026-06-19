@@ -1,5 +1,5 @@
 {
-  "id": "crawled-281398",
+  "id": "crawled-281682",
   "company": "넷마블 (Netmarble)",
   "title": "[넷마블네오] 프로젝트Q 배경모델링 담당 모집",
   "role": "아트/UI",
@@ -10,7 +10,7 @@
     "Unity"
   ],
   "reqExp": 1,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281398",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281682",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "뱀피르, 나 혼자만 레벨업, 왕좌의게임, 제2의나라, 리니지2레볼루션",
@@ -20,13 +20,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 1년 이상",
   "keywords": "배경, 모델링, 유니티, 배경모델링",
-  "updatedAt": "2026-06-12",
+  "updatedAt": "2026-06-19",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-12T17:38:38.519Z",
-  "lastSeenAt": "2026-06-18T18:00:49.087Z",
-  "lastCrawledAt": "2026-06-18T18:00:49.087Z",
+  "firstSeenAt": "2026-06-19T17:20:04.928Z",
+  "lastSeenAt": "2026-06-19T17:20:04.928Z",
+  "lastCrawledAt": "2026-06-19T17:20:04.928Z",
   "inactiveAt": null
 }
