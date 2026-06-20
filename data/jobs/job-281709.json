@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281709",
+  "company": "㈜소울게임즈",
+  "title": "3D 캐릭터 모델러 (계약직,인턴) 청주",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281709",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "루나모바일, 레이더즈M",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "계약직 (계약기간 : 2개월), 인턴직 (1개월~3개월 미만)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 캐릭터, Max",
+  "updatedAt": "2026-06-20",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-20T16:16:37.888Z",
+  "lastSeenAt": "2026-06-20T16:16:37.888Z",
+  "lastCrawledAt": "2026-06-20T16:16:37.888Z",
+  "inactiveAt": null
+}
