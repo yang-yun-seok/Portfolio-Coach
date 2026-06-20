@@ -145,11 +145,37 @@ function serializeSubmissionDoc(entry) {
     submittedAtIso: data.submittedAtIso || data.createdAt || '',
     fileCounts: data.fileCounts || { resume: 0, coverLetter: 0, portfolio: 0 },
     files: data.files || { resume: null, coverLetter: null, portfolio: [] },
+    studentFeedback: data.studentFeedback || '',
+    studentFeedbackUpdatedAtIso: data.studentFeedbackUpdatedAtIso || '',
     adminMemo: data.adminMemo || '',
     reviewUpdatedAtIso: data.reviewUpdatedAtIso || '',
     reviewedAtIso: data.reviewedAtIso || '',
     reviewedBy: data.reviewedBy || '',
     reviewedByEmail: data.reviewedByEmail || '',
+  };
+}
+
+function serializeStudentSubmissionDoc(entry) {
+  const data = serializeFirestoreValue(entry.data()) || {};
+  return {
+    id: entry.id,
+    userId: data.userId || '',
+    userEmail: data.userEmail || '',
+    userDisplayName: data.userDisplayName || '',
+    accountStudentName: data.accountStudentName || '',
+    applicantName: data.applicantName || '',
+    track: data.track || '',
+    subRole: data.subRole || '',
+    title: data.title || '',
+    summary: data.summary || '',
+    status: data.status || 'submitted',
+    submittedAtIso: data.submittedAtIso || data.createdAt || '',
+    fileCounts: data.fileCounts || { resume: 0, coverLetter: 0, portfolio: 0 },
+    files: data.files || { resume: null, coverLetter: null, portfolio: [] },
+    studentFeedback: data.studentFeedback || '',
+    studentFeedbackUpdatedAtIso: data.studentFeedbackUpdatedAtIso || '',
+    reviewUpdatedAtIso: data.reviewUpdatedAtIso || '',
+    reviewedAtIso: data.reviewedAtIso || '',
   };
 }
 
@@ -246,10 +272,35 @@ export function createFirebaseAdminService() {
       .sort(sortBySubmittedAtDesc);
   }
 
+  async function listUserSubmissions({ uid, limit = 20 } = {}) {
+    const firestore = requireFirestore();
+    if (!uid) return [];
+    const submissionsRef = firestore.collection('portfolioSubmissions');
+    let snapshot;
+
+    try {
+      snapshot = await submissionsRef
+        .where('userId', '==', uid)
+        .orderBy('submittedAtIso', 'desc')
+        .limit(limit)
+        .get();
+    } catch {
+      snapshot = await submissionsRef
+        .where('userId', '==', uid)
+        .limit(limit)
+        .get();
+    }
+
+    return snapshot.docs
+      .map(serializeStudentSubmissionDoc)
+      .sort(sortBySubmittedAtDesc);
+  }
+
   async function updateAdminSubmissionReview({
     submissionId,
     status,
     adminMemo,
+    studentFeedback,
     actor,
   }) {
     const firestore = requireFirestore();
@@ -287,6 +338,11 @@ export function createFirebaseAdminService() {
       patch.adminMemo = adminMemo;
     }
 
+    if (studentFeedback !== undefined) {
+      patch.studentFeedback = studentFeedback;
+      patch.studentFeedbackUpdatedAtIso = nowIso;
+    }
+
     await submissionRef.set(patch, { merge: true });
     await firestore.collection('submissionEvents').add({
       submissionId: normalizedSubmissionId,
@@ -294,7 +350,7 @@ export function createFirebaseAdminService() {
       actorEmail: actor?.email || '',
       actorRole: 'admin',
       type: 'admin_review_updated',
-      note: status ? `관리자 상태 변경: ${status}` : '관리자 메모 변경',
+      note: status ? `관리자 상태 변경: ${status}` : '검토 정보 변경',
       createdAt: FieldValue.serverTimestamp(),
       createdAtIso: nowIso,
     });
@@ -312,6 +368,7 @@ export function createFirebaseAdminService() {
     getUserRole,
     listAdminUsers,
     listAdminSubmissions,
+    listUserSubmissions,
     updateAdminSubmissionReview,
   };
 }

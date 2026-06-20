@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 const REVIEW_STATUSES = new Set(['submitted', 'reviewing', 'reviewed', 'rejected']);
 const MAX_ADMIN_MEMO_LENGTH = 2000;
+const MAX_STUDENT_FEEDBACK_LENGTH = 3000;
 
 function parseLimit(value, fallback, max) {
   const parsed = Number.parseInt(value, 10);
@@ -34,6 +35,14 @@ function parseReviewPatch(body = {}) {
     patch.adminMemo = adminMemo;
   }
 
+  if (Object.prototype.hasOwnProperty.call(body, 'studentFeedback')) {
+    const studentFeedback = String(body.studentFeedback || '').trim();
+    if (studentFeedback.length > MAX_STUDENT_FEEDBACK_LENGTH) {
+      throw createHttpError(`학생 공개 피드백은 ${MAX_STUDENT_FEEDBACK_LENGTH}자 이하로 입력해 주세요.`, 400);
+    }
+    patch.studentFeedback = studentFeedback;
+  }
+
   if (!Object.keys(patch).length) {
     throw createHttpError('변경할 검토 정보가 없습니다.', 400);
   }
@@ -43,6 +52,7 @@ function parseReviewPatch(body = {}) {
 
 function buildSummary({ submissions, users }) {
   const uniqueSubmitters = new Set(submissions.map((item) => item.userId).filter(Boolean));
+  const todayDate = new Date().toISOString().slice(0, 10);
   return {
     totalSubmissions: submissions.length,
     totalUsers: users.length,
@@ -51,6 +61,11 @@ function buildSummary({ submissions, users }) {
     reviewingCount: submissions.filter((item) => item.status === 'reviewing').length,
     reviewedCount: submissions.filter((item) => item.status === 'reviewed').length,
     rejectedCount: submissions.filter((item) => item.status === 'rejected').length,
+    todayActionCount: submissions.filter((item) => (
+      ['submitted', 'reviewing'].includes(item.status)
+      && String(item.submittedAtIso || '').slice(0, 10) === todayDate
+    )).length,
+    resubmissionWaitCount: submissions.filter((item) => item.status === 'rejected').length,
     latestSubmittedAtIso: submissions[0]?.submittedAtIso || '',
   };
 }

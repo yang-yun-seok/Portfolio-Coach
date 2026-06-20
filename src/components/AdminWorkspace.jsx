@@ -3,6 +3,7 @@ import {
   AlertCircle,
   CheckCircle2,
   Clock3,
+  Download,
   ExternalLink,
   FileText,
   FolderOpen,
@@ -25,6 +26,14 @@ const REVIEW_STATUS_OPTIONS = [
 ];
 
 const REVIEW_STATUS_LABELS = Object.fromEntries(REVIEW_STATUS_OPTIONS.map((status) => [status.id, status.label]));
+const MAX_ADMIN_MEMO_LENGTH = 2000;
+const MAX_STUDENT_FEEDBACK_LENGTH = 3000;
+
+const REVIEW_FILTER_SHORTCUTS = [
+  { id: 'submitted', label: '확인 필요' },
+  { id: 'reviewing', label: '검토 중' },
+  { id: 'rejected', label: '반려' },
+];
 
 function formatDateTime(value) {
   if (!value) return '정보 없음';
@@ -93,6 +102,30 @@ function getFileTotal(fileCounts = {}) {
   return (Number(fileCounts.resume) || 0) + (Number(fileCounts.coverLetter) || 0) + (Number(fileCounts.portfolio) || 0);
 }
 
+function isToday(value) {
+  if (!value) return false;
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return false;
+  const now = new Date();
+  return date.getFullYear() === now.getFullYear()
+    && date.getMonth() === now.getMonth()
+    && date.getDate() === now.getDate();
+}
+
+function getOperationalFlags(submission) {
+  const flags = [];
+  if (!submission.accountStudentName && !submission.account?.studentName) {
+    flags.push('이름 미설정');
+  }
+  if (getFileTotal(submission.fileCounts) === 0) {
+    flags.push('파일 미제출');
+  }
+  if (!submission.latestAnalysisSummary && !submission.latestRecommendedJobsSnapshot?.length) {
+    flags.push('분석 미완료');
+  }
+  return flags;
+}
+
 function buildAdminSummary(submissions = [], users = []) {
   const uniqueSubmitters = new Set(submissions.map((item) => item.userId).filter(Boolean));
   return {
@@ -103,8 +136,29 @@ function buildAdminSummary(submissions = [], users = []) {
     reviewingCount: submissions.filter((item) => item.status === 'reviewing').length,
     reviewedCount: submissions.filter((item) => item.status === 'reviewed').length,
     rejectedCount: submissions.filter((item) => item.status === 'rejected').length,
+    todayActionCount: submissions.filter((item) => (
+      ['submitted', 'reviewing'].includes(item.status) && isToday(item.submittedAtIso)
+    )).length,
+    resubmissionWaitCount: submissions.filter((item) => item.status === 'rejected').length,
     latestSubmittedAtIso: submissions[0]?.submittedAtIso || '',
   };
+}
+
+function escapeCsvValue(value) {
+  const text = value == null ? '' : String(value);
+  if (!/[",\n\r]/.test(text)) return text;
+  return `"${text.replace(/"/g, '""')}"`;
+}
+
+function downloadCsv(filename, rows) {
+  const csv = rows.map((row) => row.map(escapeCsvValue).join(',')).join('\n');
+  const blob = new Blob([`\uFEFF${csv}`], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.click();
+  URL.revokeObjectURL(url);
 }
 
 function FileLinks({ files }) {
@@ -227,6 +281,7 @@ export default function AdminWorkspace({
       submission.subRole,
       submission.userId,
       submission.adminMemo,
+      submission.studentFeedback,
     ].join(' ').toLowerCase().includes(normalizedQuery);
   }), [normalizedQuery, overview.submissions, statusFilter, trackFilter]);
 
@@ -240,12 +295,14 @@ export default function AdminWorkspace({
     ? reviewDrafts[selectedSubmission.id] || {
       status: selectedSubmission.status || 'submitted',
       adminMemo: selectedSubmission.adminMemo || '',
+      studentFeedback: selectedSubmission.studentFeedback || '',
     }
     : null;
 
   const isReviewDirty = Boolean(selectedSubmission && selectedDraft && (
     selectedDraft.status !== (selectedSubmission.status || 'submitted')
     || selectedDraft.adminMemo !== (selectedSubmission.adminMemo || '')
+    || selectedDraft.studentFeedback !== (selectedSubmission.studentFeedback || '')
   ));
 
   const userRows = useMemo(() => {
@@ -288,6 +345,7 @@ export default function AdminWorkspace({
       [selectedSubmission.id]: {
         status: selectedSubmission.status || 'submitted',
         adminMemo: selectedSubmission.adminMemo || '',
+        studentFeedback: selectedSubmission.studentFeedback || '',
         ...(current[selectedSubmission.id] || {}),
         ...patch,
       },
@@ -304,6 +362,7 @@ export default function AdminWorkspace({
       const updatedSubmission = await updateAdminSubmissionReview(getAccessToken, selectedSubmission.id, {
         status: selectedDraft.status,
         adminMemo: selectedDraft.adminMemo,
+        studentFeedback: selectedDraft.studentFeedback,
       });
 
       setOverview((current) => {
@@ -329,6 +388,40 @@ export default function AdminWorkspace({
     } finally {
       setSavingSubmissionId('');
     }
+  };
+
+  const handleDownloadCsv = () => {
+    const rows = [
+      [
+        'submissionId',
+        'status',
+        'studentName',
+        'applicantName',
+        'email',
+        'track',
+        'subRole',
+        'submittedAt',
+        'fileCount',
+        'flags',
+        'studentFeedback',
+        'adminMemo',
+      ],
+      ...filteredSubmissions.map((submission) => [
+        submission.id,
+        getStatusLabel(submission.status),
+        getStudentName(submission),
+        submission.applicantName || '',
+        getStudentEmail(submission),
+        submission.track || '',
+        submission.subRole || '',
+        submission.submittedAtIso || '',
+        getFileTotal(submission.fileCounts),
+        getOperationalFlags(submission).join(' / '),
+        submission.studentFeedback || '',
+        submission.adminMemo || '',
+      ]),
+    ];
+    downloadCsv(`portfolio-submissions-${new Date().toISOString().slice(0, 10)}.csv`, rows);
   };
 
   if (!isAdmin) {
@@ -371,16 +464,26 @@ export default function AdminWorkspace({
               {loading ? <Loader2 size={15} className="animate-spin" /> : <RefreshCw size={15} />}
               새로고침
             </button>
+            <button
+              type="button"
+              onClick={handleDownloadCsv}
+              disabled={filteredSubmissions.length === 0}
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <Download size={15} />
+              CSV
+            </button>
           </div>
         </div>
       </section>
 
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">
         <Metric icon={FileText} label="전체 제출" value={`${summary.totalSubmissions || 0}건`} helper={`최근 제출 ${formatDateTime(summary.latestSubmittedAtIso)}`} />
         <Metric icon={UsersRound} label="사용자" value={`${summary.totalUsers || 0}명`} helper={`${summary.uniqueSubmitters || 0}명이 제출함`} />
+        <Metric icon={Clock3} label="오늘 확인" value={`${summary.todayActionCount || 0}건`} helper="오늘 들어온 확인 대상" />
         <Metric icon={Clock3} label="확인 필요" value={`${summary.submittedCount || 0}건`} helper="신규 제출 상태" />
         <Metric icon={MessageSquare} label="검토 중" value={`${summary.reviewingCount || 0}건`} helper="진행 중인 검토" />
-        <Metric icon={CheckCircle2} label="검토 완료" value={`${summary.reviewedCount || 0}건`} helper={`반려 ${summary.rejectedCount || 0}건`} />
+        <Metric icon={CheckCircle2} label="재제출 대기" value={`${summary.resubmissionWaitCount || 0}건`} helper={`검토 완료 ${summary.reviewedCount || 0}건`} />
       </div>
 
       {error ? (
@@ -434,6 +537,33 @@ export default function AdminWorkspace({
             ))}
           </select>
         </div>
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setStatusFilter('all')}
+            className={`rounded-lg border px-3 py-2 text-xs font-bold transition ${
+              statusFilter === 'all'
+                ? 'border-slate-900 bg-slate-900 text-white'
+                : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-slate-400'
+            }`}
+          >
+            전체
+          </button>
+          {REVIEW_FILTER_SHORTCUTS.map((shortcut) => (
+            <button
+              key={shortcut.id}
+              type="button"
+              onClick={() => setStatusFilter(shortcut.id)}
+              className={`rounded-lg border px-3 py-2 text-xs font-bold transition ${
+                statusFilter === shortcut.id
+                  ? 'border-slate-900 bg-slate-900 text-white'
+                  : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-slate-400'
+              }`}
+            >
+              {shortcut.label} {overview.submissions.filter((submission) => submission.status === shortcut.id).length}
+            </button>
+          ))}
+        </div>
 
         <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1fr)_420px]">
           <div className="min-w-0 space-y-2">
@@ -452,6 +582,7 @@ export default function AdminWorkspace({
 
             {filteredSubmissions.map((submission) => {
               const selected = selectedSubmission?.id === submission.id;
+              const flags = getOperationalFlags(submission);
               return (
                 <button
                   key={submission.id}
@@ -472,6 +603,16 @@ export default function AdminWorkspace({
                         }`}>
                           {submission.track || '트랙 없음'} · {submission.subRole || '세부 직무 없음'}
                         </span>
+                        {flags.map((flag) => (
+                          <span
+                            key={flag}
+                            className={`rounded-lg border px-2.5 py-1 text-xs font-bold ${
+                              selected ? 'border-white/20 bg-white/10 text-white' : 'border-amber-200 bg-amber-50 text-amber-700'
+                            }`}
+                          >
+                            {flag}
+                          </span>
+                        ))}
                       </div>
                       <h4 className="mt-3 truncate text-lg font-black">{submission.applicantName || getStudentName(submission)}</h4>
                       <p className={`mt-1 truncate text-sm ${selected ? 'text-slate-300' : 'text-slate-500'}`}>
@@ -497,6 +638,11 @@ export default function AdminWorkspace({
                     <span className="rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-xs font-bold text-slate-600">
                       {selectedSubmission.track || '트랙 없음'}
                     </span>
+                    {getOperationalFlags(selectedSubmission).map((flag) => (
+                      <span key={flag} className="rounded-lg border border-amber-200 bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700">
+                        {flag}
+                      </span>
+                    ))}
                   </div>
                   <h4 className="mt-3 text-xl font-black text-slate-900">{selectedSubmission.applicantName || '지원자 이름 없음'}</h4>
                   <p className="mt-1 text-sm text-slate-500">{selectedSubmission.subRole || '세부 직무 없음'} · {formatDateTime(selectedSubmission.submittedAtIso)}</p>
@@ -536,16 +682,34 @@ export default function AdminWorkspace({
                         <option key={status.id} value={status.id}>{status.label}</option>
                       ))}
                     </select>
-                    <textarea
-                      value={selectedDraft?.adminMemo || ''}
-                      onChange={(event) => updateSelectedDraft({ adminMemo: event.target.value })}
-                      rows={5}
-                      maxLength={2000}
-                      placeholder="관리자 메모"
-                      className="resize-none rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-slate-400"
-                    />
+                    <label className="grid gap-1">
+                      <span className="text-xs font-bold text-slate-500">학생 공개 피드백</span>
+                      <textarea
+                        value={selectedDraft?.studentFeedback || ''}
+                        onChange={(event) => updateSelectedDraft({ studentFeedback: event.target.value })}
+                        rows={5}
+                        maxLength={MAX_STUDENT_FEEDBACK_LENGTH}
+                        placeholder="학생 화면에 표시할 검토 결과를 입력하세요."
+                        className="resize-none rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-slate-400"
+                      />
+                      <span className="text-right text-xs text-slate-400">{(selectedDraft?.studentFeedback || '').length}/{MAX_STUDENT_FEEDBACK_LENGTH}</span>
+                    </label>
+                    <label className="grid gap-1">
+                      <span className="text-xs font-bold text-slate-500">관리자 메모</span>
+                      <textarea
+                        value={selectedDraft?.adminMemo || ''}
+                        onChange={(event) => updateSelectedDraft({ adminMemo: event.target.value })}
+                        rows={4}
+                        maxLength={MAX_ADMIN_MEMO_LENGTH}
+                        placeholder="관리자 내부 확인용 메모"
+                        className="resize-none rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-slate-400"
+                      />
+                      <span className="text-right text-xs text-slate-400">{(selectedDraft?.adminMemo || '').length}/{MAX_ADMIN_MEMO_LENGTH}</span>
+                    </label>
                     <div className="flex items-center justify-between gap-3">
-                      <span className="text-xs text-slate-400">{(selectedDraft?.adminMemo || '').length}/2000</span>
+                      <span className="text-xs text-slate-400">
+                        {selectedSubmission.reviewUpdatedAtIso ? `최근 검토 ${formatDateTime(selectedSubmission.reviewUpdatedAtIso)}` : '검토 전'}
+                      </span>
                       <button
                         type="button"
                         onClick={handleSaveReview}

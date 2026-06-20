@@ -3,51 +3,24 @@ import {
   CheckCircle2,
   Circle,
   ClipboardCheck,
+  Clock3,
   FileText,
   Loader2,
   Send,
   Sparkles,
   UserRound,
 } from 'lucide-react';
-
-const WORKFLOW_STEPS = [
-  { id: 'profile', label: '기본 정보', tab: 'input' },
-  { id: 'files', label: '자료 첨부', tab: 'input' },
-  { id: 'analysis', label: 'AI 분석', tab: 'feedback' },
-  { id: 'review', label: '결과 확인', tab: 'feedback' },
-  { id: 'submit', label: '제출', tab: 'portfolio' },
-];
-
-function getStepState(stepId, state) {
-  if (stepId === 'profile') return state.hasProfile ? 'done' : 'active';
-  if (stepId === 'files') return state.documentCount > 0 ? 'done' : 'pending';
-  if (stepId === 'analysis') {
-    if (state.loading) return 'active';
-    return state.hasResults ? 'done' : 'pending';
-  }
-  if (stepId === 'review') return state.hasResults ? 'done' : 'pending';
-  if (stepId === 'submit') return state.hasSubmission ? 'done' : 'pending';
-  return 'pending';
-}
-
-function getStepMeta(stepId, state) {
-  if (stepId === 'profile') return state.hasProfile ? `${state.skillCount}개 역량` : '이름과 직무 입력';
-  if (stepId === 'files') return state.documentCount > 0 ? `${state.documentCount}개 선택` : '선택 사항';
-  if (stepId === 'analysis') {
-    if (state.loading) return '진행 중';
-    return state.hasResults ? '완료' : '대기';
-  }
-  if (stepId === 'review') return state.hasResults ? '확인 가능' : '분석 후 열림';
-  if (stepId === 'submit') {
-    if (state.submissionSaving) return '진행 중';
-    return state.hasSubmission ? `${state.submissionCount}건` : '준비 후 가능';
-  }
-  return '';
-}
+import {
+  getPrimaryWorkflowAction,
+  getStepMeta,
+  getStepState,
+  getWorkflowState,
+  WORKFLOW_STEPS,
+} from '../lib/workflow-state';
 
 function WorkflowIcon({ state }) {
   if (state === 'done') return <CheckCircle2 size={15} />;
-  if (state === 'active') return <Loader2 size={15} className="animate-spin" />;
+  if (state === 'active') return <Clock3 size={15} />;
   return <Circle size={15} />;
 }
 
@@ -70,27 +43,18 @@ export default function WorkspaceProgressPanel({
   submissions,
   userProfile,
 }) {
-  const documentCount = (resumeFile ? 1 : 0) + (coverLetterFile ? 1 : 0) + portfolioFiles.length;
-  const skillCount = normalizedUserInfo.skills?.length || 0;
-  const hasProfile = Boolean(normalizedUserInfo.name && normalizedUserInfo.subRole && skillCount > 0);
-  const hasResults = Boolean(results);
-  const submissionCount = submissions?.length || 0;
-  const state = {
-    documentCount,
-    hasProfile,
-    hasResults,
-    hasSubmission: submissionCount > 0,
+  const state = getWorkflowState({
+    coverLetterFile,
     loading,
-    skillCount,
-    submissionCount,
+    normalizedUserInfo,
+    portfolioFiles,
+    results,
+    resumeFile,
+    submissions,
     submissionSaving,
-  };
+  });
   const accountName = userProfile?.studentName || userProfile?.displayName || authUser?.displayName || '';
-  const nextAction = !hasProfile
-    ? { label: '정보 입력 계속', tab: 'input' }
-    : !hasResults
-      ? { label: loading ? '분석 진행 중' : 'AI 분석 시작', tab: 'input', analyze: true }
-      : { label: '결과 확인', tab: 'feedback' };
+  const nextAction = getPrimaryWorkflowAction(state);
 
   return (
     <aside className="coach-progress-panel" aria-label="준비 진행 현황">
@@ -163,7 +127,7 @@ export default function WorkspaceProgressPanel({
             <ClipboardCheck size={15} />
             추천 공고 {recommendedJobs.length > 0 ? `${recommendedJobs.length}` : ''}
           </button>
-          <button type="button" onClick={() => onSelectTab('portfolio')} disabled={!hasResults}>
+          <button type="button" onClick={() => onSelectTab('portfolio')} disabled={!state.hasResults}>
             <Send size={15} />
             제출
           </button>

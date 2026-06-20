@@ -10,6 +10,7 @@ import JobsWorkspace from './JobsWorkspace';
 import PersonalityTest from './PersonalityTest';
 import PdfExport from './PdfExport';
 import PortfolioWorkspace from './PortfolioWorkspace';
+import StudentHomeWorkspace from './StudentHomeWorkspace';
 
 function renderEmptyState(icon, title, desc, onGoToInput) {
   return (
@@ -42,9 +43,14 @@ export default function WorkspaceContent({
   personalityTestProps,
   portfolioWorkspaceProps,
   results,
+  studentHomeProps,
 }) {
   return (
     <>
+      {activeTab === 'home' && (
+        <StudentHomeWorkspace {...studentHomeProps} />
+      )}
+
       {activeTab === 'input' && (
         <InputWorkspace {...inputWorkspaceProps} />
       )}

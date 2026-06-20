@@ -2,12 +2,8 @@ import {
   addDoc,
   collection,
   doc,
-  getDocs,
-  limit,
-  query,
   serverTimestamp,
   setDoc,
-  where,
 } from 'firebase/firestore';
 import {
   getDownloadURL,
@@ -15,6 +11,8 @@ import {
   uploadBytes,
 } from 'firebase/storage';
 import { firebaseDb, firebaseStorage, isFirebaseAuthEnabled } from './firebase-client';
+import { buildAuthorizedHeaders } from './auth-fetch';
+import { apiUrl } from './runtime-config';
 
 const MAX_PORTFOLIO_FILES = 5;
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
@@ -102,6 +100,8 @@ export async function createPortfolioSubmission({
     githubUrl: userInfo.githubUrl || '',
     status: 'submitted',
     adminMemo: '',
+    studentFeedback: '',
+    studentFeedbackUpdatedAtIso: '',
     latestAnalysisSummary: results?.profileAnalysis?.summary || '',
     latestRecommendedJobsSnapshot: Array.isArray(recommendedJobs)
       ? recommendedJobs.slice(0, 3).map((job) => ({
@@ -185,22 +185,16 @@ export async function createPortfolioSubmission({
   };
 }
 
-export async function listMyPortfolioSubmissions(uid) {
-  assertFirebaseSubmissionReady();
-  if (!uid) return [];
+export async function listMyPortfolioSubmissions(getAccessToken) {
+  const headers = await buildAuthorizedHeaders(getAccessToken);
+  const response = await fetch(apiUrl('api/me/submissions'), {
+    headers,
+  });
+  const data = await response.json().catch(() => ({}));
 
-  const q = query(
-    collection(firebaseDb, 'portfolioSubmissions'),
-    where('userId', '==', uid),
-    limit(20),
-  );
+  if (!response.ok) {
+    throw new Error(data.error || '제출 내역을 불러오지 못했습니다.');
+  }
 
-  const snapshot = await getDocs(q);
-  return snapshot.docs
-    .map((entry) => ({ id: entry.id, ...entry.data() }))
-    .sort((left, right) => {
-      const leftTime = new Date(left.submittedAtIso || left.createdAt?.toDate?.() || 0).getTime();
-      const rightTime = new Date(right.submittedAtIso || right.createdAt?.toDate?.() || 0).getTime();
-      return rightTime - leftTime;
-    });
+  return Array.isArray(data.submissions) ? data.submissions : [];
 }

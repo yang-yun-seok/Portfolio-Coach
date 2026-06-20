@@ -4,6 +4,7 @@ import { createPortfolioSubmission, listMyPortfolioSubmissions } from '../lib/fi
 export function usePortfolioSubmissions({
   authEnabled,
   authUser,
+  getAccessToken,
   userProfile,
   userInfo,
   resumeFile,
@@ -27,14 +28,14 @@ export function usePortfolioSubmissions({
     setSubmissionsLoading(true);
     setSubmissionError('');
     try {
-      const rows = await listMyPortfolioSubmissions(authUser.uid);
+      const rows = await listMyPortfolioSubmissions(getAccessToken);
       setSubmissions(rows);
     } catch (error) {
       setSubmissionError(error.message || '제출 내역을 불러오지 못했습니다.');
     } finally {
       setSubmissionsLoading(false);
     }
-  }, [authEnabled, authUser?.uid]);
+  }, [authEnabled, authUser?.uid, getAccessToken]);
 
   useEffect(() => {
     void reloadSubmissions();

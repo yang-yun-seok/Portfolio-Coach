@@ -10,6 +10,7 @@ import { createConfigRouter } from './server/routes/config-routes.js';
 import { createDataRouter } from './server/routes/data-routes.js';
 import { createCrawlRouter } from './server/routes/crawl-routes.js';
 import { createAdminRouter } from './server/routes/admin-routes.js';
+import { createSubmissionRouter } from './server/routes/submission-routes.js';
 import { createAuthMiddleware } from './server/routes/auth-middleware.js';
 import { createAnalysisService } from './server/services/analysis-service.js';
 import { createConfigService } from './server/services/config-service.js';
@@ -51,6 +52,7 @@ app.use(createAnalysisRouter({ analysisService, authMiddleware }));
 app.use(createConfigRouter({ configService }));
 app.use(createDataRouter({ dataLoader, crawlService, authMiddleware }));
 app.use(createCrawlRouter({ crawlService }));
+app.use(createSubmissionRouter({ firebaseAdminService, authMiddleware }));
 app.use(createAdminRouter({ firebaseAdminService, authMiddleware }));
 
 const distDir = join(__dirname, 'dist');

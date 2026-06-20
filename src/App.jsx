@@ -2,6 +2,7 @@
 import {
   FileText, Image as ImageIcon, Target, MessageSquare,
   CheckCircle, Loader2,
+  Home,
   User,
   Smile,
   Database, ClipboardList, Download, BarChart3,
@@ -59,6 +60,7 @@ function parseFeedbackItem(text) {
 }
 
 const NAV_ITEMS = [
+  { id: 'home', label: '오늘 할 일', icon: Home, group: 'home' },
   { id: 'input', label: '정보 입력', icon: User, group: 'profile' },
   { id: 'feedback', label: '서류 피드백', icon: FileText, group: 'profile' },
   { id: 'portfolio', label: '포트폴리오', icon: ImageIcon, group: 'profile' },
@@ -291,7 +293,7 @@ export default function App() {
   }, []);
 
   // 탭 / UI 상태
-  const [activeTab, setActiveTab] = useState('input');
+  const [activeTab, setActiveTab] = useState('home');
   const [visibleJobs, setVisibleJobs] = useState(10);
   const [scoreFilter, setScoreFilter] = useState('all'); // 'all' | '90+' | '80+' | '70+' | '60+' | '60-'
   const [selectedCompanyModal, setSelectedCompanyModal] = useState(null);
@@ -500,6 +502,7 @@ export default function App() {
   } = usePortfolioSubmissions({
     authEnabled,
     authUser,
+    getAccessToken,
     userProfile,
     userInfo: normalizedUserInfo,
     resumeFile,
@@ -568,7 +571,7 @@ export default function App() {
     handleRoleGroupSelect(roleGroup);
     persistTrackChoice(roleGroup);
     setShowTrackGate(false);
-    setActiveTab('input');
+    setActiveTab('home');
     setError('');
     setInfoMessage('');
   };
@@ -577,7 +580,7 @@ export default function App() {
     handleRoleGroupSelect(roleGroup);
     persistTrackChoice(roleGroup);
     setShowTrackGate(false);
-    setActiveTab('input');
+    setActiveTab('home');
   };
 
   const handleAddSkill = () => {
@@ -843,6 +846,7 @@ const { analyzeApplication } = useApplicationAnalysis({
   // ── 네비게이션 ────────────────────────────────────────────────────────
   const availableNavItems = isAdminModeActive ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
   const navSections = [
+    { id: 'home', label: '홈', items: availableNavItems.filter((item) => item.group === 'home') },
     { id: 'profile', label: '내 준비', items: availableNavItems.filter((item) => item.group === 'profile') },
     { id: 'market', label: '시장·공고', items: availableNavItems.filter((item) => item.group === 'market') },
     { id: 'prep', label: '면접·마감', items: availableNavItems.filter((item) => item.group === 'prep') },
@@ -852,7 +856,7 @@ const { analyzeApplication } = useApplicationAnalysis({
   useEffect(() => {
     const currentNavItems = isAdminModeActive ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
     if (!currentNavItems.some((item) => item.id === activeTab)) {
-      setActiveTab('input');
+      setActiveTab('home');
     }
   }, [activeTab, isAdminModeActive]);
 
@@ -866,7 +870,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     if (typeof window !== 'undefined') {
       window.sessionStorage.removeItem(ADMIN_UNLOCK_STORAGE_KEY);
     }
-    if (activeTab === 'admin') setActiveTab('input');
+    if (activeTab === 'admin') setActiveTab('home');
   }, [activeTab, adminModeUnlocked, authLoading, authUser]);
 
   const activeNavIndex = availableNavItems.findIndex((item) => item.id === activeTab);
@@ -875,6 +879,11 @@ const { analyzeApplication } = useApplicationAnalysis({
   const ActiveNavIcon = activeNavItem.icon;
   const featureKey = activeTab.replace(/[^a-z0-9-]/gi, '-');
   const featureGuides = {
+    home: {
+      title: '오늘 필요한 준비만 이어갑니다',
+      description: '프로필, 자료, 분석, 제출, 검토 결과를 한 화면에서 확인하고 다음 행동으로 이동합니다.',
+      hint: '학생에게는 준비 상태와 검토 결과만 보이고, 내부 검토 정보는 관리자 화면에서만 다룹니다.',
+    },
     input: {
       title: '분석 재료를 한곳에 모아요',
       description: '직무, 경력, 보유 역량과 PDF를 넣어주세요. 처음에는 이 화면만 천천히 채우면 됩니다.',
@@ -1087,6 +1096,23 @@ const { analyzeApplication } = useApplicationAnalysis({
     isAdmin: isAdminModeActive,
     userProfile,
   };
+  const studentHomeProps = {
+    authUser,
+    coverLetterFile,
+    loading,
+    normalizedUserInfo,
+    onAnalyze: analyzeApplication,
+    onOpenAccountName: () => setShowAccountNameModal(true),
+    onSelectTab: setActiveTab,
+    portfolioFiles,
+    recommendedJobs,
+    results,
+    resumeFile,
+    submissionSaving,
+    submissions,
+    submissionsLoading,
+    userProfile,
+  };
   const progressPanelProps = {
     activeFeatureGuide,
     activeLabel: activeNavItem.label,
@@ -1187,7 +1213,7 @@ const { analyzeApplication } = useApplicationAnalysis({
   const handleLockAdminMode = () => {
     setAdminModeUnlocked(false);
     persistAdminModeUnlock(false);
-    if (activeTab === 'admin') setActiveTab('input');
+    if (activeTab === 'admin') setActiveTab('home');
     setInfoMessage('관리자 모드를 종료했습니다.');
   };
 
@@ -1217,7 +1243,7 @@ const { analyzeApplication } = useApplicationAnalysis({
         onOpenModelSettings={() => setShowModelSettings(true)}
         onOpenSettings={() => setShowSettings(true)}
         onRequestLogin={handleRequestLogin}
-        onSelectInput={() => setActiveTab('input')}
+        onSelectInput={() => setActiveTab('home')}
         onSelectTab={setActiveTab}
         onSelectTrack={handleQuickTrackSelect}
         onShowTrackGate={() => setShowTrackGate(true)}
@@ -1267,6 +1293,7 @@ const { analyzeApplication } = useApplicationAnalysis({
             personalityTestProps={personalityTestProps}
             portfolioWorkspaceProps={portfolioWorkspaceProps}
             results={results}
+            studentHomeProps={studentHomeProps}
           />
         </div>
       </div>
