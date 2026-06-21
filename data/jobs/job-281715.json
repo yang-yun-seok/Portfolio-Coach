@@ -1,0 +1,35 @@
+{
+  "id": "crawled-281715",
+  "company": "㈜서울게임",
+  "title": "게임 프로그래밍 강의하실분 모집(강의 미경력자 가능)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "C++",
+    "Android",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281715",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "서울게임아카데미",
+  "gameCategory": "온라인PC게임, 모바일게임 기타",
+  "employmentType": "정규직, 프리랜서",
+  "deadline": "~ 08/21(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, VisualC++, DirectX, Direct3D, API, C++, 모바일, Android, 엔진, Unity, 게임프로그래밍, 게임프로그래머, VR, AR",
+  "updatedAt": "2026-06-21",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-21T16:29:59.407Z",
+  "lastSeenAt": "2026-06-21T16:29:59.407Z",
+  "lastCrawledAt": "2026-06-21T16:29:59.407Z",
+  "inactiveAt": null
+}
