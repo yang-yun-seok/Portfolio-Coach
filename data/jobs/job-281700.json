@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281700",
+  "company": "딜로퀘스트",
+  "title": "[프로젝트 BB] 생활 콘텐츠 기획자",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281700",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "게임기획, 컨텐츠",
+  "updatedAt": "2026-06-22",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-22T18:47:39.592Z",
+  "lastSeenAt": "2026-06-22T18:47:39.592Z",
+  "lastCrawledAt": "2026-06-22T18:47:39.592Z",
+  "inactiveAt": null
+}

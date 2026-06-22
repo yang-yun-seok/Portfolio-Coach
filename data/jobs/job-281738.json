@@ -1,0 +1,34 @@
+{
+  "id": "crawled-281738",
+  "company": "㈜리트레일",
+  "title": "[게이트오브게이츠] 3D 애니메이터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Maya"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281738",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "게이트 오브 게이츠 (GOG)",
+  "gameCategory": "모바일게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 06/30(화)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 3DSmax, 캐릭터, 애니메이션, CharacterStudio, 3DMax, Maya, 플래쉬애니메이션, Physique, 소프트이미지, KeyAnimation, Max, blender",
+  "updatedAt": "2026-06-22",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-22T18:47:39.592Z",
+  "lastSeenAt": "2026-06-22T18:47:39.592Z",
+  "lastCrawledAt": "2026-06-22T18:47:39.592Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281772",
+  "company": "㈜젠틀매니악",
+  "title": "[호라이즌 워커] 클라이언트 팀원 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281772",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "호라이즌 워커, 마대자",
+  "gameCategory": "모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, 모바일, iOS, Android, 스팀",
+  "updatedAt": "2026-06-22",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-22T18:47:39.592Z",
+  "lastSeenAt": "2026-06-22T18:47:39.592Z",
+  "lastCrawledAt": "2026-06-22T18:47:39.592Z",
+  "inactiveAt": null
+}

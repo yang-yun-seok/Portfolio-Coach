@@ -1,0 +1,32 @@
+{
+  "id": "crawled-281761",
+  "company": "111퍼센트㈜",
+  "title": "[111퍼센트] [라이브] 게임 클라이언트 개발자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281761",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "운빨존많겜, 랜덤다이스:디펜스",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, Unity, 게임개발, TCP, 유니티, ProudNet, 캐주얼게임, Photon, 모바일게임개발, 캐주얼게임개발, 에유니티엔진, NETCODE, MIRROR",
+  "updatedAt": "2026-06-22",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-22T18:47:39.592Z",
+  "lastSeenAt": "2026-06-22T18:47:39.592Z",
+  "lastCrawledAt": "2026-06-22T18:47:39.592Z",
+  "inactiveAt": null
+}

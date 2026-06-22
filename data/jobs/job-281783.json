@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281783",
+  "company": "111퍼센트㈜",
+  "title": "[111퍼센트][스팀(Steam)] 2D/3D 애니메이터",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Illustrator"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281783",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "운빨존많겜, 랜덤다이스:디펜스",
+  "gameCategory": "온라인PC게임, 콘솔게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 3D, 일러스트, 캐릭터원화, 컨셉, 2D, 애니메이터",
+  "updatedAt": "2026-06-22",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-22T18:47:39.592Z",
+  "lastSeenAt": "2026-06-22T18:47:39.592Z",
+  "lastCrawledAt": "2026-06-22T18:47:39.592Z",
+  "inactiveAt": null
+}

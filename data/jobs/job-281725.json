@@ -1,0 +1,36 @@
+{
+  "id": "crawled-281725",
+  "company": "마상소프트",
+  "title": "[부산] 게임 마케팅/사업PM/글로벌GM(외국어가능)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "C++",
+    "3D",
+    "3ds Max",
+    "TCP/IP",
+    "SQL"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281725",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "DK온라인, 에이스온라인, 출조낚시왕, 건즈, 건즈2, 프리스톤테일, 스키드러쉬, 라그하임",
+  "gameCategory": "온라인PC게임 RPG, Shooting",
+  "employmentType": "계약직 (계약기간 : 2년)",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, VisualC++, Direct3D, STL, C++, 3D, 배경, 맵핑, 원화, 모델링, 로우폴리곤, 3DSmax, 게임기획, 서버, TCP·IP, 네트워크, IOCP, DB, 게임프로그래머",
+  "updatedAt": "2026-06-22",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-22T18:47:39.592Z",
+  "lastSeenAt": "2026-06-22T18:47:39.592Z",
+  "lastCrawledAt": "2026-06-22T18:47:39.592Z",
+  "inactiveAt": null
+}
