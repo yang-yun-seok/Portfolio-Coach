@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281829",
+  "company": "티쓰리엔터테인먼트",
+  "title": "[오디션] 테크니컬 아티스트(TA) 경력 채용",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281829",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "오디션/클럽오디션",
+  "gameCategory": "온라인PC게임 Casual, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 연구개발, 기술개발, 모델링, 캐릭터",
+  "updatedAt": "2026-06-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-23T17:18:24.794Z",
+  "lastSeenAt": "2026-06-23T17:18:24.794Z",
+  "lastCrawledAt": "2026-06-23T17:18:24.794Z",
+  "inactiveAt": null
+}

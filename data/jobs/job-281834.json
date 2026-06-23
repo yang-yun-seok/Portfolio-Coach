@@ -1,0 +1,36 @@
+{
+  "id": "crawled-281834",
+  "company": "씨앰지",
+  "title": "실시간엔진기반 3D VR콘텐츠 제작, 경력자 채용(대전근무가능자)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Maya",
+    "Unity",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281834",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 VR·AR",
+  "employmentType": "정규직",
+  "deadline": "~ 07/17(금)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 모델링, 3DMax, Maya, VR, Unity3D, XR",
+  "updatedAt": "2026-06-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-23T17:18:24.794Z",
+  "lastSeenAt": "2026-06-23T17:18:24.794Z",
+  "lastCrawledAt": "2026-06-23T17:18:24.794Z",
+  "inactiveAt": null
+}

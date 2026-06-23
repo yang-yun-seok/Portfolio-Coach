@@ -1,0 +1,32 @@
+{
+  "id": "crawled-281809",
+  "company": "㈜스튜디오비사이드",
+  "title": "[프로젝트 A] 캐릭터 원화, 일러스트 제작",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Illustrator"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281809",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "스타세이비어 (https://www.starsavior.com/kr)",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 원화, 일러스트, 캐릭터원화, 컨셉",
+  "updatedAt": "2026-06-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-23T17:18:24.794Z",
+  "lastSeenAt": "2026-06-23T17:18:24.794Z",
+  "lastCrawledAt": "2026-06-23T17:18:24.794Z",
+  "inactiveAt": null
+}
