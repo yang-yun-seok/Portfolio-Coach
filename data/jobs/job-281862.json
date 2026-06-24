@@ -1,7 +1,7 @@
 {
-  "id": "crawled-280682",
+  "id": "crawled-281862",
   "company": "파이드픽셀즈",
-  "title": "[파이드픽셀즈] 라이브 사업 PM 담당자 채용",
+  "title": "[파이드픽셀즈] 사업 PM 채용 (경력 · 주니어)",
   "role": "PM/운영",
   "roles": [
     "기획",
@@ -9,10 +9,12 @@
   ],
   "reqSkills": [
     "사업PM",
-    "경제/BM 설계"
+    "경제/BM 설계",
+    "SQL",
+    "데이터 분석"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280682",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281862",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "-",
@@ -22,13 +24,13 @@
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "무관",
   "keywords": "PM, 게임운영, 서비스, 사업PM, 라이브, BM",
-  "updatedAt": "2026-05-27",
+  "updatedAt": "2026-06-24",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-27T18:02:58.675Z",
-  "lastSeenAt": "2026-06-23T17:18:24.794Z",
-  "lastCrawledAt": "2026-06-23T17:18:24.794Z",
+  "firstSeenAt": "2026-06-24T17:05:30.039Z",
+  "lastSeenAt": "2026-06-24T17:05:30.039Z",
+  "lastCrawledAt": "2026-06-24T17:05:30.039Z",
   "inactiveAt": null
 }

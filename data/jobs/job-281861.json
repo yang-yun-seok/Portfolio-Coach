@@ -1,0 +1,32 @@
+{
+  "id": "crawled-281861",
+  "company": "넥슨 (NEXON)",
+  "title": "[블루아카이브] 전투 기획자",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "전투/액션 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281861",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "히트2, 블루아카이브, 서든어택, V4",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 게임기획, 전투",
+  "updatedAt": "2026-06-24",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-24T17:05:30.039Z",
+  "lastSeenAt": "2026-06-24T17:05:30.039Z",
+  "lastCrawledAt": "2026-06-24T17:05:30.039Z",
+  "inactiveAt": null
+}
