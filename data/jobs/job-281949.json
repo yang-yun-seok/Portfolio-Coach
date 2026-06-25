@@ -1,0 +1,36 @@
+{
+  "id": "crawled-281949",
+  "company": "㈜트라이닷",
+  "title": "[3D 애니메이터] 언리얼 엔진 기반 캐릭터 애니메이터 (정규직/프리랜서 협의)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Maya",
+    "Unreal Engine",
+    "3ds Max",
+    "Git/SVN"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281949",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임 Simulation",
+  "employmentType": "정규직, 프리랜서",
+  "deadline": "~ 07/15(수)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 캐릭터, 애니메이션, Maya, metahuman",
+  "updatedAt": "2026-06-25",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-25T17:13:07.076Z",
+  "lastSeenAt": "2026-06-25T17:13:07.076Z",
+  "lastCrawledAt": "2026-06-25T17:13:07.076Z",
+  "inactiveAt": null
+}

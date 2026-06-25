@@ -1,0 +1,39 @@
+{
+  "id": "crawled-281924",
+  "company": "㈜이엔피브이원",
+  "title": "[㈜ENPV1] 게임개발자 채용 (전북 거주자)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "C++",
+    "iOS",
+    "Android",
+    "UI/UX 기획",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281924",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 07/25(토)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "C++, 모바일, iOS, Android, SNG, UX·UI, 게임기획, 레벨기획, 시스템기획, 컨텐츠, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-06-25",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-25T17:13:07.076Z",
+  "lastSeenAt": "2026-06-25T17:13:07.076Z",
+  "lastCrawledAt": "2026-06-25T17:13:07.076Z",
+  "inactiveAt": null
+}

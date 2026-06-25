@@ -1,0 +1,32 @@
+{
+  "id": "crawled-281946",
+  "company": "㈜파이널플로",
+  "title": "클라이언트 프로그래머(모바일)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281946",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "No wait games/Image Jam: 그림 퍼즐",
+  "gameCategory": "모바일게임 Casual, Arcade",
+  "employmentType": "정규직",
+  "deadline": "~ 07/31(금)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "클라이언트, 모바일, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-06-25",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-25T17:13:07.076Z",
+  "lastSeenAt": "2026-06-25T17:13:07.076Z",
+  "lastCrawledAt": "2026-06-25T17:13:07.076Z",
+  "inactiveAt": null
+}
