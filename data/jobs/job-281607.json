@@ -1,0 +1,32 @@
+{
+  "id": "crawled-281607",
+  "company": "시프트업 (SHIFT UP)",
+  "title": "[시프트업] 승리의 여신 니케 / 전투 클라이언트 프로그래머",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281607",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-06-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-26T17:01:21.813Z",
+  "lastSeenAt": "2026-06-26T17:01:21.813Z",
+  "lastCrawledAt": "2026-06-26T17:01:21.813Z",
+  "inactiveAt": null
+}

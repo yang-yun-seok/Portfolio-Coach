@@ -1,0 +1,33 @@
+{
+  "id": "crawled-281982",
+  "company": "넥슨 (NEXON)",
+  "title": "[AI본부] 게임 아트 어시스턴트 (인턴)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Illustrator",
+    "Photoshop"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281982",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+  "gameCategory": "온라인PC게임 기타",
+  "employmentType": "인턴직 (1개월~3개월 미만)",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "신입",
+  "keywords": "일러스트, Photoshop, 리터칭, 아트리소스, 후처리, 원호화",
+  "updatedAt": "2026-06-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-26T17:01:21.813Z",
+  "lastSeenAt": "2026-06-26T17:01:21.813Z",
+  "lastCrawledAt": "2026-06-26T17:01:21.813Z",
+  "inactiveAt": null
+}

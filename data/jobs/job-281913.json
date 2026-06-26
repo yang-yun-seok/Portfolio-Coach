@@ -1,0 +1,34 @@
+{
+  "id": "crawled-281913",
+  "company": "조이시티",
+  "title": "[프리스타일] 3D 캐릭터 모델링 채용 (경력)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281913",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "프리스타일 시리즈, 건쉽배틀:토탈워페어, 캐리비안의 해적, 오션 앤 엠파이어",
+  "gameCategory": "온라인PC게임, 콘솔게임 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 07/31(금)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 모델링, 로우폴리곤, 3DSmax, 캐릭터, 텍스쳐, 하이폴리곤, 유니티, 아이템, 그래픽",
+  "updatedAt": "2026-06-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-26T17:01:21.813Z",
+  "lastSeenAt": "2026-06-26T17:01:21.813Z",
+  "lastCrawledAt": "2026-06-26T17:01:21.813Z",
+  "inactiveAt": null
+}

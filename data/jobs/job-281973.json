@@ -1,0 +1,41 @@
+{
+  "id": "crawled-281973",
+  "company": "넥슨 (NEXON)",
+  "title": "[개발실] 전 부문 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "아트/UI",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "Java",
+    "3ds Max",
+    "ZBrush",
+    "C#",
+    "SQL",
+    "Machine Learning"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281973",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로드나인, AVATARA, 로한M",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "C++, 모바일, Java, 연구개발, 기술개발, 배경, 컨셉, 배경원화, 3DSmax, Zbrush, C#, HTML, DB, AI, 액션, 모션캡쳐, 클린업, 엔엑스쓰리게임즈, NX3GAMES",
+  "updatedAt": "2026-06-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-26T17:01:21.813Z",
+  "lastSeenAt": "2026-06-26T17:01:21.813Z",
+  "lastCrawledAt": "2026-06-26T17:01:21.813Z",
+  "inactiveAt": null
+}
