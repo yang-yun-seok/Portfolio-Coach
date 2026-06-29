@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282044",
+  "company": "스마일스퀘어",
+  "title": "[신입]피그마 앱디자이너를 모집합니다",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Figma"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282044",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "다함께야구왕, 아처리챔피언, 마이스윙, 마이프로 등",
+  "gameCategory": "멀티플랫폼게임, 관련없음 Arcade, 기타",
+  "employmentType": "인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+  "deadline": "~ 07/29(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "인터페이스, 영상편집, 피그마",
+  "updatedAt": "2026-06-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-29T19:52:59.134Z",
+  "lastSeenAt": "2026-06-29T19:52:59.134Z",
+  "lastCrawledAt": "2026-06-29T19:52:59.134Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282051",
+  "company": "㈜애프터타임",
+  "title": "[프리랜서] 유니티 3D 배경디자이너 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Maya",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282051",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "대학조교생활, 벚나무의정령을아이돌로만드는법, 술도사랑도어려운아가씨",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Simulation",
+  "employmentType": "계약직 (계약기간 : 협의 후 결정), 인턴직 (협의 후 결정), 프리랜서",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 배경, 맵핑, 모델링, 로우폴리곤, 3DSmax, 텍스쳐, 3DMax, Maya, 오브젝트, Max",
+  "updatedAt": "2026-06-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-29T19:52:59.134Z",
+  "lastSeenAt": "2026-06-29T19:52:59.134Z",
+  "lastCrawledAt": "2026-06-29T19:52:59.134Z",
+  "inactiveAt": null
+}

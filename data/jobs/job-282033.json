@@ -1,0 +1,36 @@
+{
+  "id": "crawled-282033",
+  "company": "테이드소프트",
+  "title": "테이드소프트 그래픽 담당자 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Illustrator",
+    "Unity",
+    "Photoshop",
+    "Figma"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282033",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, VR·AR",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 07/29(수)",
+  "salary": "2,800~3,000만원\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, UX·UI, 배경, 원화, 일러스트, 캐릭터원화, 픽셀, 캐릭터도트, 캐릭터, 이펙트",
+  "updatedAt": "2026-06-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-29T19:52:59.134Z",
+  "lastSeenAt": "2026-06-29T19:52:59.134Z",
+  "lastCrawledAt": "2026-06-29T19:52:59.134Z",
+  "inactiveAt": null
+}

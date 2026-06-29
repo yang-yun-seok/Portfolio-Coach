@@ -1,0 +1,36 @@
+{
+  "id": "crawled-282016",
+  "company": "㈜이스트게임즈",
+  "title": "[신입] 카발RED 클라이언트 프로그래머",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "iOS",
+    "Android",
+    "C#",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282016",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "카발RED, 카발온라인, 카발모바일, 고양이다방",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, SNG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, C, C++, 모바일, iOS, Android, C#, 게임프로그래밍, 게임프로그래머, SDK, UnrealEngine, 서드파티",
+  "updatedAt": "2026-06-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-29T19:52:59.134Z",
+  "lastSeenAt": "2026-06-29T19:52:59.134Z",
+  "lastCrawledAt": "2026-06-29T19:52:59.134Z",
+  "inactiveAt": null
+}

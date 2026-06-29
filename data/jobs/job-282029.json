@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282029",
+  "company": "파빌라",
+  "title": "[파빌라] 주니어 클라이언트 개발자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Git/SVN"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282029",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+  "employmentType": "계약직 (계약기간 : 3개월)",
+  "deadline": "~ 07/29(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, 게임프로그래머",
+  "updatedAt": "2026-06-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-29T19:52:59.134Z",
+  "lastSeenAt": "2026-06-29T19:52:59.134Z",
+  "lastCrawledAt": "2026-06-29T19:52:59.134Z",
+  "inactiveAt": null
+}
