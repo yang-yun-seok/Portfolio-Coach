@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282124",
+  "company": "사과나무 게임즈",
+  "title": "게임 디자이너 구인",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Illustrator"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282124",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "매치슈퍼마켓",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 1개월)",
+  "deadline": "~ 07/30(목)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 인터페이스, UX·UI, 원화, 일러스트, 캐릭터원화, 몬스터, 캐릭터",
+  "updatedAt": "2026-06-30",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-30T17:08:28.109Z",
+  "lastSeenAt": "2026-06-30T17:08:28.109Z",
+  "lastCrawledAt": "2026-06-30T17:08:28.109Z",
+  "inactiveAt": null
+}

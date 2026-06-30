@@ -1,0 +1,38 @@
+{
+  "id": "crawled-282101",
+  "company": "그라프디자인",
+  "title": "게임 기획자 채용",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "Unity",
+    "Figma",
+    "Excel"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282101",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "콘솔게임, 멀티플랫폼게임 Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 07/30(목)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "레벨, 게임기획, 시나리오, PD, 밸런스기획, 레벨기획, 시스템기획",
+  "updatedAt": "2026-06-30",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-30T17:08:28.109Z",
+  "lastSeenAt": "2026-06-30T17:08:28.109Z",
+  "lastCrawledAt": "2026-06-30T17:08:28.109Z",
+  "inactiveAt": null
+}

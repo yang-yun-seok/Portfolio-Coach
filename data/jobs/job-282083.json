@@ -1,0 +1,34 @@
+{
+  "id": "crawled-282083",
+  "company": "주식회사 퍼브랩스",
+  "title": "[퍼브랩스/신입,경력] 유니티 프로그래머를 모십니다.",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "서버"
+  ],
+  "reqSkills": [
+    "3D"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282083",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 Casual, VR·AR",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 협의 후 결정)",
+  "deadline": "~ 07/30(목)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, 3D, 연구개발, 기술개발, 게임프로그래밍, 게임프로그래머, VR, AR",
+  "updatedAt": "2026-06-30",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-30T17:08:28.109Z",
+  "lastSeenAt": "2026-06-30T17:08:28.109Z",
+  "lastCrawledAt": "2026-06-30T17:08:28.109Z",
+  "inactiveAt": null
+}

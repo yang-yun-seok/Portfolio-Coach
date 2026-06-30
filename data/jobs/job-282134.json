@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282134",
+  "company": "㈜엔나인스",
+  "title": "UI / UX 디자이너 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Unity",
+    "Photoshop",
+    "Figma"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282134",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "발키리아",
+  "gameCategory": "모바일게임 RPG, Simulation",
+  "employmentType": "정규직, 계약직 (계약기간 : 3개월)",
+  "deadline": "~ 07/30(목)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "인터페이스, UX·UI, 이펙트",
+  "updatedAt": "2026-06-30",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-30T17:08:28.109Z",
+  "lastSeenAt": "2026-06-30T17:08:28.109Z",
+  "lastCrawledAt": "2026-06-30T17:08:28.109Z",
+  "inactiveAt": null
+}

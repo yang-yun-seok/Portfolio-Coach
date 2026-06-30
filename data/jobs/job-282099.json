@@ -1,0 +1,38 @@
+{
+  "id": "crawled-282099",
+  "company": "넥슨 (NEXON)",
+  "title": "[스피릿위시 Plus] 서버 프로그래머",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "Java",
+    "C#",
+    "SQL",
+    "TCP/IP",
+    "Redis"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282099",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로드나인, AVATARA, 로한M",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "C++, 모바일, Java, MySQL, C#, MS-SQL, 네트워크, DB, Redis, 게임프로그래밍, 게임프로그래머, 엔엑스쓰리게임즈, NX3GAMES, 스피릿위시plus",
+  "updatedAt": "2026-06-30",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-30T17:08:28.109Z",
+  "lastSeenAt": "2026-06-30T17:08:28.109Z",
+  "lastCrawledAt": "2026-06-30T17:08:28.109Z",
+  "inactiveAt": null
+}

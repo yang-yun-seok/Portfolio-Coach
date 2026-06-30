@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282119",
+  "company": "스토익엔터테인먼트",
+  "title": "3D 캐릭터 모델러 (서브컬처 캐릭터)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "ZBrush",
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282119",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Spectral Scream / Tank Arena: Ultimate League",
+  "gameCategory": "온라인PC게임 Simulation",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 07/30(목)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 배경, 맵핑, 모델링, 3DSmax, 캐릭터, Zbrush",
+  "updatedAt": "2026-06-30",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-06-30T17:08:28.109Z",
+  "lastSeenAt": "2026-06-30T17:08:28.109Z",
+  "lastCrawledAt": "2026-06-30T17:08:28.109Z",
+  "inactiveAt": null
+}
