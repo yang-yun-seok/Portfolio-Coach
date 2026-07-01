@@ -1,7 +1,7 @@
 {
-  "id": "crawled-280930",
+  "id": "crawled-282191",
   "company": "㈜씨플레이",
-  "title": "[씨플레이] 게임 아트 및 애니메이션 제작 (신입/경력)",
+  "title": "[씨플레이] 부산 모바일 게임 아트 디자이너를 모집합니다.",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
@@ -12,23 +12,23 @@
     "도트 아트"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280930",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282191",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "캣점프, 무한의점프,바나툰:보물을찾아서!, 바나툰2:쥐라기월드!, 생존1%방탈출, 스폰지팝",
   "gameCategory": "웹게임, 모바일게임 Casual, Arcade",
   "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 6개월)",
-  "deadline": "~ 07/02(목)",
-  "salary": "회사내규에 따름\n연봉검색",
+  "deadline": "~ 08/01(토)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "무관",
-  "keywords": "모바일, 배경, 원화, 일러스트, 캐릭터원화, 컨셉, 배경원화, 포토샵, 도트, 픽셀, 아바타, 캐릭터도트, 배경도트, 몬스터, 캐릭터, 애니메이션, 영상제작·편집",
-  "updatedAt": "2026-06-02",
+  "keywords": "모바일, 배경, 원화, 일러스트, 캐릭터원화, 컨셉, 배경원화, 포토샵, 도트, 픽셀, 아바타, 캐릭터도트, 배경도트, 몬스터, 캐릭터, 애니메이션",
+  "updatedAt": "2026-07-01",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-02T18:39:59.086Z",
-  "lastSeenAt": "2026-06-30T17:08:28.109Z",
-  "lastCrawledAt": "2026-06-30T17:08:28.109Z",
+  "firstSeenAt": "2026-07-01T17:14:06.357Z",
+  "lastSeenAt": "2026-07-01T17:14:06.357Z",
+  "lastCrawledAt": "2026-07-01T17:14:06.357Z",
   "inactiveAt": null
 }
