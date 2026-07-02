@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282233",
+  "company": "넥슨 (NEXON)",
+  "title": "[AI본부] 웹 프론트엔드 엔지니어 (인턴)",
+  "role": "서버",
+  "roles": [
+    "기획",
+    "서버"
+  ],
+  "reqSkills": [
+    "Java",
+    "JavaScript",
+    "TypeScript"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282233",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+  "gameCategory": "온라인PC게임, 모바일게임 기타",
+  "employmentType": "인턴직 (3개월~6개월 미만)",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "신입",
+  "keywords": "Java, HTML5",
+  "updatedAt": "2026-07-02",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-02T16:50:01.161Z",
+  "lastSeenAt": "2026-07-02T16:50:01.161Z",
+  "lastCrawledAt": "2026-07-02T16:50:01.161Z",
+  "inactiveAt": null
+}

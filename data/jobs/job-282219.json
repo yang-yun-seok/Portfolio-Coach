@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282219",
+  "company": "링게임즈",
+  "title": "[서브컬쳐 캐릭터 컬랙션 RPG] 3D 캐릭터모델링",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282219",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+  "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 맵핑, 페인터, 모델링, 3DSmax, 캐릭터, 손맵, 캐릭터모델러, 캐릭터모델링",
+  "updatedAt": "2026-07-02",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-02T16:50:01.161Z",
+  "lastSeenAt": "2026-07-02T16:50:01.161Z",
+  "lastCrawledAt": "2026-07-02T16:50:01.161Z",
+  "inactiveAt": null
+}

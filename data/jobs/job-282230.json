@@ -1,0 +1,36 @@
+{
+  "id": "crawled-282230",
+  "company": "주식회사 파우게임즈",
+  "title": "[파우게임즈] 신규프로젝트(킹덤2) 기획 담당자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "시스템/컨텐츠 기획",
+    "UI/UX 기획"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282230",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "프리스톤테일M, 킹덤 : 전쟁의불씨, 영웅전설: 가가브 트릴로지",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "모바일, 레벨, 게임기획, 퀘스트, 레벨기획, 시스템기획, 컨텐츠, UI·UX",
+  "updatedAt": "2026-07-02",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-02T16:50:01.161Z",
+  "lastSeenAt": "2026-07-02T16:50:01.161Z",
+  "lastCrawledAt": "2026-07-02T16:50:01.161Z",
+  "inactiveAt": null
+}

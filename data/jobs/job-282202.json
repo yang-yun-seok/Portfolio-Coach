@@ -1,0 +1,32 @@
+{
+  "id": "crawled-282202",
+  "company": "티디에프",
+  "title": "[신규 프로젝트] 게임 프로그래머 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282202",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "콘솔게임, 멀티플랫폼게임 기타",
+  "employmentType": "정규직, 인턴직 후 정규직 전환 검토 (3개월~6개월 미만)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "유니티, 게임프로그래밍, Unity3D, 인디게임",
+  "updatedAt": "2026-07-02",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-02T16:50:01.161Z",
+  "lastSeenAt": "2026-07-02T16:50:01.161Z",
+  "lastCrawledAt": "2026-07-02T16:50:01.161Z",
+  "inactiveAt": null
+}

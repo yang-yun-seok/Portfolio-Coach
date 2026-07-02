@@ -1,0 +1,37 @@
+{
+  "id": "crawled-282235",
+  "company": "그라프디자인",
+  "title": "XR 엔지니어 인재를 찾습니다.",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI",
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "3D",
+    "ZBrush",
+    "Maya",
+    "Unreal Engine",
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282235",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 VR·AR, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 모델링, 로우폴리곤, 하이폴리곤, Zbrush, Maya, 엔진, Unreal, Unity, 언리얼4, 유니티3D",
+  "updatedAt": "2026-07-02",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-02T16:50:01.161Z",
+  "lastSeenAt": "2026-07-02T16:50:01.161Z",
+  "lastCrawledAt": "2026-07-02T16:50:01.161Z",
+  "inactiveAt": null
+}
