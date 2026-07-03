@@ -1,0 +1,39 @@
+{
+  "id": "crawled-282303",
+  "company": "(주)웹젠",
+  "title": "2026년 웹젠크레빅스 수시채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "C++",
+    "UI/UX 기획",
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282303",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "뮤 온라인, R2, 샷온라인, 썬 클래식, 뮤 아크엔젤, 뮤 모나크, 뮤:포켓 나이츠",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C, C++, 모바일, SNG, UX·UI, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 유료화, 게임프로그래밍",
+  "updatedAt": "2026-07-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-03T16:26:09.400Z",
+  "lastSeenAt": "2026-07-03T16:26:09.400Z",
+  "lastCrawledAt": "2026-07-03T16:26:09.400Z",
+  "inactiveAt": null
+}

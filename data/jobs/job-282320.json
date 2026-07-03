@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282320",
+  "company": "엑스온스튜디오",
+  "title": "엑스온스튜디오 VAD Technical Artist (TA) 경력직 채용 (계약직)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "C++",
+    "3D",
+    "Unreal Engine"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282320",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "관련없음 관련없음",
+  "employmentType": "계약직 (계약기간 : 6개월)",
+  "deadline": "~ 08/03(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "클라이언트, VisualC, VisualC++, DirectX, Direct3D, API, C++, 3D, 이펙트, FX, 시네마틱, 영상제작·편집, 엔진, Tool, Unreal, 언리얼4, 그래픽스아티펙트, 렌더링, VR, AR",
+  "updatedAt": "2026-07-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-03T16:26:09.400Z",
+  "lastSeenAt": "2026-07-03T16:26:09.400Z",
+  "lastCrawledAt": "2026-07-03T16:26:09.400Z",
+  "inactiveAt": null
+}

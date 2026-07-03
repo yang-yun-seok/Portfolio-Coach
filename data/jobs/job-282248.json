@@ -1,0 +1,36 @@
+{
+  "id": "crawled-282248",
+  "company": "㈜크로노스튜디오",
+  "title": "[Chrono Odyssey] 퀘스트 기획자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "시나리오/퀘스트",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282248",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Chrono Odyssey",
+  "gameCategory": "콘솔게임, 멀티플랫폼게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "컨셉, 게임기획, 시나리오, 퀘스트, 레벨기획, 컨텐츠, 콘텐츠, 언리얼, mmorpg, RPG, 설정, UE5",
+  "updatedAt": "2026-07-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-03T16:26:09.400Z",
+  "lastSeenAt": "2026-07-03T16:26:09.400Z",
+  "lastCrawledAt": "2026-07-03T16:26:09.400Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282249",
+  "company": "신지게임즈",
+  "title": "[신지게임즈] MMORPG 전투 기획자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282249",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "열혈강호 무쌍(모바일 MORPG)",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 게임기획, 컨텐츠, mmorpg",
+  "updatedAt": "2026-07-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-03T16:26:09.400Z",
+  "lastSeenAt": "2026-07-03T16:26:09.400Z",
+  "lastCrawledAt": "2026-07-03T16:26:09.400Z",
+  "inactiveAt": null
+}
