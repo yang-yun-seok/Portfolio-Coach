@@ -1,0 +1,36 @@
+{
+  "id": "crawled-282371",
+  "company": "㈜공게임즈",
+  "title": "게임 서버 프로그래머 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "SQL",
+    "TCP/IP",
+    "Redis"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282371",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "이사만루26 / MLB PI 26 / 棒球殿堂 Live",
+  "gameCategory": "모바일게임 Simulation, Arcade",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "VisualC++, STL, Win32, API, C++, 서버, Winsock, MS-SQL, SQL, TCP·IP, IOCP, DB, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-07-06",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-06T17:43:20.587Z",
+  "lastSeenAt": "2026-07-06T17:43:20.587Z",
+  "lastCrawledAt": "2026-07-06T17:43:20.587Z",
+  "inactiveAt": null
+}

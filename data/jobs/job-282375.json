@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282375",
+  "company": "아크나인게임즈㈜",
+  "title": "[에이카 온라인] 정규직 경력자 모집",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "Excel"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282375",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직, 인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "게임기획, 밸런스기획, 시스템기획, 컨텐츠, 유료화",
+  "updatedAt": "2026-07-06",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-06T17:43:20.587Z",
+  "lastSeenAt": "2026-07-06T17:43:20.587Z",
+  "lastCrawledAt": "2026-07-06T17:43:20.587Z",
+  "inactiveAt": null
+}

@@ -1,7 +1,7 @@
 {
-  "id": "crawled-280222",
+  "id": "crawled-282378",
   "company": "디나미스원㈜",
-  "title": "[디나미스원] 프로젝트 AT 개발 PM 모집",
+  "title": "[아스트라에 오라티오] 개발 PM 모집",
   "role": "기획",
   "roles": [
     "기획"
@@ -10,23 +10,23 @@
     "개발PM"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280222",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282378",
   "hasAssignment": false,
   "assignmentType": "",
-  "mainGame": "-",
+  "mainGame": "아스트라에 오라티오",
   "gameCategory": "모바일게임 RPG",
   "employmentType": "정규직",
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "무관",
   "keywords": "PM, 개발PM, 개발관리",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-07-06",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-07-05T16:05:46.614Z",
-  "lastCrawledAt": "2026-07-05T16:05:46.614Z",
+  "firstSeenAt": "2026-07-06T17:43:20.587Z",
+  "lastSeenAt": "2026-07-06T17:43:20.587Z",
+  "lastCrawledAt": "2026-07-06T17:43:20.587Z",
   "inactiveAt": null
 }

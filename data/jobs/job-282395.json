@@ -1,0 +1,37 @@
+{
+  "id": "crawled-282395",
+  "company": "㈜에스씨에이게임인천",
+  "title": "SBS아카데미게임학원 인천(부평) 언리얼 강사 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "C#",
+    "Unreal Engine",
+    "Unity",
+    "Git/SVN"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282395",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 기타, 관련없음",
+  "employmentType": "프리랜서",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, VisualC, VisualC++, DirectX, C, C++, 모바일, 기술개발, 웹게임, HTML5, C#, 엔진, Unreal, Unity, 언리얼4, 유니티3D, 게임프로그래밍, 게임프로그래머, 웹개발, 렌더링",
+  "updatedAt": "2026-07-06",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-06T17:43:20.587Z",
+  "lastSeenAt": "2026-07-06T17:43:20.587Z",
+  "lastCrawledAt": "2026-07-06T17:43:20.587Z",
+  "inactiveAt": null
+}
