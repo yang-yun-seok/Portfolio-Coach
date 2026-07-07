@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282443",
+  "company": "㈜이엔피브이원",
+  "title": "[㈜ENPV1] 게임아트 채용 (전북 거주자)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android",
+    "UI/UX 기획",
+    "Illustrator"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282443",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 08/07(금)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, iOS, Android, SNG, 인터페이스, UX·UI, 배경, 원화, 일러스트, 몬스터, 캐릭터, 애니메이션, KeyAnimation, 이펙트, FX, 스토리보드아트, 영상제작·편집",
+  "updatedAt": "2026-07-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-07T17:12:56.720Z",
+  "lastSeenAt": "2026-07-07T17:12:56.720Z",
+  "lastCrawledAt": "2026-07-07T17:12:56.720Z",
+  "inactiveAt": null
+}

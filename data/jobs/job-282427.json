@@ -1,0 +1,34 @@
+{
+  "id": "crawled-282427",
+  "company": "휴머니아",
+  "title": "[마포상암/22시-10시] 글로벌게임사 심야 모니터링 직원 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "PM/운영",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "QA/테스트"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282427",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 기타",
+  "employmentType": "파견직",
+  "deadline": "~ 07/17(금)",
+  "salary": "1개월당 / 2,290,200원\n연봉검색",
+  "experience": "무관",
+  "keywords": "GM, 모니터링, 해외서비스, QM, QA, QC, 시스템버전관리, 버그",
+  "updatedAt": "2026-07-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-07T17:12:56.720Z",
+  "lastSeenAt": "2026-07-07T17:12:56.720Z",
+  "lastCrawledAt": "2026-07-07T17:12:56.720Z",
+  "inactiveAt": null
+}

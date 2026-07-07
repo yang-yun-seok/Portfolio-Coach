@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282425",
+  "company": "팀42㈜",
+  "title": "[슬라임의 세계] 캐주얼 3D 캐릭터 모델러",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282425",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "마피아42",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 08/07(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 3D, 모델링, 캐릭터",
+  "updatedAt": "2026-07-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-07T17:12:56.720Z",
+  "lastSeenAt": "2026-07-07T17:12:56.720Z",
+  "lastCrawledAt": "2026-07-07T17:12:56.720Z",
+  "inactiveAt": null
+}

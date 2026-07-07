@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282416",
+  "company": "아크나인게임즈㈜",
+  "title": "[에이카 온라인] 서버 프로그래머 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "SQL",
+    "TCP/IP"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282416",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "STL, Win32, C++, 모바일, 서버, Winsock, MS-SQL, SQL, TCP·IP, 네트워크, DB, DB관리, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-07-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-07T17:12:56.720Z",
+  "lastSeenAt": "2026-07-07T17:12:56.720Z",
+  "lastCrawledAt": "2026-07-07T17:12:56.720Z",
+  "inactiveAt": null
+}
