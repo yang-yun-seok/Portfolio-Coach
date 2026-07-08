@@ -1,5 +1,5 @@
 {
-  "id": "crawled-282132",
+  "id": "crawled-282468",
   "company": "시프트업 (SHIFT UP)",
   "title": "[시프트업] 승리의 여신 니케 / 전투 기획 / 전투 밸런스 기획",
   "role": "기획",
@@ -12,7 +12,7 @@
     "Unity"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282132",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282468",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
@@ -22,13 +22,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "모바일, 게임기획, 서버, 시스템, 전투, FPS, 전투기획, TPS, 시프트업, NIKKE, 승리의여신니케",
-  "updatedAt": "2026-06-30",
+  "updatedAt": "2026-07-08",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-30T17:08:28.109Z",
-  "lastSeenAt": "2026-07-07T17:12:56.720Z",
-  "lastCrawledAt": "2026-07-07T17:12:56.720Z",
+  "firstSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastCrawledAt": "2026-07-08T16:30:35.559Z",
   "inactiveAt": null
 }

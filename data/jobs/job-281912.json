@@ -1,0 +1,34 @@
+{
+  "id": "crawled-281912",
+  "company": "러쉬에잇㈜",
+  "title": "[러쉬에잇] 메이플스토리 월드 QA, CS 담당자 채용 (경력 1년이상)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "PM/운영",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "QA/테스트"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281912",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "아르테일, 창세지풍, 에버플래닛(개발 중)",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 RPG",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 1년)",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "고객서비스, CS, 모니터링, 홈페이지관리, QA, 게임테스터, 버그",
+  "updatedAt": "2026-07-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastCrawledAt": "2026-07-08T16:30:35.559Z",
+  "inactiveAt": null
+}

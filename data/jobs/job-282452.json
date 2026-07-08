@@ -1,0 +1,34 @@
+{
+  "id": "crawled-282452",
+  "company": "링게임즈",
+  "title": "[MetalSlugRush] 게임 클라이언트 프로그래머 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity",
+    "iOS",
+    "Android"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282452",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-07-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastCrawledAt": "2026-07-08T16:30:35.559Z",
+  "inactiveAt": null
+}

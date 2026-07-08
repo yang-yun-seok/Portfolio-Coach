@@ -1,0 +1,32 @@
+{
+  "id": "crawled-282461",
+  "company": "㈜위메이드",
+  "title": "[위메이드엑스알] AI 엔지니어(체험형 인턴)",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "Machine Learning"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282461",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "나이트크로우, 미르4, 미르의 전설 2,3 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "인턴직 (6개월~1년 미만)",
+  "deadline": "~ 07/22(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "기술개발, AI, LLM",
+  "updatedAt": "2026-07-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastCrawledAt": "2026-07-08T16:30:35.559Z",
+  "inactiveAt": null
+}

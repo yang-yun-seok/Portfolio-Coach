@@ -1,5 +1,5 @@
 {
-  "id": "crawled-280847",
+  "id": "crawled-282464",
   "company": "㈜붐잇게임즈",
   "title": "[바이오하자드 서바이널 유닛] 일본 통번역/PM 모집",
   "role": "기획",
@@ -8,7 +8,7 @@
   ],
   "reqSkills": [],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280847",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282464",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "바이오하자드 서바이벌 유닛, 드래곤 엠파이어, 문명: Reign of Power",
@@ -18,13 +18,13 @@
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "모바일, PM, 번역, 일본어, 통역",
-  "updatedAt": "2026-06-01",
+  "updatedAt": "2026-07-08",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-01T19:57:35.254Z",
-  "lastSeenAt": "2026-07-07T17:12:56.720Z",
-  "lastCrawledAt": "2026-07-07T17:12:56.720Z",
+  "firstSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastCrawledAt": "2026-07-08T16:30:35.559Z",
   "inactiveAt": null
 }

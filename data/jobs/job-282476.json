@@ -1,0 +1,37 @@
+{
+  "id": "crawled-282476",
+  "company": "메타본엔터테인먼트㈜",
+  "title": "[판교][건틀렛] RPG QA/QC 및 운영(경력) 모십니다.",
+  "role": "서버",
+  "roles": [
+    "기획",
+    "서버",
+    "PM/운영",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "Java",
+    "밸런싱",
+    "QA/테스트"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282476",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "건틀렛: 방치형 액션 RPG",
+  "gameCategory": "모바일게임 RPG, Simulation",
+  "employmentType": "정규직, 인턴직 (1개월~3개월 미만)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, Java, 밸런스기획, PHP, HTML5, 게임운영, CS, QA, 웹개발",
+  "updatedAt": "2026-07-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastCrawledAt": "2026-07-08T16:30:35.559Z",
+  "inactiveAt": null
+}

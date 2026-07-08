@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282457",
+  "company": "㈜옥토포",
+  "title": "[모코] VFX Artist 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Unreal Engine",
+    "Photoshop",
+    "3ds Max"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282457",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Bounty Pang / Weaponia : Merge & Fight",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "이펙트, FX",
+  "updatedAt": "2026-07-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastCrawledAt": "2026-07-08T16:30:35.559Z",
+  "inactiveAt": null
+}

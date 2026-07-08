@@ -1,5 +1,5 @@
 {
-  "id": "crawled-278650",
+  "id": "crawled-282459",
   "company": "빅게임스튜디오",
   "title": "[빅게임스튜디오] 배경 모델링 담당자 모집",
   "role": "아트/UI",
@@ -12,7 +12,7 @@
     "ZBrush"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278650",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282459",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "블랙클로버 모바일",
@@ -22,13 +22,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "배경, 모델링, 배경모델링",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-07-08",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-07-07T17:12:56.720Z",
-  "lastCrawledAt": "2026-07-07T17:12:56.720Z",
+  "firstSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastSeenAt": "2026-07-08T16:30:35.559Z",
+  "lastCrawledAt": "2026-07-08T16:30:35.559Z",
   "inactiveAt": null
 }
