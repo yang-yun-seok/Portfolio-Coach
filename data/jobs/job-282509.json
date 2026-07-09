@@ -1,0 +1,32 @@
+{
+  "id": "crawled-282509",
+  "company": "㈜에이버튼",
+  "title": "[Guns & Dragons] 애니메이터",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3ds Max"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282509",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "제우스, 건즈앤드래곤, EA",
+  "gameCategory": "콘솔게임, 멀티플랫폼게임 Shooting",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "게임개발, PC, 콘솔",
+  "updatedAt": "2026-07-09",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-09T19:31:02.171Z",
+  "lastSeenAt": "2026-07-09T19:31:02.171Z",
+  "lastCrawledAt": "2026-07-09T19:31:02.171Z",
+  "inactiveAt": null
+}

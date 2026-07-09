@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282514",
+  "company": "㈜퍼스트스파크게임즈",
+  "title": "[NC-퍼스트스파크게임즈][단기계약직][TL] 3D 캐릭터 아티스트 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "ZBrush"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282514",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "THRONE AND LIBERTY",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "계약직 (계약기간 : 협의 후 결정)",
+  "deadline": "~ 08/09(일)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "신입",
+  "keywords": "3D, 컨셉, 모델링, 캐릭터, 텍스쳐, Zbrush",
+  "updatedAt": "2026-07-09",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-09T19:31:02.171Z",
+  "lastSeenAt": "2026-07-09T19:31:02.171Z",
+  "lastCrawledAt": "2026-07-09T19:31:02.171Z",
+  "inactiveAt": null
+}

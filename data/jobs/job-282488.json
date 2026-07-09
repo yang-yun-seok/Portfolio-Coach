@@ -1,5 +1,5 @@
 {
-  "id": "crawled-281656",
+  "id": "crawled-282488",
   "company": "㈜슈퍼캣",
   "title": "[아이스캣 / Project AS] 3D 캐릭터 모델러 모집 (경력)",
   "role": "아트/UI",
@@ -8,12 +8,10 @@
   ],
   "reqSkills": [
     "3D",
-    "Unity",
-    "Photoshop",
-    "3ds Max"
+    "Unity"
   ],
-  "reqExp": 2,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281656",
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282488",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "바람의나라: 연, 도깨비의세계, Project CM, Project AS",
@@ -21,15 +19,15 @@
   "employmentType": "정규직",
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름\n연봉검색",
-  "experience": "경력 2년 이상",
+  "experience": "경력 3년 이상",
   "keywords": "3D, 배경, 모델링, 캐릭터, 4X",
-  "updatedAt": "2026-06-18",
+  "updatedAt": "2026-07-09",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-18T18:00:49.087Z",
-  "lastSeenAt": "2026-07-08T16:30:35.559Z",
-  "lastCrawledAt": "2026-07-08T16:30:35.559Z",
+  "firstSeenAt": "2026-07-09T19:31:02.171Z",
+  "lastSeenAt": "2026-07-09T19:31:02.171Z",
+  "lastCrawledAt": "2026-07-09T19:31:02.171Z",
   "inactiveAt": null
 }

@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282435",
+  "company": "㈜하이퍼센트",
+  "title": "[PC 게임] 2D 아티스트(UI/UX) 담당자 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Illustrator",
+    "Photoshop",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282435",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "백룸컴퍼니 Backroom Company",
+  "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+  "employmentType": "정규직",
+  "deadline": "~ 09/07(월)",
+  "salary": "2,600~2,800만원\n연봉검색",
+  "experience": "무관",
+  "keywords": "인터페이스, UX·UI, 배경, 일러스트, 포토샵, 페인터, GUI, 게임UI",
+  "updatedAt": "2026-07-09",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-09T19:31:02.171Z",
+  "lastSeenAt": "2026-07-09T19:31:02.171Z",
+  "lastCrawledAt": "2026-07-09T19:31:02.171Z",
+  "inactiveAt": null
+}
