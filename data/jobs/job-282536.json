@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282536",
+  "company": "㈜하이브로",
+  "title": "[Unity] 클라이언트 개발자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282536",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "드래곤빌리지, 드래곤빌리지M, 드래곤빌리지 컬렉션",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, 모바일, C#, Unity, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-07-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastCrawledAt": "2026-07-10T16:56:12.080Z",
+  "inactiveAt": null
+}

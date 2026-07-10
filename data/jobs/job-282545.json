@@ -1,0 +1,36 @@
+{
+  "id": "crawled-282545",
+  "company": "조이시티",
+  "title": "[프리스타일] 서버개발 채용 (경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "SQL",
+    "TCP/IP"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282545",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "프리스타일 시리즈, 건쉽배틀:토탈워페어, 캐리비안의 해적, 오션 앤 엠파이어",
+  "gameCategory": "온라인PC게임, 콘솔게임 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 07/31(금)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "C, C++, 서버, MS-SQL, SQL, 네트워크, IOCP, UDP",
+  "updatedAt": "2026-07-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastCrawledAt": "2026-07-10T16:56:12.080Z",
+  "inactiveAt": null
+}

@@ -1,5 +1,5 @@
 {
-  "id": "crawled-282094",
+  "id": "crawled-282561",
   "company": "엔픽셀",
   "title": "[엔픽셀] 이클립스스튜디오 (퀘스트 기획)",
   "role": "기획",
@@ -11,7 +11,7 @@
     "Unreal Engine"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282094",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282561",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "그랑사가",
@@ -21,13 +21,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "게임기획, 퀘스트, 퀘스트기획",
-  "updatedAt": "2026-06-30",
+  "updatedAt": "2026-07-10",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-30T17:08:28.109Z",
-  "lastSeenAt": "2026-07-09T19:31:02.171Z",
-  "lastCrawledAt": "2026-07-09T19:31:02.171Z",
+  "firstSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastCrawledAt": "2026-07-10T16:56:12.080Z",
   "inactiveAt": null
 }

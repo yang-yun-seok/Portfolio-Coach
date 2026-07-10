@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282537",
+  "company": "㈜하이브로",
+  "title": "[Java] 서버 개발자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "Java",
+    "SQL",
+    "Redis"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282537",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "드래곤빌리지, 드래곤빌리지M, 드래곤빌리지 컬렉션",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, Java, DB, Redis, 게임프로그래밍, 게임프로그래머, MongoDB",
+  "updatedAt": "2026-07-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastCrawledAt": "2026-07-10T16:56:12.080Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "crawled-282524",
+  "company": "㈜에이케이인터렉티브",
+  "title": "[거상] 애니메이터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3ds Max"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282524",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "천하제일상 거상",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3DSmax, 애니메이션",
+  "updatedAt": "2026-07-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastCrawledAt": "2026-07-10T16:56:12.080Z",
+  "inactiveAt": null
+}

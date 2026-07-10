@@ -1,5 +1,5 @@
 {
-  "id": "crawled-281942",
+  "id": "crawled-282563",
   "company": "엔픽셀",
   "title": "[엔픽셀] 이클립스스튜디오 (캐릭터 컨셉 아티스트)",
   "role": "아트/UI",
@@ -12,7 +12,7 @@
     "Unreal Engine"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281942",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282563",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "그랑사가",
@@ -22,13 +22,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "배경, 원화, 컨셉, 배경원화, 모델링, 3DSmax, Zbrush",
-  "updatedAt": "2026-06-25",
+  "updatedAt": "2026-07-10",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-25T17:13:07.076Z",
-  "lastSeenAt": "2026-07-09T19:31:02.171Z",
-  "lastCrawledAt": "2026-07-09T19:31:02.171Z",
+  "firstSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastCrawledAt": "2026-07-10T16:56:12.080Z",
   "inactiveAt": null
 }

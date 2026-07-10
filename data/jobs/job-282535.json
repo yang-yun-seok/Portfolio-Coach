@@ -1,5 +1,5 @@
 {
-  "id": "crawled-279025",
+  "id": "crawled-282535",
   "company": "넷마블 (Netmarble)",
   "title": "[넷마블네오] 나 혼자만 레벨업 이펙트 담당 모집",
   "role": "클라이언트",
@@ -9,7 +9,7 @@
   ],
   "reqSkills": [],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279025",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282535",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "뱀피르, 나 혼자만 레벨업, 왕좌의게임, 제2의나라, 리니지2레볼루션",
@@ -19,13 +19,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "모바일, 이펙트, FX",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-07-10",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-07-09T19:31:02.171Z",
-  "lastCrawledAt": "2026-07-09T19:31:02.171Z",
+  "firstSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastSeenAt": "2026-07-10T16:56:12.080Z",
+  "lastCrawledAt": "2026-07-10T16:56:12.080Z",
   "inactiveAt": null
 }
