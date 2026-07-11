@@ -1,0 +1,34 @@
+{
+  "id": "crawled-269788",
+  "company": "㈜엑소게임즈",
+  "title": "캐주얼 게임 클라이언트 개발자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "JavaScript",
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=269788",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "파파딜로 고!, 스퀴드워, 우리집에 곰이 돌아왔다!",
+  "gameCategory": "온라인PC게임, 콘솔게임 Casual, Arcade",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 5개월)",
+  "deadline": "~ 08/10(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "클라이언트, C, C++, ObjectiveC, 모바일, SNG, 게임프로그래밍",
+  "updatedAt": "2026-07-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-11T15:54:19.050Z",
+  "lastSeenAt": "2026-07-11T15:54:19.050Z",
+  "lastCrawledAt": "2026-07-11T15:54:19.050Z",
+  "inactiveAt": null
+}

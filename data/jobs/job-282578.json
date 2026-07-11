@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282578",
+  "company": "㈜타이니펀게임즈(Tiny Fu",
+  "title": "[캐주얼RPG게임] 클라이언트 콘텐츠 프로그래머 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "Unity",
+    "iOS",
+    "Android"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282578",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "던전 어라이즈",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, VisualC++, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-07-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-11T15:54:19.050Z",
+  "lastSeenAt": "2026-07-11T15:54:19.050Z",
+  "lastCrawledAt": "2026-07-11T15:54:19.050Z",
+  "inactiveAt": null
+}
