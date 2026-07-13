@@ -1,0 +1,34 @@
+{
+  "id": "crawled-282595",
+  "company": "스콘",
+  "title": "[게임개발] 유니티 SCON 게임개발자를 찾습니다.",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282595",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "미츄 meechu",
+  "gameCategory": "웹게임, 모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "Unity, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-07-13",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-13T17:14:11.928Z",
+  "lastSeenAt": "2026-07-13T17:14:11.928Z",
+  "lastCrawledAt": "2026-07-13T17:14:11.928Z",
+  "inactiveAt": null
+}

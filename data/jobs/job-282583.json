@@ -1,0 +1,37 @@
+{
+  "id": "crawled-282583",
+  "company": "㈜플레이파크",
+  "title": "[대구]성공을 함께할 게임기획자분을 모십니다.",
+  "role": "PM/운영",
+  "roles": [
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "UI/UX 기획",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282583",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메타버스 플랫폼, 모바일게임, VR게임",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, VR·AR",
+  "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정), 인턴직 후 정규직 전환 검토 (협의 후 결정)",
+  "deadline": "~ 08/13(목)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "레벨, 컨셉, 게임기획, PM, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, UI·UX",
+  "updatedAt": "2026-07-13",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-13T17:14:11.928Z",
+  "lastSeenAt": "2026-07-13T17:14:11.928Z",
+  "lastCrawledAt": "2026-07-13T17:14:11.928Z",
+  "inactiveAt": null
+}

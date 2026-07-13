@@ -1,0 +1,36 @@
+{
+  "id": "crawled-282622",
+  "company": "세리스 스튜디오",
+  "title": "[세리스 스튜디오] 캐릭터 3D 의상 모델러 모집 [계약/정규직]",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "ZBrush",
+    "Unity",
+    "Photoshop"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282622",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임 VR·AR, 메타버스",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 2개월)",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 맵핑, 모델링, 로우폴리곤, 3DSmax, 캐릭터, 텍스쳐, Zbrush, Max, blender",
+  "updatedAt": "2026-07-13",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-13T17:14:11.928Z",
+  "lastSeenAt": "2026-07-13T17:14:11.928Z",
+  "lastCrawledAt": "2026-07-13T17:14:11.928Z",
+  "inactiveAt": null
+}

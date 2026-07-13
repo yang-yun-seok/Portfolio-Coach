@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282500",
+  "company": "슈퍼센트 (Supercent)",
+  "title": "AI Native Game PD(3년 이상)",
+  "role": "PM/운영",
+  "roles": [
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "Machine Learning"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282500",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "XP Hero, Burger Please!, Pizza Ready!, Snake Clash",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 게임기획, PD, AI, 기획, 모바일게임, 라이브",
+  "updatedAt": "2026-07-13",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-13T17:14:11.928Z",
+  "lastSeenAt": "2026-07-13T17:14:11.928Z",
+  "lastCrawledAt": "2026-07-13T17:14:11.928Z",
+  "inactiveAt": null
+}
