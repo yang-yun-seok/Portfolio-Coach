@@ -1,24 +1,14 @@
 import {
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  setDoc,
-} from 'firebase/firestore';
-import {
-  getDownloadURL,
-  ref,
-  uploadBytes,
-} from 'firebase/storage';
-import { firebaseDb, firebaseStorage, isFirebaseAuthEnabled } from './firebase-client';
-import { buildAuthorizedHeaders } from './auth-fetch';
-import { apiUrl } from './runtime-config';
+  isFirebaseAuthEnabled,
+  loadFirebaseFirestore,
+  loadFirebaseStorage,
+} from './firebase-client';
 
 const MAX_PORTFOLIO_FILES = 5;
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
 
 function assertFirebaseSubmissionReady() {
-  if (!isFirebaseAuthEnabled || !firebaseDb || !firebaseStorage) {
+  if (!isFirebaseAuthEnabled) {
     throw new Error('Firebase 제출 기능이 아직 활성화되지 않았습니다.');
   }
 }
@@ -33,11 +23,11 @@ function assertPdfFile(file, label) {
   }
 }
 
-async function uploadSingleFile({ uid, submissionId, file, path, kind }) {
+async function uploadSingleFile({ storageClient, uid, submissionId, file, path, kind }) {
   if (!file) return null;
   assertPdfFile(file, kind);
-  const objectRef = ref(firebaseStorage, `portfolio-submissions/${uid}/${submissionId}/${path}`);
-  await uploadBytes(objectRef, file, {
+  const objectRef = storageClient.ref(storageClient.storage, `portfolio-submissions/${uid}/${submissionId}/${path}`);
+  await storageClient.uploadBytes(objectRef, file, {
     contentType: 'application/pdf',
     customMetadata: {
       submissionKind: kind,
@@ -46,7 +36,7 @@ async function uploadSingleFile({ uid, submissionId, file, path, kind }) {
   return {
     fileName: file.name,
     storagePath: objectRef.fullPath,
-    url: await getDownloadURL(objectRef),
+    url: await storageClient.getDownloadURL(objectRef),
     size: file.size,
     type: file.type || 'application/pdf',
   };
@@ -82,8 +72,16 @@ export async function createPortfolioSubmission({
   assertPdfFile(coverLetterFile, '자기소개서');
   const accountDisplayName = userProfile?.studentName || userProfile?.displayName || authUser.displayName || '';
 
-  const submissionsRef = collection(firebaseDb, 'portfolioSubmissions');
-  const submissionRef = doc(submissionsRef);
+  const [firestore, storageClient] = await Promise.all([
+    loadFirebaseFirestore(),
+    loadFirebaseStorage(),
+  ]);
+  if (!firestore || !storageClient) {
+    throw new Error('Firebase 제출 저장소를 준비하지 못했습니다.');
+  }
+
+  const submissionsRef = firestore.collection(firestore.db, 'portfolioSubmissions');
+  const submissionRef = firestore.doc(submissionsRef);
   const submissionId = submissionRef.id;
   const baseSubmission = {
     userId: authUser.uid,
@@ -111,8 +109,8 @@ export async function createPortfolioSubmission({
         score: job.score || 0,
       }))
       : [],
-    createdAt: serverTimestamp(),
-    updatedAt: serverTimestamp(),
+    createdAt: firestore.serverTimestamp(),
+    updatedAt: firestore.serverTimestamp(),
     submittedAtIso: new Date().toISOString(),
     submittedByRole: userProfile?.role || 'user',
     fileCounts: {
@@ -123,6 +121,7 @@ export async function createPortfolioSubmission({
   };
 
   const uploadedResume = await uploadSingleFile({
+    storageClient,
     uid: authUser.uid,
     submissionId,
     file: resumeFile,
@@ -130,6 +129,7 @@ export async function createPortfolioSubmission({
     kind: 'resume',
   });
   const uploadedCoverLetter = await uploadSingleFile({
+    storageClient,
     uid: authUser.uid,
     submissionId,
     file: coverLetterFile,
@@ -140,6 +140,7 @@ export async function createPortfolioSubmission({
   for (let index = 0; index < trimmedPortfolioFiles.length; index += 1) {
     const file = trimmedPortfolioFiles[index];
     uploadedPortfolioFiles.push(await uploadSingleFile({
+      storageClient,
       uid: authUser.uid,
       submissionId,
       file,
@@ -154,27 +155,27 @@ export async function createPortfolioSubmission({
     portfolio: uploadedPortfolioFiles.filter(Boolean),
   };
 
-  await setDoc(submissionRef, {
+  await firestore.setDoc(submissionRef, {
     ...baseSubmission,
     files: uploadedFiles,
   });
 
-  await addDoc(collection(firebaseDb, 'submissionEvents'), {
+  await firestore.addDoc(firestore.collection(firestore.db, 'submissionEvents'), {
     submissionId,
     actorId: authUser.uid,
     actorRole: userProfile?.role || 'user',
     type: 'submitted',
     note: '사용자 제출 생성',
-    createdAt: serverTimestamp(),
+    createdAt: firestore.serverTimestamp(),
   });
 
-  await addDoc(collection(firebaseDb, 'submissionEvents'), {
+  await firestore.addDoc(firestore.collection(firestore.db, 'submissionEvents'), {
     submissionId,
     actorId: authUser.uid,
     actorRole: userProfile?.role || 'user',
     type: 'files_uploaded',
     note: `이력서 ${uploadedResume ? 1 : 0}, 자기소개서 ${uploadedCoverLetter ? 1 : 0}, 포트폴리오 ${uploadedPortfolioFiles.length}`,
-    createdAt: serverTimestamp(),
+    createdAt: firestore.serverTimestamp(),
   });
 
   return {
@@ -183,18 +184,4 @@ export async function createPortfolioSubmission({
     coverLetterFile: uploadedFiles.coverLetter,
     portfolioFiles: uploadedFiles.portfolio,
   };
-}
-
-export async function listMyPortfolioSubmissions(getAccessToken) {
-  const headers = await buildAuthorizedHeaders(getAccessToken);
-  const response = await fetch(apiUrl('api/me/submissions'), {
-    headers,
-  });
-  const data = await response.json().catch(() => ({}));
-
-  if (!response.ok) {
-    throw new Error(data.error || '제출 내역을 불러오지 못했습니다.');
-  }
-
-  return Array.isArray(data.submissions) ? data.submissions : [];
 }

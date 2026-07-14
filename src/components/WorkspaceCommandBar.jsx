@@ -15,6 +15,7 @@ export default function WorkspaceCommandBar({
   onOpenGuide,
   onOpenModelSettings,
   onOpenSettings,
+  onPrefetchTab,
   onRequestLogin,
   onSelectInput,
   onSelectTab,
@@ -119,6 +120,8 @@ export default function WorkspaceCommandBar({
                       type="button"
                       role="menuitem"
                       className={`coach-top-nav-item ${isActive ? 'is-active' : ''}`}
+                      onFocus={() => onPrefetchTab?.(item.id)}
+                      onMouseEnter={() => onPrefetchTab?.(item.id)}
                       onClick={() => handleSelectTab(item.id)}
                     >
                       <item.icon size={15} />

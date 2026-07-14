@@ -10,16 +10,11 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import {
-  doc,
-  getDoc,
-  setDoc,
-} from 'firebase/firestore';
-import {
   firebaseAuth,
   firebaseConfigIssues,
-  firebaseDb,
   isFirebaseAuthEnabled,
   isFirebaseClientReady,
+  loadFirebaseFirestore,
 } from '../lib/firebase-client';
 
 const DEFAULT_ROLE = 'user';
@@ -63,7 +58,7 @@ export function useFirebaseSession() {
       return undefined;
     }
 
-    if (!isFirebaseClientReady || !firebaseAuth || !firebaseDb) {
+    if (!isFirebaseClientReady || !firebaseAuth) {
       setAuthLoading(false);
       setAuthError('로그인 설정이 완전하지 않습니다. 관리자에게 문의해 주세요.');
       return undefined;
@@ -95,8 +90,11 @@ export function useFirebaseSession() {
       }
 
       try {
-        const userRef = doc(firebaseDb, 'users', nextUser.uid);
-        const snapshot = await getDoc(userRef);
+        const firestore = await loadFirebaseFirestore();
+        if (!firestore) throw new Error('Firebase 프로필 저장소를 준비하지 못했습니다.');
+        if (!active) return;
+        const userRef = firestore.doc(firestore.db, 'users', nextUser.uid);
+        const snapshot = await firestore.getDoc(userRef);
         const baseProfile = {
           email: nextUser.email || '',
           displayName: nextUser.displayName || '',
@@ -113,7 +111,7 @@ export function useFirebaseSession() {
           ? { ...baseProfile, ...snapshot.data(), lastLoginAt: new Date().toISOString(), authProvider: GOOGLE_PROVIDER_ID }
           : baseProfile;
 
-        await setDoc(userRef, nextProfile, { merge: true });
+        await firestore.setDoc(userRef, nextProfile, { merge: true });
         if (!active) return;
         setUserProfile(nextProfile);
       } catch (error) {
@@ -158,7 +156,7 @@ export function useFirebaseSession() {
   }, []);
 
   const updateUserDisplayName = useCallback(async (name) => {
-    if (!firebaseAuth?.currentUser || !firebaseDb) {
+    if (!firebaseAuth?.currentUser) {
       throw new Error('로그인 정보가 없습니다.');
     }
 
@@ -171,6 +169,8 @@ export function useFirebaseSession() {
     }
 
     const currentUser = firebaseAuth.currentUser;
+    const firestore = await loadFirebaseFirestore();
+    if (!firestore) throw new Error('Firebase 프로필 저장소를 준비하지 못했습니다.');
     const updatedAt = new Date().toISOString();
     const nextProfilePatch = {
       displayName: trimmedName,
@@ -184,7 +184,11 @@ export function useFirebaseSession() {
     };
 
     await updateProfile(currentUser, { displayName: trimmedName });
-    await setDoc(doc(firebaseDb, 'users', currentUser.uid), nextProfilePatch, { merge: true });
+    await firestore.setDoc(
+      firestore.doc(firestore.db, 'users', currentUser.uid),
+      nextProfilePatch,
+      { merge: true },
+    );
     setAuthUser(currentUser);
     setUserProfile((currentProfile) => ({
       ...(currentProfile || {}),

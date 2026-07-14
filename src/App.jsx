@@ -1,4 +1,5 @@
 ﻿import React, { useState, useEffect, useRef } from 'react';
+import { lazy, Suspense } from 'react';
 import {
   FileText, Image as ImageIcon, Target, MessageSquare,
   CheckCircle, Loader2,
@@ -32,19 +33,30 @@ import { useModels } from './hooks/useModels';
 import { usePortfolioSubmissions } from './hooks/usePortfolioSubmissions';
 import { useWorkspacePersistence } from './hooks/useWorkspacePersistence';
 import { fetchAdminOverview } from './lib/admin-api';
-import AccountNameModal from './components/AccountNameModal';
 import AuthGate from './components/AuthGate';
 import { EMPTY_INSTRUCTOR } from './components/InstructorFeedbackForm';
 import WorkspaceCommandBar from './components/WorkspaceCommandBar';
-import WorkspaceContent from './components/WorkspaceContent';
+import WorkspaceContent, { prefetchWorkspace } from './components/WorkspaceContent';
 import WorkspaceFeatureHeader from './components/WorkspaceFeatureHeader';
 import WorkspaceMessages from './components/WorkspaceMessages';
 import WorkspaceProgressPanel from './components/WorkspaceProgressPanel';
-import CompanyInfoModal from './components/CompanyInfoModal';
-import ModelSettingsModal from './components/ModelSettingsModal';
-import SettingsModal from './components/SettingsModal';
+import LazyLoadBoundary from './components/LazyLoadBoundary';
 import TrackEntryGate from './components/TrackEntryGate';
-import UserGuideModal from './components/UserGuideModal';
+
+const AccountNameModal = lazy(() => import('./components/AccountNameModal'));
+const CompanyInfoModal = lazy(() => import('./components/CompanyInfoModal'));
+const ModelSettingsModal = lazy(() => import('./components/ModelSettingsModal'));
+const SettingsModal = lazy(() => import('./components/SettingsModal'));
+const UserGuideModal = lazy(() => import('./components/UserGuideModal'));
+
+function ModalLoadingFallback() {
+  return (
+    <div className="coach-lazy-modal-fallback" role="status" aria-live="polite">
+      <Loader2 size={20} className="animate-spin" />
+      <span>화면을 준비하고 있습니다.</span>
+    </div>
+  );
+}
 
 const TRACK_ENTRY_STORAGE_KEY = 'portfolio-coach-track-entry-v1';
 const ADMIN_UNLOCK_STORAGE_KEY = 'portfolio-coach-admin-mode-unlocked-v1';
@@ -1231,6 +1243,7 @@ const { analyzeApplication } = useApplicationAnalysis({
         onOpenGuide={() => setShowUserGuide(true)}
         onOpenModelSettings={() => setShowModelSettings(true)}
         onOpenSettings={() => setShowSettings(true)}
+        onPrefetchTab={prefetchWorkspace}
         onRequestLogin={handleRequestLogin}
         onSelectInput={() => setActiveTab('home')}
         onSelectTab={setActiveTab}
@@ -1293,57 +1306,73 @@ const { analyzeApplication } = useApplicationAnalysis({
       </div>
       )}
 
-      <CompanyInfoModal
-        company={selectedCompanyModal}
-        onClose={() => setSelectedCompanyModal(null)}
-      />
+      <LazyLoadBoundary
+        resetKey={`${Boolean(selectedCompanyModal)}-${showUserGuide}-${showAccountNameModal}-${showSettings}-${showModelSettings}`}
+        variant="modal"
+      >
+        <Suspense fallback={<ModalLoadingFallback />}>
+          {selectedCompanyModal ? (
+            <CompanyInfoModal
+              company={selectedCompanyModal}
+              onClose={() => setSelectedCompanyModal(null)}
+            />
+          ) : null}
 
-      <UserGuideModal
-        open={showUserGuide}
-        onClose={() => setShowUserGuide(false)}
-        roleGroup={normalizedUserInfo.roleGroup}
-        guidePlaybook={guidePlaybook}
-      />
+          {showUserGuide ? (
+            <UserGuideModal
+              open
+              onClose={() => setShowUserGuide(false)}
+              roleGroup={normalizedUserInfo.roleGroup}
+              guidePlaybook={guidePlaybook}
+            />
+          ) : null}
 
-      <AccountNameModal
-        authUser={authUser}
-        onClose={() => setShowAccountNameModal(false)}
-        onSave={handleSaveAccountName}
-        open={showAccountNameModal}
-        userProfile={userProfile}
-      />
+          {showAccountNameModal ? (
+            <AccountNameModal
+              authUser={authUser}
+              onClose={() => setShowAccountNameModal(false)}
+              onSave={handleSaveAccountName}
+              open
+              userProfile={userProfile}
+            />
+          ) : null}
 
-      {/* ?? ?? ?? ??????????????????????????????????????????????? */}
-      <SettingsModal
-        adminModeUnlocked={adminModeUnlocked}
-        jobs={jobs}
-        jobsMetadata={jobsMetadata}
-        onClose={() => setShowSettings(false)}
-        onGoToAdmin={handleGoToAdminMode}
-        onGoToJobs={() => {
-          setShowSettings(false);
-          setActiveTab('jobs');
-        }}
-        onLockAdminMode={handleLockAdminMode}
-        onUnlockAdminMode={handleUnlockAdminMode}
-        open={showSettings}
-      />
+          {showSettings ? (
+            <SettingsModal
+              adminModeUnlocked={adminModeUnlocked}
+              jobs={jobs}
+              jobsMetadata={jobsMetadata}
+              onClose={() => setShowSettings(false)}
+              onGoToAdmin={handleGoToAdminMode}
+              onGoToJobs={() => {
+                setShowSettings(false);
+                setActiveTab('jobs');
+              }}
+              onLockAdminMode={handleLockAdminMode}
+              onUnlockAdminMode={handleUnlockAdminMode}
+              open
+            />
+          ) : null}
 
-      <ModelSettingsModal
-        currentProvider={currentProvider}
-        disabledProviders={disabledProviders}
-        enabledProviders={enabledProviders}
-        modelsLoading={modelsLoading}
-        onApiKeyChange={handleApiKeyChange}
-        onApiKeyDelete={handleApiKeyDelete}
-        onClose={() => setShowModelSettings(false)}
-        onModelChange={setSelectedModelId}
-        onProviderChange={handleProviderChange}
-        open={showModelSettings}
-        providerApiKey={selectedApiKey}
-        selectedModelId={selectedModelId}
-        selectedProvider={selectedProvider}
-      />
+          {showModelSettings ? (
+            <ModelSettingsModal
+              currentProvider={currentProvider}
+              disabledProviders={disabledProviders}
+              enabledProviders={enabledProviders}
+              modelsLoading={modelsLoading}
+              onApiKeyChange={handleApiKeyChange}
+              onApiKeyDelete={handleApiKeyDelete}
+              onClose={() => setShowModelSettings(false)}
+              onModelChange={setSelectedModelId}
+              onProviderChange={handleProviderChange}
+              open
+              providerApiKey={selectedApiKey}
+              selectedModelId={selectedModelId}
+              selectedProvider={selectedProvider}
+            />
+          ) : null}
+        </Suspense>
+      </LazyLoadBoundary>
       </div>
     </AuthGate>
   );

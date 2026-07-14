@@ -1,16 +1,46 @@
-import React from 'react';
-import { FileText, Image as ImageIcon, MessageSquare } from 'lucide-react';
-import AdminWorkspace from './AdminWorkspace';
-import FeedbackWorkspace from './FeedbackWorkspace';
-import InputWorkspace from './InputWorkspace';
-import InterviewReadinessWorkspace from './InterviewReadinessWorkspace';
-import InterviewWorkspace from './InterviewWorkspace';
-import JobAnalysisWorkspace from './JobAnalysisWorkspace';
-import JobsWorkspace from './JobsWorkspace';
-import PersonalityTest from './PersonalityTest';
-import PdfExport from './PdfExport';
-import PortfolioWorkspace from './PortfolioWorkspace';
+import React, { lazy, Suspense, useRef } from 'react';
+import { FileText, Image as ImageIcon, Loader2, MessageSquare } from 'lucide-react';
+import LazyLoadBoundary from './LazyLoadBoundary';
 import StudentHomeWorkspace from './StudentHomeWorkspace';
+
+const workspaceLoaders = {
+  admin: () => import('./AdminWorkspace'),
+  feedback: () => import('./FeedbackWorkspace'),
+  input: () => import('./InputWorkspace'),
+  'interview-basic': () => import('./InterviewReadinessWorkspace'),
+  interview: () => import('./InterviewWorkspace'),
+  'job-analysis': () => import('./JobAnalysisWorkspace'),
+  jobs: () => import('./JobsWorkspace'),
+  'personality-test': () => import('./PersonalityTest'),
+  'pdf-export': () => import('./PdfExport'),
+  portfolio: () => import('./PortfolioWorkspace'),
+};
+
+const AdminWorkspace = lazy(workspaceLoaders.admin);
+const FeedbackWorkspace = lazy(workspaceLoaders.feedback);
+const InputWorkspace = lazy(workspaceLoaders.input);
+const InterviewReadinessWorkspace = lazy(workspaceLoaders['interview-basic']);
+const InterviewWorkspace = lazy(workspaceLoaders.interview);
+const JobAnalysisWorkspace = lazy(workspaceLoaders['job-analysis']);
+const JobsWorkspace = lazy(workspaceLoaders.jobs);
+const PersonalityTest = lazy(workspaceLoaders['personality-test']);
+const PdfExport = lazy(workspaceLoaders['pdf-export']);
+const PortfolioWorkspace = lazy(workspaceLoaders.portfolio);
+
+export function prefetchWorkspace(tabId) {
+  const loader = workspaceLoaders[tabId];
+  if (!loader) return;
+  void loader().catch(() => {});
+}
+
+function WorkspaceLoadingFallback() {
+  return (
+    <div className="coach-workspace-loading" role="status" aria-live="polite">
+      <Loader2 size={20} className="animate-spin" />
+      <span>화면을 준비하고 있습니다.</span>
+    </div>
+  );
+}
 
 function renderEmptyState(icon, title, desc, onGoToInput) {
   return (
@@ -45,8 +75,12 @@ export default function WorkspaceContent({
   results,
   studentHomeProps,
 }) {
+  const mountedTabsRef = useRef(new Set());
+  if (activeTab === 'personality-test') mountedTabsRef.current.add('personality-test');
+
   return (
-    <>
+    <LazyLoadBoundary resetKey={activeTab}>
+    <Suspense fallback={<WorkspaceLoadingFallback />}>
       {activeTab === 'home' && (
         <StudentHomeWorkspace {...studentHomeProps} />
       )}
@@ -89,13 +123,16 @@ export default function WorkspaceContent({
         <InterviewReadinessWorkspace {...interviewReadinessWorkspaceProps} />
       )}
 
-      <div style={{ display: activeTab === 'personality-test' ? 'block' : 'none' }}>
-        <PersonalityTest {...personalityTestProps} />
-      </div>
+      {mountedTabsRef.current.has('personality-test') ? (
+        <div style={{ display: activeTab === 'personality-test' ? 'block' : 'none' }}>
+          <PersonalityTest {...personalityTestProps} />
+        </div>
+      ) : null}
 
       {activeTab === 'pdf-export' && (
         <PdfExport {...pdfExportProps} />
       )}
-    </>
+    </Suspense>
+    </LazyLoadBoundary>
   );
 }

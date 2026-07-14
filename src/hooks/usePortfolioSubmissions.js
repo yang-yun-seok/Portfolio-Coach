@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { createPortfolioSubmission, listMyPortfolioSubmissions } from '../lib/firebase-submissions';
+import { listMyPortfolioSubmissions } from '../lib/submission-api';
 
 export function usePortfolioSubmissions({
   authEnabled,
@@ -50,6 +50,7 @@ export function usePortfolioSubmissions({
     setSubmissionError('');
     setSubmissionSuccess('');
     try {
+      const { createPortfolioSubmission } = await import('../lib/firebase-submissions');
       const result = await createPortfolioSubmission({
         authUser,
         userProfile,

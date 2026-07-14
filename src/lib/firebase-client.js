@@ -1,7 +1,5 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
 
 const defaultFirebaseConfig = {
   apiKey: 'AIzaSyDczghe5VLmhp9wFKKZZVzZOWO196B1jmE',
@@ -34,19 +32,53 @@ export const isFirebaseClientReady = !isFirebaseAuthEnabled || firebaseConfigIss
 
 let firebaseApp = null;
 let firebaseAuth = null;
-let firebaseDb = null;
-let firebaseStorage = null;
+let firestoreClientPromise = null;
+let storageClientPromise = null;
 
 if (isFirebaseAuthEnabled && firebaseConfigIssues.length === 0) {
   firebaseApp = initializeApp(firebaseConfig);
   firebaseAuth = getAuth(firebaseApp);
-  firebaseDb = getFirestore(firebaseApp);
-  firebaseStorage = getStorage(firebaseApp);
+}
+
+export async function loadFirebaseFirestore() {
+  if (!firebaseApp) return null;
+  if (!firestoreClientPromise) {
+    firestoreClientPromise = import('firebase/firestore')
+      .then((firestore) => ({
+        addDoc: firestore.addDoc,
+        collection: firestore.collection,
+        db: firestore.getFirestore(firebaseApp),
+        doc: firestore.doc,
+        getDoc: firestore.getDoc,
+        serverTimestamp: firestore.serverTimestamp,
+        setDoc: firestore.setDoc,
+      }))
+      .catch((error) => {
+        firestoreClientPromise = null;
+        throw error;
+      });
+  }
+  return firestoreClientPromise;
+}
+
+export async function loadFirebaseStorage() {
+  if (!firebaseApp) return null;
+  if (!storageClientPromise) {
+    storageClientPromise = import('firebase/storage')
+      .then((storageModule) => ({
+        getDownloadURL: storageModule.getDownloadURL,
+        ref: storageModule.ref,
+        storage: storageModule.getStorage(firebaseApp),
+        uploadBytes: storageModule.uploadBytes,
+      }))
+      .catch((error) => {
+        storageClientPromise = null;
+        throw error;
+      });
+  }
+  return storageClientPromise;
 }
 
 export {
-  firebaseApp,
   firebaseAuth,
-  firebaseDb,
-  firebaseStorage,
 };
