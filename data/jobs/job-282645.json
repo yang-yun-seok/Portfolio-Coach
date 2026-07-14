@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282645",
+  "company": "㈜제이에스플럭스",
+  "title": "언리얼 엔진 5 기반 디지털 트윈/CPS 클라이언트 개발자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "Unreal Engine",
+    "Git/SVN",
+    "데이터 분석"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282645",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "관련없음 Simulation, 관련없음",
+  "employmentType": "정규직",
+  "deadline": "~ 08/14(금)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "C++, Unreal, 언리얼4, 디지털트윈, DT",
+  "updatedAt": "2026-07-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastCrawledAt": "2026-07-14T22:06:37.663Z",
+  "inactiveAt": null
+}

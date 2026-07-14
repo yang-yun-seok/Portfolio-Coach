@@ -1,7 +1,7 @@
 {
-  "id": "crawled-281222",
+  "id": "crawled-282661",
   "company": "㈜크로노스튜디오",
-  "title": "[Chrono Odyssey] 콘텐츠 영상 애니메이터 모집 (계약직, 3개월)",
+  "title": "[Chrono Odyssey] 콘텐츠 애니메이터 모집",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
@@ -11,24 +11,24 @@
     "3ds Max",
     "Maya"
   ],
-  "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281222",
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282661",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "Chrono Odyssey",
   "gameCategory": "콘솔게임, 멀티플랫폼게임 RPG, 기타",
-  "employmentType": "계약직 (계약기간 : 3개월)",
+  "employmentType": "정규직",
   "deadline": "채용시 마감",
   "salary": "면접 시 협의\n연봉검색",
-  "experience": "신입",
+  "experience": "경력 3년 이상",
   "keywords": "3D, 3DSmax, 캐릭터, 애니메이션, 3DMax, Maya, 오브젝트, KeyAnimation, 영상제작·편집, Max, 마케팅, 영상, 컷씬, 나이아가라, UE5",
-  "updatedAt": "2026-06-10",
+  "updatedAt": "2026-07-14",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-10T22:59:27.902Z",
-  "lastSeenAt": "2026-07-13T17:14:11.928Z",
-  "lastCrawledAt": "2026-07-13T17:14:11.928Z",
+  "firstSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastCrawledAt": "2026-07-14T22:06:37.663Z",
   "inactiveAt": null
 }

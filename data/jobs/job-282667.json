@@ -1,17 +1,17 @@
 {
-  "id": "crawled-279034",
+  "id": "crawled-282667",
   "company": "㈜그라비티 네오싸이언",
-  "title": "[그라비티네오싸이언] 신규 MMORPG 전 분야 모집(AD, 원화)",
+  "title": "[그라비티네오싸이언] 신규 MMORPG 전 분야 추가 모집(이펙터)",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
   ],
   "reqSkills": [
-    "Illustrator",
-    "Photoshop"
+    "3ds Max",
+    "Unity"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279034",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282667",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "라그나로크모바일/위빌드스토리/퍼즐앤드래곤",
@@ -20,14 +20,14 @@
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
-  "keywords": "원화, 일러스트, 캐릭터원화, 배경원화, 몬스터, 캐릭터, AD",
-  "updatedAt": "2026-05-26",
+  "keywords": "3DSmax, 이펙트, FX, 시네마틱, 스토리보드아트",
+  "updatedAt": "2026-07-14",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-07-13T17:14:11.928Z",
-  "lastCrawledAt": "2026-07-13T17:14:11.928Z",
+  "firstSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastCrawledAt": "2026-07-14T22:06:37.663Z",
   "inactiveAt": null
 }

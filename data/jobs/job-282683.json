@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282683",
+  "company": "프롬서울",
+  "title": "[3D 아바타테크 스타트업] 3D 의상 모델러 (전환형 계약직/경력) - 서브컬처",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "ZBrush",
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282683",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 Casual, VR·AR",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 1년)",
+  "deadline": "~ 09/14(월)",
+  "salary": "3,400~3,600만원 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 모델링, 로우폴리곤, 3DSmax, 캐릭터, 텍스쳐, 하이폴리곤, Zbrush, Unity, 게임, 유니티, 블렌더, PBR, blender, 서브컬쳐, 블랜더, 툰쉐이더",
+  "updatedAt": "2026-07-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastCrawledAt": "2026-07-14T22:06:37.663Z",
+  "inactiveAt": null
+}

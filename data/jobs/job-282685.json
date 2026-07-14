@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282685",
+  "company": "스콘",
+  "title": "[SCON] 버추얼 캐릭터 솔루션 유니티 개발자 (신입)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282685",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "미츄 meechu",
+  "gameCategory": "멀티플랫폼게임 VR·AR",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, 게임프로그래밍, 게임프로그래머, VR, AR",
+  "updatedAt": "2026-07-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastCrawledAt": "2026-07-14T22:06:37.663Z",
+  "inactiveAt": null
+}

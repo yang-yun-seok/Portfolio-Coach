@@ -1,5 +1,5 @@
 {
-  "id": "crawled-278967",
+  "id": "crawled-282671",
   "company": "㈜크로노스튜디오",
   "title": "[Chrono Odyssey] 배경 레벨 아티스트 모집",
   "role": "아트/UI",
@@ -17,7 +17,7 @@
     "Unreal Engine"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=278967",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282671",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "Chrono Odyssey",
@@ -27,13 +27,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "3D, 인터페이스, 배경, 레벨, 맵핑, 원화, 일러스트, 컨셉, 배경원화, 포토샵, 핸드드로잉, 모델링, 3DSmax, 텍스쳐, Zbrush, Max, 언리얼",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-07-14",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-07-13T17:14:11.928Z",
-  "lastCrawledAt": "2026-07-13T17:14:11.928Z",
+  "firstSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastCrawledAt": "2026-07-14T22:06:37.663Z",
   "inactiveAt": null
 }

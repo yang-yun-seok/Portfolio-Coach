@@ -1,5 +1,5 @@
 {
-  "id": "crawled-279914",
+  "id": "crawled-282657",
   "company": "㈜기어세컨드",
   "title": "[레츠고 레전드!] 기획자",
   "role": "기획",
@@ -13,7 +13,7 @@
     "시스템/컨텐츠 기획"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279914",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282657",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "슬레이어 키우기, 레츠고 레전드!",
@@ -23,13 +23,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "모바일, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-07-14",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-07-13T17:14:11.928Z",
-  "lastCrawledAt": "2026-07-13T17:14:11.928Z",
+  "firstSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastSeenAt": "2026-07-14T22:06:37.663Z",
+  "lastCrawledAt": "2026-07-14T22:06:37.663Z",
   "inactiveAt": null
 }
