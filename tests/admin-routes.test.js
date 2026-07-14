@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
+  buildAttachmentDisposition,
   createAdminRouter,
   matchesAdminModePassword,
   parseAdminUnlock,
@@ -69,4 +70,25 @@ test('admin unlock endpoint requires administrator authentication first', () => 
   });
 
   assert.equal(routeMiddleware(router, '/api/admin/unlock')[0], requireAdmin);
+});
+
+test('admin submission file endpoint requires administrator authentication first', () => {
+  const requireAdmin = () => {};
+  const router = createAdminRouter({
+    firebaseAdminService: {},
+    authMiddleware: { requireAdmin },
+    adminModePassword: TEST_ADMIN_PASSWORD,
+  });
+
+  assert.equal(
+    routeMiddleware(router, '/api/admin/submissions/:submissionId/files/:fileKey')[0],
+    requireAdmin,
+  );
+});
+
+test('attachment disposition removes header injection and preserves UTF-8 names', () => {
+  const disposition = buildAttachmentDisposition('학생\r\n이력서.pdf');
+  assert.doesNotMatch(disposition, /[\r\n]/);
+  assert.match(disposition, /^attachment; filename="_____\.pdf";/);
+  assert.match(disposition, /filename\*=UTF-8''%ED%95%99%EC%83%9D%EC%9D%B4%EB%A0%A5%EC%84%9C\.pdf$/);
 });

@@ -4,6 +4,8 @@ import {
   assertAdminUserAccessChange,
   createFirebaseAdminService,
   normalizePrivateKey,
+  resolveSubmissionFileDescriptor,
+  sanitizeSubmissionFiles,
   verifyFirebaseIdToken,
 } from '../server/services/firebase-admin-service.js';
 
@@ -81,6 +83,78 @@ test('assertAdminUserAccessChange protects the current admin and other admins', 
       targetRole: 'admin',
     }),
     (error) => error.statusCode === 409 && /관리자 계정 상태/.test(error.message),
+  );
+});
+
+test('sanitizeSubmissionFiles strips legacy download URLs and unknown fields', () => {
+  assert.deepEqual(sanitizeSubmissionFiles({
+    resume: {
+      fileName: 'resume.pdf',
+      storagePath: 'portfolio-submissions/student-1/submission-1/resume.pdf',
+      size: 1200,
+      type: 'application/pdf',
+      url: 'https://example.com/permanent-download-token',
+      unexpected: true,
+    },
+    coverLetter: null,
+    portfolio: [],
+  }), {
+    resume: {
+      fileName: 'resume.pdf',
+      storagePath: 'portfolio-submissions/student-1/submission-1/resume.pdf',
+      size: 1200,
+      type: 'application/pdf',
+    },
+    coverLetter: null,
+    portfolio: [],
+  });
+});
+
+test('resolveSubmissionFileDescriptor accepts only the expected owner path', () => {
+  const submission = {
+    userId: 'student-1',
+    files: {
+      resume: {
+        fileName: '이력서.pdf',
+        storagePath: 'portfolio-submissions/student-1/submission-1/resume.pdf',
+        size: 1200,
+        type: 'application/pdf',
+      },
+      coverLetter: null,
+      portfolio: [],
+    },
+  };
+
+  assert.equal(resolveSubmissionFileDescriptor({
+    submissionId: 'submission-1',
+    submission,
+    fileKey: 'resume',
+  }).fileName, '이력서.pdf');
+
+  assert.throws(
+    () => resolveSubmissionFileDescriptor({
+      submissionId: 'submission-1',
+      submission: {
+        ...submission,
+        files: {
+          ...submission.files,
+          resume: {
+            ...submission.files.resume,
+            storagePath: 'portfolio-submissions/another-user/submission-1/resume.pdf',
+          },
+        },
+      },
+      fileKey: 'resume',
+    }),
+    (error) => error.statusCode === 409 && /경로/.test(error.message),
+  );
+  assert.throws(
+    () => resolveSubmissionFileDescriptor({
+      submissionId: 'submission-1',
+      submission,
+      fileKey: '../../secret',
+    }),
+    (error) => error.statusCode === 400 && /지원하지 않는/.test(error.message),
   );
 });
 

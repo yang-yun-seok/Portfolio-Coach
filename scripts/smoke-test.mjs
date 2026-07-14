@@ -119,8 +119,18 @@ function createSmokeAdminOverview() {
       submittedAtIso,
       fileCounts: { resume: 1, coverLetter: 0, portfolio: 1 },
       files: {
-        resume: { fileName: 'resume.pdf', size: 124000, url: 'https://example.com/resume.pdf' },
-        portfolio: [{ fileName: 'portfolio.pdf', size: 4120000, url: 'https://example.com/portfolio.pdf' }],
+        resume: {
+          fileName: 'resume.pdf',
+          storagePath: 'portfolio-submissions/student-1/submission-1/resume.pdf',
+          size: 124000,
+          type: 'application/pdf',
+        },
+        portfolio: [{
+          fileName: 'portfolio.pdf',
+          storagePath: 'portfolio-submissions/student-1/submission-1/portfolio-1.pdf',
+          size: 4120000,
+          type: 'application/pdf',
+        }],
       },
       latestAnalysisSummary: 'Unity 프로젝트의 역할과 성과를 수치 중심으로 보완하면 좋습니다.',
       latestRecommendedJobsSnapshot: [{ id: 'job-1', company: 'Studio A', title: '클라이언트 개발자', score: 88 }],
@@ -276,6 +286,7 @@ async function run() {
     const pageErrors = [];
     const scriptRequests = [];
     let adminAccessPatchCount = 0;
+    let adminFileDownloadCount = 0;
     const { currentSnapshot, previousSnapshot } = createSmokeSeed();
     const adminOverview = createSmokeAdminOverview();
 
@@ -372,6 +383,18 @@ async function run() {
           status: 200,
           contentType: 'application/json',
           body: JSON.stringify({ user: { ...currentUser, uid, active: payload.active } }),
+        });
+        return;
+      }
+      if (request.method() === 'GET' && request.url().includes('/api/admin/submissions/submission-1/files/resume')) {
+        adminFileDownloadCount += 1;
+        void request.respond({
+          status: 200,
+          contentType: 'application/pdf',
+          headers: {
+            'Content-Disposition': "attachment; filename=resume.pdf; filename*=UTF-8''resume.pdf",
+          },
+          body: Buffer.from('%PDF-1.4 smoke test'),
         });
         return;
       }
@@ -699,6 +722,12 @@ async function run() {
     if (!adminDesktopState.hasAccessControls) throw new Error('Admin account access controls not found.');
     if (adminDesktopState.overflowX) throw new Error('Horizontal overflow detected on admin workspace.');
     if (captureScreenshots) await page.screenshot({ path: 'prod-admin-desktop.png', fullPage: true });
+
+    const fileDownloadButton = await page.$('.coach-admin-file-link');
+    if (!fileDownloadButton) throw new Error('Authenticated submission file download button not found.');
+    await fileDownloadButton.click();
+    await page.waitForFunction(() => document.body.innerText.includes('제출 파일을 받았습니다.'), { timeout: 5000 });
+    if (adminFileDownloadCount !== 1) throw new Error(`Unexpected file download request count: ${adminFileDownloadCount}.`);
 
     const accessButton = await page.$('.coach-admin-access-button.is-disable');
     if (!accessButton) throw new Error('Student account disable button not found.');
