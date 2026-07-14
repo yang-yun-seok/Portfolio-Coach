@@ -52,6 +52,7 @@ function getActionDescription(state) {
   if (!state.hasProfile) return '지원 직무와 보유 역량을 먼저 정리하세요.';
   if (state.documentCount === 0) return '분석할 이력서나 포트폴리오를 첨부하세요.';
   if (!state.hasResults) return '현재 자료를 기준으로 지원 전략을 분석할 차례입니다.';
+  if (!state.hasSubmission && !state.submissionAvailable) return '검토 요청 기능을 준비하는 동안 분석 결과를 바탕으로 자료를 보완하세요.';
   if (!state.hasSubmission) return '분석 결과를 확인했다면 담당자 검토를 요청하세요.';
   if (state.latestSubmission?.status === 'rejected') return '담당자 피드백을 확인하고 보완할 항목을 정리하세요.';
   if (state.latestSubmission?.status === 'reviewed') return '도착한 검토 결과를 확인하고 다음 준비를 이어가세요.';
@@ -80,6 +81,7 @@ export default function StudentHomeWorkspace({
   recommendedJobs,
   results,
   resumeFile,
+  submissionAvailable,
   submissionSaving,
   submissions,
   submissionsLoading,
@@ -92,6 +94,7 @@ export default function StudentHomeWorkspace({
     portfolioFiles,
     results,
     resumeFile,
+    submissionAvailable,
     submissions,
     submissionSaving,
   });

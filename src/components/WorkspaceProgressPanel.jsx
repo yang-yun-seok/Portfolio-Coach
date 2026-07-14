@@ -39,6 +39,7 @@ export default function WorkspaceProgressPanel({
   recommendedJobs,
   results,
   resumeFile,
+  submissionAvailable,
   submissionSaving,
   submissions,
   userProfile,
@@ -50,6 +51,7 @@ export default function WorkspaceProgressPanel({
     portfolioFiles,
     results,
     resumeFile,
+    submissionAvailable,
     submissions,
     submissionSaving,
   });
@@ -127,7 +129,7 @@ export default function WorkspaceProgressPanel({
             <ClipboardCheck size={15} />
             추천 공고 {recommendedJobs.length > 0 ? `${recommendedJobs.length}` : ''}
           </button>
-          <button type="button" onClick={() => onSelectTab('portfolio')} disabled={!state.hasResults}>
+          <button type="button" onClick={() => onSelectTab('portfolio')} disabled={!state.hasResults || !state.submissionAvailable}>
             <Send size={15} />
             제출
           </button>

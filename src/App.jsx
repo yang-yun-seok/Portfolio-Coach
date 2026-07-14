@@ -31,6 +31,7 @@ import { useApplicationAnalysis } from './hooks/useApplicationAnalysis';
 import { useFirebaseSession } from './hooks/useFirebaseSession';
 import { useModels } from './hooks/useModels';
 import { usePortfolioSubmissions } from './hooks/usePortfolioSubmissions';
+import { useSiteCapabilities } from './hooks/useSiteCapabilities';
 import { useWorkspacePersistence } from './hooks/useWorkspacePersistence';
 import { fetchAdminOverview } from './lib/admin-api';
 import AuthGate from './components/AuthGate';
@@ -214,6 +215,8 @@ function generateInterviewQuestionsLocal(topJobs, user) {
 export default function App() {
   // ── 모델 관련 (서버에서 동적 로드) ──────────────────────────────────────
   const { enabledProviders, disabledProviders, loading: modelsLoading, getDefaultModel } = useModels();
+  const siteCapabilities = useSiteCapabilities();
+  const submissionCapability = siteCapabilities.portfolioSubmissions;
   const {
     authEnabled,
     authError,
@@ -524,6 +527,7 @@ export default function App() {
     portfolioFiles,
     results,
     recommendedJobs,
+    submissionCapability,
   });
 
   const handleProviderChange = (providerId) => {
@@ -1034,6 +1038,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     portfolioFiles,
     resultPlaybook,
     results,
+    submissionCapability,
     submissionError,
     submissionSaving,
     submissionSuccess,
@@ -1093,6 +1098,7 @@ const { analyzeApplication } = useApplicationAnalysis({
   const adminWorkspaceProps = {
     getAccessToken: isSmokeMode ? async () => 'local-smoke-token' : getAccessToken,
     isAdmin: isAdminModeActive,
+    submissionCapability,
     userProfile,
   };
   const studentHomeProps = {
@@ -1107,6 +1113,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     recommendedJobs,
     results,
     resumeFile,
+    submissionAvailable: submissionCapability?.enabled !== false,
     submissionSaving,
     submissions,
     submissionsLoading,
@@ -1127,6 +1134,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     recommendedJobs,
     results,
     resumeFile,
+    submissionAvailable: submissionCapability?.enabled !== false,
     submissionSaving,
     submissions,
     userProfile,

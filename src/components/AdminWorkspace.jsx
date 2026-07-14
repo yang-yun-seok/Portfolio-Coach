@@ -222,6 +222,7 @@ function Metric({ icon: Icon, label, value, helper }) {
 export default function AdminWorkspace({
   getAccessToken,
   isAdmin,
+  submissionCapability,
   userProfile,
 }) {
   const [overview, setOverview] = useState({ summary: {}, submissions: [], users: [] });
@@ -520,6 +521,16 @@ export default function AdminWorkspace({
           <span>학생 {summary.totalUsers || 0}명</span>
         </div>
       </header>
+
+      {submissionCapability?.enabled === false ? (
+        <div className="coach-admin-notice is-warning" role="status">
+          <AlertCircle size={16} className="mt-0.5 shrink-0" />
+          <span>
+            <strong>파일 제출 준비 필요</strong>
+            Firebase Storage 버킷 생성과 Storage 규칙 배포를 마친 뒤 Render의 <code>PORTFOLIO_UPLOADS_ENABLED</code>를 <code>true</code>로 설정하세요.
+          </span>
+        </div>
+      ) : null}
 
       <section className="coach-admin-metrics" aria-label="제출 운영 요약">
         <Metric icon={FileText} label="전체 제출" value={`${summary.totalSubmissions || 0}건`} helper={`최근 제출 ${formatDateTime(summary.latestSubmittedAtIso)}`} />

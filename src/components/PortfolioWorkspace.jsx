@@ -46,6 +46,7 @@ export default function PortfolioWorkspace({
   portfolioFiles,
   resultPlaybook,
   results,
+  submissionCapability,
   submissionError,
   submissionSaving,
   submissionSuccess,
@@ -210,6 +211,7 @@ export default function PortfolioWorkspace({
       <PortfolioSubmissionPanel
         authEnabled={authEnabled}
         authUser={authUser}
+        submissionCapability={submissionCapability}
         submissionError={submissionError}
         submissionSaving={submissionSaving}
         submissionSuccess={submissionSuccess}

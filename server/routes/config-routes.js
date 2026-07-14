@@ -12,6 +12,10 @@ export function createConfigRouter({ configService }) {
     return res.json(result);
   });
 
+  router.get('/api/capabilities', (req, res) => {
+    res.json(configService.getCapabilitiesResponse());
+  });
+
   router.get('/api/prompts/interview-basic', (req, res) => {
     res.json(configService.getInterviewBasicPrompts());
   });

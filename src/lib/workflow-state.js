@@ -17,6 +17,7 @@ export function getWorkflowState({
   portfolioFiles,
   results,
   resumeFile,
+  submissionAvailable = true,
   submissionSaving,
   submissions,
 }) {
@@ -41,6 +42,7 @@ export function getWorkflowState({
     loading,
     skillCount,
     submissionCount,
+    submissionAvailable,
     submissionSaving,
   };
 }
@@ -55,6 +57,7 @@ export function getStepState(stepId, state) {
   }
   if (stepId === 'submit') {
     if (state.hasSubmission) return 'done';
+    if (!state.submissionAvailable) return 'pending';
     return state.hasResults ? 'active' : 'pending';
   }
   if (stepId === 'review') {
@@ -73,6 +76,7 @@ export function getStepMeta(stepId, state) {
   }
   if (stepId === 'submit') {
     if (state.submissionSaving) return '진행 중';
+    if (!state.submissionAvailable && !state.hasSubmission) return '담당자 준비 중';
     return state.hasSubmission ? `${state.submissionCount}건` : '준비 후 가능';
   }
   if (stepId === 'review') {
@@ -87,6 +91,7 @@ export function getPrimaryWorkflowAction(state) {
   if (!state.hasProfile) return { label: '정보 입력하기', tab: 'input' };
   if (state.documentCount === 0) return { label: '자료 첨부하기', tab: 'input' };
   if (!state.hasResults) return { label: state.loading ? '분석 진행 중' : 'AI 분석 시작', tab: 'input', analyze: true };
+  if (!state.submissionAvailable && !state.hasSubmission) return { label: '분석 결과 보완', tab: 'feedback' };
   if (!state.hasSubmission) return { label: '제출 화면 열기', tab: 'portfolio' };
   if (state.latestSubmission?.status === 'rejected') {
     return { label: '보완 내용 확인', tab: 'portfolio' };

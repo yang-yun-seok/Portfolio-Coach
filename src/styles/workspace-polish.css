@@ -811,6 +811,33 @@
   color: var(--coach-danger);
 }
 
+.coach-submission-notice.is-pending,
+.coach-admin-notice.is-warning {
+  border-color: #f0d7aa;
+  background: #fff9ed;
+  color: var(--coach-warning);
+}
+
+.coach-admin-notice.is-warning span {
+  display: block;
+  min-width: 0;
+}
+
+.coach-admin-notice.is-warning strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--coach-ink);
+}
+
+.coach-admin-notice.is-warning code {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(120, 73, 0, 0.08);
+  color: #7a4a00;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
 .coach-submission-history-head {
   display: flex;
   align-items: flex-start;

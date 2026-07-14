@@ -1,10 +1,11 @@
 const trimTrailingSlash = (value = '') => value.replace(/\/+$/, '');
 const trimLeadingSlash = (value = '') => value.replace(/^\/+/, '');
+const viteEnv = import.meta.env || {};
 
-export const APP_BASE_URL = import.meta.env.BASE_URL || '/';
-export const API_BASE_URL = trimTrailingSlash(import.meta.env.VITE_API_BASE_URL || '');
+export const APP_BASE_URL = viteEnv.BASE_URL || '/';
+export const API_BASE_URL = trimTrailingSlash(viteEnv.VITE_API_BASE_URL || '');
 export const SUPABASE_URL = trimTrailingSlash(
-  import.meta.env.VITE_SUPABASE_URL || 'https://pkwbqbxuujpcvndpacsc.supabase.co'
+  viteEnv.VITE_SUPABASE_URL || 'https://pkwbqbxuujpcvndpacsc.supabase.co'
 );
 
 export function staticAssetUrl(path) {

@@ -1,6 +1,10 @@
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
+export function isEnabledFlag(value) {
+  return String(value || '').trim().toLowerCase() === 'true';
+}
+
 export function createConfigService({ baseDir, isDev, fetchImpl }) {
   const cache = {
     prompts: null,
@@ -136,6 +140,16 @@ export function createConfigService({ baseDir, isDev, fetchImpl }) {
     return loadPrompts().interviewBasic || [];
   }
 
+  function getCapabilitiesResponse() {
+    const submissionUploadsEnabled = isEnabledFlag(process.env.PORTFOLIO_UPLOADS_ENABLED);
+    return {
+      portfolioSubmissions: {
+        enabled: submissionUploadsEnabled,
+        status: submissionUploadsEnabled ? 'ready' : 'not_configured',
+      },
+    };
+  }
+
   async function validateKey({ provider, apiKey, modelId }) {
     if (!provider || (provider !== 'gemini' && !apiKey)) {
       return { valid: false, error: '제공자와 API 키를 모두 입력해 주세요.' };
@@ -228,6 +242,7 @@ export function createConfigService({ baseDir, isDev, fetchImpl }) {
     fetchWithRetry,
     getModelsResponse,
     getInterviewBasicPrompts,
+    getCapabilitiesResponse,
     validateKey,
     getEnabledProviders,
   };

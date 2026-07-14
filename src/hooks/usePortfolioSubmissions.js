@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { listMyPortfolioSubmissions } from '../lib/submission-api';
+import { getReadableSubmissionError } from '../lib/submission-upload-utils';
 
 export function usePortfolioSubmissions({
   authEnabled,
@@ -12,6 +13,7 @@ export function usePortfolioSubmissions({
   portfolioFiles,
   results,
   recommendedJobs,
+  submissionCapability,
 }) {
   const [submissions, setSubmissions] = useState([]);
   const [submissionsLoading, setSubmissionsLoading] = useState(false);
@@ -45,6 +47,11 @@ export function usePortfolioSubmissions({
     if (!authEnabled) {
       throw new Error('로그인 기능이 아직 활성화되지 않았습니다.');
     }
+    if (submissionCapability?.enabled !== true) {
+      const unavailableError = new Error('자료 제출은 현재 준비 중입니다. 담당자에게 문의해 주세요.');
+      setSubmissionError(unavailableError.message);
+      throw unavailableError;
+    }
 
     setSubmissionSaving(true);
     setSubmissionError('');
@@ -65,8 +72,10 @@ export function usePortfolioSubmissions({
       await reloadSubmissions();
       return result;
     } catch (error) {
-      setSubmissionError(error.message || '제출에 실패했습니다.');
-      throw error;
+      const message = getReadableSubmissionError(error);
+      setSubmissionError(message);
+      if (message === error.message) throw error;
+      throw new Error(message, { cause: error });
     } finally {
       setSubmissionSaving(false);
     }
@@ -79,6 +88,7 @@ export function usePortfolioSubmissions({
     reloadSubmissions,
     results,
     resumeFile,
+    submissionCapability,
     userInfo,
     userProfile,
   ]);
