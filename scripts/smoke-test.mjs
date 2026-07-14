@@ -281,6 +281,16 @@ async function run() {
     await page.setRequestInterception(true);
     page.on('request', (request) => {
       if (request.resourceType() === 'script') scriptRequests.push(request.url());
+      if (request.url().includes('/api/capabilities')) {
+        void request.respond({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            portfolioSubmissions: { enabled: false, status: 'not_configured' },
+          }),
+        });
+        return;
+      }
       if (request.method() === 'PATCH' && request.url().includes('/api/admin/users/')) {
         adminAccessPatchCount += 1;
         const uid = decodeURIComponent(request.url().split('/').pop() || '');
@@ -430,10 +440,14 @@ async function run() {
     const portfolioLayoutState = await page.evaluate(() => ({
       hasFocusMode: !!document.querySelector('.coach-body-shell.is-focus-mode'),
       hasDuplicateProgress: !!document.querySelector('.coach-progress-panel'),
+      hasPendingNotice: document.querySelector('.coach-submission-notice.is-pending')?.innerText.includes('자료 제출은 현재 준비 중입니다.'),
+      submitDisabled: document.querySelector('.coach-submission-primary')?.disabled === true,
       overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
     }));
     if (!portfolioLayoutState.hasFocusMode) throw new Error('Portfolio focus layout not applied.');
     if (portfolioLayoutState.hasDuplicateProgress) throw new Error('Duplicate progress panel is visible on portfolio view.');
+    if (!portfolioLayoutState.hasPendingNotice) throw new Error('Submission availability notice not found.');
+    if (!portfolioLayoutState.submitDisabled) throw new Error('Submission action remained enabled without storage readiness.');
     if (portfolioLayoutState.overflowX) throw new Error('Horizontal overflow detected on portfolio view.');
     if (scriptRequests.length <= initialScriptCount) throw new Error('Portfolio workspace was not loaded from a separate chunk.');
     if (captureScreenshots) await page.screenshot({ path: 'prod-portfolio-desktop.png', fullPage: true });
@@ -529,11 +543,13 @@ async function run() {
     await sleep(400);
     const adminDesktopState = await page.evaluate(() => ({
       hasFocusMode: !!document.querySelector('.coach-body-shell.is-focus-mode'),
+      hasStorageReadinessNotice: document.querySelector('.coach-admin-notice.is-warning')?.innerText.includes('파일 제출 준비 필요'),
       hasAccessControls: [...document.querySelectorAll('.coach-admin-access-button')]
         .some((button) => button.innerText.includes('이용 중지')),
       overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
     }));
     if (!adminDesktopState.hasFocusMode) throw new Error('Admin focus layout not applied.');
+    if (!adminDesktopState.hasStorageReadinessNotice) throw new Error('Admin storage readiness notice not found.');
     if (!adminDesktopState.hasAccessControls) throw new Error('Admin account access controls not found.');
     if (adminDesktopState.overflowX) throw new Error('Horizontal overflow detected on admin workspace.');
     if (captureScreenshots) await page.screenshot({ path: 'prod-admin-desktop.png', fullPage: true });

@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   getPrimaryWorkflowAction,
+  getStepMeta,
   getStepState,
   getWorkflowState,
   WORKFLOW_STEPS,
@@ -39,6 +40,17 @@ test('AI results do not complete instructor review', () => {
   assert.equal(getStepState('submit', state), 'active');
   assert.equal(getStepState('review', state), 'pending');
   assert.deepEqual(getPrimaryWorkflowAction(state), { label: '제출 화면 열기', tab: 'portfolio' });
+});
+
+test('unavailable submissions keep the workflow actionable without exposing an upload failure', () => {
+  const state = buildState({
+    results: { profileAnalysis: {} },
+    submissionAvailable: false,
+  });
+
+  assert.equal(getStepState('submit', state), 'pending');
+  assert.equal(getStepMeta('submit', state), '담당자 준비 중');
+  assert.deepEqual(getPrimaryWorkflowAction(state), { label: '분석 결과 보완', tab: 'feedback' });
 });
 
 test('submitted portfolio waits for review and keeps status as the primary action', () => {
