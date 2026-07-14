@@ -4,7 +4,6 @@ import {
   CheckCircle2,
   Clock3,
   Download,
-  ExternalLink,
   FileText,
   FolderOpen,
   Loader2,
@@ -19,6 +18,7 @@ import {
   UsersRound,
 } from 'lucide-react';
 import {
+  downloadAdminSubmissionFile,
   fetchAdminOverview,
   updateAdminSubmissionReview,
   updateAdminUserAccess,
@@ -95,9 +95,10 @@ function getUserDisplayName(user) {
 
 function flattenFiles(files = {}) {
   return [
-    files.resume ? { label: '이력서', ...files.resume } : null,
-    files.coverLetter ? { label: '자기소개서', ...files.coverLetter } : null,
+    files.resume ? { key: 'resume', label: '이력서', ...files.resume } : null,
+    files.coverLetter ? { key: 'coverLetter', label: '자기소개서', ...files.coverLetter } : null,
     ...(Array.isArray(files.portfolio) ? files.portfolio.map((file, index) => ({
+      key: `portfolio-${index + 1}`,
       label: `포트폴리오 ${index + 1}`,
       ...file,
     })) : []),
@@ -167,7 +168,7 @@ function downloadCsv(filename, rows) {
   URL.revokeObjectURL(url);
 }
 
-function FileLinks({ files }) {
+function FileLinks({ files, onDownload, downloadingFileKey }) {
   const fileRows = flattenFiles(files);
 
   if (fileRows.length === 0) {
@@ -177,11 +178,11 @@ function FileLinks({ files }) {
   return (
     <div className="grid gap-2">
       {fileRows.map((file) => (
-        <a
-          key={`${file.label}-${file.storagePath || file.url || file.fileName}`}
-          href={file.url}
-          target="_blank"
-          rel="noreferrer"
+        <button
+          type="button"
+          key={`${file.label}-${file.storagePath || file.fileName}`}
+          onClick={() => onDownload(file)}
+          disabled={Boolean(downloadingFileKey)}
           className="coach-admin-file-link"
         >
           <span className="flex min-w-0 items-center gap-2">
@@ -190,9 +191,9 @@ function FileLinks({ files }) {
           </span>
           <span className="flex shrink-0 items-center gap-2 text-xs text-slate-400">
             {formatBytes(file.size)}
-            <ExternalLink size={13} />
+            {downloadingFileKey === file.key ? <Loader2 size={13} className="animate-spin" /> : <Download size={13} />}
           </span>
-        </a>
+        </button>
       ))}
     </div>
   );
@@ -237,6 +238,7 @@ export default function AdminWorkspace({
   const [savingSubmissionId, setSavingSubmissionId] = useState('');
   const [updatingUserId, setUpdatingUserId] = useState('');
   const [confirmingUserId, setConfirmingUserId] = useState('');
+  const [downloadingFileKey, setDownloadingFileKey] = useState('');
 
   const loadOverview = useCallback(async () => {
     if (!isAdmin) return;
@@ -431,6 +433,34 @@ export default function AdminWorkspace({
       ]),
     ];
     downloadCsv(`portfolio-submissions-${new Date().toISOString().slice(0, 10)}.csv`, rows);
+  };
+
+  const handleDownloadSubmissionFile = async (file) => {
+    if (!selectedSubmission?.id || !file?.key) return;
+    setDownloadingFileKey(file.key);
+    setError('');
+    setActionMessage('');
+
+    try {
+      const { blob, fileName } = await downloadAdminSubmissionFile(
+        getAccessToken,
+        selectedSubmission.id,
+        file.key,
+      );
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement('a');
+      anchor.href = url;
+      anchor.download = fileName || file.fileName || `${file.key}.pdf`;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 0);
+      setActionMessage('제출 파일을 받았습니다.');
+    } catch (downloadError) {
+      setError(downloadError.message || '제출 파일을 받지 못했습니다.');
+    } finally {
+      setDownloadingFileKey('');
+    }
   };
 
   const handleUpdateUserAccess = async (user) => {
@@ -709,7 +739,11 @@ export default function AdminWorkspace({
                     <FolderOpen size={16} className="text-slate-400" />
                     <h5 className="font-bold text-slate-900">제출 파일</h5>
                   </div>
-                  <FileLinks files={selectedSubmission.files} />
+                  <FileLinks
+                    files={selectedSubmission.files}
+                    onDownload={handleDownloadSubmissionFile}
+                    downloadingFileKey={downloadingFileKey}
+                  />
                 </div>
 
                 <div className="border-t border-slate-200 pt-4">

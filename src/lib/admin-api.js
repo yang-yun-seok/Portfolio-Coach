@@ -9,6 +9,20 @@ async function readApiResponse(response, fallbackMessage) {
   return data;
 }
 
+function getResponseFileName(contentDisposition, fallbackName) {
+  const encodedMatch = String(contentDisposition || '').match(/filename\*=UTF-8''([^;]+)/i);
+  if (encodedMatch) {
+    try {
+      return decodeURIComponent(encodedMatch[1]);
+    } catch {
+      // Fall through to the plain filename value.
+    }
+  }
+
+  const plainMatch = String(contentDisposition || '').match(/filename="?([^";]+)"?/i);
+  return plainMatch?.[1] || fallbackName;
+}
+
 export async function unlockAdminMode(getAccessToken, password) {
   const headers = await buildAuthorizedHeaders(getAccessToken, {
     'Content-Type': 'application/json',
@@ -48,6 +62,25 @@ export async function updateAdminSubmissionReview(getAccessToken, submissionId, 
   const data = await readApiResponse(response, '제출 검토 정보를 저장하지 못했습니다.');
 
   return data.submission || null;
+}
+
+export async function downloadAdminSubmissionFile(getAccessToken, submissionId, fileKey) {
+  const headers = await buildAuthorizedHeaders(getAccessToken);
+  const response = await fetch(apiUrl(
+    `api/admin/submissions/${encodeURIComponent(submissionId)}/files/${encodeURIComponent(fileKey)}`,
+  ), { headers });
+
+  if (!response.ok) {
+    await readApiResponse(response, '제출 파일을 받지 못했습니다.');
+  }
+
+  return {
+    blob: await response.blob(),
+    fileName: getResponseFileName(
+      response.headers.get('Content-Disposition'),
+      `${fileKey}.pdf`,
+    ),
+  };
 }
 
 export async function updateAdminUserAccess(getAccessToken, uid, active) {

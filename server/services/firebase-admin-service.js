@@ -1,6 +1,7 @@
 import { cert, getApps, initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { FieldValue, getFirestore } from 'firebase-admin/firestore';
+import { getStorage } from 'firebase-admin/storage';
 
 const PRIVATE_KEY_BEGIN = '-----BEGIN PRIVATE KEY-----';
 const PRIVATE_KEY_END = '-----END PRIVATE KEY-----';
@@ -100,6 +101,10 @@ function buildFirebaseConfig() {
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL || serviceAccount.client_email || serviceAccount.clientEmail || '',
     privateKey: envPrivateKey || serviceAccountPrivateKey,
     privateKeyCandidates: [...new Set([envPrivateKey, serviceAccountPrivateKey].filter(Boolean))],
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET
+      || serviceAccount.storage_bucket
+      || serviceAccount.storageBucket
+      || `${process.env.FIREBASE_PROJECT_ID || serviceAccount.project_id || serviceAccount.projectId || ''}.firebasestorage.app`,
   };
 }
 
@@ -129,6 +134,73 @@ function isValidFirestoreDocumentId(value) {
     && !/^__.*__$/.test(value);
 }
 
+function createServiceError(message, statusCode) {
+  const error = new Error(message);
+  error.statusCode = statusCode;
+  return error;
+}
+
+function sanitizeSubmissionFile(file) {
+  if (!file || typeof file !== 'object' || Array.isArray(file)) return null;
+  return {
+    fileName: String(file.fileName || ''),
+    storagePath: String(file.storagePath || ''),
+    size: Number(file.size) || 0,
+    type: String(file.type || 'application/pdf'),
+  };
+}
+
+export function sanitizeSubmissionFiles(files = {}) {
+  const portfolio = Array.isArray(files?.portfolio)
+    ? files.portfolio.slice(0, 5).map(sanitizeSubmissionFile).filter(Boolean)
+    : [];
+  return {
+    resume: sanitizeSubmissionFile(files?.resume),
+    coverLetter: sanitizeSubmissionFile(files?.coverLetter),
+    portfolio,
+  };
+}
+
+export function resolveSubmissionFileDescriptor({ submissionId, submission, fileKey }) {
+  const normalizedSubmissionId = String(submissionId || '').trim();
+  if (!isValidFirestoreDocumentId(normalizedSubmissionId)) {
+    throw createServiceError('올바른 제출 ID가 필요합니다.', 400);
+  }
+
+  const normalizedFileKey = String(fileKey || '').trim();
+  const files = sanitizeSubmissionFiles(submission?.files);
+  let descriptor;
+  let objectName;
+
+  if (normalizedFileKey === 'resume') {
+    descriptor = files.resume;
+    objectName = 'resume.pdf';
+  } else if (normalizedFileKey === 'coverLetter') {
+    descriptor = files.coverLetter;
+    objectName = 'cover-letter.pdf';
+  } else {
+    const portfolioMatch = normalizedFileKey.match(/^portfolio-([1-5])$/);
+    if (!portfolioMatch) {
+      throw createServiceError('지원하지 않는 제출 파일입니다.', 400);
+    }
+    const portfolioIndex = Number(portfolioMatch[1]) - 1;
+    descriptor = files.portfolio[portfolioIndex] || null;
+    objectName = `portfolio-${portfolioIndex + 1}.pdf`;
+  }
+
+  if (!descriptor) {
+    throw createServiceError('제출 파일을 찾을 수 없습니다.', 404);
+  }
+
+  const userId = String(submission?.userId || '').trim();
+  const expectedPath = `portfolio-submissions/${userId}/${normalizedSubmissionId}/${objectName}`;
+  if (!isValidFirestoreDocumentId(userId) || descriptor.storagePath !== expectedPath) {
+    throw createServiceError('제출 파일 경로가 올바르지 않습니다.', 409);
+  }
+
+  return descriptor;
+}
+
 function serializeSubmissionDoc(entry) {
   const data = serializeFirestoreValue(entry.data()) || {};
   return {
@@ -144,7 +216,7 @@ function serializeSubmissionDoc(entry) {
     subRole: data.subRole || '',
     submittedAtIso: data.submittedAtIso || data.createdAt || '',
     fileCounts: data.fileCounts || { resume: 0, coverLetter: 0, portfolio: 0 },
-    files: data.files || { resume: null, coverLetter: null, portfolio: [] },
+    files: sanitizeSubmissionFiles(data.files),
     studentFeedback: data.studentFeedback || '',
     studentFeedbackUpdatedAtIso: data.studentFeedbackUpdatedAtIso || '',
     adminMemo: data.adminMemo || '',
@@ -171,7 +243,6 @@ function serializeStudentSubmissionDoc(entry) {
     status: data.status || 'submitted',
     submittedAtIso: data.submittedAtIso || data.createdAt || '',
     fileCounts: data.fileCounts || { resume: 0, coverLetter: 0, portfolio: 0 },
-    files: data.files || { resume: null, coverLetter: null, portfolio: [] },
     studentFeedback: data.studentFeedback || '',
     studentFeedbackUpdatedAtIso: data.studentFeedbackUpdatedAtIso || '',
     reviewUpdatedAtIso: data.reviewUpdatedAtIso || '',
@@ -228,6 +299,7 @@ export function createFirebaseAdminService() {
   let initError = '';
   let auth = null;
   let db = null;
+  let storage = null;
 
   if (configReady) {
     for (const privateKey of config.privateKeyCandidates) {
@@ -239,9 +311,11 @@ export function createFirebaseAdminService() {
             privateKey,
           }),
           projectId: config.projectId,
+          storageBucket: config.storageBucket,
         });
         auth = getAuth(app);
         db = getFirestore(app);
+        storage = getStorage(app);
         initError = '';
         break;
       } catch (error) {
@@ -280,6 +354,13 @@ export function createFirebaseAdminService() {
       throw new Error(initError || 'Firebase Admin Firestore is not configured.');
     }
     return db;
+  }
+
+  function requireStorage() {
+    if (!storage || !configReady || !config.storageBucket) {
+      throw new Error(initError || 'Firebase Admin Storage is not configured.');
+    }
+    return storage;
   }
 
   async function listAdminUsers({ limit = 200 } = {}) {
@@ -326,6 +407,45 @@ export function createFirebaseAdminService() {
     return snapshot.docs
       .map(serializeStudentSubmissionDoc)
       .sort(sortBySubmittedAtDesc);
+  }
+
+  async function getAdminSubmissionFile({ submissionId, fileKey }) {
+    const firestore = requireFirestore();
+    const storageClient = requireStorage();
+    const normalizedSubmissionId = String(submissionId || '').trim();
+    if (!isValidFirestoreDocumentId(normalizedSubmissionId)) {
+      throw createServiceError('올바른 제출 ID가 필요합니다.', 400);
+    }
+
+    const snapshot = await firestore.collection('portfolioSubmissions').doc(normalizedSubmissionId).get();
+    if (!snapshot.exists) {
+      throw createServiceError('제출 내역을 찾을 수 없습니다.', 404);
+    }
+
+    const descriptor = resolveSubmissionFileDescriptor({
+      submissionId: normalizedSubmissionId,
+      submission: snapshot.data() || {},
+      fileKey,
+    });
+    const bucketFile = storageClient.bucket(config.storageBucket).file(descriptor.storagePath);
+
+    try {
+      const [metadata] = await bucketFile.getMetadata();
+      if (metadata.contentType && metadata.contentType !== 'application/pdf') {
+        throw createServiceError('PDF 형식의 제출 파일만 받을 수 있습니다.', 409);
+      }
+      return {
+        stream: bucketFile.createReadStream(),
+        fileName: descriptor.fileName || 'submission.pdf',
+        contentType: 'application/pdf',
+        contentLength: Number(metadata.size) || descriptor.size || 0,
+      };
+    } catch (error) {
+      if (Number(error?.code) === 404 || error?.code === 'storage/object-not-found') {
+        throw createServiceError('제출 파일을 찾을 수 없습니다.', 404);
+      }
+      throw error;
+    }
   }
 
   async function updateAdminSubmissionReview({
@@ -456,6 +576,7 @@ export function createFirebaseAdminService() {
     listAdminUsers,
     listAdminSubmissions,
     listUserSubmissions,
+    getAdminSubmissionFile,
     updateAdminSubmissionReview,
     updateAdminUserAccess,
   };

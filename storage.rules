@@ -20,7 +20,7 @@ service firebase.storage {
     }
 
     match /portfolio-submissions/{userId}/{submissionId}/{fileName} {
-      allow read: if ownsActiveAccount(userId);
+      allow read: if false;
 
       allow create: if ownsActiveAccount(userId)
         && isSubmissionFileName(fileName)

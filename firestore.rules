@@ -101,17 +101,45 @@ service cloud.firestore {
       ]);
     }
 
-    function submissionFilesAreValid() {
-      return request.resource.data.fileCounts is map
+    function submissionFileIsValid(file, expectedStoragePath) {
+      return file is map
+        && file.keys().hasAll(['fileName', 'storagePath', 'size', 'type'])
+        && file.keys().hasOnly(['fileName', 'storagePath', 'size', 'type'])
+        && file.fileName is string
+        && file.fileName.size() > 0
+        && file.fileName.size() <= 255
+        && file.storagePath == expectedStoragePath
+        && file.size is int
+        && file.size > 0
+        && file.size <= 10 * 1024 * 1024
+        && file.type == 'application/pdf';
+    }
+
+    function submissionFilesAreValid(submissionId) {
+      let files = request.resource.data.files;
+      let counts = request.resource.data.fileCounts;
+      let basePath = 'portfolio-submissions/' + request.auth.uid + '/' + submissionId + '/';
+      return counts is map
         && request.resource.data.fileCounts.keys().hasOnly(['resume', 'coverLetter', 'portfolio'])
-        && request.resource.data.fileCounts.resume in [0, 1]
-        && request.resource.data.fileCounts.coverLetter in [0, 1]
-        && request.resource.data.fileCounts.portfolio >= 0
-        && request.resource.data.fileCounts.portfolio <= 5
-        && request.resource.data.files is map
-        && request.resource.data.files.keys().hasOnly(['resume', 'coverLetter', 'portfolio'])
-        && request.resource.data.files.portfolio is list
-        && request.resource.data.files.portfolio.size() <= 5;
+        && request.resource.data.fileCounts.keys().hasAll(['resume', 'coverLetter', 'portfolio'])
+        && counts.resume in [0, 1]
+        && counts.coverLetter in [0, 1]
+        && counts.portfolio >= 0
+        && counts.portfolio <= 5
+        && files is map
+        && files.keys().hasOnly(['resume', 'coverLetter', 'portfolio'])
+        && files.keys().hasAll(['resume', 'coverLetter', 'portfolio'])
+        && files.portfolio is list
+        && files.portfolio.size() == counts.portfolio
+        && ((counts.resume == 0 && files.resume == null)
+          || (counts.resume == 1 && submissionFileIsValid(files.resume, basePath + 'resume.pdf')))
+        && ((counts.coverLetter == 0 && files.coverLetter == null)
+          || (counts.coverLetter == 1 && submissionFileIsValid(files.coverLetter, basePath + 'cover-letter.pdf')))
+        && (files.portfolio.size() < 1 || submissionFileIsValid(files.portfolio[0], basePath + 'portfolio-1.pdf'))
+        && (files.portfolio.size() < 2 || submissionFileIsValid(files.portfolio[1], basePath + 'portfolio-2.pdf'))
+        && (files.portfolio.size() < 3 || submissionFileIsValid(files.portfolio[2], basePath + 'portfolio-3.pdf'))
+        && (files.portfolio.size() < 4 || submissionFileIsValid(files.portfolio[3], basePath + 'portfolio-4.pdf'))
+        && (files.portfolio.size() < 5 || submissionFileIsValid(files.portfolio[4], basePath + 'portfolio-5.pdf'));
     }
 
     match /portfolioSubmissions/{submissionId} {
@@ -130,7 +158,7 @@ service cloud.firestore {
         && request.resource.data.skills.size() <= 30
         && request.resource.data.latestRecommendedJobsSnapshot is list
         && request.resource.data.latestRecommendedJobsSnapshot.size() <= 3
-        && submissionFilesAreValid()
+        && submissionFilesAreValid(submissionId)
         && request.resource.data.createdAt == request.time
         && request.resource.data.updatedAt == request.time;
 

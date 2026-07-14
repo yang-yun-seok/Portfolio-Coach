@@ -32,7 +32,6 @@ async function uploadSingleFile({ storageClient, uid, submissionId, file, path, 
   return {
     fileName: file.name,
     storagePath: objectRef.fullPath,
-    url: await storageClient.getDownloadURL(objectRef),
     size: file.size,
     type: file.type || 'application/pdf',
   };

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { createHash, timingSafeEqual } from 'node:crypto';
+import { pipeline } from 'node:stream/promises';
 
 const REVIEW_STATUSES = new Set(['submitted', 'reviewing', 'reviewed', 'rejected']);
 const MAX_ADMIN_MEMO_LENGTH = 2000;
@@ -16,6 +17,15 @@ function createHttpError(message, statusCode) {
   const error = new Error(message);
   error.statusCode = statusCode;
   return error;
+}
+
+export function buildAttachmentDisposition(fileName = 'submission.pdf') {
+  const normalizedName = String(fileName || '')
+    .replace(/[\r\n]/g, '')
+    .replace(/[\\/]/g, '_')
+    .trim() || 'submission.pdf';
+  const asciiName = normalizedName.replace(/[^\x20-\x7E]/g, '_').replace(/"/g, '');
+  return `attachment; filename="${asciiName}"; filename*=UTF-8''${encodeURIComponent(normalizedName)}`;
 }
 
 export function parseUserAccessPatch(body = {}) {
@@ -170,6 +180,31 @@ export function createAdminRouter({
     } catch (error) {
       res.status(error.statusCode || 500).json({
         error: error.message || '제출 검토 정보를 저장하지 못했습니다.',
+      });
+    }
+  });
+
+  router.get('/api/admin/submissions/:submissionId/files/:fileKey', authMiddleware.requireAdmin, async (req, res) => {
+    try {
+      const file = await firebaseAdminService.getAdminSubmissionFile({
+        submissionId: req.params.submissionId,
+        fileKey: req.params.fileKey,
+      });
+      res.setHeader('Content-Type', file.contentType || 'application/pdf');
+      res.setHeader('Content-Disposition', buildAttachmentDisposition(file.fileName));
+      res.setHeader('Cache-Control', 'private, no-store');
+      res.setHeader('X-Content-Type-Options', 'nosniff');
+      if (file.contentLength > 0) {
+        res.setHeader('Content-Length', String(file.contentLength));
+      }
+      await pipeline(file.stream, res);
+    } catch (error) {
+      if (res.headersSent) {
+        res.destroy(error);
+        return;
+      }
+      res.status(error.statusCode || 500).json({
+        error: error.message || '제출 파일을 받지 못했습니다.',
       });
     }
   });
