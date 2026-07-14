@@ -79,12 +79,15 @@ Render 서버 환경에서 아래 값을 설정합니다.
 - `FIREBASE_PROJECT_ID`
 - `FIREBASE_CLIENT_EMAIL`
 - `FIREBASE_PRIVATE_KEY`
+- `ADMIN_MODE_PASSWORD`
 
 Storage 준비 완료 후 설정:
 - `PORTFOLIO_UPLOADS_ENABLED=true`
 
 주의:
 - `FIREBASE_PRIVATE_KEY`는 줄바꿈이 `\n` 형태로 들어가도 코드에서 복원됩니다.
+- `ADMIN_MODE_PASSWORD`는 프런트 환경변수나 소스에 넣지 않고 Render 서버 환경변수로만 관리합니다.
+- 관리자 모드 진입은 Firebase의 `role: admin` 확인과 서버 비밀번호 검증을 모두 통과해야 합니다.
 
 ## 5. 서비스 계정 발급
 
