@@ -271,11 +271,13 @@ async function run() {
     const page = await browser.newPage();
     const consoleErrors = [];
     const pageErrors = [];
+    const scriptRequests = [];
     const { currentSnapshot, previousSnapshot } = createSmokeSeed();
     const adminOverview = createSmokeAdminOverview();
 
     await page.setRequestInterception(true);
     page.on('request', (request) => {
+      if (request.resourceType() === 'script') scriptRequests.push(request.url());
       if (request.url().includes('/api/admin/overview')) {
         void request.respond({
           status: 200,
@@ -336,6 +338,11 @@ async function run() {
     if (initialState.hasLegacyStepUi) throw new Error('Legacy step/progress UI is still present.');
     if (initialState.overflowX) throw new Error('Horizontal overflow detected on initial screen.');
     if (initialState.title !== 'Portfolio Coach') throw new Error(`Unexpected page title: ${initialState.title}`);
+
+    const initialScriptCount = scriptRequests.filter((url) => url.includes('/assets/') && url.endsWith('.js')).length;
+    if (initialScriptCount !== 1) {
+      throw new Error(`Expected one initial JavaScript entry, received ${initialScriptCount}.`);
+    }
 
     const homeLayoutState = await page.evaluate(() => ({
       hasWorkspace: !!document.querySelector('.coach-home-workspace'),
@@ -413,6 +420,7 @@ async function run() {
     if (!portfolioLayoutState.hasFocusMode) throw new Error('Portfolio focus layout not applied.');
     if (portfolioLayoutState.hasDuplicateProgress) throw new Error('Duplicate progress panel is visible on portfolio view.');
     if (portfolioLayoutState.overflowX) throw new Error('Horizontal overflow detected on portfolio view.');
+    if (scriptRequests.length <= initialScriptCount) throw new Error('Portfolio workspace was not loaded from a separate chunk.');
     if (captureScreenshots) await page.screenshot({ path: 'prod-portfolio-desktop.png', fullPage: true });
 
     console.log('[smoke] checking job analysis view');
