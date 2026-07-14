@@ -151,10 +151,10 @@
 .coach-admin-header h2 {
   margin: 7px 0 0;
   color: var(--coach-ink);
-  font-size: 28px;
+  font-size: 28px !important;
   font-weight: 780;
-  line-height: 1.25;
-  letter-spacing: 0;
+  line-height: 1.25 !important;
+  letter-spacing: 0 !important;
 }
 
 .coach-home-heading-copy > p:last-child,
@@ -162,8 +162,9 @@
   max-width: 660px;
   margin: 9px 0 0;
   color: var(--coach-muted);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0 !important;
 }
 
 .coach-home-primary,
@@ -1494,7 +1495,7 @@
 
   .coach-home-heading h2,
   .coach-admin-header h2 {
-    font-size: 23px;
+    font-size: 23px !important;
   }
 
   .coach-home-context {
