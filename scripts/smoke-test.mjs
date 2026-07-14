@@ -431,6 +431,26 @@ async function run() {
 
     await closeOpenMenu(page);
 
+    console.log('[smoke] checking student input role boundaries');
+    await clickTool(page, { id: 'input', label: '정보 입력' });
+    await page.waitForFunction(
+      () => !!document.querySelector('.coach-input-workspace'),
+      { timeout: 5000 },
+    );
+    const studentInputState = await page.evaluate(() => ({
+      hasInstructorTools: !!document.querySelector('.apple-instructor-form'),
+      hasFiveFileLimit: document.querySelector('.coach-input-doc-shell')?.innerText.includes('최대 5개'),
+      hasRequiredDocumentCopy: document.querySelector('.coach-input-doc-shell')?.innerText.includes('검토 요청 전 필요'),
+      hasEvaluationCriteria: document.querySelector('.coach-input-workspace')?.innerText.includes('평가 기준'),
+      overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    }));
+    if (studentInputState.hasInstructorTools) throw new Error('Instructor tools are visible in the student input workspace.');
+    if (!studentInputState.hasFiveFileLimit) throw new Error('Shared five-file portfolio limit is not visible.');
+    if (!studentInputState.hasRequiredDocumentCopy) throw new Error('Required document guidance is missing.');
+    if (studentInputState.hasEvaluationCriteria) throw new Error('Internal evaluation criteria copy is visible to students.');
+    if (studentInputState.overflowX) throw new Error('Horizontal overflow detected on student input view.');
+    if (captureScreenshots) await page.screenshot({ path: 'prod-input-desktop.png', fullPage: true });
+
     console.log('[smoke] checking portfolio submission view');
     await clickTool(page, { id: 'portfolio', label: 'Portfolio' });
     await page.waitForFunction(
@@ -499,6 +519,13 @@ async function run() {
       () => !!document.querySelector('.coach-pdf-page'),
       { timeout: 5000 },
     );
+    const studentPdfState = await page.evaluate(() => ({
+      hasInstructorCopy: document.querySelector('.coach-pdf-page')?.innerText.includes('강사 피드백'),
+      statusCount: document.querySelectorAll('.coach-pdf-status-card').length,
+    }));
+    if (studentPdfState.hasInstructorCopy) throw new Error('Instructor feedback copy is visible in the student PDF workspace.');
+    if (studentPdfState.statusCount !== 3) throw new Error(`Unexpected student PDF status count: ${studentPdfState.statusCount}.`);
+    if (captureScreenshots) await page.screenshot({ path: 'prod-pdf-desktop.png', fullPage: true });
 
     console.log('[smoke] checking mobile focus layouts');
     await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 });
@@ -515,6 +542,20 @@ async function run() {
     if (mobileHomeState.overflowX) throw new Error('Horizontal overflow detected on mobile student home.');
     if (mobileHomeState.headingFontSize > 24) throw new Error(`Student home heading is too large on mobile: ${mobileHomeState.headingFontSize}px.`);
     if (captureScreenshots) await page.screenshot({ path: 'prod-home-mobile.png', fullPage: true });
+
+    await clickTool(page, { id: 'input', label: '정보 입력' });
+    await page.waitForFunction(
+      () => !!document.querySelector('.coach-input-workspace'),
+      { timeout: 5000 },
+    );
+    await sleep(400);
+    const mobileInputState = await page.evaluate(() => ({
+      hasInstructorTools: !!document.querySelector('.apple-instructor-form'),
+      overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    }));
+    if (mobileInputState.hasInstructorTools) throw new Error('Instructor tools are visible on the mobile student input view.');
+    if (mobileInputState.overflowX) throw new Error('Horizontal overflow detected on mobile student input view.');
+    if (captureScreenshots) await page.screenshot({ path: 'prod-input-mobile.png', fullPage: true });
 
     await clickTool(page, { id: 'portfolio', label: 'Portfolio' });
     await page.waitForFunction(
@@ -535,6 +576,17 @@ async function run() {
       () => document.querySelectorAll('.coach-top-nav-trigger').length === 5,
       { timeout: 5000 },
     );
+    await clickTool(page, { id: 'input', label: '정보 입력' });
+    await page.waitForFunction(
+      () => !!document.querySelector('.apple-instructor-form'),
+      { timeout: 5000 },
+    );
+    const adminInputState = await page.evaluate(() => ({
+      hasInstructorTools: !!document.querySelector('.apple-instructor-form'),
+    }));
+    if (!adminInputState.hasInstructorTools) throw new Error('Instructor tools are unavailable in administrator mode.');
+    if (captureScreenshots) await page.screenshot({ path: 'prod-admin-input-desktop.png', fullPage: true });
+
     await clickTool(page, { id: 'admin', label: 'Admin' });
     await page.waitForFunction(
       () => document.querySelectorAll('.coach-admin-submission-row').length === 2,

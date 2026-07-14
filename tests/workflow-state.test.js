@@ -42,6 +42,11 @@ test('AI results do not complete instructor review', () => {
   assert.deepEqual(getPrimaryWorkflowAction(state), { label: '제출 화면 열기', tab: 'portfolio' });
 });
 
+test('missing documents are described as required before review submission', () => {
+  const state = buildState({ resumeFile: null });
+  assert.equal(getStepMeta('files', state), '검토 요청 전 필요');
+});
+
 test('unavailable submissions keep the workflow actionable without exposing an upload failure', () => {
   const state = buildState({
     results: { profileAnalysis: {} },
