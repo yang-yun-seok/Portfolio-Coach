@@ -1,0 +1,163 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function ownsAccount(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function userPath(userId) {
+      return /databases/$(database)/documents/users/$(userId);
+    }
+
+    function hasActiveAccount() {
+      return signedIn()
+        && exists(userPath(request.auth.uid))
+        && get(userPath(request.auth.uid)).data.active == true;
+    }
+
+    function accountRole() {
+      return get(userPath(request.auth.uid)).data.role;
+    }
+
+    function userFieldsAreAllowed() {
+      return request.resource.data.keys().hasOnly([
+        'email',
+        'displayName',
+        'photoURL',
+        'role',
+        'trackDefault',
+        'active',
+        'createdAt',
+        'lastLoginAt',
+        'authProvider',
+        'studentName',
+        'nameUpdatedAt',
+        'uid',
+        'adminGrantedAt',
+        'updatedAt'
+      ]);
+    }
+
+    match /users/{userId} {
+      allow read: if ownsAccount(userId);
+
+      allow create: if ownsAccount(userId)
+        && userFieldsAreAllowed()
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.role == 'user'
+        && request.resource.data.active == true
+        && request.resource.data.authProvider == 'google.com'
+        && !request.resource.data.keys().hasAny(['uid', 'adminGrantedAt', 'updatedAt']);
+
+      allow update: if ownsAccount(userId)
+        && userFieldsAreAllowed()
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.authProvider == 'google.com'
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'displayName',
+          'photoURL',
+          'trackDefault',
+          'createdAt',
+          'lastLoginAt',
+          'authProvider',
+          'studentName',
+          'nameUpdatedAt'
+        ]);
+
+      allow delete: if false;
+    }
+
+    function submissionFieldsAreAllowed() {
+      return request.resource.data.keys().hasOnly([
+        'userId',
+        'userEmail',
+        'userDisplayName',
+        'accountStudentName',
+        'applicantName',
+        'track',
+        'subRole',
+        'experience',
+        'title',
+        'summary',
+        'skills',
+        'githubUrl',
+        'status',
+        'adminMemo',
+        'studentFeedback',
+        'studentFeedbackUpdatedAtIso',
+        'latestAnalysisSummary',
+        'latestRecommendedJobsSnapshot',
+        'createdAt',
+        'updatedAt',
+        'submittedAtIso',
+        'submittedByRole',
+        'fileCounts',
+        'files'
+      ]);
+    }
+
+    function submissionFilesAreValid() {
+      return request.resource.data.fileCounts is map
+        && request.resource.data.fileCounts.keys().hasOnly(['resume', 'coverLetter', 'portfolio'])
+        && request.resource.data.fileCounts.resume in [0, 1]
+        && request.resource.data.fileCounts.coverLetter in [0, 1]
+        && request.resource.data.fileCounts.portfolio >= 0
+        && request.resource.data.fileCounts.portfolio <= 5
+        && request.resource.data.files is map
+        && request.resource.data.files.keys().hasOnly(['resume', 'coverLetter', 'portfolio'])
+        && request.resource.data.files.portfolio is list
+        && request.resource.data.files.portfolio.size() <= 5;
+    }
+
+    match /portfolioSubmissions/{submissionId} {
+      allow read: if false;
+
+      allow create: if hasActiveAccount()
+        && submissionFieldsAreAllowed()
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.userEmail == request.auth.token.email
+        && request.resource.data.status == 'submitted'
+        && request.resource.data.adminMemo == ''
+        && request.resource.data.studentFeedback == ''
+        && request.resource.data.studentFeedbackUpdatedAtIso == ''
+        && request.resource.data.submittedByRole == accountRole()
+        && request.resource.data.skills is list
+        && request.resource.data.skills.size() <= 30
+        && request.resource.data.latestRecommendedJobsSnapshot is list
+        && request.resource.data.latestRecommendedJobsSnapshot.size() <= 3
+        && submissionFilesAreValid()
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time;
+
+      allow update, delete: if false;
+    }
+
+    match /submissionEvents/{eventId} {
+      allow create: if hasActiveAccount()
+        && request.resource.data.keys().hasOnly([
+          'submissionId',
+          'actorId',
+          'actorRole',
+          'type',
+          'note',
+          'createdAt'
+        ])
+        && request.resource.data.actorId == request.auth.uid
+        && request.resource.data.actorRole == accountRole()
+        && request.resource.data.type in ['submitted', 'files_uploaded']
+        && get(/databases/$(database)/documents/portfolioSubmissions/$(request.resource.data.submissionId)).data.userId == request.auth.uid
+        && request.resource.data.createdAt == request.time;
+
+      allow read, update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
