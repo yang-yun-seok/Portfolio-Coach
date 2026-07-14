@@ -10,7 +10,7 @@
     "prebuild": "node scripts/generate-static-api.js",
     "build": "vite build",
     "lint": "eslint src server lib scripts tests eslint.config.js",
-    "test": "node --test tests/job-catalog.test.js tests/personality-utils.test.js tests/firebase-admin-service.test.js tests/auth-middleware.test.js tests/admin-api.test.js tests/admin-routes.test.js tests/analysis-routes.test.js tests/site-capabilities.test.js tests/submission-files.test.js tests/submission-upload-utils.test.js tests/workflow-state.test.js",
+    "test": "node --test tests/job-catalog.test.js tests/personality-utils.test.js tests/firebase-admin-service.test.js tests/auth-middleware.test.js tests/google-sign-in.test.js tests/admin-api.test.js tests/admin-routes.test.js tests/analysis-routes.test.js tests/site-capabilities.test.js tests/submission-files.test.js tests/submission-upload-utils.test.js tests/workflow-state.test.js",
     "test:bundle": "node scripts/check-bundle-budget.mjs",
     "test:smoke": "node scripts/smoke-test.mjs",
     "verify": "npm run lint && npm run test && npm run build && npm run test:bundle && npm run test:smoke",

@@ -279,6 +279,77 @@ async function run() {
     const { currentSnapshot, previousSnapshot } = createSmokeSeed();
     const adminOverview = createSmokeAdminOverview();
 
+    console.log('[smoke] checking stalled Google login recovery');
+    const authPage = await browser.newPage();
+    await authPage.setRequestInterception(true);
+    authPage.on('request', (request) => {
+      if (request.url().includes('/api/capabilities')) {
+        void request.respond({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({
+            portfolioSubmissions: { enabled: false, status: 'not_configured' },
+          }),
+        });
+        return;
+      }
+      void request.continue();
+    });
+    authPage.on('console', (message) => {
+      if (message.type() === 'error') consoleErrors.push(`[auth] ${message.text()}`);
+    });
+    authPage.on('pageerror', (error) => pageErrors.push(`[auth] ${error.message}`));
+
+    await authPage.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
+    await authPage.goto(`${baseUrl}?smoke=auth`, { waitUntil: 'networkidle0', timeout: 45000 });
+    await authPage.click('.coach-auth-form > button');
+    await authPage.waitForSelector('.coach-auth-recovery', { visible: true, timeout: 5000 });
+
+    const authRecoveryState = await authPage.evaluate(() => {
+      const primaryButton = document.querySelector('.coach-auth-form > button');
+      const redirectButton = document.querySelector('.coach-auth-redirect-button');
+      const recovery = document.querySelector('.coach-auth-recovery');
+      return {
+        primaryDisabled: primaryButton?.disabled === true,
+        primaryText: primaryButton?.innerText.trim() || '',
+        redirectEnabled: redirectButton?.disabled === false,
+        recoveryText: recovery?.innerText || '',
+        recoveryRole: recovery?.getAttribute('role') || '',
+        overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+      };
+    });
+    if (!authRecoveryState.primaryDisabled) throw new Error('Popup login action did not enter a pending state.');
+    if (!authRecoveryState.primaryText.includes('로그인 창 확인 중')) throw new Error('Popup pending guidance not found.');
+    if (!authRecoveryState.redirectEnabled) throw new Error('Redirect login recovery action is unavailable.');
+    if (!authRecoveryState.recoveryText.includes('현재 페이지에서 로그인 계속')) throw new Error('Redirect login recovery copy not found.');
+    if (authRecoveryState.recoveryRole !== 'status') throw new Error('Login recovery status semantics not found.');
+    if (authRecoveryState.overflowX) throw new Error('Horizontal overflow detected on desktop login recovery.');
+    if (captureScreenshots) await authPage.screenshot({ path: 'prod-auth-desktop.png', fullPage: true });
+
+    await authPage.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 });
+    await sleep(200);
+    const mobileAuthState = await authPage.evaluate(() => ({
+      overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+      cardWidth: document.querySelector('.coach-auth-card')?.getBoundingClientRect().width || 0,
+    }));
+    if (mobileAuthState.overflowX) throw new Error('Horizontal overflow detected on mobile login recovery.');
+    if (mobileAuthState.cardWidth > 358) throw new Error(`Login card is too wide on mobile: ${mobileAuthState.cardWidth}px.`);
+    if (captureScreenshots) await authPage.screenshot({ path: 'prod-auth-mobile.png', fullPage: true });
+
+    await authPage.click('.coach-auth-redirect-button');
+    await authPage.waitForFunction(
+      () => document.querySelector('.coach-auth-redirect-button')?.innerText.includes('로그인 페이지로 이동 중'),
+      { timeout: 5000 },
+    );
+    const redirectPendingState = await authPage.evaluate(() => ({
+      primaryDisabled: document.querySelector('.coach-auth-form > button')?.disabled === true,
+      redirectDisabled: document.querySelector('.coach-auth-redirect-button')?.disabled === true,
+    }));
+    if (!redirectPendingState.primaryDisabled || !redirectPendingState.redirectDisabled) {
+      throw new Error('Login actions remained enabled while redirect sign-in was pending.');
+    }
+    await authPage.close();
+
     await page.setRequestInterception(true);
     page.on('request', (request) => {
       if (request.resourceType() === 'script') scriptRequests.push(request.url());
