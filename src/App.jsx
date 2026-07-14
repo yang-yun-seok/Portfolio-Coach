@@ -34,7 +34,7 @@ import { useModels } from './hooks/useModels';
 import { usePortfolioSubmissions } from './hooks/usePortfolioSubmissions';
 import { useSiteCapabilities } from './hooks/useSiteCapabilities';
 import { useWorkspacePersistence } from './hooks/useWorkspacePersistence';
-import { fetchAdminOverview } from './lib/admin-api';
+import { fetchAdminOverview, unlockAdminMode } from './lib/admin-api';
 import AuthGate from './components/AuthGate';
 import { EMPTY_INSTRUCTOR } from './components/InstructorFeedbackForm';
 import WorkspaceCommandBar from './components/WorkspaceCommandBar';
@@ -62,7 +62,15 @@ function ModalLoadingFallback() {
 
 const TRACK_ENTRY_STORAGE_KEY = 'portfolio-coach-track-entry-v1';
 const ADMIN_UNLOCK_STORAGE_KEY = 'portfolio-coach-admin-mode-unlocked-v1';
-const ADMIN_MODE_PASSWORD = '0808';
+
+function persistAdminModeUnlock(unlocked) {
+  if (typeof window === 'undefined') return;
+  if (unlocked) {
+    window.sessionStorage.setItem(ADMIN_UNLOCK_STORAGE_KEY, 'true');
+  } else {
+    window.sessionStorage.removeItem(ADMIN_UNLOCK_STORAGE_KEY);
+  }
+}
 
 // ── 피드백 아이템 파서 ────────────────────────────────────────────────────
 // "- **제목**: 내용" 또는 "**제목**: 내용" → { title, body } 로 분리
@@ -427,10 +435,11 @@ export default function App() {
   const [showAccountNameModal, setShowAccountNameModal] = useState(false);
   const [showModelSettings, setShowModelSettings] = useState(false);
   const [showUserGuide, setShowUserGuide] = useState(false);
-  const [adminModeUnlocked, setAdminModeUnlocked] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return window.sessionStorage.getItem(ADMIN_UNLOCK_STORAGE_KEY) === 'true';
-  });
+  const [adminModeUnlocked, setAdminModeUnlocked] = useState(false);
+  const [adminModeRestoring, setAdminModeRestoring] = useState(() => (
+    typeof window !== 'undefined'
+    && window.sessionStorage.getItem(ADMIN_UNLOCK_STORAGE_KEY) === 'true'
+  ));
   const isSmokeMode = typeof window !== 'undefined'
     && ['127.0.0.1', 'localhost'].includes(window.location.hostname)
     && new URLSearchParams(window.location.search).get('smoke') === '1';
@@ -441,6 +450,7 @@ export default function App() {
     window.__portfolioCoachSmoke = window.__portfolioCoachSmoke || {};
     window.__portfolioCoachSmoke.setActiveTab = setActiveTab;
     window.__portfolioCoachSmoke.setAdminMode = (unlocked) => setAdminModeUnlocked(Boolean(unlocked));
+    window.__portfolioCoachSmoke.openSettings = () => setShowSettings(true);
     window.__portfolioCoachSmoke.openGuide = () => setShowUserGuide(true);
 
     return () => {
@@ -910,6 +920,39 @@ const { analyzeApplication } = useApplicationAnalysis({
     if (activeTab === 'admin') setActiveTab('home');
   }, [activeTab, adminModeUnlocked, authLoading, authUser, isSmokeMode]);
 
+  useEffect(() => {
+    if (isSmokeMode && adminModeRestoring) {
+      setAdminModeRestoring(false);
+    }
+  }, [adminModeRestoring, isSmokeMode]);
+
+  useEffect(() => {
+    if (isSmokeMode || !adminModeRestoring || authLoading) return undefined;
+    if (!authUser) {
+      persistAdminModeUnlock(false);
+      setAdminModeRestoring(false);
+      return undefined;
+    }
+
+    let active = true;
+    fetchAdminOverview(getAccessToken)
+      .then(() => {
+        if (active) setAdminModeUnlocked(true);
+      })
+      .catch(() => {
+        if (!active) return;
+        persistAdminModeUnlock(false);
+        if (activeTab === 'admin') setActiveTab('home');
+      })
+      .finally(() => {
+        if (active) setAdminModeRestoring(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [activeTab, adminModeRestoring, authLoading, authUser, getAccessToken, isSmokeMode]);
+
   const activeNavIndex = availableNavItems.findIndex((item) => item.id === activeTab);
   const activeNavItem = availableNavItems[activeNavIndex >= 0 ? activeNavIndex : 0];
   const activeNavSection = navSections.find((section) => section.id === activeNavItem.group) || navSections[0];
@@ -1189,18 +1232,10 @@ const { analyzeApplication } = useApplicationAnalysis({
     setInfoMessage('이름 설정이 완료되었습니다.');
   };
 
-  const persistAdminModeUnlock = (unlocked) => {
-    if (typeof window === 'undefined') return;
-    if (unlocked) {
-      window.sessionStorage.setItem(ADMIN_UNLOCK_STORAGE_KEY, 'true');
-    } else {
-      window.sessionStorage.removeItem(ADMIN_UNLOCK_STORAGE_KEY);
-    }
-  };
-
   const handleUnlockAdminMode = async (password) => {
-    if (String(password || '').trim() !== ADMIN_MODE_PASSWORD) {
-      return { ok: false, message: '비밀번호가 맞지 않습니다.' };
+    const normalizedPassword = String(password || '').trim();
+    if (!normalizedPassword) {
+      return { ok: false, message: '비밀번호를 입력해 주세요.' };
     }
     if (authLoading) {
       return { ok: false, message: '계정 정보를 확인 중입니다. 잠시 후 다시 시도해 주세요.' };
@@ -1209,24 +1244,14 @@ const { analyzeApplication } = useApplicationAnalysis({
       return { ok: false, message: 'Google 로그인 후 다시 시도해 주세요.' };
     }
 
-    let token = '';
     try {
-      token = await getAccessToken();
+      await unlockAdminMode(getAccessToken, normalizedPassword);
     } catch (error) {
-      return { ok: false, message: error.message || '로그인 토큰을 확인하지 못했습니다.' };
-    }
-
-    if (!token) {
-      return { ok: false, message: '로그인 토큰을 확인하지 못했습니다. 다시 로그인해 주세요.' };
-    }
-
-    try {
-      await fetchAdminOverview(() => token);
-    } catch (error) {
-      return { ok: false, message: error.message || '관리자 권한을 확인하지 못했습니다.' };
+      return { ok: false, message: error.message || '관리자 모드를 열지 못했습니다.' };
     }
 
     setAdminModeUnlocked(true);
+    setAdminModeRestoring(false);
     persistAdminModeUnlock(true);
     setShowSettings(false);
     setShowTrackGate(false);
@@ -1244,6 +1269,7 @@ const { analyzeApplication } = useApplicationAnalysis({
 
   const handleLockAdminMode = () => {
     setAdminModeUnlocked(false);
+    setAdminModeRestoring(false);
     persistAdminModeUnlock(false);
     if (activeTab === 'admin') setActiveTab('home');
     setInfoMessage('관리자 모드를 종료했습니다.');
@@ -1372,6 +1398,7 @@ const { analyzeApplication } = useApplicationAnalysis({
 
           {showSettings ? (
             <SettingsModal
+              adminModeChecking={adminModeRestoring}
               adminModeUnlocked={adminModeUnlocked}
               jobs={jobs}
               jobsMetadata={jobsMetadata}

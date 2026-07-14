@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Database, KeyRound, Settings, ShieldCheck, X } from 'lucide-react';
 
 export default function SettingsModal({
+  adminModeChecking,
   adminModeUnlocked,
   jobs,
   jobsMetadata,
@@ -48,13 +49,18 @@ export default function SettingsModal({
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden">
+      <div
+        aria-labelledby="settings-modal-title"
+        aria-modal="true"
+        className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col overflow-hidden"
+        role="dialog"
+      >
         <div className="flex items-center justify-between p-6 border-b border-slate-100">
           <div className="flex items-center gap-3">
             <div className="bg-indigo-100 p-2 rounded-lg"><Settings size={20} className="text-indigo-600" /></div>
-            <h2 className="text-xl font-bold text-slate-800">설정</h2>
+            <h2 id="settings-modal-title" className="text-xl font-bold text-slate-800">설정</h2>
           </div>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-600 transition-colors">
+          <button type="button" onClick={onClose} className="text-slate-400 hover:text-slate-600 transition-colors" aria-label="설정 닫기">
             <X size={24} />
           </button>
         </div>
@@ -93,7 +99,7 @@ export default function SettingsModal({
               <div className="min-w-0 flex-1">
                 <h3 className="font-semibold text-slate-800">관리자 모드</h3>
                 <p className="mt-1 text-xs leading-relaxed text-slate-500">
-                  비밀번호 확인 후 현재 브라우저 세션에서 관리자 화면으로 이동합니다.
+                  관리자 Google 계정과 비밀번호를 서버에서 확인한 뒤 현재 브라우저 세션에서 관리자 화면을 엽니다.
                 </p>
               </div>
             </div>
@@ -115,6 +121,10 @@ export default function SettingsModal({
                   잠그기
                 </button>
               </div>
+            ) : adminModeChecking ? (
+              <div className="mt-4 rounded-xl bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-600" role="status" aria-live="polite">
+                관리자 권한을 확인하고 있습니다.
+              </div>
             ) : (
               <form className="mt-4 space-y-3" onSubmit={handleAdminSubmit}>
                 <label className="sr-only" htmlFor="admin-mode-password">관리자 모드 비밀번호</label>
@@ -125,6 +135,8 @@ export default function SettingsModal({
                     type="password"
                     inputMode="numeric"
                     autoComplete="off"
+                    aria-describedby={adminPasswordError ? 'admin-mode-password-error' : undefined}
+                    aria-invalid={Boolean(adminPasswordError)}
                     disabled={adminUnlocking}
                     value={adminPassword}
                     onChange={(event) => {
@@ -136,7 +148,7 @@ export default function SettingsModal({
                   />
                 </div>
                 {adminPasswordError && (
-                  <p className="text-xs font-semibold text-rose-600">{adminPasswordError}</p>
+                  <p id="admin-mode-password-error" className="text-xs font-semibold text-rose-600" role="alert">{adminPasswordError}</p>
                 )}
                 <button
                   type="submit"

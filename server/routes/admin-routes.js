@@ -1,8 +1,10 @@
 import { Router } from 'express';
+import { createHash, timingSafeEqual } from 'node:crypto';
 
 const REVIEW_STATUSES = new Set(['submitted', 'reviewing', 'reviewed', 'rejected']);
 const MAX_ADMIN_MEMO_LENGTH = 2000;
 const MAX_STUDENT_FEEDBACK_LENGTH = 3000;
+const MAX_ADMIN_PASSWORD_LENGTH = 128;
 
 function parseLimit(value, fallback, max) {
   const parsed = Number.parseInt(value, 10);
@@ -25,6 +27,32 @@ export function parseUserAccessPatch(body = {}) {
   }
 
   return { active: normalizedBody.active };
+}
+
+export function parseAdminUnlock(body = {}) {
+  const normalizedBody = body && typeof body === 'object' && !Array.isArray(body) ? body : {};
+  const keys = Object.keys(normalizedBody);
+
+  if (keys.length !== 1 || keys[0] !== 'password' || typeof normalizedBody.password !== 'string') {
+    throw createHttpError('관리자 모드 비밀번호를 입력해 주세요.', 400);
+  }
+
+  const password = normalizedBody.password.trim();
+  if (!password || password.length > MAX_ADMIN_PASSWORD_LENGTH) {
+    throw createHttpError(`관리자 모드 비밀번호는 1~${MAX_ADMIN_PASSWORD_LENGTH}자로 입력해 주세요.`, 400);
+  }
+
+  return { password };
+}
+
+export function matchesAdminModePassword(password, expectedPassword) {
+  const expected = String(expectedPassword || '');
+  if (!expected) {
+    throw createHttpError('관리자 모드 비밀번호가 서버에 설정되지 않았습니다.', 503);
+  }
+
+  const digest = (value) => createHash('sha256').update(value, 'utf8').digest();
+  return timingSafeEqual(digest(String(password || '')), digest(expected));
 }
 
 function parseReviewPatch(body = {}) {
@@ -81,8 +109,27 @@ function buildSummary({ submissions, users }) {
   };
 }
 
-export function createAdminRouter({ firebaseAdminService, authMiddleware }) {
+export function createAdminRouter({
+  firebaseAdminService,
+  authMiddleware,
+  adminModePassword = process.env.ADMIN_MODE_PASSWORD,
+}) {
   const router = Router();
+
+  router.post('/api/admin/unlock', authMiddleware.requireAdmin, (req, res) => {
+    try {
+      const { password } = parseAdminUnlock(req.body);
+      if (!matchesAdminModePassword(password, adminModePassword)) {
+        return res.status(403).json({ error: '비밀번호가 맞지 않습니다.' });
+      }
+
+      return res.json({ ok: true });
+    } catch (error) {
+      return res.status(error.statusCode || 500).json({
+        error: error.message || '관리자 모드를 열지 못했습니다.',
+      });
+    }
+  });
 
   router.get('/api/admin/overview', authMiddleware.requireAdmin, async (req, res) => {
     try {
