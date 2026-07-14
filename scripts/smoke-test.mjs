@@ -495,9 +495,11 @@ async function run() {
     );
     await sleep(400);
     const mobileHomeState = await page.evaluate(() => ({
+      headingFontSize: Number.parseFloat(getComputedStyle(document.querySelector('.coach-home-heading h2')).fontSize),
       overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
     }));
     if (mobileHomeState.overflowX) throw new Error('Horizontal overflow detected on mobile student home.');
+    if (mobileHomeState.headingFontSize > 24) throw new Error(`Student home heading is too large on mobile: ${mobileHomeState.headingFontSize}px.`);
     if (captureScreenshots) await page.screenshot({ path: 'prod-home-mobile.png', fullPage: true });
 
     await clickTool(page, { id: 'portfolio', label: 'Portfolio' });
@@ -552,6 +554,7 @@ async function run() {
     await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 });
     await sleep(200);
     const adminMobileState = await page.evaluate(() => ({
+      headingFontSize: Number.parseFloat(getComputedStyle(document.querySelector('.coach-admin-header h2')).fontSize),
       overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
       userTableOverflow: (() => {
         const wrapper = document.querySelector('.coach-admin-users > .overflow-x-auto');
@@ -562,6 +565,7 @@ async function run() {
         .some((button) => button.innerText.includes('다시 이용')),
     }));
     if (adminMobileState.overflowX) throw new Error('Horizontal overflow detected on mobile admin workspace.');
+    if (adminMobileState.headingFontSize > 24) throw new Error(`Admin heading is too large on mobile: ${adminMobileState.headingFontSize}px.`);
     if (adminMobileState.userTableOverflow) throw new Error('Horizontal overflow detected in the mobile user list.');
     if (adminMobileState.userCellDisplay !== 'grid') throw new Error('Mobile user list did not switch to record layout.');
     if (!adminMobileState.hasVisibleAccessAction) throw new Error('Mobile account access action not found.');
