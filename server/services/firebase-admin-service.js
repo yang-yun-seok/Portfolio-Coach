@@ -179,6 +179,11 @@ function serializeStudentSubmissionDoc(entry) {
   };
 }
 
+export function verifyFirebaseIdToken(auth, idToken, { checkRevoked = false } = {}) {
+  if (!auth) throw new Error('Firebase Admin Auth is not configured.');
+  return auth.verifyIdToken(idToken, checkRevoked);
+}
+
 export function createFirebaseAdminService() {
   const authRequired = process.env.FIREBASE_AUTH_REQUIRED === 'true';
   const config = buildFirebaseConfig();
@@ -213,18 +218,24 @@ export function createFirebaseAdminService() {
     }
   }
 
-  async function verifyIdToken(idToken, { force = false } = {}) {
-    if (!authRequired && !force) return null;
+  async function verifyIdToken(idToken, { checkRevoked = false } = {}) {
+    if (!authRequired && !checkRevoked) return null;
     if (!auth || !configReady) {
       throw new Error(initError || 'Firebase Admin is not configured.');
     }
-    return auth.verifyIdToken(idToken);
+    return verifyFirebaseIdToken(auth, idToken, { checkRevoked });
   }
 
-  async function getUserRole(uid) {
-    if (!db || !uid) return 'user';
-    const snapshot = await db.collection('users').doc(uid).get();
-    return snapshot.exists ? snapshot.data()?.role || 'user' : 'user';
+  async function getUserAccess(uid) {
+    const firestore = requireFirestore();
+    if (!uid) throw new Error('Authenticated user ID is missing.');
+    const snapshot = await firestore.collection('users').doc(uid).get();
+    if (!snapshot.exists) return { role: 'user', active: true };
+    const data = snapshot.data() || {};
+    return {
+      role: data.role || 'user',
+      active: data.active !== false,
+    };
   }
 
   function requireFirestore() {
@@ -365,7 +376,7 @@ export function createFirebaseAdminService() {
     initError,
     canVerifyTokens: Boolean(auth && configReady),
     verifyIdToken,
-    getUserRole,
+    getUserAccess,
     listAdminUsers,
     listAdminSubmissions,
     listUserSubmissions,

@@ -111,6 +111,15 @@ export function useFirebaseSession() {
           ? { ...baseProfile, ...snapshot.data(), lastLoginAt: new Date().toISOString(), authProvider: GOOGLE_PROVIDER_ID }
           : baseProfile;
 
+        if (nextProfile.active === false) {
+          await signOut(firebaseAuth);
+          if (!active) return;
+          setAuthUser(null);
+          setUserProfile(null);
+          setAuthError('비활성화된 계정입니다. 관리자에게 문의해 주세요.');
+          return;
+        }
+
         await firestore.setDoc(userRef, nextProfile, { merge: true });
         if (!active) return;
         setUserProfile(nextProfile);
@@ -178,7 +187,6 @@ export function useFirebaseSession() {
       email: currentUser.email || '',
       photoURL: currentUser.photoURL || '',
       authProvider: GOOGLE_PROVIDER_ID,
-      active: true,
       nameUpdatedAt: updatedAt,
       lastLoginAt: updatedAt,
     };

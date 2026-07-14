@@ -4,6 +4,23 @@ function extractBearerToken(req) {
   return match ? match[1] : '';
 }
 
+function assertActiveAccount(access) {
+  if (access?.active !== false) return;
+  const error = new Error('비활성화된 계정입니다. 관리자에게 문의해 주세요.');
+  error.statusCode = 403;
+  throw error;
+}
+
+async function loadUserAccess(firebaseAdminService, uid) {
+  try {
+    return await firebaseAdminService.getUserAccess(uid);
+  } catch {
+    const error = new Error('계정 상태를 확인하지 못했습니다. 잠시 후 다시 시도해 주세요.');
+    error.statusCode = 503;
+    throw error;
+  }
+}
+
 export function createAuthMiddleware({ firebaseAdminService }) {
   async function requireAuth(req, res, next) {
     if (!firebaseAdminService?.authRequired) {
@@ -24,15 +41,16 @@ export function createAuthMiddleware({ firebaseAdminService }) {
 
     try {
       const decoded = await firebaseAdminService.verifyIdToken(token);
-      const role = await firebaseAdminService.getUserRole(decoded.uid);
+      const access = await loadUserAccess(firebaseAdminService, decoded.uid);
+      assertActiveAccount(access);
       req.authUser = {
         uid: decoded.uid,
         email: decoded.email || '',
-        role,
+        role: access.role,
       };
       return next();
     } catch (error) {
-      return res.status(401).json({ error: error.message || '인증 검증에 실패했습니다.' });
+      return res.status(error.statusCode || 401).json({ error: error.message || '인증 검증에 실패했습니다.' });
     }
   }
 
@@ -49,21 +67,22 @@ export function createAuthMiddleware({ firebaseAdminService }) {
     }
 
     try {
-      const decoded = await firebaseAdminService.verifyIdToken(token, { force: true });
-      const role = await firebaseAdminService.getUserRole(decoded.uid);
+      const decoded = await firebaseAdminService.verifyIdToken(token, { checkRevoked: true });
+      const access = await loadUserAccess(firebaseAdminService, decoded.uid);
+      assertActiveAccount(access);
       req.authUser = {
         uid: decoded.uid,
         email: decoded.email || '',
-        role,
+        role: access.role,
       };
 
-      if (role !== 'admin') {
+      if (access.role !== 'admin') {
         return res.status(403).json({ error: '관리자 권한이 필요합니다.' });
       }
 
       return next();
     } catch (error) {
-      return res.status(401).json({ error: error.message || '인증 검증에 실패했습니다.' });
+      return res.status(error.statusCode || 401).json({ error: error.message || '인증 검증에 실패했습니다.' });
     }
   }
 
