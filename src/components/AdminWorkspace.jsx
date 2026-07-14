@@ -13,10 +13,16 @@ import {
   RefreshCw,
   Save,
   Search,
+  UserCheck,
   UserRound,
+  UserX,
   UsersRound,
 } from 'lucide-react';
-import { fetchAdminOverview, updateAdminSubmissionReview } from '../lib/admin-api';
+import {
+  fetchAdminOverview,
+  updateAdminSubmissionReview,
+  updateAdminUserAccess,
+} from '../lib/admin-api';
 
 const REVIEW_STATUS_OPTIONS = [
   { id: 'submitted', label: '제출 완료' },
@@ -228,6 +234,8 @@ export default function AdminWorkspace({
   const [selectedSubmissionId, setSelectedSubmissionId] = useState('');
   const [reviewDrafts, setReviewDrafts] = useState({});
   const [savingSubmissionId, setSavingSubmissionId] = useState('');
+  const [updatingUserId, setUpdatingUserId] = useState('');
+  const [confirmingUserId, setConfirmingUserId] = useState('');
 
   const loadOverview = useCallback(async () => {
     if (!isAdmin) return;
@@ -422,6 +430,40 @@ export default function AdminWorkspace({
       ]),
     ];
     downloadCsv(`portfolio-submissions-${new Date().toISOString().slice(0, 10)}.csv`, rows);
+  };
+
+  const handleUpdateUserAccess = async (user) => {
+    if (!user?.uid || user.role === 'admin') return;
+    const nextActive = user.active === false;
+    setUpdatingUserId(user.uid);
+    setError('');
+    setActionMessage('');
+
+    try {
+      const updatedUser = await updateAdminUserAccess(getAccessToken, user.uid, nextActive);
+      setOverview((current) => {
+        const nextUsers = current.users.map((entry) => (
+          entry.uid === updatedUser.uid ? { ...entry, ...updatedUser } : entry
+        ));
+        const nextSubmissions = current.submissions.map((submission) => (
+          submission.userId === updatedUser.uid
+            ? { ...submission, account: { ...(submission.account || {}), ...updatedUser } }
+            : submission
+        ));
+        return {
+          ...current,
+          users: nextUsers,
+          submissions: nextSubmissions,
+          summary: buildAdminSummary(nextSubmissions, nextUsers),
+        };
+      });
+      setActionMessage(nextActive ? '학생 계정을 다시 이용할 수 있게 했습니다.' : '학생 계정 이용을 중지했습니다.');
+    } catch (updateError) {
+      setError(updateError.message || '계정 상태를 변경하지 못했습니다.');
+    } finally {
+      setUpdatingUserId('');
+      setConfirmingUserId('');
+    }
   };
 
   if (!isAdmin) {
@@ -744,7 +786,7 @@ export default function AdminWorkspace({
         <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <div>
             <h3 className="text-lg font-black text-slate-900">사용자 명단</h3>
-            <p className="mt-1 text-sm text-slate-500">학생이 설정한 이름, Google 계정, 제출 횟수를 확인합니다.</p>
+            <p className="mt-1 text-sm text-slate-500">학생 계정과 제출 현황을 확인하고 사이트 이용 상태를 관리합니다.</p>
           </div>
           <p className="text-sm font-semibold text-slate-500">{userRows.length}명 표시</p>
         </div>
@@ -756,22 +798,24 @@ export default function AdminWorkspace({
                 <th className="px-3 py-3">이름</th>
                 <th className="px-3 py-3">이메일</th>
                 <th className="px-3 py-3">권한</th>
+                <th className="px-3 py-3">상태</th>
                 <th className="px-3 py-3">제출</th>
                 <th className="px-3 py-3">최근 제출</th>
                 <th className="px-3 py-3">최근 로그인</th>
+                <th className="px-3 py-3 text-right">계정 작업</th>
               </tr>
             </thead>
             <tbody>
               {userRows.length === 0 ? (
                 <tr>
-                  <td colSpan="6" className="px-3 py-8 text-center text-slate-400">표시할 사용자가 없습니다.</td>
+                  <td colSpan="8" className="px-3 py-8 text-center text-slate-400">표시할 사용자가 없습니다.</td>
                 </tr>
               ) : null}
               {userRows.map((user) => (
-                <tr key={user.uid} className="border-b border-slate-100 last:border-b-0">
-                  <td className="px-3 py-3 font-semibold text-slate-900">{getUserDisplayName(user)}</td>
-                  <td className="px-3 py-3 text-slate-600">{user.email || '이메일 없음'}</td>
-                  <td className="px-3 py-3">
+                <tr key={user.uid} className={`border-b border-slate-100 last:border-b-0 ${user.active === false ? 'is-inactive' : ''}`}>
+                  <td data-label="이름" className="px-3 py-3 font-semibold text-slate-900">{getUserDisplayName(user)}</td>
+                  <td data-label="이메일" className="px-3 py-3 text-slate-600">{user.email || '이메일 없음'}</td>
+                  <td data-label="권한" className="px-3 py-3">
                     <span className={`rounded-lg border px-2.5 py-1 text-xs font-bold ${
                       user.role === 'admin'
                         ? 'border-slate-900 bg-slate-900 text-white'
@@ -780,9 +824,62 @@ export default function AdminWorkspace({
                       {user.role || 'user'}
                     </span>
                   </td>
-                  <td className="px-3 py-3 font-semibold text-slate-900">{user.submissionCount}건</td>
-                  <td className="px-3 py-3 text-slate-500">{formatDateTime(user.latestSubmittedAtIso)}</td>
-                  <td className="px-3 py-3 text-slate-500">{formatDateTime(user.lastLoginAt)}</td>
+                  <td data-label="상태" className="px-3 py-3">
+                    <span className={`coach-admin-account-status ${user.active === false ? 'is-inactive' : 'is-active'}`}>
+                      {user.active === false ? '이용 중지' : '이용 중'}
+                    </span>
+                  </td>
+                  <td data-label="제출" className="px-3 py-3 font-semibold text-slate-900">{user.submissionCount}건</td>
+                  <td data-label="최근 제출" className="px-3 py-3 text-slate-500">{formatDateTime(user.latestSubmittedAtIso)}</td>
+                  <td data-label="최근 로그인" className="px-3 py-3 text-slate-500">{formatDateTime(user.lastLoginAt)}</td>
+                  <td data-label="계정 작업" className="px-3 py-3 text-right">
+                    {user.role === 'admin' ? (
+                      <span className="coach-admin-protected-label">보호됨</span>
+                    ) : user.active !== false && confirmingUserId === user.uid ? (
+                      <span className="coach-admin-access-confirm">
+                        <button
+                          type="button"
+                          onClick={() => setConfirmingUserId('')}
+                          disabled={updatingUserId === user.uid}
+                          className="coach-admin-access-cancel"
+                        >
+                          취소
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleUpdateUserAccess(user)}
+                          disabled={updatingUserId === user.uid}
+                          className="coach-admin-access-button is-disable is-confirm"
+                        >
+                          {updatingUserId === user.uid ? <Loader2 size={14} className="animate-spin" /> : <UserX size={14} />}
+                          중지 확인
+                        </button>
+                      </span>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (user.active === false) {
+                            void handleUpdateUserAccess(user);
+                            return;
+                          }
+                          setConfirmingUserId(user.uid);
+                        }}
+                        disabled={updatingUserId === user.uid}
+                        className={`coach-admin-access-button ${user.active === false ? 'is-enable' : 'is-disable'}`}
+                        title={user.active === false ? '학생 계정 다시 활성화' : '학생 계정 이용 중지'}
+                      >
+                        {updatingUserId === user.uid ? (
+                          <Loader2 size={14} className="animate-spin" />
+                        ) : user.active === false ? (
+                          <UserCheck size={14} />
+                        ) : (
+                          <UserX size={14} />
+                        )}
+                        {user.active === false ? '다시 이용' : '이용 중지'}
+                      </button>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>

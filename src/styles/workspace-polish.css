@@ -1300,6 +1300,107 @@
   background: var(--coach-soft);
 }
 
+.coach-admin-users tbody tr.is-inactive {
+  background: #fafafa;
+  color: #64748b;
+}
+
+.coach-admin-account-status,
+.coach-admin-protected-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.coach-admin-account-status {
+  padding: 3px 8px;
+  border: 1px solid #bbf7d0;
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.coach-admin-account-status.is-inactive {
+  border-color: #fecdd3;
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.coach-admin-protected-label {
+  padding: 3px 2px;
+  color: var(--coach-faint);
+}
+
+.coach-admin-access-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 88px;
+  min-height: 32px;
+  padding: 6px 9px;
+  border: 1px solid var(--coach-line);
+  border-radius: 7px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 750;
+  white-space: nowrap;
+  transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+}
+
+.coach-admin-access-confirm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.coach-admin-access-cancel {
+  min-height: 32px;
+  padding: 6px 7px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--coach-muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.coach-admin-access-cancel:hover:not(:disabled) {
+  background: var(--coach-soft);
+  color: var(--coach-ink);
+}
+
+.coach-admin-access-button.is-confirm {
+  border-color: #fda4af;
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.coach-admin-access-button.is-disable:hover:not(:disabled) {
+  border-color: #fda4af;
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.coach-admin-access-button.is-enable {
+  border-color: #86efac;
+  color: #15803d;
+}
+
+.coach-admin-access-button.is-enable:hover:not(:disabled) {
+  background: #f0fdf4;
+}
+
+.coach-admin-access-button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
 @media (max-width: 1100px) {
   .coach-shell .coach-stage.is-focus-stage {
     max-width: 100%;
@@ -1485,6 +1586,67 @@
   .coach-admin-users > div:first-child {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .coach-admin-users > .overflow-x-auto {
+    overflow: visible;
+  }
+
+  .coach-admin-users table,
+  .coach-admin-users tbody,
+  .coach-admin-users tr,
+  .coach-admin-users td {
+    display: block;
+    width: 100%;
+  }
+
+  .coach-admin-users thead {
+    display: none;
+  }
+
+  .coach-admin-users tbody {
+    display: grid;
+    gap: 10px;
+  }
+
+  .coach-admin-users tbody tr {
+    padding: 11px 13px;
+    border: 1px solid var(--coach-soft-line);
+    border-radius: 8px;
+    background: #ffffff;
+  }
+
+  .coach-admin-users tbody td {
+    display: grid;
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    padding: 6px 0 !important;
+    text-align: left !important;
+    overflow-wrap: anywhere;
+  }
+
+  .coach-admin-users tbody td::before {
+    color: var(--coach-faint);
+    content: attr(data-label);
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .coach-admin-users tbody td[colspan] {
+    display: block;
+    padding: 24px 0 !important;
+    text-align: center !important;
+  }
+
+  .coach-admin-users tbody td[colspan]::before {
+    content: none;
+  }
+
+  .coach-admin-access-confirm,
+  .coach-admin-access-button,
+  .coach-admin-protected-label {
+    justify-self: start;
   }
 }
 

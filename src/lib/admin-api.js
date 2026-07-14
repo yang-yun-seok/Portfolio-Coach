@@ -36,3 +36,21 @@ export async function updateAdminSubmissionReview(getAccessToken, submissionId, 
 
   return data.submission || null;
 }
+
+export async function updateAdminUserAccess(getAccessToken, uid, active) {
+  const headers = await buildAuthorizedHeaders(getAccessToken, {
+    'Content-Type': 'application/json',
+  });
+  const response = await fetch(apiUrl(`api/admin/users/${encodeURIComponent(uid)}`), {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({ active }),
+  });
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.error || '계정 상태를 변경하지 못했습니다.');
+  }
+
+  return data.user || null;
+}

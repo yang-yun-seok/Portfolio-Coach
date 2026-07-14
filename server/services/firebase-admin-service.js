@@ -179,6 +179,43 @@ function serializeStudentSubmissionDoc(entry) {
   };
 }
 
+function serializeUserDoc(entry) {
+  const data = serializeFirestoreValue(entry.data()) || {};
+  return {
+    id: entry.id,
+    uid: entry.id,
+    email: data.email || '',
+    studentName: data.studentName || '',
+    displayName: data.displayName || '',
+    role: data.role || 'user',
+    active: data.active !== false,
+    trackDefault: data.trackDefault || '',
+    createdAt: data.createdAt || '',
+    lastLoginAt: data.lastLoginAt || '',
+    nameUpdatedAt: data.nameUpdatedAt || '',
+    authProvider: data.authProvider || '',
+    updatedAt: data.updatedAt || '',
+  };
+}
+
+export function assertAdminUserAccessChange({ active, actorUid, targetUid, targetRole }) {
+  if (typeof active !== 'boolean') {
+    const error = new Error('계정 상태는 불리언 값이어야 합니다.');
+    error.statusCode = 400;
+    throw error;
+  }
+  if (targetUid === actorUid) {
+    const error = new Error('현재 로그인한 관리자 계정은 중지할 수 없습니다.');
+    error.statusCode = 409;
+    throw error;
+  }
+  if (targetRole === 'admin') {
+    const error = new Error('관리자 계정 상태는 이 화면에서 변경할 수 없습니다.');
+    error.statusCode = 409;
+    throw error;
+  }
+}
+
 export function verifyFirebaseIdToken(auth, idToken, { checkRevoked = false } = {}) {
   if (!auth) throw new Error('Firebase Admin Auth is not configured.');
   return auth.verifyIdToken(idToken, checkRevoked);
@@ -248,23 +285,7 @@ export function createFirebaseAdminService() {
   async function listAdminUsers({ limit = 200 } = {}) {
     const firestore = requireFirestore();
     const snapshot = await firestore.collection('users').limit(limit).get();
-    return snapshot.docs.map((entry) => {
-      const data = serializeFirestoreValue(entry.data()) || {};
-      return {
-        id: entry.id,
-        uid: entry.id,
-        email: data.email || '',
-        studentName: data.studentName || '',
-        displayName: data.displayName || '',
-        role: data.role || 'user',
-        active: data.active !== false,
-        trackDefault: data.trackDefault || '',
-        createdAt: data.createdAt || '',
-        lastLoginAt: data.lastLoginAt || '',
-        nameUpdatedAt: data.nameUpdatedAt || '',
-        authProvider: data.authProvider || '',
-      };
-    });
+    return snapshot.docs.map(serializeUserDoc);
   }
 
   async function listAdminSubmissions({ limit = 100 } = {}) {
@@ -370,6 +391,61 @@ export function createFirebaseAdminService() {
     return serializeSubmissionDoc(updatedSnapshot);
   }
 
+  async function updateAdminUserAccess({ uid, active, actor }) {
+    const firestore = requireFirestore();
+    const normalizedUid = String(uid || '').trim();
+    if (!isValidFirestoreDocumentId(normalizedUid)) {
+      const error = new Error('올바른 사용자 ID가 필요합니다.');
+      error.statusCode = 400;
+      throw error;
+    }
+
+    const userRef = firestore.collection('users').doc(normalizedUid);
+    const snapshot = await userRef.get();
+    if (!snapshot.exists) {
+      const error = new Error('사용자 계정을 찾을 수 없습니다.');
+      error.statusCode = 404;
+      throw error;
+    }
+
+    const currentUser = snapshot.data() || {};
+    assertAdminUserAccessChange({
+      active,
+      actorUid: actor?.uid || '',
+      targetUid: normalizedUid,
+      targetRole: currentUser.role || 'user',
+    });
+
+    const nowIso = new Date().toISOString();
+    const eventRef = firestore.collection('userAccessEvents').doc();
+    const batch = firestore.batch();
+    batch.set(userRef, {
+      active,
+      updatedAt: FieldValue.serverTimestamp(),
+    }, { merge: true });
+    batch.set(eventRef, {
+      userId: normalizedUid,
+      active,
+      actorId: actor?.uid || '',
+      actorEmail: actor?.email || '',
+      type: active ? 'account_reactivated' : 'account_deactivated',
+      createdAt: FieldValue.serverTimestamp(),
+      createdAtIso: nowIso,
+    });
+    await batch.commit();
+
+    if (!active && auth) {
+      try {
+        await auth.revokeRefreshTokens(normalizedUid);
+      } catch (error) {
+        console.warn(`[Firebase Admin] Failed to revoke tokens for ${normalizedUid}: ${error.message}`);
+      }
+    }
+
+    const updatedSnapshot = await userRef.get();
+    return serializeUserDoc(updatedSnapshot);
+  }
+
   return {
     authRequired,
     configReady,
@@ -381,5 +457,6 @@ export function createFirebaseAdminService() {
     listAdminSubmissions,
     listUserSubmissions,
     updateAdminSubmissionReview,
+    updateAdminUserAccess,
   };
 }

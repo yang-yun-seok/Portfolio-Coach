@@ -16,6 +16,17 @@ function createHttpError(message, statusCode) {
   return error;
 }
 
+export function parseUserAccessPatch(body = {}) {
+  const normalizedBody = body && typeof body === 'object' && !Array.isArray(body) ? body : {};
+  const keys = Object.keys(normalizedBody);
+
+  if (keys.length !== 1 || keys[0] !== 'active' || typeof normalizedBody.active !== 'boolean') {
+    throw createHttpError('계정 상태는 active 불리언 값으로 지정해 주세요.', 400);
+  }
+
+  return { active: normalizedBody.active };
+}
+
 function parseReviewPatch(body = {}) {
   const patch = {};
 
@@ -112,6 +123,23 @@ export function createAdminRouter({ firebaseAdminService, authMiddleware }) {
     } catch (error) {
       res.status(error.statusCode || 500).json({
         error: error.message || '제출 검토 정보를 저장하지 못했습니다.',
+      });
+    }
+  });
+
+  router.patch('/api/admin/users/:uid', authMiddleware.requireAdmin, async (req, res) => {
+    try {
+      const patch = parseUserAccessPatch(req.body);
+      const user = await firebaseAdminService.updateAdminUserAccess({
+        uid: req.params.uid,
+        ...patch,
+        actor: req.authUser,
+      });
+
+      res.json({ user });
+    } catch (error) {
+      res.status(error.statusCode || 500).json({
+        error: error.message || '계정 상태를 변경하지 못했습니다.',
       });
     }
   });
