@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
+  assertAdminUserAccessChange,
   createFirebaseAdminService,
   normalizePrivateKey,
   verifyFirebaseIdToken,
@@ -51,6 +52,36 @@ test('verifyFirebaseIdToken forwards revoked-token checks to Firebase Auth', asy
 
   assert.deepEqual(decoded, { uid: 'student-1' });
   assert.deepEqual(calls, [['token-1', true]]);
+});
+
+test('assertAdminUserAccessChange allows student account updates', () => {
+  assert.doesNotThrow(() => assertAdminUserAccessChange({
+    active: false,
+    actorUid: 'admin-1',
+    targetUid: 'student-1',
+    targetRole: 'user',
+  }));
+});
+
+test('assertAdminUserAccessChange protects the current admin and other admins', () => {
+  assert.throws(
+    () => assertAdminUserAccessChange({
+      active: false,
+      actorUid: 'admin-1',
+      targetUid: 'admin-1',
+      targetRole: 'admin',
+    }),
+    (error) => error.statusCode === 409 && /현재 로그인한 관리자/.test(error.message),
+  );
+  assert.throws(
+    () => assertAdminUserAccessChange({
+      active: false,
+      actorUid: 'admin-1',
+      targetUid: 'admin-2',
+      targetRole: 'admin',
+    }),
+    (error) => error.statusCode === 409 && /관리자 계정 상태/.test(error.message),
+  );
 });
 
 test('createFirebaseAdminService does not throw on an invalid private key', () => {

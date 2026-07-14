@@ -92,6 +92,7 @@ function createSmokeAdminOverview() {
       displayName: '김지우',
       email: 'jiwoo@example.com',
       role: 'user',
+      active: true,
       lastLoginAt: submittedAtIso,
     },
     {
@@ -100,6 +101,7 @@ function createSmokeAdminOverview() {
       displayName: '민서',
       email: 'minseo@example.com',
       role: 'user',
+      active: false,
       lastLoginAt: submittedAtIso,
     },
   ];
@@ -272,12 +274,25 @@ async function run() {
     const consoleErrors = [];
     const pageErrors = [];
     const scriptRequests = [];
+    let adminAccessPatchCount = 0;
     const { currentSnapshot, previousSnapshot } = createSmokeSeed();
     const adminOverview = createSmokeAdminOverview();
 
     await page.setRequestInterception(true);
     page.on('request', (request) => {
       if (request.resourceType() === 'script') scriptRequests.push(request.url());
+      if (request.method() === 'PATCH' && request.url().includes('/api/admin/users/')) {
+        adminAccessPatchCount += 1;
+        const uid = decodeURIComponent(request.url().split('/').pop() || '');
+        const payload = JSON.parse(request.postData() || '{}');
+        const currentUser = adminOverview.users.find((user) => user.uid === uid) || {};
+        void request.respond({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify({ user: { ...currentUser, uid, active: payload.active } }),
+        });
+        return;
+      }
       if (request.url().includes('/api/admin/overview')) {
         void request.respond({
           status: 200,
@@ -512,18 +527,44 @@ async function run() {
     await sleep(400);
     const adminDesktopState = await page.evaluate(() => ({
       hasFocusMode: !!document.querySelector('.coach-body-shell.is-focus-mode'),
+      hasAccessControls: [...document.querySelectorAll('.coach-admin-access-button')]
+        .some((button) => button.innerText.includes('이용 중지')),
       overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
     }));
     if (!adminDesktopState.hasFocusMode) throw new Error('Admin focus layout not applied.');
+    if (!adminDesktopState.hasAccessControls) throw new Error('Admin account access controls not found.');
     if (adminDesktopState.overflowX) throw new Error('Horizontal overflow detected on admin workspace.');
     if (captureScreenshots) await page.screenshot({ path: 'prod-admin-desktop.png', fullPage: true });
+
+    const accessButton = await page.$('.coach-admin-access-button.is-disable');
+    if (!accessButton) throw new Error('Student account disable button not found.');
+    await accessButton.click();
+    await page.waitForSelector('.coach-admin-access-button.is-confirm');
+    if (adminAccessPatchCount !== 0) throw new Error('Account access changed before confirmation.');
+    await page.click('.coach-admin-access-button.is-confirm');
+    await page.waitForFunction(
+      () => [...document.querySelectorAll('.coach-admin-access-button')]
+        .some((button) => button.innerText.includes('다시 이용')),
+      { timeout: 5000 },
+    );
+    if (adminAccessPatchCount !== 1) throw new Error(`Unexpected account access request count: ${adminAccessPatchCount}.`);
 
     await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 });
     await sleep(200);
     const adminMobileState = await page.evaluate(() => ({
       overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+      userTableOverflow: (() => {
+        const wrapper = document.querySelector('.coach-admin-users > .overflow-x-auto');
+        return wrapper ? wrapper.scrollWidth > wrapper.clientWidth : true;
+      })(),
+      userCellDisplay: getComputedStyle(document.querySelector('.coach-admin-users tbody td')).display,
+      hasVisibleAccessAction: [...document.querySelectorAll('.coach-admin-access-button')]
+        .some((button) => button.innerText.includes('다시 이용')),
     }));
     if (adminMobileState.overflowX) throw new Error('Horizontal overflow detected on mobile admin workspace.');
+    if (adminMobileState.userTableOverflow) throw new Error('Horizontal overflow detected in the mobile user list.');
+    if (adminMobileState.userCellDisplay !== 'grid') throw new Error('Mobile user list did not switch to record layout.');
+    if (!adminMobileState.hasVisibleAccessAction) throw new Error('Mobile account access action not found.');
     if (captureScreenshots) await page.screenshot({ path: 'prod-admin-mobile.png', fullPage: false });
     await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
 
