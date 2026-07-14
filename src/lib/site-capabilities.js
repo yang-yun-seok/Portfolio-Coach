@@ -7,13 +7,24 @@ export const CHECKING_SITE_CAPABILITIES = Object.freeze({
   }),
 });
 
+const SUBMISSION_CAPABILITY_STATUSES = new Set([
+  'admin_not_configured',
+  'bucket_missing',
+  'not_configured',
+  'storage_unavailable',
+]);
+
 export function normalizeSiteCapabilities(payload = {}) {
   const submissionCapability = payload?.portfolioSubmissions || {};
   const enabled = submissionCapability.enabled === true;
   return {
     portfolioSubmissions: {
       enabled,
-      status: enabled ? 'ready' : 'not_configured',
+      status: enabled
+        ? 'ready'
+        : SUBMISSION_CAPABILITY_STATUSES.has(submissionCapability.status)
+          ? submissionCapability.status
+          : 'not_configured',
     },
   };
 }

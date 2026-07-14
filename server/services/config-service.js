@@ -5,6 +5,27 @@ export function isEnabledFlag(value) {
   return String(value || '').trim().toLowerCase() === 'true';
 }
 
+const STORAGE_NOT_READY_STATUSES = new Set([
+  'admin_not_configured',
+  'bucket_missing',
+  'storage_unavailable',
+]);
+
+export function resolvePortfolioSubmissionCapability({ uploadsRequested, storageReadiness } = {}) {
+  if (!uploadsRequested) {
+    return { enabled: false, status: 'not_configured' };
+  }
+  if (storageReadiness?.ready === true) {
+    return { enabled: true, status: 'ready' };
+  }
+  return {
+    enabled: false,
+    status: STORAGE_NOT_READY_STATUSES.has(storageReadiness?.status)
+      ? storageReadiness.status
+      : 'storage_unavailable',
+  };
+}
+
 export function createConfigService({ baseDir, isDev, fetchImpl }) {
   const cache = {
     prompts: null,
@@ -140,13 +161,16 @@ export function createConfigService({ baseDir, isDev, fetchImpl }) {
     return loadPrompts().interviewBasic || [];
   }
 
-  function getCapabilitiesResponse() {
-    const submissionUploadsEnabled = isEnabledFlag(process.env.PORTFOLIO_UPLOADS_ENABLED);
+  function arePortfolioUploadsRequested() {
+    return isEnabledFlag(process.env.PORTFOLIO_UPLOADS_ENABLED);
+  }
+
+  function getCapabilitiesResponse({ storageReadiness } = {}) {
     return {
-      portfolioSubmissions: {
-        enabled: submissionUploadsEnabled,
-        status: submissionUploadsEnabled ? 'ready' : 'not_configured',
-      },
+      portfolioSubmissions: resolvePortfolioSubmissionCapability({
+        uploadsRequested: arePortfolioUploadsRequested(),
+        storageReadiness,
+      }),
     };
   }
 
@@ -242,6 +266,7 @@ export function createConfigService({ baseDir, isDev, fetchImpl }) {
     fetchWithRetry,
     getModelsResponse,
     getInterviewBasicPrompts,
+    arePortfolioUploadsRequested,
     getCapabilitiesResponse,
     validateKey,
     getEnabledProviders,

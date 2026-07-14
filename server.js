@@ -49,7 +49,7 @@ const analysisService = createAnalysisService({
 });
 
 app.use(createAnalysisRouter({ analysisService, authMiddleware }));
-app.use(createConfigRouter({ configService }));
+app.use(createConfigRouter({ configService, firebaseAdminService }));
 app.use(createDataRouter({ dataLoader, crawlService, authMiddleware }));
 app.use(createCrawlRouter({ crawlService }));
 app.use(createSubmissionRouter({ firebaseAdminService, authMiddleware }));

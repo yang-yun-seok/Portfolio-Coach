@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-export function createConfigRouter({ configService }) {
+export function createConfigRouter({ configService, firebaseAdminService }) {
   const router = Router();
 
   router.get('/api/models', (req, res) => {
@@ -12,8 +12,17 @@ export function createConfigRouter({ configService }) {
     return res.json(result);
   });
 
-  router.get('/api/capabilities', (req, res) => {
-    res.json(configService.getCapabilitiesResponse());
+  router.get('/api/capabilities', async (req, res) => {
+    let storageReadiness;
+    if (configService.arePortfolioUploadsRequested()) {
+      try {
+        storageReadiness = await firebaseAdminService?.getStorageReadiness?.();
+      } catch {
+        storageReadiness = { ready: false, status: 'storage_unavailable' };
+      }
+    }
+    res.setHeader('Cache-Control', 'no-store');
+    res.json(configService.getCapabilitiesResponse({ storageReadiness }));
   });
 
   router.get('/api/prompts/interview-basic', (req, res) => {

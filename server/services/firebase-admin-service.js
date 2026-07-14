@@ -5,6 +5,7 @@ import { getStorage } from 'firebase-admin/storage';
 
 const PRIVATE_KEY_BEGIN = '-----BEGIN PRIVATE KEY-----';
 const PRIVATE_KEY_END = '-----END PRIVATE KEY-----';
+const STORAGE_READINESS_TTL_MS = 60 * 1000;
 
 function stripWrappingQuotes(value) {
   const trimmed = String(value || '').trim();
@@ -138,6 +139,21 @@ function createServiceError(message, statusCode) {
   const error = new Error(message);
   error.statusCode = statusCode;
   return error;
+}
+
+export async function inspectStorageBucket(storageClient, bucketName) {
+  if (!storageClient || !bucketName) {
+    return { ready: false, status: 'admin_not_configured' };
+  }
+
+  try {
+    const [exists] = await storageClient.bucket(bucketName).exists();
+    return exists
+      ? { ready: true, status: 'ready' }
+      : { ready: false, status: 'bucket_missing' };
+  } catch {
+    return { ready: false, status: 'storage_unavailable' };
+  }
 }
 
 function sanitizeSubmissionFile(file) {
@@ -300,6 +316,8 @@ export function createFirebaseAdminService() {
   let auth = null;
   let db = null;
   let storage = null;
+  let storageReadinessCache = null;
+  let storageReadinessCheckedAt = 0;
 
   if (configReady) {
     for (const privateKey of config.privateKeyCandidates) {
@@ -361,6 +379,21 @@ export function createFirebaseAdminService() {
       throw new Error(initError || 'Firebase Admin Storage is not configured.');
     }
     return storage;
+  }
+
+  async function getStorageReadiness({ force = false } = {}) {
+    const now = Date.now();
+    if (
+      !force
+      && storageReadinessCache
+      && now - storageReadinessCheckedAt < STORAGE_READINESS_TTL_MS
+    ) {
+      return storageReadinessCache;
+    }
+
+    storageReadinessCache = await inspectStorageBucket(storage, config.storageBucket);
+    storageReadinessCheckedAt = now;
+    return storageReadinessCache;
   }
 
   async function listAdminUsers({ limit = 200 } = {}) {
@@ -573,6 +606,7 @@ export function createFirebaseAdminService() {
     canVerifyTokens: Boolean(auth && configReady),
     verifyIdToken,
     getUserAccess,
+    getStorageReadiness,
     listAdminUsers,
     listAdminSubmissions,
     listUserSubmissions,
