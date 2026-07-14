@@ -6,18 +6,17 @@
 - 서비스 주소: [https://portfolio-coach-z0tc.onrender.com/](https://portfolio-coach-z0tc.onrender.com/)
 - 지원 트랙: `기획`, `프로그래밍`, `아트`
 
-## 최종 운영 목표
+## 운영 구조
 
-이 프로젝트의 최종 목표는 아래 구조입니다.
+이 프로젝트는 아래 구조로 운영합니다.
 
 - 사용자 입장에서는 무료로 접근 가능한 서비스
 - 저장소는 `GitHub Private`으로 유지
-- 실제 서비스 운영은 장기적으로 `Replit` 중심으로 이전
+- 실제 서비스 운영은 `Render Web Service` 사용
 - 인증, 제출 저장, 파일 관리는 `Firebase` 사용
 - 공개 회원가입 화면은 열지 않고, Firebase Google 로그인 기반으로 운영
 
-즉, 현재 `GitHub Pages + Render` 구조는 과도기 배포 구조이고,  
-최종 목표는 `Private GitHub + Replit 운영 + Firebase 인증/저장`입니다.
+소스는 `Private GitHub`, 웹과 API는 `Render`, 인증과 제출 데이터는 `Firebase`를 기준으로 관리합니다.
 
 ## 현재 기능
 
@@ -176,22 +175,23 @@ Render가 React 프로덕션 번들과 Express API를 함께 제공합니다. Gi
 
 파일 제출은 Storage 준비 여부와 별도 운영 플래그를 모두 확인합니다. 준비가 끝나기 전에는 학생 화면에서 제출 버튼이 비활성화됩니다.
 
-1. Firebase Console에서 Storage 버킷을 생성합니다.
-2. `npx firebase-tools deploy --only storage`로 `storage.rules`를 배포합니다.
-3. Render 환경 변수 `PORTFOLIO_UPLOADS_ENABLED=true`를 설정합니다.
-4. Render 서비스를 다시 배포한 뒤 `/api/capabilities` 응답의 `portfolioSubmissions.enabled`가 `true`인지 확인합니다.
+1. Firebase Console에서 Storage 버킷을 생성합니다. 신규 기본 버킷은 Firebase 정책상 Blaze 요금제가 필요합니다.
+2. `npx firebase-tools deploy --only firestore:rules,storage`로 파일 메타데이터와 Storage 규칙을 함께 배포합니다.
+3. Render에 `FIREBASE_STORAGE_BUCKET`을 설정합니다.
+4. Render 환경 변수 `PORTFOLIO_UPLOADS_ENABLED=true`를 설정합니다.
+5. Render 서비스를 다시 배포한 뒤 `/api/capabilities` 응답의 `portfolioSubmissions.enabled`가 `true`인지 확인합니다.
 
 버킷이나 규칙이 준비되지 않았다면 `PORTFOLIO_UPLOADS_ENABLED=false`를 유지해야 합니다.
+제출 파일의 영구 다운로드 URL은 Firestore에 저장하지 않습니다. 관리자 파일 열람은 Firebase 관리자 권한을 확인하는 서버 API를 통해서만 처리합니다.
 
-## 최종 배포 목표
+## 배포 기준
 
 - Source of Truth: `GitHub Private Repository`
-- App Hosting: `Replit`
+- App Hosting: `Render`
 - Auth / DB / File Storage: `Firebase`
 - Daily Crawl: 초기에는 `GitHub Actions`, 필요 시 이후 이전 검토
 
-즉, GitHub는 코드 저장용 비공개 저장소로 두고,  
-사용자에게 보이는 실제 서비스는 Replit에서 운영하는 방향을 목표로 합니다.
+GitHub는 코드 저장용 비공개 저장소로 두고, 사용자에게 보이는 실제 서비스는 Render에서 운영합니다.
 
 ## 공고 데이터와 이력 파일
 

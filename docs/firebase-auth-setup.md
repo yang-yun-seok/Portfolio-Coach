@@ -49,10 +49,12 @@ Firebase Console > Storage
 
 - 기본 버킷 생성
 - PDF 업로드가 가능하도록 준비
+- 2026년 2월 3일 이후 기본 버킷 생성과 사용에는 Blaze 요금제가 필요하므로 비용 정책을 확인한 뒤 활성화
+- 참고: [Cloud Storage 시작 가이드](https://firebase.google.com/docs/storage/web/start)
 
 ## 3. 프론트엔드 환경변수
 
-로컬 또는 Replit 프론트 환경에서 아래 값을 설정합니다.
+로컬 또는 Render 프론트 환경에서 아래 값을 설정합니다.
 
 예시는 [/.env.frontend.example](../.env.frontend.example) 참고.
 
@@ -82,6 +84,7 @@ Render 서버 환경에서 아래 값을 설정합니다.
 - `ADMIN_MODE_PASSWORD`
 
 Storage 준비 완료 후 설정:
+- `FIREBASE_STORAGE_BUCKET=portfolio-coach-92074.firebasestorage.app`
 - `PORTFOLIO_UPLOADS_ENABLED=true`
 
 주의:
@@ -151,6 +154,9 @@ Firebase Console > Project settings > Service accounts
 - PDF만 허용
 - 파일당 최대 10MB
 - 포트폴리오 첨부 최대 5개
+- 학생의 Storage 직접 읽기 차단
+- 관리자 다운로드는 서버의 Firebase 관리자 인증 API에서 제출자와 파일 경로를 다시 확인한 뒤 제공
+- Firestore에는 영구 다운로드 URL을 저장하지 않음
 
 ## 9. 권장 보안 규칙 적용 순서
 
@@ -158,11 +164,9 @@ Firebase Console > Project settings > Service accounts
 2. 관리자 계정 1개 생성
 3. 프론트 로그인 동작 확인
 4. 서버 보호 API 확인
-5. 제출 저장 확인
-6. Firestore/Storage 규칙 배포
+5. Firestore/Storage 규칙 배포
+6. 테스트 계정으로 제출 저장과 관리자 다운로드 확인
 7. Render에서 `PORTFOLIO_UPLOADS_ENABLED=true` 설정 후 재배포
-
-초기에는 너무 강한 규칙부터 적용하면 디버깅이 막힐 수 있습니다.
 
 ## 10. 로컬 점검 순서
 
@@ -191,7 +195,7 @@ npm run dev
 
 ### 최종 목표 구조
 - 저장소: GitHub Private
-- 서비스 운영: Replit
+- 서비스 운영: Render
 - 인증/DB/파일: Firebase
 
 권장 순서:
