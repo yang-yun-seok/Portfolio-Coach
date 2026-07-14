@@ -4,9 +4,7 @@ import {
   loadFirebaseStorage,
 } from './firebase-client';
 import { rollbackUploadedObjects } from './submission-upload-utils';
-
-const MAX_PORTFOLIO_FILES = 5;
-const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
+import { getSubmissionFileError, MAX_PORTFOLIO_FILES } from './submission-files';
 
 function assertFirebaseSubmissionReady() {
   if (!isFirebaseAuthEnabled) {
@@ -16,12 +14,8 @@ function assertFirebaseSubmissionReady() {
 
 function assertPdfFile(file, label) {
   if (!file) return;
-  if (file.size > MAX_FILE_SIZE_BYTES) {
-    throw new Error(`${label} 파일은 10MB 이하만 업로드할 수 있습니다.`);
-  }
-  if (!String(file.type || '').includes('pdf') && !String(file.name || '').toLowerCase().endsWith('.pdf')) {
-    throw new Error(`${label} 파일은 PDF만 허용합니다.`);
-  }
+  const validationError = getSubmissionFileError(file, label);
+  if (validationError) throw new Error(validationError);
 }
 
 async function uploadSingleFile({ storageClient, uid, submissionId, file, path, kind, uploadedObjectRefs }) {

@@ -3,6 +3,7 @@ import { parseInstructorMd } from '../components/InstructorFeedbackForm';
 import { getProfileDisplayRole, normalizeUserProfile } from '../data/skills';
 import { analyzeGitHubPortfolio } from '../lib/github-analyzer';
 import { analyzeViaProxy, requestInstructorDraft } from '../lib/gemini-client';
+import { MAX_SUBMISSION_FILE_SIZE_BYTES } from '../lib/submission-files';
 
 function buildLocalGitHubPortfolioAnalysis(githubPortfolio) {
   if (!githubPortfolio) return null;
@@ -190,6 +191,7 @@ export function useApplicationAnalysis({
   selectedApiKey,
   selectedProvider,
   selectedModelId,
+  shouldGenerateInstructorDraft,
   setActiveTab,
   setError,
   setInfoMessage,
@@ -204,6 +206,7 @@ export function useApplicationAnalysis({
   userInfo,
 }) {
   const generateInstructorDraft = useCallback(async (aiResults, profile) => {
+    if (!shouldGenerateInstructorDraft) return null;
     try {
       const today = new Date().toISOString().slice(0, 10);
       const normalizedProfile = normalizeUserProfile(profile);
@@ -230,7 +233,7 @@ export function useApplicationAnalysis({
       console.warn('강사 피드백 초안 생성 실패:', error.message);
     }
     return null;
-  }, [selectedApiKey, selectedModelId, selectedProvider, setInstructorFeedback]);
+  }, [selectedApiKey, selectedModelId, selectedProvider, setInstructorFeedback, shouldGenerateInstructorDraft]);
 
   const analyzeApplication = useCallback(async () => {
     if (!userInfo.name || userInfo.skills.length === 0) {
@@ -271,9 +274,8 @@ export function useApplicationAnalysis({
       let fileParts = [];
       if (currentProvider?.supportsFiles) {
         try {
-          const maxFileSize = 10 * 1024 * 1024;
           const addFile = async (label, file) => {
-            if (!file || file.size > maxFileSize) return;
+            if (!file || file.size > MAX_SUBMISSION_FILE_SIZE_BYTES) return;
             fileParts.push(
               { text: label },
               { inlineData: { mimeType: 'application/pdf', data: await fileToBase64(file) } },
@@ -321,17 +323,19 @@ export function useApplicationAnalysis({
       setResults(safeData);
       setActiveTab('feedback');
 
-      void generateInstructorDraft(safeData, analysisProfile)
-        .then((draft) => {
-          if (!draft) return;
-          persistWorkspaceSnapshot({
-            userInfo: analysisProfile,
-            results: safeData,
-            recommendedJobs: jobsWithScores,
-            instructorFeedback: draft,
-          });
-        })
-        .catch(() => {});
+      if (shouldGenerateInstructorDraft) {
+        void generateInstructorDraft(safeData, analysisProfile)
+          .then((draft) => {
+            if (!draft) return;
+            persistWorkspaceSnapshot({
+              userInfo: analysisProfile,
+              results: safeData,
+              recommendedJobs: jobsWithScores,
+              instructorFeedback: draft,
+            });
+          })
+          .catch(() => {});
+      }
 
       persistWorkspaceSnapshot({
         userInfo: analysisProfile,
@@ -382,6 +386,7 @@ export function useApplicationAnalysis({
     selectedApiKey,
     selectedModelId,
     selectedProvider,
+    shouldGenerateInstructorDraft,
     setActiveTab,
     setError,
     setInfoMessage,

@@ -84,8 +84,8 @@ function buildFileName(userInfo, instructorFeedback) {
   const mm = String(now.getMonth() + 1).padStart(2, '0');
   const dd = String(now.getDate()).padStart(2, '0');
   const applicantName = userInfo?.name || '지원자';
-  const instructorName = instructorFeedback?.name || '강사';
-  return `${yy}${mm}${dd}_${applicantName}_서류분석리포트_${instructorName}`;
+  const instructorName = instructorFeedback?.name?.trim();
+  return [ `${yy}${mm}${dd}`, applicantName, '서류분석리포트', instructorName ].filter(Boolean).join('_');
 }
 
 function renderFeedbackList(items = [], accent = '#2563eb') {
@@ -144,6 +144,7 @@ function generatePdfHtml({ results, userInfo, recommendedJobs, instructorFeedbac
   const hasInstructorFeedback = Boolean(
     instructorFeedback && Object.values(instructorFeedback).some((value) => value && value.trim())
   );
+  const showInstructorSection = instructorFeedback !== null;
   const github = results?.githubPortfolioAnalysis;
 
   const profileSummary = `
@@ -361,7 +362,9 @@ function generatePdfHtml({ results, userInfo, recommendedJobs, instructorFeedbac
       <div class="page">
         <section class="cover">
           <h1>서류 분석 리포트</h1>
-          <p>지원 자료, 추천 공고, 포트폴리오, 강사 피드백을 한 번에 정리한 인쇄용 결과입니다.</p>
+          <p>${showInstructorSection
+            ? '지원 자료, 추천 공고, 포트폴리오, 강사 피드백을 한 번에 정리한 인쇄용 결과입니다.'
+            : '지원 자료, 추천 공고, 포트폴리오 분석을 한 번에 정리한 인쇄용 결과입니다.'}</p>
           <div class="cover-meta">
             <div class="cover-meta-item"><span>지원자</span><strong>${escapeHtml(userInfo?.name || '-')}</strong></div>
             <div class="cover-meta-item"><span>지원 직무</span><strong>${escapeHtml(roleLabel)}</strong></div>
@@ -376,17 +379,18 @@ function generatePdfHtml({ results, userInfo, recommendedJobs, instructorFeedbac
         ${sectionCard('이력서 피드백', resumeSection)}
         ${sectionCard('자기소개서 피드백', coverSection)}
         ${sectionCard('포트폴리오 / GitHub 메모', portfolioSection)}
-        ${sectionCard('강사 피드백', instructorSection)}
+        ${showInstructorSection ? sectionCard('강사 피드백', instructorSection) : ''}
       </div>
     </body>
   </html>`;
 }
 
-export default function PdfExport({ results, userInfo, recommendedJobs, instructorFeedback }) {
+export default function PdfExport({ results, userInfo, recommendedJobs, instructorFeedback, canManageInstructorFeedback }) {
   const hasResults = !!results;
-  const fileName = buildFileName(userInfo, instructorFeedback);
+  const visibleInstructorFeedback = canManageInstructorFeedback ? instructorFeedback : null;
+  const fileName = buildFileName(userInfo, visibleInstructorFeedback);
   const hasInstructorFeedback = Boolean(
-    instructorFeedback && Object.values(instructorFeedback).some((value) => value && value.trim())
+    visibleInstructorFeedback && Object.values(visibleInstructorFeedback).some((value) => value && value.trim())
   );
   const statusCards = [
     {
@@ -407,13 +411,13 @@ export default function PdfExport({ results, userInfo, recommendedJobs, instruct
       icon: Briefcase,
       help: results?.coverLetterImprovements ? '결과 포함' : '내용 없음',
     },
-    {
+    canManageInstructorFeedback && {
       label: '강사 피드백',
       ready: hasInstructorFeedback,
       icon: BookOpen,
       help: hasInstructorFeedback ? '선택 포함' : '선택 항목',
     },
-  ];
+  ].filter(Boolean);
   const includedSections = [
     '프로필 요약',
     '추천 공고 Top 3',
@@ -421,8 +425,8 @@ export default function PdfExport({ results, userInfo, recommendedJobs, instruct
     '이력서 피드백',
     '자기소개서 피드백',
     '포트폴리오 / GitHub 메모',
-    '강사 피드백',
-  ];
+    canManageInstructorFeedback && '강사 피드백',
+  ].filter(Boolean);
   const instructorRows = [
     { key: 'name', label: '강사명' },
     { key: 'date', label: '피드백 일자' },
@@ -431,14 +435,14 @@ export default function PdfExport({ results, userInfo, recommendedJobs, instruct
     { key: 'coverLetter', label: '자기소개서' },
     { key: 'portfolio', label: '포트폴리오' },
     { key: 'interview', label: '면접 준비' },
-  ].filter(({ key }) => instructorFeedback?.[key]?.trim());
+  ].filter(({ key }) => visibleInstructorFeedback?.[key]?.trim());
 
   const handleExport = () => {
     const html = generatePdfHtml({
       results,
       userInfo,
       recommendedJobs: recommendedJobs || [],
-      instructorFeedback,
+      instructorFeedback: visibleInstructorFeedback,
     });
     const win = window.open('', '_blank', 'width=900,height=700');
     if (!win) {
@@ -459,14 +463,15 @@ export default function PdfExport({ results, userInfo, recommendedJobs, instruct
             <p className="coach-review-eyebrow">PDF 출력</p>
             <h2>분석 결과를 한 번에 묶어 내보냅니다</h2>
             <p>
-              현재 프로필, 추천 공고, 서류 피드백, 포트폴리오 메모, 강사 피드백을
-              인쇄용 리포트로 정리합니다.
+              {canManageInstructorFeedback
+                ? '현재 프로필, 추천 공고, 서류 피드백, 포트폴리오 메모, 강사 피드백을 인쇄용 리포트로 정리합니다.'
+                : '현재 프로필, 추천 공고, 서류 피드백과 포트폴리오 메모를 인쇄용 리포트로 정리합니다.'}
             </p>
           </div>
           <div className="coach-review-chip-row">
             <span>브라우저 인쇄 기반</span>
             <span>파일명 자동 생성</span>
-            <span>강사 피드백 선택 포함</span>
+            {canManageInstructorFeedback ? <span>강사 피드백 선택 포함</span> : null}
           </div>
         </header>
 
@@ -474,7 +479,7 @@ export default function PdfExport({ results, userInfo, recommendedJobs, instruct
           <article className="coach-review-meta-card">
             <span className="coach-review-meta-label">저장 파일명</span>
             <strong>{fileName}.pdf</strong>
-            <p>출력 시점의 지원자명과 강사명을 기준으로 파일명을 만듭니다.</p>
+            <p>{canManageInstructorFeedback ? '출력 시점의 지원자명과 강사명을 기준으로 파일명을 만듭니다.' : '출력 시점의 지원자명을 기준으로 파일명을 만듭니다.'}</p>
           </article>
           <article className="coach-review-meta-card">
             <span className="coach-review-meta-label">출력 방식</span>
@@ -483,7 +488,7 @@ export default function PdfExport({ results, userInfo, recommendedJobs, instruct
           </article>
           <article className="coach-review-meta-card">
             <span className="coach-review-meta-label">포함 범위</span>
-            <strong>분석 결과 + 강사 메모</strong>
+            <strong>{canManageInstructorFeedback ? '분석 결과 + 강사 메모' : '분석 결과'}</strong>
             <p>선택한 자료가 있을 때만 해당 섹션이 PDF에 포함됩니다.</p>
           </article>
         </div>
@@ -509,7 +514,7 @@ export default function PdfExport({ results, userInfo, recommendedJobs, instruct
         </div>
       </section>
 
-      {hasInstructorFeedback && (
+      {canManageInstructorFeedback && hasInstructorFeedback && (
         <section className="coach-review-surface">
           <div className="coach-review-section-head">
             <div>
@@ -521,7 +526,7 @@ export default function PdfExport({ results, userInfo, recommendedJobs, instruct
             {instructorRows.map(({ key, label }) => (
               <div key={key} className="coach-pdf-instructor-row">
                 <span>{label}</span>
-                <p>{instructorFeedback[key]}</p>
+                <p>{visibleInstructorFeedback[key]}</p>
               </div>
             ))}
           </div>
@@ -532,7 +537,7 @@ export default function PdfExport({ results, userInfo, recommendedJobs, instruct
         <div className="coach-personality-inline-alert">
           <AlertCircle size={18} />
           <p>
-            AI 분석 결과가 아직 없으면 PDF에는 프로필과 강사 피드백 중심으로만 포함됩니다.
+            AI 분석 결과가 아직 없으면 PDF에는 프로필 중심으로만 포함됩니다.
             서류 피드백과 공고 맞춤 분석까지 담으려면 먼저 분석을 실행해야 합니다.
           </p>
         </div>

@@ -28,7 +28,7 @@ export function createAnalysisRouter({ analysisService, authMiddleware }) {
     res.status(result.status).json(result.body);
   });
 
-  router.post('/api/instructor-draft', authMiddleware.requireAuth, async (req, res) => {
+  router.post('/api/instructor-draft', authMiddleware.requireAdmin, async (req, res) => {
     const result = await analysisService.generateInstructorDraft(req.body);
     res.status(result.status).json(result.body);
   });

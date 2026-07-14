@@ -2,23 +2,23 @@ export const ROLE_GROUPS = [
   {
     id: 'planning',
     label: '기획',
-    description: '시스템/컨텐츠, QA, PM, 라이브 운영 설계 역량을 중심으로 평가합니다.',
+    description: '시스템/컨텐츠, QA, PM, 라이브 운영 설계 경험을 중심으로 정리합니다.',
   },
   {
     id: 'programming',
     label: '프로그래밍',
-    description: '클라이언트, 서버, 엔진, 데이터/AI 구현 역량을 중심으로 평가합니다.',
+    description: '클라이언트, 서버, 엔진, 데이터/AI 구현 경험을 중심으로 정리합니다.',
   },
   {
     id: 'art',
     label: '아트',
-    description: '원화, UI, 3D, 애니메이션, VFX, TA 제작 역량을 중심으로 평가합니다.',
+    description: '원화, UI, 3D, 애니메이션, VFX, TA 제작 경험을 중심으로 정리합니다.',
   },
 ];
 
 export const ROLE_INPUT_PLAYBOOK = {
   기획: {
-    recruiterLens: '문제를 어떻게 구조화했고, 어떤 지표와 문서로 판단을 증명하는지 먼저 봅니다.',
+    recruiterLens: '문제 구조와 판단 근거를 지표, 문서, 협업 결과와 함께 정리하세요.',
     evidenceChecklist: [
       '담당 시스템이나 컨텐츠를 한 문장으로 정의하고, 목표 지표 또는 플레이 경험 목표를 같이 적습니다.',
       '기획서, 밸런스 시트, 와이어프레임, QA 리포트처럼 판단 근거가 남는 산출물을 우선 배치합니다.',
@@ -33,7 +33,7 @@ export const ROLE_INPUT_PLAYBOOK = {
     ],
   },
   프로그래밍: {
-    recruiterLens: '기술 선택 이유, 코드 구조, 검증 방식, 배포나 협업 흔적이 남아 있는지를 먼저 봅니다.',
+    recruiterLens: '기술 선택 이유, 코드 구조, 검증 방식, 배포나 협업 흔적을 함께 정리하세요.',
     evidenceChecklist: [
       '핵심 프로젝트는 README, 실행 방법, 담당 기능, 트러블슈팅 포인트가 바로 보이도록 정리합니다.',
       '언어/엔진만 적지 말고 네트워크, 최적화, 테스트, 툴링 같은 구현 범위를 같이 적습니다.',
@@ -53,7 +53,7 @@ export const ROLE_INPUT_PLAYBOOK = {
     ],
   },
   아트: {
-    recruiterLens: '결과물의 완성도뿐 아니라 제작 역할, 엔진 적용 이해, 파이프라인 협업 감각이 보이는지 먼저 봅니다.',
+    recruiterLens: '완성 결과와 함께 제작 역할, 엔진 적용 과정, 파이프라인 협업 경험을 정리하세요.',
     evidenceChecklist: [
       '한 장의 비주얼보다 제작 범위와 역할 분리가 보이는 시트를 우선 배치합니다.',
       '컨셉, 모델링, 리깅, UI, VFX 중 어디까지 담당했는지 단계별로 구분해 적습니다.',
@@ -99,9 +99,9 @@ export const ROLE_RESULT_PLAYBOOK = {
     portfolioDescription: '문서를 많이 보여주는 것보다 읽는 순서를 설계하는 것이 중요합니다.',
     portfolioCards: [
       {
-        label: '평가 기준',
+        label: '정리 흐름',
         title: '문제 정의 → 설계 판단 → 검증 결과',
-        body: '기획 포트폴리오는 결과물보다 왜 그런 구조를 택했는지와 무엇으로 검증했는지를 먼저 봅니다.',
+        body: '기획 포트폴리오는 문제 정의, 선택한 구조, 검증 결과가 이어지도록 구성하세요.',
       },
       {
         label: '우선 자료',
@@ -136,7 +136,7 @@ export const ROLE_RESULT_PLAYBOOK = {
   },
   프로그래밍: {
     feedbackTitle: '기술 서류 피드백',
-    feedbackDescription: '기술 선택 이유, 구조 설명, 검증 방식, 협업 흔적이 읽히는지 기준으로 봅니다.',
+    feedbackDescription: '기술 선택 이유, 구조 설명, 검증 방식, 협업 흔적이 읽히도록 정리합니다.',
     feedbackCards: [
       {
         label: '구현 범위',
@@ -163,7 +163,7 @@ export const ROLE_RESULT_PLAYBOOK = {
     portfolioDescription: '실행 가능한 설명과 코드 구조가 같이 보여야 포트폴리오로 읽힙니다.',
     portfolioCards: [
       {
-        label: '평가 기준',
+        label: '필수 구성',
         title: 'README, 구조, 핵심 기능 설명이 한 세트여야 합니다.',
         body: '코드만 많아도 약하고, 설명만 많아도 약합니다. 실행 방법과 담당 기능이 같이 보여야 합니다.',
       },
@@ -200,7 +200,7 @@ export const ROLE_RESULT_PLAYBOOK = {
   },
   아트: {
     feedbackTitle: '아트 서류 피드백',
-    feedbackDescription: '결과물 완성도뿐 아니라 역할 범위, 제작 과정, 엔진 적용 이해가 보이는지 기준으로 봅니다.',
+    feedbackDescription: '결과물 완성도와 함께 역할 범위, 제작 과정, 엔진 적용 이해가 드러나도록 정리합니다.',
     feedbackCards: [
       {
         label: '역할 범위',
@@ -227,9 +227,9 @@ export const ROLE_RESULT_PLAYBOOK = {
     portfolioDescription: '비주얼 퀄리티와 함께 역할 분리, 제작 과정, 엔진 적용성이 같이 보여야 강합니다.',
     portfolioCards: [
       {
-        label: '평가 기준',
+        label: '설명 흐름',
         title: '한 장의 완성컷보다 역할과 과정이 중요합니다.',
-        body: '채용자는 보기 좋은 결과물만이 아니라 어떤 의도로 만들었고, 어떤 피드백을 반영했는지까지 확인합니다.',
+        body: '결과물의 시각 의도, 담당 역할, 제작 과정, 반영한 피드백을 함께 설명하세요.',
       },
       {
         label: '우선 자료',

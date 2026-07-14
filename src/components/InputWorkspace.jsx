@@ -16,19 +16,23 @@ import {
   X,
 } from 'lucide-react';
 import { ROLE_GROUPS, getProfileDisplayRole, getRoleDetails } from '../data/skills';
+import { MAX_PORTFOLIO_FILES } from '../lib/submission-files';
 import InstructorFeedbackForm from './InstructorFeedbackForm';
 
 export default function InputWorkspace({
   analyzeApplication,
+  canManageInstructorFeedback,
   clearPinnedSlot,
   coverLetterFile,
   currentProvider,
   handleAddSkill,
+  handleCoverLetterFileChange,
   handleInputChange,
   handlePinnedGiNoChange,
   handlePortfolioChange,
   handleQuickAddSkill,
   handleRemoveSkill,
+  handleResumeFileChange,
   handleRoleGroupSelect,
   handleSubRoleChange,
   instructorFeedback,
@@ -155,7 +159,7 @@ export default function InputWorkspace({
 
           <aside className="coach-input-side p-6">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">입력 가이드</p>
-            <h4 className="mt-2 text-2xl font-black tracking-tight text-slate-900">{normalizedUserInfo.roleGroup} 트랙 기준</h4>
+            <h4 className="mt-2 text-2xl font-black tracking-tight text-slate-900">{normalizedUserInfo.roleGroup} 입력 가이드</h4>
             <p className="mt-3 text-sm leading-relaxed text-slate-600">{selectedRoleGroupInfo.description}</p>
             <p className="mt-4 rounded-[24px] border border-slate-200 bg-white px-4 py-4 text-sm leading-relaxed text-slate-700">
               {rolePlaybook.recruiterLens}
@@ -283,7 +287,7 @@ export default function InputWorkspace({
           </div>
 
           <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-            <p className="text-xs font-semibold text-slate-800">서류에 적기 좋은 기준</p>
+            <p className="text-xs font-semibold text-slate-800">서류에 적기 좋은 방식</p>
             <p className="mt-1 text-xs leading-relaxed text-slate-600">
               사용해본 항목보다 증명 가능한 항목만 남기세요. 프로젝트명, 산출물, 성과 수치, 협업 역할 중 최소 하나와 연결되는 역량이 좋습니다.
             </p>
@@ -309,7 +313,7 @@ export default function InputWorkspace({
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Documents</p>
             <h3 className="mt-2 flex items-center gap-2 text-lg font-bold text-slate-800">
               <UploadCloud size={20} className="text-emerald-500" /> 서류 첨부
-              <span className="ml-1 text-sm font-normal text-slate-400">(선택)</span>
+              <span className="ml-1 text-sm font-normal text-slate-400">(검토 요청 전 필요)</span>
             </h3>
           </div>
           <p className="max-w-xl text-sm leading-relaxed text-slate-500">{rolePlaybook.portfolioGuide}</p>
@@ -332,7 +336,7 @@ export default function InputWorkspace({
             <p className="mb-3 text-xs leading-relaxed text-slate-500">
               직무 키워드, 담당 범위, 결과 수치가 첫 페이지 안에서 읽히게 정리하는 편이 좋습니다.
             </p>
-            <input type="file" accept=".pdf" onChange={(e) => { if (e.target.files[0]) setResumeFile(e.target.files[0]); }} className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
+            <input type="file" accept=".pdf" onChange={handleResumeFileChange} className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" />
             {resumeFile && (
               <div className="mt-2 text-xs text-slate-600 bg-slate-100 p-2 rounded flex justify-between">
                 <span className="truncate">{resumeFile.name}</span>
@@ -345,7 +349,7 @@ export default function InputWorkspace({
             <p className="mb-3 text-xs leading-relaxed text-slate-500">
               지원 동기보다 문제 해결 방식, 협업 태도, 판단 근거가 드러나는 사례 위주가 좋습니다.
             </p>
-            <input type="file" accept=".pdf" onChange={(e) => { if (e.target.files[0]) setCoverLetterFile(e.target.files[0]); }} className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100" />
+            <input type="file" accept=".pdf" onChange={handleCoverLetterFileChange} className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-purple-100" />
             {coverLetterFile && (
               <div className="mt-2 text-xs text-slate-600 bg-slate-100 p-2 rounded flex justify-between">
                 <span className="truncate">{coverLetterFile.name}</span>
@@ -356,8 +360,8 @@ export default function InputWorkspace({
           <div className={`border border-slate-200 rounded-xl p-4 md:col-span-2 ${fileUploadDisabled ? 'opacity-50 pointer-events-none' : ''}`}>
             <label className="block text-sm font-semibold text-slate-700 mb-2 flex items-center justify-between">
               <span>포트폴리오 (PDF 다중)</span>
-              <span className={`text-xs font-normal ${portfolioFiles.length >= 8 ? 'text-red-500 font-bold' : 'text-slate-400'}`}>
-                {portfolioFiles.length > 0 ? `첨부 ${portfolioFiles.length}개` : '최대 8개'}
+              <span className={`text-xs font-normal ${portfolioFiles.length >= MAX_PORTFOLIO_FILES ? 'text-red-500 font-bold' : 'text-slate-400'}`}>
+                {portfolioFiles.length > 0 ? `첨부 ${portfolioFiles.length}개` : `최대 ${MAX_PORTFOLIO_FILES}개`}
               </span>
             </label>
             <p className="mb-3 text-xs leading-relaxed text-slate-500">
@@ -371,12 +375,12 @@ export default function InputWorkspace({
               type="file"
               accept=".pdf"
               multiple
-              disabled={portfolioFiles.length >= 8}
+              disabled={portfolioFiles.length >= MAX_PORTFOLIO_FILES}
               onChange={handlePortfolioChange}
               className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-pink-700 hover:file:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed"
             />
-            {portfolioFiles.length >= 8 && (
-              <p className="mt-1 text-xs text-red-500">최대 8개까지 업로드할 수 있습니다. (각 10MB 이하)</p>
+            {portfolioFiles.length >= MAX_PORTFOLIO_FILES && (
+              <p className="mt-1 text-xs text-red-500">최대 {MAX_PORTFOLIO_FILES}개까지 첨부할 수 있습니다. (각 10MB 이하)</p>
             )}
             {portfolioFiles.length > 0 && (
               <div className="mt-3 grid grid-cols-2 gap-2">
@@ -491,9 +495,11 @@ export default function InputWorkspace({
         </div>
       </div>
 
-      <div className="coach-input-section-shell">
-        <InstructorFeedbackForm value={instructorFeedback} onChange={setInstructorFeedback} />
-      </div>
+      {canManageInstructorFeedback ? (
+        <div className="coach-input-section-shell">
+          <InstructorFeedbackForm value={instructorFeedback} onChange={setInstructorFeedback} />
+        </div>
+      ) : null}
 
       <section className="coach-input-submit-shell">
         <button

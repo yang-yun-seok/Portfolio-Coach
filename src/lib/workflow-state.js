@@ -69,7 +69,7 @@ export function getStepState(stepId, state) {
 
 export function getStepMeta(stepId, state) {
   if (stepId === 'profile') return state.hasProfile ? `${state.skillCount}개 역량` : '이름과 직무 입력';
-  if (stepId === 'files') return state.documentCount > 0 ? `${state.documentCount}개 선택` : '선택 사항';
+  if (stepId === 'files') return state.documentCount > 0 ? `${state.documentCount}개 선택` : '검토 요청 전 필요';
   if (stepId === 'analysis') {
     if (state.loading) return '진행 중';
     return state.hasResults ? '완료' : '대기';

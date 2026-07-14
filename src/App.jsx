@@ -27,6 +27,7 @@ import { matchJobsViaProxy, requestCompanyInsights } from './lib/gemini-client';
 import { getAiApiKey, hasAiApiKey, loadAiApiKeys, saveAiApiKeys } from './lib/ai-key-storage';
 import { buildAuthorizedHeaders } from './lib/auth-fetch';
 import { apiUrl, staticAssetUrl } from './lib/runtime-config';
+import { appendPortfolioFiles, getSubmissionFileError } from './lib/submission-files';
 import { useApplicationAnalysis } from './hooks/useApplicationAnalysis';
 import { useFirebaseSession } from './hooks/useFirebaseSession';
 import { useModels } from './hooks/useModels';
@@ -620,14 +621,31 @@ export default function App() {
     setUserInfo((prev) => ({ ...prev, skills: prev.skills.filter((s) => s.name !== skillName) }));
   };
 
-  // ── 포트폴리오 파일 핸들러 ───────────────────────────────────────────
-  const handlePortfolioChange = (e) => {
-    const files = Array.from(e.target.files);
-    if (portfolioFiles.length + files.length > 8) {
-      setError('포트폴리오는 최대 8개까지만 업로드 가능합니다.');
+  const handleSingleDocumentChange = (event, label, setFile) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const fileError = getSubmissionFileError(file, label);
+    if (fileError) {
+      setError(fileError);
+      event.target.value = '';
       return;
     }
-    setPortfolioFiles((prev) => [...prev, ...files]);
+    setFile(file);
+    setError('');
+  };
+
+  const handleResumeFileChange = (event) => handleSingleDocumentChange(event, '이력서', setResumeFile);
+  const handleCoverLetterFileChange = (event) => handleSingleDocumentChange(event, '자기소개서', setCoverLetterFile);
+
+  // ── 포트폴리오 파일 핸들러 ───────────────────────────────────────────
+  const handlePortfolioChange = (e) => {
+    const nextPortfolio = appendPortfolioFiles(portfolioFiles, e.target.files);
+    if (nextPortfolio.error) {
+      setError(nextPortfolio.error);
+      e.target.value = '';
+      return;
+    }
+    setPortfolioFiles(nextPortfolio.files);
     setError('');
   };
 
@@ -692,6 +710,7 @@ const { analyzeApplication } = useApplicationAnalysis({
   selectedApiKey,
   selectedProvider,
   selectedModelId,
+  shouldGenerateInstructorDraft: isAdminModeActive,
   setActiveTab,
     setError,
     setInfoMessage,
@@ -944,7 +963,9 @@ const { analyzeApplication } = useApplicationAnalysis({
     },
     'pdf-export': {
       title: '필요한 결과만 문서로 묶습니다',
-      description: '분석 결과와 강사 피드백을 제출용 문서로 출력합니다.',
+      description: isAdminModeActive
+        ? '분석 결과와 강사 피드백을 제출용 문서로 출력합니다.'
+        : '현재 분석 결과를 제출용 또는 복습용 문서로 출력합니다.',
       hint: '공유가 필요한 항목만 골라 제출용 검토 자료로 정리합니다.',
     },
     admin: {
@@ -959,7 +980,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     hint: '입력값과 분석 결과는 탭을 이동해도 유지됩니다.',
   };
   const statusCards = [
-    saveStatus === 'generating' && {
+    isAdminModeActive && saveStatus === 'generating' && {
       id: 'saving',
       tone: 'warning',
       icon: Loader2,
@@ -984,13 +1005,16 @@ const { analyzeApplication } = useApplicationAnalysis({
     currentProvider,
     handleAddSkill,
     handleInputChange,
+    handleCoverLetterFileChange,
     handlePinnedGiNoChange,
     handlePortfolioChange,
+    handleResumeFileChange,
     handleQuickAddSkill,
     handleRemoveSkill,
     handleRoleGroupSelect,
     handleSubRoleChange,
     instructorFeedback,
+    canManageInstructorFeedback: isAdminModeActive,
     loading,
     normalizedUserInfo,
     pinnedSlots,
@@ -1094,6 +1118,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     userInfo,
     recommendedJobs,
     instructorFeedback,
+    canManageInstructorFeedback: isAdminModeActive,
   };
   const adminWorkspaceProps = {
     getAccessToken: isSmokeMode ? async () => 'local-smoke-token' : getAccessToken,
