@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BookOpen, ChevronDown, Gamepad2, KeyRound, Loader2, LogIn, LogOut, Settings, UserRound } from 'lucide-react';
 
 export default function WorkspaceCommandBar({
@@ -25,7 +25,51 @@ export default function WorkspaceCommandBar({
   userProfile,
 }) {
   const [openMenuId, setOpenMenuId] = useState(null);
+  const navRef = useRef(null);
   const accountDisplayName = userProfile?.studentName || userProfile?.displayName || authUser?.displayName || authUser?.email || '계정';
+
+  useEffect(() => {
+    if (!openMenuId) return undefined;
+
+    const handlePointerDown = (event) => {
+      if (!navRef.current?.contains(event.target)) setOpenMenuId(null);
+    };
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') setOpenMenuId(null);
+    };
+
+    document.addEventListener('pointerdown', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [openMenuId]);
+
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return undefined;
+
+    const revealActiveSection = () => {
+      const activeSection = nav.querySelector('.coach-top-nav-menu.is-active');
+      if (!activeSection || nav.scrollWidth <= nav.clientWidth) return;
+
+      const leftEdge = activeSection.offsetLeft;
+      const rightEdge = leftEdge + activeSection.offsetWidth;
+      if (leftEdge < nav.scrollLeft) {
+        nav.scrollTo({ left: leftEdge, behavior: 'smooth' });
+      } else if (rightEdge > nav.scrollLeft + nav.clientWidth) {
+        nav.scrollTo({ left: rightEdge - nav.clientWidth, behavior: 'smooth' });
+      }
+    };
+
+    const frameId = window.requestAnimationFrame(revealActiveSection);
+    window.addEventListener('resize', revealActiveSection);
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.removeEventListener('resize', revealActiveSection);
+    };
+  }, [activeTab]);
 
   const handleToggleMenu = (sectionId) => {
     setOpenMenuId((current) => (current === sectionId ? null : sectionId));
@@ -48,7 +92,7 @@ export default function WorkspaceCommandBar({
         </span>
       </button>
 
-      <nav className="coach-top-nav" aria-label="Portfolio Coach 기능 이동">
+      <nav ref={navRef} className="coach-top-nav" aria-label="Portfolio Coach 기능 이동">
         {navSections.map((section) => {
           const sectionActive = section.items.some((item) => item.id === activeTab);
           const isOpen = openMenuId === section.id;

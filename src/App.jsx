@@ -5,7 +5,7 @@ import {
   Home,
   User,
   Smile,
-  Database, ClipboardList, Download, BarChart3,
+  ClipboardList, Download, BarChart3,
   ShieldCheck,
 } from 'lucide-react';
 import {
@@ -415,7 +415,9 @@ export default function App() {
     if (typeof window === 'undefined') return false;
     return window.sessionStorage.getItem(ADMIN_UNLOCK_STORAGE_KEY) === 'true';
   });
-  const isSmokeMode = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('smoke') === '1';
+  const isSmokeMode = typeof window !== 'undefined'
+    && ['127.0.0.1', 'localhost'].includes(window.location.hostname)
+    && new URLSearchParams(window.location.search).get('smoke') === '1';
 
   useEffect(() => {
     if (!isSmokeMode || typeof window === 'undefined') return undefined;
@@ -464,7 +466,6 @@ export default function App() {
   const isAdminModeActive = adminModeUnlocked;
   const {
     saveStatus,
-    restoreNotice,
     setRestoreNotice,
     lastSavedAt,
     analysisHistory,
@@ -941,26 +942,11 @@ const { analyzeApplication } = useApplicationAnalysis({
     hint: '입력값과 분석 결과는 탭을 이동해도 유지됩니다.',
   };
   const statusCards = [
-    restoreNotice && {
-      id: 'restore',
-      tone: 'info',
-      icon: Database,
-      label: 'Recovered',
-      title: '마지막 작업을 복구했습니다.',
-      body: `${formatSavedAt(restoreNotice.savedAt) || '최근 작업'} 기준으로 ${restoreNotice.hasResults ? '분석 결과와 프로필' : '프로필'}을 불러왔습니다.`,
-      actionLabel: restoreNotice.hasResults ? '결과 열기' : '입력 확인',
-      onAction: () => {
-        setActiveTab(restoreNotice.hasResults ? 'feedback' : 'input');
-        setRestoreNotice(null);
-      },
-      onDismiss: () => setRestoreNotice(null),
-      dismissible: true,
-    },
     saveStatus === 'generating' && {
       id: 'saving',
       tone: 'warning',
       icon: Loader2,
-      label: 'Saving',
+      label: '분석 중',
       title: '강사 피드백 초안을 정리하고 있습니다.',
       body: '정리가 끝날 때까지 새로고침하지 않는 편이 안전합니다.',
       spin: true,
@@ -1217,6 +1203,8 @@ const { analyzeApplication } = useApplicationAnalysis({
     setInfoMessage('관리자 모드를 종료했습니다.');
   };
 
+  const isFocusWorkspace = ['home', 'portfolio', 'admin'].includes(activeTab);
+
   // ── 렌더링 ────────────────────────────────────────────────────────────
   return (
     <AuthGate
@@ -1261,18 +1249,20 @@ const { analyzeApplication } = useApplicationAnalysis({
           />
         </main>
       ) : (
-      <div className="coach-body-shell">
+      <div className={`coach-body-shell ${isFocusWorkspace ? 'is-focus-mode' : ''}`}>
       {/* ── Main Content ────────────────────────────────────────────── */}
       <div ref={workspaceRef} className="apple-main coach-workspace apple-workspace flex-1 overflow-auto bg-slate-50 p-8 custom-scrollbar">
-        <div className="apple-stage coach-stage max-w-5xl mx-auto pb-20">
-          <WorkspaceFeatureHeader
-            activeFeatureGuide={activeFeatureGuide}
-            activeLabel={activeNavItem.label}
-            activeSectionLabel={activeNavSection.label}
-            ActiveNavIcon={ActiveNavIcon}
-            roleFocus={selectedRoleDetail.focus}
-            roleGroup={normalizedUserInfo.roleGroup}
-          />
+        <div className={`apple-stage coach-stage max-w-5xl mx-auto pb-20 ${isFocusWorkspace ? 'is-focus-stage' : ''}`}>
+          {!isFocusWorkspace ? (
+            <WorkspaceFeatureHeader
+              activeFeatureGuide={activeFeatureGuide}
+              activeLabel={activeNavItem.label}
+              activeSectionLabel={activeNavSection.label}
+              ActiveNavIcon={ActiveNavIcon}
+              roleFocus={selectedRoleDetail.focus}
+              roleGroup={normalizedUserInfo.roleGroup}
+            />
+          ) : null}
 
           <WorkspaceMessages
             error={error}
@@ -1298,7 +1288,7 @@ const { analyzeApplication } = useApplicationAnalysis({
         </div>
       </div>
 
-      <WorkspaceProgressPanel {...progressPanelProps} />
+      {!isFocusWorkspace ? <WorkspaceProgressPanel {...progressPanelProps} /> : null}
       </div>
       )}
 

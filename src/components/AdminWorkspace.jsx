@@ -176,7 +176,7 @@ function FileLinks({ files }) {
           href={file.url}
           target="_blank"
           rel="noreferrer"
-          className="flex min-w-0 items-center justify-between gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-400"
+          className="coach-admin-file-link"
         >
           <span className="flex min-w-0 items-center gap-2">
             <FileText size={15} className="shrink-0 text-slate-400" />
@@ -202,13 +202,13 @@ function StatusBadge({ status }) {
 
 function Metric({ icon: Icon, label, value, helper }) {
   return (
-    <article className="rounded-lg border border-slate-200 bg-white px-4 py-3">
-      <div className="flex items-center justify-between gap-3">
-        <p className="text-[11px] font-semibold text-slate-400">{label}</p>
-        <Icon size={16} className="text-slate-400" />
+    <article className="coach-admin-metric">
+      <div>
+        <Icon size={16} />
+        <p>{label}</p>
       </div>
-      <strong className="mt-2 block text-2xl font-black text-slate-900">{value}</strong>
-      <p className="mt-1 text-xs text-slate-500">{helper}</p>
+      <strong>{value}</strong>
+      <small>{helper}</small>
     </article>
   );
 }
@@ -441,25 +441,22 @@ export default function AdminWorkspace({
   }
 
   return (
-    <div className="coach-admin-workspace space-y-5 animate-in fade-in slide-in-from-bottom-4">
-      <section className="rounded-lg border border-slate-200 bg-white p-5">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+    <div className="coach-admin-workspace coach-view-enter">
+      <header className="coach-admin-header">
+        <div className="coach-admin-header-row">
           <div>
-            <p className="text-[11px] font-semibold text-slate-400">Admin Console</p>
-            <h2 className="mt-2 text-2xl font-black text-slate-900">제출 운영 관리</h2>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
-              학생 계정, 제출 파일, 검토 상태와 관리자 메모를 한 화면에서 관리합니다.
+            <p className="coach-admin-overline">관리자 작업대</p>
+            <h2>오늘 확인할 제출</h2>
+            <p>
+              확인이 필요한 제출부터 열고 상태, 공개 피드백, 내부 메모를 한 번에 정리합니다.
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600">
-              {userProfile?.studentName || userProfile?.displayName || '관리자'}
-            </span>
+          <div className="coach-admin-actions">
             <button
               type="button"
               onClick={loadOverview}
               disabled={loading}
-              className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+              className="coach-admin-primary"
             >
               {loading ? <Loader2 size={15} className="animate-spin" /> : <RefreshCw size={15} />}
               새로고침
@@ -468,40 +465,45 @@ export default function AdminWorkspace({
               type="button"
               onClick={handleDownloadCsv}
               disabled={filteredSubmissions.length === 0}
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 disabled:cursor-not-allowed disabled:opacity-50"
+              className="coach-admin-secondary"
             >
               <Download size={15} />
               CSV
             </button>
           </div>
         </div>
-      </section>
+        <div className="coach-admin-header-meta">
+          <span>{userProfile?.studentName || userProfile?.displayName || '관리자'}</span>
+          <span>전체 제출 {summary.totalSubmissions || 0}건</span>
+          <span>학생 {summary.totalUsers || 0}명</span>
+        </div>
+      </header>
 
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-6">
+      <section className="coach-admin-metrics" aria-label="제출 운영 요약">
         <Metric icon={FileText} label="전체 제출" value={`${summary.totalSubmissions || 0}건`} helper={`최근 제출 ${formatDateTime(summary.latestSubmittedAtIso)}`} />
         <Metric icon={UsersRound} label="사용자" value={`${summary.totalUsers || 0}명`} helper={`${summary.uniqueSubmitters || 0}명이 제출함`} />
         <Metric icon={Clock3} label="오늘 확인" value={`${summary.todayActionCount || 0}건`} helper="오늘 들어온 확인 대상" />
         <Metric icon={Clock3} label="확인 필요" value={`${summary.submittedCount || 0}건`} helper="신규 제출 상태" />
         <Metric icon={MessageSquare} label="검토 중" value={`${summary.reviewingCount || 0}건`} helper="진행 중인 검토" />
         <Metric icon={CheckCircle2} label="재제출 대기" value={`${summary.resubmissionWaitCount || 0}건`} helper={`검토 완료 ${summary.reviewedCount || 0}건`} />
-      </div>
+      </section>
 
       {error ? (
-        <div className="flex items-start gap-2 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
+        <div className="coach-admin-notice is-error" role="alert">
           <AlertCircle size={16} className="mt-0.5 shrink-0" />
           <span>{error}</span>
         </div>
       ) : null}
 
       {actionMessage ? (
-        <div className="flex items-start gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+        <div className="coach-admin-notice is-success" role="status">
           <CheckCircle2 size={16} className="mt-0.5 shrink-0" />
           <span>{actionMessage}</span>
         </div>
       ) : null}
 
-      <section className="rounded-lg border border-slate-200 bg-white p-5">
-        <div className="grid gap-3 xl:grid-cols-[1fr_auto_auto_auto] xl:items-center">
+      <section className="coach-admin-queue">
+        <div className="coach-admin-toolbar">
           <div>
             <h3 className="text-lg font-black text-slate-900">제출 목록</h3>
             <p className="mt-1 text-sm text-slate-500">총 {overview.submissions.length}건 중 {filteredSubmissions.length}건 표시</p>
@@ -537,7 +539,7 @@ export default function AdminWorkspace({
             ))}
           </select>
         </div>
-        <div className="mt-4 flex flex-wrap items-center gap-2">
+        <div className="coach-admin-filter-shortcuts">
           <button
             type="button"
             onClick={() => setStatusFilter('all')}
@@ -565,8 +567,8 @@ export default function AdminWorkspace({
           ))}
         </div>
 
-        <div className="mt-5 grid gap-5 xl:grid-cols-[minmax(0,1fr)_420px]">
-          <div className="min-w-0 space-y-2">
+        <div className="coach-admin-review-layout">
+          <div className="coach-admin-submission-list">
             {loading && overview.submissions.length === 0 ? (
               <div className="rounded-lg border border-slate-200 bg-slate-50 px-6 py-12 text-center">
                 <Loader2 size={24} className="mx-auto mb-3 animate-spin text-slate-500" />
@@ -588,40 +590,27 @@ export default function AdminWorkspace({
                   key={submission.id}
                   type="button"
                   onClick={() => setSelectedSubmissionId(submission.id)}
-                  className={`block w-full rounded-lg border px-4 py-3 text-left transition ${
-                    selected
-                      ? 'border-slate-900 bg-slate-900 text-white'
-                      : 'border-slate-200 bg-slate-50 text-slate-900 hover:border-slate-400 hover:bg-white'
-                  }`}
+                  className={`coach-admin-submission-row ${selected ? 'is-selected' : ''}`}
                 >
-                  <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-center gap-2">
+                  <div className="coach-admin-submission-row-main">
+                    <div className="coach-admin-submission-copy">
+                      <div className="coach-admin-submission-tags">
                         <StatusBadge status={submission.status} />
-                        <span className={`rounded-lg border px-2.5 py-1 text-xs font-bold ${
-                          selected ? 'border-white/20 bg-white/10 text-white' : 'border-slate-200 bg-white text-slate-600'
-                        }`}>
+                        <span className="coach-admin-track-tag">
                           {submission.track || '트랙 없음'} · {submission.subRole || '세부 직무 없음'}
                         </span>
                         {flags.map((flag) => (
-                          <span
-                            key={flag}
-                            className={`rounded-lg border px-2.5 py-1 text-xs font-bold ${
-                              selected ? 'border-white/20 bg-white/10 text-white' : 'border-amber-200 bg-amber-50 text-amber-700'
-                            }`}
-                          >
+                          <span key={flag} className="coach-admin-flag">
                             {flag}
                           </span>
                         ))}
                       </div>
-                      <h4 className="mt-3 truncate text-lg font-black">{submission.applicantName || getStudentName(submission)}</h4>
-                      <p className={`mt-1 truncate text-sm ${selected ? 'text-slate-300' : 'text-slate-500'}`}>
-                        {getStudentEmail(submission)}
-                      </p>
+                      <h4>{submission.applicantName || getStudentName(submission)}</h4>
+                      <p>{getStudentEmail(submission)}</p>
                     </div>
-                    <div className={`shrink-0 text-sm ${selected ? 'text-slate-300' : 'text-slate-500'}`}>
-                      <p>{formatDateTime(submission.submittedAtIso)}</p>
-                      <p className="mt-1 font-semibold">{getFileTotal(submission.fileCounts)}개 파일</p>
+                    <div className="coach-admin-submission-meta">
+                      <time>{formatDateTime(submission.submittedAtIso)}</time>
+                      <strong>{getFileTotal(submission.fileCounts)}개 파일</strong>
                     </div>
                   </div>
                 </button>
@@ -629,7 +618,7 @@ export default function AdminWorkspace({
             })}
           </div>
 
-          <aside className="min-w-0 rounded-lg border border-slate-200 bg-slate-50 p-4 xl:sticky xl:top-4 xl:self-start">
+          <aside className="coach-admin-inspector">
             {selectedSubmission ? (
               <div className="space-y-5">
                 <div>
@@ -751,7 +740,7 @@ export default function AdminWorkspace({
         </div>
       </section>
 
-      <section className="rounded-lg border border-slate-200 bg-white p-5">
+      <section className="coach-admin-users">
         <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <div>
             <h3 className="text-lg font-black text-slate-900">사용자 명단</h3>
