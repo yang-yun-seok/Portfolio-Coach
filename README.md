@@ -3,7 +3,7 @@
 게임 업계 취업 준비용 작업공간입니다.  
 직군 트랙을 고른 뒤 프로필, 서류, 포트폴리오, GitHub, 공고 데이터를 한곳에서 정리하고 `서류 피드백`, `공고 분석`, `추천 공고`, `면접 준비`까지 이어서 볼 수 있습니다.
 
-- 서비스 주소: [https://yang-yun-seok.github.io/Portfolio-Coach/](https://yang-yun-seok.github.io/Portfolio-Coach/)
+- 서비스 주소: [https://portfolio-coach-z0tc.onrender.com/](https://portfolio-coach-z0tc.onrender.com/)
 - 지원 트랙: `기획`, `프로그래밍`, `아트`
 
 ## 최종 운영 목표
@@ -164,14 +164,24 @@ npm run verify
 - 프로덕션 빌드
 - 스모크 테스트
 
-## 현재 배포 구조 (과도기)
+## 현재 배포 구조
 
-- Frontend: GitHub Pages
-- Backend: Render Web Service
+- Frontend / Backend: Render Web Service
 - Static API: `public/api/*.json`
 - Daily Crawl: GitHub Actions
 
-정적 페이지는 GitHub Pages에 배포되고, 서버 기능이 필요한 요청은 Render 백엔드가 처리합니다.
+Render가 React 프로덕션 번들과 Express API를 함께 제공합니다. GitHub Actions는 공고 데이터를 매일 갱신합니다.
+
+## Firebase 파일 제출 활성화
+
+파일 제출은 Storage 준비 여부와 별도 운영 플래그를 모두 확인합니다. 준비가 끝나기 전에는 학생 화면에서 제출 버튼이 비활성화됩니다.
+
+1. Firebase Console에서 Storage 버킷을 생성합니다.
+2. `npx firebase-tools deploy --only storage`로 `storage.rules`를 배포합니다.
+3. Render 환경 변수 `PORTFOLIO_UPLOADS_ENABLED=true`를 설정합니다.
+4. Render 서비스를 다시 배포한 뒤 `/api/capabilities` 응답의 `portfolioSubmissions.enabled`가 `true`인지 확인합니다.
+
+버킷이나 규칙이 준비되지 않았다면 `PORTFOLIO_UPLOADS_ENABLED=false`를 유지해야 합니다.
 
 ## 최종 배포 목표
 
@@ -224,8 +234,8 @@ tests/               현재 단위 테스트
 
 ## 추가 설계 문서
 
-- Firebase 인증 및 제출 저장 구조: [C:\Users\user\Documents\Codex\portfolio-bot-github\docs\firebase-auth-submission-architecture.md](C:/Users/user/Documents/Codex/portfolio-bot-github/docs/firebase-auth-submission-architecture.md)
+- Firebase 인증 및 제출 저장 구조: [docs/firebase-auth-submission-architecture.md](docs/firebase-auth-submission-architecture.md)
 
 ### Firebase 설정 문서
 
-- [Firebase 인증/제출 설정 가이드](C:/Users/user/Documents/Codex/portfolio-bot-github/docs/firebase-auth-setup.md)
+- [Firebase 인증/제출 설정 가이드](docs/firebase-auth-setup.md)

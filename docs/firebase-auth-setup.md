@@ -3,7 +3,7 @@
 이 문서는 현재 코드베이스에 이미 반영된 Firebase 인증/포트폴리오 제출 기능을 실제로 켜는 절차만 정리합니다.
 
 관련 설계 문서:
-- [Firebase 인증/제출 아키텍처](C:/Users/user/Documents/Codex/portfolio-bot-github/docs/firebase-auth-submission-architecture.md)
+- [Firebase 인증/제출 아키텍처](firebase-auth-submission-architecture.md)
 
 ## 1. 현재 코드 상태
 
@@ -13,12 +13,15 @@
 - 포트폴리오 제출 메타데이터 Firestore 저장
 - 제출 파일 Firebase Storage 저장
 - 내 제출 이력 조회
+- 관리자 제출 검토, 내부 메모, 학생 공개 피드백
+- 학생 계정 이용 활성화/중지
+- Storage 준비 상태에 따른 제출 기능 제어
 
 기본 동작:
 - 프론트 `VITE_FIREBASE_AUTH_ENABLED !== 'true'` 이면 로그인 없이 기존처럼 동작
 - 백엔드 `FIREBASE_AUTH_REQUIRED !== 'true'` 이면 인증 미들웨어가 비활성화됨
 
-즉, 설정값을 넣기 전까지는 배포가 깨지지 않도록 설계되어 있습니다.
+파일 제출은 `PORTFOLIO_UPLOADS_ENABLED=true`일 때만 열립니다. Storage 버킷과 규칙을 먼저 준비해야 합니다.
 
 ## 2. Firebase에서 먼저 해야 할 일
 
@@ -51,7 +54,7 @@ Firebase Console > Storage
 
 로컬 또는 Replit 프론트 환경에서 아래 값을 설정합니다.
 
-예시는 [/.env.frontend.example](C:/Users/user/Documents/Codex/portfolio-bot-github/.env.frontend.example) 참고.
+예시는 [/.env.frontend.example](../.env.frontend.example) 참고.
 
 필수:
 - `VITE_FIREBASE_AUTH_ENABLED=true`
@@ -67,15 +70,18 @@ Firebase Console > Storage
 
 ## 4. 백엔드 환경변수
 
-Render 또는 Replit 서버 환경에서 아래 값을 설정합니다.
+Render 서버 환경에서 아래 값을 설정합니다.
 
-예시는 [/.env.server.example](C:/Users/user/Documents/Codex/portfolio-bot-github/.env.server.example) 참고.
+예시는 [/.env.server.example](../.env.server.example) 참고.
 
 필수:
 - `FIREBASE_AUTH_REQUIRED=true`
 - `FIREBASE_PROJECT_ID`
 - `FIREBASE_CLIENT_EMAIL`
 - `FIREBASE_PRIVATE_KEY`
+
+Storage 준비 완료 후 설정:
+- `PORTFOLIO_UPLOADS_ENABLED=true`
 
 주의:
 - `FIREBASE_PRIVATE_KEY`는 줄바꿈이 `\n` 형태로 들어가도 코드에서 복원됩니다.
@@ -111,8 +117,7 @@ Firebase Console > Project settings > Service accounts
 - `role: user`
 - `trackDefault: 기획`
 
-관리자 승격:
-- Firestore `users/{uid}.role = admin`
+관리자 계정은 서버의 관리자 이메일 설정과 Firebase Admin SDK 검증을 통해 판별합니다. 클라이언트에서 사용자가 직접 역할을 변경할 수 없습니다.
 
 ## 7. 지금 보호되는 API
 
@@ -151,7 +156,8 @@ Firebase Console > Project settings > Service accounts
 3. 프론트 로그인 동작 확인
 4. 서버 보호 API 확인
 5. 제출 저장 확인
-6. 그 다음 Firestore/Storage 규칙 강화
+6. Firestore/Storage 규칙 배포
+7. Render에서 `PORTFOLIO_UPLOADS_ENABLED=true` 설정 후 재배포
 
 초기에는 너무 강한 규칙부터 적용하면 디버깅이 막힐 수 있습니다.
 
@@ -160,7 +166,7 @@ Firebase Console > Project settings > Service accounts
 프론트와 서버 환경변수를 모두 넣은 뒤:
 
 ```powershell
-cd C:\Users\user\Documents\Codex\portfolio-bot-github
+cd C:\Users\user\Documents\Codex\Portfolio-Coach
 npm install
 npm run dev
 ```
@@ -175,9 +181,10 @@ npm run dev
 
 ## 11. 배포 순서
 
-### 현재 과도기 구조
-- 프론트: GitHub Pages
-- 서버: Render
+### 현재 구조
+- 프론트/서버: Render Web Service
+- 인증/DB: Firebase
+- 파일: Firebase Storage 준비 후 활성화
 
 ### 최종 목표 구조
 - 저장소: GitHub Private
@@ -185,28 +192,27 @@ npm run dev
 - 인증/DB/파일: Firebase
 
 권장 순서:
-1. Firebase 로그인/제출 기능을 현재 구조에서 먼저 안정화
-2. Render 서버 보호 API 검증 완료
-3. GitHub 저장소 Private 전환
-4. 프론트/백엔드를 Replit 운영 구조로 이전
+1. Firebase Console에서 Storage 버킷 생성
+2. `npx firebase-tools deploy --only firestore,storage` 실행
+3. Render에서 `PORTFOLIO_UPLOADS_ENABLED=true` 설정
+4. Render 재배포 후 `/api/capabilities`와 실제 PDF 제출 확인
 
 ## 12. 롤백 방법
 
-문제가 생기면 아래 두 값만 끄면 기존처럼 동작합니다.
+문제가 생기면 아래 설정을 끕니다.
 
 프론트:
 - `VITE_FIREBASE_AUTH_ENABLED=false`
 
 백엔드:
 - `FIREBASE_AUTH_REQUIRED=false`
+- `PORTFOLIO_UPLOADS_ENABLED=false`
 
 이 두 값이 꺼져 있으면 로그인 게이트와 인증 강제가 비활성화됩니다.
 
-## 13. 다음 구현 단계
+## 13. 운영 점검
 
-현재 구현 이후 바로 이어질 권장 작업:
-- 관리자 제출 목록 화면
-- 관리자 상태 변경 / 메모 기능
-- Firestore/Storage 보안 규칙 적용
-- 사용자별 AI 요청 횟수 제한
-- 사용자별 제출 횟수 제한
+- `/api/capabilities`에서 제출 활성화 상태 확인
+- 관리자 화면에서 미제출, 분석 미완료, 반려 후 재제출 대기 확인
+- 학생 화면에서 관리자 내부 메모가 노출되지 않는지 확인
+- 제출 실패 시 Storage에 일부 파일이 남지 않는지 확인
