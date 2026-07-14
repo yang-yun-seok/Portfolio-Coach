@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { createFirebaseAdminService, normalizePrivateKey } from '../server/services/firebase-admin-service.js';
+import {
+  createFirebaseAdminService,
+  normalizePrivateKey,
+  verifyFirebaseIdToken,
+} from '../server/services/firebase-admin-service.js';
 
 const SAMPLE_BODY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 const EXPECTED_PEM = [
@@ -32,6 +36,21 @@ test('normalizePrivateKey restores one-line Render PEM values', () => {
 test('normalizePrivateKey strips wrapping quotes', () => {
   const quoted = `"-----BEGIN PRIVATE KEY-----\\n${SAMPLE_BODY}\\n-----END PRIVATE KEY-----\\n"`;
   assert.equal(normalizePrivateKey(quoted), EXPECTED_PEM);
+});
+
+test('verifyFirebaseIdToken forwards revoked-token checks to Firebase Auth', async () => {
+  const calls = [];
+  const auth = {
+    verifyIdToken: async (...args) => {
+      calls.push(args);
+      return { uid: 'student-1' };
+    },
+  };
+
+  const decoded = await verifyFirebaseIdToken(auth, 'token-1', { checkRevoked: true });
+
+  assert.deepEqual(decoded, { uid: 'student-1' });
+  assert.deepEqual(calls, [['token-1', true]]);
 });
 
 test('createFirebaseAdminService does not throw on an invalid private key', () => {
