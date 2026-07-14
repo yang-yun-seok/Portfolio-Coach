@@ -424,6 +424,7 @@ export default function App() {
 
     window.__portfolioCoachSmoke = window.__portfolioCoachSmoke || {};
     window.__portfolioCoachSmoke.setActiveTab = setActiveTab;
+    window.__portfolioCoachSmoke.setAdminMode = (unlocked) => setAdminModeUnlocked(Boolean(unlocked));
     window.__portfolioCoachSmoke.openGuide = () => setShowUserGuide(true);
 
     return () => {
@@ -866,13 +867,13 @@ const { analyzeApplication } = useApplicationAnalysis({
   }, [isAdminModeActive]);
 
   useEffect(() => {
-    if (authLoading || authUser || !adminModeUnlocked) return;
+    if (isSmokeMode || authLoading || authUser || !adminModeUnlocked) return;
     setAdminModeUnlocked(false);
     if (typeof window !== 'undefined') {
       window.sessionStorage.removeItem(ADMIN_UNLOCK_STORAGE_KEY);
     }
     if (activeTab === 'admin') setActiveTab('home');
-  }, [activeTab, adminModeUnlocked, authLoading, authUser]);
+  }, [activeTab, adminModeUnlocked, authLoading, authUser, isSmokeMode]);
 
   const activeNavIndex = availableNavItems.findIndex((item) => item.id === activeTab);
   const activeNavItem = availableNavItems[activeNavIndex >= 0 ? activeNavIndex : 0];
@@ -1078,7 +1079,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     instructorFeedback,
   };
   const adminWorkspaceProps = {
-    getAccessToken,
+    getAccessToken: isSmokeMode ? async () => 'local-smoke-token' : getAccessToken,
     isAdmin: isAdminModeActive,
     userProfile,
   };

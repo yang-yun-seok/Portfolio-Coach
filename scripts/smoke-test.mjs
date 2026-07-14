@@ -9,6 +9,7 @@ const port = Number(process.env.SMOKE_PORT || '4173');
 const pathPrefix = normalizePathPrefix(process.env.SMOKE_PATH_PREFIX || '/');
 const distDir = join(process.cwd(), 'dist');
 const baseUrl = `http://${host}:${port}${pathPrefix}`;
+const captureScreenshots = process.env.SMOKE_SCREENSHOTS === 'true';
 const TRACK_ENTRY_STORAGE_KEY = 'portfolio-coach-track-entry-v1';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -80,6 +81,68 @@ function createSmokeSeed() {
     instructorFeedback: { name: '', date: '', general: '', resume: '', coverLetter: '', portfolio: '', interview: '' },
   };
   return { currentSnapshot, previousSnapshot };
+}
+
+function createSmokeAdminOverview() {
+  const submittedAtIso = new Date().toISOString();
+  const users = [
+    {
+      uid: 'student-1',
+      studentName: '김지우',
+      displayName: '김지우',
+      email: 'jiwoo@example.com',
+      role: 'user',
+      lastLoginAt: submittedAtIso,
+    },
+    {
+      uid: 'student-2',
+      studentName: '',
+      displayName: '민서',
+      email: 'minseo@example.com',
+      role: 'user',
+      lastLoginAt: submittedAtIso,
+    },
+  ];
+  const submissions = [
+    {
+      id: 'submission-1',
+      userId: 'student-1',
+      accountStudentName: '김지우',
+      applicantName: '김지우',
+      userEmail: 'jiwoo@example.com',
+      status: 'submitted',
+      track: '프로그래밍',
+      subRole: '클라이언트 개발자',
+      submittedAtIso,
+      fileCounts: { resume: 1, coverLetter: 0, portfolio: 1 },
+      files: {
+        resume: { fileName: 'resume.pdf', size: 124000, url: 'https://example.com/resume.pdf' },
+        portfolio: [{ fileName: 'portfolio.pdf', size: 4120000, url: 'https://example.com/portfolio.pdf' }],
+      },
+      latestAnalysisSummary: 'Unity 프로젝트의 역할과 성과를 수치 중심으로 보완하면 좋습니다.',
+      latestRecommendedJobsSnapshot: [{ id: 'job-1', company: 'Studio A', title: '클라이언트 개발자', score: 88 }],
+      adminMemo: '',
+      studentFeedback: '',
+    },
+    {
+      id: 'submission-2',
+      userId: 'student-2',
+      applicantName: '민서',
+      userEmail: 'minseo@example.com',
+      status: 'rejected',
+      track: '기획',
+      subRole: '시스템 기획자',
+      submittedAtIso: '2026-07-13T04:30:00.000Z',
+      fileCounts: { resume: 0, coverLetter: 0, portfolio: 0 },
+      files: {},
+      latestAnalysisSummary: '',
+      latestRecommendedJobsSnapshot: [],
+      adminMemo: '보완본 제출 여부 확인',
+      studentFeedback: '역할과 결과가 드러나는 프로젝트 설명을 추가해 주세요.',
+    },
+  ];
+
+  return { summary: {}, submissions, users };
 }
 
 function normalizePathPrefix(value) {
@@ -187,6 +250,14 @@ async function clickTool(page, target) {
   throw new Error(`Failed to activate tab: ${target.id}`);
 }
 
+async function closeOpenMenu(page) {
+  await page.click('.coach-workspace');
+  await page.waitForFunction(
+    () => !document.querySelector('.coach-top-nav-menu.is-open'),
+    { timeout: 5000 },
+  );
+}
+
 async function run() {
   console.log(`[smoke] serving dist from ${baseUrl}`);
   const server = await startStaticServer();
@@ -201,6 +272,20 @@ async function run() {
     const consoleErrors = [];
     const pageErrors = [];
     const { currentSnapshot, previousSnapshot } = createSmokeSeed();
+    const adminOverview = createSmokeAdminOverview();
+
+    await page.setRequestInterception(true);
+    page.on('request', (request) => {
+      if (request.url().includes('/api/admin/overview')) {
+        void request.respond({
+          status: 200,
+          contentType: 'application/json',
+          body: JSON.stringify(adminOverview),
+        });
+        return;
+      }
+      void request.continue();
+    });
 
     page.on('console', (message) => {
       if (message.type() === 'error') consoleErrors.push(message.text());
@@ -252,7 +337,19 @@ async function run() {
     if (initialState.overflowX) throw new Error('Horizontal overflow detected on initial screen.');
     if (initialState.title !== 'Portfolio Coach') throw new Error(`Unexpected page title: ${initialState.title}`);
 
-    for (const groupLabel of ['내 준비', '시장·공고', '면접·마감']) {
+    const homeLayoutState = await page.evaluate(() => ({
+      hasWorkspace: !!document.querySelector('.coach-home-workspace'),
+      hasFocusMode: !!document.querySelector('.coach-body-shell.is-focus-mode'),
+      hasDuplicateProgress: !!document.querySelector('.coach-progress-panel'),
+      hasDuplicateFeatureHeader: !!document.querySelector('.coach-dossier-header'),
+    }));
+    if (!homeLayoutState.hasWorkspace) throw new Error('Student home workspace not found.');
+    if (!homeLayoutState.hasFocusMode) throw new Error('Student home focus layout not applied.');
+    if (homeLayoutState.hasDuplicateProgress) throw new Error('Duplicate progress panel is visible on student home.');
+    if (homeLayoutState.hasDuplicateFeatureHeader) throw new Error('Duplicate feature header is visible on student home.');
+    if (captureScreenshots) await page.screenshot({ path: 'prod-home-desktop.png', fullPage: true });
+
+    for (const groupLabel of ['홈', '내 준비', '시장·공고', '면접·마감']) {
       if (!initialState.groupLabels.includes(groupLabel)) {
         throw new Error(`Missing top navigation group: ${groupLabel}`);
       }
@@ -260,7 +357,7 @@ async function run() {
 
     const discoveredToolLabels = [];
     const triggerCount = await page.$$eval('.coach-top-nav-trigger', (triggers) => triggers.length);
-    if (triggerCount !== 3) throw new Error(`Unexpected top navigation group count: ${triggerCount}`);
+    if (triggerCount !== 4) throw new Error(`Unexpected top navigation group count: ${triggerCount}`);
 
     for (let index = 0; index < triggerCount; index += 1) {
       await page.evaluate((triggerIndex) => {
@@ -299,6 +396,24 @@ async function run() {
         throw new Error(`Missing top navigation tool: ${tool.label}`);
       }
     }
+
+    await closeOpenMenu(page);
+
+    console.log('[smoke] checking portfolio submission view');
+    await clickTool(page, { id: 'portfolio', label: 'Portfolio' });
+    await page.waitForFunction(
+      () => !!document.querySelector('.coach-submission-console'),
+      { timeout: 5000 },
+    );
+    const portfolioLayoutState = await page.evaluate(() => ({
+      hasFocusMode: !!document.querySelector('.coach-body-shell.is-focus-mode'),
+      hasDuplicateProgress: !!document.querySelector('.coach-progress-panel'),
+      overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    }));
+    if (!portfolioLayoutState.hasFocusMode) throw new Error('Portfolio focus layout not applied.');
+    if (portfolioLayoutState.hasDuplicateProgress) throw new Error('Duplicate progress panel is visible on portfolio view.');
+    if (portfolioLayoutState.overflowX) throw new Error('Horizontal overflow detected on portfolio view.');
+    if (captureScreenshots) await page.screenshot({ path: 'prod-portfolio-desktop.png', fullPage: true });
 
     console.log('[smoke] checking job analysis view');
     await clickTool(page, { id: 'job-analysis', label: '공고 분석' });
@@ -347,6 +462,62 @@ async function run() {
       () => !!document.querySelector('.coach-pdf-page'),
       { timeout: 5000 },
     );
+
+    console.log('[smoke] checking mobile focus layouts');
+    await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 });
+    await clickTool(page, { id: 'home', label: 'Home' });
+    await page.waitForFunction(
+      () => !!document.querySelector('.coach-home-workspace'),
+      { timeout: 5000 },
+    );
+    await sleep(400);
+    const mobileHomeState = await page.evaluate(() => ({
+      overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    }));
+    if (mobileHomeState.overflowX) throw new Error('Horizontal overflow detected on mobile student home.');
+    if (captureScreenshots) await page.screenshot({ path: 'prod-home-mobile.png', fullPage: true });
+
+    await clickTool(page, { id: 'portfolio', label: 'Portfolio' });
+    await page.waitForFunction(
+      () => !!document.querySelector('.coach-submission-console'),
+      { timeout: 5000 },
+    );
+    await sleep(400);
+    const mobilePortfolioState = await page.evaluate(() => ({
+      overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    }));
+    if (mobilePortfolioState.overflowX) throw new Error('Horizontal overflow detected on mobile portfolio view.');
+    if (captureScreenshots) await page.screenshot({ path: 'prod-portfolio-mobile.png', fullPage: true });
+    await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
+
+    console.log('[smoke] checking admin workspace');
+    await page.evaluate(() => window.__portfolioCoachSmoke?.setAdminMode?.(true));
+    await page.waitForFunction(
+      () => document.querySelectorAll('.coach-top-nav-trigger').length === 5,
+      { timeout: 5000 },
+    );
+    await clickTool(page, { id: 'admin', label: 'Admin' });
+    await page.waitForFunction(
+      () => document.querySelectorAll('.coach-admin-submission-row').length === 2,
+      { timeout: 5000 },
+    );
+    await sleep(400);
+    const adminDesktopState = await page.evaluate(() => ({
+      hasFocusMode: !!document.querySelector('.coach-body-shell.is-focus-mode'),
+      overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    }));
+    if (!adminDesktopState.hasFocusMode) throw new Error('Admin focus layout not applied.');
+    if (adminDesktopState.overflowX) throw new Error('Horizontal overflow detected on admin workspace.');
+    if (captureScreenshots) await page.screenshot({ path: 'prod-admin-desktop.png', fullPage: true });
+
+    await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 });
+    await sleep(200);
+    const adminMobileState = await page.evaluate(() => ({
+      overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    }));
+    if (adminMobileState.overflowX) throw new Error('Horizontal overflow detected on mobile admin workspace.');
+    if (captureScreenshots) await page.screenshot({ path: 'prod-admin-mobile.png', fullPage: false });
+    await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
 
     console.log('[smoke] checking guide modal');
     await page.evaluate(() => {
