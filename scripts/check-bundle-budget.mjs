@@ -23,7 +23,7 @@ function resolveDistAsset(assetPath) {
   return resolvedPath;
 }
 
-function checkAsset(label, assetPath, budget) {
+function checkAsset(label, assetPath, budget, forbiddenStrings = []) {
   const filePath = resolveDistAsset(assetPath);
   if (!existsSync(filePath)) {
     fail(`${label} asset not found: ${assetPath}`);
@@ -31,6 +31,7 @@ function checkAsset(label, assetPath, budget) {
   }
 
   const bytes = readFileSync(filePath);
+  const source = bytes.toString('utf8');
   const rawSize = bytes.length;
   const gzipSize = gzipSync(bytes).length;
   console.log(
@@ -43,6 +44,11 @@ function checkAsset(label, assetPath, budget) {
   if (gzipSize > budget.gzip) {
     fail(`${label} gzip size exceeds ${(budget.gzip / 1024).toFixed(0)} KiB budget.`);
   }
+  for (const forbiddenString of forbiddenStrings) {
+    if (source.includes(forbiddenString)) {
+      fail(`${label} contains forbidden client-side configuration: ${forbiddenString}`);
+    }
+  }
 }
 
 if (!existsSync(indexPath)) {
@@ -53,7 +59,7 @@ if (!existsSync(indexPath)) {
   const stylesheetPath = html.match(/<link[^>]+href="([^"]+\.css)"/)?.[1];
 
   if (!entryPath) fail('Entry script was not found in dist/index.html.');
-  else checkAsset('entry', entryPath, budgets.entry);
+  else checkAsset('entry', entryPath, budgets.entry, ['ADMIN_MODE_PASSWORD']);
 
   if (!stylesheetPath) fail('Stylesheet was not found in dist/index.html.');
   else checkAsset('styles', stylesheetPath, budgets.styles);

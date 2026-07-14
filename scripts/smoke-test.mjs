@@ -11,6 +11,7 @@ const distDir = join(process.cwd(), 'dist');
 const baseUrl = `http://${host}:${port}${pathPrefix}`;
 const captureScreenshots = process.env.SMOKE_SCREENSHOTS === 'true';
 const TRACK_ENTRY_STORAGE_KEY = 'portfolio-coach-track-entry-v1';
+const ADMIN_UNLOCK_STORAGE_KEY = 'portfolio-coach-admin-mode-unlocked-v1';
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function createSmokeSeed() {
@@ -319,11 +320,12 @@ async function run() {
     });
     page.on('pageerror', (error) => pageErrors.push(error.message));
 
-    await page.evaluateOnNewDocument((seed, trackStorageKey) => {
+    await page.evaluateOnNewDocument((seed, trackStorageKey, adminUnlockStorageKey) => {
       localStorage.setItem('portfolio_bot_save', JSON.stringify(seed.currentSnapshot));
       localStorage.setItem('portfolio_bot_history', JSON.stringify([seed.currentSnapshot, seed.previousSnapshot]));
       localStorage.setItem(trackStorageKey, seed.currentSnapshot.userInfo.roleGroup);
-    }, { currentSnapshot, previousSnapshot }, TRACK_ENTRY_STORAGE_KEY);
+      sessionStorage.setItem(adminUnlockStorageKey, 'true');
+    }, { currentSnapshot, previousSnapshot }, TRACK_ENTRY_STORAGE_KEY, ADMIN_UNLOCK_STORAGE_KEY);
 
     await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
     await page.goto(`${baseUrl}?smoke=1`, { waitUntil: 'networkidle0', timeout: 45000 });
@@ -353,6 +355,7 @@ async function run() {
         hasGuideButton: [...document.querySelectorAll('button')].some((button) => button.innerText.includes('사용 설명서')),
         hasLegacyStepUi: !!document.querySelector('.coach-side-step, .coach-side-steps, .is-complete, .coach-progress-track, .personality-progress-track'),
         overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+        staleAdminFlagPresent: sessionStorage.getItem('portfolio-coach-admin-mode-unlocked-v1') === 'true',
         groupLabels,
       };
     });
@@ -362,6 +365,8 @@ async function run() {
     if (!initialState.hasGuideButton) throw new Error('User guide button not found.');
     if (initialState.hasLegacyStepUi) throw new Error('Legacy step/progress UI is still present.');
     if (initialState.overflowX) throw new Error('Horizontal overflow detected on initial screen.');
+    if (!initialState.staleAdminFlagPresent) throw new Error('Stale administrator session seed was not applied.');
+    if (initialState.groupLabels.includes('관리')) throw new Error('A stored flag unlocked administrator navigation without server verification.');
     if (initialState.title !== 'Portfolio Coach') throw new Error(`Unexpected page title: ${initialState.title}`);
 
     const initialScriptCount = scriptRequests.filter((url) => url.includes('/assets/') && url.endsWith('.js')).length;
@@ -507,14 +512,14 @@ async function run() {
     );
 
     console.log('[smoke] checking personality view');
-    await clickTool(page, { id: 'personality-test', label: '?몄꽦寃??' });
+    await clickTool(page, { id: 'personality-test', label: '인성검사' });
     await page.waitForFunction(
       () => !!document.querySelector('.coach-personality-page'),
       { timeout: 5000 },
     );
 
     console.log('[smoke] checking pdf export view');
-    await clickTool(page, { id: 'pdf-export', label: 'PDF 異쒕젰' });
+    await clickTool(page, { id: 'pdf-export', label: 'PDF 출력' });
     await page.waitForFunction(
       () => !!document.querySelector('.coach-pdf-page'),
       { timeout: 5000 },
@@ -526,6 +531,24 @@ async function run() {
     if (studentPdfState.hasInstructorCopy) throw new Error('Instructor feedback copy is visible in the student PDF workspace.');
     if (studentPdfState.statusCount !== 3) throw new Error(`Unexpected student PDF status count: ${studentPdfState.statusCount}.`);
     if (captureScreenshots) await page.screenshot({ path: 'prod-pdf-desktop.png', fullPage: true });
+
+    console.log('[smoke] checking administrator unlock dialog');
+    await page.evaluate(() => window.__portfolioCoachSmoke?.openSettings?.());
+    await page.waitForFunction(
+      () => !!document.querySelector('[role="dialog"][aria-labelledby="settings-modal-title"]'),
+      { timeout: 5000 },
+    );
+    const adminUnlockDialogState = await page.evaluate(() => ({
+      hasPasswordInput: !!document.querySelector('#admin-mode-password[type="password"]'),
+      hasServerVerificationCopy: document.querySelector('[role="dialog"]')?.innerText.includes('서버에서 확인'),
+      hasCloseLabel: !!document.querySelector('button[aria-label="설정 닫기"]'),
+      passwordValue: document.querySelector('#admin-mode-password')?.value || '',
+    }));
+    if (!adminUnlockDialogState.hasPasswordInput) throw new Error('Administrator password input not found.');
+    if (!adminUnlockDialogState.hasServerVerificationCopy) throw new Error('Server-side administrator verification guidance not found.');
+    if (!adminUnlockDialogState.hasCloseLabel) throw new Error('Settings dialog close label not found.');
+    if (adminUnlockDialogState.passwordValue) throw new Error('Administrator password was prefilled in the client.');
+    await page.click('button[aria-label="설정 닫기"]');
 
     console.log('[smoke] checking mobile focus layouts');
     await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 });
