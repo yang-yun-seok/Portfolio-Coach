@@ -1,5 +1,8 @@
-import React, { useMemo, useState } from 'react';
-import { AlertCircle, Loader2, LockKeyhole, LogIn } from 'lucide-react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { AlertCircle, ArrowRight, Loader2, LockKeyhole, LogIn } from 'lucide-react';
+import { GOOGLE_SIGN_IN_MODES } from '../lib/google-sign-in';
+
+const LOGIN_RECOVERY_DELAY_MS = 4000;
 
 function AuthLoadingScreen() {
   return (
@@ -37,19 +40,65 @@ function AuthErrorScreen() {
   );
 }
 
-function LoginScreen({ onSignIn, error }) {
+function LoginScreen({ onSignIn, error, recoveryDelayMs = LOGIN_RECOVERY_DELAY_MS }) {
   const [submitting, setSubmitting] = useState(false);
+  const [redirecting, setRedirecting] = useState(false);
+  const [showRecovery, setShowRecovery] = useState(false);
   const [localError, setLocalError] = useState('');
+  const recoveryTimerRef = useRef(null);
+  const redirectRequestedRef = useRef(false);
+
+  const clearRecoveryTimer = () => {
+    if (!recoveryTimerRef.current) return;
+    window.clearTimeout(recoveryTimerRef.current);
+    recoveryTimerRef.current = null;
+  };
+
+  useEffect(() => () => {
+    if (recoveryTimerRef.current) window.clearTimeout(recoveryTimerRef.current);
+  }, []);
 
   const handleGoogleSignIn = async () => {
+    if (submitting || redirecting) return;
+    redirectRequestedRef.current = false;
     setSubmitting(true);
+    setShowRecovery(false);
     setLocalError('');
+    clearRecoveryTimer();
+    recoveryTimerRef.current = window.setTimeout(() => {
+      setShowRecovery(true);
+    }, recoveryDelayMs);
+
     try {
-      await onSignIn();
+      await onSignIn({ mode: GOOGLE_SIGN_IN_MODES.POPUP });
     } catch (submitError) {
-      setLocalError(submitError.message || 'Google 로그인에 실패했습니다.');
+      if (!redirectRequestedRef.current) {
+        setLocalError(submitError.message || 'Google 로그인에 실패했습니다.');
+      }
     } finally {
+      clearRecoveryTimer();
+      if (!redirectRequestedRef.current) {
+        setSubmitting(false);
+        setShowRecovery(false);
+      }
+    }
+  };
+
+  const handleRedirectSignIn = async () => {
+    if (redirecting) return;
+    redirectRequestedRef.current = true;
+    clearRecoveryTimer();
+    setRedirecting(true);
+    setLocalError('');
+
+    try {
+      await onSignIn({ mode: GOOGLE_SIGN_IN_MODES.REDIRECT });
+    } catch (redirectError) {
+      redirectRequestedRef.current = false;
       setSubmitting(false);
+      setShowRecovery(false);
+      setLocalError(redirectError.message || 'Google 로그인 페이지로 이동하지 못했습니다.');
+      setRedirecting(false);
     }
   };
 
@@ -75,11 +124,27 @@ function LoginScreen({ onSignIn, error }) {
           <button
             type="button"
             onClick={handleGoogleSignIn}
-            disabled={submitting}
+            disabled={submitting || redirecting}
+            aria-describedby={showRecovery ? 'google-login-recovery' : undefined}
           >
             {submitting ? <Loader2 size={18} className="animate-spin" /> : <LogIn size={18} />}
-            Google로 로그인
+            {submitting ? '로그인 창 확인 중' : 'Google로 로그인'}
           </button>
+
+          {showRecovery ? (
+            <div id="google-login-recovery" className="coach-auth-recovery" role="status" aria-live="polite">
+              <p>로그인 창이 보이지 않으면 현재 페이지에서 안전하게 계속할 수 있습니다.</p>
+              <button
+                type="button"
+                className="coach-auth-redirect-button"
+                disabled={redirecting}
+                onClick={handleRedirectSignIn}
+              >
+                {redirecting ? <Loader2 size={17} className="animate-spin" /> : <ArrowRight size={17} />}
+                {redirecting ? '로그인 페이지로 이동 중' : '현재 페이지에서 로그인 계속'}
+              </button>
+            </div>
+          ) : null}
         </div>
       </section>
     </main>
@@ -95,14 +160,24 @@ export default function AuthGate({
   onSignIn,
   children,
 }) {
-  const isLocalSmokeBypass = useMemo(() => {
-    if (!authEnabled || typeof window === 'undefined') return false;
+  const localSmokeMode = useMemo(() => {
+    if (typeof window === 'undefined') return '';
     const allowedHosts = new Set(['127.0.0.1', 'localhost']);
     const search = new URLSearchParams(window.location.search);
-    return allowedHosts.has(window.location.hostname) && search.get('smoke') === '1';
-  }, [authEnabled]);
+    if (!allowedHosts.has(window.location.hostname)) return '';
+    return search.get('smoke') || '';
+  }, []);
 
-  if (isLocalSmokeBypass) return children;
+  if (localSmokeMode === '1') return children;
+  if (localSmokeMode === 'auth') {
+    return (
+      <LoginScreen
+        error=""
+        onSignIn={() => new Promise(() => {})}
+        recoveryDelayMs={100}
+      />
+    );
+  }
   if (!authEnabled) return children;
   if (!configReady) {
     return <AuthErrorScreen />;

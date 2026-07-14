@@ -16,6 +16,7 @@ import {
   isFirebaseClientReady,
   loadFirebaseFirestore,
 } from '../lib/firebase-client';
+import { GOOGLE_SIGN_IN_MODES, startGoogleSignIn } from '../lib/google-sign-in';
 
 const DEFAULT_ROLE = 'user';
 const GOOGLE_PROVIDER_ID = 'google.com';
@@ -139,7 +140,7 @@ export function useFirebaseSession() {
     };
   }, []);
 
-  const signIn = useCallback(async () => {
+  const signIn = useCallback(async ({ mode = GOOGLE_SIGN_IN_MODES.POPUP } = {}) => {
     if (!firebaseAuth) {
       throw new Error('로그인 기능이 아직 활성화되어 있지 않습니다.');
     }
@@ -148,13 +149,15 @@ export function useFirebaseSession() {
     const provider = createGoogleProvider();
 
     try {
-      await setPersistence(firebaseAuth, browserLocalPersistence);
-      await signInWithPopup(firebaseAuth, provider);
+      await startGoogleSignIn({
+        auth: firebaseAuth,
+        mode,
+        provider,
+        setPersistenceImpl: (auth) => setPersistence(auth, browserLocalPersistence),
+        popupImpl: signInWithPopup,
+        redirectImpl: signInWithRedirect,
+      });
     } catch (error) {
-      if (error?.code === 'auth/popup-blocked' || error?.code === 'auth/cancelled-popup-request') {
-        await signInWithRedirect(firebaseAuth, provider);
-        return;
-      }
       throw new Error(getReadableAuthError(error));
     }
   }, []);
