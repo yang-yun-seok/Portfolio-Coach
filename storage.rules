@@ -27,7 +27,10 @@ service firebase.storage {
         && request.resource.size <= 10 * 1024 * 1024
         && request.resource.contentType == 'application/pdf';
 
-      allow update, delete: if false;
+      allow delete: if ownsActiveAccount(userId)
+        && !firestore.exists(/databases/(default)/documents/portfolioSubmissions/$(submissionId));
+
+      allow update: if false;
     }
 
     match /{path=**} {

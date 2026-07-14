@@ -66,6 +66,7 @@ export async function loadFirebaseStorage() {
   if (!storageClientPromise) {
     storageClientPromise = import('firebase/storage')
       .then((storageModule) => ({
+        deleteObject: storageModule.deleteObject,
         getDownloadURL: storageModule.getDownloadURL,
         ref: storageModule.ref,
         storage: storageModule.getStorage(firebaseApp),

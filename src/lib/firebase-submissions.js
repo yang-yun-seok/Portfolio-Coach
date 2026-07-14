@@ -3,6 +3,7 @@ import {
   loadFirebaseFirestore,
   loadFirebaseStorage,
 } from './firebase-client';
+import { rollbackUploadedObjects } from './submission-upload-utils';
 
 const MAX_PORTFOLIO_FILES = 5;
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
@@ -23,7 +24,7 @@ function assertPdfFile(file, label) {
   }
 }
 
-async function uploadSingleFile({ storageClient, uid, submissionId, file, path, kind }) {
+async function uploadSingleFile({ storageClient, uid, submissionId, file, path, kind, uploadedObjectRefs }) {
   if (!file) return null;
   assertPdfFile(file, kind);
   const objectRef = storageClient.ref(storageClient.storage, `portfolio-submissions/${uid}/${submissionId}/${path}`);
@@ -33,6 +34,7 @@ async function uploadSingleFile({ storageClient, uid, submissionId, file, path, 
       submissionKind: kind,
     },
   });
+  uploadedObjectRefs.push(objectRef);
   return {
     fileName: file.name,
     storagePath: objectRef.fullPath,
@@ -120,63 +122,77 @@ export async function createPortfolioSubmission({
     },
   };
 
-  const uploadedResume = await uploadSingleFile({
-    storageClient,
-    uid: authUser.uid,
-    submissionId,
-    file: resumeFile,
-    path: 'resume.pdf',
-    kind: 'resume',
-  });
-  const uploadedCoverLetter = await uploadSingleFile({
-    storageClient,
-    uid: authUser.uid,
-    submissionId,
-    file: coverLetterFile,
-    path: 'cover-letter.pdf',
-    kind: 'cover-letter',
-  });
+  const uploadedObjectRefs = [];
+  let uploadedResume;
+  let uploadedCoverLetter;
   const uploadedPortfolioFiles = [];
-  for (let index = 0; index < trimmedPortfolioFiles.length; index += 1) {
-    const file = trimmedPortfolioFiles[index];
-    uploadedPortfolioFiles.push(await uploadSingleFile({
+  let uploadedFiles;
+
+  try {
+    uploadedResume = await uploadSingleFile({
       storageClient,
       uid: authUser.uid,
       submissionId,
-      file,
-      path: `portfolio-${index + 1}.pdf`,
-      kind: 'portfolio',
-    }));
+      file: resumeFile,
+      path: 'resume.pdf',
+      kind: 'resume',
+      uploadedObjectRefs,
+    });
+    uploadedCoverLetter = await uploadSingleFile({
+      storageClient,
+      uid: authUser.uid,
+      submissionId,
+      file: coverLetterFile,
+      path: 'cover-letter.pdf',
+      kind: 'cover-letter',
+      uploadedObjectRefs,
+    });
+    for (let index = 0; index < trimmedPortfolioFiles.length; index += 1) {
+      const file = trimmedPortfolioFiles[index];
+      uploadedPortfolioFiles.push(await uploadSingleFile({
+        storageClient,
+        uid: authUser.uid,
+        submissionId,
+        file,
+        path: `portfolio-${index + 1}.pdf`,
+        kind: 'portfolio',
+        uploadedObjectRefs,
+      }));
+    }
+
+    uploadedFiles = {
+      resume: uploadedResume,
+      coverLetter: uploadedCoverLetter,
+      portfolio: uploadedPortfolioFiles.filter(Boolean),
+    };
+
+    await firestore.setDoc(submissionRef, {
+      ...baseSubmission,
+      files: uploadedFiles,
+    });
+  } catch (error) {
+    await rollbackUploadedObjects(storageClient, uploadedObjectRefs);
+    throw error;
   }
 
-  const uploadedFiles = {
-    resume: uploadedResume,
-    coverLetter: uploadedCoverLetter,
-    portfolio: uploadedPortfolioFiles.filter(Boolean),
-  };
-
-  await firestore.setDoc(submissionRef, {
-    ...baseSubmission,
-    files: uploadedFiles,
-  });
-
-  await firestore.addDoc(firestore.collection(firestore.db, 'submissionEvents'), {
-    submissionId,
-    actorId: authUser.uid,
-    actorRole: userProfile?.role || 'user',
-    type: 'submitted',
-    note: '사용자 제출 생성',
-    createdAt: firestore.serverTimestamp(),
-  });
-
-  await firestore.addDoc(firestore.collection(firestore.db, 'submissionEvents'), {
-    submissionId,
-    actorId: authUser.uid,
-    actorRole: userProfile?.role || 'user',
-    type: 'files_uploaded',
-    note: `이력서 ${uploadedResume ? 1 : 0}, 자기소개서 ${uploadedCoverLetter ? 1 : 0}, 포트폴리오 ${uploadedPortfolioFiles.length}`,
-    createdAt: firestore.serverTimestamp(),
-  });
+  await Promise.allSettled([
+    firestore.addDoc(firestore.collection(firestore.db, 'submissionEvents'), {
+      submissionId,
+      actorId: authUser.uid,
+      actorRole: userProfile?.role || 'user',
+      type: 'submitted',
+      note: '사용자 제출 생성',
+      createdAt: firestore.serverTimestamp(),
+    }),
+    firestore.addDoc(firestore.collection(firestore.db, 'submissionEvents'), {
+      submissionId,
+      actorId: authUser.uid,
+      actorRole: userProfile?.role || 'user',
+      type: 'files_uploaded',
+      note: `이력서 ${uploadedResume ? 1 : 0}, 자기소개서 ${uploadedCoverLetter ? 1 : 0}, 포트폴리오 ${uploadedPortfolioFiles.length}`,
+      createdAt: firestore.serverTimestamp(),
+    }),
+  ]);
 
   return {
     id: submissionId,
