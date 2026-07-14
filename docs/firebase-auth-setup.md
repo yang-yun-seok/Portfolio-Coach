@@ -22,6 +22,7 @@
 - 백엔드 `FIREBASE_AUTH_REQUIRED !== 'true'` 이면 인증 미들웨어가 비활성화됨
 
 파일 제출은 `PORTFOLIO_UPLOADS_ENABLED=true`일 때만 열립니다. Storage 버킷과 규칙을 먼저 준비해야 합니다.
+서버는 이 플래그와 별도로 실제 버킷 접근 가능 여부를 확인하며, 확인에 실패하면 제출 기능을 비활성 상태로 유지합니다.
 
 ## 2. Firebase에서 먼저 해야 할 일
 

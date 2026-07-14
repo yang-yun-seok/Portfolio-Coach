@@ -182,6 +182,7 @@ Render가 React 프로덕션 번들과 Express API를 함께 제공합니다. Gi
 5. Render 서비스를 다시 배포한 뒤 `/api/capabilities` 응답의 `portfolioSubmissions.enabled`가 `true`인지 확인합니다.
 
 버킷이나 규칙이 준비되지 않았다면 `PORTFOLIO_UPLOADS_ENABLED=false`를 유지해야 합니다.
+플래그를 켜더라도 서버의 런타임 버킷 확인을 통과하지 못하면 학생 제출 기능은 열리지 않습니다.
 제출 파일의 영구 다운로드 URL은 Firestore에 저장하지 않습니다. 관리자 파일 열람은 Firebase 관리자 권한을 확인하는 서버 API를 통해서만 처리합니다.
 
 ## 배포 기준
