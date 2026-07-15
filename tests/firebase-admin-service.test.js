@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   assertAdminUserAccessChange,
+  buildSubmissionFileSignature,
   createFirebaseAdminService,
   getSubmissionStoragePaths,
   normalizePrivateKey,
@@ -157,6 +158,16 @@ test('resolveSubmissionFileDescriptor accepts only the expected owner path', () 
     }),
     (error) => error.statusCode === 400 && /지원하지 않는/.test(error.message),
   );
+});
+
+test('buildSubmissionFileSignature creates a stable ordered content signature', () => {
+  assert.equal(buildSubmissionFileSignature({
+    resume: { fileName: 'resume.pdf', sha256: 'ABC123' },
+    portfolio: [{ fileName: 'work.pdf', sha256: 'DEF456' }],
+  }), 'resume:abc123|portfolio-1:def456');
+  assert.equal(buildSubmissionFileSignature({
+    resume: { fileName: 'legacy.pdf' },
+  }), '');
 });
 
 test('getSubmissionStoragePaths returns only validated private object paths', () => {

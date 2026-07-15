@@ -6,6 +6,7 @@ import {
   createAdminRouter,
   matchesAdminModePassword,
   parseAdminUnlock,
+  parseBulkReviewPatch,
   parseSubmissionDeletion,
   parseUserAccessPatch,
 } from '../server/routes/admin-routes.js';
@@ -105,6 +106,54 @@ test('submission deletion requires an exact submission ID confirmation', () => {
       (error) => error.statusCode === 400 && /제출 ID/.test(error.message),
     );
   }
+});
+
+test('bulk review patch accepts a bounded unique submission list', () => {
+  assert.deepEqual(parseBulkReviewPatch({
+    submissionIds: ['submission-1', 'submission-1', 'submission-2'],
+    status: 'reviewing',
+  }), {
+    submissionIds: ['submission-1', 'submission-2'],
+    status: 'reviewing',
+  });
+  assert.throws(
+    () => parseBulkReviewPatch({ submissionIds: [], status: 'reviewing' }),
+    (error) => error.statusCode === 400,
+  );
+  assert.throws(
+    () => parseBulkReviewPatch({ submissionIds: ['submission-1'], status: 'unknown' }),
+    (error) => error.statusCode === 400,
+  );
+});
+
+test('bulk review endpoint delegates one atomic service operation', async () => {
+  const calls = [];
+  const router = createAdminRouter({
+    firebaseAdminService: {
+      async updateAdminSubmissionStatuses(input) {
+        calls.push(input);
+        return [{ id: 'submission-1', status: input.status }];
+      },
+    },
+    submissionStorageService: {},
+    authMiddleware: { requireAdmin() {} },
+    adminModePassword: TEST_ADMIN_PASSWORD,
+  });
+  const handler = routeMiddleware(router, '/api/admin/submissions/bulk')[1];
+  let payload;
+  await handler({
+    body: { submissionIds: ['submission-1'], status: 'reviewing' },
+    authUser: { uid: 'admin-1', email: 'admin@example.com' },
+  }, {
+    status() { return this; },
+    json(value) { payload = value; return this; },
+  });
+  assert.deepEqual(calls, [{
+    submissionIds: ['submission-1'],
+    status: 'reviewing',
+    actor: { uid: 'admin-1', email: 'admin@example.com' },
+  }]);
+  assert.deepEqual(payload, { submissions: [{ id: 'submission-1', status: 'reviewing' }] });
 });
 
 test('admin submission deletion removes private files before Firestore metadata', async () => {

@@ -3,6 +3,7 @@ import test from 'node:test';
 import {
   deleteAdminSubmission,
   downloadAdminSubmissionFile,
+  updateAdminSubmissionStatuses,
   unlockAdminMode,
 } from '../src/lib/admin-api.js';
 
@@ -122,6 +123,34 @@ test('deleteAdminSubmission sends a strict confirmation payload', async () => {
       deletedFileCount: 2,
       releasedStorageBytes: 4600,
     });
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('updateAdminSubmissionStatuses sends one bounded bulk request', async () => {
+  const originalFetch = globalThis.fetch;
+  let capturedRequest = null;
+  globalThis.fetch = async (url, options) => {
+    capturedRequest = { url, options };
+    return new Response(JSON.stringify({ submissions: [{ id: 'submission-1', status: 'reviewing' }] }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  };
+  try {
+    const rows = await updateAdminSubmissionStatuses(
+      async () => 'admin-token',
+      ['submission-1'],
+      'reviewing',
+    );
+    assert.equal(capturedRequest.url, '/api/admin/submissions/bulk');
+    assert.equal(capturedRequest.options.method, 'PATCH');
+    assert.deepEqual(JSON.parse(capturedRequest.options.body), {
+      submissionIds: ['submission-1'],
+      status: 'reviewing',
+    });
+    assert.equal(rows[0].status, 'reviewing');
   } finally {
     globalThis.fetch = originalFetch;
   }

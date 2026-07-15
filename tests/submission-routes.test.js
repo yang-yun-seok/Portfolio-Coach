@@ -203,6 +203,33 @@ test('submission endpoint uploads a validated PDF and persists its descriptor', 
   assert.equal(uploaded[0].buffer.subarray(0, 5).toString(), '%PDF-');
   assert.equal(persisted[0].files.resume.storagePath, uploaded[0].path);
   assert.equal(persisted[0].files.resume.type, 'application/pdf');
+  assert.match(persisted[0].files.resume.sha256, /^[a-f0-9]{64}$/);
+});
+
+test('submission endpoint rejects duplicate PDF content before upload', async () => {
+  let uploadCalls = 0;
+  await withSubmissionServer({
+    submissionStorageService: {
+      getReadiness: async () => ({ ready: true, status: 'ready' }),
+      async uploadPdf() { uploadCalls += 1; },
+      async deleteFiles() {},
+    },
+    firebaseAdminService: {
+      createSubmissionId: () => 'submission-duplicate',
+      async createPortfolioSubmission() { throw new Error('must not persist'); },
+    },
+  }, async (baseUrl) => {
+    const form = createSubmissionForm();
+    form.append(
+      'portfolio',
+      new Blob([Buffer.from('%PDF-1.7 integration')], { type: 'application/pdf' }),
+      'same-content.pdf',
+    );
+    const response = await fetch(`${baseUrl}/api/me/submissions`, { method: 'POST', body: form });
+    assert.equal(response.status, 409);
+    assert.equal((await response.json()).code, 'duplicate_file');
+  });
+  assert.equal(uploadCalls, 0);
 });
 
 test('submission endpoint removes uploaded objects when Firestore persistence fails', async () => {

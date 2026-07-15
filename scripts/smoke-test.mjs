@@ -553,6 +553,11 @@ async function run() {
       () => !!document.querySelector('.coach-input-workspace'),
       { timeout: 5000 },
     );
+    await page.evaluate(() => {
+      const documentStage = [...document.querySelectorAll('.coach-input-stage-nav button')]
+        .find((button) => button.innerText.includes('자료'));
+      documentStage?.click();
+    });
     const studentInputState = await page.evaluate(() => ({
       hasInstructorTools: !!document.querySelector('.apple-instructor-form'),
       hasFiveFileLimit: document.querySelector('.coach-input-doc-shell')?.innerText.includes('최대 5개'),
@@ -711,6 +716,11 @@ async function run() {
       { timeout: 5000 },
     );
     await clickTool(page, { id: 'input', label: '정보 입력' });
+    await page.evaluate(() => {
+      const analysisStage = [...document.querySelectorAll('.coach-input-stage-nav button')]
+        .find((button) => button.innerText.includes('AI 분석'));
+      analysisStage?.click();
+    });
     await page.waitForFunction(
       () => !!document.querySelector('.apple-instructor-form'),
       { timeout: 5000 },
@@ -746,6 +756,7 @@ async function run() {
     await page.waitForFunction(() => document.body.innerText.includes('제출 파일을 받았습니다.'), { timeout: 5000 });
     if (adminFileDownloadCount !== 1) throw new Error(`Unexpected file download request count: ${adminFileDownloadCount}.`);
 
+    await page.$eval('.coach-admin-danger-zone', (node) => { node.open = true; });
     const submissionDeleteButton = await page.$('.coach-admin-delete-trigger');
     if (!submissionDeleteButton) throw new Error('Submission cleanup action not found.');
     await submissionDeleteButton.click();
@@ -776,6 +787,16 @@ async function run() {
 
     await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1 });
     await sleep(200);
+    const mobileSubmissionRow = await page.$('.coach-admin-submission-row-select');
+    if (!mobileSubmissionRow) throw new Error('Mobile submission row not found.');
+    await mobileSubmissionRow.click();
+    await page.waitForSelector('.coach-admin-inspector.is-mobile-open');
+    const mobileInspectorPosition = await page.$eval(
+      '.coach-admin-inspector.is-mobile-open',
+      (node) => getComputedStyle(node).position,
+    );
+    if (mobileInspectorPosition !== 'fixed') throw new Error('Mobile inspector did not open as a full-screen drawer.');
+    await page.click('.coach-admin-inspector-close');
     const adminMobileState = await page.evaluate(() => ({
       headingFontSize: Number.parseFloat(getComputedStyle(document.querySelector('.coach-admin-header h2')).fontSize),
       overflowX: document.documentElement.scrollWidth > document.documentElement.clientWidth,
@@ -825,6 +846,6 @@ async function run() {
 }
 
 run().catch((error) => {
-  console.error(error.message);
+  console.error(error.stack || error.message);
   process.exit(1);
 });

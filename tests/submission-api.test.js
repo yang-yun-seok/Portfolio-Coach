@@ -28,7 +28,7 @@ test('submission client sends Firebase auth and multipart files to the server AP
           name: '학생 이름',
           roleGroup: '개발',
           subRole: '클라이언트',
-          skills: ['Unity'],
+          skills: [{ name: 'Unity', level: '중' }],
         },
         resumeFile: resume,
         coverLetterFile: null,
