@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282624",
+  "company": "㈜트라이닷",
+  "title": "3D 실사 캐릭터 모델러 채용 (AI NPC/메타휴먼)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Maya",
+    "Unreal Engine",
+    "ZBrush"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282624",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임 Simulation",
+  "employmentType": "정규직, 프리랜서",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 캐릭터, 애니메이션, Maya, metahuman",
+  "updatedAt": "2026-07-15",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-15T16:22:13.810Z",
+  "lastSeenAt": "2026-07-15T16:22:13.810Z",
+  "lastCrawledAt": "2026-07-15T16:22:13.810Z",
+  "inactiveAt": null
+}

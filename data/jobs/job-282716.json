@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282716",
+  "company": "플레어비스",
+  "title": "[재택근무/스팀/콘솔] 3인칭 호러 생존 크래프트 클라이언트 프로그래머",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282716",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "under the rooftop",
+  "gameCategory": "콘솔게임 RPG, Shooting",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월), 인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+  "deadline": "~ 08/15(토)",
+  "salary": "5,000~6,000만원 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, VisualC++, C++, 게임프로그래밍, 게임프로그래머, 콘솔, 언리얼엔진, 스팀, UE5, UnrealEnngine",
+  "updatedAt": "2026-07-15",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-15T16:22:13.810Z",
+  "lastSeenAt": "2026-07-15T16:22:13.810Z",
+  "lastCrawledAt": "2026-07-15T16:22:13.810Z",
+  "inactiveAt": null
+}

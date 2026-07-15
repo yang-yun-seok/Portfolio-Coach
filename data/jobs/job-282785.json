@@ -1,0 +1,38 @@
+{
+  "id": "crawled-282785",
+  "company": "엔더블유",
+  "title": "[구인] 모바일 SNG 기획자 모집( 경력 3년 이상 )",
+  "role": "PM/운영",
+  "roles": [
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282785",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "CopyIt",
+  "gameCategory": "모바일게임 SNG, Simulation",
+  "employmentType": "정규직, 계약직 (계약기간 : 3개월)",
+  "deadline": "~ 07/31(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, SNG, UX·UI, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 유료화, UI·UX, 웹UI, 모바일UI, 게임운영, CS, 모니터링, 해외서비스",
+  "updatedAt": "2026-07-15",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-15T16:22:13.810Z",
+  "lastSeenAt": "2026-07-15T16:22:13.810Z",
+  "lastCrawledAt": "2026-07-15T16:22:13.810Z",
+  "inactiveAt": null
+}

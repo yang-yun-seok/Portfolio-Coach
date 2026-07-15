@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282732",
+  "company": "㈜이엔피브이원",
+  "title": "[㈜ENPV1] 게임QA 채용 (전북 거주자)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "QA/테스트"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282732",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, SNG",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 08/15(토)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, SNG, QA, 베타테스터, 게임테스터",
+  "updatedAt": "2026-07-15",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-15T16:22:13.810Z",
+  "lastSeenAt": "2026-07-15T16:22:13.810Z",
+  "lastCrawledAt": "2026-07-15T16:22:13.810Z",
+  "inactiveAt": null
+}

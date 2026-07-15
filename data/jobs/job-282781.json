@@ -1,0 +1,37 @@
+{
+  "id": "crawled-282781",
+  "company": "팀스파르타㈜",
+  "title": "[재택근무/내일배움캠프] 2026 Unreal Engine · TA · 3D 그래픽스 튜터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI",
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "3D",
+    "Maya",
+    "Unreal Engine",
+    "TA"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282781",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "멀티플랫폼게임 기타",
+  "employmentType": "프리랜서",
+  "deadline": "~ 07/31(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "C++, 3D, Maya, 엔진, Unreal, 언리얼4, 렌더링, TA, 그래픽스, DCC, 3D그래픽스, 버추얼, XR",
+  "updatedAt": "2026-07-15",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-15T16:22:13.810Z",
+  "lastSeenAt": "2026-07-15T16:22:13.810Z",
+  "lastCrawledAt": "2026-07-15T16:22:13.810Z",
+  "inactiveAt": null
+}

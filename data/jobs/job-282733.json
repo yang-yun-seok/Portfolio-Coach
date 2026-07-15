@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282733",
+  "company": "플레어비스",
+  "title": "[재택근무/스팀/콘솔] 3인칭 호러 생존 크래프트 애니메이터",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Maya",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282733",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "under the rooftop",
+  "gameCategory": "콘솔게임 RPG, Shooting",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월), 인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+  "deadline": "~ 08/15(토)",
+  "salary": "4,000~5,000만원\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 3DSmax, 애니메이션, 3DMax, Maya, blender",
+  "updatedAt": "2026-07-15",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-15T16:22:13.810Z",
+  "lastSeenAt": "2026-07-15T16:22:13.810Z",
+  "lastCrawledAt": "2026-07-15T16:22:13.810Z",
+  "inactiveAt": null
+}
