@@ -101,6 +101,7 @@ export default function PortfolioSubmissionPanel({
           disabled={submissionSaving || !authUser || !submissionReady}
           className="coach-submission-primary"
           aria-describedby={!submissionReady && !submissionChecking ? 'coach-submission-availability' : undefined}
+          aria-busy={submissionSaving || submissionChecking}
         >
           {submissionSaving || submissionChecking ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
           {submissionChecking ? '제출 상태 확인 중' : submissionReady ? submitLabel : '검토 요청 준비 중'}
@@ -158,14 +159,14 @@ export default function PortfolioSubmissionPanel({
           )}
 
           {submissionSuccess ? (
-            <div className="coach-submission-notice is-success" role="status">
+            <div className="coach-submission-notice is-success" role="status" aria-live="polite">
               <CheckCircle2 size={16} />
               <span>{submissionSuccess}</span>
             </div>
           ) : null}
 
           {!submissionReady && !submissionChecking ? (
-            <div id="coach-submission-availability" className="coach-submission-notice is-pending" role="status">
+            <div id="coach-submission-availability" className="coach-submission-notice is-pending" role="status" aria-live="polite">
               <Clock3 size={16} />
               <span>자료 제출은 현재 준비 중입니다. 준비가 완료되면 이 화면에서 담당자 검토를 요청할 수 있습니다.</span>
             </div>
