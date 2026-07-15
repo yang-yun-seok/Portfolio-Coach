@@ -17,12 +17,14 @@ import {
   UserRound,
   UserX,
   UsersRound,
+  X,
 } from 'lucide-react';
 import {
   deleteAdminSubmission,
   downloadAdminSubmissionFile,
   fetchAdminOverview,
   updateAdminSubmissionReview,
+  updateAdminSubmissionStatuses,
   updateAdminUserAccess,
 } from '../lib/admin-api';
 
@@ -41,6 +43,37 @@ const REVIEW_FILTER_SHORTCUTS = [
   { id: 'submitted', label: '확인 필요' },
   { id: 'reviewing', label: '검토 중' },
   { id: 'rejected', label: '반려' },
+];
+
+const FEEDBACK_TEMPLATES = [
+  {
+    id: 'evidence',
+    label: '성과 근거 보강',
+    text: '프로젝트에서 맡은 역할과 직접 만든 결과를 구분하고, 가능한 항목에는 수치나 전후 변화를 추가해 주세요.',
+  },
+  {
+    id: 'structure',
+    label: '구성 정리',
+    text: '핵심 프로젝트가 먼저 보이도록 순서를 조정하고, 각 프로젝트 설명을 문제-행동-결과 순서로 정리해 주세요.',
+  },
+  {
+    id: 'role-fit',
+    label: '직무 연결 강화',
+    text: '지원 직무에서 요구하는 역량과 현재 경험이 어떻게 연결되는지 프로젝트별로 한 문장씩 보강해 주세요.',
+  },
+  {
+    id: 'approved',
+    label: '검토 완료',
+    text: '요청한 보완 사항이 반영되었습니다. 현재 제출본을 기준으로 다음 지원 준비를 진행해 주세요.',
+  },
+];
+
+const USER_FILTER_OPTIONS = [
+  { id: 'all', label: '전체 학생' },
+  { id: 'missing_name', label: '이름 미설정' },
+  { id: 'no_submission', label: '미제출' },
+  { id: 'stale', label: '14일 이상 미제출' },
+  { id: 'rejected', label: '재제출 대기' },
 ];
 
 function formatDateTime(value) {
@@ -159,6 +192,16 @@ function buildAdminSummary(submissions = [], users = []) {
   };
 }
 
+function sortBySubmittedAtDesc(left, right) {
+  return new Date(right.submittedAtIso || 0).getTime() - new Date(left.submittedAtIso || 0).getTime();
+}
+
+function isOlderThanDays(value, days) {
+  const time = new Date(value || 0).getTime();
+  if (!Number.isFinite(time) || time <= 0) return false;
+  return Date.now() - time >= days * 24 * 60 * 60 * 1000;
+}
+
 function escapeCsvValue(value) {
   const text = value == null ? '' : String(value);
   if (!/[",\n\r]/.test(text)) return text;
@@ -209,7 +252,7 @@ function FileLinks({ files, onDownload, downloadingFileKey }) {
 
 function StatusBadge({ status }) {
   return (
-    <span className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-xs font-bold ${getStatusTone(status)}`}>
+    <span className={`coach-status-badge is-${status || 'submitted'} inline-flex items-center rounded-lg border px-2.5 py-1 text-xs font-bold ${getStatusTone(status)}`}>
       {getStatusLabel(status)}
     </span>
   );
@@ -229,6 +272,7 @@ function Metric({ icon: Icon, label, value, helper }) {
 }
 
 export default function AdminWorkspace({
+  crawlHealth,
   getAccessToken,
   isAdmin,
   submissionCapability,
@@ -241,7 +285,13 @@ export default function AdminWorkspace({
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [trackFilter, setTrackFilter] = useState('all');
+  const [userFilter, setUserFilter] = useState('all');
   const [selectedSubmissionId, setSelectedSubmissionId] = useState('');
+  const [selectedSubmissionIds, setSelectedSubmissionIds] = useState([]);
+  const [bulkStatus, setBulkStatus] = useState('reviewing');
+  const [bulkSaving, setBulkSaving] = useState(false);
+  const [selectedFeedbackTemplate, setSelectedFeedbackTemplate] = useState(FEEDBACK_TEMPLATES[0].id);
+  const [mobileInspectorOpen, setMobileInspectorOpen] = useState(false);
   const [reviewDrafts, setReviewDrafts] = useState({});
   const [savingSubmissionId, setSavingSubmissionId] = useState('');
   const [updatingUserId, setUpdatingUserId] = useState('');
@@ -312,6 +362,13 @@ export default function AdminWorkspace({
     || null
   ), [filteredSubmissions, selectedSubmissionId]);
 
+  const selectedStudentSubmissions = useMemo(() => {
+    if (!selectedSubmission?.userId) return [];
+    return overview.submissions
+      .filter((submission) => submission.userId === selectedSubmission.userId)
+      .sort(sortBySubmittedAtDesc);
+  }, [overview.submissions, selectedSubmission?.userId]);
+
   const selectedDraft = selectedSubmission
     ? reviewDrafts[selectedSubmission.id] || {
       status: selectedSubmission.status || 'submitted',
@@ -330,10 +387,17 @@ export default function AdminWorkspace({
     const submissionMap = new Map();
     overview.submissions.forEach((submission) => {
       if (!submission.userId) return;
-      const current = submissionMap.get(submission.userId) || { count: 0, latestSubmittedAtIso: '' };
+      const current = submissionMap.get(submission.userId) || {
+        count: 0,
+        latestSubmittedAtIso: '',
+        latestStatus: '',
+      };
+      const shouldReplaceLatest = !current.latestSubmittedAtIso
+        || new Date(submission.submittedAtIso || 0).getTime() > new Date(current.latestSubmittedAtIso || 0).getTime();
       submissionMap.set(submission.userId, {
         count: current.count + 1,
-        latestSubmittedAtIso: current.latestSubmittedAtIso || submission.submittedAtIso || '',
+        latestSubmittedAtIso: shouldReplaceLatest ? (submission.submittedAtIso || '') : current.latestSubmittedAtIso,
+        latestStatus: shouldReplaceLatest ? (submission.status || '') : current.latestStatus,
       });
     });
 
@@ -342,8 +406,15 @@ export default function AdminWorkspace({
         ...user,
         submissionCount: submissionMap.get(user.uid)?.count || 0,
         latestSubmittedAtIso: submissionMap.get(user.uid)?.latestSubmittedAtIso || '',
+        latestStatus: submissionMap.get(user.uid)?.latestStatus || '',
       }))
       .filter((user) => {
+        if (userFilter === 'missing_name' && user.studentName) return false;
+        if (userFilter === 'no_submission' && user.submissionCount > 0) return false;
+        if (userFilter === 'stale' && !(
+          user.submissionCount === 0 && isOlderThanDays(user.lastLoginAt || user.createdAt, 14)
+        )) return false;
+        if (userFilter === 'rejected' && user.latestStatus !== 'rejected') return false;
         if (!normalizedQuery) return true;
         return [
           getUserDisplayName(user),
@@ -357,7 +428,7 @@ export default function AdminWorkspace({
         if (right.submissionCount !== left.submissionCount) return right.submissionCount - left.submissionCount;
         return getUserDisplayName(left).localeCompare(getUserDisplayName(right), 'ko-KR');
       });
-  }, [normalizedQuery, overview.submissions, overview.users]);
+  }, [normalizedQuery, overview.submissions, overview.users, userFilter]);
 
   const updateSelectedDraft = (patch) => {
     if (!selectedSubmission) return;
@@ -470,6 +541,58 @@ export default function AdminWorkspace({
       setError(downloadError.message || '제출 파일을 받지 못했습니다.');
     } finally {
       setDownloadingFileKey('');
+    }
+  };
+
+  const applyFeedbackTemplate = () => {
+    const template = FEEDBACK_TEMPLATES.find((entry) => entry.id === selectedFeedbackTemplate);
+    if (!template || !selectedSubmission) return;
+    const currentFeedback = selectedDraft?.studentFeedback?.trim() || '';
+    updateSelectedDraft({
+      studentFeedback: currentFeedback
+        ? `${currentFeedback}\n\n${template.text}`
+        : template.text,
+    });
+  };
+
+  const toggleSubmissionSelection = (submissionId) => {
+    setSelectedSubmissionIds((current) => (
+      current.includes(submissionId)
+        ? current.filter((id) => id !== submissionId)
+        : [...current, submissionId].slice(0, 50)
+    ));
+  };
+
+  const handleBulkStatusUpdate = async () => {
+    if (!selectedSubmissionIds.length) return;
+    setBulkSaving(true);
+    setError('');
+    setActionMessage('');
+    try {
+      const updatedSubmissions = await updateAdminSubmissionStatuses(
+        getAccessToken,
+        selectedSubmissionIds,
+        bulkStatus,
+      );
+      const updatesById = new Map(updatedSubmissions.map((submission) => [submission.id, submission]));
+      setOverview((current) => {
+        const nextSubmissions = current.submissions.map((submission) => (
+          updatesById.has(submission.id)
+            ? { ...submission, ...updatesById.get(submission.id), account: submission.account }
+            : submission
+        ));
+        return {
+          ...current,
+          submissions: nextSubmissions,
+          summary: buildAdminSummary(nextSubmissions, current.users),
+        };
+      });
+      setSelectedSubmissionIds([]);
+      setActionMessage(`${updatedSubmissions.length}건의 상태를 ${getStatusLabel(bulkStatus)}로 변경했습니다.`);
+    } catch (bulkError) {
+      setError(bulkError.message || '제출 상태를 일괄 변경하지 못했습니다.');
+    } finally {
+      setBulkSaving(false);
     }
   };
 
@@ -621,6 +744,19 @@ export default function AdminWorkspace({
         <Metric icon={CheckCircle2} label="재제출 대기" value={`${summary.resubmissionWaitCount || 0}건`} helper={`검토 완료 ${summary.reviewedCount || 0}건`} />
       </section>
 
+      <section className={`coach-admin-crawl-health ${crawlHealth?.currentHealthy === false ? 'is-warning' : ''}`} aria-label="공고 수집 상태">
+        <div>
+          <span>공고 수집</span>
+          <strong>{crawlHealth?.currentHealthy === false ? '확인 필요' : '정상'}</strong>
+        </div>
+        <dl>
+          <div><dt>최근 정상 수집</dt><dd>{crawlHealth?.lastNormalJobCount || 0}건</dd></div>
+          <div><dt>정상 수집률</dt><dd>{crawlHealth?.successRate == null ? '기록 없음' : `${crawlHealth.successRate}%`}</dd></div>
+          <div><dt>최근 실행 상태</dt><dd>{crawlHealth?.currentStatus || 'unknown'}</dd></div>
+          <div><dt>최근 정상 시각</dt><dd>{formatDateTime(crawlHealth?.lastNormalAt)}</dd></div>
+        </dl>
+      </section>
+
       {error ? (
         <div className="coach-admin-notice is-error" role="alert">
           <AlertCircle size={16} className="mt-0.5 shrink-0" />
@@ -703,6 +839,29 @@ export default function AdminWorkspace({
           ))}
         </div>
 
+        <div className="coach-admin-bulkbar">
+          <label>
+            <input
+              type="checkbox"
+              checked={filteredSubmissions.length > 0 && filteredSubmissions.every((submission) => selectedSubmissionIds.includes(submission.id))}
+              onChange={(event) => {
+                setSelectedSubmissionIds(event.target.checked
+                  ? filteredSubmissions.slice(0, 50).map((submission) => submission.id)
+                  : []);
+              }}
+            />
+            현재 목록 선택
+          </label>
+          <span>{selectedSubmissionIds.length}건 선택</span>
+          <select value={bulkStatus} onChange={(event) => setBulkStatus(event.target.value)} aria-label="일괄 변경 상태">
+            {REVIEW_STATUS_OPTIONS.map((status) => <option key={status.id} value={status.id}>{status.label}</option>)}
+          </select>
+          <button type="button" onClick={handleBulkStatusUpdate} disabled={!selectedSubmissionIds.length || bulkSaving}>
+            {bulkSaving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
+            일괄 변경
+          </button>
+        </div>
+
         <div className="coach-admin-review-layout">
           <div className="coach-admin-submission-list">
             {loading && overview.submissions.length === 0 ? (
@@ -722,12 +881,26 @@ export default function AdminWorkspace({
               const selected = selectedSubmission?.id === submission.id;
               const flags = getOperationalFlags(submission);
               return (
-                <button
+                <div
                   key={submission.id}
-                  type="button"
-                  onClick={() => setSelectedSubmissionId(submission.id)}
                   className={`coach-admin-submission-row ${selected ? 'is-selected' : ''}`}
                 >
+                  <label className="coach-admin-bulk-check" title="제출 선택">
+                    <input
+                      type="checkbox"
+                      checked={selectedSubmissionIds.includes(submission.id)}
+                      onChange={() => toggleSubmissionSelection(submission.id)}
+                    />
+                    <span />
+                  </label>
+                  <button
+                    type="button"
+                    className="coach-admin-submission-row-select"
+                    onClick={() => {
+                      setSelectedSubmissionId(submission.id);
+                      setMobileInspectorOpen(true);
+                    }}
+                  >
                   <div className="coach-admin-submission-row-main">
                     <div className="coach-admin-submission-copy">
                       <div className="coach-admin-submission-tags">
@@ -749,14 +922,23 @@ export default function AdminWorkspace({
                       <strong>{getFileTotal(submission.fileCounts)}개 파일</strong>
                     </div>
                   </div>
-                </button>
+                  </button>
+                </div>
               );
             })}
           </div>
 
-          <aside className="coach-admin-inspector">
+          <aside className={`coach-admin-inspector ${mobileInspectorOpen ? 'is-mobile-open' : ''}`}>
             {selectedSubmission ? (
               <div className="space-y-5">
+                <button
+                  type="button"
+                  className="coach-admin-inspector-close"
+                  onClick={() => setMobileInspectorOpen(false)}
+                  aria-label="제출 상세 닫기"
+                >
+                  <X size={18} />
+                </button>
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
                     <StatusBadge status={selectedSubmission.status} />
@@ -787,20 +969,21 @@ export default function AdminWorkspace({
                   <p className="break-all text-xs text-slate-400">UID: {selectedSubmission.userId || '정보 없음'}</p>
                 </div>
 
-                <div className="border-t border-slate-200 pt-4">
-                  <div className="mb-2 flex items-center gap-2">
+                <details className="coach-admin-detail-section" open>
+                  <summary>
                     <FolderOpen size={16} className="text-slate-400" />
                     <h5 className="font-bold text-slate-900">제출 파일</h5>
-                  </div>
+                    <span>{getFileTotal(selectedSubmission.fileCounts)}개</span>
+                  </summary>
                   <FileLinks
                     files={selectedSubmission.files}
                     onDownload={handleDownloadSubmissionFile}
                     downloadingFileKey={downloadingFileKey}
                   />
-                </div>
+                </details>
 
-                <div className="border-t border-slate-200 pt-4">
-                  <h5 className="font-bold text-slate-900">검토 상태</h5>
+                <details className="coach-admin-detail-section" open>
+                  <summary><MessageSquare size={16} /><h5>검토 상태</h5></summary>
                   <div className="mt-3 grid gap-3">
                     <select
                       aria-label="선택한 제출의 검토 상태"
@@ -812,6 +995,18 @@ export default function AdminWorkspace({
                         <option key={status.id} value={status.id}>{status.label}</option>
                       ))}
                     </select>
+                    <div className="coach-admin-feedback-template">
+                      <select
+                        value={selectedFeedbackTemplate}
+                        onChange={(event) => setSelectedFeedbackTemplate(event.target.value)}
+                        aria-label="학생 피드백 템플릿"
+                      >
+                        {FEEDBACK_TEMPLATES.map((template) => (
+                          <option key={template.id} value={template.id}>{template.label}</option>
+                        ))}
+                      </select>
+                      <button type="button" onClick={applyFeedbackTemplate}>템플릿 추가</button>
+                    </div>
                     <label className="grid gap-1">
                       <span className="text-xs font-bold text-slate-500">학생 공개 피드백</span>
                       <textarea
@@ -851,11 +1046,11 @@ export default function AdminWorkspace({
                       </button>
                     </div>
                   </div>
-                </div>
+                </details>
 
                 {selectedSubmission.latestAnalysisSummary || selectedSubmission.latestRecommendedJobsSnapshot?.length ? (
-                  <div className="border-t border-slate-200 pt-4">
-                    <h5 className="font-bold text-slate-900">분석 스냅샷</h5>
+                  <details className="coach-admin-detail-section">
+                    <summary><FileText size={16} /><h5>분석 스냅샷</h5></summary>
                     {selectedSubmission.latestAnalysisSummary ? (
                       <p className="mt-2 text-sm leading-relaxed text-slate-600">{selectedSubmission.latestAnalysisSummary}</p>
                     ) : null}
@@ -869,10 +1064,27 @@ export default function AdminWorkspace({
                         ))}
                       </div>
                     ) : null}
-                  </div>
+                  </details>
                 ) : null}
 
-                <div className="coach-admin-danger-zone">
+                <details className="coach-admin-detail-section" open>
+                  <summary><Clock3 size={16} /><h5>학생 제출 타임라인</h5><span>{selectedStudentSubmissions.length}건</span></summary>
+                  <ol className="coach-admin-student-timeline">
+                    {selectedStudentSubmissions.map((submission, index) => (
+                      <li key={submission.id} className={submission.id === selectedSubmission.id ? 'is-current' : ''}>
+                        <span />
+                        <div>
+                          <strong>{index === 0 ? '최근 제출' : `${selectedStudentSubmissions.length - index}차 제출`}</strong>
+                          <p>{getStatusLabel(submission.status)} · 파일 {getFileTotal(submission.fileCounts)}개</p>
+                          <time>{formatDateTime(submission.submittedAtIso)}</time>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </details>
+
+                <details className="coach-admin-danger-zone">
+                  <summary>제출 정리 도구</summary>
                   <div>
                     <strong>제출 내역 정리</strong>
                     <p>잘못 올린 테스트 제출만 정리하세요. 제출 기록과 첨부 파일이 함께 삭제됩니다.</p>
@@ -907,7 +1119,7 @@ export default function AdminWorkspace({
                       제출 정리
                     </button>
                   )}
-                </div>
+                </details>
               </div>
             ) : (
               <div className="rounded-lg border border-dashed border-slate-300 bg-white px-5 py-10 text-center text-sm text-slate-500">
@@ -924,7 +1136,12 @@ export default function AdminWorkspace({
             <h3 className="text-lg font-black text-slate-900">사용자 명단</h3>
             <p className="mt-1 text-sm text-slate-500">학생 계정과 제출 현황을 확인하고 사이트 이용 상태를 관리합니다.</p>
           </div>
-          <p className="text-sm font-semibold text-slate-500">{userRows.length}명 표시</p>
+          <div className="coach-admin-user-filter">
+            <select value={userFilter} onChange={(event) => setUserFilter(event.target.value)} aria-label="학생 운영 필터">
+              {USER_FILTER_OPTIONS.map((option) => <option key={option.id} value={option.id}>{option.label}</option>)}
+            </select>
+            <p>{userRows.length}명 표시</p>
+          </div>
         </div>
 
         <div className="mt-4 overflow-x-auto">

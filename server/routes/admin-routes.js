@@ -6,6 +6,7 @@ const REVIEW_STATUSES = new Set(['submitted', 'reviewing', 'reviewed', 'rejected
 const MAX_ADMIN_MEMO_LENGTH = 2000;
 const MAX_STUDENT_FEEDBACK_LENGTH = 3000;
 const MAX_ADMIN_PASSWORD_LENGTH = 128;
+const MAX_BULK_SUBMISSIONS = 50;
 
 function parseLimit(value, fallback, max) {
   const parsed = Number.parseInt(value, 10);
@@ -149,6 +150,26 @@ function buildSummary({ submissions, users }) {
   };
 }
 
+export function parseBulkReviewPatch(body = {}) {
+  const normalizedBody = body && typeof body === 'object' && !Array.isArray(body) ? body : {};
+  const keys = Object.keys(normalizedBody).sort();
+  if (keys.join(',') !== 'status,submissionIds') {
+    throw createHttpError('일괄 변경에는 제출 ID 목록과 상태만 지정해 주세요.', 400);
+  }
+  if (!Array.isArray(normalizedBody.submissionIds)) {
+    throw createHttpError('제출 ID 목록이 필요합니다.', 400);
+  }
+  const submissionIds = [...new Set(normalizedBody.submissionIds.map((id) => String(id || '').trim()).filter(Boolean))];
+  if (!submissionIds.length || submissionIds.length > MAX_BULK_SUBMISSIONS) {
+    throw createHttpError(`제출은 한 번에 1~${MAX_BULK_SUBMISSIONS}건까지 변경할 수 있습니다.`, 400);
+  }
+  const status = String(normalizedBody.status || '').trim();
+  if (!REVIEW_STATUSES.has(status)) {
+    throw createHttpError('지원하지 않는 제출 상태입니다.', 400);
+  }
+  return { submissionIds, status };
+}
+
 export function createAdminRouter({
   firebaseAdminService,
   submissionStorageService,
@@ -194,6 +215,22 @@ export function createAdminRouter({
     } catch (error) {
       res.status(500).json({
         error: error.message || '관리자 데이터를 불러오지 못했습니다.',
+      });
+    }
+  });
+
+  router.patch('/api/admin/submissions/bulk', authMiddleware.requireAdmin, async (req, res) => {
+    try {
+      const { submissionIds, status } = parseBulkReviewPatch(req.body);
+      const submissions = await firebaseAdminService.updateAdminSubmissionStatuses({
+        submissionIds,
+        status,
+        actor: req.authUser,
+      });
+      res.json({ submissions });
+    } catch (error) {
+      res.status(error.statusCode || 500).json({
+        error: error.message || '제출 상태를 일괄 변경하지 못했습니다.',
       });
     }
   });

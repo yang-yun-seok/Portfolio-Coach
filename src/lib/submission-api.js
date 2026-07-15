@@ -39,7 +39,11 @@ export async function createPortfolioSubmission(getAccessToken, {
     track: userInfo?.roleGroup || '',
     subRole: userInfo?.subRole || '',
     experience: Number(userInfo?.experience) || 0,
-    skills: Array.isArray(userInfo?.skills) ? userInfo.skills : [],
+    skills: Array.isArray(userInfo?.skills)
+      ? userInfo.skills
+        .map((skill) => (typeof skill === 'string' ? skill : skill?.name))
+        .filter(Boolean)
+      : [],
     githubUrl: userInfo?.githubUrl || '',
     latestAnalysisSummary: results?.profileAnalysis?.summary || '',
     latestRecommendedJobsSnapshot: Array.isArray(recommendedJobs)

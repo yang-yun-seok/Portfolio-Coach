@@ -34,6 +34,12 @@ export function getReadableSubmissionError(error) {
   if (code === 'submission_in_progress') {
     return '이미 제출을 처리하고 있습니다. 완료된 뒤 다시 시도해 주세요.';
   }
+  if (code === 'duplicate_file') {
+    return '같은 PDF가 두 번 첨부되어 있습니다. 중복 파일을 제거해 주세요.';
+  }
+  if (code === 'duplicate_submission') {
+    return '직전 제출과 동일한 파일 구성입니다. 수정한 파일을 첨부해 주세요.';
+  }
   if (code === 'storage_conflict') {
     return '같은 제출이 이미 처리되었습니다. 제출 이력을 새로 확인해 주세요.';
   }

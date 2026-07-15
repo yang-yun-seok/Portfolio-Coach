@@ -64,6 +64,19 @@ export async function updateAdminSubmissionReview(getAccessToken, submissionId, 
   return data.submission || null;
 }
 
+export async function updateAdminSubmissionStatuses(getAccessToken, submissionIds, status) {
+  const headers = await buildAuthorizedHeaders(getAccessToken, {
+    'Content-Type': 'application/json',
+  });
+  const response = await fetch(apiUrl('api/admin/submissions/bulk'), {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({ submissionIds, status }),
+  });
+  const data = await readApiResponse(response, '제출 상태를 일괄 변경하지 못했습니다.');
+  return Array.isArray(data.submissions) ? data.submissions : [];
+}
+
 export async function downloadAdminSubmissionFile(getAccessToken, submissionId, fileKey) {
   const headers = await buildAuthorizedHeaders(getAccessToken);
   const response = await fetch(apiUrl(

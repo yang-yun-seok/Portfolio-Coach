@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   AlertCircle,
   ArrowRight,
@@ -8,7 +8,9 @@ import {
   Loader2,
   MessageSquare,
   Send,
+  X,
 } from 'lucide-react';
+import { buildSubmissionChangeSummary } from '../lib/submission-files';
 
 function formatDateTime(value) {
   if (!value) return '시간 정보 없음';
@@ -45,6 +47,23 @@ function getFileTotal(fileCounts = {}) {
     + (Number(fileCounts.portfolio) || 0);
 }
 
+function formatBytes(value) {
+  const bytes = Number(value) || 0;
+  if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))}KB`;
+  return `${(bytes / 1024 / 1024).toFixed(1)}MB`;
+}
+
+function buildCurrentFileRows({ resumeFile, coverLetterFile, portfolioFiles = [] }) {
+  return [
+    resumeFile ? { label: '이력서', file: resumeFile } : null,
+    coverLetterFile ? { label: '자기소개서', file: coverLetterFile } : null,
+    ...(Array.isArray(portfolioFiles) ? portfolioFiles.map((file, index) => ({
+      label: `포트폴리오 ${index + 1}`,
+      file,
+    })) : []),
+  ].filter(Boolean);
+}
+
 function StatusIcon({ status }) {
   if (status === 'reviewed') return <CheckCircle2 size={18} />;
   if (status === 'rejected') return <AlertCircle size={18} />;
@@ -62,7 +81,11 @@ export default function PortfolioSubmissionPanel({
   submissionsLoading,
   onSubmitPortfolio,
   userProfile,
+  resumeFile,
+  coverLetterFile,
+  portfolioFiles,
 }) {
+  const [showConfirmation, setShowConfirmation] = useState(false);
   if (!authEnabled) {
     return (
       <section className="coach-submission-console">
@@ -81,6 +104,9 @@ export default function PortfolioSubmissionPanel({
   const submissionReady = submissionCapability?.enabled === true;
   const submissionChecking = submissionCapability?.status === 'checking';
   const latestSubmission = submissions[0] || null;
+  const previousSubmission = submissions[1] || null;
+  const changeSummary = buildSubmissionChangeSummary(latestSubmission, previousSubmission);
+  const currentFileRows = buildCurrentFileRows({ resumeFile, coverLetterFile, portfolioFiles });
   const submitLabel = latestSubmission?.status === 'rejected'
     ? '보완본 다시 제출'
     : latestSubmission
@@ -97,7 +123,7 @@ export default function PortfolioSubmissionPanel({
         </div>
         <button
           type="button"
-          onClick={onSubmitPortfolio}
+          onClick={() => setShowConfirmation(true)}
           disabled={submissionSaving || !authUser || !submissionReady}
           className="coach-submission-primary"
           aria-describedby={!submissionReady && !submissionChecking ? 'coach-submission-availability' : undefined}
@@ -147,6 +173,15 @@ export default function PortfolioSubmissionPanel({
                   </div>
                 </div>
               )}
+
+              {previousSubmission ? (
+                <div className="coach-submission-changes">
+                  <strong>이전 제출 대비 변경</strong>
+                  <div>
+                    {changeSummary.map((change) => <span key={change}>{change}</span>)}
+                  </div>
+                </div>
+              ) : null}
             </>
           ) : (
             <div className="coach-submission-empty is-large">
@@ -219,6 +254,70 @@ export default function PortfolioSubmissionPanel({
           )}
         </aside>
       </div>
+
+      {showConfirmation ? (
+        <div className="coach-submission-confirm-backdrop" role="presentation">
+          <div
+            className="coach-submission-confirm"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="coach-submission-confirm-title"
+          >
+            <header>
+              <div>
+                <p className="coach-submission-overline">최종 확인</p>
+                <h4 id="coach-submission-confirm-title">이 구성으로 검토를 요청할까요?</h4>
+              </div>
+              <button type="button" onClick={() => setShowConfirmation(false)} aria-label="제출 확인 닫기">
+                <X size={18} />
+              </button>
+            </header>
+
+            {currentFileRows.length ? (
+              <div className="coach-submission-confirm-files">
+                {currentFileRows.map(({ label, file }) => (
+                  <div key={`${label}-${file.name}`}>
+                    <span><FileText size={15} />{label}</span>
+                    <strong>{file.name}</strong>
+                    <small>{formatBytes(file.size)}</small>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="coach-submission-empty">
+                <AlertCircle size={18} />
+                <div>
+                  <strong>제출할 PDF가 없습니다.</strong>
+                  <p>정보 입력 화면에서 이력서, 자기소개서 또는 포트폴리오를 첨부해 주세요.</p>
+                </div>
+              </div>
+            )}
+
+            <footer>
+              <span>총 {currentFileRows.length}개 · {formatBytes(currentFileRows.reduce((total, row) => total + (Number(row.file.size) || 0), 0))}</span>
+              <div>
+                <button type="button" className="coach-submission-confirm-cancel" onClick={() => setShowConfirmation(false)}>취소</button>
+                <button
+                  type="button"
+                  className="coach-submission-primary"
+                  disabled={!currentFileRows.length || submissionSaving}
+                  onClick={async () => {
+                    try {
+                      await onSubmitPortfolio();
+                      setShowConfirmation(false);
+                    } catch {
+                      // The submission hook renders the user-facing error in the panel.
+                    }
+                  }}
+                >
+                  {submissionSaving ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
+                  제출하기
+                </button>
+              </div>
+            </footer>
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }

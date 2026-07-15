@@ -137,11 +137,13 @@ function createServiceError(message, statusCode) {
 
 function sanitizeSubmissionFile(file) {
   if (!file || typeof file !== 'object' || Array.isArray(file)) return null;
+  const sha256 = String(file.sha256 || '').trim().toLowerCase();
   return {
     fileName: String(file.fileName || ''),
     storagePath: String(file.storagePath || ''),
     size: Number(file.size) || 0,
     type: String(file.type || 'application/pdf'),
+    ...(sha256 ? { sha256 } : {}),
   };
 }
 
@@ -153,6 +155,27 @@ export function sanitizeSubmissionFiles(files = {}) {
     resume: sanitizeSubmissionFile(files?.resume),
     coverLetter: sanitizeSubmissionFile(files?.coverLetter),
     portfolio,
+  };
+}
+
+export function buildSubmissionFileSignature(files = {}) {
+  const sanitized = sanitizeSubmissionFiles(files);
+  const rows = [
+    sanitized.resume ? ['resume', sanitized.resume.sha256] : null,
+    sanitized.coverLetter ? ['coverLetter', sanitized.coverLetter.sha256] : null,
+    ...sanitized.portfolio.map((file, index) => [`portfolio-${index + 1}`, file.sha256]),
+  ].filter(Boolean);
+  if (!rows.length || rows.some(([, hash]) => !hash)) return '';
+  return rows.map(([key, hash]) => `${key}:${hash}`).join('|');
+}
+
+function summarizeStudentSubmissionFiles(files = {}) {
+  const sanitized = sanitizeSubmissionFiles(files);
+  const summarize = (file) => (file ? { fileName: file.fileName, size: file.size, type: file.type } : null);
+  return {
+    resume: summarize(sanitized.resume),
+    coverLetter: summarize(sanitized.coverLetter),
+    portfolio: sanitized.portfolio.map(summarize),
   };
 }
 
@@ -253,6 +276,8 @@ function serializeStudentSubmissionDoc(entry) {
     status: data.status || 'submitted',
     submittedAtIso: data.submittedAtIso || data.createdAt || '',
     fileCounts: data.fileCounts || { resume: 0, coverLetter: 0, portfolio: 0 },
+    files: summarizeStudentSubmissionFiles(data.files),
+    skills: Array.isArray(data.skills) ? data.skills.slice(0, 30) : [],
     studentFeedback: data.studentFeedback || '',
     studentFeedbackUpdatedAtIso: data.studentFeedbackUpdatedAtIso || '',
     reviewUpdatedAtIso: data.reviewUpdatedAtIso || '',
@@ -413,6 +438,27 @@ export function createFirebaseAdminService() {
     return requireFirestore().collection('portfolioSubmissions').doc().id;
   }
 
+  async function assertSubmissionNotDuplicate({ uid, files }) {
+    const firestore = requireFirestore();
+    const normalizedUid = String(uid || '').trim();
+    const fileSignature = buildSubmissionFileSignature(files);
+    if (!normalizedUid || !fileSignature) return;
+
+    const snapshot = await firestore.collection('portfolioSubmissions')
+      .where('userId', '==', normalizedUid)
+      .limit(20)
+      .get();
+    const duplicate = snapshot.docs.some((entry) => {
+      const data = entry.data() || {};
+      return String(data.fileSignature || buildSubmissionFileSignature(data.files)) === fileSignature;
+    });
+    if (duplicate) {
+      const error = createServiceError('직전 제출과 동일한 파일 구성입니다. 수정한 파일을 첨부해 주세요.', 409);
+      error.code = 'duplicate_submission';
+      throw error;
+    }
+  }
+
   async function createPortfolioSubmission({ submissionId, authUser, payload, files }) {
     const firestore = requireFirestore();
     const normalizedSubmissionId = String(submissionId || '').trim();
@@ -437,6 +483,8 @@ export function createFirebaseAdminService() {
       coverLetter: files.coverLetter ? 1 : 0,
       portfolio: Array.isArray(files.portfolio) ? files.portfolio.length : 0,
     };
+    const sanitizedFiles = sanitizeSubmissionFiles(files);
+    const fileSignature = buildSubmissionFileSignature(sanitizedFiles);
     const submission = {
       userId: authUser.uid,
       userEmail: authUser.email || userProfile?.email || '',
@@ -461,7 +509,8 @@ export function createFirebaseAdminService() {
       submittedAtIso,
       submittedByRole: authUser.role || 'user',
       fileCounts,
-      files: sanitizeSubmissionFiles(files),
+      files: sanitizedFiles,
+      fileSignature,
     };
 
     const batch = firestore.batch();
@@ -646,6 +695,49 @@ export function createFirebaseAdminService() {
     return serializeSubmissionDoc(updatedSnapshot);
   }
 
+  async function updateAdminSubmissionStatuses({ submissionIds, status, actor }) {
+    const firestore = requireFirestore();
+    const normalizedIds = [...new Set((Array.isArray(submissionIds) ? submissionIds : [])
+      .map((submissionId) => String(submissionId || '').trim()))];
+    if (!normalizedIds.length || normalizedIds.some((submissionId) => !isValidFirestoreDocumentId(submissionId))) {
+      throw createServiceError('올바른 제출 ID 목록이 필요합니다.', 400);
+    }
+
+    const submissionRefs = normalizedIds.map((submissionId) => (
+      firestore.collection('portfolioSubmissions').doc(submissionId)
+    ));
+    const snapshots = await Promise.all(submissionRefs.map((submissionRef) => submissionRef.get()));
+    if (snapshots.some((snapshot) => !snapshot.exists)) {
+      throw createServiceError('일괄 변경할 제출 내역 중 찾을 수 없는 항목이 있습니다.', 404);
+    }
+
+    const nowIso = new Date().toISOString();
+    const batch = firestore.batch();
+    submissionRefs.forEach((submissionRef, index) => {
+      batch.set(submissionRef, {
+        status,
+        updatedAt: FieldValue.serverTimestamp(),
+        reviewUpdatedAtIso: nowIso,
+        reviewedBy: actor?.uid || '',
+        reviewedByEmail: actor?.email || '',
+        ...(status === 'reviewed' ? { reviewedAtIso: nowIso } : {}),
+      }, { merge: true });
+      batch.create(firestore.collection('submissionEvents').doc(), {
+        submissionId: normalizedIds[index],
+        actorId: actor?.uid || '',
+        actorEmail: actor?.email || '',
+        actorRole: 'admin',
+        type: 'admin_review_updated',
+        note: `관리자 일괄 상태 변경: ${status}`,
+        createdAt: FieldValue.serverTimestamp(),
+        createdAtIso: nowIso,
+      });
+    });
+    await batch.commit();
+    const updatedSnapshots = await Promise.all(submissionRefs.map((submissionRef) => submissionRef.get()));
+    return updatedSnapshots.map(serializeSubmissionDoc);
+  }
+
   async function updateAdminUserAccess({ uid, active, actor }) {
     const firestore = requireFirestore();
     const normalizedUid = String(uid || '').trim();
@@ -712,11 +804,13 @@ export function createFirebaseAdminService() {
     listAdminSubmissions,
     listUserSubmissions,
     createSubmissionId,
+    assertSubmissionNotDuplicate,
     createPortfolioSubmission,
     getAdminSubmissionFileDescriptor,
     getAdminSubmissionDeletionPlan,
     deleteAdminSubmission,
     updateAdminSubmissionReview,
+    updateAdminSubmissionStatuses,
     updateAdminUserAccess,
   };
 }

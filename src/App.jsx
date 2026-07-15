@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect, useRef } from 'react';
 import { lazy, Suspense } from 'react';
+import { useMemo } from 'react';
 import {
   FileText, Image as ImageIcon, Target, MessageSquare,
   CheckCircle, Loader2,
@@ -28,6 +29,7 @@ import { getAiApiKey, hasAiApiKey, loadAiApiKeys, saveAiApiKeys } from './lib/ai
 import { buildAuthorizedHeaders } from './lib/auth-fetch';
 import { apiUrl, staticAssetUrl } from './lib/runtime-config';
 import { appendPortfolioFiles, getSubmissionFileError } from './lib/submission-files';
+import { buildCrawlHealth } from './lib/crawl-health';
 import { useApplicationAnalysis } from './hooks/useApplicationAnalysis';
 import { useFirebaseSession } from './hooks/useFirebaseSession';
 import { useModels } from './hooks/useModels';
@@ -255,6 +257,7 @@ export default function App() {
   // ── 기업/공고 데이터 (서버 API에서 로드) ──────────────────────────────
   const [companies, setCompanies] = useState([]);
   const [jobs, setJobs] = useState([]);
+  const [jobsHistoryIndex, setJobsHistoryIndex] = useState([]);
   const [jobsMetadata, setJobsMetadata] = useState({
     latestAppliedDate: null,
     referenceJobCount: 0,
@@ -272,10 +275,11 @@ export default function App() {
     (async () => {
       try {
         // 정적 JSON에서 직접 로드 (GitHub Pages + 로컬 모두 대응)
-        const [compRes, jobRes, metaRes] = await Promise.all([
+        const [compRes, jobRes, metaRes, historyRes] = await Promise.all([
           fetch(staticAssetUrl('api/companies.json')),
           fetch(staticAssetUrl('api/jobs.json')),
           fetch(staticAssetUrl('api/jobs-metadata.json')).catch(() => null),
+          fetch(staticAssetUrl('api/jobs-history-index.json')).catch(() => null),
         ]);
         if (compRes.ok) setCompanies(await compRes.json());
         let loadedJobs = [];
@@ -299,11 +303,20 @@ export default function App() {
             activeJobsCount: loadedJobs.length,
           }));
         }
+        if (historyRes?.ok) {
+          const historyRows = await historyRes.json();
+          setJobsHistoryIndex(Array.isArray(historyRows) ? historyRows : []);
+        }
       } catch (err) {
         console.warn('데이터 로드 실패:', err.message);
       }
     })();
   }, []);
+
+  const crawlHealth = useMemo(
+    () => buildCrawlHealth(jobsMetadata, jobsHistoryIndex),
+    [jobsHistoryIndex, jobsMetadata],
+  );
 
   // ── 면접 기본 준비 데이터 (서버에서 로드) ──────────────────────────────
   const [interviewBasicData, setInterviewBasicData] = useState([]);
@@ -891,7 +904,17 @@ const { analyzeApplication } = useApplicationAnalysis({
   };
 
   // ── 네비게이션 ────────────────────────────────────────────────────────
-  const availableNavItems = isAdminModeActive ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
+  const latestSubmissionStatus = submissions[0]?.status || '';
+  const reviewAttentionLabel = latestSubmissionStatus === 'reviewed'
+    ? '검토 완료'
+    : latestSubmissionStatus === 'rejected'
+      ? '보완 필요'
+      : '';
+  const availableNavItems = (isAdminModeActive ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS).map((item) => (
+    item.id === 'portfolio' && reviewAttentionLabel
+      ? { ...item, badge: reviewAttentionLabel }
+      : item
+  ));
   const navSections = [
     { id: 'home', label: '홈', items: availableNavItems.filter((item) => item.group === 'home') },
     { id: 'profile', label: '내 준비', items: availableNavItems.filter((item) => item.group === 'profile') },
@@ -1103,6 +1126,8 @@ const { analyzeApplication } = useApplicationAnalysis({
     onSubmitPortfolio: submitPortfolio,
     parseFeedbackItem,
     portfolioFiles,
+    resumeFile,
+    coverLetterFile,
     resultPlaybook,
     results,
     submissionCapability,
@@ -1164,6 +1189,7 @@ const { analyzeApplication } = useApplicationAnalysis({
     canManageInstructorFeedback: isAdminModeActive,
   };
   const adminWorkspaceProps = {
+    crawlHealth,
     getAccessToken: isSmokeMode ? async () => 'local-smoke-token' : getAccessToken,
     isAdmin: isAdminModeActive,
     submissionCapability,

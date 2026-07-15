@@ -1,6 +1,7 @@
 import { readFile, unlink } from 'node:fs/promises';
 import { basename } from 'node:path';
 import { tmpdir } from 'node:os';
+import { createHash } from 'node:crypto';
 import { Router } from 'express';
 import multer from 'multer';
 
@@ -206,6 +207,7 @@ function buildFileDescriptors(uploadedItems) {
       storagePath: item.storagePath,
       size: item.file.size,
       type: 'application/pdf',
+      sha256: item.sha256,
     };
     if (item.field === 'portfolio') {
       descriptors.portfolio.push(descriptor);
@@ -290,14 +292,36 @@ export function createSubmissionRouter({
           uid,
           submissionId,
         });
-        const uploadedItems = [];
+        const preparedItems = [];
 
         for (const item of uploadPlan) {
           const buffer = await readFile(item.file.path);
           assertPdfBuffer(buffer);
+          preparedItems.push({
+            ...item,
+            buffer,
+            sha256: createHash('sha256').update(buffer).digest('hex'),
+          });
+        }
+
+        const duplicateHash = preparedItems.find((item, index) => (
+          preparedItems.findIndex((candidate) => candidate.sha256 === item.sha256) !== index
+        ));
+        if (duplicateHash) {
+          throw createHttpError(
+            `${normalizeOriginalName(duplicateHash.file.originalname, duplicateHash.objectName)} 파일이 중복 첨부되었습니다.`,
+            409,
+            'duplicate_file',
+          );
+        }
+
+        const fileDescriptors = buildFileDescriptors(preparedItems);
+        await firebaseAdminService.assertSubmissionNotDuplicate?.({ uid, files: fileDescriptors });
+
+        for (const item of preparedItems) {
           await submissionStorageService.uploadPdf({
             path: item.storagePath,
-            buffer,
+            buffer: item.buffer,
             metadata: {
               fileKey: item.fileKey,
               submissionId,
@@ -305,14 +329,13 @@ export function createSubmissionRouter({
             },
           });
           uploadedPaths.push(item.storagePath);
-          uploadedItems.push(item);
         }
 
         const submission = await firebaseAdminService.createPortfolioSubmission({
           submissionId,
           authUser: req.authUser,
           payload,
-          files: buildFileDescriptors(uploadedItems),
+          files: fileDescriptors,
         });
         return res.status(201).json({ submission });
       } catch (error) {

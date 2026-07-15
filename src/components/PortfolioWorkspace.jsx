@@ -44,6 +44,8 @@ export default function PortfolioWorkspace({
   onSubmitPortfolio,
   parseFeedbackItem,
   portfolioFiles,
+  resumeFile,
+  coverLetterFile,
   resultPlaybook,
   results,
   submissionCapability,
@@ -219,6 +221,9 @@ export default function PortfolioWorkspace({
         submissionsLoading={submissionsLoading}
         userProfile={userProfile}
         onSubmitPortfolio={onSubmitPortfolio}
+        resumeFile={resumeFile}
+        coverLetterFile={coverLetterFile}
+        portfolioFiles={portfolioFiles}
       />
     </div>
   );

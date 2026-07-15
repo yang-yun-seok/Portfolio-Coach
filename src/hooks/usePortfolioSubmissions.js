@@ -4,6 +4,7 @@ import {
   listMyPortfolioSubmissions,
 } from '../lib/submission-api';
 import { getReadableSubmissionError } from '../lib/submission-upload-utils';
+import { findDuplicateSubmissionFiles } from '../lib/submission-files';
 
 export function usePortfolioSubmissions({
   authEnabled,
@@ -53,6 +54,12 @@ export function usePortfolioSubmissions({
       const unavailableError = new Error('자료 제출은 현재 준비 중입니다. 담당자에게 문의해 주세요.');
       setSubmissionError(unavailableError.message);
       throw unavailableError;
+    }
+    const duplicateFiles = findDuplicateSubmissionFiles({ resumeFile, coverLetterFile, portfolioFiles });
+    if (duplicateFiles.length > 0) {
+      const duplicateError = new Error('같은 PDF가 두 번 첨부되어 있습니다. 중복 파일을 제거해 주세요.');
+      setSubmissionError(duplicateError.message);
+      throw duplicateError;
     }
 
     setSubmissionSaving(true);
