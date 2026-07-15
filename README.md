@@ -171,25 +171,27 @@ npm run verify
 
 Render가 React 프로덕션 번들과 Express API를 함께 제공합니다. GitHub Actions는 공고 데이터를 매일 갱신합니다.
 
-## Firebase 파일 제출 활성화
+## 무료 파일 제출 활성화
 
-파일 제출은 Storage 준비 여부와 별도 운영 플래그를 모두 확인합니다. 준비가 끝나기 전에는 학생 화면에서 제출 버튼이 비활성화됩니다.
+로그인과 제출 기록은 Firebase를 유지하고, PDF 파일만 Supabase Free의 비공개 Storage 버킷에 보관합니다. 결제 수단을 등록하지 않는 Free 프로젝트를 사용하므로 유료 사용량으로 전환되지 않습니다. 현재 무료 한도는 파일 1GB, 월 egress 5GB이며 비활성 프로젝트는 일시 중지될 수 있습니다.
 
-1. Firebase Console에서 Storage 버킷을 생성합니다. 신규 기본 버킷은 Firebase 정책상 Blaze 요금제가 필요합니다.
-2. `npx firebase-tools deploy --only firestore:rules,storage`로 파일 메타데이터와 Storage 규칙을 함께 배포합니다.
-3. Render에 `FIREBASE_STORAGE_BUCKET`을 설정합니다.
-4. Render 환경 변수 `PORTFOLIO_UPLOADS_ENABLED=true`를 설정합니다.
-5. Render 서비스를 다시 배포한 뒤 `/api/capabilities` 응답의 `portfolioSubmissions.enabled`가 `true`인지 확인합니다.
+1. Supabase Free 프로젝트에서 비공개 버킷 `portfolio-submissions`를 생성합니다.
+2. 버킷의 파일 크기 제한을 10MB, 허용 MIME을 `application/pdf`로 설정합니다.
+3. Render 서버 환경 변수에 `SUPABASE_STORAGE_URL`, `SUPABASE_STORAGE_SECRET_KEY`, `SUPABASE_STORAGE_BUCKET=portfolio-submissions`를 등록합니다.
+4. `npx firebase-tools deploy --only firestore:rules`로 제출 컬렉션의 클라이언트 직접 쓰기를 차단합니다.
+5. Render에서 `PORTFOLIO_UPLOADS_ENABLED=true`로 변경하고 다시 배포합니다.
+6. `/api/capabilities`의 `portfolioSubmissions.enabled`가 `true`인지 확인한 뒤 실제 PDF 제출과 관리자 다운로드를 검증합니다.
 
-버킷이나 규칙이 준비되지 않았다면 `PORTFOLIO_UPLOADS_ENABLED=false`를 유지해야 합니다.
-플래그를 켜더라도 서버의 런타임 버킷 확인을 통과하지 못하면 학생 제출 기능은 열리지 않습니다.
-제출 파일의 영구 다운로드 URL은 Firestore에 저장하지 않습니다. 관리자 파일 열람은 Firebase 관리자 권한을 확인하는 서버 API를 통해서만 처리합니다.
+`SUPABASE_STORAGE_SECRET_KEY`는 Render 서버에만 저장하며 `VITE_` 접두사를 붙이거나 브라우저 코드에 넣지 않습니다. 버킷이 없거나 공개 상태이거나 서버 키 확인에 실패하면 제출 기능은 자동으로 닫힙니다. 제출 파일의 영구 다운로드 URL은 Firestore에 저장하지 않으며, 관리자 파일 열람은 Firebase 관리자 권한을 확인하는 서버 API를 통해서만 처리합니다.
+
+무료 한도 참고: [Supabase Free 요금제](https://supabase.com/pricing), [Free 프로젝트 일시 중지](https://supabase.com/docs/guides/platform/free-project-pausing)
 
 ## 배포 기준
 
 - Source of Truth: `GitHub Private Repository`
 - App Hosting: `Render`
-- Auth / DB / File Storage: `Firebase`
+- Auth / DB: `Firebase`
+- File Storage: `Supabase Free private bucket`
 - Daily Crawl: 초기에는 `GitHub Actions`, 필요 시 이후 이전 검토
 
 GitHub는 코드 저장용 비공개 저장소로 두고, 사용자에게 보이는 실제 서비스는 Render에서 운영합니다.
