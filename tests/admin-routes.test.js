@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { PassThrough, Readable } from 'node:stream';
 import {
   buildAttachmentDisposition,
   createAdminRouter,
@@ -91,4 +92,56 @@ test('attachment disposition removes header injection and preserves UTF-8 names'
   assert.doesNotMatch(disposition, /[\r\n]/);
   assert.match(disposition, /^attachment; filename="_____\.pdf";/);
   assert.match(disposition, /filename\*=UTF-8''%ED%95%99%EC%83%9D%EC%9D%B4%EB%A0%A5%EC%84%9C\.pdf$/);
+});
+
+test('admin file endpoint resolves Firestore metadata and streams from private storage', async () => {
+  const calls = [];
+  const router = createAdminRouter({
+    firebaseAdminService: {
+      async getAdminSubmissionFileDescriptor(input) {
+        calls.push(['descriptor', input]);
+        return {
+          fileName: '학생이력서.pdf',
+          storagePath: 'portfolio-submissions/student-1/submission-1/resume.pdf',
+        };
+      },
+    },
+    submissionStorageService: {
+      async downloadPdf(input) {
+        calls.push(['download', input]);
+        return {
+          stream: Readable.from(Buffer.from('%PDF-test')),
+          contentType: 'application/pdf',
+          contentLength: 9,
+        };
+      },
+    },
+    authMiddleware: { requireAdmin() {} },
+    adminModePassword: TEST_ADMIN_PASSWORD,
+  });
+  const handler = routeMiddleware(
+    router,
+    '/api/admin/submissions/:submissionId/files/:fileKey',
+  )[1];
+  const response = new PassThrough();
+  const chunks = [];
+  const headers = {};
+  response.on('data', (chunk) => chunks.push(chunk));
+  response.setHeader = (name, value) => { headers[name] = value; };
+  response.status = () => response;
+  response.json = () => response;
+  response.destroy = (error) => { if (error) throw error; };
+
+  await handler({
+    params: { submissionId: 'submission-1', fileKey: 'resume' },
+  }, response);
+
+  assert.deepEqual(calls, [
+    ['descriptor', { submissionId: 'submission-1', fileKey: 'resume' }],
+    ['download', { path: 'portfolio-submissions/student-1/submission-1/resume.pdf' }],
+  ]);
+  assert.equal(Buffer.concat(chunks).toString(), '%PDF-test');
+  assert.equal(headers['Content-Type'], 'application/pdf');
+  assert.equal(headers['Cache-Control'], 'private, no-store');
+  assert.equal(headers['X-Content-Type-Options'], 'nosniff');
 });

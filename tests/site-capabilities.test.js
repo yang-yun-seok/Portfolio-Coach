@@ -32,6 +32,11 @@ test('normalizeSiteCapabilities defaults submission uploads to unavailable', () 
   }), {
     portfolioSubmissions: { enabled: false, status: 'bucket_missing' },
   });
+  assert.deepEqual(normalizeSiteCapabilities({
+    portfolioSubmissions: { enabled: false, status: 'bucket_public' },
+  }), {
+    portfolioSubmissions: { enabled: false, status: 'bucket_public' },
+  });
 });
 
 test('submission capability requires both the operations flag and a real Storage bucket', () => {
@@ -43,6 +48,10 @@ test('submission capability requires both the operations flag and a real Storage
     uploadsRequested: true,
     storageReadiness: { ready: false, status: 'bucket_missing' },
   }), { enabled: false, status: 'bucket_missing' });
+  assert.deepEqual(resolvePortfolioSubmissionCapability({
+    uploadsRequested: true,
+    storageReadiness: { ready: false, status: 'bucket_public' },
+  }), { enabled: false, status: 'bucket_public' });
   assert.deepEqual(resolvePortfolioSubmissionCapability({
     uploadsRequested: true,
     storageReadiness: { ready: true, status: 'ready' },
@@ -64,13 +73,13 @@ test('capabilities endpoint probes Storage only when uploads are requested', asy
       };
     },
   };
-  const firebaseAdminService = {
-    getStorageReadiness: async () => {
+  const submissionStorageService = {
+    getReadiness: async () => {
       readinessCalls += 1;
       return { ready: false, status: 'bucket_missing' };
     },
   };
-  const router = createConfigRouter({ configService, firebaseAdminService });
+  const router = createConfigRouter({ configService, submissionStorageService });
   const headers = {};
   const response = {
     body: null,
@@ -89,7 +98,7 @@ test('capabilities endpoint probes Storage only when uploads are requested', asy
 
   const disabledRouter = createConfigRouter({
     configService: { ...configService, arePortfolioUploadsRequested: () => false },
-    firebaseAdminService,
+    submissionStorageService,
   });
   const disabledResponse = {
     setHeader() {},
@@ -112,8 +121,8 @@ test('capabilities endpoint fails closed when the Storage probe throws', async (
         },
       }),
     },
-    firebaseAdminService: {
-      getStorageReadiness: async () => { throw new Error('probe failed'); },
+    submissionStorageService: {
+      getReadiness: async () => { throw new Error('probe failed'); },
     },
   });
 

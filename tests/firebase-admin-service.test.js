@@ -3,7 +3,6 @@ import test from 'node:test';
 import {
   assertAdminUserAccessChange,
   createFirebaseAdminService,
-  inspectStorageBucket,
   normalizePrivateKey,
   resolveSubmissionFileDescriptor,
   sanitizeSubmissionFiles,
@@ -156,35 +155,6 @@ test('resolveSubmissionFileDescriptor accepts only the expected owner path', () 
       fileKey: '../../secret',
     }),
     (error) => error.statusCode === 400 && /지원하지 않는/.test(error.message),
-  );
-});
-
-test('inspectStorageBucket reports ready, missing, and unavailable buckets', async () => {
-  const createStorage = (exists) => ({
-    bucket: (bucketName) => ({
-      exists: async () => {
-        assert.equal(bucketName, 'portfolio-coach.firebasestorage.app');
-        if (exists instanceof Error) throw exists;
-        return [exists];
-      },
-    }),
-  });
-
-  assert.deepEqual(
-    await inspectStorageBucket(createStorage(true), 'portfolio-coach.firebasestorage.app'),
-    { ready: true, status: 'ready' },
-  );
-  assert.deepEqual(
-    await inspectStorageBucket(createStorage(false), 'portfolio-coach.firebasestorage.app'),
-    { ready: false, status: 'bucket_missing' },
-  );
-  assert.deepEqual(
-    await inspectStorageBucket(createStorage(new Error('api unavailable')), 'portfolio-coach.firebasestorage.app'),
-    { ready: false, status: 'storage_unavailable' },
-  );
-  assert.deepEqual(
-    await inspectStorageBucket(null, ''),
-    { ready: false, status: 'admin_not_configured' },
   );
 });
 
