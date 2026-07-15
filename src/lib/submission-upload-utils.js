@@ -1,14 +1,15 @@
 const STORAGE_NOT_READY_CODES = new Set([
+  'admin_not_configured',
+  'bucket_missing',
+  'bucket_public',
+  'not_configured',
+  'storage_not_configured',
+  'storage_unavailable',
   'storage/bucket-not-found',
   'storage/no-default-bucket',
   'storage/project-not-found',
   'storage/unknown',
 ]);
-
-export async function rollbackUploadedObjects(storageClient, objectRefs = []) {
-  if (!storageClient?.deleteObject || objectRefs.length === 0) return [];
-  return Promise.allSettled(objectRefs.map((objectRef) => storageClient.deleteObject(objectRef)));
-}
 
 export function getReadableSubmissionError(error) {
   const code = String(error?.code || '').trim();

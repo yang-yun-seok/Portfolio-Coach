@@ -10,6 +10,7 @@ export const CHECKING_SITE_CAPABILITIES = Object.freeze({
 const SUBMISSION_CAPABILITY_STATUSES = new Set([
   'admin_not_configured',
   'bucket_missing',
+  'bucket_public',
   'not_configured',
   'storage_unavailable',
 ]);

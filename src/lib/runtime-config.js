@@ -4,9 +4,6 @@ const viteEnv = import.meta.env || {};
 
 export const APP_BASE_URL = viteEnv.BASE_URL || '/';
 export const API_BASE_URL = trimTrailingSlash(viteEnv.VITE_API_BASE_URL || '');
-export const SUPABASE_URL = trimTrailingSlash(
-  viteEnv.VITE_SUPABASE_URL || 'https://pkwbqbxuujpcvndpacsc.supabase.co'
-);
 
 export function staticAssetUrl(path) {
   return `${APP_BASE_URL}${trimLeadingSlash(path)}`;

@@ -8,6 +8,7 @@ export function isEnabledFlag(value) {
 const STORAGE_NOT_READY_STATUSES = new Set([
   'admin_not_configured',
   'bucket_missing',
+  'bucket_public',
   'storage_unavailable',
 ]);
 

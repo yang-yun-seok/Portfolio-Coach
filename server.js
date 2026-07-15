@@ -16,6 +16,7 @@ import { createAnalysisService } from './server/services/analysis-service.js';
 import { createConfigService } from './server/services/config-service.js';
 import { createCrawlService } from './server/services/crawl-service.js';
 import { createFirebaseAdminService } from './server/services/firebase-admin-service.js';
+import { createSubmissionStorageService } from './server/services/submission-storage-service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -38,6 +39,7 @@ app.use(express.json({ limit: serverConfig.bodyLimit }));
 
 const crawlService = createCrawlService({ dataDir, dataLoader });
 const firebaseAdminService = createFirebaseAdminService();
+const submissionStorageService = createSubmissionStorageService();
 const authMiddleware = createAuthMiddleware({ firebaseAdminService });
 const analysisService = createAnalysisService({
   loadPrompts: configService.loadPrompts,
@@ -49,11 +51,16 @@ const analysisService = createAnalysisService({
 });
 
 app.use(createAnalysisRouter({ analysisService, authMiddleware }));
-app.use(createConfigRouter({ configService, firebaseAdminService }));
+app.use(createConfigRouter({ configService, submissionStorageService }));
 app.use(createDataRouter({ dataLoader, crawlService, authMiddleware }));
 app.use(createCrawlRouter({ crawlService }));
-app.use(createSubmissionRouter({ firebaseAdminService, authMiddleware }));
-app.use(createAdminRouter({ firebaseAdminService, authMiddleware }));
+app.use(createSubmissionRouter({
+  firebaseAdminService,
+  submissionStorageService,
+  authMiddleware,
+  areUploadsRequested: configService.arePortfolioUploadsRequested,
+}));
+app.use(createAdminRouter({ firebaseAdminService, submissionStorageService, authMiddleware }));
 
 const distDir = join(__dirname, 'dist');
 const distIndexFile = join(distDir, 'index.html');

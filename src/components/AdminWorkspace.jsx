@@ -558,9 +558,11 @@ export default function AdminWorkspace({
           <span>
             <strong>파일 제출 준비 필요</strong>
             {submissionCapability.status === 'not_configured' ? (
-              <>Firebase Storage 버킷과 규칙을 준비한 뒤 Render의 <code>PORTFOLIO_UPLOADS_ENABLED</code>를 <code>true</code>로 설정하세요.</>
+              <>Supabase 비공개 버킷과 Render 서버 키를 준비한 뒤 <code>PORTFOLIO_UPLOADS_ENABLED</code>를 <code>true</code>로 설정하세요.</>
+            ) : submissionCapability.status === 'bucket_public' ? (
+              <>학생 문서가 공개되지 않도록 Supabase 버킷을 비공개로 변경한 뒤 다시 확인하세요.</>
             ) : (
-              <>Render 설정은 켜져 있지만 Firebase Storage 준비 상태를 확인하지 못했습니다. 버킷과 Storage 규칙을 확인한 뒤 다시 배포하세요.</>
+              <>Render 설정은 켜져 있지만 Supabase Storage 준비 상태를 확인하지 못했습니다. 버킷과 서버 환경 변수를 확인하세요.</>
             )}
           </span>
         </div>

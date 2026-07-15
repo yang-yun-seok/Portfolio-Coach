@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-export function createConfigRouter({ configService, firebaseAdminService }) {
+export function createConfigRouter({ configService, submissionStorageService }) {
   const router = Router();
 
   router.get('/api/models', (req, res) => {
@@ -16,7 +16,7 @@ export function createConfigRouter({ configService, firebaseAdminService }) {
     let storageReadiness;
     if (configService.arePortfolioUploadsRequested()) {
       try {
-        storageReadiness = await firebaseAdminService?.getStorageReadiness?.();
+        storageReadiness = await submissionStorageService?.getReadiness?.();
       } catch {
         storageReadiness = { ready: false, status: 'storage_unavailable' };
       }

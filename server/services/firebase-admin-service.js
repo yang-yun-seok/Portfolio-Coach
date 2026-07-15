@@ -1,11 +1,9 @@
 import { cert, getApps, initializeApp } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { FieldValue, getFirestore } from 'firebase-admin/firestore';
-import { getStorage } from 'firebase-admin/storage';
 
 const PRIVATE_KEY_BEGIN = '-----BEGIN PRIVATE KEY-----';
 const PRIVATE_KEY_END = '-----END PRIVATE KEY-----';
-const STORAGE_READINESS_TTL_MS = 60 * 1000;
 
 function stripWrappingQuotes(value) {
   const trimmed = String(value || '').trim();
@@ -102,10 +100,6 @@ function buildFirebaseConfig() {
     clientEmail: process.env.FIREBASE_CLIENT_EMAIL || serviceAccount.client_email || serviceAccount.clientEmail || '',
     privateKey: envPrivateKey || serviceAccountPrivateKey,
     privateKeyCandidates: [...new Set([envPrivateKey, serviceAccountPrivateKey].filter(Boolean))],
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET
-      || serviceAccount.storage_bucket
-      || serviceAccount.storageBucket
-      || `${process.env.FIREBASE_PROJECT_ID || serviceAccount.project_id || serviceAccount.projectId || ''}.firebasestorage.app`,
   };
 }
 
@@ -139,21 +133,6 @@ function createServiceError(message, statusCode) {
   const error = new Error(message);
   error.statusCode = statusCode;
   return error;
-}
-
-export async function inspectStorageBucket(storageClient, bucketName) {
-  if (!storageClient || !bucketName) {
-    return { ready: false, status: 'admin_not_configured' };
-  }
-
-  try {
-    const [exists] = await storageClient.bucket(bucketName).exists();
-    return exists
-      ? { ready: true, status: 'ready' }
-      : { ready: false, status: 'bucket_missing' };
-  } catch {
-    return { ready: false, status: 'storage_unavailable' };
-  }
 }
 
 function sanitizeSubmissionFile(file) {
@@ -315,9 +294,6 @@ export function createFirebaseAdminService() {
   let initError = '';
   let auth = null;
   let db = null;
-  let storage = null;
-  let storageReadinessCache = null;
-  let storageReadinessCheckedAt = 0;
 
   if (configReady) {
     for (const privateKey of config.privateKeyCandidates) {
@@ -329,11 +305,9 @@ export function createFirebaseAdminService() {
             privateKey,
           }),
           projectId: config.projectId,
-          storageBucket: config.storageBucket,
         });
         auth = getAuth(app);
         db = getFirestore(app);
-        storage = getStorage(app);
         initError = '';
         break;
       } catch (error) {
@@ -372,28 +346,6 @@ export function createFirebaseAdminService() {
       throw new Error(initError || 'Firebase Admin Firestore is not configured.');
     }
     return db;
-  }
-
-  function requireStorage() {
-    if (!storage || !configReady || !config.storageBucket) {
-      throw new Error(initError || 'Firebase Admin Storage is not configured.');
-    }
-    return storage;
-  }
-
-  async function getStorageReadiness({ force = false } = {}) {
-    const now = Date.now();
-    if (
-      !force
-      && storageReadinessCache
-      && now - storageReadinessCheckedAt < STORAGE_READINESS_TTL_MS
-    ) {
-      return storageReadinessCache;
-    }
-
-    storageReadinessCache = await inspectStorageBucket(storage, config.storageBucket);
-    storageReadinessCheckedAt = now;
-    return storageReadinessCache;
   }
 
   async function listAdminUsers({ limit = 200 } = {}) {
@@ -442,9 +394,89 @@ export function createFirebaseAdminService() {
       .sort(sortBySubmittedAtDesc);
   }
 
-  async function getAdminSubmissionFile({ submissionId, fileKey }) {
+  function createSubmissionId() {
+    return requireFirestore().collection('portfolioSubmissions').doc().id;
+  }
+
+  async function createPortfolioSubmission({ submissionId, authUser, payload, files }) {
     const firestore = requireFirestore();
-    const storageClient = requireStorage();
+    const normalizedSubmissionId = String(submissionId || '').trim();
+    if (!isValidFirestoreDocumentId(normalizedSubmissionId)) {
+      throw createServiceError('올바른 제출 ID가 필요합니다.', 400);
+    }
+    if (!authUser?.uid || !isValidFirestoreDocumentId(authUser.uid)) {
+      throw createServiceError('로그인 정보가 올바르지 않습니다.', 401);
+    }
+
+    const userSnapshot = await firestore.collection('users').doc(authUser.uid).get();
+    const userProfile = userSnapshot.exists ? serializeUserDoc(userSnapshot) : null;
+    const accountDisplayName = userProfile?.studentName
+      || userProfile?.displayName
+      || payload.applicantName;
+    const submittedAtIso = new Date().toISOString();
+    const submissionRef = firestore.collection('portfolioSubmissions').doc(normalizedSubmissionId);
+    const submittedEventRef = firestore.collection('submissionEvents').doc();
+    const filesEventRef = firestore.collection('submissionEvents').doc();
+    const fileCounts = {
+      resume: files.resume ? 1 : 0,
+      coverLetter: files.coverLetter ? 1 : 0,
+      portfolio: Array.isArray(files.portfolio) ? files.portfolio.length : 0,
+    };
+    const submission = {
+      userId: authUser.uid,
+      userEmail: authUser.email || userProfile?.email || '',
+      userDisplayName: accountDisplayName,
+      accountStudentName: userProfile?.studentName || accountDisplayName,
+      applicantName: payload.applicantName,
+      track: payload.track,
+      subRole: payload.subRole,
+      experience: payload.experience,
+      title: `${payload.applicantName} 제출`,
+      summary: '포트폴리오 및 지원 서류 제출',
+      skills: payload.skills,
+      githubUrl: payload.githubUrl,
+      status: 'submitted',
+      adminMemo: '',
+      studentFeedback: '',
+      studentFeedbackUpdatedAtIso: '',
+      latestAnalysisSummary: payload.latestAnalysisSummary,
+      latestRecommendedJobsSnapshot: payload.latestRecommendedJobsSnapshot,
+      createdAt: FieldValue.serverTimestamp(),
+      updatedAt: FieldValue.serverTimestamp(),
+      submittedAtIso,
+      submittedByRole: authUser.role || 'user',
+      fileCounts,
+      files: sanitizeSubmissionFiles(files),
+    };
+
+    const batch = firestore.batch();
+    batch.create(submissionRef, submission);
+    batch.create(submittedEventRef, {
+      submissionId: normalizedSubmissionId,
+      actorId: authUser.uid,
+      actorRole: authUser.role || 'user',
+      type: 'submitted',
+      note: '사용자 제출 생성',
+      createdAt: FieldValue.serverTimestamp(),
+      createdAtIso: submittedAtIso,
+    });
+    batch.create(filesEventRef, {
+      submissionId: normalizedSubmissionId,
+      actorId: authUser.uid,
+      actorRole: authUser.role || 'user',
+      type: 'files_uploaded',
+      note: `이력서 ${fileCounts.resume}, 자기소개서 ${fileCounts.coverLetter}, 포트폴리오 ${fileCounts.portfolio}`,
+      createdAt: FieldValue.serverTimestamp(),
+      createdAtIso: submittedAtIso,
+    });
+    await batch.commit();
+
+    const snapshot = await submissionRef.get();
+    return serializeSubmissionDoc(snapshot);
+  }
+
+  async function getAdminSubmissionFileDescriptor({ submissionId, fileKey }) {
+    const firestore = requireFirestore();
     const normalizedSubmissionId = String(submissionId || '').trim();
     if (!isValidFirestoreDocumentId(normalizedSubmissionId)) {
       throw createServiceError('올바른 제출 ID가 필요합니다.', 400);
@@ -460,25 +492,10 @@ export function createFirebaseAdminService() {
       submission: snapshot.data() || {},
       fileKey,
     });
-    const bucketFile = storageClient.bucket(config.storageBucket).file(descriptor.storagePath);
-
-    try {
-      const [metadata] = await bucketFile.getMetadata();
-      if (metadata.contentType && metadata.contentType !== 'application/pdf') {
-        throw createServiceError('PDF 형식의 제출 파일만 받을 수 있습니다.', 409);
-      }
-      return {
-        stream: bucketFile.createReadStream(),
-        fileName: descriptor.fileName || 'submission.pdf',
-        contentType: 'application/pdf',
-        contentLength: Number(metadata.size) || descriptor.size || 0,
-      };
-    } catch (error) {
-      if (Number(error?.code) === 404 || error?.code === 'storage/object-not-found') {
-        throw createServiceError('제출 파일을 찾을 수 없습니다.', 404);
-      }
-      throw error;
-    }
+    return {
+      ...descriptor,
+      fileName: descriptor.fileName || 'submission.pdf',
+    };
   }
 
   async function updateAdminSubmissionReview({
@@ -606,11 +623,12 @@ export function createFirebaseAdminService() {
     canVerifyTokens: Boolean(auth && configReady),
     verifyIdToken,
     getUserAccess,
-    getStorageReadiness,
     listAdminUsers,
     listAdminSubmissions,
     listUserSubmissions,
-    getAdminSubmissionFile,
+    createSubmissionId,
+    createPortfolioSubmission,
+    getAdminSubmissionFileDescriptor,
     updateAdminSubmissionReview,
     updateAdminUserAccess,
   };

@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
-import { listMyPortfolioSubmissions } from '../lib/submission-api';
+import {
+  createPortfolioSubmission,
+  listMyPortfolioSubmissions,
+} from '../lib/submission-api';
 import { getReadableSubmissionError } from '../lib/submission-upload-utils';
 
 export function usePortfolioSubmissions({
   authEnabled,
   authUser,
   getAccessToken,
-  userProfile,
   userInfo,
   resumeFile,
   coverLetterFile,
@@ -57,10 +59,7 @@ export function usePortfolioSubmissions({
     setSubmissionError('');
     setSubmissionSuccess('');
     try {
-      const { createPortfolioSubmission } = await import('../lib/firebase-submissions');
-      const result = await createPortfolioSubmission({
-        authUser,
-        userProfile,
+      const result = await createPortfolioSubmission(getAccessToken, {
         userInfo,
         resumeFile,
         coverLetterFile,
@@ -81,8 +80,8 @@ export function usePortfolioSubmissions({
     }
   }, [
     authEnabled,
-    authUser,
     coverLetterFile,
+    getAccessToken,
     portfolioFiles,
     recommendedJobs,
     reloadSubmissions,
@@ -90,7 +89,6 @@ export function usePortfolioSubmissions({
     resumeFile,
     submissionCapability,
     userInfo,
-    userProfile,
   ]);
 
   return {

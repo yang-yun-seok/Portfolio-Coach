@@ -121,6 +121,7 @@ function buildSummary({ submissions, users }) {
 
 export function createAdminRouter({
   firebaseAdminService,
+  submissionStorageService,
   authMiddleware,
   adminModePassword = process.env.ADMIN_MODE_PASSWORD,
 }) {
@@ -186,10 +187,17 @@ export function createAdminRouter({
 
   router.get('/api/admin/submissions/:submissionId/files/:fileKey', authMiddleware.requireAdmin, async (req, res) => {
     try {
-      const file = await firebaseAdminService.getAdminSubmissionFile({
+      const descriptor = await firebaseAdminService.getAdminSubmissionFileDescriptor({
         submissionId: req.params.submissionId,
         fileKey: req.params.fileKey,
       });
+      const storedFile = await submissionStorageService.downloadPdf({
+        path: descriptor.storagePath,
+      });
+      const file = {
+        ...storedFile,
+        fileName: descriptor.fileName,
+      };
       res.setHeader('Content-Type', file.contentType || 'application/pdf');
       res.setHeader('Content-Disposition', buildAttachmentDisposition(file.fileName));
       res.setHeader('Cache-Control', 'private, no-store');

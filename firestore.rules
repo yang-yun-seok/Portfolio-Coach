@@ -10,20 +10,6 @@ service cloud.firestore {
       return signedIn() && request.auth.uid == userId;
     }
 
-    function userPath(userId) {
-      return /databases/$(database)/documents/users/$(userId);
-    }
-
-    function hasActiveAccount() {
-      return signedIn()
-        && exists(userPath(request.auth.uid))
-        && get(userPath(request.auth.uid)).data.active == true;
-    }
-
-    function accountRole() {
-      return get(userPath(request.auth.uid)).data.role;
-    }
-
     function userFieldsAreAllowed() {
       return request.resource.data.keys().hasOnly([
         'email',
@@ -72,116 +58,12 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    function submissionFieldsAreAllowed() {
-      return request.resource.data.keys().hasOnly([
-        'userId',
-        'userEmail',
-        'userDisplayName',
-        'accountStudentName',
-        'applicantName',
-        'track',
-        'subRole',
-        'experience',
-        'title',
-        'summary',
-        'skills',
-        'githubUrl',
-        'status',
-        'adminMemo',
-        'studentFeedback',
-        'studentFeedbackUpdatedAtIso',
-        'latestAnalysisSummary',
-        'latestRecommendedJobsSnapshot',
-        'createdAt',
-        'updatedAt',
-        'submittedAtIso',
-        'submittedByRole',
-        'fileCounts',
-        'files'
-      ]);
-    }
-
-    function submissionFileIsValid(file, expectedStoragePath) {
-      return file is map
-        && file.keys().hasAll(['fileName', 'storagePath', 'size', 'type'])
-        && file.keys().hasOnly(['fileName', 'storagePath', 'size', 'type'])
-        && file.fileName is string
-        && file.fileName.size() > 0
-        && file.fileName.size() <= 255
-        && file.storagePath == expectedStoragePath
-        && file.size is int
-        && file.size > 0
-        && file.size <= 10 * 1024 * 1024
-        && file.type == 'application/pdf';
-    }
-
-    function submissionFilesAreValid(submissionId) {
-      let files = request.resource.data.files;
-      let counts = request.resource.data.fileCounts;
-      let basePath = 'portfolio-submissions/' + request.auth.uid + '/' + submissionId + '/';
-      return counts is map
-        && request.resource.data.fileCounts.keys().hasOnly(['resume', 'coverLetter', 'portfolio'])
-        && request.resource.data.fileCounts.keys().hasAll(['resume', 'coverLetter', 'portfolio'])
-        && counts.resume in [0, 1]
-        && counts.coverLetter in [0, 1]
-        && counts.portfolio >= 0
-        && counts.portfolio <= 5
-        && files is map
-        && files.keys().hasOnly(['resume', 'coverLetter', 'portfolio'])
-        && files.keys().hasAll(['resume', 'coverLetter', 'portfolio'])
-        && files.portfolio is list
-        && files.portfolio.size() == counts.portfolio
-        && ((counts.resume == 0 && files.resume == null)
-          || (counts.resume == 1 && submissionFileIsValid(files.resume, basePath + 'resume.pdf')))
-        && ((counts.coverLetter == 0 && files.coverLetter == null)
-          || (counts.coverLetter == 1 && submissionFileIsValid(files.coverLetter, basePath + 'cover-letter.pdf')))
-        && (files.portfolio.size() < 1 || submissionFileIsValid(files.portfolio[0], basePath + 'portfolio-1.pdf'))
-        && (files.portfolio.size() < 2 || submissionFileIsValid(files.portfolio[1], basePath + 'portfolio-2.pdf'))
-        && (files.portfolio.size() < 3 || submissionFileIsValid(files.portfolio[2], basePath + 'portfolio-3.pdf'))
-        && (files.portfolio.size() < 4 || submissionFileIsValid(files.portfolio[3], basePath + 'portfolio-4.pdf'))
-        && (files.portfolio.size() < 5 || submissionFileIsValid(files.portfolio[4], basePath + 'portfolio-5.pdf'));
-    }
-
     match /portfolioSubmissions/{submissionId} {
-      allow read: if false;
-
-      allow create: if hasActiveAccount()
-        && submissionFieldsAreAllowed()
-        && request.resource.data.userId == request.auth.uid
-        && request.resource.data.userEmail == request.auth.token.email
-        && request.resource.data.status == 'submitted'
-        && request.resource.data.adminMemo == ''
-        && request.resource.data.studentFeedback == ''
-        && request.resource.data.studentFeedbackUpdatedAtIso == ''
-        && request.resource.data.submittedByRole == accountRole()
-        && request.resource.data.skills is list
-        && request.resource.data.skills.size() <= 30
-        && request.resource.data.latestRecommendedJobsSnapshot is list
-        && request.resource.data.latestRecommendedJobsSnapshot.size() <= 3
-        && submissionFilesAreValid(submissionId)
-        && request.resource.data.createdAt == request.time
-        && request.resource.data.updatedAt == request.time;
-
-      allow update, delete: if false;
+      allow read, write: if false;
     }
 
     match /submissionEvents/{eventId} {
-      allow create: if hasActiveAccount()
-        && request.resource.data.keys().hasOnly([
-          'submissionId',
-          'actorId',
-          'actorRole',
-          'type',
-          'note',
-          'createdAt'
-        ])
-        && request.resource.data.actorId == request.auth.uid
-        && request.resource.data.actorRole == accountRole()
-        && request.resource.data.type in ['submitted', 'files_uploaded']
-        && get(/databases/$(database)/documents/portfolioSubmissions/$(request.resource.data.submissionId)).data.userId == request.auth.uid
-        && request.resource.data.createdAt == request.time;
-
-      allow read, update, delete: if false;
+      allow read, write: if false;
     }
 
     match /{document=**} {
