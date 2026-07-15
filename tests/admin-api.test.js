@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { downloadAdminSubmissionFile, unlockAdminMode } from '../src/lib/admin-api.js';
+import {
+  deleteAdminSubmission,
+  downloadAdminSubmissionFile,
+  unlockAdminMode,
+} from '../src/lib/admin-api.js';
 
 const TEST_ADMIN_PASSWORD = 'correct-admin-password';
 
@@ -85,6 +89,39 @@ test('downloadAdminSubmissionFile surfaces the server rejection message', async 
       () => downloadAdminSubmissionFile(async () => 'admin-token', 'submission-1', 'resume'),
       /제출 파일을 찾을 수 없습니다/,
     );
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('deleteAdminSubmission sends a strict confirmation payload', async () => {
+  const originalFetch = globalThis.fetch;
+  let capturedRequest = null;
+  globalThis.fetch = async (url, options) => {
+    capturedRequest = { url, options };
+    return new Response(JSON.stringify({
+      deletedSubmission: { id: 'submission/1' },
+      deletedFileCount: 2,
+      releasedStorageBytes: 4600,
+    }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  };
+
+  try {
+    const result = await deleteAdminSubmission(async () => 'admin-token', 'submission/1');
+    assert.equal(capturedRequest.url, '/api/admin/submissions/submission%2F1');
+    assert.equal(capturedRequest.options.method, 'DELETE');
+    assert.equal(capturedRequest.options.headers.Authorization, 'Bearer admin-token');
+    assert.deepEqual(JSON.parse(capturedRequest.options.body), {
+      confirmSubmissionId: 'submission/1',
+    });
+    assert.deepEqual(result, {
+      deletedSubmission: { id: 'submission/1' },
+      deletedFileCount: 2,
+      releasedStorageBytes: 4600,
+    });
   } finally {
     globalThis.fetch = originalFetch;
   }

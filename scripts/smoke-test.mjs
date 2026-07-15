@@ -287,6 +287,7 @@ async function run() {
     const scriptRequests = [];
     let adminAccessPatchCount = 0;
     let adminFileDownloadCount = 0;
+    let adminSubmissionDeleteCount = 0;
     const { currentSnapshot, previousSnapshot } = createSmokeSeed();
     const adminOverview = createSmokeAdminOverview();
 
@@ -395,6 +396,22 @@ async function run() {
             'Content-Disposition': "attachment; filename=resume.pdf; filename*=UTF-8''resume.pdf",
           },
           body: Buffer.from('%PDF-1.4 smoke test'),
+        });
+        return;
+      }
+      if (request.method() === 'DELETE' && request.url().endsWith('/api/admin/submissions/submission-1')) {
+        adminSubmissionDeleteCount += 1;
+        const payload = JSON.parse(request.postData() || '{}');
+        void request.respond({
+          status: payload.confirmSubmissionId === 'submission-1' ? 200 : 400,
+          contentType: 'application/json',
+          body: JSON.stringify(payload.confirmSubmissionId === 'submission-1' ? {
+            deletedSubmission: { id: 'submission-1', userId: 'student-1' },
+            deletedFileCount: 2,
+            releasedStorageBytes: 4244000,
+          } : {
+            error: '정리할 제출 ID를 다시 확인해 주세요.',
+          }),
         });
         return;
       }
@@ -728,6 +745,21 @@ async function run() {
     await fileDownloadButton.click();
     await page.waitForFunction(() => document.body.innerText.includes('제출 파일을 받았습니다.'), { timeout: 5000 });
     if (adminFileDownloadCount !== 1) throw new Error(`Unexpected file download request count: ${adminFileDownloadCount}.`);
+
+    const submissionDeleteButton = await page.$('.coach-admin-delete-trigger');
+    if (!submissionDeleteButton) throw new Error('Submission cleanup action not found.');
+    await submissionDeleteButton.click();
+    await page.waitForSelector('.coach-admin-delete-confirm');
+    if (adminSubmissionDeleteCount !== 0) throw new Error('Submission was deleted before confirmation.');
+    await page.click('.coach-admin-delete-confirm');
+    await page.waitForFunction(
+      () => document.body.innerText.includes('제출 1건과 파일 2개를 정리했습니다.')
+        && document.querySelectorAll('.coach-admin-submission-row').length === 1,
+      { timeout: 5000 },
+    );
+    if (adminSubmissionDeleteCount !== 1) {
+      throw new Error(`Unexpected submission delete request count: ${adminSubmissionDeleteCount}.`);
+    }
 
     const accessButton = await page.$('.coach-admin-access-button.is-disable');
     if (!accessButton) throw new Error('Student account disable button not found.');

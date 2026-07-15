@@ -6,6 +6,7 @@ import {
   createAdminRouter,
   matchesAdminModePassword,
   parseAdminUnlock,
+  parseSubmissionDeletion,
   parseUserAccessPatch,
 } from '../server/routes/admin-routes.js';
 
@@ -85,6 +86,91 @@ test('admin submission file endpoint requires administrator authentication first
     routeMiddleware(router, '/api/admin/submissions/:submissionId/files/:fileKey')[0],
     requireAdmin,
   );
+});
+
+test('submission deletion requires an exact submission ID confirmation', () => {
+  assert.deepEqual(
+    parseSubmissionDeletion({ confirmSubmissionId: 'submission-1' }, 'submission-1'),
+    { confirmSubmissionId: 'submission-1' },
+  );
+
+  for (const payload of [
+    {},
+    { confirmSubmissionId: 'submission-2' },
+    { confirmSubmissionId: 1 },
+    { confirmSubmissionId: 'submission-1', force: true },
+  ]) {
+    assert.throws(
+      () => parseSubmissionDeletion(payload, 'submission-1'),
+      (error) => error.statusCode === 400 && /제출 ID/.test(error.message),
+    );
+  }
+});
+
+test('admin submission deletion removes private files before Firestore metadata', async () => {
+  const calls = [];
+  const requireAdmin = () => {};
+  const router = createAdminRouter({
+    firebaseAdminService: {
+      async getAdminSubmissionDeletionPlan(input) {
+        calls.push(['plan', input]);
+        return {
+          storagePaths: ['portfolio-submissions/student-1/submission-1/resume.pdf'],
+          fileCount: 1,
+          storageBytes: 1200,
+        };
+      },
+      async deleteAdminSubmission(input) {
+        calls.push(['metadata', input]);
+        return { id: 'submission-1', userId: 'student-1' };
+      },
+    },
+    submissionStorageService: {
+      async deleteFiles(paths) {
+        calls.push(['storage', paths]);
+      },
+    },
+    authMiddleware: { requireAdmin },
+    adminModePassword: TEST_ADMIN_PASSWORD,
+  });
+  const deleteRoute = router.stack.find((layer) => (
+    layer.route?.path === '/api/admin/submissions/:submissionId'
+    && layer.route?.methods?.delete
+  ));
+  const handler = deleteRoute.route.stack[1].handle;
+  let statusCode = 200;
+  let payload = null;
+  const response = {
+    status(nextStatusCode) {
+      statusCode = nextStatusCode;
+      return this;
+    },
+    json(nextPayload) {
+      payload = nextPayload;
+      return this;
+    },
+  };
+
+  await handler({
+    params: { submissionId: 'submission-1' },
+    body: { confirmSubmissionId: 'submission-1' },
+    authUser: { uid: 'admin-1', email: 'admin@example.com' },
+  }, response);
+
+  assert.equal(statusCode, 200);
+  assert.deepEqual(calls, [
+    ['plan', { submissionId: 'submission-1' }],
+    ['storage', ['portfolio-submissions/student-1/submission-1/resume.pdf']],
+    ['metadata', {
+      submissionId: 'submission-1',
+      actor: { uid: 'admin-1', email: 'admin@example.com' },
+    }],
+  ]);
+  assert.deepEqual(payload, {
+    deletedSubmission: { id: 'submission-1', userId: 'student-1' },
+    deletedFileCount: 1,
+    releasedStorageBytes: 1200,
+  });
 });
 
 test('attachment disposition removes header injection and preserves UTF-8 names', () => {

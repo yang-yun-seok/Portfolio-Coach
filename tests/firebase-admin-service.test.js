@@ -3,6 +3,7 @@ import test from 'node:test';
 import {
   assertAdminUserAccessChange,
   createFirebaseAdminService,
+  getSubmissionStoragePaths,
   normalizePrivateKey,
   resolveSubmissionFileDescriptor,
   sanitizeSubmissionFiles,
@@ -155,6 +156,50 @@ test('resolveSubmissionFileDescriptor accepts only the expected owner path', () 
       fileKey: '../../secret',
     }),
     (error) => error.statusCode === 400 && /지원하지 않는/.test(error.message),
+  );
+});
+
+test('getSubmissionStoragePaths returns only validated private object paths', () => {
+  const submission = {
+    userId: 'student-1',
+    files: {
+      resume: {
+        fileName: 'resume.pdf',
+        storagePath: 'portfolio-submissions/student-1/submission-1/resume.pdf',
+        size: 1200,
+      },
+      coverLetter: null,
+      portfolio: [{
+        fileName: 'portfolio.pdf',
+        storagePath: 'portfolio-submissions/student-1/submission-1/portfolio-1.pdf',
+        size: 3400,
+      }],
+    },
+  };
+
+  assert.deepEqual(getSubmissionStoragePaths({
+    submissionId: 'submission-1',
+    submission,
+  }), [
+    'portfolio-submissions/student-1/submission-1/resume.pdf',
+    'portfolio-submissions/student-1/submission-1/portfolio-1.pdf',
+  ]);
+
+  assert.throws(
+    () => getSubmissionStoragePaths({
+      submissionId: 'submission-1',
+      submission: {
+        ...submission,
+        files: {
+          ...submission.files,
+          resume: {
+            ...submission.files.resume,
+            storagePath: 'portfolio-submissions/another-user/submission-1/resume.pdf',
+          },
+        },
+      },
+    }),
+    (error) => error.statusCode === 409 && /경로/.test(error.message),
   );
 });
 
