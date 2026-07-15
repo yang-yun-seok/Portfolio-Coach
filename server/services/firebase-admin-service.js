@@ -196,6 +196,21 @@ export function resolveSubmissionFileDescriptor({ submissionId, submission, file
   return descriptor;
 }
 
+export function getSubmissionStoragePaths({ submissionId, submission }) {
+  const files = sanitizeSubmissionFiles(submission?.files);
+  const fileKeys = [
+    files.resume ? 'resume' : null,
+    files.coverLetter ? 'coverLetter' : null,
+    ...files.portfolio.map((_, index) => `portfolio-${index + 1}`),
+  ].filter(Boolean);
+
+  return fileKeys.map((fileKey) => resolveSubmissionFileDescriptor({
+    submissionId,
+    submission,
+    fileKey,
+  }).storagePath);
+}
+
 function serializeSubmissionDoc(entry) {
   const data = serializeFirestoreValue(entry.data()) || {};
   return {
@@ -498,6 +513,76 @@ export function createFirebaseAdminService() {
     };
   }
 
+  async function getAdminSubmissionDeletionPlan({ submissionId }) {
+    const firestore = requireFirestore();
+    const normalizedSubmissionId = String(submissionId || '').trim();
+    if (!isValidFirestoreDocumentId(normalizedSubmissionId)) {
+      throw createServiceError('올바른 제출 ID가 필요합니다.', 400);
+    }
+
+    const snapshot = await firestore.collection('portfolioSubmissions').doc(normalizedSubmissionId).get();
+    if (!snapshot.exists) {
+      throw createServiceError('제출 내역을 찾을 수 없습니다.', 404);
+    }
+
+    const submission = snapshot.data() || {};
+    const files = sanitizeSubmissionFiles(submission.files);
+    const fileDescriptors = [files.resume, files.coverLetter, ...files.portfolio].filter(Boolean);
+    return {
+      submissionId: normalizedSubmissionId,
+      userId: String(submission.userId || ''),
+      storagePaths: getSubmissionStoragePaths({
+        submissionId: normalizedSubmissionId,
+        submission,
+      }),
+      fileCount: fileDescriptors.length,
+      storageBytes: fileDescriptors.reduce((total, file) => total + (Number(file.size) || 0), 0),
+    };
+  }
+
+  async function deleteAdminSubmission({ submissionId, actor }) {
+    const firestore = requireFirestore();
+    const normalizedSubmissionId = String(submissionId || '').trim();
+    if (!isValidFirestoreDocumentId(normalizedSubmissionId)) {
+      throw createServiceError('올바른 제출 ID가 필요합니다.', 400);
+    }
+
+    const submissionRef = firestore.collection('portfolioSubmissions').doc(normalizedSubmissionId);
+    const submissionSnapshot = await submissionRef.get();
+    if (!submissionSnapshot.exists) {
+      throw createServiceError('제출 내역을 찾을 수 없습니다.', 404);
+    }
+
+    const submission = submissionSnapshot.data() || {};
+    const eventsSnapshot = await firestore.collection('submissionEvents')
+      .where('submissionId', '==', normalizedSubmissionId)
+      .limit(400)
+      .get();
+    const nowIso = new Date().toISOString();
+    const deletionEventRef = firestore.collection('submissionEvents').doc();
+    const batch = firestore.batch();
+    eventsSnapshot.docs.forEach((eventDocument) => batch.delete(eventDocument.ref));
+    batch.delete(submissionRef);
+    batch.set(deletionEventRef, {
+      submissionId: normalizedSubmissionId,
+      subjectUserId: String(submission.userId || ''),
+      actorId: actor?.uid || '',
+      actorEmail: actor?.email || '',
+      actorRole: 'admin',
+      type: 'submission_deleted',
+      note: '관리자 제출 정리',
+      createdAt: FieldValue.serverTimestamp(),
+      createdAtIso: nowIso,
+    });
+    await batch.commit();
+
+    return {
+      id: normalizedSubmissionId,
+      userId: String(submission.userId || ''),
+      deletedAtIso: nowIso,
+    };
+  }
+
   async function updateAdminSubmissionReview({
     submissionId,
     status,
@@ -629,6 +714,8 @@ export function createFirebaseAdminService() {
     createSubmissionId,
     createPortfolioSubmission,
     getAdminSubmissionFileDescriptor,
+    getAdminSubmissionDeletionPlan,
+    deleteAdminSubmission,
     updateAdminSubmissionReview,
     updateAdminUserAccess,
   };

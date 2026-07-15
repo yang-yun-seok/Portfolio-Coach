@@ -12,12 +12,14 @@ import {
   RefreshCw,
   Save,
   Search,
+  Trash2,
   UserCheck,
   UserRound,
   UserX,
   UsersRound,
 } from 'lucide-react';
 import {
+  deleteAdminSubmission,
   downloadAdminSubmissionFile,
   fetchAdminOverview,
   updateAdminSubmissionReview,
@@ -135,6 +137,7 @@ function getOperationalFlags(submission) {
 
 function buildAdminSummary(submissions = [], users = []) {
   const uniqueSubmitters = new Set(submissions.map((item) => item.userId).filter(Boolean));
+  const fileDescriptors = submissions.flatMap((submission) => flattenFiles(submission.files));
   return {
     totalSubmissions: submissions.length,
     totalUsers: users.length,
@@ -147,6 +150,11 @@ function buildAdminSummary(submissions = [], users = []) {
       ['submitted', 'reviewing'].includes(item.status) && isToday(item.submittedAtIso)
     )).length,
     resubmissionWaitCount: submissions.filter((item) => item.status === 'rejected').length,
+    submissionFileCount: fileDescriptors.length,
+    submissionStorageBytes: fileDescriptors.reduce(
+      (total, file) => total + (Number(file.size) || 0),
+      0,
+    ),
     latestSubmittedAtIso: submissions[0]?.submittedAtIso || '',
   };
 }
@@ -239,6 +247,8 @@ export default function AdminWorkspace({
   const [updatingUserId, setUpdatingUserId] = useState('');
   const [confirmingUserId, setConfirmingUserId] = useState('');
   const [downloadingFileKey, setDownloadingFileKey] = useState('');
+  const [confirmingDeletionId, setConfirmingDeletionId] = useState('');
+  const [deletingSubmissionId, setDeletingSubmissionId] = useState('');
 
   const loadOverview = useCallback(async () => {
     if (!isAdmin) return;
@@ -463,6 +473,39 @@ export default function AdminWorkspace({
     }
   };
 
+  const handleDeleteSubmission = async () => {
+    if (!selectedSubmission?.id || confirmingDeletionId !== selectedSubmission.id) return;
+    const submissionId = selectedSubmission.id;
+    setDeletingSubmissionId(submissionId);
+    setError('');
+    setActionMessage('');
+
+    try {
+      const result = await deleteAdminSubmission(getAccessToken, submissionId);
+      setOverview((current) => {
+        const nextSubmissions = current.submissions.filter((submission) => submission.id !== submissionId);
+        return {
+          ...current,
+          submissions: nextSubmissions,
+          summary: buildAdminSummary(nextSubmissions, current.users),
+        };
+      });
+      setReviewDrafts((current) => {
+        const next = { ...current };
+        delete next[submissionId];
+        return next;
+      });
+      setConfirmingDeletionId('');
+      setActionMessage(
+        `제출 1건과 파일 ${result.deletedFileCount}개를 정리했습니다.`,
+      );
+    } catch (deleteError) {
+      setError(deleteError.message || '제출 내역을 정리하지 못했습니다.');
+    } finally {
+      setDeletingSubmissionId('');
+    }
+  };
+
   const handleUpdateUserAccess = async (user) => {
     if (!user?.uid || user.role === 'admin') return;
     const nextActive = user.active === false;
@@ -549,6 +592,7 @@ export default function AdminWorkspace({
           <span>{userProfile?.studentName || userProfile?.displayName || '관리자'}</span>
           <span>전체 제출 {summary.totalSubmissions || 0}건</span>
           <span>학생 {summary.totalUsers || 0}명</span>
+          <span>파일 {summary.submissionFileCount || 0}개 · {formatBytes(summary.submissionStorageBytes) || '0KB'}</span>
         </div>
       </header>
 
@@ -569,7 +613,7 @@ export default function AdminWorkspace({
       ) : null}
 
       <section className="coach-admin-metrics" aria-label="제출 운영 요약">
-        <Metric icon={FileText} label="전체 제출" value={`${summary.totalSubmissions || 0}건`} helper={`최근 제출 ${formatDateTime(summary.latestSubmittedAtIso)}`} />
+        <Metric icon={FileText} label="전체 제출" value={`${summary.totalSubmissions || 0}건`} helper={`파일 ${summary.submissionFileCount || 0}개 · ${formatBytes(summary.submissionStorageBytes) || '0KB'}`} />
         <Metric icon={UsersRound} label="사용자" value={`${summary.totalUsers || 0}명`} helper={`${summary.uniqueSubmitters || 0}명이 제출함`} />
         <Metric icon={Clock3} label="오늘 확인" value={`${summary.todayActionCount || 0}건`} helper="오늘 들어온 확인 대상" />
         <Metric icon={Clock3} label="확인 필요" value={`${summary.submittedCount || 0}건`} helper="신규 제출 상태" />
@@ -600,6 +644,7 @@ export default function AdminWorkspace({
           <label className="flex min-w-0 items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 focus-within:border-slate-400">
             <Search size={16} className="shrink-0 text-slate-400" />
             <input
+              aria-label="제출 목록 검색"
               type="search"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
@@ -608,6 +653,7 @@ export default function AdminWorkspace({
             />
           </label>
           <select
+            aria-label="제출 상태 필터"
             value={statusFilter}
             onChange={(event) => setStatusFilter(event.target.value)}
             className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 outline-none focus:border-slate-400"
@@ -618,6 +664,7 @@ export default function AdminWorkspace({
             ))}
           </select>
           <select
+            aria-label="직무 트랙 필터"
             value={trackFilter}
             onChange={(event) => setTrackFilter(event.target.value)}
             className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 outline-none focus:border-slate-400"
@@ -756,6 +803,7 @@ export default function AdminWorkspace({
                   <h5 className="font-bold text-slate-900">검토 상태</h5>
                   <div className="mt-3 grid gap-3">
                     <select
+                      aria-label="선택한 제출의 검토 상태"
                       value={selectedDraft?.status || 'submitted'}
                       onChange={(event) => updateSelectedDraft({ status: event.target.value })}
                       className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 outline-none focus:border-slate-400"
@@ -823,6 +871,43 @@ export default function AdminWorkspace({
                     ) : null}
                   </div>
                 ) : null}
+
+                <div className="coach-admin-danger-zone">
+                  <div>
+                    <strong>제출 내역 정리</strong>
+                    <p>잘못 올린 테스트 제출만 정리하세요. 제출 기록과 첨부 파일이 함께 삭제됩니다.</p>
+                  </div>
+                  {confirmingDeletionId === selectedSubmission.id ? (
+                    <div className="coach-admin-danger-actions" role="group" aria-label="제출 삭제 확인">
+                      <button
+                        type="button"
+                        onClick={() => setConfirmingDeletionId('')}
+                        disabled={deletingSubmissionId === selectedSubmission.id}
+                        className="coach-admin-access-cancel"
+                      >
+                        취소
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleDeleteSubmission}
+                        disabled={deletingSubmissionId === selectedSubmission.id}
+                        className="coach-admin-delete-confirm"
+                      >
+                        {deletingSubmissionId === selectedSubmission.id ? <Loader2 size={14} className="animate-spin" /> : <Trash2 size={14} />}
+                        삭제 확인
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setConfirmingDeletionId(selectedSubmission.id)}
+                      className="coach-admin-delete-trigger"
+                    >
+                      <Trash2 size={14} />
+                      제출 정리
+                    </button>
+                  )}
+                </div>
               </div>
             ) : (
               <div className="rounded-lg border border-dashed border-slate-300 bg-white px-5 py-10 text-center text-sm text-slate-500">

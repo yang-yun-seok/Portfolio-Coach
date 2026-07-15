@@ -1316,6 +1316,78 @@
   opacity: 0.65;
 }
 
+.coach-admin-danger-zone {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid #fecdd3;
+}
+
+.coach-admin-danger-zone > div:first-child {
+  min-width: 0;
+}
+
+.coach-admin-danger-zone strong {
+  color: #9f1239;
+  font-size: 13px;
+  font-weight: 760;
+}
+
+.coach-admin-danger-zone p {
+  margin: 4px 0 0;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.coach-admin-danger-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+}
+
+.coach-admin-delete-trigger,
+.coach-admin-delete-confirm {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 1px solid #fecdd3;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #be123c;
+  font-size: 11px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.coach-admin-delete-trigger:hover:not(:disabled),
+.coach-admin-delete-confirm:hover:not(:disabled) {
+  border-color: #fda4af;
+  background: #fff1f2;
+}
+
+.coach-admin-delete-confirm {
+  background: #be123c;
+  color: #ffffff;
+}
+
+.coach-admin-delete-confirm:hover:not(:disabled) {
+  background: #9f1239;
+}
+
+.coach-admin-delete-trigger:disabled,
+.coach-admin-delete-confirm:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
 .coach-admin-users {
   padding: 18px;
 }
@@ -1621,6 +1693,21 @@
   .coach-admin-users > div:first-child {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .coach-admin-danger-zone {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .coach-admin-danger-actions,
+  .coach-admin-delete-trigger,
+  .coach-admin-delete-confirm {
+    width: 100%;
+  }
+
+  .coach-admin-danger-actions > * {
+    flex: 1 1 0;
   }
 
   .coach-admin-users > .overflow-x-auto {

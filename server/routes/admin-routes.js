@@ -39,6 +39,23 @@ export function parseUserAccessPatch(body = {}) {
   return { active: normalizedBody.active };
 }
 
+export function parseSubmissionDeletion(body = {}, submissionId = '') {
+  const normalizedBody = body && typeof body === 'object' && !Array.isArray(body) ? body : {};
+  const keys = Object.keys(normalizedBody);
+  const normalizedSubmissionId = String(submissionId || '').trim();
+
+  if (
+    keys.length !== 1
+    || keys[0] !== 'confirmSubmissionId'
+    || typeof normalizedBody.confirmSubmissionId !== 'string'
+    || normalizedBody.confirmSubmissionId !== normalizedSubmissionId
+  ) {
+    throw createHttpError('정리할 제출 ID를 다시 확인해 주세요.', 400);
+  }
+
+  return { confirmSubmissionId: normalizedSubmissionId };
+}
+
 export function parseAdminUnlock(body = {}) {
   const normalizedBody = body && typeof body === 'object' && !Array.isArray(body) ? body : {};
   const keys = Object.keys(normalizedBody);
@@ -102,6 +119,14 @@ function parseReviewPatch(body = {}) {
 function buildSummary({ submissions, users }) {
   const uniqueSubmitters = new Set(submissions.map((item) => item.userId).filter(Boolean));
   const todayDate = new Date().toISOString().slice(0, 10);
+  const fileDescriptors = submissions.flatMap((submission) => {
+    const files = submission?.files || {};
+    return [
+      files.resume,
+      files.coverLetter,
+      ...(Array.isArray(files.portfolio) ? files.portfolio : []),
+    ].filter(Boolean);
+  });
   return {
     totalSubmissions: submissions.length,
     totalUsers: users.length,
@@ -115,6 +140,11 @@ function buildSummary({ submissions, users }) {
       && String(item.submittedAtIso || '').slice(0, 10) === todayDate
     )).length,
     resubmissionWaitCount: submissions.filter((item) => item.status === 'rejected').length,
+    submissionFileCount: fileDescriptors.length,
+    submissionStorageBytes: fileDescriptors.reduce(
+      (total, file) => total + (Number(file?.size) || 0),
+      0,
+    ),
     latestSubmittedAtIso: submissions[0]?.submittedAtIso || '',
   };
 }
@@ -213,6 +243,31 @@ export function createAdminRouter({
       }
       res.status(error.statusCode || 500).json({
         error: error.message || '제출 파일을 받지 못했습니다.',
+      });
+    }
+  });
+
+  router.delete('/api/admin/submissions/:submissionId', authMiddleware.requireAdmin, async (req, res) => {
+    try {
+      parseSubmissionDeletion(req.body, req.params.submissionId);
+      const deletionPlan = await firebaseAdminService.getAdminSubmissionDeletionPlan({
+        submissionId: req.params.submissionId,
+      });
+      await submissionStorageService.deleteFiles(deletionPlan.storagePaths);
+      const deletedSubmission = await firebaseAdminService.deleteAdminSubmission({
+        submissionId: req.params.submissionId,
+        actor: req.authUser,
+      });
+
+      res.json({
+        deletedSubmission,
+        deletedFileCount: deletionPlan.fileCount,
+        releasedStorageBytes: deletionPlan.storageBytes,
+      });
+    } catch (error) {
+      res.status(error.statusCode || 500).json({
+        error: error.message || '제출 내역을 정리하지 못했습니다.',
+        code: error.code || 'submission_delete_failed',
       });
     }
   });

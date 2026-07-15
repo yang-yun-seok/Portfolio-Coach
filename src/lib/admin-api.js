@@ -83,6 +83,24 @@ export async function downloadAdminSubmissionFile(getAccessToken, submissionId, 
   };
 }
 
+export async function deleteAdminSubmission(getAccessToken, submissionId) {
+  const headers = await buildAuthorizedHeaders(getAccessToken, {
+    'Content-Type': 'application/json',
+  });
+  const response = await fetch(apiUrl(`api/admin/submissions/${encodeURIComponent(submissionId)}`), {
+    method: 'DELETE',
+    headers,
+    body: JSON.stringify({ confirmSubmissionId: submissionId }),
+  });
+  const data = await readApiResponse(response, '제출 내역을 정리하지 못했습니다.');
+
+  return {
+    deletedSubmission: data.deletedSubmission || null,
+    deletedFileCount: Number(data.deletedFileCount) || 0,
+    releasedStorageBytes: Number(data.releasedStorageBytes) || 0,
+  };
+}
+
 export async function updateAdminUserAccess(getAccessToken, uid, active) {
   const headers = await buildAuthorizedHeaders(getAccessToken, {
     'Content-Type': 'application/json',
