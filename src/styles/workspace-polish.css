@@ -1785,3 +1785,857 @@
     transition: none;
   }
 }
+
+.coach-submission-changes {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.coach-input-stage-nav {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.coach-input-stage-nav button {
+  display: grid;
+  grid-template-columns: 24px 18px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-height: 62px;
+  border-right: 1px solid #e2e8f0;
+  padding: 10px 14px;
+  color: #64748b;
+  text-align: left;
+}
+
+.coach-input-stage-nav button:last-child {
+  border-right: 0;
+}
+
+.coach-input-stage-nav button > span {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.coach-input-stage-nav strong {
+  color: #334155;
+  font-size: 13px;
+}
+
+.coach-input-stage-nav small {
+  grid-column: 3;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.coach-input-stage-nav button.is-active {
+  background: #0f172a;
+  color: #fff;
+}
+
+.coach-input-stage-nav button.is-active > span {
+  border-color: #64748b;
+  background: #fff;
+  color: #0f172a;
+}
+
+.coach-input-stage-nav button.is-active strong,
+.coach-input-stage-nav button.is-active small {
+  color: #fff;
+}
+
+.coach-input-stage-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid #e2e8f0;
+  padding: 16px 4px 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.coach-input-stage-footer button,
+.coach-input-mobile-action button {
+  min-height: 42px;
+  border-radius: 6px;
+  background: #0f172a;
+  padding: 0 18px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.coach-input-analysis-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: 24px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  padding: 24px;
+}
+
+.coach-input-analysis-summary h3 {
+  margin-top: 7px;
+  color: #0f172a;
+  font-size: 22px;
+  font-weight: 850;
+}
+
+.coach-input-analysis-summary > div > p:last-child {
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.coach-input-analysis-summary dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #e2e8f0;
+}
+
+.coach-input-analysis-summary dl > div {
+  background: #f8fafc;
+  padding: 12px;
+}
+
+.coach-input-analysis-summary dt {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.coach-input-analysis-summary dd {
+  margin-top: 4px;
+  color: #1e293b;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.coach-input-mobile-action {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .coach-input-stage-nav button {
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: 6px;
+    min-height: 54px;
+    padding: 8px 9px;
+  }
+
+  .coach-input-stage-nav button > span {
+    width: 22px;
+    height: 22px;
+  }
+
+  .coach-input-stage-nav svg,
+  .coach-input-stage-nav small {
+    display: none;
+  }
+
+  .coach-input-stage-nav strong {
+    font-size: 12px;
+  }
+
+  .coach-input-stage-footer {
+    display: none;
+  }
+
+  .coach-input-analysis-summary {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .coach-input-mobile-action {
+    position: sticky;
+    z-index: 30;
+    bottom: 10px;
+    display: block;
+    padding: 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: rgb(255 255 255 / 94%);
+    box-shadow: 0 12px 32px rgb(15 23 42 / 18%);
+    backdrop-filter: blur(8px);
+  }
+
+  .coach-input-mobile-action button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+}
+
+.coach-submission-changes > strong {
+  display: block;
+  margin-bottom: 9px;
+  color: #334155;
+  font-size: 12px;
+}
+
+.coach-submission-changes > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.coach-submission-changes span {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #f8fafc;
+  padding: 5px 8px;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.coach-submission-confirm-backdrop {
+  position: fixed;
+  z-index: 90;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgb(15 23 42 / 52%);
+  backdrop-filter: blur(4px);
+}
+
+.coach-submission-confirm {
+  width: min(560px, 100%);
+  max-height: min(720px, calc(100dvh - 40px));
+  overflow: auto;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgb(15 23 42 / 24%);
+}
+
+.coach-submission-confirm > header,
+.coach-submission-confirm > footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+}
+
+.coach-submission-confirm > header {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.coach-submission-confirm > header h4 {
+  margin-top: 4px;
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 850;
+}
+
+.coach-submission-confirm > header button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 6px;
+  color: #475569;
+}
+
+.coach-submission-confirm-files {
+  display: grid;
+  gap: 0;
+  padding: 8px 20px;
+}
+
+.coach-submission-confirm-files > div {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 50px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.coach-submission-confirm-files span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.coach-submission-confirm-files strong {
+  min-width: 0;
+  overflow: hidden;
+  color: #1e293b;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.coach-submission-confirm-files small,
+.coach-submission-confirm > footer > span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.coach-submission-confirm > footer {
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.coach-submission-confirm > footer > div {
+  display: flex;
+  gap: 8px;
+}
+
+.coach-submission-confirm-cancel {
+  min-height: 40px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  padding: 0 16px;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+@media (max-width: 560px) {
+  .coach-submission-confirm-backdrop {
+    align-items: end;
+    padding: 0;
+  }
+
+  .coach-submission-confirm {
+    width: 100%;
+    max-height: 92dvh;
+    border-width: 1px 0 0;
+    border-radius: 0;
+  }
+
+  .coach-submission-confirm-files > div {
+    grid-template-columns: 1fr auto;
+  }
+
+  .coach-submission-confirm-files span {
+    grid-column: 1 / -1;
+    padding-top: 10px;
+  }
+
+  .coach-submission-confirm > footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .coach-submission-confirm > footer > div > button {
+    flex: 1;
+  }
+}
+
+.coach-admin-bulkbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #f8fafc;
+  padding: 9px 10px;
+}
+
+.coach-status-badge {
+  border-radius: 5px !important;
+}
+
+.coach-status-badge.is-submitted {
+  border-color: #fde68a !important;
+  background: #fffbeb !important;
+  color: #a16207 !important;
+}
+
+.coach-status-badge.is-reviewing {
+  border-color: #bae6fd !important;
+  background: #f0f9ff !important;
+  color: #0369a1 !important;
+}
+
+.coach-status-badge.is-reviewed {
+  border-color: #a7f3d0 !important;
+  background: #ecfdf5 !important;
+  color: #047857 !important;
+}
+
+.coach-status-badge.is-rejected {
+  border-color: #fecdd3 !important;
+  background: #fff1f2 !important;
+  color: #be123c !important;
+}
+
+.coach-mobile-nav-trigger,
+.coach-mobile-nav-sheet {
+  display: none;
+}
+
+.coach-nav-attention {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #e11d48;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+.coach-top-nav-badge {
+  margin-left: auto;
+  border-radius: 5px;
+  background: #fff1f2;
+  padding: 3px 6px;
+  color: #be123c;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+@media (max-width: 820px) {
+  .coach-commandbar {
+    position: sticky;
+    top: 0;
+    overflow: visible;
+  }
+
+  .coach-top-nav {
+    display: none !important;
+  }
+
+  .coach-mobile-nav-trigger {
+    display: inline-flex;
+    min-height: 38px;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: #fff;
+    padding: 0 10px;
+    color: #334155;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .coach-mobile-nav-sheet {
+    position: absolute;
+    z-index: 100;
+    top: calc(100% + 1px);
+    right: 10px;
+    left: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    max-height: min(72dvh, 620px);
+    overflow-y: auto;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #fff;
+    padding: 8px;
+    box-shadow: 0 20px 48px rgb(15 23 42 / 24%);
+  }
+
+  .coach-mobile-nav-sheet section {
+    min-width: 0;
+    padding: 8px;
+  }
+
+  .coach-mobile-nav-sheet section > strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #94a3b8;
+    font-size: 10px;
+    font-weight: 800;
+  }
+
+  .coach-mobile-nav-sheet section > div {
+    display: grid;
+    gap: 3px;
+  }
+
+  .coach-mobile-nav-sheet button {
+    display: grid;
+    grid-template-columns: 18px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 7px;
+    min-height: 38px;
+    border-radius: 5px;
+    padding: 0 8px;
+    color: #475569;
+    text-align: left;
+  }
+
+  .coach-mobile-nav-sheet button.is-active {
+    background: #0f172a;
+    color: #fff;
+  }
+
+  .coach-mobile-nav-sheet button span {
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 750;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .coach-mobile-nav-sheet button small {
+    border-radius: 4px;
+    background: #fff1f2;
+    padding: 2px 4px;
+    color: #be123c;
+    font-size: 9px;
+    font-weight: 800;
+  }
+}
+
+@media (max-width: 480px) {
+  .coach-mobile-nav-sheet {
+    grid-template-columns: 1fr;
+  }
+}
+
+.coach-admin-crawl-health {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.coach-admin-crawl-health > div:first-child {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  border-right: 1px solid #e2e8f0;
+  background: #ecfdf5;
+  padding: 14px 16px;
+}
+
+.coach-admin-crawl-health.is-warning > div:first-child {
+  background: #fff7ed;
+}
+
+.coach-admin-crawl-health > div:first-child span,
+.coach-admin-crawl-health dt {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.coach-admin-crawl-health > div:first-child strong {
+  margin-top: 3px;
+  color: #047857;
+  font-size: 14px;
+}
+
+.coach-admin-crawl-health.is-warning > div:first-child strong {
+  color: #c2410c;
+}
+
+.coach-admin-crawl-health dl {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.coach-admin-crawl-health dl > div {
+  border-right: 1px solid #f1f5f9;
+  padding: 12px 14px;
+}
+
+.coach-admin-crawl-health dl > div:last-child {
+  border-right: 0;
+}
+
+.coach-admin-crawl-health dd {
+  margin-top: 4px;
+  color: #1e293b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.coach-admin-bulkbar label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.coach-admin-bulkbar > span {
+  margin-right: auto;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.coach-admin-bulkbar select,
+.coach-admin-feedback-template select,
+.coach-admin-user-filter select {
+  min-height: 36px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #fff;
+  padding: 0 10px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.coach-admin-bulkbar button,
+.coach-admin-feedback-template button {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: 6px;
+  background: #0f172a;
+  padding: 0 12px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.coach-admin-bulkbar button:disabled {
+  cursor: not-allowed;
+  background: #cbd5e1;
+}
+
+.coach-admin-submission-row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 8px;
+  padding: 0;
+}
+
+.coach-admin-submission-row-select {
+  min-width: 0;
+  padding: 14px 14px 14px 0;
+  text-align: left;
+}
+
+.coach-admin-bulk-check {
+  display: grid;
+  min-height: 100%;
+  place-items: center;
+  cursor: pointer;
+}
+
+.coach-admin-bulk-check input {
+  width: 15px;
+  height: 15px;
+  accent-color: #0f172a;
+}
+
+.coach-admin-inspector {
+  position: relative;
+}
+
+.coach-admin-inspector-close {
+  display: none;
+}
+
+.coach-admin-detail-section {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 12px;
+}
+
+.coach-admin-detail-section > summary {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  color: #475569;
+  list-style: none;
+}
+
+.coach-admin-detail-section > summary::-webkit-details-marker,
+.coach-admin-danger-zone > summary::-webkit-details-marker {
+  display: none;
+}
+
+.coach-admin-detail-section > summary h5 {
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.coach-admin-detail-section > summary > span {
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.coach-admin-detail-section[open] > summary {
+  margin-bottom: 10px;
+}
+
+.coach-admin-feedback-template {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.coach-admin-student-timeline {
+  display: grid;
+  gap: 0;
+  margin-top: 4px;
+}
+
+.coach-admin-student-timeline li {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr);
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.coach-admin-student-timeline li > span {
+  width: 8px;
+  height: 8px;
+  margin-top: 5px;
+  border: 2px solid #94a3b8;
+  border-radius: 50%;
+}
+
+.coach-admin-student-timeline li.is-current > span {
+  border-color: #0f172a;
+  background: #0f172a;
+}
+
+.coach-admin-student-timeline strong,
+.coach-admin-student-timeline p,
+.coach-admin-student-timeline time {
+  display: block;
+  font-size: 11px;
+}
+
+.coach-admin-student-timeline strong {
+  color: #334155;
+}
+
+.coach-admin-student-timeline p,
+.coach-admin-student-timeline time {
+  margin-top: 2px;
+  color: #64748b;
+}
+
+.coach-admin-danger-zone > summary {
+  cursor: pointer;
+  color: #b91c1c;
+  font-size: 12px;
+  font-weight: 800;
+  list-style: none;
+}
+
+.coach-admin-danger-zone[open] > summary {
+  margin-bottom: 10px;
+}
+
+.coach-admin-user-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coach-admin-user-filter p {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@media (max-width: 880px) {
+  .coach-admin-inspector {
+    position: fixed;
+    z-index: 85;
+    inset: 0;
+    display: none;
+    overflow-y: auto;
+    border: 0;
+    border-radius: 0;
+    background: #fff;
+    padding: 22px 18px 40px;
+  }
+
+  .coach-admin-inspector.is-mobile-open {
+    display: block;
+  }
+
+  .coach-admin-inspector-close {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    display: grid;
+    width: 38px;
+    height: 38px;
+    margin: -8px 0 8px auto;
+    place-items: center;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: #fff;
+    color: #334155;
+  }
+}
+
+@media (max-width: 620px) {
+  .coach-admin-crawl-health {
+    grid-template-columns: 1fr;
+  }
+
+  .coach-admin-crawl-health > div:first-child {
+    border-right: 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .coach-admin-crawl-health dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .coach-admin-crawl-health dl > div:nth-child(2) {
+    border-right: 0;
+  }
+
+  .coach-admin-bulkbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .coach-admin-bulkbar > span {
+    margin-right: 0;
+    text-align: right;
+  }
+
+  .coach-admin-bulkbar select,
+  .coach-admin-bulkbar button {
+    width: 100%;
+  }
+
+  .coach-admin-user-filter {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

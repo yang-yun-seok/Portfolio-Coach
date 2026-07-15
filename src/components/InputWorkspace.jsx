@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   AlertCircle,
   CheckCircle,
@@ -60,9 +60,38 @@ export default function InputWorkspace({
   const fileUploadDisabled = currentProvider && !currentProvider.supportsFiles;
   const documentCount = (resumeFile ? 1 : 0) + (coverLetterFile ? 1 : 0) + portfolioFiles.length;
   const pinnedResolvedCount = pinnedSlots.filter((slot) => slot.status === 'resolved' && slot.job).length;
+  const [activeStage, setActiveStage] = useState('profile');
+  const stages = [
+    { id: 'profile', label: '프로필', helper: `${userInfo.skills.length}개 역량`, icon: User },
+    { id: 'documents', label: '자료', helper: `${documentCount}개 첨부`, icon: UploadCloud },
+    { id: 'analysis', label: 'AI 분석', helper: documentCount > 0 ? '실행 가능' : '자료 확인 필요', icon: Target },
+  ];
 
   return (
     <div className="coach-input-workspace apple-view space-y-6 animate-in fade-in slide-in-from-bottom-4">
+      <nav className="coach-input-stage-nav" aria-label="정보 입력 단계">
+        {stages.map((stage, index) => {
+          const Icon = stage.icon;
+          const isActive = stage.id === activeStage;
+          return (
+            <button
+              key={stage.id}
+              type="button"
+              className={isActive ? 'is-active' : ''}
+              aria-current={isActive ? 'step' : undefined}
+              onClick={() => setActiveStage(stage.id)}
+            >
+              <span>{index + 1}</span>
+              <Icon size={16} />
+              <strong>{stage.label}</strong>
+              <small>{stage.helper}</small>
+            </button>
+          );
+        })}
+      </nav>
+
+      {activeStage === 'profile' ? (
+        <>
       <section className="coach-input-shell overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-sm">
         <div className="coach-input-shell-grid grid gap-0 xl:grid-cols-[1.18fr_0.82fr]">
           <div className="coach-input-main p-6 xl:border-r xl:border-slate-200">
@@ -307,6 +336,15 @@ export default function InputWorkspace({
         </div>
       </section>
 
+          <div className="coach-input-stage-footer">
+            <span>프로필과 직무 역량을 확인한 뒤 자료를 첨부하세요.</span>
+            <button type="button" onClick={() => setActiveStage('documents')}>다음: 자료 첨부</button>
+          </div>
+        </>
+      ) : null}
+
+      {activeStage === 'documents' ? (
+        <>
       <div className="coach-input-section-shell coach-input-doc-shell bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
         <div className="mb-4 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
           <div>
@@ -495,6 +533,29 @@ export default function InputWorkspace({
         </div>
       </div>
 
+          <div className="coach-input-stage-footer">
+            <span>첨부 문서와 우선 공고 구성을 확인하세요.</span>
+            <button type="button" onClick={() => setActiveStage('analysis')}>다음: AI 분석</button>
+          </div>
+        </>
+      ) : null}
+
+      {activeStage === 'analysis' ? (
+        <>
+      <section className="coach-input-analysis-summary" aria-label="분석 준비 요약">
+        <div>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Ready check</p>
+          <h3>분석 전 마지막 확인</h3>
+          <p>{normalizedUserInfo.roleGroup} · {selectedRoleDetail.label} 기준으로 현재 입력과 첨부 문서를 분석합니다.</p>
+        </div>
+        <dl>
+          <div><dt>지원자</dt><dd>{userInfo.name || '이름 확인 필요'}</dd></div>
+          <div><dt>역량</dt><dd>{userInfo.skills.length}개</dd></div>
+          <div><dt>첨부 자료</dt><dd>{documentCount}개</dd></div>
+          <div><dt>우선 공고</dt><dd>{pinnedResolvedCount}개</dd></div>
+        </dl>
+      </section>
+
       {canManageInstructorFeedback ? (
         <div className="coach-input-section-shell">
           <InstructorFeedbackForm value={instructorFeedback} onChange={setInstructorFeedback} />
@@ -528,6 +589,21 @@ export default function InputWorkspace({
           </div>
         )}
       </section>
+        </>
+      ) : null}
+
+      <div className="coach-input-mobile-action">
+        {activeStage === 'profile' ? (
+          <button type="button" onClick={() => setActiveStage('documents')}>다음: 자료 첨부</button>
+        ) : activeStage === 'documents' ? (
+          <button type="button" onClick={() => setActiveStage('analysis')}>다음: AI 분석</button>
+        ) : (
+          <button type="button" onClick={analyzeApplication} disabled={loading}>
+            {loading ? <Loader2 size={17} className="animate-spin" /> : <Target size={17} />}
+            {loading ? '분석 중' : 'AI 분석 시작'}
+          </button>
+        )}
+      </div>
     </div>
   );
 }

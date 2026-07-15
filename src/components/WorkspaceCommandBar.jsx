@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { BookOpen, ChevronDown, Gamepad2, KeyRound, Loader2, LogIn, LogOut, Settings, UserRound } from 'lucide-react';
+import { BookOpen, ChevronDown, Gamepad2, KeyRound, Loader2, LogIn, LogOut, Menu, Settings, UserRound, X } from 'lucide-react';
 
 export default function WorkspaceCommandBar({
   activeTab,
@@ -26,6 +26,7 @@ export default function WorkspaceCommandBar({
   userProfile,
 }) {
   const [openMenuId, setOpenMenuId] = useState(null);
+  const commandRef = useRef(null);
   const navRef = useRef(null);
   const accountDisplayName = userProfile?.studentName || userProfile?.displayName || authUser?.displayName || authUser?.email || '계정';
 
@@ -33,7 +34,7 @@ export default function WorkspaceCommandBar({
     if (!openMenuId) return undefined;
 
     const handlePointerDown = (event) => {
-      if (!navRef.current?.contains(event.target)) setOpenMenuId(null);
+      if (!commandRef.current?.contains(event.target)) setOpenMenuId(null);
     };
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') setOpenMenuId(null);
@@ -82,7 +83,7 @@ export default function WorkspaceCommandBar({
   };
 
   return (
-    <header className="coach-commandbar">
+    <header ref={commandRef} className="coach-commandbar">
       <button type="button" onClick={onSelectInput} className="coach-brandlockup">
         <span className="apple-brandmark coach-brandmark bg-indigo-500 p-2 rounded-lg">
           <Gamepad2 size={24} className="text-white" />
@@ -108,6 +109,7 @@ export default function WorkspaceCommandBar({
                 onClick={() => handleToggleMenu(section.id)}
               >
                 <span>{section.label}</span>
+                {section.items.some((item) => item.badge) ? <i className="coach-nav-attention" aria-label="새 검토 결과" /> : null}
                 <ChevronDown size={15} />
               </button>
               {isOpen ? (
@@ -126,6 +128,7 @@ export default function WorkspaceCommandBar({
                     >
                       <item.icon size={15} />
                       <span>{item.label}</span>
+                      {item.badge ? <small className="coach-top-nav-badge">{item.badge}</small> : null}
                     </button>
                   );
                 })}
@@ -135,6 +138,42 @@ export default function WorkspaceCommandBar({
           );
         })}
       </nav>
+
+      <button
+        type="button"
+        className="coach-mobile-nav-trigger"
+        aria-expanded={openMenuId === 'mobile'}
+        aria-controls="coach-mobile-nav-sheet"
+        onClick={() => handleToggleMenu('mobile')}
+      >
+        {openMenuId === 'mobile' ? <X size={18} /> : <Menu size={18} />}
+        <span>메뉴</span>
+        {navSections.some((section) => section.items.some((item) => item.badge)) ? <i className="coach-nav-attention" /> : null}
+      </button>
+
+      {openMenuId === 'mobile' ? (
+        <nav id="coach-mobile-nav-sheet" className="coach-mobile-nav-sheet" aria-label="모바일 기능 이동">
+          {navSections.map((section) => (
+            <section key={section.id}>
+              <strong>{section.label}</strong>
+              <div>
+                {section.items.map((item) => (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={activeTab === item.id ? 'is-active' : ''}
+                    onClick={() => handleSelectTab(item.id)}
+                  >
+                    <item.icon size={16} />
+                    <span>{item.label}</span>
+                    {item.badge ? <small>{item.badge}</small> : null}
+                  </button>
+                ))}
+              </div>
+            </section>
+          ))}
+        </nav>
+      ) : null}
 
       <div className="coach-command-status" aria-live="polite">
         <div className="coach-command-context">
