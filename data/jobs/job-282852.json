@@ -1,5 +1,5 @@
 {
-  "id": "crawled-279264",
+  "id": "crawled-282852",
   "company": "㈜매드엔진",
   "title": "[NX 스튜디오] [Project TAL] 밸런스 디자이너 모집 (경력)",
   "role": "클라이언트",
@@ -16,7 +16,7 @@
     "Unreal Engine"
   ],
   "reqExp": 2,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279264",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282852",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "나이트 크로우",
@@ -26,13 +26,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "UX·UI, 레벨, 게임기획, 시나리오, 밸런스기획, 레벨기획, 액션RPG, 전투시스템설계, 전투밸런스, 콘솔RPG",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-07-16",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-07-15T16:22:13.810Z",
-  "lastCrawledAt": "2026-07-15T16:22:13.810Z",
+  "firstSeenAt": "2026-07-16T16:18:50.761Z",
+  "lastSeenAt": "2026-07-16T16:18:50.761Z",
+  "lastCrawledAt": "2026-07-16T16:18:50.761Z",
   "inactiveAt": null
 }

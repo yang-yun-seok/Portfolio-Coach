@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282857",
+  "company": "퍼플카우게임즈",
+  "title": "[PurpleCow] 원화 디자이너",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Illustrator",
+    "Unity"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282857",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "테일드데몬슬레이어, 광전사키우기, 써니하우스",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "계약직 (계약기간 : 1년)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "배경, 원화, 일러스트, 캐릭터원화, 컨셉, 배경원화",
+  "updatedAt": "2026-07-16",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-16T16:18:50.761Z",
+  "lastSeenAt": "2026-07-16T16:18:50.761Z",
+  "lastCrawledAt": "2026-07-16T16:18:50.761Z",
+  "inactiveAt": null
+}
