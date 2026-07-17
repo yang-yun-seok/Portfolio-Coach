@@ -1,0 +1,32 @@
+{
+  "id": "crawled-282860",
+  "company": "㈜미스틸게임즈(Mistil Games)",
+  "title": "[Time Takers] BX 채용 (3년 이상)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282860",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "",
+  "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+  "employmentType": "정규직",
+  "deadline": "~ 07/31(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "캐릭터, 애니메이션, 영상제작·편집, BX·BI, 비주얼·아이콘",
+  "updatedAt": "2026-07-17",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-17T16:13:40.969Z",
+  "lastSeenAt": "2026-07-17T16:13:40.969Z",
+  "lastCrawledAt": "2026-07-17T16:13:40.969Z",
+  "inactiveAt": null
+}
