@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282896",
+  "company": "에이블게임즈",
+  "title": "[달토끼 키우기] 전투 기획자 모집",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "전투/액션 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282896",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이플 키우기, 크레센트, 달토끼 키우기",
+  "gameCategory": "모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "게임기획, 컨텐츠, 전투기획",
+  "updatedAt": "2026-07-20",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-20T16:26:07.136Z",
+  "lastSeenAt": "2026-07-20T16:26:07.136Z",
+  "lastCrawledAt": "2026-07-20T16:26:07.136Z",
+  "inactiveAt": null
+}

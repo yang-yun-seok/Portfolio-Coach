@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282908",
+  "company": "넥슨 (NEXON)",
+  "title": "[KANA] 레벨 기획",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282908",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로드나인, AVATARA, 로한M",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 레벨, 게임기획, 레벨기획, 시스템기획, 컨텐츠, 기획, 유니티, 연출, 엔엑스쓰리게임즈, NX3GAMES, KANA, 카나",
+  "updatedAt": "2026-07-20",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-20T16:26:07.136Z",
+  "lastSeenAt": "2026-07-20T16:26:07.136Z",
+  "lastCrawledAt": "2026-07-20T16:26:07.136Z",
+  "inactiveAt": null
+}

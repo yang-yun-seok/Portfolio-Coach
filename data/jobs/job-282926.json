@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282926",
+  "company": "㈜플레이하드",
+  "title": "2D 스파인 애니메이터",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "도트 아트",
+    "Spine"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282926",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "우르르수비대, 우르르용병단, 히어로팩토리, 공장 주식회사, 레드브로즈",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 4개월)",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "모바일, 캐릭터원화, 도트, 픽셀, 캐릭터도트, 몬스터, 캐릭터, 애니메이션, 2D, 스파인, spine",
+  "updatedAt": "2026-07-20",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-20T16:26:07.136Z",
+  "lastSeenAt": "2026-07-20T16:26:07.136Z",
+  "lastCrawledAt": "2026-07-20T16:26:07.136Z",
+  "inactiveAt": null
+}
