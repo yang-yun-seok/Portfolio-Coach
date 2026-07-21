@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282972",
+  "company": "인조이스튜디오(크래프톤 계열회사)",
+  "title": "[인조이스튜디오(크래프톤 계열회사)] Contents Designer",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282972",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "inZOI(인조이)",
+  "gameCategory": "온라인PC게임, 콘솔게임 Simulation",
+  "employmentType": "계약직 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "게임기획, 컨텐츠",
+  "updatedAt": "2026-07-21",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-21T16:24:30.115Z",
+  "lastSeenAt": "2026-07-21T16:24:30.115Z",
+  "lastCrawledAt": "2026-07-21T16:24:30.115Z",
+  "inactiveAt": null
+}

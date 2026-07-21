@@ -1,0 +1,36 @@
+{
+  "id": "crawled-282962",
+  "company": "㈜로드컴플릿",
+  "title": "[로드컴플릿] 인재풀",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "C++",
+    "Illustrator",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282962",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "보이드 다이버(개발중), 레전드 오브 슬라임, 체인소 주스 킹, 크루세이더 퀘스트 등",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C++, 모바일, 원화, 일러스트, 캐릭터도트, 몬스터, 캐릭터, 시스템기획, 게임프로그래밍",
+  "updatedAt": "2026-07-21",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-21T16:24:30.115Z",
+  "lastSeenAt": "2026-07-21T16:24:30.115Z",
+  "lastCrawledAt": "2026-07-21T16:24:30.115Z",
+  "inactiveAt": null
+}

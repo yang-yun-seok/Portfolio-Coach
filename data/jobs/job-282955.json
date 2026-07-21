@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282955",
+  "company": "㈜슈퍼어썸",
+  "title": "모바일 게임 서버 프로그래머 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "SQL",
+    "TCP/IP",
+    "Redis"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282955",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "신도림 with NAVER WEBTOON, 헬로키티 프렌즈, 햄스터 타운, 머지 사파리 등",
+  "gameCategory": "웹게임, 모바일게임 Casual, SNG",
+  "employmentType": "정규직",
+  "deadline": "~ 08/31(월)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "모바일, 서버, SQL, TCP·IP, DB, 네트워크설계, 네트워크관리, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-07-21",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-21T16:24:30.115Z",
+  "lastSeenAt": "2026-07-21T16:24:30.115Z",
+  "lastCrawledAt": "2026-07-21T16:24:30.115Z",
+  "inactiveAt": null
+}

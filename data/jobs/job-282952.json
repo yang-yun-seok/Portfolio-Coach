@@ -1,0 +1,38 @@
+{
+  "id": "crawled-282952",
+  "company": "디어메타",
+  "title": "[유니티] 모바일 게임 클라이언트 채용공고",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "서버"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android",
+    "시스템/컨텐츠 기획",
+    "TCP/IP",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282952",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "마녀의 기사, 마법로 기사 25길 ,렐리온",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, iOS, Android, 기술개발, 시스템기획, 네트워크, DB관리, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-07-21",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-21T16:24:30.115Z",
+  "lastSeenAt": "2026-07-21T16:24:30.115Z",
+  "lastCrawledAt": "2026-07-21T16:24:30.115Z",
+  "inactiveAt": null
+}

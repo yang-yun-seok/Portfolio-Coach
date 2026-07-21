@@ -1,5 +1,5 @@
 {
-  "id": "crawled-281884",
+  "id": "crawled-282935",
   "company": "에이시티게임즈㈜",
   "title": "헬로키티 마이드림스토어 UI 담당자(글로벌 버전)",
   "role": "아트/UI",
@@ -14,7 +14,7 @@
     "Illustrator"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281884",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282935",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "헬로키티 마이 드림 스토어(Hello Kitty My Dream Store)",
@@ -24,13 +24,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "인터페이스, UX·UI, 배경, 레벨, 맵핑, 모션",
-  "updatedAt": "2026-06-24",
+  "updatedAt": "2026-07-21",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-24T17:05:30.039Z",
-  "lastSeenAt": "2026-07-20T16:26:07.136Z",
-  "lastCrawledAt": "2026-07-20T16:26:07.136Z",
+  "firstSeenAt": "2026-07-21T16:24:30.115Z",
+  "lastSeenAt": "2026-07-21T16:24:30.115Z",
+  "lastCrawledAt": "2026-07-21T16:24:30.115Z",
   "inactiveAt": null
 }

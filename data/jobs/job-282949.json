@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282949",
+  "company": "벌스워크",
+  "title": "[벌스워크(주)] 로블록스 게임 시스템 개발자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Lua",
+    "TypeScript"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282949",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Sol`s RNG",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Simulation",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 08/21(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "Lua, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-07-21",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-21T16:24:30.115Z",
+  "lastSeenAt": "2026-07-21T16:24:30.115Z",
+  "lastCrawledAt": "2026-07-21T16:24:30.115Z",
+  "inactiveAt": null
+}
