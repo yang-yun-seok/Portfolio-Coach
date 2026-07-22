@@ -1,0 +1,36 @@
+{
+  "id": "crawled-282992",
+  "company": "㈜매드엔진",
+  "title": "[매드엔진] Game QA 모집 (계약직)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "PM/운영",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "QA/테스트",
+    "JIRA/Confluence"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282992",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "나이트 크로우",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "계약직 (계약기간 : 1년)",
+  "deadline": "~ 08/22(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "게임운영, QA, QC, 베타테스터, 게임테스터, 업데이트테스트, 버그, ISTQB, KSTQB",
+  "updatedAt": "2026-07-22",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-22T16:20:34.888Z",
+  "lastSeenAt": "2026-07-22T16:20:34.888Z",
+  "lastCrawledAt": "2026-07-22T16:20:34.888Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "crawled-282997",
+  "company": "㈜그린맨파워",
+  "title": "[구로/대기업] 게임 보안솔루션 QA 및 보안 검수",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "TCP/IP",
+    "QA/테스트"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282997",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Riot Games, SmileGate, Wemade, DaumKakao, Webzen",
+  "gameCategory": "온라인PC게임, 모바일게임 기타",
+  "employmentType": "파견직",
+  "deadline": "채용시 마감",
+  "salary": "3,200~3,400만원\n연봉검색",
+  "experience": "신입",
+  "keywords": "네트워크, 보안, 시스템엔지니어링, QA, Http, 정보보호, 프록시, 웹취약점",
+  "updatedAt": "2026-07-22",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-22T16:20:34.888Z",
+  "lastSeenAt": "2026-07-22T16:20:34.888Z",
+  "lastCrawledAt": "2026-07-22T16:20:34.888Z",
+  "inactiveAt": null
+}

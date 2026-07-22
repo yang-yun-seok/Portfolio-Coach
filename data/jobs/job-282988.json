@@ -1,0 +1,33 @@
+{
+  "id": "crawled-282988",
+  "company": "파이드픽셀즈",
+  "title": "[파이드픽셀즈] FX 디자이너 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Photoshop"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282988",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "그랑사가 키우기",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "이펙트, FX",
+  "updatedAt": "2026-07-22",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-22T16:20:34.888Z",
+  "lastSeenAt": "2026-07-22T16:20:34.888Z",
+  "lastCrawledAt": "2026-07-22T16:20:34.888Z",
+  "inactiveAt": null
+}
