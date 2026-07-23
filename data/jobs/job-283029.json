@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283029",
+  "company": "㈜슈퍼스톰스튜디오",
+  "title": "[스톰스트라이커]클라이언트 개발자를 모십니다",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "Unreal Engine"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283029",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "스톰스트라이커",
+  "gameCategory": "온라인PC게임 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 08/31(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "클라이언트, C++, 언리얼",
+  "updatedAt": "2026-07-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastCrawledAt": "2026-07-23T16:26:46.707Z",
+  "inactiveAt": null
+}

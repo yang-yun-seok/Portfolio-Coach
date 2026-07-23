@@ -1,5 +1,5 @@
 {
-  "id": "crawled-280284",
+  "id": "crawled-283034",
   "company": "링게임즈",
   "title": "[신규 서브컬쳐 캐릭터 컬랙션 RPG] 스파인 애니메이터",
   "role": "아트/UI",
@@ -8,7 +8,7 @@
   ],
   "reqSkills": [],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280284",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283034",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "-",
@@ -18,13 +18,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "캐릭터, 애니메이션, 오브젝트, KeyAnimation, 스파인",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-07-23",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-07-22T16:20:34.888Z",
-  "lastCrawledAt": "2026-07-22T16:20:34.888Z",
+  "firstSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastCrawledAt": "2026-07-23T16:26:46.707Z",
   "inactiveAt": null
 }

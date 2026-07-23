@@ -1,0 +1,35 @@
+{
+  "id": "crawled-283026",
+  "company": "㈜더크로싱랩",
+  "title": "대학생들이 즐길 수 있는 게임과 서비스 기획에 관심과 열정을 가진 기획자를 모십니다.",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283026",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "&lt레스토랑스타&gt,&lt퍼즐젤리팡 for Kakao)&gt,&lt젤리몬스터온더락&gt",
+  "gameCategory": "멀티플랫폼게임 SNG, 메타버스",
+  "employmentType": "정규직",
+  "deadline": "~ 08/23(일)",
+  "salary": "4,000~5,000만원\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, SNG, 레벨, 컨셉, 게임기획, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
+  "updatedAt": "2026-07-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastCrawledAt": "2026-07-23T16:26:46.707Z",
+  "inactiveAt": null
+}

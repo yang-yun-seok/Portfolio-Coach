@@ -1,5 +1,5 @@
 {
-  "id": "crawled-281746",
+  "id": "crawled-283038",
   "company": "㈜엔드림",
   "title": "월드 워 머신 컨퀘스트(WWMC) BM 기획자 모집",
   "role": "기획",
@@ -12,8 +12,8 @@
     "데이터 분석",
     "경제/BM 설계"
   ],
-  "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281746",
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283038",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "캐리비안의해적: 전쟁의 물결, 크로스파이어: 워존, 대항해대전: 오션 앤 엠파이어",
@@ -21,15 +21,15 @@
   "employmentType": "정규직",
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름\n연봉검색",
-  "experience": "무관",
+  "experience": "경력 3년 이상",
   "keywords": "모바일, 게임기획, 밸런스기획, 시스템기획, 컨텐츠, 프로모션, 데이터분석, 라이브서비스, 이벤트기획, BM, 4X",
-  "updatedAt": "2026-06-22",
+  "updatedAt": "2026-07-23",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-22T18:47:39.592Z",
-  "lastSeenAt": "2026-07-22T16:20:34.888Z",
-  "lastCrawledAt": "2026-07-22T16:20:34.888Z",
+  "firstSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastCrawledAt": "2026-07-23T16:26:46.707Z",
   "inactiveAt": null
 }

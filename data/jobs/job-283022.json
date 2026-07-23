@@ -1,10 +1,9 @@
 {
-  "id": "crawled-280815",
+  "id": "crawled-283022",
   "company": "넷마블 (Netmarble)",
-  "title": "[넷마블네오] 프로젝트 블룸워커 레벨기획 담당 모집",
-  "role": "클라이언트",
+  "title": "[넷마블네오] 블룸워커 레벨기획 담당 모집",
+  "role": "기획",
   "roles": [
-    "클라이언트",
     "기획"
   ],
   "reqSkills": [
@@ -15,7 +14,7 @@
     "TA"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280815",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283022",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "뱀피르, 나 혼자만 레벨업, 왕좌의게임, 제2의나라, 리니지2레볼루션",
@@ -25,13 +24,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "모바일, 레벨, 게임기획, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, TA, 콘솔, 아트, 언리얼5",
-  "updatedAt": "2026-06-01",
+  "updatedAt": "2026-07-23",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-01T19:57:35.254Z",
-  "lastSeenAt": "2026-07-22T16:20:34.888Z",
-  "lastCrawledAt": "2026-07-22T16:20:34.888Z",
+  "firstSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastCrawledAt": "2026-07-23T16:26:46.707Z",
   "inactiveAt": null
 }

@@ -1,5 +1,5 @@
 {
-  "id": "crawled-281729",
+  "id": "crawled-283033",
   "company": "마상소프트",
   "title": "[부산] 게임 기획자 모집",
   "role": "기획",
@@ -13,7 +13,7 @@
     "시스템/컨텐츠 기획"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281729",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283033",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "DK온라인, 에이스온라인, 출조낚시왕, 건즈, 건즈2, 프리스톤테일, 스키드러쉬, 라그하임",
@@ -23,13 +23,13 @@
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "무관",
   "keywords": "게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 시스템기획",
-  "updatedAt": "2026-06-22",
+  "updatedAt": "2026-07-23",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-22T18:47:39.592Z",
-  "lastSeenAt": "2026-07-22T16:20:34.888Z",
-  "lastCrawledAt": "2026-07-22T16:20:34.888Z",
+  "firstSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastCrawledAt": "2026-07-23T16:26:46.707Z",
   "inactiveAt": null
 }

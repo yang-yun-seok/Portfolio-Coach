@@ -1,17 +1,19 @@
 {
-  "id": "crawled-281728",
+  "id": "crawled-283031",
   "company": "마상소프트",
-  "title": "[부산] 게임 UI/UX 아티스트",
+  "title": "[부산] 게임 3D배경 아티스트",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
   ],
   "reqSkills": [
     "3D",
-    "UI/UX 기획"
+    "3ds Max",
+    "Unity",
+    "Unreal Engine"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281728",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283031",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "DK온라인, 에이스온라인, 출조낚시왕, 건즈, 건즈2, 프리스톤테일, 스키드러쉬, 라그하임",
@@ -20,14 +22,14 @@
   "deadline": "상시채용",
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
-  "keywords": "3D, UX·UI",
-  "updatedAt": "2026-06-22",
+  "keywords": "3D, 캐릭터, 애니메이션, 3DMax",
+  "updatedAt": "2026-07-23",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-22T18:47:39.592Z",
-  "lastSeenAt": "2026-07-22T16:20:34.888Z",
-  "lastCrawledAt": "2026-07-22T16:20:34.888Z",
+  "firstSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastSeenAt": "2026-07-23T16:26:46.707Z",
+  "lastCrawledAt": "2026-07-23T16:26:46.707Z",
   "inactiveAt": null
 }
