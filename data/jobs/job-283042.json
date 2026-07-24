@@ -1,0 +1,32 @@
+{
+  "id": "crawled-283042",
+  "company": "ChopChopStudio",
+  "title": "[비비도어] 3D 애니메이터",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3ds Max"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283042",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "비비도어",
+  "gameCategory": "콘솔게임, 멀티플랫폼게임 Simulation",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3DSmax, 캐릭터, 애니메이션, 모션캡쳐",
+  "updatedAt": "2026-07-24",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-24T16:35:53.442Z",
+  "lastSeenAt": "2026-07-24T16:35:53.442Z",
+  "lastCrawledAt": "2026-07-24T16:35:53.442Z",
+  "inactiveAt": null
+}

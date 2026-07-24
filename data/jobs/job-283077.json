@@ -1,20 +1,24 @@
 {
-  "id": "crawled-281813",
+  "id": "crawled-283077",
   "company": "스타픽시스튜디오",
   "title": "[메이플스토리 월드] 메이플스타 게임 플레이 프로그래머",
   "role": "클라이언트",
   "roles": [
     "클라이언트",
+    "아트/UI",
     "서버"
   ],
   "reqSkills": [
     "Lua",
+    "Python",
     "JavaScript",
+    "TypeScript",
+    "Unity",
     "SQL",
     "Redis"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281813",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283077",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "메이플스타",
@@ -22,15 +26,15 @@
   "employmentType": "정규직",
   "deadline": "채용시 마감",
   "salary": "면접 시 협의\n연봉검색",
-  "experience": "무관",
+  "experience": "신입",
   "keywords": "클라이언트, Lua, Node.js, 게임프로그래머",
-  "updatedAt": "2026-06-23",
+  "updatedAt": "2026-07-24",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-23T17:18:24.794Z",
-  "lastSeenAt": "2026-07-23T16:26:46.707Z",
-  "lastCrawledAt": "2026-07-23T16:26:46.707Z",
+  "firstSeenAt": "2026-07-24T16:35:53.442Z",
+  "lastSeenAt": "2026-07-24T16:35:53.442Z",
+  "lastCrawledAt": "2026-07-24T16:35:53.442Z",
   "inactiveAt": null
 }

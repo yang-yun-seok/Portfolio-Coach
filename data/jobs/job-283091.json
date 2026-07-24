@@ -1,5 +1,5 @@
 {
-  "id": "crawled-279853",
+  "id": "crawled-283091",
   "company": "시프트업 (SHIFT UP)",
   "title": "[시프트업] 승리의 여신 니케 / 시나리오 라이터",
   "role": "기획",
@@ -10,7 +10,7 @@
     "시스템/컨텐츠 기획"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279853",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283091",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
@@ -20,13 +20,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "모바일, 게임기획, 서버, 시스템, FPS, TPS, 시프트업, NIKKE, 승리의여신니케",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-07-24",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-07-23T16:26:46.707Z",
-  "lastCrawledAt": "2026-07-23T16:26:46.707Z",
+  "firstSeenAt": "2026-07-24T16:35:53.442Z",
+  "lastSeenAt": "2026-07-24T16:35:53.442Z",
+  "lastCrawledAt": "2026-07-24T16:35:53.442Z",
   "inactiveAt": null
 }
