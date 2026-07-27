@@ -1,0 +1,35 @@
+{
+  "id": "crawled-283117",
+  "company": "NC",
+  "title": "[NC][Project NL] 차세대 리니지 프로젝트 월드 기획자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "Unreal Engine"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283117",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 09/26(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "레벨디자인, 월드기획, 월드디자인, Unreal5",
+  "updatedAt": "2026-07-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-27T19:21:24.923Z",
+  "lastSeenAt": "2026-07-27T19:21:24.923Z",
+  "lastCrawledAt": "2026-07-27T19:21:24.923Z",
+  "inactiveAt": null
+}

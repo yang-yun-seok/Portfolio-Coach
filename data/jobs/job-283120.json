@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283120",
+  "company": "㈜콩스튜디오코리아",
+  "title": "[Project ZERO] 소프트웨어 엔지니어 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283120",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "가디언테일즈",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 협의 후 결정)",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C#, Unity, 유니티, 게임프로그래머, 렌더링, 셰이더",
+  "updatedAt": "2026-07-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-27T19:21:24.923Z",
+  "lastSeenAt": "2026-07-27T19:21:24.923Z",
+  "lastCrawledAt": "2026-07-27T19:21:24.923Z",
+  "inactiveAt": null
+}

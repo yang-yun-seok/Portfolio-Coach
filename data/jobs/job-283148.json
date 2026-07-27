@@ -1,0 +1,36 @@
+{
+  "id": "crawled-283148",
+  "company": "㈜매드엔진",
+  "title": "[매드스튜디오] [나이트크로우 글로벌] 밸런스 디자이너 모집 (경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android",
+    "밸런싱",
+    "경제/BM 설계"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283148",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "나이트 크로우",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "계약직 (계약기간 : 1년)",
+  "deadline": "~ 08/27(목)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "iOS, Android, 게임기획, 밸런스기획, 유료화",
+  "updatedAt": "2026-07-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-27T19:21:24.923Z",
+  "lastSeenAt": "2026-07-27T19:21:24.923Z",
+  "lastCrawledAt": "2026-07-27T19:21:24.923Z",
+  "inactiveAt": null
+}

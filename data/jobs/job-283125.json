@@ -1,0 +1,36 @@
+{
+  "id": "crawled-283125",
+  "company": "NC",
+  "title": "[NC][Project NL] 차세대 리니지 프로젝트 시스템 기획자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "시스템/컨텐츠 기획",
+    "Unreal Engine"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283125",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 09/26(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "UX·UI, 시스템기획, 게임시스템, 시스템설계, Unreal5",
+  "updatedAt": "2026-07-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-27T19:21:24.923Z",
+  "lastSeenAt": "2026-07-27T19:21:24.923Z",
+  "lastCrawledAt": "2026-07-27T19:21:24.923Z",
+  "inactiveAt": null
+}

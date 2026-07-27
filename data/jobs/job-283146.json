@@ -1,0 +1,32 @@
+{
+  "id": "crawled-283146",
+  "company": "알피네",
+  "title": "[디셉션 엔진] 기획자 모집",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283146",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "크로노 아크",
+  "gameCategory": "콘솔게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "게임기획, 밸런스기획",
+  "updatedAt": "2026-07-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-27T19:21:24.923Z",
+  "lastSeenAt": "2026-07-27T19:21:24.923Z",
+  "lastCrawledAt": "2026-07-27T19:21:24.923Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "crawled-283156",
+  "company": "디나미스원㈜",
+  "title": "[아스트라에 오라티오] 시스템 기획자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "UI/UX 기획",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283156",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "아스트라에 오라티오",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 게임기획, 시스템기획, 컨텐츠, 유료화, UI·UX, 서브컬쳐, 서브컬처",
+  "updatedAt": "2026-07-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-27T19:21:24.923Z",
+  "lastSeenAt": "2026-07-27T19:21:24.923Z",
+  "lastCrawledAt": "2026-07-27T19:21:24.923Z",
+  "inactiveAt": null
+}
