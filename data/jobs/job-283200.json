@@ -1,0 +1,36 @@
+{
+  "id": "crawled-283200",
+  "company": "워프스페이스",
+  "title": "[워프스페이스][케이브덕] 서비스 기획자",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시나리오/퀘스트",
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "Figma"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283200",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "웹게임, 모바일게임 Simulation, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 09/28(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 게임기획, 시나리오, 퀘스트, PM, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 웹기획, 컨텐츠기획, 커뮤니티기획, 모바일기획, 채널링기획",
+  "updatedAt": "2026-07-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-28T16:42:27.692Z",
+  "lastSeenAt": "2026-07-28T16:42:27.692Z",
+  "lastCrawledAt": "2026-07-28T16:42:27.692Z",
+  "inactiveAt": null
+}

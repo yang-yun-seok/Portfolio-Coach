@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283172",
+  "company": "스토리타코",
+  "title": "[스토리타코] 경력 게임 UI 디자이너 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283172",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "위험한그놈들",
+  "gameCategory": "온라인PC게임, 모바일게임 Simulation, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 09/28(월)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "인터페이스, UX·UI, Unity",
+  "updatedAt": "2026-07-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-28T16:42:27.692Z",
+  "lastSeenAt": "2026-07-28T16:42:27.692Z",
+  "lastCrawledAt": "2026-07-28T16:42:27.692Z",
+  "inactiveAt": null
+}

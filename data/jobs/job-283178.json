@@ -1,0 +1,32 @@
+{
+  "id": "crawled-283178",
+  "company": "㈜콩스튜디오코리아",
+  "title": "[가디언 테일즈] 스토리 기획자 모집 (경력 3년 이상)",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시나리오/퀘스트"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283178",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "가디언테일즈",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 협의 후 결정)",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 시나리오, 웹툰, 스토리, 소설, 에피소드",
+  "updatedAt": "2026-07-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-28T16:42:27.692Z",
+  "lastSeenAt": "2026-07-28T16:42:27.692Z",
+  "lastCrawledAt": "2026-07-28T16:42:27.692Z",
+  "inactiveAt": null
+}

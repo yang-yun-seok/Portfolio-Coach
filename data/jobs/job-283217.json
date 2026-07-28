@@ -1,0 +1,36 @@
+{
+  "id": "crawled-283217",
+  "company": "㈜버거몬스터",
+  "title": "게임 콘텐츠&시스템 기획자 (계약직)",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "Unity",
+    "Excel"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283217",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "포트리스사가, 무명기시단",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 6개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "모바일, 게임기획, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
+  "updatedAt": "2026-07-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-28T16:42:27.692Z",
+  "lastSeenAt": "2026-07-28T16:42:27.692Z",
+  "lastCrawledAt": "2026-07-28T16:42:27.692Z",
+  "inactiveAt": null
+}
