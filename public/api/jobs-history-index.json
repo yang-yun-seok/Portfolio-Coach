@@ -1,11 +1,20 @@
 [
   {
-    "date": "2026-07-29",
-    "generatedAt": "2026-07-28T16:42:27.692Z",
-    "referenceJobCount": 977,
-    "newJobsCount": 36,
-    "activeJobsCount": 977,
+    "date": "2026-07-30",
+    "generatedAt": "2026-07-29T22:08:22.010Z",
+    "referenceJobCount": 985,
+    "newJobsCount": 35,
+    "activeJobsCount": 985,
     "lastCrawlStatus": "success",
+    "path": "./history/2026-07-30.json"
+  },
+  {
+    "date": "2026-07-29",
+    "generatedAt": null,
+    "referenceJobCount": 0,
+    "newJobsCount": 0,
+    "activeJobsCount": 0,
+    "lastCrawlStatus": "unknown",
     "path": "./history/2026-07-29.json"
   },
   {

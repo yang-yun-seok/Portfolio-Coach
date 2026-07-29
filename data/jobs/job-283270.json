@@ -1,0 +1,34 @@
+{
+  "id": "crawled-283270",
+  "company": "NC",
+  "title": "[NC][Project JSY] AAA급 콘솔 액션RPG의 시네마틱 연출 아티스트 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3ds Max",
+    "Unreal Engine",
+    "Maya"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283270",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 09/30(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3DSmax, 시네마틱, 컷씬, MotionBuilder, Unreal5, LevelSequencer",
+  "updatedAt": "2026-07-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-29T22:08:22.010Z",
+  "lastSeenAt": "2026-07-29T22:08:22.010Z",
+  "lastCrawledAt": "2026-07-29T22:08:22.010Z",
+  "inactiveAt": null
+}

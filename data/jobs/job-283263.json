@@ -1,0 +1,35 @@
+{
+  "id": "crawled-283263",
+  "company": "㈜앤투조이",
+  "title": "[수집/성장 RPG] 게임기획",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "Excel"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283263",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "멀티플랫폼게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 09/29(화)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "게임기획, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
+  "updatedAt": "2026-07-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-29T22:08:22.010Z",
+  "lastSeenAt": "2026-07-29T22:08:22.010Z",
+  "lastCrawledAt": "2026-07-29T22:08:22.010Z",
+  "inactiveAt": null
+}

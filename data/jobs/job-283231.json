@@ -1,5 +1,5 @@
 {
-  "id": "crawled-281944",
+  "id": "crawled-283231",
   "company": "㈜이엑스투게임즈",
   "title": "[Ex2games] 프로젝트 K (FX)",
   "role": "아트/UI",
@@ -12,7 +12,7 @@
     "3ds Max"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281944",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283231",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "-",
@@ -22,13 +22,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "이펙트, FX",
-  "updatedAt": "2026-06-25",
+  "updatedAt": "2026-07-29",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-25T17:13:07.076Z",
-  "lastSeenAt": "2026-07-28T16:42:27.692Z",
-  "lastCrawledAt": "2026-07-28T16:42:27.692Z",
+  "firstSeenAt": "2026-07-29T22:08:22.010Z",
+  "lastSeenAt": "2026-07-29T22:08:22.010Z",
+  "lastCrawledAt": "2026-07-29T22:08:22.010Z",
   "inactiveAt": null
 }

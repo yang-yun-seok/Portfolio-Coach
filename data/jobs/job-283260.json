@@ -1,0 +1,36 @@
+{
+  "id": "crawled-283260",
+  "company": "하이퍼라이즈",
+  "title": "[신규 프로젝트] Unity 클라이언트 프로그래머",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "iOS",
+    "Android",
+    "Unity",
+    "Git/SVN"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283260",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, C++, 모바일, iOS, Android, 게임프로그래머",
+  "updatedAt": "2026-07-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-29T22:08:22.010Z",
+  "lastSeenAt": "2026-07-29T22:08:22.010Z",
+  "lastCrawledAt": "2026-07-29T22:08:22.010Z",
+  "inactiveAt": null
+}
