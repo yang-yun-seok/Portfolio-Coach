@@ -1,0 +1,34 @@
+{
+  "id": "crawled-279717",
+  "company": "팜에이아이",
+  "title": "[팜에이아이/서울]프로그램개발자를 모십니다.(신입)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "C++",
+    "Java"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=279717",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 Casual, VR·AR",
+  "employmentType": "계약직 (계약기간 : 1년)",
+  "deadline": "~ 08/31(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, C, C++, Java, 게임프로그래밍, 게임프로그래머, VR, AR",
+  "updatedAt": "2026-07-31",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-31T16:45:48.648Z",
+  "lastSeenAt": "2026-07-31T16:45:48.648Z",
+  "lastCrawledAt": "2026-07-31T16:45:48.648Z",
+  "inactiveAt": null
+}

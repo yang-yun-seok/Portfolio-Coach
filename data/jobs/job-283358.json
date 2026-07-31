@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283358",
+  "company": "NC",
+  "title": "[NC][NCSOUND] 뮤직 디자이너 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "Unreal Engine"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283358",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 08/14(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "작곡, 편곡, UnrealEngine, 게임음악, 뮤직디자이너, wwise",
+  "updatedAt": "2026-07-31",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-07-31T16:45:48.648Z",
+  "lastSeenAt": "2026-07-31T16:45:48.648Z",
+  "lastCrawledAt": "2026-07-31T16:45:48.648Z",
+  "inactiveAt": null
+}
