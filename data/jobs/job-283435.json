@@ -1,0 +1,35 @@
+{
+  "id": "crawled-283435",
+  "company": "㈜이엔피게임즈",
+  "title": "[ENP] 게임아트 채용 (대전 거주자)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android",
+    "UI/UX 기획",
+    "Illustrator"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283435",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "모바일RPG(반지), 모바일퍼즐(쥬얼레거시 / 로스트킹덤), PC온라인(드래곤네스트)",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, iOS, Android, SNG, 인터페이스, UX·UI, 배경, 원화, 일러스트, 몬스터, 캐릭터, 애니메이션, KeyAnimation, 이펙트, FX, 스토리보드아트, 영상제작·편집",
+  "updatedAt": "2026-08-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-03T17:10:05.953Z",
+  "lastSeenAt": "2026-08-03T17:10:05.953Z",
+  "lastCrawledAt": "2026-08-03T17:10:05.953Z",
+  "inactiveAt": null
+}

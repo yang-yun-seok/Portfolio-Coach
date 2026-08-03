@@ -1,0 +1,37 @@
+{
+  "id": "crawled-283418",
+  "company": "브이레코드",
+  "title": "[브이레코드] 언리얼 시니어 개발자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "3D",
+    "Unreal Engine",
+    "Git/SVN"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283418",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "MW:MEU(뮤) 5인조 버추얼 걸그룹",
+  "gameCategory": "온라인PC게임, 모바일게임 메타버스, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 10/03(토)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "클라이언트, C++, 3D, 연구개발, 기술개발, Unreal, 게임프로그래밍, 게임프로그래머, Optitrack, UE5, Vicon",
+  "updatedAt": "2026-08-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-03T17:10:05.953Z",
+  "lastSeenAt": "2026-08-03T17:10:05.953Z",
+  "lastCrawledAt": "2026-08-03T17:10:05.953Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283445",
+  "company": "슈퍼박스",
+  "title": "[병역특례/산업기능요원] 모바일 게임 기획자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283445",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "캔디프랜즈, 쥬얼헌터, 쥬얼블라스트, 스푸키즈팝, 슈가팝, 쥬얼캐슬, 골프히어로",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "병역특례",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 게임기획, Unity",
+  "updatedAt": "2026-08-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-03T17:10:05.953Z",
+  "lastSeenAt": "2026-08-03T17:10:05.953Z",
+  "lastCrawledAt": "2026-08-03T17:10:05.953Z",
+  "inactiveAt": null
+}
