@@ -1,0 +1,35 @@
+{
+  "id": "crawled-283488",
+  "company": "브이레코드",
+  "title": "[MEU] 버추얼 아이돌 애니메이션 편집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Python",
+    "Unreal Engine",
+    "Maya"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283488",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "MW:MEU(뮤) 5인조 버추얼 걸그룹",
+  "gameCategory": "온라인PC게임 VR·AR, 메타버스",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 캐릭터, 애니메이션",
+  "updatedAt": "2026-08-04",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-04T22:20:32.278Z",
+  "lastSeenAt": "2026-08-04T22:20:32.278Z",
+  "lastCrawledAt": "2026-08-04T22:20:32.278Z",
+  "inactiveAt": null
+}

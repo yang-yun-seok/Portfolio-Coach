@@ -1,0 +1,35 @@
+{
+  "id": "crawled-283477",
+  "company": "브이레코드",
+  "title": "[브이레코드] 3D 모델링 작업자",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "ZBrush",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283477",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "MW:MEU(뮤) 5인조 버추얼 걸그룹",
+  "gameCategory": "온라인PC게임, 관련없음 메타버스, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 10/04(일)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "3D, 배경, 맵핑, 모델링, 3DSmax, 캐릭터, 텍스쳐, 하이폴리곤, Zbrush, Max",
+  "updatedAt": "2026-08-04",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-04T22:20:32.278Z",
+  "lastSeenAt": "2026-08-04T22:20:32.278Z",
+  "lastCrawledAt": "2026-08-04T22:20:32.278Z",
+  "inactiveAt": null
+}

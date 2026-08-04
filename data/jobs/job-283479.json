@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283479",
+  "company": "엑스온스튜디오",
+  "title": "엑스온스튜디오 VAD 3D Environment Artist 경력직 채용 (계약직)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unreal Engine"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283479",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "관련없음 관련없음",
+  "employmentType": "계약직 (계약기간 : 6개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 배경, 맵핑, 모델링, 텍스쳐, Terrain, 영상제작·편집",
+  "updatedAt": "2026-08-04",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-04T22:20:32.278Z",
+  "lastSeenAt": "2026-08-04T22:20:32.278Z",
+  "lastCrawledAt": "2026-08-04T22:20:32.278Z",
+  "inactiveAt": null
+}
