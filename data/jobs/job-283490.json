@@ -1,0 +1,32 @@
+{
+  "id": "crawled-283490",
+  "company": "㈜웨이코더",
+  "title": "[신규 유명 IP를 활용한 콘솔게임 개발] 클라이언트",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283490",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "환세취호전 플러스",
+  "gameCategory": "콘솔게임, 멀티플랫폼게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "클라이언트, 유니티, 게임프로그래밍, 게임프로그래머, 콘솔, 스팀, 닌텐도, 스위치, PS5, 플스5",
+  "updatedAt": "2026-08-05",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-05T16:32:03.329Z",
+  "lastSeenAt": "2026-08-05T16:32:03.329Z",
+  "lastCrawledAt": "2026-08-05T16:32:03.329Z",
+  "inactiveAt": null
+}

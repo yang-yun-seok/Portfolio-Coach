@@ -1,0 +1,35 @@
+{
+  "id": "crawled-283544",
+  "company": "㈜메이저세븐",
+  "title": "[아우터플레인] 애니메이터 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283544",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "아우터플레인",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 3DSmax, 캐릭터, 애니메이션, KeyAnimation, Max",
+  "updatedAt": "2026-08-05",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-05T16:32:03.329Z",
+  "lastSeenAt": "2026-08-05T16:32:03.329Z",
+  "lastCrawledAt": "2026-08-05T16:32:03.329Z",
+  "inactiveAt": null
+}

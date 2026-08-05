@@ -1,0 +1,32 @@
+{
+  "id": "crawled-283538",
+  "company": "빅파이어게임즈",
+  "title": "[NC자회사][빅파이어게임즈] VFX 아티스트 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unreal Engine"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283538",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "이펙트, FX, 디렉터, VFX, Houdini, Niagara, UE5, NC",
+  "updatedAt": "2026-08-05",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-05T16:32:03.329Z",
+  "lastSeenAt": "2026-08-05T16:32:03.329Z",
+  "lastCrawledAt": "2026-08-05T16:32:03.329Z",
+  "inactiveAt": null
+}
