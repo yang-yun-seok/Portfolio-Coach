@@ -1,0 +1,35 @@
+{
+  "id": "crawled-283587",
+  "company": "폴리모프",
+  "title": "[신규 프로젝트] TA (Technical Artist) 모집 (경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "TA",
+    "Unreal Engine"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283587",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "IFSUNSETS (이프선셋)",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 모델링, 텍스쳐, 이펙트, TA, 언리얼엔진",
+  "updatedAt": "2026-08-06",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-06T23:55:58.517Z",
+  "lastSeenAt": "2026-08-06T23:55:58.517Z",
+  "lastCrawledAt": "2026-08-06T23:55:58.517Z",
+  "inactiveAt": null
+}

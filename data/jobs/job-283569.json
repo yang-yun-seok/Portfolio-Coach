@@ -1,0 +1,32 @@
+{
+  "id": "crawled-283569",
+  "company": "세리스 스튜디오",
+  "title": "[세리스 스튜디오] 3D 리거 모집 [계약/정규직]",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283569",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "멀티플랫폼게임 VR·AR, 메타버스",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "캐릭터, 애니메이션, VR, 리깅, blender, Rig, 리거, 메타버스",
+  "updatedAt": "2026-08-06",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-06T23:55:58.517Z",
+  "lastSeenAt": "2026-08-06T23:55:58.517Z",
+  "lastCrawledAt": "2026-08-06T23:55:58.517Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283590",
+  "company": "㈜플러피덕",
+  "title": "[플러피덕] 2D 캐릭터 원화가 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Illustrator",
+    "Photoshop"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283590",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이크드라마 : MAD",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 원화, 일러스트, 캐릭터원화, 포토샵, 캐릭터, 남성향, 미소녀, 서브컬쳐, 성인",
+  "updatedAt": "2026-08-06",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-06T23:55:58.517Z",
+  "lastSeenAt": "2026-08-06T23:55:58.517Z",
+  "lastCrawledAt": "2026-08-06T23:55:58.517Z",
+  "inactiveAt": null
+}
