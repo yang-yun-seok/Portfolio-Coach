@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283600",
+  "company": "㈜나인디지트",
+  "title": "[캐쥬얼] 3D 애니메이터 모셔요.",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283600",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "용사마을타이쿤(11월 서비스 예정) / 프로젝트 HT (12월 서비스 예정)",
+  "gameCategory": "멀티플랫폼게임 SNG, Simulation",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 09/07(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 애니메이션",
+  "updatedAt": "2026-08-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastCrawledAt": "2026-08-07T21:47:42.343Z",
+  "inactiveAt": null
+}

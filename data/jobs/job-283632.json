@@ -1,0 +1,32 @@
+{
+  "id": "crawled-283632",
+  "company": "아리아스튜디오",
+  "title": "인터랙티브 콘텐츠 작가 모집",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시나리오/퀘스트"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283632",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "멀티플랫폼게임 기타",
+  "employmentType": "프리랜서",
+  "deadline": "~ 08/31(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "시나리오, 작가, 영화, 인터랙티브",
+  "updatedAt": "2026-08-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastCrawledAt": "2026-08-07T21:47:42.343Z",
+  "inactiveAt": null
+}

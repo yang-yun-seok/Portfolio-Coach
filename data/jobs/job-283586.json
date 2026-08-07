@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283586",
+  "company": "㈜메이저세븐",
+  "title": "[아우터플레인] 라이브 서비스 운영 담당",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283586",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "아우터플레인",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "게임운영, GM, 고객서비스, CS, 모니터링, 홈페이지관리, 해외서비스",
+  "updatedAt": "2026-08-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastCrawledAt": "2026-08-07T21:47:42.343Z",
+  "inactiveAt": null
+}

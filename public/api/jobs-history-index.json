@@ -1,11 +1,20 @@
 [
   {
-    "date": "2026-08-07",
-    "generatedAt": "2026-08-06T23:55:58.517Z",
+    "date": "2026-08-08",
+    "generatedAt": "2026-08-07T21:47:42.343Z",
     "referenceJobCount": 962,
-    "newJobsCount": 18,
+    "newJobsCount": 30,
     "activeJobsCount": 962,
     "lastCrawlStatus": "success",
+    "path": "./history/2026-08-08.json"
+  },
+  {
+    "date": "2026-08-07",
+    "generatedAt": null,
+    "referenceJobCount": 0,
+    "newJobsCount": 0,
+    "activeJobsCount": 0,
+    "lastCrawlStatus": "unknown",
     "path": "./history/2026-08-07.json"
   },
   {

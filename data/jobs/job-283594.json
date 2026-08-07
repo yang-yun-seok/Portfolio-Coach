@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283594",
+  "company": "㈜안다미로",
+  "title": "프로그램 파트 경력 프로그래머 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283594",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "PUMP IT UP",
+  "gameCategory": "관련없음 Casual, Arcade",
+  "employmentType": "정규직",
+  "deadline": "~ 09/07(월)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, Embedded, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-08-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastCrawledAt": "2026-08-07T21:47:42.343Z",
+  "inactiveAt": null
+}

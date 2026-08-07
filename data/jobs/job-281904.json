@@ -1,0 +1,32 @@
+{
+  "id": "crawled-281904",
+  "company": "㈜앵커노드",
+  "title": "[경력] UI 디자인·구현 및 VFX/스킬 연출 아티스트 모십니다",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281904",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Bread Bear, Card of Legend",
+  "gameCategory": "모바일게임, 콘솔게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 6개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "이펙트, FX, Unity, ux, ui",
+  "updatedAt": "2026-08-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastCrawledAt": "2026-08-07T21:47:42.343Z",
+  "inactiveAt": null
+}

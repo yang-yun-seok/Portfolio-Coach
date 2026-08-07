@@ -1,0 +1,34 @@
+{
+  "id": "crawled-283625",
+  "company": "㈜메이저세븐",
+  "title": "[아우터플레인] 콘티 담당자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283625",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "아우터플레인",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 캐릭터, 애니메이션, 디렉터, 시네마틱, 스토리보드아트",
+  "updatedAt": "2026-08-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastCrawledAt": "2026-08-07T21:47:42.343Z",
+  "inactiveAt": null
+}

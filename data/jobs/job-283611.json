@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283611",
+  "company": "㈜제페토",
+  "title": "[신규 FPS] 애니메이터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3ds Max",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283611",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "포인트 블랭크(FPS), Outlaw(모바일)",
+  "gameCategory": "온라인PC게임 Shooting",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3DSmax, 캐릭터, 애니메이션, 오브젝트, FPS, UnrealEngine, blender, TPS",
+  "updatedAt": "2026-08-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastCrawledAt": "2026-08-07T21:47:42.343Z",
+  "inactiveAt": null
+}

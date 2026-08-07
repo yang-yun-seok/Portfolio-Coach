@@ -1,5 +1,5 @@
 {
-  "id": "crawled-281765",
+  "id": "crawled-283614",
   "company": "㈜젠틀매니악",
   "title": "[호라이즌 워커] UI 아티스트",
   "role": "아트/UI",
@@ -10,7 +10,7 @@
     "UI/UX 기획"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281765",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283614",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "호라이즌 워커, 마대자",
@@ -20,13 +20,13 @@
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "무관",
   "keywords": "인터페이스, UX·UI, 모션",
-  "updatedAt": "2026-06-22",
+  "updatedAt": "2026-08-07",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-22T18:47:39.592Z",
-  "lastSeenAt": "2026-08-06T23:55:58.517Z",
-  "lastCrawledAt": "2026-08-06T23:55:58.517Z",
+  "firstSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastSeenAt": "2026-08-07T21:47:42.343Z",
+  "lastCrawledAt": "2026-08-07T21:47:42.343Z",
   "inactiveAt": null
 }
