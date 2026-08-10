@@ -1,0 +1,32 @@
+{
+  "id": "crawled-283650",
+  "company": "테이드소프트",
+  "title": "테이드소프트 게임프로그래머(Unity) 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283650",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, VR·AR",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 게임프로그래밍, 게임프로그래머, AR",
+  "updatedAt": "2026-08-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-10T16:00:32.074Z",
+  "lastSeenAt": "2026-08-10T16:00:32.074Z",
+  "lastCrawledAt": "2026-08-10T16:00:32.074Z",
+  "inactiveAt": null
+}

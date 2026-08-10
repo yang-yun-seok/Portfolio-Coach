@@ -1,0 +1,37 @@
+{
+  "id": "crawled-283617",
+  "company": "넥슨 (NEXON)",
+  "title": "2026 네오플 집중채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "시나리오/퀘스트",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283617",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "던전앤파이터, 던전앤파이터 모바일, 사이퍼즈, 퍼스트 버서커 : 카잔",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 08/23(일)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C, C++, 게임기획, 시나리오, 컨텐츠, 유료화, 보안, 던전앤파이터",
+  "updatedAt": "2026-08-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-10T16:00:32.074Z",
+  "lastSeenAt": "2026-08-10T16:00:32.074Z",
+  "lastCrawledAt": "2026-08-10T16:00:32.074Z",
+  "inactiveAt": null
+}
