@@ -1,18 +1,14 @@
 {
-  "id": "crawled-283609",
+  "id": "crawled-283730",
   "company": "브이에이게임즈",
-  "title": "[Project MAIDEN] 캐릭터 모델러 모집",
+  "title": "[Project MAIDEN] 애니메이터 모집",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
   ],
-  "reqSkills": [
-    "3D",
-    "3ds Max",
-    "ZBrush"
-  ],
+  "reqSkills": [],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283609",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283730",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "아우터플레인",
@@ -21,14 +17,14 @@
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
-  "keywords": "모바일, 3D, 모델링, 캐릭터",
-  "updatedAt": "2026-08-07",
+  "keywords": "모바일, 애니메이션, KeyAnimation",
+  "updatedAt": "2026-08-11",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-08-07T21:47:42.343Z",
-  "lastSeenAt": "2026-08-10T16:00:32.074Z",
-  "lastCrawledAt": "2026-08-10T16:00:32.074Z",
+  "firstSeenAt": "2026-08-11T18:57:20.483Z",
+  "lastSeenAt": "2026-08-11T18:57:20.483Z",
+  "lastCrawledAt": "2026-08-11T18:57:20.483Z",
   "inactiveAt": null
 }

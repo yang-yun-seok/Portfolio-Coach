@@ -1,5 +1,5 @@
 {
-  "id": "crawled-282170",
+  "id": "crawled-283704",
   "company": "㈜스튜디오비사이드",
   "title": "[스타세이비어] 3D 캐릭터 애니메이터 모집",
   "role": "아트/UI",
@@ -12,7 +12,7 @@
     "Unity"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282170",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283704",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "스타세이비어 (https://www.starsavior.com/kr)",
@@ -22,13 +22,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "3D, 3DSmax, 캐릭터, 애니메이션, 3DMax",
-  "updatedAt": "2026-07-01",
+  "updatedAt": "2026-08-11",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-01T17:14:06.357Z",
-  "lastSeenAt": "2026-08-10T16:00:32.074Z",
-  "lastCrawledAt": "2026-08-10T16:00:32.074Z",
+  "firstSeenAt": "2026-08-11T18:57:20.483Z",
+  "lastSeenAt": "2026-08-11T18:57:20.483Z",
+  "lastCrawledAt": "2026-08-11T18:57:20.483Z",
   "inactiveAt": null
 }

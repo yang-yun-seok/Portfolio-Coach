@@ -1,17 +1,20 @@
 {
-  "id": "crawled-282712",
+  "id": "crawled-283701",
   "company": "㈜크로노스튜디오",
-  "title": "[Chrono Odyssey] FX 이펙터 모집",
-  "role": "아트/UI",
+  "title": "[크로노스튜디오] 테크니컬 아티스트 (TA) 모집 (경력)",
+  "role": "클라이언트",
   "roles": [
+    "클라이언트",
+    "AI/데이터",
     "아트/UI"
   ],
   "reqSkills": [
+    "C++",
     "3D",
-    "Unreal Engine"
+    "3ds Max"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282712",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283701",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "Chrono Odyssey",
@@ -20,14 +23,14 @@
   "deadline": "채용시 마감",
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
-  "keywords": "3D, 맵핑, 모델링, 텍스쳐, 애니메이션, 이펙트, FX, 시네마틱, 언리얼, 이펙터, 쉐이더, VFX, 실사풍, 나이아가라, UE5",
-  "updatedAt": "2026-07-14",
+  "keywords": "C++, 3D, 3DSmax, 3DMax, 오브젝트, 게임프로그래밍, 렌더링, UE5",
+  "updatedAt": "2026-08-11",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-14T22:06:37.663Z",
-  "lastSeenAt": "2026-08-10T16:00:32.074Z",
-  "lastCrawledAt": "2026-08-10T16:00:32.074Z",
+  "firstSeenAt": "2026-08-11T18:57:20.483Z",
+  "lastSeenAt": "2026-08-11T18:57:20.483Z",
+  "lastCrawledAt": "2026-08-11T18:57:20.483Z",
   "inactiveAt": null
 }

@@ -1,0 +1,32 @@
+{
+  "id": "crawled-283688",
+  "company": "잉크캣 게임개발",
+  "title": "[재택/유연근무] 유니티 개발자 모집 (파트타임)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283688",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "You Ain’t the Hero",
+  "gameCategory": "관련없음 Shooting",
+  "employmentType": "계약직 (계약기간 : 협의 후 결정)",
+  "deadline": "~ 09/11(금)",
+  "salary": "시간당 / 20,000원\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-08-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-11T18:57:20.483Z",
+  "lastSeenAt": "2026-08-11T18:57:20.483Z",
+  "lastCrawledAt": "2026-08-11T18:57:20.483Z",
+  "inactiveAt": null
+}
