@@ -1,0 +1,40 @@
+{
+  "id": "crawled-283781",
+  "company": "㈜하이스트써치",
+  "title": "국내 메이져 게임 기업 개발 전 파트 경력자 채용 [ 개발, 기획, 아트, 개발PM 등 ]",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "3D",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283781",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "국내 No.1 게임산업 전문 써치펌- 게임기업 인재 채용, 개발팅 세팅 및 인수, 커리어담",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직, 헤드헌팅",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, 3D, 배경, 컨셉, 캐릭터, 시나리오, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 유료화",
+  "updatedAt": "2026-08-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-12T15:58:36.802Z",
+  "lastSeenAt": "2026-08-12T15:58:36.802Z",
+  "lastCrawledAt": "2026-08-12T15:58:36.802Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "crawled-283746",
+  "company": "일루니",
+  "title": "3D 캐릭터 애니메이터 (계약직 5개월)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unity",
+    "3ds Max",
+    "Maya",
+    "Machine Learning"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283746",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "StorySelf / Moii / MoiiMe",
+  "gameCategory": "웹게임 Casual, Simulation",
+  "employmentType": "계약직 (계약기간 : 5개월)",
+  "deadline": "~ 09/12(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "3D, 애니메이션",
+  "updatedAt": "2026-08-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-12T15:58:36.802Z",
+  "lastSeenAt": "2026-08-12T15:58:36.802Z",
+  "lastCrawledAt": "2026-08-12T15:58:36.802Z",
+  "inactiveAt": null
+}

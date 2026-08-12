@@ -1,0 +1,37 @@
+{
+  "id": "crawled-283763",
+  "company": "㈜누리게임즈",
+  "title": "[6시간 근무제] 프로그래머, 그래픽 디자이너를 모십니다.(칼퇴근)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "C++",
+    "UI/UX 기획",
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283763",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Galaxy Casino, Casino BAY, Farkle Mania",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 Casual, Simulation",
+  "employmentType": "정규직, 인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+  "deadline": "~ 08/16(일)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, VisualC++, C++, MFC, 모바일, 인터페이스, UX·UI, 배경, 게임기획, 밸런스기획, 레벨기획, 시스템기획, 게임프로그래머",
+  "updatedAt": "2026-08-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-12T15:58:36.802Z",
+  "lastSeenAt": "2026-08-12T15:58:36.802Z",
+  "lastCrawledAt": "2026-08-12T15:58:36.802Z",
+  "inactiveAt": null
+}

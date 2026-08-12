@@ -1,0 +1,37 @@
+{
+  "id": "crawled-283707",
+  "company": "일루니",
+  "title": "3D 배경 프롭 모델러",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unity",
+    "Photoshop",
+    "3ds Max",
+    "Maya",
+    "Machine Learning"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283707",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "StorySelf / Moii / MoiiMe",
+  "gameCategory": "온라인PC게임, 웹게임 Casual, 메타버스",
+  "employmentType": "계약직 (계약기간 : 6개월)",
+  "deadline": "~ 10/11(일)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 배경, 모델링, 로우폴리곤, 하이폴리곤, Terrain",
+  "updatedAt": "2026-08-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-12T15:58:36.802Z",
+  "lastSeenAt": "2026-08-12T15:58:36.802Z",
+  "lastCrawledAt": "2026-08-12T15:58:36.802Z",
+  "inactiveAt": null
+}
