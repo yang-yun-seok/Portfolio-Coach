@@ -1,0 +1,34 @@
+{
+  "id": "crawled-283804",
+  "company": "넷마블에프앤씨㈜",
+  "title": "[넷마블에프앤씨] 일곱 개의 대죄 오리진 애니메이션 담당 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Unreal Engine"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283804",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "일곱 개의 대죄, 블레이드앤소울 레볼루션 외 신규 프로젝트 다수",
+  "gameCategory": "멀티플랫폼게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 캐릭터, 애니메이션, 3DMax, KeyAnimation, 언리얼, 칠대죄, 일곱개의대죄",
+  "updatedAt": "2026-08-13",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-13T15:58:20.485Z",
+  "lastSeenAt": "2026-08-13T15:58:20.485Z",
+  "lastCrawledAt": "2026-08-13T15:58:20.485Z",
+  "inactiveAt": null
+}

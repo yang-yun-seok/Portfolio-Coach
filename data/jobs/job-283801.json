@@ -1,0 +1,32 @@
+{
+  "id": "crawled-283801",
+  "company": "㈜넵튠",
+  "title": "하이브리드팀 3D 디자이너 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283801",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "고양이 스낵바, 무한의 계단, 우르르 용병단, 이터널리턴, 다크스타, 앵커패닉 등",
+  "gameCategory": "모바일게임 Casual, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "하이브리드, 비즈니스모델, 하이퍼캐주얼",
+  "updatedAt": "2026-08-13",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-13T15:58:20.485Z",
+  "lastSeenAt": "2026-08-13T15:58:20.485Z",
+  "lastCrawledAt": "2026-08-13T15:58:20.485Z",
+  "inactiveAt": null
+}

@@ -1,7 +1,7 @@
 {
-  "id": "crawled-280288",
+  "id": "crawled-283824",
   "company": "시프트업 (SHIFT UP)",
-  "title": "[시프트업] 프로젝트 스피릿 / 컨텐츠 기획자",
+  "title": "[시프트업] 프로젝트 스피릿 / 시스템 기획자",
   "role": "기획",
   "roles": [
     "기획"
@@ -11,7 +11,7 @@
     "Unreal Engine"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280288",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283824",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
@@ -21,13 +21,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "게임기획, 시스템기획, 컨텐츠",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-08-13",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-08-12T15:58:36.802Z",
-  "lastCrawledAt": "2026-08-12T15:58:36.802Z",
+  "firstSeenAt": "2026-08-13T15:58:20.485Z",
+  "lastSeenAt": "2026-08-13T15:58:20.485Z",
+  "lastCrawledAt": "2026-08-13T15:58:20.485Z",
   "inactiveAt": null
 }

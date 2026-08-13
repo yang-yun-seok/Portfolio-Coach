@@ -1,0 +1,32 @@
+{
+  "id": "crawled-283788",
+  "company": "111퍼센트㈜",
+  "title": "[슈퍼드리머 8기] 게임 클라이언트 개발자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283788",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "운빨존많겜, 랜덤다이스:디펜스",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "인턴직 (3개월~6개월 미만)",
+  "deadline": "~ 08/23(일)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, Unity, 개발, 게임개발, 게임, 게임프로그래밍, 게임프로그래머, 모바일게임, 캐주얼게임",
+  "updatedAt": "2026-08-13",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-13T15:58:20.485Z",
+  "lastSeenAt": "2026-08-13T15:58:20.485Z",
+  "lastCrawledAt": "2026-08-13T15:58:20.485Z",
+  "inactiveAt": null
+}
