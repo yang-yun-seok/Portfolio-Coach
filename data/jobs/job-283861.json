@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283861",
+  "company": "게임듀오",
+  "title": "[신입/경력] 이펙트 디자이너 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Photoshop",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283861",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "어나더던전, 캣히어로",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 원화, 포토샵, 캐릭터, 애니메이션, 이펙트, 2D, 캐주얼, 애프터이펙트, 리소스",
+  "updatedAt": "2026-08-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-14T15:51:11.009Z",
+  "lastSeenAt": "2026-08-14T15:51:11.009Z",
+  "lastCrawledAt": "2026-08-14T15:51:11.009Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,38 @@
+{
+  "id": "crawled-283878",
+  "company": "㈜그린맨파워",
+  "title": "[삼성/넥슨계열사/복지우수] 게임아트보조 채용건",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "QA/테스트",
+    "Excel"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283878",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Riot Games, SmileGate, Wemade, DaumKakao, Webzen",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "파견직",
+  "deadline": "~ 08/21(금)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 3DSmax, 캐릭터, 3DMax, PM, QA",
+  "updatedAt": "2026-08-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-14T15:51:11.009Z",
+  "lastSeenAt": "2026-08-14T15:51:11.009Z",
+  "lastCrawledAt": "2026-08-14T15:51:11.009Z",
+  "inactiveAt": null
+}

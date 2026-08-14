@@ -1,0 +1,38 @@
+{
+  "id": "crawled-283850",
+  "company": "스캐터랩",
+  "title": "Ad-Tech Developer",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android",
+    "Machine Learning",
+    "TypeScript",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283850",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "zeta(제타), 이루다",
+  "gameCategory": "모바일게임 관련없음",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, iOS, Android, AI, 통계, 미디에이션, 광고수익화, bigquery, Applovin, 바이브코딩",
+  "updatedAt": "2026-08-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-14T15:51:11.009Z",
+  "lastSeenAt": "2026-08-14T15:51:11.009Z",
+  "lastCrawledAt": "2026-08-14T15:51:11.009Z",
+  "inactiveAt": null
+}

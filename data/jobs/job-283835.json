@@ -1,0 +1,33 @@
+{
+  "id": "crawled-283835",
+  "company": "넥슨 (NEXON)",
+  "title": "[AA 스튜디오] 일러스트레이터 (중국 대응)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Illustrator",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283835",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "히트2, 블루아카이브, 서든어택, V4",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 원화, 일러스트, 캐릭터원화, 컨셉, 캐릭터",
+  "updatedAt": "2026-08-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-14T15:51:11.009Z",
+  "lastSeenAt": "2026-08-14T15:51:11.009Z",
+  "lastCrawledAt": "2026-08-14T15:51:11.009Z",
+  "inactiveAt": null
+}
