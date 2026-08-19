@@ -1,5 +1,5 @@
 {
-  "id": "crawled-280588",
+  "id": "crawled-283974",
   "company": "넥슨 (NEXON)",
   "title": "[OUTANT] 컨텐츠 기획",
   "role": "클라이언트",
@@ -14,7 +14,7 @@
     "Unreal Engine"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=280588",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283974",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "로드나인, AVATARA, 로한M",
@@ -24,13 +24,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "컨셉, 게임기획, 시나리오, 시스템기획, 컨텐츠, RPG, PC, 콘솔, 언리얼엔진, Unreal엔진, 엔엑스쓰리게임즈, NX3GAMES, OUTANT, 아웃턴트",
-  "updatedAt": "2026-05-26",
+  "updatedAt": "2026-08-19",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-05-26T20:58:54.330Z",
-  "lastSeenAt": "2026-08-18T15:31:05.712Z",
-  "lastCrawledAt": "2026-08-18T15:31:05.712Z",
+  "firstSeenAt": "2026-08-19T18:26:51.625Z",
+  "lastSeenAt": "2026-08-19T18:26:51.625Z",
+  "lastCrawledAt": "2026-08-19T18:26:51.625Z",
   "inactiveAt": null
 }

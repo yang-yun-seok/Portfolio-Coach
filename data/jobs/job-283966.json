@@ -1,0 +1,35 @@
+{
+  "id": "crawled-283966",
+  "company": "바삭한소프트",
+  "title": "[연애혁명 키우기] 게임 기획자",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283966",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "수험생 키우기, 연애혁명 키우기, 취준생 키우기",
+  "gameCategory": "모바일게임 Casual, Simulation",
+  "employmentType": "정규직",
+  "deadline": "~ 08/30(일)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, PM, PD, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
+  "updatedAt": "2026-08-19",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-19T18:26:51.625Z",
+  "lastSeenAt": "2026-08-19T18:26:51.625Z",
+  "lastCrawledAt": "2026-08-19T18:26:51.625Z",
+  "inactiveAt": null
+}

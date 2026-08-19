@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284001",
+  "company": "NC",
+  "title": "[NC][AION2] 개발 PM 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "개발PM",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284001",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 09/17(목)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "개발PM, 프로젝트관리, 빌드관리, ProjectManagement, 엔씨",
+  "updatedAt": "2026-08-19",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-19T18:26:51.625Z",
+  "lastSeenAt": "2026-08-19T18:26:51.625Z",
+  "lastCrawledAt": "2026-08-19T18:26:51.625Z",
+  "inactiveAt": null
+}
