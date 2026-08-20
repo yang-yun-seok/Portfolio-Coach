@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284019",
+  "company": "㈜넵튠",
+  "title": "하이브리드 게임 3D 디자이너 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284019",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "고양이 오피스, 고양이 스낵바, 무한의계단, 이터널리턴, 드드드드릴, 기어트럭, 럭키히어로",
+  "gameCategory": "모바일게임 Casual, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 원화, Unity, 비주얼, 게임, 캐주얼, 3D디자인, 퍼즐, 하이브리드, 3D디자이너, 비즈니스모델, 하이퍼캐주얼, 로우폴리, 3D개발, 하이브리드캐주얼",
+  "updatedAt": "2026-08-20",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-20T15:32:34.193Z",
+  "lastSeenAt": "2026-08-20T15:32:34.193Z",
+  "lastCrawledAt": "2026-08-20T15:32:34.193Z",
+  "inactiveAt": null
+}
