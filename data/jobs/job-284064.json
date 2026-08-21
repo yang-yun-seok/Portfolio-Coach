@@ -1,5 +1,5 @@
 {
-  "id": "crawled-283349",
+  "id": "crawled-284064",
   "company": "㈜네오위즈",
   "title": "[Onetake Studio] 오리지널IP 신작 콘솔 프로젝트 3D 캐릭터 모델러",
   "role": "아트/UI",
@@ -10,7 +10,7 @@
     "3D"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283349",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284064",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "P의 거짓,고양이와스프,스컬,브라운더스트2,DJMax,A.V.A,피망포커,피망고스톱",
@@ -20,13 +20,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "3D, 캐릭터",
-  "updatedAt": "2026-07-30",
+  "updatedAt": "2026-08-21",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-30T16:27:22.281Z",
-  "lastSeenAt": "2026-08-20T15:32:34.193Z",
-  "lastCrawledAt": "2026-08-20T15:32:34.193Z",
+  "firstSeenAt": "2026-08-21T15:32:08.359Z",
+  "lastSeenAt": "2026-08-21T15:32:08.359Z",
+  "lastCrawledAt": "2026-08-21T15:32:08.359Z",
   "inactiveAt": null
 }

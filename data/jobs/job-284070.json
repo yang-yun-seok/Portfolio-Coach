@@ -1,0 +1,32 @@
+{
+  "id": "crawled-284070",
+  "company": "코그",
+  "title": "[코그] 애니메이터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3ds Max"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284070",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "그랜드체이스, 엘소드, 커츠펠",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "3DSmax, 캐릭터, 애니메이션",
+  "updatedAt": "2026-08-21",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-21T15:32:08.359Z",
+  "lastSeenAt": "2026-08-21T15:32:08.359Z",
+  "lastCrawledAt": "2026-08-21T15:32:08.359Z",
+  "inactiveAt": null
+}
