@@ -1,0 +1,39 @@
+{
+  "id": "crawled-284154",
+  "company": "슈퍼센트 (Supercent)",
+  "title": "모바일 게임 기획자(2-6년)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "UI/UX 기획"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284154",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "XP Hero, Burger Please!, Pizza Ready!, Snake Clash",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "모바일, 레벨, 컨셉, 게임기획, 시나리오, 퀘스트, PD, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 유료화, 모바일UI, 이벤트기획",
+  "updatedAt": "2026-08-24",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-24T15:39:46.934Z",
+  "lastSeenAt": "2026-08-24T15:39:46.934Z",
+  "lastCrawledAt": "2026-08-24T15:39:46.934Z",
+  "inactiveAt": null
+}

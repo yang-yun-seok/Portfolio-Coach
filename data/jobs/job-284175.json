@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284175",
+  "company": "㈜타이니펀게임즈(Tiny Fu",
+  "title": "[캐주얼RPG게임] 3D 배경 모델러 모집(신입/경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284175",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "던전 어라이즈",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 배경, 모델링, 로우폴리곤, 3DSmax, blender",
+  "updatedAt": "2026-08-24",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-24T15:39:46.934Z",
+  "lastSeenAt": "2026-08-24T15:39:46.934Z",
+  "lastCrawledAt": "2026-08-24T15:39:46.934Z",
+  "inactiveAt": null
+}
