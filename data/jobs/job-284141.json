@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284141",
+  "company": "넥슨 (NEXON)",
+  "title": "[넥슨컴퍼니] 2026 넥토리얼 for Game Programmer",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "SQL",
+    "TCP/IP"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284141",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 기타",
+  "employmentType": "인턴직 (6개월~1년 미만)",
+  "deadline": "~ 09/07(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, C++, 서버, MS-SQL, SQL, 네트워크",
+  "updatedAt": "2026-08-25",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-25T15:41:06.913Z",
+  "lastSeenAt": "2026-08-25T15:41:06.913Z",
+  "lastCrawledAt": "2026-08-25T15:41:06.913Z",
+  "inactiveAt": null
+}

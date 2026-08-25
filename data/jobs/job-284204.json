@@ -1,0 +1,32 @@
+{
+  "id": "crawled-284204",
+  "company": "㈜이엑스투게임즈",
+  "title": "[Ex2게임즈] 프로젝트K (콘텐츠 기획자)",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284204",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "모바일, 게임기획, 컨텐츠",
+  "updatedAt": "2026-08-25",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-25T15:41:06.913Z",
+  "lastSeenAt": "2026-08-25T15:41:06.913Z",
+  "lastCrawledAt": "2026-08-25T15:41:06.913Z",
+  "inactiveAt": null
+}

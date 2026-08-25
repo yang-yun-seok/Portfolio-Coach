@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284215",
+  "company": "㈜메인퀘스트",
+  "title": "[메인퀘스트] 모바일게임 개발자 모집합니다.",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "iOS",
+    "Android",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284215",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "둘이서막자",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 09/25(금)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C, C++, 모바일, iOS, Android, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-08-25",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-25T15:41:06.913Z",
+  "lastSeenAt": "2026-08-25T15:41:06.913Z",
+  "lastCrawledAt": "2026-08-25T15:41:06.913Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,37 @@
+{
+  "id": "crawled-284220",
+  "company": "㈜미어캣게임즈",
+  "title": "[창세기전 모바일] BM/이벤트 기획자 (신입-경력3년/정규직)",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "경제/BM 설계",
+    "데이터 분석",
+    "Excel",
+    "Unity",
+    "JIRA/Confluence"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284220",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "창세기전 모바일",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "모바일, 게임기획, 밸런스기획, 유료화, 데이터분석, SRPG, 모바일게임, 엑셀, BM기획, 이벤트기획, 상품기획, BM설계, 유료화모델, 이벤트설계, 게임경제, 재화설계, 게임재화, 게임상품, 게임보상, 상품설계",
+  "updatedAt": "2026-08-25",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-25T15:41:06.913Z",
+  "lastSeenAt": "2026-08-25T15:41:06.913Z",
+  "lastCrawledAt": "2026-08-25T15:41:06.913Z",
+  "inactiveAt": null
+}

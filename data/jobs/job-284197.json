@@ -1,0 +1,37 @@
+{
+  "id": "crawled-284197",
+  "company": "㈜엔에이케이소프트",
+  "title": "[라스트오리진2] UI 디자이너",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Unity",
+    "Photoshop",
+    "Illustrator",
+    "Figma"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284197",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 인터페이스, UX·UI",
+  "updatedAt": "2026-08-25",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-25T15:41:06.913Z",
+  "lastSeenAt": "2026-08-25T15:41:06.913Z",
+  "lastCrawledAt": "2026-08-25T15:41:06.913Z",
+  "inactiveAt": null
+}
