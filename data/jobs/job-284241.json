@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284241",
+  "company": "에브나게임즈",
+  "title": "[에브나게임즈] 게임 개발자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284241",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "WASD : 토리의모험",
+  "gameCategory": "온라인PC게임 Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 10/26(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, 게임프로그래밍",
+  "updatedAt": "2026-08-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-26T16:17:41.124Z",
+  "lastSeenAt": "2026-08-26T16:17:41.124Z",
+  "lastCrawledAt": "2026-08-26T16:17:41.124Z",
+  "inactiveAt": null
+}

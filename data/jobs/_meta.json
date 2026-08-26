@@ -1,9 +1,9 @@
 {
   "source": "GameJob",
-  "latestAppliedDate": "2026-08-26",
+  "latestAppliedDate": "2026-08-27",
   "referenceJobCount": 920,
-  "lastSuccessfulCrawlAt": "2026-08-25T15:41:06.913Z",
-  "lastCrawlAttemptAt": "2026-08-25T15:41:06.913Z",
+  "lastSuccessfulCrawlAt": "2026-08-26T16:17:41.124Z",
+  "lastCrawlAttemptAt": "2026-08-26T16:17:41.124Z",
   "lastCrawlStatus": "success",
   "lastCrawlError": null,
   "newJobsCount": 0,

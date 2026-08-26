@@ -1,5 +1,5 @@
 {
-  "id": "crawled-283065",
+  "id": "crawled-284229",
   "company": "오버데어코리아",
   "title": "Unreal Engine Engineer",
   "role": "클라이언트",
@@ -12,7 +12,7 @@
     "Unreal Engine"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283065",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284229",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "OVERDARE",
@@ -22,13 +22,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "C++, 엔진, Unreal",
-  "updatedAt": "2026-07-24",
+  "updatedAt": "2026-08-26",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-24T16:35:53.442Z",
-  "lastSeenAt": "2026-08-25T15:41:06.913Z",
-  "lastCrawledAt": "2026-08-25T15:41:06.913Z",
+  "firstSeenAt": "2026-08-26T16:17:41.124Z",
+  "lastSeenAt": "2026-08-26T16:17:41.124Z",
+  "lastCrawledAt": "2026-08-26T16:17:41.124Z",
   "inactiveAt": null
 }
