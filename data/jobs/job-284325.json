@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284325",
+  "company": "㈜알트나인",
+  "title": "[신규 프로젝트] 게임 기획",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "Unity",
+    "SQL"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284325",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "SOL: enchant",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 09/30(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "게임기획, 기획, 캐주얼, 코어기획",
+  "updatedAt": "2026-08-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-28T00:17:01.150Z",
+  "lastSeenAt": "2026-08-28T00:17:01.150Z",
+  "lastCrawledAt": "2026-08-28T00:17:01.150Z",
+  "inactiveAt": null
+}

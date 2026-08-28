@@ -1,0 +1,34 @@
+{
+  "id": "crawled-283238",
+  "company": "스마일게이트 (Smilegate)",
+  "title": "[CROSSFIRE] 라이브 개발 클라이언트 담당 (시스템) 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "Machine Learning",
+    "TCP/IP"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283238",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "크로스파이어, CFHD",
+  "gameCategory": "온라인PC게임 Shooting",
+  "employmentType": "정규직",
+  "deadline": "~ 09/30(수)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, DirectX, Win32, C, C++, UDP, Jupiter, AI, TCP, 라이브, WinAPI, VisualStudio",
+  "updatedAt": "2026-08-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-28T00:17:01.150Z",
+  "lastSeenAt": "2026-08-28T00:17:01.150Z",
+  "lastCrawledAt": "2026-08-28T00:17:01.150Z",
+  "inactiveAt": null
+}

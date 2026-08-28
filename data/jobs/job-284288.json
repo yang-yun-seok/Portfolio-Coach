@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284288",
+  "company": "㈜해긴",
+  "title": "[몬스터 수집형] 클라이언트 개발자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284288",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "플레이투게더, 홈런클래시, 오버독스, 익스트림골프, 홈런클래시2, 데미안전기",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C#, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-08-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-28T00:17:01.150Z",
+  "lastSeenAt": "2026-08-28T00:17:01.150Z",
+  "lastCrawledAt": "2026-08-28T00:17:01.150Z",
+  "inactiveAt": null
+}
