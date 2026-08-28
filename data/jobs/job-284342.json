@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284342",
+  "company": "서비스점검",
+  "title": "원활한 서비스 운영을 위한 테스트 공고입니다. 지원하지 말아주세요. 8/28",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "서버",
+    "기획"
+  ],
+  "reqSkills": [],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284342",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "치즈냥이 키우기, 와글와글 용사단, 용사단 키우기, 레전드 오브 킹덤",
+  "gameCategory": "온라인PC게임, 웹게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 09/28(월)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, OpenGL, ActionScript, 게임프로그래머",
+  "updatedAt": "2026-08-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-28T23:53:05.155Z",
+  "lastSeenAt": "2026-08-28T23:53:05.155Z",
+  "lastCrawledAt": "2026-08-28T23:53:05.155Z",
+  "inactiveAt": null
+}

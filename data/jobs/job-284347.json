@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284347",
+  "company": "㈜레이어랩",
+  "title": "2D 스파인 애니메이터 모집 (계약직)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Spine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284347",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "냥냥레인저스, 헤드샷ZD, 캣워즈, 인피니티볼",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 6개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "캐릭터, 애니메이션, Unity, Animation, 스파인, spine, 2D캐릭터",
+  "updatedAt": "2026-08-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-28T23:53:05.155Z",
+  "lastSeenAt": "2026-08-28T23:53:05.155Z",
+  "lastCrawledAt": "2026-08-28T23:53:05.155Z",
+  "inactiveAt": null
+}
