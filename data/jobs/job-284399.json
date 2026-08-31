@@ -1,0 +1,32 @@
+{
+  "id": "crawled-284399",
+  "company": "㈜스탠드에그",
+  "title": "[Stand Egg] 애니메이터 & 이펙터 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284399",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "고양이 정원, 천마 키우기, 고양이 카페",
+  "gameCategory": "모바일게임 Casual, Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "애니메이션, 이펙트",
+  "updatedAt": "2026-08-31",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-31T20:40:39.216Z",
+  "lastSeenAt": "2026-08-31T20:40:39.216Z",
+  "lastCrawledAt": "2026-08-31T20:40:39.216Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "crawled-284390",
+  "company": "그라비티",
+  "title": "[그라비티/판교] RMD - 이펙트 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284390",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "라그나로크 온라인, 라그나로크M, 라그나로크 오리진",
+  "gameCategory": "온라인PC게임, 모바일게임 Casual, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 09/30(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "이펙트, FX",
+  "updatedAt": "2026-08-31",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-31T20:40:39.216Z",
+  "lastSeenAt": "2026-08-31T20:40:39.216Z",
+  "lastCrawledAt": "2026-08-31T20:40:39.216Z",
+  "inactiveAt": null
+}

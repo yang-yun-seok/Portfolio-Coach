@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284425",
+  "company": "트리디엇츠",
+  "title": "3D 애니메이터 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284425",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Weving",
+  "gameCategory": "온라인PC게임, 모바일게임 Casual, Simulation",
+  "employmentType": "정규직",
+  "deadline": "~ 11/01(일)",
+  "salary": "2,800~3,000만원 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 3D, 3DSmax, 캐릭터, 애니메이션, CharacterStudio, 3DMax, KeyAnimation, Max",
+  "updatedAt": "2026-08-31",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-08-31T20:40:39.216Z",
+  "lastSeenAt": "2026-08-31T20:40:39.216Z",
+  "lastCrawledAt": "2026-08-31T20:40:39.216Z",
+  "inactiveAt": null
+}
