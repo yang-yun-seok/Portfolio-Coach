@@ -1,0 +1,38 @@
+{
+  "id": "crawled-284467",
+  "company": "넥슨 (NEXON)",
+  "title": "[Project M5] [서버] 서버 프로그래머",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "3D",
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284467",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로드나인, AVATARA, 로한M",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "C++, 모바일, 3D, 배경, 캐릭터원화, 배경원화, C#, 서버, 유니티, 연출, 컨셉원화, 모션캡처, 엔엑스쓰리게임즈, NX3GAMES, M5",
+  "updatedAt": "2026-09-01",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastCrawledAt": "2026-09-01T18:11:39.522Z",
+  "inactiveAt": null
+}

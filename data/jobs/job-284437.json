@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284437",
+  "company": "크래프톤 (KRAFTON)",
+  "title": "[Flyway Games] Ascend to ZERO - Client Programmer (계약직/1년)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284437",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "PUBG: 배틀그라운드",
+  "gameCategory": "온라인PC게임, 콘솔게임 기타",
+  "employmentType": "계약직 (계약기간 : 1년)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, Unity, 게임프로그래밍, 게임프로그래머, 최적화",
+  "updatedAt": "2026-09-01",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastCrawledAt": "2026-09-01T18:11:39.522Z",
+  "inactiveAt": null
+}

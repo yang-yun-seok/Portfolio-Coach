@@ -1,0 +1,34 @@
+{
+  "id": "crawled-284452",
+  "company": "컴투스 (Com2uS)",
+  "title": "[컴투스] 테크니컬 아티스트 (신입/경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "서버"
+  ],
+  "reqSkills": [
+    "C#"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284452",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "서머너즈워, 프로야구시리즈, 낚시의신, 서머너즈워:백년전쟁 등",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "C#, PBR, 3D게임개발, NPR, 그래픽기술개발, 아트데이터",
+  "updatedAt": "2026-09-01",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastCrawledAt": "2026-09-01T18:11:39.522Z",
+  "inactiveAt": null
+}

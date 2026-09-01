@@ -1,0 +1,32 @@
+{
+  "id": "crawled-284440",
+  "company": "㈜미스틸게임즈(Mistil Games)",
+  "title": "[Gray] 모션 액터(모션 캡처/모션 기획) 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284440",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "",
+  "gameCategory": "온라인PC게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 09/30(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "캐릭터, 애니메이션, 액션, 모션캡처, 연기",
+  "updatedAt": "2026-09-01",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastCrawledAt": "2026-09-01T18:11:39.522Z",
+  "inactiveAt": null
+}

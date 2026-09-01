@@ -1,16 +1,17 @@
 {
-  "id": "crawled-281869",
+  "id": "crawled-284505",
   "company": "시프트업 (SHIFT UP)",
-  "title": "[시프트업] 스텔라 블레이드 차기작 / 라이팅 아티스트",
+  "title": "[시프트업] 스텔라 블레이드 차기작 / 캐릭터 컨셉 아티스트",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
   ],
   "reqSkills": [
-    "Unreal Engine"
+    "Photoshop",
+    "ZBrush"
   ],
-  "reqExp": 1,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281869",
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284505",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
@@ -18,15 +19,15 @@
   "employmentType": "정규직",
   "deadline": "채용시 마감",
   "salary": "면접 시 협의\n연봉검색",
-  "experience": "경력 1년 이상",
-  "keywords": "멀티플랫폼, 콘솔, 라이팅, 신작, 시프트업, EVE",
-  "updatedAt": "2026-06-24",
+  "experience": "무관",
+  "keywords": "원화, 컨셉, 캐릭터, 멀티플랫폼, 콘솔, 신작, 시프트업, EVE",
+  "updatedAt": "2026-09-01",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-24T17:05:30.039Z",
-  "lastSeenAt": "2026-08-31T20:40:39.216Z",
-  "lastCrawledAt": "2026-08-31T20:40:39.216Z",
+  "firstSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastCrawledAt": "2026-09-01T18:11:39.522Z",
   "inactiveAt": null
 }

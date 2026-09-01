@@ -1,0 +1,38 @@
+{
+  "id": "crawled-284444",
+  "company": "㈜더슈퍼펄스",
+  "title": "[더슈퍼펄스] 신규프로젝트 인재모집 (UI/캐릭터모델러/애니메이터)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "UI/UX 기획",
+    "3ds Max",
+    "ZBrush",
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284444",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "글로벌 인기IP 캐쥬얼모바일게임 개발중",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 09/26(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "모바일, 3D, 인터페이스, UX·UI, 배경, 모션, 모델링, 3DSmax, 캐릭터, Zbrush, 3D일러스트, 애니메이션, CharacterStudio, 3DMax, 게임기획, 밸런스기획, 시스템기획, Max",
+  "updatedAt": "2026-09-01",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastCrawledAt": "2026-09-01T18:11:39.522Z",
+  "inactiveAt": null
+}

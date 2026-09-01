@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284438",
+  "company": "㈜미스틸게임즈(Mistil Games)",
+  "title": "[Time Takers] 캐릭터 모델러(신입/경력)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "ZBrush",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284438",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "",
+  "gameCategory": "온라인PC게임 Shooting",
+  "employmentType": "정규직",
+  "deadline": "~ 09/30(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 모델링, 3DSmax, 캐릭터, Zbrush",
+  "updatedAt": "2026-09-01",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastCrawledAt": "2026-09-01T18:11:39.522Z",
+  "inactiveAt": null
+}

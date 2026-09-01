@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284482",
+  "company": "넷마블 (Netmarble)",
+  "title": "’세븐나이츠키우기’ 전투/밸런스 기획자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "Python",
+    "SQL"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284482",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "세븐나이츠, 세븐나이츠2, 세븐나이츠 레볼루션, 세븐나이츠 키우기",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "모바일, 게임기획, 시스템기획",
+  "updatedAt": "2026-09-01",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastSeenAt": "2026-09-01T18:11:39.522Z",
+  "lastCrawledAt": "2026-09-01T18:11:39.522Z",
+  "inactiveAt": null
+}
