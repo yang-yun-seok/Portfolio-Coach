@@ -1,7 +1,7 @@
 {
-  "id": "crawled-284252",
+  "id": "crawled-284559",
   "company": "엔픽셀",
-  "title": "[엔픽셀] 이클립스스튜디오 (전투 밸런스 기획)",
+  "title": "[엔픽셀] 이클립스스튜디오 (밸런스 기획자 전투, 밸런스)",
   "role": "기획",
   "roles": [
     "기획"
@@ -12,7 +12,7 @@
     "Unreal Engine"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284252",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284559",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "그랑사가",
@@ -21,14 +21,14 @@
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
-  "keywords": "게임기획, 밸런스기획, 전투밸런스",
-  "updatedAt": "2026-08-28",
+  "keywords": "게임기획, 밸런스기획, 경제밸런스, 전투밸런스",
+  "updatedAt": "2026-09-02",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-08-28T00:17:01.150Z",
-  "lastSeenAt": "2026-09-01T18:11:39.522Z",
-  "lastCrawledAt": "2026-09-01T18:11:39.522Z",
+  "firstSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastCrawledAt": "2026-09-02T20:26:29.806Z",
   "inactiveAt": null
 }

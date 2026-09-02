@@ -1,0 +1,34 @@
+{
+  "id": "crawled-284544",
+  "company": "국군인쇄창",
+  "title": "2026년 2차 국방출판지원단 일반임기제군무원 채용(3D모델, AI데이터)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Machine Learning"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284544",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "관련없음 Simulation, VR·AR",
+  "employmentType": "계약직 (계약기간 : 2년)",
+  "deadline": "~ 09/18(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 모델링, 애니메이션, AI",
+  "updatedAt": "2026-09-02",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastCrawledAt": "2026-09-02T20:26:29.806Z",
+  "inactiveAt": null
+}

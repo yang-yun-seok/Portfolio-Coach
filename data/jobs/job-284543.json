@@ -1,0 +1,36 @@
+{
+  "id": "crawled-284543",
+  "company": "오프비트",
+  "title": "[Project D] 전투 기획",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "Unity",
+    "전투/액션 기획"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284543",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "전지적 독자 시점 (Project O)",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "게임기획, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, Unity, 유니티, 전투, 현대, 카툰",
+  "updatedAt": "2026-09-02",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastCrawledAt": "2026-09-02T20:26:29.806Z",
+  "inactiveAt": null
+}

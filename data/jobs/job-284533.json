@@ -1,7 +1,7 @@
 {
-  "id": "crawled-284357",
+  "id": "crawled-284533",
   "company": "스타픽시스튜디오",
-  "title": "[스타픽시스튜디오] 게임 기획자",
+  "title": "[메이플스타/MSW] 게임 기획자",
   "role": "기획",
   "roles": [
     "기획"
@@ -14,7 +14,7 @@
     "데이터 분석"
   ],
   "reqExp": 2,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284357",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284533",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "메이플스타",
@@ -24,13 +24,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "레벨, 게임기획, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
-  "updatedAt": "2026-08-28",
+  "updatedAt": "2026-09-02",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-08-28T23:53:05.155Z",
-  "lastSeenAt": "2026-09-01T18:11:39.522Z",
-  "lastCrawledAt": "2026-09-01T18:11:39.522Z",
+  "firstSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastCrawledAt": "2026-09-02T20:26:29.806Z",
   "inactiveAt": null
 }

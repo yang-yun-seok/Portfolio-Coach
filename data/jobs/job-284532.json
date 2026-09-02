@@ -1,7 +1,7 @@
 {
-  "id": "crawled-284358",
+  "id": "crawled-284532",
   "company": "스타픽시스튜디오",
-  "title": "[스타픽시스튜디오] 게임 플레이 프로그래머",
+  "title": "[메이플스타/MSW] 게임 플레이 프로그래머",
   "role": "클라이언트",
   "roles": [
     "클라이언트",
@@ -19,7 +19,7 @@
     "Redis"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284358",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284532",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "메이플스타",
@@ -29,13 +29,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "신입",
   "keywords": "클라이언트, Lua, Node.js, 게임프로그래머",
-  "updatedAt": "2026-08-28",
+  "updatedAt": "2026-09-02",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-08-28T23:53:05.155Z",
-  "lastSeenAt": "2026-09-01T18:11:39.522Z",
-  "lastCrawledAt": "2026-09-01T18:11:39.522Z",
+  "firstSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastCrawledAt": "2026-09-02T20:26:29.806Z",
   "inactiveAt": null
 }

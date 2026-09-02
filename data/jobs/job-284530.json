@@ -1,7 +1,7 @@
 {
-  "id": "crawled-284362",
+  "id": "crawled-284530",
   "company": "스타픽시스튜디오",
-  "title": "[스타픽시스튜디오] 게임 아티스트",
+  "title": "[메이플스타/MSW] 게임 아티스트",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
@@ -11,7 +11,7 @@
     "사업PM"
   ],
   "reqExp": 2,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284362",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284530",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "메이플스타",
@@ -21,13 +21,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "원화, 일러스트, 캐릭터원화, 픽셀, 몬스터, 캐릭터, 애니메이션, 이펙트, 사업PM",
-  "updatedAt": "2026-08-28",
+  "updatedAt": "2026-09-02",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-08-28T23:53:05.155Z",
-  "lastSeenAt": "2026-09-01T18:11:39.522Z",
-  "lastCrawledAt": "2026-09-01T18:11:39.522Z",
+  "firstSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastCrawledAt": "2026-09-02T20:26:29.806Z",
   "inactiveAt": null
 }

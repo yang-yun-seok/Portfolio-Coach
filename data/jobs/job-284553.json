@@ -1,0 +1,37 @@
+{
+  "id": "crawled-284553",
+  "company": "넥슨 (NEXON)",
+  "title": "[KANA] [아트] 배경 원화",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "C++",
+    "3D",
+    "시나리오/퀘스트",
+    "SQL",
+    "TCP/IP"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284553",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "로드나인, AVATARA, 로한M",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "VisualC++, 모바일, 3D, 배경, 캐릭터원화, 배경원화, 모델링, 캐릭터, 게임기획, 시나리오, MS-SQL, TCP·IP, 네트워크, IOCP, DB, 컨셉원화, 엔엑스쓰리게임즈, NX3GAMES",
+  "updatedAt": "2026-09-02",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastCrawledAt": "2026-09-02T20:26:29.806Z",
+  "inactiveAt": null
+}

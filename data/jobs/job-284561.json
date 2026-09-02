@@ -1,0 +1,37 @@
+{
+  "id": "crawled-284561",
+  "company": "뉴뉴게임즈",
+  "title": "[비주얼노벨] 게임 기획 보조 파트 타임",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "기획",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "시나리오/퀘스트",
+    "시스템/컨텐츠 기획",
+    "QA/테스트",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284561",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 콘솔게임 Casual, 기타",
+  "employmentType": "아르바이트(상근), 프리랜서",
+  "deadline": "채용시 마감",
+  "salary": "1개월당 / 1,080,000원\n연봉검색",
+  "experience": "신입",
+  "keywords": "컨셉, 게임기획, 시나리오, 시스템기획, 컨텐츠, 영상제작·편집, QA, QC",
+  "updatedAt": "2026-09-02",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastSeenAt": "2026-09-02T20:26:29.806Z",
+  "lastCrawledAt": "2026-09-02T20:26:29.806Z",
+  "inactiveAt": null
+}
