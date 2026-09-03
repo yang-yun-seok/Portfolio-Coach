@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284600",
+  "company": "뉴젬스튜디오㈜",
+  "title": "[TBH - 태스크바 히어로] 개발PM",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "개발PM",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284600",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "TBH : 태스크바 히어로, 미니 코지 룸",
+  "gameCategory": "온라인PC게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "PM, 개발PM",
+  "updatedAt": "2026-09-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-03T18:21:56.340Z",
+  "lastSeenAt": "2026-09-03T18:21:56.340Z",
+  "lastCrawledAt": "2026-09-03T18:21:56.340Z",
+  "inactiveAt": null
+}

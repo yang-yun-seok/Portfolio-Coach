@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284599",
+  "company": "알로하팩토리",
+  "title": "모바일 캐주얼 게임 애니메이터 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Spine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284599",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "드림레시피, 히어로즈크루, Crown Rumble, Kiss in Public",
+  "gameCategory": "모바일게임 Casual, Arcade",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 캐릭터, 애니메이션, 오브젝트, Unity, spine, 모바일게임, 리깅, 2D애니메이션, 캐릭터애니메이션, Spine2D",
+  "updatedAt": "2026-09-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-03T18:21:56.340Z",
+  "lastSeenAt": "2026-09-03T18:21:56.340Z",
+  "lastCrawledAt": "2026-09-03T18:21:56.340Z",
+  "inactiveAt": null
+}

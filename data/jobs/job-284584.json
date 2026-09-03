@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284584",
+  "company": "㈜하이브로",
+  "title": "[Cocos2D-X] 클라이언트 개발자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "Lua"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284584",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "드래곤빌리지, 드래곤빌리지M, 드래곤빌리지 컬렉션",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C++, Lua, 모바일, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-09-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-03T18:21:56.340Z",
+  "lastSeenAt": "2026-09-03T18:21:56.340Z",
+  "lastCrawledAt": "2026-09-03T18:21:56.340Z",
+  "inactiveAt": null
+}

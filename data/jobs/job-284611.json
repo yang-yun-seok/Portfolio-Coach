@@ -1,0 +1,37 @@
+{
+  "id": "crawled-284611",
+  "company": "시프트업 (SHIFT UP)",
+  "title": "[시프트업] 신규 프로젝트 / 3D 캐릭터 모델러",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "UI/UX 기획",
+    "Unreal Engine",
+    "3ds Max",
+    "Maya",
+    "ZBrush"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284611",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
+  "gameCategory": "멀티플랫폼게임, 관련없음 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, UX·UI, 모델링, 캐릭터",
+  "updatedAt": "2026-09-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-03T18:21:56.340Z",
+  "lastSeenAt": "2026-09-03T18:21:56.340Z",
+  "lastCrawledAt": "2026-09-03T18:21:56.340Z",
+  "inactiveAt": null
+}

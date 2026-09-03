@@ -1,0 +1,37 @@
+{
+  "id": "crawled-284588",
+  "company": "㈜기어세컨드",
+  "title": "[기어세컨드] 게임 플랫폼 개발자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "서버"
+  ],
+  "reqSkills": [
+    "C#",
+    "Unity",
+    "CI/CD",
+    "Git/SVN"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284588",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "슬레이어 키우기, 레츠고 레전드!, 프린세스메이커 : 예언의 아이들",
+  "gameCategory": "모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, 모바일, HTML5, C#, Unity, 유니티, 웹개발, SDK, Jenkins, WebGL, XCode, gradle, git, AndroidStudio, Pod, GitUPM, Webhook",
+  "updatedAt": "2026-09-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-03T18:21:56.340Z",
+  "lastSeenAt": "2026-09-03T18:21:56.340Z",
+  "lastCrawledAt": "2026-09-03T18:21:56.340Z",
+  "inactiveAt": null
+}
