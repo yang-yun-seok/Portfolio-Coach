@@ -1,5 +1,5 @@
 {
-  "id": "crawled-281168",
+  "id": "crawled-284634",
   "company": "넥슨 (NEXON)",
   "title": "[로드나인] 전 부문 모집",
   "role": "클라이언트",
@@ -17,8 +17,8 @@
     "SQL",
     "Unity"
   ],
-  "reqExp": 1,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281168",
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284634",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "로드나인, AVATARA, 로한M",
@@ -26,15 +26,15 @@
   "employmentType": "정규직",
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
-  "experience": "경력 1년 이상",
+  "experience": "경력 3년 이상",
   "keywords": "클라이언트, VisualC++, UX·UI, 배경원화, 모델링, 3DSmax, 캐릭터, 애니메이션, 게임기획, 퀘스트, PM, 시스템기획, 컨텐츠, MS-SQL, DB, 웹개발, 엔엑스쓰리게임즈, NX3GAMES, 로드나인",
-  "updatedAt": "2026-06-10",
+  "updatedAt": "2026-09-04",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-10T22:59:27.902Z",
-  "lastSeenAt": "2026-09-03T18:21:56.340Z",
-  "lastCrawledAt": "2026-09-03T18:21:56.340Z",
+  "firstSeenAt": "2026-09-04T18:05:29.632Z",
+  "lastSeenAt": "2026-09-04T18:05:29.632Z",
+  "lastCrawledAt": "2026-09-04T18:05:29.632Z",
   "inactiveAt": null
 }

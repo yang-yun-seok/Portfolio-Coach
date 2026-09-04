@@ -1,0 +1,36 @@
+{
+  "id": "crawled-284631",
+  "company": "넥슨 (NEXON)",
+  "title": "[플랫폼본부] 개인화솔루션실 백엔드 엔지니어 (계약직)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Python",
+    "Java",
+    "JIRA/Confluence",
+    "SQL",
+    "Redis"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284631",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+  "gameCategory": "온라인PC게임 기타",
+  "employmentType": "계약직 (계약기간 : 9개월)",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "Python, 백엔드개발, 지식그래프",
+  "updatedAt": "2026-09-04",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-04T18:05:29.632Z",
+  "lastSeenAt": "2026-09-04T18:05:29.632Z",
+  "lastCrawledAt": "2026-09-04T18:05:29.632Z",
+  "inactiveAt": null
+}

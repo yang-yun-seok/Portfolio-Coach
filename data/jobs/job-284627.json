@@ -1,5 +1,5 @@
 {
-  "id": "crawled-284626",
+  "id": "crawled-284627",
   "company": "NC",
   "title": "[NC][단기계약직][Project JSY] AAA콘솔 액션RPG 프로젝트 캐릭터 컨셉 모집",
   "role": "아트/UI",
@@ -7,10 +7,11 @@
     "아트/UI"
   ],
   "reqSkills": [
-    "Photoshop"
+    "Photoshop",
+    "Unreal Engine"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284626",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284627",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "리니지, 리니지Ⅱ, AION 등",
@@ -20,13 +21,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "신입",
   "keywords": "캐릭터원화, Photoshop, 캐릭터컨셉아트, 실사캐릭터, 엔씨, 원화시트, 크리처디자인",
-  "updatedAt": "2026-09-03",
+  "updatedAt": "2026-09-04",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-09-03T18:21:56.340Z",
-  "lastSeenAt": "2026-09-03T18:21:56.340Z",
-  "lastCrawledAt": "2026-09-03T18:21:56.340Z",
+  "firstSeenAt": "2026-09-04T18:05:29.632Z",
+  "lastSeenAt": "2026-09-04T18:05:29.632Z",
+  "lastCrawledAt": "2026-09-04T18:05:29.632Z",
   "inactiveAt": null
 }
