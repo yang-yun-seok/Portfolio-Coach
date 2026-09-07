@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284670",
+  "company": "라이온하트 스튜디오",
+  "title": "[오딘-발할라 라이징] UI 디자이너 모집(경력 3년 이상)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284670",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "오딘: 발할라 라이징",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "UX·UI, ui, UI디자이너",
+  "updatedAt": "2026-09-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-07T19:01:11.543Z",
+  "lastSeenAt": "2026-09-07T19:01:11.543Z",
+  "lastCrawledAt": "2026-09-07T19:01:11.543Z",
+  "inactiveAt": null
+}

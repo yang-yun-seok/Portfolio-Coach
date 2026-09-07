@@ -1,5 +1,5 @@
 {
-  "id": "crawled-282400",
+  "id": "crawled-284716",
   "company": "아지트랩스",
   "title": "[아지트랩스] 애니메이터",
   "role": "아트/UI",
@@ -12,7 +12,7 @@
     "Maya"
   ],
   "reqExp": 1,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282400",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284716",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "NGM(개발중)",
@@ -22,13 +22,13 @@
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "경력 1년 이상",
   "keywords": "3D, 애니메이션, 3DMax, Maya, KeyAnimation",
-  "updatedAt": "2026-07-06",
+  "updatedAt": "2026-09-07",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-06T17:43:20.587Z",
-  "lastSeenAt": "2026-09-06T17:30:55.452Z",
-  "lastCrawledAt": "2026-09-06T17:30:55.452Z",
+  "firstSeenAt": "2026-09-07T19:01:11.543Z",
+  "lastSeenAt": "2026-09-07T19:01:11.543Z",
+  "lastCrawledAt": "2026-09-07T19:01:11.543Z",
   "inactiveAt": null
 }
