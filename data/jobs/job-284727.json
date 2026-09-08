@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284727",
+  "company": "㈜컨트롤나인",
+  "title": "[미래시] TA(테크니컬 아티스트)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unreal Engine",
+    "Python"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284727",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "미래시: 보이지 않는 미래",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 09/30(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 엔진, Tool, Unreal, 라이팅, 최적화, 자동화, 서브컬쳐, 서브컬처, 포스트프로세스, 언리얼5, 머티리얼",
+  "updatedAt": "2026-09-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-08T18:18:58.525Z",
+  "lastSeenAt": "2026-09-08T18:18:58.525Z",
+  "lastCrawledAt": "2026-09-08T18:18:58.525Z",
+  "inactiveAt": null
+}

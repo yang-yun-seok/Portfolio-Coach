@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284741",
+  "company": "레드징코게임즈",
+  "title": "[레드징코게임즈]게임기획(시스템) 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284741",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "임진왜란-조선의반격",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "컨셉, 게임기획, 시나리오, 밸런스기획, 시스템기획",
+  "updatedAt": "2026-09-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-08T18:18:58.525Z",
+  "lastSeenAt": "2026-09-08T18:18:58.525Z",
+  "lastCrawledAt": "2026-09-08T18:18:58.525Z",
+  "inactiveAt": null
+}
