@@ -1,0 +1,38 @@
+{
+  "id": "crawled-284718",
+  "company": "㈜토스트",
+  "title": "겜성있는 인디게임 기획자를 찾습니다",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284718",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "정복소녀, 엔젤나이츠, 원펀치, 엘몬스터 아일랜드, 스윗가든",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Shooting",
+  "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정), 아르바이트(상근)",
+  "deadline": "~ 09/30(수)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, UX·UI, 레벨, 게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, UI·UX",
+  "updatedAt": "2026-09-09",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-09T18:20:22.770Z",
+  "lastSeenAt": "2026-09-09T18:20:22.770Z",
+  "lastCrawledAt": "2026-09-09T18:20:22.770Z",
+  "inactiveAt": null
+}

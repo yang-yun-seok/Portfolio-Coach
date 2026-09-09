@@ -1,0 +1,34 @@
+{
+  "id": "crawled-284759",
+  "company": "엠게임",
+  "title": "[엠게임] 소프트웨어 UI/UX 기획자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android",
+    "Figma"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284759",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "열혈강호, 나이트, 영웅, 귀혼, 풍림화산, 홀릭 등",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 10/09(금)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, iOS, Android",
+  "updatedAt": "2026-09-09",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-09T18:20:22.770Z",
+  "lastSeenAt": "2026-09-09T18:20:22.770Z",
+  "lastCrawledAt": "2026-09-09T18:20:22.770Z",
+  "inactiveAt": null
+}

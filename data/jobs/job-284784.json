@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284784",
+  "company": "민들레소프트",
+  "title": "[신규 서브컬쳐 RPG] 기획자 모집",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "Unity"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284784",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 1개월)",
+  "deadline": "~ 09/30(수)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "밸런스기획, 레벨기획, 시스템기획",
+  "updatedAt": "2026-09-09",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-09T18:20:22.770Z",
+  "lastSeenAt": "2026-09-09T18:20:22.770Z",
+  "lastCrawledAt": "2026-09-09T18:20:22.770Z",
+  "inactiveAt": null
+}

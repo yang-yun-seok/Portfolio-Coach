@@ -1,5 +1,5 @@
 {
-  "id": "crawled-284105",
+  "id": "crawled-284765",
   "company": "㈜슈퍼캣",
   "title": "[슈퍼캣 / 도깨비의세계] 전투 디자인 기획자 모집 (경력)",
   "role": "기획",
@@ -12,7 +12,7 @@
     "Unity"
   ],
   "reqExp": 2,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284105",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284765",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "바람의나라: 연, 도깨비의세계, Project CM, Project AS",
@@ -22,13 +22,13 @@
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "모바일, 게임운영, 기획, 밸런스, 콘텐츠, 콘텐츠기획, 전투콘텐츠",
-  "updatedAt": "2026-08-24",
+  "updatedAt": "2026-09-09",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-08-24T15:39:46.934Z",
-  "lastSeenAt": "2026-09-08T18:18:58.525Z",
-  "lastCrawledAt": "2026-09-08T18:18:58.525Z",
+  "firstSeenAt": "2026-09-09T18:20:22.770Z",
+  "lastSeenAt": "2026-09-09T18:20:22.770Z",
+  "lastCrawledAt": "2026-09-09T18:20:22.770Z",
   "inactiveAt": null
 }

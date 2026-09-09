@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284773",
+  "company": "아퀴녹스",
+  "title": "[아퀴녹스]신규프로젝트 애니메이터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284773",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 3DSmax, 애니메이션",
+  "updatedAt": "2026-09-09",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-09T18:20:22.770Z",
+  "lastSeenAt": "2026-09-09T18:20:22.770Z",
+  "lastCrawledAt": "2026-09-09T18:20:22.770Z",
+  "inactiveAt": null
+}
