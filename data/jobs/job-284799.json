@@ -1,0 +1,39 @@
+{
+  "id": "crawled-284799",
+  "company": "엔엑스피",
+  "title": "모바일 RPG 라이브서비스 게임기획자 경력직, 데이터·문제해결·IP",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "UI/UX 기획",
+    "JIRA/Confluence",
+    "SQL",
+    "데이터 분석",
+    "Excel"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284799",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 10/10(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 컨셉, 게임기획, PM, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, UI·UX",
+  "updatedAt": "2026-09-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastCrawledAt": "2026-09-10T18:05:11.152Z",
+  "inactiveAt": null
+}

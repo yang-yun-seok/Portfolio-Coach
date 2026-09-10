@@ -1,0 +1,36 @@
+{
+  "id": "crawled-284818",
+  "company": "(주)무브인터렉티브",
+  "title": "[무브인터렉티브] MMORPG 게임 서버 개발자 채용",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "Machine Learning",
+    "Redis",
+    "CI/CD"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284818",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "디지몬슈퍼럼블, 디지몬마스터즈, 디지몬RPG, 베어브릭히어로즈",
+  "gameCategory": "온라인PC게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 11/10(화)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "클라이언트, C, C++, MySQL, AI, Redis, 게임프로그래밍, 게임프로그래머, AWS, AZURE, Jenkins, PostgreSQL, GCP",
+  "updatedAt": "2026-09-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastCrawledAt": "2026-09-10T18:05:11.152Z",
+  "inactiveAt": null
+}

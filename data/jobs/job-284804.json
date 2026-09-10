@@ -1,0 +1,33 @@
+{
+  "id": "crawled-284804",
+  "company": "NC",
+  "title": "[NC][Horizon Steel Frontiers] 엔진 프로그래머 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unreal Engine"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284804",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 10/31(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "엔진개발, 최적화, 엔진프로그래머, UnrealEngine5, 엔씨, 엔진커스터마이징",
+  "updatedAt": "2026-09-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastCrawledAt": "2026-09-10T18:05:11.152Z",
+  "inactiveAt": null
+}

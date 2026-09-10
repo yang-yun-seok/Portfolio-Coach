@@ -1,0 +1,37 @@
+{
+  "id": "crawled-284817",
+  "company": "(주)무브인터렉티브",
+  "title": "[무브인터렉티브] MMORPG 전투 콘텐츠 기획자 경력자 채용",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "Machine Learning",
+    "전투/액션 기획"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284817",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "디지몬슈퍼럼블, 디지몬마스터즈, 디지몬RPG, 베어브릭히어로즈",
+  "gameCategory": "온라인PC게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 11/10(화)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "레벨, 컨셉, 애니메이션, 게임기획, 시나리오, 퀘스트, 밸런스기획, 시스템기획, 컨텐츠, AI, 전투",
+  "updatedAt": "2026-09-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastCrawledAt": "2026-09-10T18:05:11.152Z",
+  "inactiveAt": null
+}

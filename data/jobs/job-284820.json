@@ -1,0 +1,36 @@
+{
+  "id": "crawled-284820",
+  "company": "㈜플레이하드",
+  "title": "UI/UX 디자이너",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "iOS",
+    "Android",
+    "UI/UX 기획",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284820",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "몬몬마스터즈, 퀸즈레터, 우르르수비대, 우르르용병단, 히어로팩토리, 공장 주식회사",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 4개월)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, iOS, Android, SNG, 인터페이스, UX·UI, Unity, 유니티, 시각디자인",
+  "updatedAt": "2026-09-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastCrawledAt": "2026-09-10T18:05:11.152Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284826",
+  "company": "스튜디오엔엑스",
+  "title": "[배경] 3D 배경 모델러 신입/경력자 모집합니다.",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "ZBrush"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284826",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "모바일게임 온라인게임 콘텐츠 아웃소싱",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 3D, 배경, 맵핑, 로우폴리곤, 3DSmax, 캐릭터, 텍스쳐, 하이폴리곤, Zbrush, Max",
+  "updatedAt": "2026-09-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastCrawledAt": "2026-09-10T18:05:11.152Z",
+  "inactiveAt": null
+}

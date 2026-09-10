@@ -1,16 +1,17 @@
 {
-  "id": "crawled-282943",
+  "id": "crawled-284821",
   "company": "펄어비스 (Pearl Abyss)",
-  "title": "[펄어비스] [아트 인턴십] 배경 모델링 및 레벨",
+  "title": "[펄어비스] [아트 인턴십] 아트 비주얼 디자인",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
   ],
   "reqSkills": [
-    "3D"
+    "3D",
+    "Illustrator"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282943",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284821",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "검은사막, 붉은사막",
@@ -19,14 +20,14 @@
   "deadline": "채용시 마감",
   "salary": "1개월당 / 3,000,000원\n연봉검색",
   "experience": "무관",
-  "keywords": "3D, 배경",
-  "updatedAt": "2026-07-21",
+  "keywords": "3D, 배경, 일러스트, 배경원화, 비주얼디자인",
+  "updatedAt": "2026-09-10",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-21T16:24:30.115Z",
-  "lastSeenAt": "2026-09-09T18:20:22.770Z",
-  "lastCrawledAt": "2026-09-09T18:20:22.770Z",
+  "firstSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastSeenAt": "2026-09-10T18:05:11.152Z",
+  "lastCrawledAt": "2026-09-10T18:05:11.152Z",
   "inactiveAt": null
 }
