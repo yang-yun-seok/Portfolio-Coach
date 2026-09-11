@@ -1,5 +1,5 @@
 {
-  "id": "crawled-281666",
+  "id": "crawled-284853",
   "company": "시프트업 (SHIFT UP)",
   "title": "[시프트업] 스텔라 블레이드 차기작 / 개발 PM",
   "role": "기획",
@@ -10,7 +10,7 @@
     "JIRA/Confluence"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281666",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284853",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
@@ -20,13 +20,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "PM, 멀티플랫폼, 콘솔, 신작, 시프트업, EVE",
-  "updatedAt": "2026-06-26",
+  "updatedAt": "2026-09-11",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-26T17:01:21.813Z",
-  "lastSeenAt": "2026-09-10T18:05:11.152Z",
-  "lastCrawledAt": "2026-09-10T18:05:11.152Z",
+  "firstSeenAt": "2026-09-11T18:10:58.171Z",
+  "lastSeenAt": "2026-09-11T18:10:58.171Z",
+  "lastCrawledAt": "2026-09-11T18:10:58.171Z",
   "inactiveAt": null
 }

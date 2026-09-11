@@ -1,0 +1,30 @@
+{
+  "id": "crawled-284844",
+  "company": "퍼즐원스튜디오",
+  "title": "[퍼즐원스튜디오] 클라이언트 프로그래머",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284844",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Word Cookies!, Jewels Magic, Bubble Pop Origin",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "계약직 (계약기간 : 6개월)",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, API",
+  "updatedAt": "2026-09-11",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-11T18:10:58.171Z",
+  "lastSeenAt": "2026-09-11T18:10:58.171Z",
+  "lastCrawledAt": "2026-09-11T18:10:58.171Z",
+  "inactiveAt": null
+}
