@@ -21,13 +21,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "AI, AWS, GCP, 벡엔드, PublicCloud, 바이브코딩, Latency최적화, IaC(Terraform)",
-  "updatedAt": "2026-09-12",
+  "updatedAt": "2026-09-13",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-09-12T17:41:43.318Z",
-  "lastSeenAt": "2026-09-12T17:41:43.318Z",
-  "lastCrawledAt": "2026-09-12T17:41:43.318Z",
+  "firstSeenAt": "2026-09-13T17:56:01.189Z",
+  "lastSeenAt": "2026-09-13T17:56:01.189Z",
+  "lastCrawledAt": "2026-09-13T17:56:01.189Z",
   "inactiveAt": null
 }

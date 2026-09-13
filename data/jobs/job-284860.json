@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284860",
+  "company": "㈜트라이닷",
+  "title": "[트라이닷] 언리얼 시네마틱 카메라 / 라이팅 아티스트 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Unreal Engine",
+    "Maya"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284860",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "멀티플랫폼게임 Simulation",
+  "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정)",
+  "deadline": "~ 10/13(화)",
+  "salary": "3,400~3,600만원 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 3DSmax, 영상제작·편집",
+  "updatedAt": "2026-09-13",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-13T17:56:01.189Z",
+  "lastSeenAt": "2026-09-13T17:56:01.189Z",
+  "lastCrawledAt": "2026-09-13T17:56:01.189Z",
+  "inactiveAt": null
+}
