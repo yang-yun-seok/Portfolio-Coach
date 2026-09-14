@@ -1,5 +1,5 @@
 {
-  "id": "crawled-284850",
+  "id": "crawled-284893",
   "company": "㈜애프터타임",
   "title": "[작가/프리랜서/계약] 미소녀 시뮬레이션 프로젝트 아티스트 모집",
   "role": "아트/UI",
@@ -12,7 +12,7 @@
     "Unity"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284850",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284893",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "대학조교생활, 벚나무의정령을아이돌로만드는법, 술도사랑도어려운아가씨",
@@ -22,13 +22,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "배경, 원화, 일러스트, 캐릭터원화, 배경원화, 포토샵, 캐릭터",
-  "updatedAt": "2026-09-11",
+  "updatedAt": "2026-09-14",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-09-11T18:10:58.171Z",
-  "lastSeenAt": "2026-09-13T17:56:01.189Z",
-  "lastCrawledAt": "2026-09-13T17:56:01.189Z",
+  "firstSeenAt": "2026-09-14T21:19:44.446Z",
+  "lastSeenAt": "2026-09-14T21:19:44.446Z",
+  "lastCrawledAt": "2026-09-14T21:19:44.446Z",
   "inactiveAt": null
 }

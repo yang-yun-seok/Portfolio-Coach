@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284868",
+  "company": "유티플러스인터랙티브",
+  "title": "[유티플러스] 프로젝트V 기획자 채용",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284868",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "하이큐 터치더드림, 탈리온, 쉐도우블러드, 디토랜드",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "레벨, 컨셉, 게임기획, 퀘스트, 밸런스기획, 레벨기획, 컨텐츠, 컨텐츠기획, 콘텐츠",
+  "updatedAt": "2026-09-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-14T21:19:44.446Z",
+  "lastSeenAt": "2026-09-14T21:19:44.446Z",
+  "lastCrawledAt": "2026-09-14T21:19:44.446Z",
+  "inactiveAt": null
+}

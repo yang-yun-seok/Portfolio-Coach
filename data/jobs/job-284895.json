@@ -1,18 +1,17 @@
 {
-  "id": "crawled-283270",
+  "id": "crawled-284895",
   "company": "NC",
-  "title": "[NC][Project JSY] AAA급 콘솔 액션RPG의 시네마틱 연출 아티스트 모집",
+  "title": "[NC][Horizon Steel Frontiers] 시네마팀 애니메이터 모집",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
   ],
   "reqSkills": [
-    "3ds Max",
     "Unreal Engine",
     "Maya"
   ],
   "reqExp": 2,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283270",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284895",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "리니지, 리니지Ⅱ, AION 등",
@@ -21,14 +20,14 @@
   "deadline": "~ 09/30(수)",
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 2년 이상",
-  "keywords": "3DSmax, 시네마틱, 컷씬, MotionBuilder, Unreal5, LevelSequencer",
-  "updatedAt": "2026-07-29",
+  "keywords": "애니메이션, 시네마틱, 모션캡쳐, UnrealEngine, KeyFrame, 페이셜애니메이션, 엔씨",
+  "updatedAt": "2026-09-14",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-29T22:08:22.010Z",
-  "lastSeenAt": "2026-09-13T17:56:01.189Z",
-  "lastCrawledAt": "2026-09-13T17:56:01.189Z",
+  "firstSeenAt": "2026-09-14T21:19:44.446Z",
+  "lastSeenAt": "2026-09-14T21:19:44.446Z",
+  "lastCrawledAt": "2026-09-14T21:19:44.446Z",
   "inactiveAt": null
 }
