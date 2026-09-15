@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284931",
+  "company": "빌리네어게임즈",
+  "title": "[빌리네어게임즈] 게임 기획 인재 채용",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시나리오/퀘스트",
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284931",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "변신 키우기, 블레이드 키우기",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 게임기획, 시나리오, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
+  "updatedAt": "2026-09-15",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-15T18:44:11.752Z",
+  "lastSeenAt": "2026-09-15T18:44:11.752Z",
+  "lastCrawledAt": "2026-09-15T18:44:11.752Z",
+  "inactiveAt": null
+}

@@ -1,5 +1,5 @@
 {
-  "id": "crawled-282940",
+  "id": "crawled-284945",
   "company": "펄어비스 (Pearl Abyss)",
   "title": "[펄어비스] [아트 인턴십] 캐릭터 모델링",
   "role": "아트/UI",
@@ -10,7 +10,7 @@
     "3D"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282940",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284945",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "검은사막, 붉은사막",
@@ -20,13 +20,13 @@
   "salary": "1개월당 / 3,000,000원\n연봉검색",
   "experience": "무관",
   "keywords": "3D, 캐릭터",
-  "updatedAt": "2026-07-21",
+  "updatedAt": "2026-09-15",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-21T16:24:30.115Z",
-  "lastSeenAt": "2026-09-14T21:19:44.446Z",
-  "lastCrawledAt": "2026-09-14T21:19:44.446Z",
+  "firstSeenAt": "2026-09-15T18:44:11.752Z",
+  "lastSeenAt": "2026-09-15T18:44:11.752Z",
+  "lastCrawledAt": "2026-09-15T18:44:11.752Z",
   "inactiveAt": null
 }

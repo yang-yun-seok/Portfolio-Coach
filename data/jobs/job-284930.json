@@ -1,0 +1,35 @@
+{
+  "id": "crawled-284930",
+  "company": "㈜퍼스트스파크게임즈",
+  "title": "[NC-퍼스트스파크게임즈][단기계약직][TL] 리거(Rigger) 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Maya",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284930",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "THRONE AND LIBERTY",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "계약직 (계약기간 : 3개월)",
+  "deadline": "~ 11/15(일)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "3D, 3DSmax, Maya",
+  "updatedAt": "2026-09-15",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-15T18:44:11.752Z",
+  "lastSeenAt": "2026-09-15T18:44:11.752Z",
+  "lastCrawledAt": "2026-09-15T18:44:11.752Z",
+  "inactiveAt": null
+}

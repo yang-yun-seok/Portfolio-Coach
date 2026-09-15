@@ -1,17 +1,18 @@
 {
-  "id": "crawled-282820",
+  "id": "crawled-284939",
   "company": "넷마블 (Netmarble)",
-  "title": "[넷마블몬스터] 몬길 STAR DIVE 게임디자인(레벨)",
+  "title": "[넷마블몬스터] 몬길 STAR DIVE 게임디자인 (시나리오)",
   "role": "클라이언트",
   "roles": [
     "클라이언트",
     "기획"
   ],
   "reqSkills": [
-    "레벨 디자인"
+    "시나리오/퀘스트",
+    "시스템/컨텐츠 기획"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282820",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284939",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "마블퓨처파이트/몬스터길들이기/레이븐/레이븐2 外",
@@ -20,14 +21,14 @@
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "무관",
-  "keywords": "레벨, 게임기획, 레벨기획, 게임디자인",
-  "updatedAt": "2026-07-16",
+  "keywords": "컨셉, 게임기획, 시나리오, 컨텐츠, 게임디자인, 설정",
+  "updatedAt": "2026-09-15",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-16T16:18:50.761Z",
-  "lastSeenAt": "2026-09-14T21:19:44.446Z",
-  "lastCrawledAt": "2026-09-14T21:19:44.446Z",
+  "firstSeenAt": "2026-09-15T18:44:11.752Z",
+  "lastSeenAt": "2026-09-15T18:44:11.752Z",
+  "lastCrawledAt": "2026-09-15T18:44:11.752Z",
   "inactiveAt": null
 }
