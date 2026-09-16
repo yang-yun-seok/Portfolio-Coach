@@ -1,18 +1,16 @@
 {
-  "id": "crawled-283086",
+  "id": "crawled-284976",
   "company": "컴투스 (Com2uS)",
-  "title": "[컴투스홀딩] [스타세일러] 사업PM (8년 이상)",
+  "title": "[컴투스] [일본 IP 프로젝트] 개발PM (3년 이상)",
   "role": "클라이언트",
   "roles": [
     "클라이언트",
     "기획",
     "PM/운영"
   ],
-  "reqSkills": [
-    "경제/BM 설계"
-  ],
-  "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283086",
+  "reqSkills": [],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284976",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "서머너즈워, 프로야구시리즈, 낚시의신, 서머너즈워:백년전쟁 등",
@@ -20,15 +18,15 @@
   "employmentType": "정규직",
   "deadline": "상시채용",
   "salary": "회사내규에 따름\n연봉검색",
-  "experience": "무관",
-  "keywords": "PM, 기획, 운영, 전략, 시장조사, 지표분석, 이벤트기획, BM, VOC관리",
-  "updatedAt": "2026-07-24",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 게임기획, 게임프로그래밍, 게임프로그래머, 일정관리, 프로세스수립, 프로젝트개발",
+  "updatedAt": "2026-09-16",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-24T16:35:53.442Z",
-  "lastSeenAt": "2026-09-15T18:44:11.752Z",
-  "lastCrawledAt": "2026-09-15T18:44:11.752Z",
+  "firstSeenAt": "2026-09-16T18:40:15.855Z",
+  "lastSeenAt": "2026-09-16T18:40:15.855Z",
+  "lastCrawledAt": "2026-09-16T18:40:15.855Z",
   "inactiveAt": null
 }
