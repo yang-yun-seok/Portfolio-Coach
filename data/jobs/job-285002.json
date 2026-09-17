@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285002",
+  "company": "실로폰㈜",
+  "title": "[The IRONY] 유니티 게임 클라이언트 프로그래머 (PC/콘솔)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Git/SVN"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285002",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "아이러니",
+  "gameCategory": "콘솔게임 Shooting",
+  "employmentType": "계약직 (계약기간 : 협의 후 결정)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "클라이언트, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-09-17",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-17T18:49:13.945Z",
+  "lastSeenAt": "2026-09-17T18:49:13.945Z",
+  "lastCrawledAt": "2026-09-17T18:49:13.945Z",
+  "inactiveAt": null
+}

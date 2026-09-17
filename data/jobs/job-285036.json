@@ -1,5 +1,5 @@
 {
-  "id": "crawled-282026",
+  "id": "crawled-285036",
   "company": "시프트업 (SHIFT UP)",
   "title": "[시프트업] 프로젝트 스피릿 / 2D 스토리보드 아티스트",
   "role": "기획",
@@ -11,7 +11,7 @@
     "Unreal Engine"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282026",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285036",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
@@ -21,13 +21,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "게임기획, 스토리보드, 콘티",
-  "updatedAt": "2026-06-29",
+  "updatedAt": "2026-09-17",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-29T19:52:59.134Z",
-  "lastSeenAt": "2026-09-16T18:40:15.855Z",
-  "lastCrawledAt": "2026-09-16T18:40:15.855Z",
+  "firstSeenAt": "2026-09-17T18:49:13.945Z",
+  "lastSeenAt": "2026-09-17T18:49:13.945Z",
+  "lastCrawledAt": "2026-09-17T18:49:13.945Z",
   "inactiveAt": null
 }

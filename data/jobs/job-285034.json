@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285034",
+  "company": "루트쓰리게임즈",
+  "title": "[신작IP] 도트 아트 제너럴리스트 / Pixel Artist 채용",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "도트 아트",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285034",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "데미갓 키우기",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직, 계약직 (계약기간 : 1년)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "인터페이스, 도트, 애니메이션, 이펙트, FX",
+  "updatedAt": "2026-09-17",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-17T18:49:13.945Z",
+  "lastSeenAt": "2026-09-17T18:49:13.945Z",
+  "lastCrawledAt": "2026-09-17T18:49:13.945Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285021",
+  "company": "브이에이게임즈",
+  "title": "[Project MAIDEN] UI 디자이너 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285021",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "아우터플레인",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 인터페이스, UX·UI",
+  "updatedAt": "2026-09-17",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-17T18:49:13.945Z",
+  "lastSeenAt": "2026-09-17T18:49:13.945Z",
+  "lastCrawledAt": "2026-09-17T18:49:13.945Z",
+  "inactiveAt": null
+}

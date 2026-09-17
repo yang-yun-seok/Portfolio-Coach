@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285024",
+  "company": "㈜마이턴",
+  "title": "게임 프로그래머 정규직 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "iOS",
+    "Android",
+    "Unity"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285024",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "라바 서바이벌",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 10/17(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "C, C++, 모바일, iOS, Android, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-09-17",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-17T18:49:13.945Z",
+  "lastSeenAt": "2026-09-17T18:49:13.945Z",
+  "lastCrawledAt": "2026-09-17T18:49:13.945Z",
+  "inactiveAt": null
+}

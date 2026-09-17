@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285027",
+  "company": "스마일게이트 (Smilegate)",
+  "title": "[에픽세븐] 컨텐츠 프로그래머",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "Lua",
+    "C#",
+    "JavaScript"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285027",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "에픽세븐, 카오스 제로 나이트메어",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "C, C++, Lua, C#, Ruby, JAVASCRIPT",
+  "updatedAt": "2026-09-17",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-17T18:49:13.945Z",
+  "lastSeenAt": "2026-09-17T18:49:13.945Z",
+  "lastCrawledAt": "2026-09-17T18:49:13.945Z",
+  "inactiveAt": null
+}
