@@ -1,0 +1,39 @@
+{
+  "id": "crawled-285053",
+  "company": "㈜매드엔진",
+  "title": "[NX 스튜디오] [Project TAL] 리깅 TA 모집 (경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "iOS",
+    "Android",
+    "3ds Max",
+    "Maya",
+    "Python",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285053",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "나이트 크로우",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 10/18(일)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, iOS, Android, 3DSmax, 애니메이션, Maya",
+  "updatedAt": "2026-09-18",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-18T18:06:40.983Z",
+  "lastSeenAt": "2026-09-18T18:06:40.983Z",
+  "lastCrawledAt": "2026-09-18T18:06:40.983Z",
+  "inactiveAt": null
+}

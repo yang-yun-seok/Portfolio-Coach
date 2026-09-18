@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285072",
+  "company": "더그레이트쇼",
+  "title": "[더그레이트쇼] FMV 게임 개발자 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285072",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "웹게임 Simulation",
+  "employmentType": "정규직, 계약직 (계약기간 : 1년), 프리랜서",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, 컨텐츠, 유료화, Unity, FMV",
+  "updatedAt": "2026-09-18",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-18T18:06:40.983Z",
+  "lastSeenAt": "2026-09-18T18:06:40.983Z",
+  "lastCrawledAt": "2026-09-18T18:06:40.983Z",
+  "inactiveAt": null
+}

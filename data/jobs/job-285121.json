@@ -1,0 +1,36 @@
+{
+  "id": "crawled-285121",
+  "company": "블로믹스",
+  "title": "[경력] 미드코어 게임 서비스PM 채용",
+  "role": "PM/운영",
+  "roles": [
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "JIRA/Confluence",
+    "SQL",
+    "데이터 분석",
+    "Excel"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285121",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 11/18(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "게임운영, GM",
+  "updatedAt": "2026-09-18",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-18T18:06:40.983Z",
+  "lastSeenAt": "2026-09-18T18:06:40.983Z",
+  "lastCrawledAt": "2026-09-18T18:06:40.983Z",
+  "inactiveAt": null
+}

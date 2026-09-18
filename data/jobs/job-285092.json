@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285092",
+  "company": "Crescent-O",
+  "title": "[Crescent-O] 포트리스사가 2D 원화가",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Illustrator"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285092",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "계약직 (계약기간 : 6개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "원화, 일러스트, 캐릭터원화, 캐릭터, 이펙트, FX, 디렉터, AD, 시네마틱",
+  "updatedAt": "2026-09-18",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-18T18:06:40.983Z",
+  "lastSeenAt": "2026-09-18T18:06:40.983Z",
+  "lastCrawledAt": "2026-09-18T18:06:40.983Z",
+  "inactiveAt": null
+}
