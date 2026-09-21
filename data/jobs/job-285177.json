@@ -1,5 +1,5 @@
 {
-  "id": "crawled-281974",
+  "id": "crawled-285177",
   "company": "넥슨 (NEXON)",
   "title": "[개발실] 모션 캡쳐 운용 담당",
   "role": "클라이언트",
@@ -10,7 +10,7 @@
   ],
   "reqSkills": [],
   "reqExp": 1,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=281974",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285177",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "로드나인, AVATARA, 로한M",
@@ -20,13 +20,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 1년 이상",
   "keywords": "애니메이션, 오브젝트, 이펙트, 게임기획, 액션, 모션캡쳐, 액팅, 엔엑스쓰리게임즈, NX3GAMES",
-  "updatedAt": "2026-06-26",
+  "updatedAt": "2026-09-21",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-06-26T17:01:21.813Z",
-  "lastSeenAt": "2026-09-20T17:56:40.259Z",
-  "lastCrawledAt": "2026-09-20T17:56:40.259Z",
+  "firstSeenAt": "2026-09-21T19:54:48.253Z",
+  "lastSeenAt": "2026-09-21T19:54:48.253Z",
+  "lastCrawledAt": "2026-09-21T19:54:48.253Z",
   "inactiveAt": null
 }

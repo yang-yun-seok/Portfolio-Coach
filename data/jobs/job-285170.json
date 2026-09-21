@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285170",
+  "company": "㈜에임드",
+  "title": "[이클립스팀] 애니메이터",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285170",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "뉴포리아",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 3D, 모델링, 3DSmax, 캐릭터, 애니메이션, 3DMax, 이펙트, FX, 전략, 캐주얼, 아트, 아티스트, Casual, SLG, 4X",
+  "updatedAt": "2026-09-21",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-21T19:54:48.253Z",
+  "lastSeenAt": "2026-09-21T19:54:48.253Z",
+  "lastCrawledAt": "2026-09-21T19:54:48.253Z",
+  "inactiveAt": null
+}
