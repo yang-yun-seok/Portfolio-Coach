@@ -1,18 +1,18 @@
 {
-  "id": "crawled-283577",
+  "id": "crawled-285213",
   "company": "컴투스 (Com2uS)",
-  "title": "[컴투스] [컴투스프로야구V26] 사업PM (1-5년)",
+  "title": "[컴투스] AI AGENT 개발자 (3년 이상)",
   "role": "클라이언트",
   "roles": [
     "클라이언트",
-    "기획",
-    "PM/운영"
+    "AI/데이터"
   ],
   "reqSkills": [
-    "경제/BM 설계"
+    "Machine Learning",
+    "Python"
   ],
-  "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283577",
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285213",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "서머너즈워, 프로야구시리즈, 낚시의신, 서머너즈워:백년전쟁 등",
@@ -20,15 +20,15 @@
   "employmentType": "정규직",
   "deadline": "상시채용",
   "salary": "회사내규에 따름\n연봉검색",
-  "experience": "무관",
-  "keywords": "PM, 기획, 운영, 전략, 시장조사, 지표분석, 이벤트기획, BM, VOC관리",
-  "updatedAt": "2026-08-06",
+  "experience": "경력 3년 이상",
+  "keywords": "API, AI, Tensorflow, ML, ,Python, PyTorch, DL, LLM",
+  "updatedAt": "2026-09-22",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-08-06T23:55:58.517Z",
-  "lastSeenAt": "2026-09-21T19:54:48.253Z",
-  "lastCrawledAt": "2026-09-21T19:54:48.253Z",
+  "firstSeenAt": "2026-09-22T20:48:11.167Z",
+  "lastSeenAt": "2026-09-22T20:48:11.167Z",
+  "lastCrawledAt": "2026-09-22T20:48:11.167Z",
   "inactiveAt": null
 }
