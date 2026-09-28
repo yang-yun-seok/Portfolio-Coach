@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285324",
+  "company": "㈜님블뉴런",
+  "title": "[이터널 리턴] UI/UX 디자인 담당자 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285324",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "이터널 리턴",
+  "gameCategory": "온라인PC게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "인터페이스, UX·UI",
+  "updatedAt": "2026-09-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-28T21:06:29.301Z",
+  "lastSeenAt": "2026-09-28T21:06:29.301Z",
+  "lastCrawledAt": "2026-09-28T21:06:29.301Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285328",
+  "company": "NC",
+  "title": "[NC][Horizon Steel Frontiers] 인게임 및 시네마 라이팅 아티스트 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI",
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285328",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 11/27(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "UnrealEngine5, 엔씨, 인게임라이팅, 시네마틱라이팅, 게임라이팅, LightingArtist",
+  "updatedAt": "2026-09-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-28T21:06:29.301Z",
+  "lastSeenAt": "2026-09-28T21:06:29.301Z",
+  "lastCrawledAt": "2026-09-28T21:06:29.301Z",
+  "inactiveAt": null
+}

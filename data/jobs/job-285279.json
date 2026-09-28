@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285279",
+  "company": "넥슨 (NEXON)",
+  "title": "[낙원 LAST PARADISE] 월드 빌더",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3ds Max",
+    "ZBrush"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285279",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+  "gameCategory": "온라인PC게임 기타",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "게임아트, 월드빌더, Unreal5",
+  "updatedAt": "2026-09-28",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-28T21:06:29.301Z",
+  "lastSeenAt": "2026-09-28T21:06:29.301Z",
+  "lastCrawledAt": "2026-09-28T21:06:29.301Z",
+  "inactiveAt": null
+}
