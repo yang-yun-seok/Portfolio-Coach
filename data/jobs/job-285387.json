@@ -1,0 +1,38 @@
+{
+  "id": "crawled-285387",
+  "company": "㈜블랙스톰",
+  "title": "언리얼5 RPG 게임 프로젝트 신규 개발자 채용 (게임기획·캐릭터모델링·UI)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "3D",
+    "시나리오/퀘스트",
+    "시스템/컨텐츠 기획",
+    "Unreal Engine",
+    "ZBrush",
+    "Excel"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285387",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리메멘토, 메모리스, 페어리트윈스",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, 모바일, 3D, 캐릭터, 애니메이션, 이펙트, 시나리오, PM, 컨텐츠, Mobile, 언리얼",
+  "updatedAt": "2026-09-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-29T19:48:59.698Z",
+  "lastSeenAt": "2026-09-29T19:48:59.698Z",
+  "lastCrawledAt": "2026-09-29T19:48:59.698Z",
+  "inactiveAt": null
+}

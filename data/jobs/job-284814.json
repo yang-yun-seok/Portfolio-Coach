@@ -1,0 +1,36 @@
+{
+  "id": "crawled-284814",
+  "company": "㈜매드엔진",
+  "title": "[매드엔진] FQA 담당자 모집 (경력)",
+  "role": "PM/운영",
+  "roles": [
+    "기획",
+    "PM/운영",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "QA/테스트",
+    "경제/BM 설계",
+    "Excel"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284814",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "나이트 크로우",
+  "gameCategory": "모바일게임, 콘솔게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 10/30(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "게임기획, 게임운영, QA, 사업, 전략, 이벤트, BM, 사업담당, Web3",
+  "updatedAt": "2026-09-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-29T19:48:59.698Z",
+  "lastSeenAt": "2026-09-29T19:48:59.698Z",
+  "lastCrawledAt": "2026-09-29T19:48:59.698Z",
+  "inactiveAt": null
+}

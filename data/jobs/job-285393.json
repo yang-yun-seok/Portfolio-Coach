@@ -1,7 +1,7 @@
 {
-  "id": "crawled-282644",
+  "id": "crawled-285393",
   "company": "시프트업 (SHIFT UP)",
-  "title": "[시프트업] 승리의 여신 니케 / 2D 캐릭터 원화가",
+  "title": "[시프트업] 승리의 여신 니케 / 2D 캐릭터 원화가(일러스트 파트)",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
@@ -10,7 +10,7 @@
     "Illustrator"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282644",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285393",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "승리의 여신: 니케, 스텔라 블레이드, 데스티니차일드",
@@ -20,13 +20,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "모바일, 원화, 일러스트, 캐릭터원화, 컨셉, 핸드드로잉, 캐릭터, NIKKE, 니케, 승리의여신니케",
-  "updatedAt": "2026-07-13",
+  "updatedAt": "2026-09-29",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-13T17:14:11.928Z",
-  "lastSeenAt": "2026-09-28T21:06:29.301Z",
-  "lastCrawledAt": "2026-09-28T21:06:29.301Z",
+  "firstSeenAt": "2026-09-29T19:48:59.698Z",
+  "lastSeenAt": "2026-09-29T19:48:59.698Z",
+  "lastCrawledAt": "2026-09-29T19:48:59.698Z",
   "inactiveAt": null
 }
