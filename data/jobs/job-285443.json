@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285443",
+  "company": "㈜앤투조이",
+  "title": "[ 서브컬쳐 수집형 RPG ] 3D 애니메이션 (Maya 사용 가능자)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Maya",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285443",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 11/30(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 캐릭터, 애니메이션, 3DMax, Maya, KeyAnimation",
+  "updatedAt": "2026-09-30",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-30T19:50:55.419Z",
+  "lastSeenAt": "2026-09-30T19:50:55.419Z",
+  "lastCrawledAt": "2026-09-30T19:50:55.419Z",
+  "inactiveAt": null
+}

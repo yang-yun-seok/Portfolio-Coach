@@ -1,0 +1,32 @@
+{
+  "id": "crawled-285456",
+  "company": "넷마블컴퍼니",
+  "title": "AI엔지니어 모집 - 게임 에이전트(VLM)",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "Machine Learning"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285456",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "모두의 마블, 리니지2 레볼루션, 뱀피르, RF온라인, 세븐나이츠 리버스 등",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 11/30(월)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "연구개발, 기술개발, AI, 게임, NLP, LLM, VLM",
+  "updatedAt": "2026-09-30",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-30T19:50:55.419Z",
+  "lastSeenAt": "2026-09-30T19:50:55.419Z",
+  "lastCrawledAt": "2026-09-30T19:50:55.419Z",
+  "inactiveAt": null
+}

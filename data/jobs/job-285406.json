@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285406",
+  "company": "디나미스원㈜",
+  "title": "[아스트라에 오라티오] JP 로컬라이즈 PM 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "JIRA/Confluence"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285406",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "아스트라에 오라티오",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "신입",
+  "keywords": "PM, 번역, 개발관리, 로컬라이즈, 서브컬쳐, 서브컬처",
+  "updatedAt": "2026-09-30",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-09-30T19:50:55.419Z",
+  "lastSeenAt": "2026-09-30T19:50:55.419Z",
+  "lastCrawledAt": "2026-09-30T19:50:55.419Z",
+  "inactiveAt": null
+}
