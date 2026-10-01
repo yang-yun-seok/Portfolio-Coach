@@ -1,18 +1,14 @@
 {
-  "id": "crawled-282459",
+  "id": "crawled-285470",
   "company": "빅게임스튜디오",
-  "title": "[빅게임스튜디오] 배경 모델링 담당자 모집",
+  "title": "[빅게임스튜디오] 시네마틱 이펙트 모집",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
   ],
-  "reqSkills": [
-    "Unreal Engine",
-    "3ds Max",
-    "ZBrush"
-  ],
+  "reqSkills": [],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=282459",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285470",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "블랙클로버 모바일",
@@ -21,14 +17,14 @@
   "deadline": "채용시 마감",
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
-  "keywords": "배경, 모델링, 배경모델링",
-  "updatedAt": "2026-07-08",
+  "keywords": "이펙트, 시네마",
+  "updatedAt": "2026-10-01",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-08T16:30:35.559Z",
-  "lastSeenAt": "2026-09-30T19:50:55.419Z",
-  "lastCrawledAt": "2026-09-30T19:50:55.419Z",
+  "firstSeenAt": "2026-10-01T20:07:50.746Z",
+  "lastSeenAt": "2026-10-01T20:07:50.746Z",
+  "lastCrawledAt": "2026-10-01T20:07:50.746Z",
   "inactiveAt": null
 }

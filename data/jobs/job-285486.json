@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285486",
+  "company": "NC",
+  "title": "[NC][단기계약직][리니지W] 배경 에셋제작 지원자 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI",
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285486",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정)",
+  "deadline": "~ 11/30(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "3D배경, 최적화, UnrealEngine, 배경모델링, 프랍제작, 엔씨, EnvironmentProp, 3D어셋",
+  "updatedAt": "2026-10-01",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-01T20:07:50.746Z",
+  "lastSeenAt": "2026-10-01T20:07:50.746Z",
+  "lastCrawledAt": "2026-10-01T20:07:50.746Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285500",
+  "company": "컴투스 (Com2uS)",
+  "title": "[컴투스플랫폼] 기술보안(CERT) 담당자 (2-5년)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "TCP/IP"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285500",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "서머너즈워, 프로야구시리즈, 낚시의신, 서머너즈워:백년전쟁 등",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "ObjectiveC, 네트워크, 네트워크관리, 보안, 보안설계, 시스템엔지니어링, 게임프로그래밍, 게임프로그래머, AWS, IDC, 정책수립, 해킹, GCP, CERT, 백신, IPS, WAF, EDR솔루션, CVE",
+  "updatedAt": "2026-10-01",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-01T20:07:50.746Z",
+  "lastSeenAt": "2026-10-01T20:07:50.746Z",
+  "lastCrawledAt": "2026-10-01T20:07:50.746Z",
+  "inactiveAt": null
+}

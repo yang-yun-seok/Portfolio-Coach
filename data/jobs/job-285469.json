@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285469",
+  "company": "피닉스다트",
+  "title": "[피닉스다트 게임스튜디오] 게임 클라이언트 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285469",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "디지털 다트머신 게임",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 Arcade, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "C, C++, 게임프로그래밍, Unity3D",
+  "updatedAt": "2026-10-01",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-01T20:07:50.746Z",
+  "lastSeenAt": "2026-10-01T20:07:50.746Z",
+  "lastCrawledAt": "2026-10-01T20:07:50.746Z",
+  "inactiveAt": null
+}
