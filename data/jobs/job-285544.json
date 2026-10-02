@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285544",
+  "company": "프론티어코어㈜",
+  "title": "스타트업 PM 및 기획자 구인",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285544",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "DuelistArena",
+  "gameCategory": "관련없음 관련없음",
+  "employmentType": "정규직",
+  "deadline": "~ 11/02(월)",
+  "salary": "2,600~2,800만원\n연봉검색",
+  "experience": "무관",
+  "keywords": "게임기획, PM, 밸런스기획, 시스템기획",
+  "updatedAt": "2026-10-02",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-02T19:47:22.801Z",
+  "lastSeenAt": "2026-10-02T19:47:22.801Z",
+  "lastCrawledAt": "2026-10-02T19:47:22.801Z",
+  "inactiveAt": null
+}

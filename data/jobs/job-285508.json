@@ -1,0 +1,36 @@
+{
+  "id": "crawled-285508",
+  "company": "빅파이어게임즈",
+  "title": "[NC자회사][빅파이어게임즈][단기계약직] 배경모델러 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "레벨 디자인",
+    "ZBrush",
+    "Unreal Engine",
+    "3ds Max"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285508",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 콘솔게임 Shooting",
+  "employmentType": "계약직 (계약기간 : 3개월)",
+  "deadline": "~ 12/31(목)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "신입",
+  "keywords": "3D, 배경, 레벨, 로우폴리곤, 하이폴리곤, Zbrush, Max, 어셋, PBR, 슈팅, NC, 빅파이어, bigfire",
+  "updatedAt": "2026-10-02",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-02T19:47:22.801Z",
+  "lastSeenAt": "2026-10-02T19:47:22.801Z",
+  "lastCrawledAt": "2026-10-02T19:47:22.801Z",
+  "inactiveAt": null
+}
