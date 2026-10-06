@@ -1,0 +1,41 @@
+{
+  "id": "crawled-285562",
+  "company": "㈜비전스페이스",
+  "title": "[경력] 언리얼 엔진 개발자 (제조업 AI 시뮬레이션 개발)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "3D",
+    "C#",
+    "TCP/IP",
+    "SQL",
+    "Unreal Engine",
+    "Unity",
+    "Redis"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285562",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "TESSERACT",
+  "gameCategory": "멀티플랫폼게임 Simulation, 메타버스",
+  "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정), 인턴직 (3개월~6개월 미만)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, DirectX, Direct3D, API, C++, OpenGL, 3D, 연구개발, 기술개발, C#, 서버, TCP·IP, DB, Unreal, Unity, OpenGL_ES_3.0, Node.js, Redis, 게임프로그래밍, 바빌론JS",
+  "updatedAt": "2026-10-06",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-06T22:11:17.510Z",
+  "lastSeenAt": "2026-10-06T22:11:17.510Z",
+  "lastCrawledAt": "2026-10-06T22:11:17.510Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "crawled-285575",
+  "company": "㈜이엠피(EMP Inc)",
+  "title": "[이엠피] 모션캡쳐 엔지니어 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285575",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 기타",
+  "employmentType": "정규직, 계약직 (계약기간 : 3개월)",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모션캡쳐, 모션캡처, 이엠피",
+  "updatedAt": "2026-10-06",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-06T22:11:17.510Z",
+  "lastSeenAt": "2026-10-06T22:11:17.510Z",
+  "lastCrawledAt": "2026-10-06T22:11:17.510Z",
+  "inactiveAt": null
+}

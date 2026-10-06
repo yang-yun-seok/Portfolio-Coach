@@ -1,0 +1,34 @@
+{
+  "id": "crawled-285577",
+  "company": "㈜픽셀웨이브즈",
+  "title": "[3개월 단기 계약직] 3D 리깅 & 애니메이터 (경력 무관)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3ds Max",
+    "Unity",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285577",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "계약직 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3DSmax, 애니메이션, 3DMax",
+  "updatedAt": "2026-10-06",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-06T22:11:17.510Z",
+  "lastSeenAt": "2026-10-06T22:11:17.510Z",
+  "lastCrawledAt": "2026-10-06T22:11:17.510Z",
+  "inactiveAt": null
+}

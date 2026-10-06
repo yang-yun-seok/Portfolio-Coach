@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285580",
+  "company": "빅픽처인터렉티브",
+  "title": "[빅픽처인터렉티브] 인디게임 디렉터 (Game Director) 채용",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시나리오/퀘스트",
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285580",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임 기타",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 6개월)",
+  "deadline": "~ 12/06(일)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "컨셉, 게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠",
+  "updatedAt": "2026-10-06",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-06T22:11:17.510Z",
+  "lastSeenAt": "2026-10-06T22:11:17.510Z",
+  "lastCrawledAt": "2026-10-06T22:11:17.510Z",
+  "inactiveAt": null
+}
