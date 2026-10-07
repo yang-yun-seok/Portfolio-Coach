@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285594",
+  "company": "㈜그레이게임즈",
+  "title": "[프로젝트 A] 배경 모델러 모집 (단기 계약직)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "ZBrush"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285594",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "템빨:오버기어드 , 프로젝트A",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 배경, Zbrush, Max",
+  "updatedAt": "2026-10-07",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-07T22:34:01.860Z",
+  "lastSeenAt": "2026-10-07T22:34:01.860Z",
+  "lastCrawledAt": "2026-10-07T22:34:01.860Z",
+  "inactiveAt": null
+}
