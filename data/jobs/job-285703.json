@@ -1,0 +1,39 @@
+{
+  "id": "crawled-285703",
+  "company": "아폴로스튜디오코리아㈜",
+  "title": "3D 캐릭터 모델링 엔지니어 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "ZBrush",
+    "Unity",
+    "Unreal Engine",
+    "Photoshop",
+    "3ds Max",
+    "Maya",
+    "데이터 분석"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285703",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 웹게임 RPG, Simulation",
+  "employmentType": "정규직, 계약직 후 정규직 전환 검토 (계약기간 : 4개월)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 모델링, 캐릭터, 하이폴리곤, Zbrush, Max",
+  "updatedAt": "2026-10-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastCrawledAt": "2026-10-08T20:32:11.045Z",
+  "inactiveAt": null
+}

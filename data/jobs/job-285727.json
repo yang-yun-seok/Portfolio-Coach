@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285727",
+  "company": "㈜에스씨에이게임 수원",
+  "title": "SBS아카데미 게임학원 수원 교육부 3D그래픽 강사채용",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "ZBrush"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285727",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "관련없음 관련없음",
+  "employmentType": "정규직, 인턴직 후 정규직 전환 검토 (협의 후 결정), 프리랜서",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 배경, 맵핑, 모델링, 로우폴리곤, 3DSmax, 캐릭터, 텍스쳐, 하이폴리곤, Zbrush, Max, 게임개발, 게임, 교육, 교수, 강사",
+  "updatedAt": "2026-10-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastCrawledAt": "2026-10-08T20:32:11.045Z",
+  "inactiveAt": null
+}

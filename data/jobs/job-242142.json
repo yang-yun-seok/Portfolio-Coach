@@ -1,0 +1,33 @@
+{
+  "id": "crawled-242142",
+  "company": "피닉스다트",
+  "title": "[피닉스다트 게임스튜디오] 3D 아티스트를 모집합니다.",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=242142",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "디지털 다트머신 게임",
+  "gameCategory": "콘솔게임, 멀티플랫폼게임 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 배경, 맵핑, 모델링, 캐릭터, 텍스쳐, 하이폴리곤, 이펙트",
+  "updatedAt": "2026-10-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastCrawledAt": "2026-10-08T20:32:11.045Z",
+  "inactiveAt": null
+}

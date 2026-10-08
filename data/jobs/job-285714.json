@@ -1,0 +1,34 @@
+{
+  "id": "crawled-285714",
+  "company": "NC",
+  "title": "[NC][Project JSY] AAA콘솔 액션RPG 프로젝트 애니메이터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI",
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unreal Engine",
+    "3ds Max"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285714",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 10/31(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "애니메이션, 키프레임, 모션캡쳐, 리깅, 캐릭터애니메이션, 스키닝, 페이셜애니메이션, 엔씨",
+  "updatedAt": "2026-10-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastCrawledAt": "2026-10-08T20:32:11.045Z",
+  "inactiveAt": null
+}

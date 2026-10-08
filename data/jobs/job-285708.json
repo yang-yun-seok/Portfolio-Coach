@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285708",
+  "company": "㈜스텀프",
+  "title": "[STUMP] 스포츠 게임 기획자 채용",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "UI/UX 기획",
+    "Unity",
+    "JIRA/Confluence"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285708",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 10/31(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 게임기획, 시스템기획, 컨텐츠, UI·UX, 스포츠",
+  "updatedAt": "2026-10-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastCrawledAt": "2026-10-08T20:32:11.045Z",
+  "inactiveAt": null
+}

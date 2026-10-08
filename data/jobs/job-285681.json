@@ -1,0 +1,36 @@
+{
+  "id": "crawled-285681",
+  "company": "퍼즐원스튜디오",
+  "title": "[퍼즐원스튜디오] 퍼즐게임 콘텐츠기획자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "Machine Learning",
+    "시스템/컨텐츠 기획",
+    "Unity",
+    "데이터 분석"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285681",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Word Cookies!, Jewels Magic, Bubble Pop Origin",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "계약직 (계약기간 : 6개월)",
+  "deadline": "~ 10/16(금)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "게임기획, AI, 콘텐츠, 콘텐츠기획, 유니티, 데이터분석, 모바일게임, 캐주얼, 퍼즐, 라이브서비스, 업데이트기획, 기획서작성",
+  "updatedAt": "2026-10-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastCrawledAt": "2026-10-08T20:32:11.045Z",
+  "inactiveAt": null
+}

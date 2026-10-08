@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285649",
+  "company": "㈜스튜디오비사이드",
+  "title": "[프로젝트 A] 컨텐츠 및 전투 기획자",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285649",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "스타세이비어 (https://www.starsavior.com/kr)",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 밸런스기획, 레벨기획, 컨텐츠, 전투밸런싱, AI기획",
+  "updatedAt": "2026-10-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastCrawledAt": "2026-10-08T20:32:11.045Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,32 @@
+{
+  "id": "crawled-285706",
+  "company": "에이블게임즈",
+  "title": "[메이플키우기] 개발PM(서브) 모집 (경력 5년 이하)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "개발PM"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285706",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이플 키우기, 크레센트, 달토끼 키우기",
+  "gameCategory": "모바일게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "PM, ProjectManager, 개발PM",
+  "updatedAt": "2026-10-08",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastSeenAt": "2026-10-08T20:32:11.045Z",
+  "lastCrawledAt": "2026-10-08T20:32:11.045Z",
+  "inactiveAt": null
+}
