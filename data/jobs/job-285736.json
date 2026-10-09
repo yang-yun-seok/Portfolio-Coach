@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285736",
+  "company": "ChopChopStudio",
+  "title": "[비비도어] UI 아티스트",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285736",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "비비도어",
+  "gameCategory": "콘솔게임, 멀티플랫폼게임 Simulation",
+  "employmentType": "정규직",
+  "deadline": "~ 11/15(일)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "인터페이스, UX·UI, 모션, 유니티",
+  "updatedAt": "2026-10-09",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-09T20:00:19.032Z",
+  "lastSeenAt": "2026-10-09T20:00:19.032Z",
+  "lastCrawledAt": "2026-10-09T20:00:19.032Z",
+  "inactiveAt": null
+}
