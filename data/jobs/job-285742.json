@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285742",
+  "company": "메타본엔터테인먼트㈜",
+  "title": "[판교][건틀렛] RPG 발란스 BM 기획자 모십니다",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285742",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "건틀렛: 방치형 액션 RPG",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 게임기획, 밸런스기획, 시스템기획, 유료화",
+  "updatedAt": "2026-10-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-10T19:08:24.778Z",
+  "lastSeenAt": "2026-10-10T19:08:24.778Z",
+  "lastCrawledAt": "2026-10-10T19:08:24.778Z",
+  "inactiveAt": null
+}
