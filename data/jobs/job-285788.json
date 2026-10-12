@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285788",
+  "company": "㈜디벨로켓",
+  "title": "[국비학원][재택] 온라인 멘토 (유니티 과정)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "C++",
+    "iOS",
+    "Android"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285788",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Arcade",
+  "employmentType": "프리랜서",
+  "deadline": "~ 12/12(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "클라이언트, C, C++, 모바일, iOS, Android, 연구개발, 기술개발, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-10-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-12T22:26:25.386Z",
+  "lastSeenAt": "2026-10-12T22:26:25.386Z",
+  "lastCrawledAt": "2026-10-12T22:26:25.386Z",
+  "inactiveAt": null
+}
