@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285855",
+  "company": "인조이스튜디오(크래프톤 계열회사)",
+  "title": "[인조이스튜디오] 3D Environment Modeler (계약직)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Maya",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285855",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "inZOI(인조이)",
+  "gameCategory": "온라인PC게임, 콘솔게임 Simulation",
+  "employmentType": "계약직 (계약기간 : 6개월)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 배경, 모델링, 3DSmax, Maya, Max, blender",
+  "updatedAt": "2026-10-13",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-13T22:12:55.303Z",
+  "lastSeenAt": "2026-10-13T22:12:55.303Z",
+  "lastCrawledAt": "2026-10-13T22:12:55.303Z",
+  "inactiveAt": null
+}

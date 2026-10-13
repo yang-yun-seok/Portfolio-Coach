@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285165",
+  "company": "㈜미투온",
+  "title": "게임 연출/이펙트 (Spine & Unity) 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Spine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285165",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "풀팟홀덤포커, 풀하우스카지노, 솔리테르 트라이픽스 져니",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 10/31(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "애니메이션, 이펙트, Unity, ui, spine, AI그래픽",
+  "updatedAt": "2026-10-13",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-13T22:12:55.303Z",
+  "lastSeenAt": "2026-10-13T22:12:55.303Z",
+  "lastCrawledAt": "2026-10-13T22:12:55.303Z",
+  "inactiveAt": null
+}
