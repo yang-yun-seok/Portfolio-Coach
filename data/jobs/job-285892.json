@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285892",
+  "company": "(주)무브인터렉티브",
+  "title": "[무브인터렉티브] 디지몬마스터즈 온라인 프로그래머 채용",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "TCP/IP"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285892",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "베어브릭히어로즈, 디지몬슈퍼럼블, 디지몬마스터즈, 디지몬RPG",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 12/14(월)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "C, C++, TCP·IP, 프로그래밍",
+  "updatedAt": "2026-10-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-14T19:12:01.289Z",
+  "lastSeenAt": "2026-10-14T19:12:01.289Z",
+  "lastCrawledAt": "2026-10-14T19:12:01.289Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285883",
+  "company": "레드바운드",
+  "title": "Spine 2D를 활용한 애니메이션 제작",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285883",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "머지캣 : 캣토피아 퍼즐",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "정규직",
+  "deadline": "~ 11/14(토)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "모바일, 애니메이션, 이펙트",
+  "updatedAt": "2026-10-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-14T19:12:01.289Z",
+  "lastSeenAt": "2026-10-14T19:12:01.289Z",
+  "lastCrawledAt": "2026-10-14T19:12:01.289Z",
+  "inactiveAt": null
+}

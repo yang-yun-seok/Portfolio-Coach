@@ -1,0 +1,37 @@
+{
+  "id": "crawled-285875",
+  "company": "빅파이어게임즈",
+  "title": "[NC자회사][빅파이어게임즈] 배경 레벨 아티스트 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "3D",
+    "레벨 디자인",
+    "Unreal Engine",
+    "JavaScript"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285875",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 콘솔게임 Shooting, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 12/31(목)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "3D, 배경, 레벨, 맵핑, Terrain, 레벨기획, 게임배경, 레벨디자인, 배경프랍, 3D배경, PC게임, UnrealEngine, 배경모델링, 월드빌더, 언리얼엔진, UE5, NC, CINDERCITY, 온라인슈팅, 신더시티",
+  "updatedAt": "2026-10-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-14T19:12:01.289Z",
+  "lastSeenAt": "2026-10-14T19:12:01.289Z",
+  "lastCrawledAt": "2026-10-14T19:12:01.289Z",
+  "inactiveAt": null
+}

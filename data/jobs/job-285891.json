@@ -1,0 +1,38 @@
+{
+  "id": "crawled-285891",
+  "company": "㈜데브즈유나이티드게임즈",
+  "title": "라이브 게임 서비스 플랫폼/DevOps 개발자 채용 (경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "Redis",
+    "Python",
+    "JavaScript",
+    "JIRA/Confluence",
+    "Git/SVN",
+    "SQL"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285891",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Real VR Fishing",
+  "gameCategory": "관련없음 VR·AR",
+  "employmentType": "정규직",
+  "deadline": "~ 12/14(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "MySQL, 서버, Linux, Node.js, Redis",
+  "updatedAt": "2026-10-14",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-14T19:12:01.289Z",
+  "lastSeenAt": "2026-10-14T19:12:01.289Z",
+  "lastCrawledAt": "2026-10-14T19:12:01.289Z",
+  "inactiveAt": null
+}
