@@ -1,7 +1,7 @@
 {
-  "id": "crawled-285567",
+  "id": "crawled-285947",
   "company": "엔픽셀",
-  "title": "[엔픽셀] 이클립스스튜디오 (3D배경 아티스트, 3D게임 애니메이터)",
+  "title": "[엔픽셀] 이클립스스튜디오 (시퀀스 연출 애니메이터, 3D배경 아티스트)",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
@@ -10,8 +10,8 @@
     "3D",
     "Unreal Engine"
   ],
-  "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285567",
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285947",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "이클립스, 그랑사가",
@@ -19,15 +19,15 @@
   "employmentType": "정규직",
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
-  "experience": "무관",
-  "keywords": "3D, 배경, 모션, 애니메이터, 배경모델링",
-  "updatedAt": "2026-10-06",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 배경, 원화, 연출",
+  "updatedAt": "2026-10-15",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-10-06T22:11:17.510Z",
-  "lastSeenAt": "2026-10-14T19:12:01.289Z",
-  "lastCrawledAt": "2026-10-14T19:12:01.289Z",
+  "firstSeenAt": "2026-10-15T18:54:37.833Z",
+  "lastSeenAt": "2026-10-15T18:54:37.833Z",
+  "lastCrawledAt": "2026-10-15T18:54:37.833Z",
   "inactiveAt": null
 }

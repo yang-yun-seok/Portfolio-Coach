@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285944",
+  "company": "(주)위메이드넥스트",
+  "title": "[위메이드넥스트] 미르5 그래픽 인원 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285944",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "미르4",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "정규직, 계약직 (계약기간 : 1년)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 모델링, 캐릭터, 이펙트, FX",
+  "updatedAt": "2026-10-15",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-15T18:54:37.833Z",
+  "lastSeenAt": "2026-10-15T18:54:37.833Z",
+  "lastCrawledAt": "2026-10-15T18:54:37.833Z",
+  "inactiveAt": null
+}

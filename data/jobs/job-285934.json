@@ -1,0 +1,33 @@
+{
+  "id": "crawled-285934",
+  "company": "㈜캔오프너",
+  "title": "[던전 세틀러즈] 클라이언트 프로그래머 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Git/SVN"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285934",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "던전 세틀러즈",
+  "gameCategory": "관련없음 Simulation",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-10-15",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-15T18:54:37.833Z",
+  "lastSeenAt": "2026-10-15T18:54:37.833Z",
+  "lastCrawledAt": "2026-10-15T18:54:37.833Z",
+  "inactiveAt": null
+}
