@@ -1,0 +1,30 @@
+{
+  "id": "crawled-285987",
+  "company": "㈜그레이게임즈",
+  "title": "[프로젝트 A] 콘솔 액션 클라이언트 프로그래머 모집 (경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285987",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "템빨:오버기어드 , 프로젝트A",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "클라이언트, 게임프로그래밍",
+  "updatedAt": "2026-10-16",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-16T18:39:04.622Z",
+  "lastSeenAt": "2026-10-16T18:39:04.622Z",
+  "lastCrawledAt": "2026-10-16T18:39:04.622Z",
+  "inactiveAt": null
+}

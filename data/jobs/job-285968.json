@@ -1,0 +1,35 @@
+{
+  "id": "crawled-285968",
+  "company": "다야몬즈㈜",
+  "title": "[하이큐/신규IP] 서버프로그래머 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "SQL",
+    "TCP/IP"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285968",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "하이큐: 터치 더 드림",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, Casual",
+  "employmentType": "정규직, 인턴직 후 정규직 전환 검토 (1개월~3개월 미만), 헤드헌팅",
+  "deadline": "~ 12/31(목)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "API, C++, 모바일, 서버, MS-SQL, SQL, TCP·IP, 네트워크, DB, 네트워크관리, WindowsOS, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-10-16",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-16T18:39:04.622Z",
+  "lastSeenAt": "2026-10-16T18:39:04.622Z",
+  "lastCrawledAt": "2026-10-16T18:39:04.622Z",
+  "inactiveAt": null
+}
