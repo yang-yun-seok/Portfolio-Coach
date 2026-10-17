@@ -1,7 +1,7 @@
 {
-  "id": "crawled-285838",
+  "id": "crawled-286003",
   "company": "하이킥",
-  "title": "[재택] AI 바이브 코딩 아티스트 모집",
+  "title": "[재택] 개발에 목마른 원화가 모집",
   "role": "클라이언트",
   "roles": [
     "클라이언트",
@@ -13,7 +13,7 @@
     "도트 아트"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285838",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286003",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "고양이 숲",
@@ -23,13 +23,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "모바일, 인터페이스, UX·UI, 배경, 원화, 일러스트, 캐릭터원화, 컨셉, 도트, 픽셀, 게임프로그래밍",
-  "updatedAt": "2026-10-15",
+  "updatedAt": "2026-10-17",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-10-15T18:54:37.833Z",
-  "lastSeenAt": "2026-10-16T18:39:04.622Z",
-  "lastCrawledAt": "2026-10-16T18:39:04.622Z",
+  "firstSeenAt": "2026-10-17T17:45:55.520Z",
+  "lastSeenAt": "2026-10-17T17:45:55.520Z",
+  "lastCrawledAt": "2026-10-17T17:45:55.520Z",
   "inactiveAt": null
 }
