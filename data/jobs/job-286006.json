@@ -1,0 +1,33 @@
+{
+  "id": "crawled-286006",
+  "company": "엑스엔트",
+  "title": "[협업] AI 게임 협업제작 모집 (PM, 기획자, 디자이너, 프로그래머, 기타)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286006",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG, Casual",
+  "employmentType": "프리랜서",
+  "deadline": "~ 11/18(수)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, 모바일, 기술개발, 애니메이션, 이펙트",
+  "updatedAt": "2026-10-18",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-18T17:48:34.497Z",
+  "lastSeenAt": "2026-10-18T17:48:34.497Z",
+  "lastCrawledAt": "2026-10-18T17:48:34.497Z",
+  "inactiveAt": null
+}
