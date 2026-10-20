@@ -1,5 +1,5 @@
 {
-  "id": "crawled-284916",
+  "id": "crawled-286106",
   "company": "마상소프트",
   "title": "[부산] 게임 서버/클라이언트 프로그래머",
   "role": "클라이언트",
@@ -15,7 +15,7 @@
     "SQL"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284916",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286106",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "DK온라인, 에이스온라인, 출조낚시왕, 건즈, 건즈2, 프리스톤테일, 스키드러쉬, 라그하임",
@@ -25,13 +25,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "클라이언트, VisualC++, Direct3D, STL, C++, 3D, 배경, 맵핑, 원화, 모델링, 로우폴리곤, 3DSmax, 게임기획, 서버, TCP·IP, 네트워크, IOCP, DB, 게임프로그래머",
-  "updatedAt": "2026-09-15",
+  "updatedAt": "2026-10-20",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-09-15T18:44:11.752Z",
-  "lastSeenAt": "2026-10-19T20:23:35.663Z",
-  "lastCrawledAt": "2026-10-19T20:23:35.663Z",
+  "firstSeenAt": "2026-10-20T18:56:20.828Z",
+  "lastSeenAt": "2026-10-20T18:56:20.828Z",
+  "lastCrawledAt": "2026-10-20T18:56:20.828Z",
   "inactiveAt": null
 }
