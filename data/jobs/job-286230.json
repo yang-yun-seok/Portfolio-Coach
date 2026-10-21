@@ -1,7 +1,7 @@
 {
-  "id": "crawled-285070",
+  "id": "crawled-286230",
   "company": "빅게임스튜디오",
-  "title": "[브레이커스] 전투 밸런스 기획자 모집",
+  "title": "[브레이커스] 전투 캐릭터 제작 및 밸런스 기획자 모집",
   "role": "기획",
   "roles": [
     "기획"
@@ -12,7 +12,7 @@
     "Unreal Engine"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285070",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286230",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "블랙클로버 모바일",
@@ -22,13 +22,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "게임기획, 밸런스, 전투",
-  "updatedAt": "2026-09-18",
+  "updatedAt": "2026-10-21",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-09-18T18:06:40.983Z",
-  "lastSeenAt": "2026-10-20T18:56:20.828Z",
-  "lastCrawledAt": "2026-10-20T18:56:20.828Z",
+  "firstSeenAt": "2026-10-21T19:07:44.368Z",
+  "lastSeenAt": "2026-10-21T19:07:44.368Z",
+  "lastCrawledAt": "2026-10-21T19:07:44.368Z",
   "inactiveAt": null
 }

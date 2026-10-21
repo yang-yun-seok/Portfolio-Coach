@@ -1,5 +1,5 @@
 {
-  "id": "crawled-283168",
+  "id": "crawled-286239",
   "company": "넷마블 (Netmarble)",
   "title": "[넷마블네오] 영상연출 담당 모집",
   "role": "아트/UI",
@@ -10,7 +10,7 @@
     "3ds Max"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283168",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286239",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "뱀피르, 나 혼자만 레벨업, 왕좌의게임, 제2의나라, 리니지2레볼루션",
@@ -20,13 +20,13 @@
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "애니메이션, 3DMax",
-  "updatedAt": "2026-07-28",
+  "updatedAt": "2026-10-21",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-28T16:42:27.692Z",
-  "lastSeenAt": "2026-10-20T18:56:20.828Z",
-  "lastCrawledAt": "2026-10-20T18:56:20.828Z",
+  "firstSeenAt": "2026-10-21T19:07:44.368Z",
+  "lastSeenAt": "2026-10-21T19:07:44.368Z",
+  "lastCrawledAt": "2026-10-21T19:07:44.368Z",
   "inactiveAt": null
 }
