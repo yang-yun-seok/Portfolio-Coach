@@ -1,11 +1,11 @@
 [
   {
     "date": "2026-10-23",
-    "generatedAt": "2026-10-22T19:14:10.843Z",
-    "referenceJobCount": 844,
-    "newJobsCount": 27,
-    "activeJobsCount": 844,
-    "lastCrawlStatus": "partial-success",
+    "generatedAt": "2026-10-22T21:07:22.120Z",
+    "referenceJobCount": 845,
+    "newJobsCount": 28,
+    "activeJobsCount": 845,
+    "lastCrawlStatus": "success",
     "path": "./history/2026-10-23.json"
   },
   {
