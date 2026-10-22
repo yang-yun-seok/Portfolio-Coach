@@ -1,5 +1,5 @@
 {
-  "id": "crawled-283150",
+  "id": "crawled-286257",
   "company": "㈜스튜디오비사이드",
   "title": "[프로젝트A] 기계, 메카, 밀리터리 전문 원화 아트 디자인",
   "role": "아트/UI",
@@ -10,7 +10,7 @@
     "Illustrator"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283150",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286257",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "스타세이비어 (https://www.starsavior.com/kr)",
@@ -19,14 +19,14 @@
   "deadline": "채용시 마감",
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
-  "keywords": "모바일, 원화, 일러스트, 밀리터리, 메카, 기계",
-  "updatedAt": "2026-07-27",
+  "keywords": "모바일, 원화, 일러스트, 메카닉, 밀리터리, 기계",
+  "updatedAt": "2026-10-22",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-07-27T19:21:24.923Z",
-  "lastSeenAt": "2026-10-21T19:07:44.368Z",
-  "lastCrawledAt": "2026-10-21T19:07:44.368Z",
+  "firstSeenAt": "2026-10-22T19:14:10.843Z",
+  "lastSeenAt": "2026-10-22T19:14:10.843Z",
+  "lastCrawledAt": "2026-10-22T19:14:10.843Z",
   "inactiveAt": null
 }

@@ -1,7 +1,7 @@
 {
-  "id": "crawled-285165",
+  "id": "crawled-286272",
   "company": "㈜미투온",
-  "title": "게임 연출/이펙트 (Spine & Unity) 채용",
+  "title": "게임 이펙트·연출 아티스트 (Unity / 2D Animation)",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
@@ -10,24 +10,24 @@
     "Unity",
     "Spine"
   ],
-  "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285165",
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286272",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "풀팟홀덤포커, 풀하우스카지노, 솔리테르 트라이픽스 져니",
   "gameCategory": "모바일게임 Casual",
   "employmentType": "정규직",
-  "deadline": "~ 10/31(토)",
+  "deadline": "~ 11/30(월)",
   "salary": "면접 시 협의\n연봉검색",
-  "experience": "경력 3년 이상",
-  "keywords": "애니메이션, 이펙트, Unity, ui, spine, AI그래픽",
-  "updatedAt": "2026-10-13",
+  "experience": "경력 2년 이상",
+  "keywords": "애니메이션, 이펙트, FX, Unity, ui, spine, AI그래픽",
+  "updatedAt": "2026-10-22",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-10-13T22:12:55.303Z",
-  "lastSeenAt": "2026-10-21T19:07:44.368Z",
-  "lastCrawledAt": "2026-10-21T19:07:44.368Z",
+  "firstSeenAt": "2026-10-22T19:14:10.843Z",
+  "lastSeenAt": "2026-10-22T19:14:10.843Z",
+  "lastCrawledAt": "2026-10-22T19:14:10.843Z",
   "inactiveAt": null
 }

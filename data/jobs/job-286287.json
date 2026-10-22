@@ -1,0 +1,43 @@
+{
+  "id": "crawled-286287",
+  "company": "엠비씨(MBC)아카데미 컴퓨터교육센터",
+  "title": "NC AI 게임제작[게임기획/3D게임디자인/유니티&언리얼] 전액국비지원 취업연계 취업연수생 모집공고",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터",
+    "아트/UI",
+    "기획"
+  ],
+  "reqSkills": [
+    "Python",
+    "3D",
+    "iOS",
+    "UI/UX 기획",
+    "레벨 디자인",
+    "3ds Max",
+    "ZBrush",
+    "시나리오/퀘스트",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286287",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 웹게임 RPG, Casual",
+  "employmentType": "교육생",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, Python, 모바일, 3D, iOS, 연구개발, 기술개발, UX·UI, 배경, 레벨, 모델링, 3DSmax, Zbrush, 3D일러스트, 게임기획, 시나리오, PM, 레벨기획, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-10-22",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-22T19:14:10.843Z",
+  "lastSeenAt": "2026-10-22T19:14:10.843Z",
+  "lastCrawledAt": "2026-10-22T19:14:10.843Z",
+  "inactiveAt": null
+}
