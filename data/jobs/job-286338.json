@@ -1,0 +1,36 @@
+{
+  "id": "crawled-286338",
+  "company": "㈜하운드13",
+  "title": "[드래곤소드] 테크니컬 아티스트(TA) 경력자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "C++",
+    "Unreal Engine",
+    "TA",
+    "Python"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286338",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "헌드레드 소울(HUNDRED SOUL), DragonSword : Awakening",
+  "gameCategory": "온라인PC게임, 멀티플랫폼게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "C++, 언리얼, 렌더링, RPG, TA, 테크니컬아티스트, PC, 콘솔, 언리얼엔진, 셰이더, UE5, 머티리얼, 렌더링파이프라인",
+  "updatedAt": "2026-10-23",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-23T18:56:36.319Z",
+  "lastSeenAt": "2026-10-23T18:56:36.319Z",
+  "lastCrawledAt": "2026-10-23T18:56:36.319Z",
+  "inactiveAt": null
+}
