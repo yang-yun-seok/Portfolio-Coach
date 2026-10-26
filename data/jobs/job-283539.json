@@ -1,0 +1,31 @@
+{
+  "id": "crawled-283539",
+  "company": "라온엔터테인먼트",
+  "title": "[라온엔터테인먼트] AI 통한 게임 개발자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터"
+  ],
+  "reqSkills": [],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283539",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "테일즈런너, 고스트 워, 테일즈런너 RPG",
+  "gameCategory": "온라인PC게임, 모바일게임 Casual",
+  "employmentType": "계약직 (계약기간 : 협의 후 결정), 파견직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, 연구개발, 기술개발, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-10-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-26T20:28:19.418Z",
+  "lastSeenAt": "2026-10-26T20:28:19.418Z",
+  "lastCrawledAt": "2026-10-26T20:28:19.418Z",
+  "inactiveAt": null
+}
