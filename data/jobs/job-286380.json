@@ -1,0 +1,35 @@
+{
+  "id": "crawled-286380",
+  "company": "NC",
+  "title": "[NC][단기계약직][미스트바운드] 일러스트 및 외주 어시스턴트 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "Photoshop",
+    "Unity",
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286380",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "계약직 (계약기간 : 협의 후 결정)",
+  "deadline": "~ 12/18(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "원화, 게임일러스트, Photoshop, 카드일러스트, 아트디렉션, 엔씨, 외주아트관리, 일러스트검수, 비주얼디렉션",
+  "updatedAt": "2026-10-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-27T19:50:08.190Z",
+  "lastSeenAt": "2026-10-27T19:50:08.190Z",
+  "lastCrawledAt": "2026-10-27T19:50:08.190Z",
+  "inactiveAt": null
+}

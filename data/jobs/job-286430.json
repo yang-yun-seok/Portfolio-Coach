@@ -1,5 +1,5 @@
 {
-  "id": "crawled-286183",
+  "id": "crawled-286430",
   "company": "엔픽셀",
   "title": "[엔픽셀] 이클립스스튜디오 (시스템/콘텐츠, 퀘스트/시나리오, 밸런스 기획)",
   "role": "기획",
@@ -13,7 +13,7 @@
     "Unreal Engine"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286183",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286430",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "이클립스, 그랑사가",
@@ -23,13 +23,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "게임기획, 퀘스트, 밸런스기획, 시스템기획, 컨텐츠",
-  "updatedAt": "2026-10-21",
+  "updatedAt": "2026-10-27",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-10-21T19:07:44.368Z",
-  "lastSeenAt": "2026-10-26T20:28:19.418Z",
-  "lastCrawledAt": "2026-10-26T20:28:19.418Z",
+  "firstSeenAt": "2026-10-27T19:50:08.190Z",
+  "lastSeenAt": "2026-10-27T19:50:08.190Z",
+  "lastCrawledAt": "2026-10-27T19:50:08.190Z",
   "inactiveAt": null
 }

@@ -1,0 +1,36 @@
+{
+  "id": "crawled-286422",
+  "company": "스마트스터디게임즈㈜",
+  "title": "[몬스터슈퍼리그] 소프트웨어 엔지니어(개발자) 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C++",
+    "Python",
+    "iOS",
+    "Android",
+    "Unity"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286422",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "몬스터 슈퍼 리그",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "C++, Python, 모바일, iOS, Android, Unity, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-10-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-27T19:50:08.190Z",
+  "lastSeenAt": "2026-10-27T19:50:08.190Z",
+  "lastCrawledAt": "2026-10-27T19:50:08.190Z",
+  "inactiveAt": null
+}

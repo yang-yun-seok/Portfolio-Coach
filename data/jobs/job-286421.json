@@ -1,0 +1,33 @@
+{
+  "id": "crawled-286421",
+  "company": "드림에이지(구 HYBE IM)",
+  "title": "[DRIMAGE] 게임기술PM",
+  "role": "PM/운영",
+  "roles": [
+    "기획",
+    "PM/운영"
+  ],
+  "reqSkills": [
+    "사업PM"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286421",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "인더섬 with BTS, 리듬하이브, 별이되어라2 베다의 기사들, 아키텍트:랜드오브 엑자일",
+  "gameCategory": "온라인PC게임, 웹게임 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 12/27(일)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "사업PM, 게임사업PM",
+  "updatedAt": "2026-10-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-27T19:50:08.190Z",
+  "lastSeenAt": "2026-10-27T19:50:08.190Z",
+  "lastCrawledAt": "2026-10-27T19:50:08.190Z",
+  "inactiveAt": null
+}
