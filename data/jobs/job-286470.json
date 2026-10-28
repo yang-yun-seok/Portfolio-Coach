@@ -1,7 +1,7 @@
 {
-  "id": "crawled-286367",
+  "id": "crawled-286470",
   "company": "넥슨 (NEXON)",
-  "title": "[KANA] 컨텐츠 기획",
+  "title": "[KANA][기획] 컨텐츠 기획",
   "role": "클라이언트",
   "roles": [
     "클라이언트",
@@ -13,7 +13,7 @@
     "Unity"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286367",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286470",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "로드나인, AVATARA, 로한M",
@@ -23,13 +23,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "모바일, 3D, 컨셉, 게임기획, 시스템기획, 컨텐츠, 유니티, 연출, 엔엑스쓰리게임즈, NX3GAMES, KANA, 카나",
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-10-28",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-10-26T20:28:19.418Z",
-  "lastSeenAt": "2026-10-27T19:50:08.190Z",
-  "lastCrawledAt": "2026-10-27T19:50:08.190Z",
+  "firstSeenAt": "2026-10-28T22:08:04.003Z",
+  "lastSeenAt": "2026-10-28T22:08:04.003Z",
+  "lastCrawledAt": "2026-10-28T22:08:04.003Z",
   "inactiveAt": null
 }
