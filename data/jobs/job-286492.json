@@ -1,0 +1,38 @@
+{
+  "id": "crawled-286492",
+  "company": "㈜디몽",
+  "title": "디펜스 캐주얼 게임 시스템/콘텐츠 기획자 채용",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시나리오/퀘스트",
+    "밸런싱",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "SQL",
+    "데이터 분석"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286492",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "좀바이러스(ZOMVIRUS), Wild West, BOUNCE HERO",
+  "gameCategory": "온라인PC게임, 콘솔게임 Casual, 기타",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 11/02(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "컨셉, 게임기획, 시나리오, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, 유료화",
+  "updatedAt": "2026-10-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-29T22:20:53.551Z",
+  "lastSeenAt": "2026-10-29T22:20:53.551Z",
+  "lastCrawledAt": "2026-10-29T22:20:53.551Z",
+  "inactiveAt": null
+}

@@ -1,19 +1,17 @@
 {
-  "id": "crawled-285870",
+  "id": "crawled-286504",
   "company": "㈜하운드13",
-  "title": "[드래곤소드] UI 디자이너 모집",
+  "title": "[드래곤소드] 액션 기획자 모집",
   "role": "기획",
   "roles": [
     "기획"
   ],
   "reqSkills": [
-    "UI/UX 기획",
-    "Unreal Engine",
-    "Photoshop",
-    "Figma"
+    "전투/액션 기획",
+    "Unreal Engine"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285870",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286504",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "헌드레드 소울(HUNDRED SOUL), DragonSword : Awakening",
@@ -22,14 +20,14 @@
   "deadline": "채용시 마감",
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
-  "keywords": "UI·UX, 언리얼, RPG, PC, UI디자이너, 콘솔, 게임UI, 언리얼엔진, ui애니메이션, UE5",
-  "updatedAt": "2026-10-13",
+  "keywords": "모바일, 게임기획, RPG, UE4, 전투기획, PC게임, 언리얼엔진, 액션기획, 액션RPG, UE5, Unreal5",
+  "updatedAt": "2026-10-29",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-10-13T22:12:55.303Z",
-  "lastSeenAt": "2026-10-28T22:08:04.003Z",
-  "lastCrawledAt": "2026-10-28T22:08:04.003Z",
+  "firstSeenAt": "2026-10-29T22:20:53.551Z",
+  "lastSeenAt": "2026-10-29T22:20:53.551Z",
+  "lastCrawledAt": "2026-10-29T22:20:53.551Z",
   "inactiveAt": null
 }

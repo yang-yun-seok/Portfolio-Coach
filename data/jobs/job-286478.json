@@ -1,0 +1,33 @@
+{
+  "id": "crawled-286478",
+  "company": "주식회사 엽스튜디오",
+  "title": "[엽스튜디오] Unity 게임 클라이언트 개발자 채용 (신입)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286478",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "C.C.C.: Contract Cleaning / Special Cleaning",
+  "gameCategory": "온라인PC게임, 콘솔게임 Casual, Shooting",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "신입",
+  "keywords": "클라이언트, C#, Unity",
+  "updatedAt": "2026-10-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-29T22:20:53.551Z",
+  "lastSeenAt": "2026-10-29T22:20:53.551Z",
+  "lastCrawledAt": "2026-10-29T22:20:53.551Z",
+  "inactiveAt": null
+}

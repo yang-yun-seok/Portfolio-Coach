@@ -1,0 +1,35 @@
+{
+  "id": "crawled-286490",
+  "company": "넷마블 (Netmarble)",
+  "title": "[넷마블네오] PM 직군 채용 (개발PM, 아트PM)",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "기획"
+  ],
+  "reqSkills": [
+    "Unreal Engine",
+    "Unity",
+    "경제/BM 설계"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286490",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "뱀피르, 나 혼자만 레벨업, 왕좌의게임, 제2의나라, 리니지2레볼루션",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, PM, PD, 언리얼, 유니티, 번역, 중국, 중국어, PC, 통번역, 통역, BM",
+  "updatedAt": "2026-10-29",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-29T22:20:53.551Z",
+  "lastSeenAt": "2026-10-29T22:20:53.551Z",
+  "lastCrawledAt": "2026-10-29T22:20:53.551Z",
+  "inactiveAt": null
+}
