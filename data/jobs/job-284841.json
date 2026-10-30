@@ -1,0 +1,37 @@
+{
+  "id": "crawled-284841",
+  "company": "모카트리",
+  "title": "AI 활용 게임 기획 및 개발 모집",
+  "role": "AI/데이터",
+  "roles": [
+    "AI/데이터",
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "Unity",
+    "Unreal Engine",
+    "Git/SVN"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284841",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "골드윙 카지노",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 기타",
+  "employmentType": "정규직, 계약직 (계약기간 : 6개월)",
+  "deadline": "~ 11/13(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "게임기획, 밸런스기획, 시스템기획, 컨텐츠, 자료조사",
+  "updatedAt": "2026-10-30",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-10-30T19:51:56.963Z",
+  "lastSeenAt": "2026-10-30T19:51:56.963Z",
+  "lastCrawledAt": "2026-10-30T19:51:56.963Z",
+  "inactiveAt": null
+}
