@@ -1,7 +1,7 @@
 {
-  "id": "crawled-283634",
+  "id": "crawled-286610",
   "company": "아지트랩스",
-  "title": "[아지트랩스] 전투/시스템 기획자",
+  "title": "[아지트랩스] 전투/시스템 시니어 기획자",
   "role": "기획",
   "roles": [
     "기획"
@@ -11,7 +11,7 @@
     "Unreal Engine"
   ],
   "reqExp": 1,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=283634",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286610",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "NGM(개발중)",
@@ -21,13 +21,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 1년 이상",
   "keywords": "게임기획, 시스템기획",
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-11-03",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-10-26T20:28:19.418Z",
-  "lastSeenAt": "2026-11-02T23:01:24.492Z",
-  "lastCrawledAt": "2026-11-02T23:01:24.492Z",
+  "firstSeenAt": "2026-11-03T20:47:48.046Z",
+  "lastSeenAt": "2026-11-03T20:47:48.046Z",
+  "lastCrawledAt": "2026-11-03T20:47:48.046Z",
   "inactiveAt": null
 }

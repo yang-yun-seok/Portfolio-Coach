@@ -1,0 +1,36 @@
+{
+  "id": "crawled-286584",
+  "company": "㈜디벨로켓",
+  "title": "[디벨로켓] [광주] Unity기반 게임개발 강사",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "Lua",
+    "Python",
+    "Java",
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286584",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 웹게임 RPG, Casual",
+  "employmentType": "프리랜서",
+  "deadline": "~ 01/03(일)",
+  "salary": "시간당원\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C, Lua, Python, 모바일, Java, 연구개발, 기술개발, C#, 엔진, Unity, 게임프로그래밍, 게임프로그래머, VR, AR, blender, Claude, Codex",
+  "updatedAt": "2026-11-03",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-03T20:47:48.046Z",
+  "lastSeenAt": "2026-11-03T20:47:48.046Z",
+  "lastCrawledAt": "2026-11-03T20:47:48.046Z",
+  "inactiveAt": null
+}

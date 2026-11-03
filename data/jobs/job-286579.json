@@ -1,5 +1,5 @@
 {
-  "id": "crawled-285130",
+  "id": "crawled-286579",
   "company": "㈜이스트게임즈",
   "title": "[신입] MMORPG 콘텐츠 및 시스템 기획자",
   "role": "기획",
@@ -11,7 +11,7 @@
     "Unreal Engine"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285130",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286579",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "카발RED, 카발온라인, 카발모바일, 고양이다방",
@@ -21,13 +21,13 @@
   "salary": "회사내규에 따름\n연봉검색",
   "experience": "신입",
   "keywords": "모바일, 게임기획, 시스템기획, 컨텐츠, 콘텐츠구조설계, 콘텐츠데이터",
-  "updatedAt": "2026-09-21",
+  "updatedAt": "2026-11-03",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-09-21T19:54:48.253Z",
-  "lastSeenAt": "2026-11-02T23:01:24.492Z",
-  "lastCrawledAt": "2026-11-02T23:01:24.492Z",
+  "firstSeenAt": "2026-11-03T20:47:48.046Z",
+  "lastSeenAt": "2026-11-03T20:47:48.046Z",
+  "lastCrawledAt": "2026-11-03T20:47:48.046Z",
   "inactiveAt": null
 }
