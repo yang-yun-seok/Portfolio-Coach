@@ -1,0 +1,43 @@
+{
+  "id": "crawled-286647",
+  "company": "넷마블 (Netmarble)",
+  "title": "[사전안내] 2026 넷마블네오 AI 인턴십 (11/11 서류 접수 시작)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "Java",
+    "iOS",
+    "Android",
+    "UI/UX 기획",
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "TCP/IP"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286647",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "뱀피르, 나 혼자만 레벨업, 왕좌의게임, 제2의나라, 리니지2레볼루션",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 RPG, 기타",
+  "employmentType": "인턴직 후 정규직 전환 검토 (3개월~6개월 미만)",
+  "deadline": "~ 11/24(화)",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C++, 모바일, Java, iOS, Android, UX·UI, 레벨, 컨셉, 게임기획, 퀘스트, 밸런스기획, 레벨기획, 시스템기획, 컨텐츠, UI·UX, 서버, TCP·IP, 네트워크, 게임프로그래밍",
+  "updatedAt": "2026-11-04",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-04T21:03:46.965Z",
+  "lastSeenAt": "2026-11-04T21:03:46.965Z",
+  "lastCrawledAt": "2026-11-04T21:03:46.965Z",
+  "inactiveAt": null
+}

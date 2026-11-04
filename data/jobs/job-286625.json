@@ -1,0 +1,35 @@
+{
+  "id": "crawled-286625",
+  "company": "111퍼센트㈜",
+  "title": "[하이페라] 채용 연계형 인턴십 - AI 애니메이션 크리에이터",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Maya",
+    "Machine Learning"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286625",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "운빨존많겜, 랜덤다이스:디펜스",
+  "gameCategory": "모바일게임 Casual",
+  "employmentType": "인턴직 후 정규직 전환 검토 (3개월~6개월 미만)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 3DSmax, 캐릭터, 애니메이션, CharacterStudio, 3DMax, Maya, 플래쉬애니메이션, Physique, 메카닉, 오브젝트, 라이트웨이브, 소프트이미지, KeyAnimation, Max, AI",
+  "updatedAt": "2026-11-04",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-04T21:03:46.965Z",
+  "lastSeenAt": "2026-11-04T21:03:46.965Z",
+  "lastCrawledAt": "2026-11-04T21:03:46.965Z",
+  "inactiveAt": null
+}
