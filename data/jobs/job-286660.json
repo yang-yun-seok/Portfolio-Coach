@@ -1,0 +1,36 @@
+{
+  "id": "crawled-286660",
+  "company": "NC",
+  "title": "[NC][단기계약직][Blade&Soul] 캐릭터제작 담당 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI",
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "3ds Max",
+    "ZBrush",
+    "Unreal Engine",
+    "Photoshop"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286660",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "계약직 (계약기간 : 협의 후 결정)",
+  "deadline": "~ 12/31(목)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "3DSmax, Zbrush, 3D모델링, 캐릭터모델링, 3D리소스제작, 엔씨, 무기모델링, 리소스폴리싱",
+  "updatedAt": "2026-11-05",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-05T21:22:11.891Z",
+  "lastSeenAt": "2026-11-05T21:22:11.891Z",
+  "lastCrawledAt": "2026-11-05T21:22:11.891Z",
+  "inactiveAt": null
+}
