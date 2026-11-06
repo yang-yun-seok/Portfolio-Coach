@@ -1,5 +1,5 @@
 {
-  "id": "crawled-286556",
+  "id": "crawled-286737",
   "company": "엔픽셀",
   "title": "[엔픽셀] 이클립스스튜디오 (캐릭터 모델러, 시퀀스 연출 애니메이터)",
   "role": "아트/UI",
@@ -11,7 +11,7 @@
     "Unreal Engine"
   ],
   "reqExp": 3,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286556",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286737",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "이클립스, 그랑사가",
@@ -21,13 +21,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 3년 이상",
   "keywords": "3D, 배경, 원화, 캐릭터원화, 모델링, 캐릭터, 연출",
-  "updatedAt": "2026-11-02",
+  "updatedAt": "2026-11-06",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-11-02T23:01:24.492Z",
-  "lastSeenAt": "2026-11-05T21:22:11.891Z",
-  "lastCrawledAt": "2026-11-05T21:22:11.891Z",
+  "firstSeenAt": "2026-11-06T20:43:13.122Z",
+  "lastSeenAt": "2026-11-06T20:43:13.122Z",
+  "lastCrawledAt": "2026-11-06T20:43:13.122Z",
   "inactiveAt": null
 }
