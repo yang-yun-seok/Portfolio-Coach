@@ -1,0 +1,33 @@
+{
+  "id": "crawled-286819",
+  "company": "엔게이트",
+  "title": "(경력) UI 디자이너 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "Photoshop"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286819",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "삼국지 올스타, 소서리스 키우기",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 12/10(목)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "인터페이스, UX·UI, 포토샵",
+  "updatedAt": "2026-11-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-10T21:13:24.011Z",
+  "lastSeenAt": "2026-11-10T21:13:24.011Z",
+  "lastCrawledAt": "2026-11-10T21:13:24.011Z",
+  "inactiveAt": null
+}

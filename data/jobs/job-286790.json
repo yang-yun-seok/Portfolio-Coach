@@ -1,0 +1,36 @@
+{
+  "id": "crawled-286790",
+  "company": "조이임팩트",
+  "title": "MMORPG 개발자 모집 공고",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "서버"
+  ],
+  "reqSkills": [
+    "C++",
+    "iOS",
+    "Android",
+    "Unity"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286790",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "위드2FC, 위드M",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 02/08(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "클라이언트, VisualC, VisualC++, iOS, Android, 게임프로그래밍",
+  "updatedAt": "2026-11-10",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-10T21:13:24.011Z",
+  "lastSeenAt": "2026-11-10T21:13:24.011Z",
+  "lastCrawledAt": "2026-11-10T21:13:24.011Z",
+  "inactiveAt": null
+}
