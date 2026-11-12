@@ -1,0 +1,38 @@
+{
+  "id": "crawled-286864",
+  "company": "퍼즐원스튜디오",
+  "title": "[퍼즐원스튜디오] 퍼즐 게임 시스템 기획자 (경력)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "Machine Learning",
+    "Unity",
+    "데이터 분석"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286864",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Word Cookies!, Jewels Magic, Bubble Pop Origin",
+  "gameCategory": "모바일게임, 멀티플랫폼게임 Casual, 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 11/23(월)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "모바일, 게임기획, 밸런스기획, 시스템기획, 유료화, AI, 콘텐츠, 콘텐츠기획, 유니티, 데이터분석",
+  "updatedAt": "2026-11-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-12T21:45:06.362Z",
+  "lastSeenAt": "2026-11-12T21:45:06.362Z",
+  "lastCrawledAt": "2026-11-12T21:45:06.362Z",
+  "inactiveAt": null
+}

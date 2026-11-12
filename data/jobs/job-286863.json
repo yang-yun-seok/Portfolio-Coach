@@ -1,0 +1,36 @@
+{
+  "id": "crawled-286863",
+  "company": "트리디엇츠",
+  "title": "3D 캐릭터 아티스트 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "ZBrush",
+    "Maya",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286863",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "Weving",
+  "gameCategory": "온라인PC게임, 모바일게임 Casual, Simulation",
+  "employmentType": "정규직",
+  "deadline": "~ 12/11(금)",
+  "salary": "3,400~3,600만원 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "3D, 모델링, 3DSmax, 캐릭터, Zbrush, 3DMax, Maya, 리깅, 블렌더, Substance, 스타트업, 3D캐릭터, 캐릭터모델링, 캐릭터제작, 3D아티스트",
+  "updatedAt": "2026-11-12",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-12T21:45:06.362Z",
+  "lastSeenAt": "2026-11-12T21:45:06.362Z",
+  "lastCrawledAt": "2026-11-12T21:45:06.362Z",
+  "inactiveAt": null
+}
