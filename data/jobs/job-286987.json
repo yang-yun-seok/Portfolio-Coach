@@ -1,7 +1,7 @@
 {
-  "id": "crawled-286617",
+  "id": "crawled-286987",
   "company": "㈜에이버튼",
-  "title": "[제우스] 해외 라이브 서비스 기획자 모집 (MMORPG)",
+  "title": "[제우스] 해외 라이브 서비스 기획자 (MMORPG)",
   "role": "기획",
   "roles": [
     "기획"
@@ -12,23 +12,23 @@
     "Excel"
   ],
   "reqExp": 2,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286617",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286987",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "제우스, 건즈앤드래곤즈, EA",
   "gameCategory": "온라인PC게임 RPG",
   "employmentType": "정규직",
-  "deadline": "~ 02/01(월)",
+  "deadline": "채용시 마감",
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 2년 이상",
-  "keywords": "게임기획, 라이브서비스기획",
-  "updatedAt": "2026-11-03",
+  "keywords": "게임기획, 해외서비스, 해외개발, 라이브서비스기획",
+  "updatedAt": "2026-11-13",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-11-03T20:47:48.046Z",
-  "lastSeenAt": "2026-11-12T21:45:06.362Z",
-  "lastCrawledAt": "2026-11-12T21:45:06.362Z",
+  "firstSeenAt": "2026-11-13T21:12:36.072Z",
+  "lastSeenAt": "2026-11-13T21:12:36.072Z",
+  "lastCrawledAt": "2026-11-13T21:12:36.072Z",
   "inactiveAt": null
 }
