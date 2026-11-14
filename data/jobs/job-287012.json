@@ -1,7 +1,7 @@
 {
-  "id": "crawled-285737",
+  "id": "crawled-287012",
   "company": "Idea Bombers",
-  "title": "[재택/단기외주][데브캠프 개인 TOP20] ProjectD 2D UI 디자이너 모집",
+  "title": "[재택/단기외주]ProjectD 2D UI 디자이너 모집",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
@@ -11,23 +11,23 @@
     "Unity"
   ],
   "reqExp": 2,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285737",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287012",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "와일드 쉐이퍼즈 (Wild Shapers)",
   "gameCategory": "온라인PC게임, 콘솔게임 Simulation",
-  "employmentType": "아르바이트(재택), 프리랜서",
+  "employmentType": "계약직 (계약기간 : 3개월), 아르바이트(재택), 프리랜서",
   "deadline": "채용시 마감",
-  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "salary": "1개월당 / 2,600,000원\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "인터페이스, UX·UI",
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-11-14",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-10-26T20:28:19.418Z",
-  "lastSeenAt": "2026-11-13T21:12:36.072Z",
-  "lastCrawledAt": "2026-11-13T21:12:36.072Z",
+  "firstSeenAt": "2026-11-14T19:42:26.609Z",
+  "lastSeenAt": "2026-11-14T19:42:26.609Z",
+  "lastCrawledAt": "2026-11-14T19:42:26.609Z",
   "inactiveAt": null
 }
