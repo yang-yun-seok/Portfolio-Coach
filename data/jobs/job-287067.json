@@ -1,0 +1,31 @@
+{
+  "id": "crawled-287067",
+  "company": "프롬서울",
+  "title": "[아바타테크 스타트업] Product Engineer (Unity Client 중심)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터"
+  ],
+  "reqSkills": [],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287067",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "관련없음 VR·AR",
+  "employmentType": "정규직, 인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, 기술개발, VR",
+  "updatedAt": "2026-11-16",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-16T23:41:00.515Z",
+  "lastSeenAt": "2026-11-16T23:41:00.515Z",
+  "lastCrawledAt": "2026-11-16T23:41:00.515Z",
+  "inactiveAt": null
+}

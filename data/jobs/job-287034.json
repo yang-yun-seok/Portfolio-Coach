@@ -1,0 +1,34 @@
+{
+  "id": "crawled-287034",
+  "company": "NC",
+  "title": "[NC][단기계약직][미스트바운드] 해외 유명 IP 기반의 신규 프로젝트 테스터 모집",
+  "role": "QA/테스트",
+  "roles": [
+    "기획",
+    "QA/테스트",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287034",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "계약직 (계약기간 : 협의 후 결정)",
+  "deadline": "~ 12/16(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "신입",
+  "keywords": "QA테스터, 밸런스테스트, 게임테스트, 엔씨, PvP테스트, 카드데이터검수, 게임기획보조",
+  "updatedAt": "2026-11-16",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-16T23:41:00.515Z",
+  "lastSeenAt": "2026-11-16T23:41:00.515Z",
+  "lastCrawledAt": "2026-11-16T23:41:00.515Z",
+  "inactiveAt": null
+}
