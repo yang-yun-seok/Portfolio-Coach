@@ -1,0 +1,35 @@
+{
+  "id": "crawled-287084",
+  "company": "㈜리턴픽셀",
+  "title": "기획자 모집",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "시나리오/퀘스트",
+    "레벨 디자인",
+    "시스템/컨텐츠 기획",
+    "Excel"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287084",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, 퀘스트, 레벨기획, 컨텐츠, 방치형",
+  "updatedAt": "2026-11-17",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-17T22:47:45.839Z",
+  "lastSeenAt": "2026-11-17T22:47:45.839Z",
+  "lastCrawledAt": "2026-11-17T22:47:45.839Z",
+  "inactiveAt": null
+}
