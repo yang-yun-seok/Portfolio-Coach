@@ -1,17 +1,16 @@
 {
-  "id": "crawled-285674",
+  "id": "crawled-287121",
   "company": "㈜스튜디오비사이드",
-  "title": "[프로젝트 I] 모바일 게임 이펙터",
+  "title": "[프로젝트A] 이펙터 모집",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
   ],
   "reqSkills": [
-    "Photoshop",
     "Unity"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=285674",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287121",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "스타세이비어 (https://www.starsavior.com/kr)",
@@ -20,14 +19,14 @@
   "deadline": "채용시 마감",
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
-  "keywords": "포토샵, 이펙트, FX, Unity",
-  "updatedAt": "2026-10-08",
+  "keywords": "이펙트, FX, 유니티, 스파인",
+  "updatedAt": "2026-11-18",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-10-08T20:32:11.045Z",
-  "lastSeenAt": "2026-11-17T22:47:45.839Z",
-  "lastCrawledAt": "2026-11-17T22:47:45.839Z",
+  "firstSeenAt": "2026-11-18T22:29:58.611Z",
+  "lastSeenAt": "2026-11-18T22:29:58.611Z",
+  "lastCrawledAt": "2026-11-18T22:29:58.611Z",
   "inactiveAt": null
 }

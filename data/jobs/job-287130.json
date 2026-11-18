@@ -1,0 +1,38 @@
+{
+  "id": "crawled-287130",
+  "company": "에어패스",
+  "title": "[에어패스] Unreal 엔진 클라이언트 개발자",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "AI/데이터"
+  ],
+  "reqSkills": [
+    "C++",
+    "Python",
+    "Unreal Engine",
+    "Git/SVN",
+    "iOS",
+    "Android"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287130",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "VR스포츠 콘텐츠",
+  "gameCategory": "온라인PC게임, 관련없음 Casual, Arcade",
+  "employmentType": "정규직, 인턴직 후 정규직 전환 검토 (협의 후 결정)",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "클라이언트, VisualC++, DirectX, C, C++, 연구개발, 기술개발, 게임프로그래밍, 게임프로그래머",
+  "updatedAt": "2026-11-18",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-18T22:29:58.611Z",
+  "lastSeenAt": "2026-11-18T22:29:58.611Z",
+  "lastCrawledAt": "2026-11-18T22:29:58.611Z",
+  "inactiveAt": null
+}
