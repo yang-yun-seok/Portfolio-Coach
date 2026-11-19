@@ -1,0 +1,39 @@
+{
+  "id": "crawled-287153",
+  "company": "팀스파르타㈜",
+  "title": "[게임체인저스1기] 모바일 게임 기획자 (계약직/채용연계형)",
+  "role": "기획",
+  "roles": [
+    "기획"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "레벨 디자인",
+    "밸런싱",
+    "시스템/컨텐츠 기획",
+    "Machine Learning",
+    "데이터 분석",
+    "Unity",
+    "Excel"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287153",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "종족 디펜스, 벙커 디펜스, 꿈틀 수비대",
+  "gameCategory": "모바일게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 3개월)",
+  "deadline": "~ 12/06(일)",
+  "salary": "1개월당 / 2,100,000원\n연봉검색",
+  "experience": "무관",
+  "keywords": "모바일, UX·UI, 레벨, 컨셉, 게임기획, 밸런스기획, 시스템기획, 컨텐츠, AI, 데이터분석",
+  "updatedAt": "2026-11-19",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-19T22:34:52.147Z",
+  "lastSeenAt": "2026-11-19T22:34:52.147Z",
+  "lastCrawledAt": "2026-11-19T22:34:52.147Z",
+  "inactiveAt": null
+}

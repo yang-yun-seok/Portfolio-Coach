@@ -1,0 +1,32 @@
+{
+  "id": "crawled-287151",
+  "company": "로얄크로우",
+  "title": "[Project R2] 배경모델러 채용",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "레벨 디자인"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287151",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임 Shooting",
+  "employmentType": "정규직, 인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "배경, 레벨",
+  "updatedAt": "2026-11-19",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-19T22:34:52.147Z",
+  "lastSeenAt": "2026-11-19T22:34:52.147Z",
+  "lastCrawledAt": "2026-11-19T22:34:52.147Z",
+  "inactiveAt": null
+}

@@ -1,0 +1,39 @@
+{
+  "id": "crawled-287159",
+  "company": "㈜에스씨에이아카데미안양",
+  "title": "[SBS아카데미게임학원 안양지점]교육부 게임 기획 강사 채용",
+  "role": "PM/운영",
+  "roles": [
+    "기획",
+    "PM/운영",
+    "QA/테스트"
+  ],
+  "reqSkills": [
+    "UI/UX 기획",
+    "레벨 디자인",
+    "시나리오/퀘스트",
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "QA/테스트"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287159",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임, 모바일게임 관련없음",
+  "employmentType": "프리랜서",
+  "deadline": "상시채용",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "UX·UI, 레벨, 게임기획, 시나리오, 퀘스트, 레벨기획, 시스템기획, 유료화, 게임운영, QA",
+  "updatedAt": "2026-11-19",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-19T22:34:52.147Z",
+  "lastSeenAt": "2026-11-19T22:34:52.147Z",
+  "lastCrawledAt": "2026-11-19T22:34:52.147Z",
+  "inactiveAt": null
+}
