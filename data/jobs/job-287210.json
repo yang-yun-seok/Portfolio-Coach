@@ -1,0 +1,32 @@
+{
+  "id": "crawled-287210",
+  "company": "NC",
+  "title": "[NC][AION2] VFX 아티스트 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unreal Engine"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287210",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "리니지, 리니지Ⅱ, AION 등",
+  "gameCategory": "온라인PC게임, 모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 12/25(금)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "VFX, UnrealEngine5, 엔씨, 영상특수효과, 인게임VFX, 캐릭터스킬이펙트",
+  "updatedAt": "2026-11-20",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-20T22:09:16.942Z",
+  "lastSeenAt": "2026-11-20T22:09:16.942Z",
+  "lastCrawledAt": "2026-11-20T22:09:16.942Z",
+  "inactiveAt": null
+}

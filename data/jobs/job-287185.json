@@ -1,16 +1,17 @@
 {
-  "id": "crawled-286257",
+  "id": "crawled-287185",
   "company": "㈜스튜디오비사이드",
-  "title": "[프로젝트A] 기계, 메카, 밀리터리 전문 원화 아트 디자인",
-  "role": "아트/UI",
+  "title": "[스타세이비어] 전투 / 캐릭터 / 몬스터 기획 담당자 모집",
+  "role": "기획",
   "roles": [
-    "아트/UI"
+    "기획"
   ],
   "reqSkills": [
-    "Illustrator"
+    "밸런싱",
+    "전투/액션 기획"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286257",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287185",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "스타세이비어 (https://www.starsavior.com/kr)",
@@ -18,15 +19,15 @@
   "employmentType": "정규직, 계약직 (계약기간 : 협의 후 결정)",
   "deadline": "채용시 마감",
   "salary": "면접 시 협의\n연봉검색",
-  "experience": "무관",
-  "keywords": "모바일, 원화, 일러스트, 메카닉, 밀리터리, 기계",
-  "updatedAt": "2026-10-22",
+  "experience": "신입",
+  "keywords": "모바일, 게임기획, 밸런스기획, 전투기획",
+  "updatedAt": "2026-11-20",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-10-22T19:14:10.843Z",
-  "lastSeenAt": "2026-11-19T22:34:52.147Z",
-  "lastCrawledAt": "2026-11-19T22:34:52.147Z",
+  "firstSeenAt": "2026-11-20T22:09:16.942Z",
+  "lastSeenAt": "2026-11-20T22:09:16.942Z",
+  "lastCrawledAt": "2026-11-20T22:09:16.942Z",
   "inactiveAt": null
 }

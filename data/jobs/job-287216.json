@@ -1,0 +1,35 @@
+{
+  "id": "crawled-287216",
+  "company": "휴먼코어랩",
+  "title": "다크 판타지 RPG 게임 애니메이터 (3년 이상)",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "3D",
+    "3ds Max",
+    "Maya",
+    "Unreal Engine"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287216",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "-",
+  "gameCategory": "온라인PC게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "~ 01/20(수)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "3D, 3DSmax, 애니메이션, Maya, KeyAnimation, 언리얼, 몬스터애니메이션, 모션캡처, blender, 전투애니메이션, 리타깃",
+  "updatedAt": "2026-11-20",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-20T22:09:16.942Z",
+  "lastSeenAt": "2026-11-20T22:09:16.942Z",
+  "lastCrawledAt": "2026-11-20T22:09:16.942Z",
+  "inactiveAt": null
+}

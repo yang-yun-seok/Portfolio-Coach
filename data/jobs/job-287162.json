@@ -1,7 +1,7 @@
 {
-  "id": "crawled-286885",
+  "id": "crawled-287162",
   "company": "그라비티",
-  "title": "[그라비티] 라그나로크 온라인 이펙터 경력 채용",
+  "title": "[그라비티] 라그나로크 온라인 이펙터 채용 (계약직)",
   "role": "아트/UI",
   "roles": [
     "아트/UI"
@@ -11,23 +11,23 @@
     "Photoshop"
   ],
   "reqExp": 0,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=286885",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287162",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "라그나로크 온라인, 라그나로크M, 라그나로크 오리진",
   "gameCategory": "온라인PC게임 RPG",
   "employmentType": "정규직",
-  "deadline": "~ 01/12(화)",
+  "deadline": "~ 01/20(수)",
   "salary": "면접 시 협의\n연봉검색",
   "experience": "무관",
   "keywords": "이펙트, FX, Unity, AffterEffect",
-  "updatedAt": "2026-11-12",
+  "updatedAt": "2026-11-20",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-11-12T21:45:06.362Z",
-  "lastSeenAt": "2026-11-19T22:34:52.147Z",
-  "lastCrawledAt": "2026-11-19T22:34:52.147Z",
+  "firstSeenAt": "2026-11-20T22:09:16.942Z",
+  "lastSeenAt": "2026-11-20T22:09:16.942Z",
+  "lastCrawledAt": "2026-11-20T22:09:16.942Z",
   "inactiveAt": null
 }
