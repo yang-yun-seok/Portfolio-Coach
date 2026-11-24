@@ -1,5 +1,5 @@
 {
-  "id": "crawled-284382",
+  "id": "crawled-287337",
   "company": "㈜버거몬스터",
   "title": "[스텔라나이츠] 픽셀아트 경력자 모집",
   "role": "아트/UI",
@@ -12,7 +12,7 @@
     "Photoshop"
   ],
   "reqExp": 2,
-  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=284382",
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287337",
   "hasAssignment": false,
   "assignmentType": "",
   "mainGame": "포트리스사가, 무명기시단",
@@ -22,13 +22,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "도트, 픽셀, 캐릭터도트, 배경도트",
-  "updatedAt": "2026-10-26",
+  "updatedAt": "2026-11-24",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-10-26T20:28:19.418Z",
-  "lastSeenAt": "2026-11-24T02:02:07.159Z",
-  "lastCrawledAt": "2026-11-24T02:02:07.159Z",
+  "firstSeenAt": "2026-11-24T23:46:55.467Z",
+  "lastSeenAt": "2026-11-24T23:46:55.467Z",
+  "lastCrawledAt": "2026-11-24T23:46:55.467Z",
   "inactiveAt": null
 }
