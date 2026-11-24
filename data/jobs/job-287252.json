@@ -1,0 +1,33 @@
+{
+  "id": "crawled-287252",
+  "company": "111퍼센트㈜",
+  "title": "[하이페라] AI 애니메이션 크리에이터",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Photoshop",
+    "시스템/컨텐츠 기획"
+  ],
+  "reqExp": 2,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287252",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "운빨존많겜, 랜덤다이스:디펜스",
+  "gameCategory": "모바일게임 기타",
+  "employmentType": "정규직",
+  "deadline": "~ 02/21(일)",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 2년 이상",
+  "keywords": "애니메이션, 영상제작·편집, 2D, Photoshop, 콘텐츠, 영상, 게임디자인, 모바일게임, 애프터이펙트, 크리에이터, TVP",
+  "updatedAt": "2026-11-24",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-24T02:02:07.159Z",
+  "lastSeenAt": "2026-11-24T02:02:07.159Z",
+  "lastCrawledAt": "2026-11-24T02:02:07.159Z",
+  "inactiveAt": null
+}

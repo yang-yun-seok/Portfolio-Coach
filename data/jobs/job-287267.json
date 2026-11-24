@@ -1,0 +1,34 @@
+{
+  "id": "crawled-287267",
+  "company": "넥슨 (NEXON)",
+  "title": "[슈터본부] 오버워치 리거",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Maya",
+    "Python"
+  ],
+  "reqExp": 3,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287267",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이플스토리, 던전앤파이터, 카트라이더, 마비노기",
+  "gameCategory": "온라인PC게임 기타",
+  "employmentType": "정규직",
+  "deadline": "상시채용",
+  "salary": "회사내규에 따름\n연봉검색",
+  "experience": "경력 3년 이상",
+  "keywords": "캐릭터, Maya",
+  "updatedAt": "2026-11-24",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-24T02:02:07.159Z",
+  "lastSeenAt": "2026-11-24T02:02:07.159Z",
+  "lastCrawledAt": "2026-11-24T02:02:07.159Z",
+  "inactiveAt": null
+}

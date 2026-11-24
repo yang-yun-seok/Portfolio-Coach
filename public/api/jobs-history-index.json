@@ -1,5 +1,14 @@
 [
   {
+    "date": "2026-11-24",
+    "generatedAt": "2026-11-24T02:02:07.159Z",
+    "referenceJobCount": 735,
+    "newJobsCount": 38,
+    "activeJobsCount": 735,
+    "lastCrawlStatus": "success",
+    "path": "./history/2026-11-24.json"
+  },
+  {
     "date": "2026-11-23",
     "generatedAt": "2026-11-22T20:56:23.555Z",
     "referenceJobCount": 732,
