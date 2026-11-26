@@ -1,0 +1,33 @@
+{
+  "id": "crawled-287375",
+  "company": "㈜뉴코어",
+  "title": "[신규 프로젝트/PC] 유니티 2D 배경 아트 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unity",
+    "Git/SVN"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287375",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "데블위딘삿갓(The Devil Within:Satgat)",
+  "gameCategory": "온라인PC게임 RPG, Casual",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 2개월)",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "배경, 배경원화, 핸드드로잉",
+  "updatedAt": "2026-11-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-26T23:30:01.640Z",
+  "lastSeenAt": "2026-11-26T23:30:01.640Z",
+  "lastCrawledAt": "2026-11-26T23:30:01.640Z",
+  "inactiveAt": null
+}

@@ -21,13 +21,13 @@
   "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
   "experience": "경력 2년 이상",
   "keywords": "연구개발, 기술개발, AI, 데이터, 에이전트, 멀티모달, VLA",
-  "updatedAt": "2026-11-25",
+  "updatedAt": "2026-11-26",
   "source": "GameJob",
   "catalogManaged": true,
   "status": "active",
   "isActive": true,
-  "firstSeenAt": "2026-11-25T23:29:44.305Z",
-  "lastSeenAt": "2026-11-25T23:29:44.305Z",
-  "lastCrawledAt": "2026-11-25T23:29:44.305Z",
+  "firstSeenAt": "2026-11-26T23:30:01.640Z",
+  "lastSeenAt": "2026-11-26T23:30:01.640Z",
+  "lastCrawledAt": "2026-11-26T23:30:01.640Z",
   "inactiveAt": null
 }

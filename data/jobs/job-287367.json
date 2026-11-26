@@ -1,0 +1,35 @@
+{
+  "id": "crawled-287367",
+  "company": "㈜플러피덕",
+  "title": "[플러피덕] ’메이크 드라마 MAD’ 경력 이벤트 기획자 모집",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트",
+    "기획"
+  ],
+  "reqSkills": [
+    "시스템/컨텐츠 기획",
+    "경제/BM 설계",
+    "Excel"
+  ],
+  "reqExp": 1,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287367",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "메이크드라마 : MAD",
+  "gameCategory": "모바일게임 RPG",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "경력 1년 이상",
+  "keywords": "모바일, 게임기획, 시스템기획, 컨텐츠, 유료화",
+  "updatedAt": "2026-11-26",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-26T23:30:01.640Z",
+  "lastSeenAt": "2026-11-26T23:30:01.640Z",
+  "lastCrawledAt": "2026-11-26T23:30:01.640Z",
+  "inactiveAt": null
+}
