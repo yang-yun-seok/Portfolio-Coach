@@ -1,0 +1,32 @@
+{
+  "id": "crawled-287392",
+  "company": "룸톤",
+  "title": "[INTERSCAPE] 3D 애니메이터 모집",
+  "role": "아트/UI",
+  "roles": [
+    "아트/UI"
+  ],
+  "reqSkills": [
+    "Unreal Engine"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287392",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "INTERSCAPE",
+  "gameCategory": "콘솔게임 관련없음",
+  "employmentType": "계약직 후 정규직 전환 검토 (계약기간 : 1년), 인턴직 후 정규직 전환 검토 (1개월~3개월 미만)",
+  "deadline": "~ 01/27(수)",
+  "salary": "면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "캐릭터, 애니메이션, 시네마틱, 언리얼엔진",
+  "updatedAt": "2026-11-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-27T23:12:41.293Z",
+  "lastSeenAt": "2026-11-27T23:12:41.293Z",
+  "lastCrawledAt": "2026-11-27T23:12:41.293Z",
+  "inactiveAt": null
+}

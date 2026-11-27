@@ -1,0 +1,33 @@
+{
+  "id": "crawled-287387",
+  "company": "크니브스튜디오",
+  "title": "유니티 클라이언트 개발자 (1인 인디 개발 경험 우대)",
+  "role": "클라이언트",
+  "roles": [
+    "클라이언트"
+  ],
+  "reqSkills": [
+    "C#",
+    "Unity"
+  ],
+  "reqExp": 0,
+  "url": "https://www.gamejob.co.kr/Recruit/GI_Read/View?GI_No=287387",
+  "hasAssignment": false,
+  "assignmentType": "",
+  "mainGame": "스타더스트: 별과 마녀, 하이롤러 페니, 관심중독 쉬었음처녀, 트레이몬 월드",
+  "gameCategory": "온라인PC게임, 콘솔게임 RPG, 기타",
+  "employmentType": "정규직",
+  "deadline": "채용시 마감",
+  "salary": "회사내규에 따름 / 면접 시 협의\n연봉검색",
+  "experience": "무관",
+  "keywords": "클라이언트, C#, Unity, 게임프로그래밍, 1인개발, 셰이더, 인디게임, AI활용",
+  "updatedAt": "2026-11-27",
+  "source": "GameJob",
+  "catalogManaged": true,
+  "status": "active",
+  "isActive": true,
+  "firstSeenAt": "2026-11-27T23:12:41.293Z",
+  "lastSeenAt": "2026-11-27T23:12:41.293Z",
+  "lastCrawledAt": "2026-11-27T23:12:41.293Z",
+  "inactiveAt": null
+}
